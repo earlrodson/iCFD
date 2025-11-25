@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    --catholic-blue: 217 91% 60%;
+    --catholic-gold: 38 92% 50%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom scrollbar for better readability */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-muted;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-md;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Scripture reference styling */
+.scripture-reference {
+  @apply italic text-muted-foreground text-sm mt-2 border-l-2 border-catholic-gold pl-3;
+}
+
+/* Catechism reference styling */
+.catechism-reference {
+  @apply text-xs font-mono bg-catholic-gold/10 text-catholic-blue px-2 py-1 rounded-md mt-1 inline-block;
+}
+
+/* Church Fathers quote styling */
+.church-fathers-quote {
+  @apply border-l-4 border-catholic-blue bg-muted/30 pl-4 py-3 my-4 rounded-r-md;
+}
+
+.church-fathers-quote blockquote {
+  @apply italic text-lg;
+}
+
+.church-fathers-quote cite {
+  @apply text-sm text-muted-foreground not-italic mt-2 block;
+}
+
+/* Loading shimmer effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--muted)) 25%,
+    hsl(var(--muted-foreground) / 0.1) 50%,
+    hsl(var(--muted)) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Scripture highlighting */
+.scripture-highlight {
+  @apply bg-catholic-gold/20 px-1 rounded;
+}
+
+/* Topic card hover effects */
+.topic-card {
+  @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Category badge colors */
+.category-badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.category-sacraments { @apply bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200; }
+.category-mary { @apply bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200; }
+.category-papacy { @apply bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-200; }
+.category-salvation { @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200; }
+.category-bible { @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200; }
+.category-saints { @apply bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200; }
+.category-tradition { @apply bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200; }
+.category-church-teaching { @apply bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-200; }
+
+/* Difficulty indicator */
+.difficulty-beginner { @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200; }
+.difficulty-intermediate { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200; }
+.difficulty-advanced { @apply bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200; }
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .topic-card {
+    @apply hover:shadow-md hover:translate-y-0;
+  }
+
+  .scripture-reference {
+    @apply text-xs;
+  }
+
+  .church-fathers-quote blockquote {
+    @apply text-base;
+  }
+}

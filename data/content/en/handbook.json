@@ -1,0 +1,347 @@
+{
+  "topics": [
+    {
+      "id": "eucharist-real-presence",
+      "category": "sacraments",
+      "title": "The Real Presence of Christ in the Eucharist",
+      "question": "Why do Catholics believe that the bread and wine become the actual Body and Blood of Christ?",
+      "answer": "Catholics believe in the Real Presence because Jesus explicitly stated 'This is my body' and 'This is my blood' at the Last Supper. This is not symbolic language—the Greek word used is 'sarx' meaning actual flesh. Early Christians consistently understood this literally, as evidenced by writings from the Church Fathers. The Eucharist is the source and summit of Christian life, making Christ truly present among us under the appearances of bread and wine through the miracle of transubstantiation.",
+      "scripture": [
+        {
+          "reference": "John 6:53-56",
+          "text": "Jesus said to them, 'Amen, amen, I say to you, unless you eat the flesh of the Son of Man and drink his blood, you do not have life within you. Whoever eats my flesh and drinks my blood has eternal life, and I will raise him on the last day. For my flesh is true food, and my blood is true drink. Whoever eats my flesh and drinks my blood remains in me and I in him.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 11:27-29",
+          "text": "Therefore whoever eats the bread or drinks the cup of the Lord unworthily will have to answer for the body and blood of the Lord. A person should examine himself, and so eat the bread and drink the cup. For anyone who eats and drinks without discerning the body, eats and drinks judgment on himself.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 22:19-20",
+          "text": "Then he took the bread, said the blessing, broke it, and gave it to them, saying, 'This is my body, which will be given for you; do this in memory of me.' And likewise the cup after they had eaten, saying, 'This cup is the new covenant in my blood, which will be shed for you.'",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1374", "CCC 1375", "CCC 1413"],
+      "churchFathers": [
+        {
+          "author": "St. Ignatius of Antioch",
+          "quote": "They abstain from the Eucharist and from prayer because they do not confess that the Eucharist is the flesh of our Savior Jesus Christ.",
+          "source": "Letter to the Smyrnaeans, 107 AD"
+        },
+        {
+          "author": "St. Justin Martyr",
+          "quote": "For not as common bread and common drink do we receive these; but in like manner as Jesus Christ our Savior, having been made flesh by the Word of God, had both flesh and blood for our salvation, so likewise have we been taught that the food which is blessed by the prayer of His word, and from which our blood and flesh by transmutation are nourished, is the flesh and blood of that Jesus who was made flesh.",
+          "source": "First Apology, 151 AD"
+        }
+      ],
+      "tags": ["eucharist", "transubstantiation", "sacraments", "mass", "real presence"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["mass-sacrifice", "communion-hand-tongue", "eucharistic-adoration"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "confession-sacrament",
+      "category": "sacraments",
+      "title": "The Sacrament of Confession",
+      "question": "Why do Catholics confess their sins to a priest instead of directly to God?",
+      "answer": "Catholics confess to priests because Jesus gave his apostles the authority to forgive sins in his name. The priest acts in persona Christi (in the person of Christ) as a visible sign of God's mercy. While we can always pray directly to God, the sacrament of confession provides certainty of forgiveness, grace to resist future sin, and spiritual guidance. It follows Christ's institution and the consistent practice of the early Church.",
+      "scripture": [
+        {
+          "reference": "John 20:21-23",
+          "text": "Jesus said to them again, 'Peace be with you. As the Father has sent me, so I send you.' And when he had said this, he breathed on them and said to them, 'Receive the holy Spirit. Whose sins you forgive are forgiven them, and whose sins you retain are retained.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "James 5:16",
+          "text": "Therefore, confess your sins to one another and pray for one another, that you may be healed. The fervent prayer of a righteous person is very powerful.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Corinthians 5:18-20",
+          "text": "And all this is from God, who has reconciled us to himself through Christ and given us the ministry of reconciliation, namely, God was reconciling the world to himself in Christ, not counting their trespasses against them and entrusting to us the message of reconciliation. So we are ambassadors for Christ, as if God were appealing through us.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1422", "CCC 1446", "CCC 1461"],
+      "churchFathers": [
+        {
+          "author": "St. Cyprian of Carthage",
+          "quote": "Of how much greater faith and salutary fear are they who... confess their sins to the priests of God in a straightforward manner and in sorrow, making an open declaration of conscience.",
+          "source": "The Lapsed, 251 AD"
+        }
+      ],
+      "tags": ["confession", "reconciliation", "penance", "priest", "forgiveness", "sacraments"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["priesthood-ministry", "sin-mortal-venial", "grace"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "mary-mother-of-god",
+      "category": "mary",
+      "title": "Mary as Mother of God",
+      "question": "Why do Catholics call Mary the 'Mother of God'?",
+      "answer": "Catholics call Mary 'Mother of God' (Theotokos in Greek) not because she existed before God, but because she gave birth to Jesus Christ, who is fully God and fully man. If Jesus is God, then Mary is truly the mother who bore God. This title was defended at the Council of Ephesus in 431 AD and affirms the reality of the Incarnation - that God truly became man in the womb of Mary.",
+      "scripture": [
+        {
+          "reference": "Luke 1:43",
+          "text": "And how does this happen to me, that the mother of my Lord should come to me?",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 1:14",
+          "text": "And the Word became flesh, and made his dwelling among us, and we saw his glory, the glory as of the Father's only Son, full of grace and truth.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 495", "CCC 466", "CCC 722"],
+      "churchFathers": [
+        {
+          "author": "St. Athanasius",
+          "quote": "The Word begotten of the Father from on high, in an ineffable and incomprehensible manner, He it is who is Himself in Mary, fashioned into a body from her, and was issued man, and therefore He is Emmanuel.",
+          "source": "Incarnation of the Word, 4th century"
+        },
+        {
+          "author": "St. Cyril of Jerusalem",
+          "quote": "For if He were born of the Father, and not likewise of the Mother, He could not truly be said to have taken flesh of her.",
+          "source": "Catechetical Lectures, 4th century"
+        }
+      ],
+      "tags": ["mary", "theotokos", "mother of god", "incarnation", "christology"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["mary-perpetual-virginity", "mary-immaculate-conception", "mary-assumption"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "papacy-peter-succession",
+      "category": "papacy",
+      "title": "Papal Succession from Peter",
+      "question": "How can the Catholic Church claim that popes are successors of Saint Peter?",
+      "answer": "The Catholic Church bases papal succession on Christ's words to Peter in Matthew 16:18-19, where He gave Peter the keys to the kingdom and the authority to bind and loose. Peter was clearly the leader of the apostles, and historical evidence shows an unbroken line of bishops of Rome tracing back to Peter. This succession is maintained through the laying on of hands in apostolic succession.",
+      "scripture": [
+        {
+          "reference": "Matthew 16:18-19",
+          "text": "And so I say to you, you are Peter, and upon this rock I will build my church, and the gates of the netherworld shall not prevail against it. I will give you the keys to the kingdom of heaven. Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 21:15-17",
+          "text": "Jesus said to Simon Peter, 'Simon, son of John, do you love me more than these?' He said to him, 'Yes, Lord, you know that I love you.' He said to him, 'Feed my lambs.' He then said to him a second time, 'Simon, son of John, do you love me?' He said to him, 'Yes, Lord, you know that I love you.' He said to him, 'Tend my sheep.' He said to him the third time, 'Simon, son of John, do you love me?' Peter was distressed that he had said to him a third time, 'Do you love me?' and he said to him, 'Lord, you know everything; you know that I love you.' Jesus said to him, 'Feed my sheep.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 22:31-32",
+          "text": "Simon, Simon, behold Satan has demanded to sift all of you like wheat, but I have prayed that your own faith may not fail; and once you have turned back, you must strengthen your brothers.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 880", "CCC 881", "CCC 862"],
+      "churchFathers": [
+        {
+          "author": "St. Irenaeus of Lyons",
+          "quote": "The blessed apostles, then, having founded and built up the Church, committed into the hands of Linus the office of the episcopate... To him succeeded Anacletus; and after him, in the third place from the apostles, Clement was allotted the bishopric.",
+          "source": "Against Heresies, 180 AD"
+        },
+        {
+          "author": "Tertullian",
+          "quote": "For if the apostles themselves appointed...bishops... Clement was ordained by Peter himself.",
+          "source": "The Demurrer Against the Heretics, 200 AD"
+        }
+      ],
+      "tags": ["papacy", "peter", "succession", "authority", "church leadership"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["papal-infallibility", "church-unity", "apostolic-succession"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "salvation-faith-works",
+      "category": "salvation",
+      "title": "Salvation by Faith and Works",
+      "question": "Why does the Catholic Church teach that both faith and works are necessary for salvation?",
+      "answer": "Catholics believe that salvation comes through God's grace, which we receive through faith that expresses itself in works. Faith without works is dead, as James teaches. We are saved by faith alone, but faith that saves is never alone - it produces good works. This is not 'works-based salvation' but rather a holistic understanding that authentic faith naturally results in transformed lives and good works done in cooperation with God's grace.",
+      "scripture": [
+        {
+          "reference": "James 2:14-26",
+          "text": "What good is it, my brothers, if someone says he has faith but does not have works? Can that faith save him? If a brother or sister has nothing to wear and has no food for the day, and one of you says to them, 'Go in peace, keep warm, and eat well,' but you do not give them the necessities of the body, what good is it? So also faith of itself, if it does not have works, is dead... See how a person is justified by works and not by faith alone... For just as a body without a spirit is dead, so also faith without works is dead.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Ephesians 2:8-10",
+          "text": "For by grace you have been saved through faith, and this is not from you; it is the gift of God; it is not from works, so no one may boast. For we are his handiwork, created in Christ Jesus for the good works that God has prepared in advance, that we should live in them.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Philippians 2:12-13",
+          "text": "So then, my beloved, obedient as you have always been, not only when I am present but all the more now when I am absent, work out your salvation with fear and trembling. For God is the one who, for his good purpose, works in you both to desire and to work.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1987", "CCC 2008", "CCC 2010"],
+      "churchFathers": [
+        {
+          "author": "St. Augustine",
+          "quote": "Without love, faith can indeed exist, but it can be of no profit to the man who has it. For though a man should have all knowledge, and know all mysteries, yet if he have not charity, what profiteth he it? For as the body without the spirit is dead, so faith without works is dead also.",
+          "source": "On Faith and Works, 5th century"
+        }
+      ],
+      "tags": ["salvation", "faith", "works", "grace", "justification", "james"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["grace", "justification", "merit", "good-works"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "bible-canon-deuterocanonical",
+      "category": "bible",
+      "title": "The Deuterocanonical Books",
+      "question": "Why do Catholics include books in the Bible that Protestants don't have?",
+      "answer": "Catholics include seven additional Old Testament books (Tobit, Judith, Wisdom, Sirach, Baruch, 1 & 2 Maccabees) and additions to Esther and Daniel because they were part of the Septuagint, the Greek translation used by most early Christians. These books were considered canonical until the Protestant Reformation, when Martin Luther removed them based on Jewish canon decisions made after Christ's time. The Catholic Church continues to recognize them as inspired Scripture.",
+      "scripture": [
+        {
+          "reference": "Wisdom 1:1",
+          "text": "Love justice, you who judge the earth; think of the Lord in goodness, and seek him in integrity of heart.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Maccabees 12:46",
+          "text": "Thus he made atonement for the dead that they might be absolved from sin.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Sirach 3:2-6",
+          "text": "For the LORD sets a father in honor over his children and confirms a mother's authority over her sons. Whoever honors his father atones for sins; he who reveres his mother stores up riches. Whoever honors his father is gladdened by children, and when he prays he is heard. Whoever reveres his father will live a long life; he obeys the LORD who brings comfort to a mother.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 120", "CCC 138", "CCC 120"],
+      "churchFathers": [
+        {
+          "author": "St. Clement of Rome",
+          "quote": "By humility and the fear of the Lord let us make our approach, and let us be attentive to His words... let us consider how He continually says to us, 'Draw near to me, and I will draw near to you: as it is written, 'I said, Thou art my God; I have not known thee, O Lord.' And, 'My soul has thirsted after the strong living God.'",
+          "source": "First Epistle to the Corinthians, 96 AD (citing Sirach 2:18-20)"
+        }
+      ],
+      "tags": ["bible", "canon", "deuterocanonical", "apocrypha", "septuagint"],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": ["scripture-authority", "tradition", "bible-interpretation"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "saints-intercession",
+      "category": "saints",
+      "title": "Praying to Saints",
+      "question": "Why do Catholics pray to saints instead of directly to God?",
+      "answer": "Catholics don't pray to saints instead of God - we worship God alone. Asking saints to pray for us is like asking a friend on earth to pray for us. The saints in heaven are alive in Christ and can intercede for us before God. This biblical practice is supported by references to the 'communion of saints' and examples of heavenly intercession in Revelation and Hebrews.",
+      "scripture": [
+        {
+          "reference": "Revelation 5:8",
+          "text": "When he took it, the four living creatures and the twenty-four elders fell down before the Lamb. Each had a harp and gold bowls filled with incense, which are the prayers of the holy ones.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Revelation 8:3-4",
+          "text": "Another angel came and stood at the altar, holding a gold censer. He was given a great quantity of incense to offer, along with the prayers of all the holy ones, on the gold altar that was before the throne. The smoke of the incense along with the prayers of the holy ones rose up before God from the hand of the angel.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Hebrews 12:1",
+          "text": "Therefore, since we are surrounded by so great a cloud of witnesses, let us rid ourselves of every burden and sin that clings to us and persevere in running the race that lies before us.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 2683", "CCC 956", "CCC 2683"],
+      "churchFathers": [
+        {
+          "author": "St. Augustine",
+          "quote": "What then? Do we think that the blessed martyrs... are not willing to pray for us? For they are our brethren; and if their merits do not profit us, their prayers will.",
+          "source": "Homilies on John, 5th century"
+        }
+      ],
+      "tags": ["saints", "intercession", "prayer", "communion of saints", "heaven"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["mary-intercession", "purgatory", "prayer-types"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "tradition-authority",
+      "category": "tradition",
+      "title": "Sacred Tradition and Scripture",
+      "question": "Why does the Catholic Church give equal authority to Tradition and Scripture?",
+      "answer": "The Catholic Church believes that Sacred Tradition and Sacred Scripture form one sacred deposit of the Word of God. Scripture itself points to the authority of Tradition (2 Thessalonians 2:15) and the Church existed and taught the faith before the New Testament was written. Tradition preserves the correct interpretation of Scripture and contains apostolic teaching not explicitly recorded in the biblical text.",
+      "scripture": [
+        {
+          "reference": "2 Thessalonians 2:15",
+          "text": "Therefore, brothers, stand firm and hold fast to the traditions that you were taught, either by an oral statement or by a letter of ours.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Timothy 2:2",
+          "text": "And what you heard from me through many witnesses entrust to faithful people who will have the ability to teach others as well.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 11:2",
+          "text": "I praise you because you remember me in everything and hold fast to the traditions, just as I handed them on to you.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 80", "CCC 82", "CCC 97"],
+      "churchFathers": [
+        {
+          "author": "St. Basil the Great",
+          "quote": "Of the beliefs and practices whether generally accepted or publicly enjoined, which are preserved in the Church some we possess derived from written teaching; others we have received delivered to us 'in a mystery' by the tradition of the apostles; and both of these have the same force for piety.",
+          "source": "On the Holy Spirit, 4th century"
+        }
+      ],
+      "tags": ["tradition", "scripture", "magisterium", "revelation", "apostolic tradition"],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": ["bible-canon-deuterocanonical", "church-teaching-authority", "magisterium"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    },
+    {
+      "id": "contraception-teaching",
+      "category": "church-teaching",
+      "title": "Contraception and Marriage",
+      "question": "Why does the Catholic Church oppose artificial contraception?",
+      "answer": "The Catholic Church teaches that every marital act must remain open to life because contraception separates the unitive and procreative aspects of marital love that God designed to be inseparable. This teaching is based on natural law, Scripture, and constant Church teaching. The Church promotes Natural Family Planning as a morally acceptable way to plan families that respects God's design for sexuality.",
+      "scripture": [
+        {
+          "reference": "Genesis 1:28",
+          "text": "God blessed them and God said to them: Be fertile and multiply; fill the earth and subdue it. Have dominion over the fish of the sea, the birds of the air, and all the living things that crawl on the earth.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Genesis 38:8-10",
+          "text": "Judah then said to Onan, 'Unite with your brother's widow, in fulfillment of your duty as brother-in-law, and thus preserve your brother's line.' Onan, however, knew that the offspring would not be his; so whenever he had relations with his brother's widow, he wasted his seed on the ground, to avoid contributing offspring for his brother. What he did greatly offended the LORD, and the LORD took his life too.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 2370", "CCC 2399", "CCC 1652"],
+      "churchFathers": [
+        {
+          "author": "St. Clement of Alexandria",
+          "quote": "Because of its divine institution for the propagation of man, the seed is not to be vainly ejaculated, nor is it to be damaged, nor is it to be wasted.",
+          "source": "The Instructor of Children, 3rd century"
+        }
+      ],
+      "tags": ["contraception", "marriage", "family planning", "procreation", "natural law"],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": ["marriage-sacrament", "natural-family-planning", "sexual-ethics"],
+      "lastUpdated": "2025-01-15T00:00:00Z"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-15T00:00:00Z",
+    "totalTopics": 10
+  }
+}

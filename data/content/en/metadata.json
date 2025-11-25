@@ -1,0 +1,37 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-01-15T00:00:00Z",
+  "totalTopics": 10,
+  "categories": [
+    "sacraments",
+    "mary",
+    "papacy",
+    "salvation",
+    "bible",
+    "saints",
+    "tradition",
+    "church-teaching"
+  ],
+  "topicsByCategory": {
+    "sacraments": 2,
+    "mary": 1,
+    "papacy": 1,
+    "salvation": 1,
+    "bible": 1,
+    "saints": 1,
+    "tradition": 1,
+    "church-teaching": 1
+  },
+  "difficulty": {
+    "beginner": 3,
+    "intermediate": 4,
+    "advanced": 3
+  },
+  "language": "en",
+  "contentStructure": {
+    "hasScripture": true,
+    "hasCatechism": true,
+    "hasChurchFathers": true,
+    "hasRelatedTopics": true
+  }
+}
