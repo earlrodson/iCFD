@@ -1,0 +1,173 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2024-11-26T10:00:00.000Z",
+  "totalTopics": 9,
+  "categories": [
+    "sacraments",
+    "mary",
+    "papacy",
+    "salvation",
+    "bible",
+    "saints",
+    "tradition",
+    "church-teaching"
+  ],
+  "topicsByCategory": {
+    "sacraments": 2,
+    "mary": 1,
+    "papacy": 1,
+    "salvation": 1,
+    "bible": 1,
+    "saints": 1,
+    "tradition": 1,
+    "church-teaching": 1
+  },
+  "difficulty": {
+    "beginner": 2,
+    "intermediate": 5,
+    "advanced": 2
+  },
+  "language": "ceb",
+  "topics": {
+    "total": 9,
+    "byCategory": {
+      "sacraments": 2,
+      "mary": 1,
+      "papacy": 1,
+      "salvation": 1,
+      "bible": 1,
+      "saints": 1,
+      "tradition": 1,
+      "church-teaching": 1
+    }
+  },
+  "categories": {
+    "sacraments": {
+      "name": "Mga Sakramento",
+      "description": "Ang pito ka sagradong sakramento sa Katoliko nga Simbahan",
+      "icon": "✝️",
+      "color": "#9333ea"
+    },
+    "mary": {
+      "name": "Balaang Maria",
+      "description": "Mga tudling mahitungod sa Mahal nga Virhing Maria",
+      "icon": "🌹",
+      "color": "#ec4899"
+    },
+    "papacy": {
+      "name": "Papasya",
+      "description": "Ang Papasya ug Papal nga Katungdanan",
+      "icon": "👑",
+      "color": "#eab308"
+    },
+    "salvation": {
+      "name": "Kaluwasan",
+      "description": "Kaluwasan ug Kristohanong Kinabuhi",
+      "icon": "🙏",
+      "color": "#3b82f6"
+    },
+    "bible": {
+      "name": "Biblia",
+      "description": "Kasulatan ug Biblihikal nga Interpretasyon",
+      "icon": "📖",
+      "color": "#22c55e"
+    },
+    "saints": {
+      "name": "Mga Santo",
+      "description": "Mga Santo ug ilang mga tudling",
+      "icon": "👼",
+      "color": "#6366f1"
+    },
+    "tradition": {
+      "name": "Tradisyon",
+      "description": "Balaanong Tradisyon ug Kasaysayan sa Simbahan",
+      "icon": "⛪",
+      "color": "#f97316"
+    },
+    "church-teaching": {
+      "name": "Turo sa Simbahan",
+      "description": "Opisyal nga mga tudling sa Simbahan ug mga Dokumento",
+      "icon": "📜",
+      "color": "#ef4444"
+    }
+  },
+  "difficulty": {
+    "beginner": {
+      "name": "Sinugdunan",
+      "description": "Pasiuna sa mga konsepto nga sayon maintindihan",
+      "count": 2
+    },
+    "intermediate": {
+      "name": "Katugmang",
+      "description": "Mga tudling nga nagkinahanglan sa sakto nga pagtuo",
+      "count": 5
+    },
+    "advanced": {
+      "name": "May Kasayon",
+      "description": "Komplikado nga mga doktrina ug teolohiya",
+      "count": 2
+    }
+  },
+  "features": {
+    "searchEnabled": true,
+    "offlineAvailable": true,
+    "fontSizeAdjustable": true,
+    "bookmarksEnabled": true,
+    "favoritesEnabled": true,
+    "scriptureReferences": true,
+    "catechismReferences": true,
+    "churchFathersQuotes": true,
+    "tagsAndFiltering": true,
+    "relatedTopics": true
+  },
+  "contentStructure": {
+    "handbook": {
+      "title": "Manul nga Pag-ayo",
+      "description": "Reperensya sa mga tudling sa apologetika",
+      "file": "handbook.json",
+      "topics": 9
+    }
+  },
+  "searchIndex": {
+    "version": "1.0",
+    "indexedAt": "2024-11-26T10:00:00.000Z",
+    "terms": [
+      "eukaristiya",
+      "tinood nga presensya",
+      "kumpisal",
+      "sakramento",
+      "maria",
+      "ina sa diyos",
+      "papa",
+      "pedro",
+      "kaluwasan",
+      "pagtuo",
+      "mga buhat",
+      "biblia",
+      "deuterocanonical",
+      "mga santo",
+      "pag-ampo",
+      "tradisyon",
+      "katungdanan",
+      "turo sa simbahan",
+      "kontrasepsyon"
+    ]
+  },
+  "localization": {
+    " dateFormat": "DD/MM/YYYY",
+    "timeFormat": "24-hour",
+    "numberFormat": "decimal",
+    "textDirection": "ltr",
+    "fontFamily": "system-ui, -apple-system, sans-serif"
+  },
+  "metadata": {
+    "contributors": [
+      "Catholic Faith Defender Team",
+      "Cebuano Catholic Community"
+    ],
+    "license": "Creative Commons Attribution-ShareAlike 4.0",
+    "copyright": "© 2024 Catholic Faith Defender",
+    "lastValidation": "2024-11-26T10:00:00.000Z",
+    "schemaVersion": "1.0"
+  }
+}

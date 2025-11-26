@@ -52,29 +52,29 @@ export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
       // Initial state
-      loading: false,
-      offline: !navigator.onLine,
-      syncStatus: 'idle',
-      error: null,
+      loading: false as boolean,
+      offline: typeof navigator !== 'undefined' ? !navigator.onLine : false,
+      syncStatus: 'idle' as const,
+      error: null as string | null,
 
-      currentLanguage: 'en',
-      availableTopics: [],
-      currentTopic: null,
-      contentVersion: null,
+      currentLanguage: 'en' as const,
+      availableTopics: [] as Topic[],
+      currentTopic: null as Topic | null,
+      contentVersion: null as string | null,
 
       settings: {
-        language: 'en',
-        theme: 'light',
-        fontSize: 'medium',
-        autoSync: false,
-        lastSync: null,
+        language: 'en' as const,
+        theme: 'light' as const,
+        fontSize: 'medium' as const,
+        autoSync: false as boolean,
+        lastSync: null as string | null,
         searchFilters: {
-          categories: [],
-          difficulties: [],
-          showScripture: true,
-          showChurchFathers: true
+          categories: [] as string[],
+          difficulties: [] as string[],
+          showScripture: true as boolean,
+          showChurchFathers: true as boolean
         }
-      },
+      } as ValidatedSettings,
 
       // UI state actions
       setLoading: (loading) => set({ loading }),
@@ -216,8 +216,8 @@ export const useAppStore = create<AppState>()(
           // Load settings from IndexedDB
           const storedSettings = await db.settings.get('user-settings')
 
-          if (storedSettings?.value) {
-            const validatedSettings = validateSettings(storedSettings.value)
+          if (storedSettings) {
+            const validatedSettings = validateSettings(storedSettings)
             set({ settings: validatedSettings })
 
             // Apply theme
@@ -234,7 +234,7 @@ export const useAppStore = create<AppState>()(
           window.addEventListener('offline', handleOffline)
 
           // Load initial content
-          await get().loadContent(storedSettings?.value?.language || 'en')
+          await get().loadContent(storedSettings?.language || 'en')
 
           // Note: Event listeners are cleaned up when component unmounts
           // or through proper effect cleanup in React components
@@ -278,7 +278,7 @@ export const useAppStore = create<AppState>()(
             getItem: async (name) => {
               try {
                 const result = await db.settings.get(name)
-                return result?.value ? JSON.stringify(result.value) : null
+                return result ? JSON.stringify(result) : null
               } catch {
                 return null
               }

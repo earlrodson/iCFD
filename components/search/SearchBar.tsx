@@ -5,8 +5,11 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Search, X, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useDebounce } from '@/lib/hooks/useDebounce'
 import { useSearchStore } from '@/store/useSearchStore'
 import { useSearchActions } from '@/store/useSearchStore'
+import { contentLoader } from '@/lib/content/loader'
+import { useAppStore } from '@/store/useAppStore'
 import type { Topic } from '@/data/schema/topic.schema'
 
 interface SearchBarProps {
@@ -29,13 +32,28 @@ export function SearchBar({
   const [localQuery, setLocalQuery] = useState('')
   const [suggestions, setSuggestions] = useState<string[]>([])
   const [showSuggestionsList, setShowSuggestionsList] = useState(false)
-  const [isSearching, setIsSearching] = useState(false)
+  const [allTopics, setAllTopics] = useState<Topic[]>([])
 
   const { query, results, loading } = useSearchStore()
   const { setQuery, performSearch, clearSearch } = useSearchActions()
+  const { getQuerySuggestions } = useSearchActions()
+  const { currentLanguage: language } = useAppStore()
 
   // Debounce the search query
   const debouncedQuery = useDebounce(localQuery, 300)
+
+  // Load all topics for search functionality
+  useEffect(() => {
+    const loadTopics = async () => {
+      try {
+        const content = await contentLoader.loadContent(language)
+        setAllTopics(content.topics)
+      } catch (error) {
+        console.error('Failed to load topics for search:', error)
+      }
+    }
+    loadTopics()
+  }, [language])
 
   // Update global search state when local query changes
   useEffect(() => {
@@ -45,41 +63,25 @@ export function SearchBar({
   // Perform search when debounced query changes
   useEffect(() => {
     if (debouncedQuery.trim()) {
-      setIsSearching(true)
-      // This would be connected to actual search implementation
-      // performSearch(debouncedQuery, [], { language: 'en' })
-      // .then(() => setIsSearching(false))
-      setTimeout(() => setIsSearching(false), 500) // Simulate search delay
+      performSearch(debouncedQuery, allTopics, { language })
     } else {
       clearSearch()
       setSuggestions([])
       setShowSuggestionsList(false)
     }
-  }, [debouncedQuery, performSearch, clearSearch])
+  }, [debouncedQuery, performSearch, clearSearch, allTopics, language])
 
   // Update suggestions based on query
   useEffect(() => {
-    if (showSuggestions && localQuery.length >= 2) {
-      // This would be connected to actual suggestions
-      // const newSuggestions = await searchIndexManager.getSearchSuggestions(localQuery, 'en', maxSuggestions)
-      // setSuggestions(newSuggestions)
-
-      // Mock suggestions for now
-      const mockSuggestions = [
-        'sacraments',
-        'mary mother of god',
-        'salvation',
-        'bible',
-        'peter'
-      ].filter(suggestion => suggestion.toLowerCase().includes(localQuery.toLowerCase()))
-
-      setSuggestions(mockSuggestions)
-      setShowSuggestionsList(mockSuggestions.length > 0)
+    if (showSuggestions && localQuery.length >= 2 && allTopics.length > 0) {
+      const newSuggestions = getQuerySuggestions(localQuery, allTopics)
+      setSuggestions(newSuggestions.slice(0, maxSuggestions))
+      setShowSuggestionsList(newSuggestions.length > 0)
     } else {
       setSuggestions([])
       setShowSuggestionsList(false)
     }
-  }, [localQuery, showSuggestions, maxSuggestions])
+  }, [localQuery, showSuggestions, maxSuggestions, allTopics, getQuerySuggestions])
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLocalQuery(e.target.value)
@@ -122,16 +124,16 @@ export function SearchBar({
           onFocus={() => setShowSuggestionsList(suggestions.length > 0)}
         />
 
-        {(localQuery || isSearching) && (
+        {(localQuery || loading) && (
           <Button
             type="button"
             variant="ghost"
             size="icon"
             className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6"
             onClick={handleClear}
-            disabled={isSearching}
+            disabled={loading}
           >
-            {isSearching ? (
+            {loading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
               <X className="h-4 w-4" />
@@ -163,7 +165,7 @@ export function SearchBar({
       )}
 
       {/* Loading indicator */}
-      {isSearching && (
+      {loading && (
         <div className="absolute top-full left-0 right-0 mt-1 text-center text-sm text-muted-foreground">
           <div className="flex items-center justify-center space-x-2">
             <Loader2 className="h-3 w-3 animate-spin" />
@@ -173,21 +175,4 @@ export function SearchBar({
       )}
     </div>
   )
-}
-
-// Hook for debouncing
-function useDebounce<T>(value: T, delay: number): T {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
-
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedValue(value)
-    }, delay)
-
-    return () => {
-      clearTimeout(handler)
-    }
-  }, [value, delay])
-
-  return debouncedValue
 }

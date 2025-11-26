@@ -23,6 +23,7 @@ interface DefenderDB extends DBSchema {
   settings: {
     key: string
     value: {
+      key: string
       language: 'en' | 'tl' | 'ceb'
       theme: 'light' | 'dark' | 'system'
       fontSize: 'small' | 'medium' | 'large'
@@ -48,6 +49,7 @@ interface DefenderDB extends DBSchema {
   cache: {
     key: string
     value: {
+      key: string
       data: any
       timestamp: number
       expiresAt: number
@@ -56,4 +58,4 @@ interface DefenderDB extends DBSchema {
 }
 
 export type DefenderDBType = IDBPDatabase<DefenderDB>
-export { DefenderDB }
+export type { DefenderDB }

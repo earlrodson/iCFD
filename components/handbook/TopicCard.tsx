@@ -1,13 +1,16 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Heart, BookOpen, Clock } from 'lucide-react'
 import { useFavoritesStore, useFavoriteActions } from '@/store/useFavoritesStore'
+import { useAppStore } from '@/store/useAppStore'
 import type { Topic } from '@/data/schema/topic.schema'
 import { cn } from '@/lib/utils'
-import { getCategoryName, getCategoryIcon, getDifficultyLabel, formatRelativeTime } from '@/lib/utils'
+import { getCategoryName, getCategoryIcon, getCategoryColor } from '@/lib/utils/categories'
+import { getDifficultyLabel, formatRelativeTime } from '@/lib/utils/general'
 
 interface TopicCardProps {
   topic: Topic
@@ -32,12 +35,16 @@ export function TopicCard({
   compact = false,
   className
 }: TopicCardProps) {
+  const router = useRouter()
   const { isFavorite } = useFavoritesStore()
   const { toggleFavorite } = useFavoriteActions()
+  const { currentLanguage: language } = useAppStore()
 
   const isFavorited = isFavorite(topic.id)
 
   const handleCardClick = () => {
+    // Navigate to topic detail page
+    router.push(`/${encodeURIComponent(topic.id)}?lang=${language}`)
     onClick?.(topic)
   }
 
@@ -124,7 +131,7 @@ export function TopicCard({
           <div className="flex-1">
             <div className="flex items-center space-x-2 mb-2">
               <span className="text-lg">{getCategoryIcon(topic.category)}</span>
-              <Badge variant="secondary" className="category-sacraments">
+              <Badge className={getCategoryColor(topic.category)}>
                 {getCategoryName(topic.category)}
               </Badge>
               {showDifficulty && (

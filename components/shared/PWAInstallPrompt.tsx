@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 
 interface PWAInstallPromptProps {
   className?: string
-  showDelay?: number // Delay in milliseconds before showing the prompt
+  showDelay?: number // Delay in milliseconds before showing prompt
   dismissible?: boolean
   showIcon?: boolean
 }
@@ -25,14 +25,14 @@ export function PWAInstallPrompt({
   const [showPrompt, setShowPrompt] = useState(false)
   const [installing, setInstalling] = useState(false)
 
-  // Check if we should show the prompt
+  // Check if we should show prompt
   useEffect(() => {
     if (isInstalled || !isInstallable || dismissed) {
       setShowPrompt(false)
       return
     }
 
-    // Wait before showing the prompt
+    // Wait before showing prompt
     const timer = setTimeout(() => {
       setShowPrompt(true)
     }, showDelay)
@@ -188,7 +188,7 @@ export function InstallInstructions({ isOpen, onClose }: { isOpen: boolean; onCl
             <h4 className="font-medium mb-2">On Chrome (Desktop)</h4>
             <ol className="text-sm text-muted-foreground space-y-1 list-decimal list-inside">
               <li>Click the install icon in the address bar</li>
-              <li>Click "Install" in the dialog</li>
+              <li>Click "Install" in dialog</li>
               <li>Launch from your applications</li>
             </ol>
           </div>

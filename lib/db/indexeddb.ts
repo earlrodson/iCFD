@@ -62,11 +62,11 @@ class DatabaseManager {
     const db = await this.getDB()
 
     // Clear all object stores
-    const stores = ['topics', 'favorites', 'settings', 'searchIndex', 'cache']
-
-    for (const store of stores) {
-      await db.clear(store)
-    }
+    await db.clear('topics')
+    await db.clear('favorites')
+    await db.clear('settings')
+    await db.clear('searchIndex')
+    await db.clear('cache')
   }
 
   async reset(): Promise<void> {
@@ -190,7 +190,7 @@ export const db = {
         addedAt: Date.now(),
         syncedToCloud: false
       }
-      return db.put('favorites', favorite)
+      await db.put('favorites', favorite)
     },
 
     remove: async (topicId: string): Promise<void> => {
@@ -229,7 +229,10 @@ export const db = {
 
     set: async (key: string, value: any): Promise<void> => {
       const db = await dbManager.getDB()
-      return db.put('settings', { key, value })
+      await db.put('settings', {
+        key, // Include key in the data object since store uses keyPath: 'key'
+        ...value
+      })
     },
 
     remove: async (key: string): Promise<void> => {
@@ -267,7 +270,7 @@ export const db = {
 
     set: async (lang: string, index: any, version: string): Promise<void> => {
       const db = await dbManager.getDB()
-      return db.put('searchIndex', {
+      await db.put('searchIndex', {
         lang,
         index,
         version,
@@ -306,8 +309,8 @@ export const db = {
     set: async (key: string, data: any, ttlSeconds: number = 3600): Promise<void> => {
       const db = await dbManager.getDB()
       const now = Date.now()
-      return db.put('cache', {
-        key,
+      await db.put('cache', {
+        key, // Include key in the data object since store uses keyPath: 'key'
         data,
         timestamp: now,
         expiresAt: now + (ttlSeconds * 1000)
@@ -334,7 +337,7 @@ export const db = {
 
       for (const item of all) {
         if (now > item.expiresAt) {
-          await store.delete(item.key)
+          await store.delete((item as any).key)
         }
       }
 

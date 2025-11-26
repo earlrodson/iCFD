@@ -14,7 +14,7 @@ interface BeforeInstallPromptEvent extends Event {
 export function PWASetup() {
   useEffect(() => {
     // Service Worker registration
-    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+    if (typeof window !== 'undefined' && navigator && 'serviceWorker' in navigator) {
       navigator.serviceWorker
         .register('/sw.js')
         .then((registration) => {
@@ -104,4 +104,3 @@ export function usePWAInstall() {
     installPrompt
   }
 }
-

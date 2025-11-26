@@ -42,8 +42,10 @@ export function OfflineBanner({
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
 
-    // Set initial status
-    setOfflineStatus(!navigator.onLine)
+    // Set initial status (only on client)
+    if (typeof window !== 'undefined' && navigator) {
+      setOfflineStatus(!navigator.onLine)
+    }
 
     return () => {
       window.removeEventListener('online', handleOnline)
@@ -127,7 +129,7 @@ export function OfflineBanner({
                 size="sm"
                 variant="outline"
                 onClick={handleRetry}
-                disabled={lastRetry && Date.now() - lastRetry.getTime() < 10000}
+                disabled={!!lastRetry && Date.now() - lastRetry.getTime() < 10000}
                 className="text-orange-700 border-orange-300 hover:bg-orange-100 dark:text-orange-300 dark:border-orange-700 dark:hover:bg-orange-900/20"
               >
                 <RefreshCw className={cn(
@@ -174,7 +176,10 @@ export function CompactOfflineBanner({ className }: { className?: string }) {
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
 
-    setOfflineStatus(!navigator.onLine)
+    // Set initial status (only on client)
+    if (typeof window !== 'undefined' && navigator) {
+      setOfflineStatus(!navigator.onLine)
+    }
 
     return () => {
       window.removeEventListener('online', handleOnline)

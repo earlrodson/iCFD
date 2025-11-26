@@ -1,8 +1,6 @@
 import { z } from 'zod'
 import type { Topic, HandbookContent } from '@/data/schema/topic.schema'
-
-// Re-export schemas for external use
-export { TopicSchema, HandbookContentSchema } from '@/data/schema/topic.schema'
+import { TopicSchema, HandbookContentSchema } from '@/data/schema/topic.schema'
 
 // Extended validation schemas
 export const SettingsSchema = z.object({

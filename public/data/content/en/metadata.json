@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "lastUpdated": "2025-01-15T00:00:00Z",
-  "totalTopics": 10,
+  "totalTopics": 9,
   "categories": [
     "sacraments",
     "mary",
@@ -23,9 +23,9 @@
     "church-teaching": 1
   },
   "difficulty": {
-    "beginner": 3,
-    "intermediate": 4,
-    "advanced": 3
+    "beginner": 2,
+    "intermediate": 5,
+    "advanced": 2
   },
   "language": "en",
   "contentStructure": {

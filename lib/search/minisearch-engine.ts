@@ -40,7 +40,7 @@ export class SearchEngine {
   }
 
   async initialize(language: string, topics: Topic[]): Promise<void> {
-    // Create MiniSearch instance for the language
+    // Create MiniSearch instance for language
     const miniSearch = new MiniSearch({
       fields: ['title', 'question', 'answer', 'tags'],
       storeFields: ['id', 'title', 'category', 'difficulty', 'lang', 'tags'],
@@ -65,7 +65,7 @@ export class SearchEngine {
       miniSearch.addAll(topics)
     }
 
-    // Store the search index
+    // Store of search index
     this.searchIndexes.set(language, miniSearch)
 
     // Save to IndexedDB for persistence
@@ -80,7 +80,23 @@ export class SearchEngine {
         return false
       }
 
-      const miniSearch = MiniSearch.loadJSON(indexData.index)
+      const miniSearch = MiniSearch.loadJSON(indexData.index, {
+        fields: ['title', 'question', 'answer', 'tags'],
+        storeFields: ['id', 'title', 'category', 'difficulty', 'lang', 'tags'],
+        searchOptions: {
+          fuzzy: this.defaultOptions.fuzzy,
+          prefix: this.defaultOptions.prefix,
+          boost: this.defaultOptions.boost
+        },
+        extractField: (document, fieldName) => {
+          // Extract and normalize text for search
+          const value = (document as any)[fieldName]
+          if (Array.isArray(value)) {
+            return value.join(' ').toLowerCase()
+          }
+          return (value || '').toString().toLowerCase()
+        }
+      })
       this.searchIndexes.set(language, miniSearch)
 
       return true
@@ -122,14 +138,23 @@ export class SearchEngine {
         fuzzy: searchOptions.fuzzy,
         prefix: searchOptions.prefix,
         boost: searchOptions.boost,
-        filter: searchOptions.filter
+        filter: searchOptions.filter as any
       })
 
       // Convert to SearchResult format with full topic data
-      const searchResults: SearchResult[] = results.map(result => ({
-        ...result,
-        topic: this.getTopicById(result.id, language)
-      })).filter(result => result.topic) // Filter out results without topic data
+      const searchResults: SearchResult[] = results
+        .map(result => {
+          const topic = this.getTopicById(result.id, language)
+          if (!topic) return null
+          return {
+            id: result.id,
+            score: result.score,
+            terms: result.terms,
+            matchData: result.matchData,
+            topic
+          }
+        })
+        .filter((result): result is SearchResult => result !== null)
 
       return searchResults
 
@@ -195,7 +220,7 @@ export class SearchEngine {
   }
 
   async reindex(language: string, topics: Topic[]): Promise<void> {
-    // Completely rebuild the index for the language
+    // Completely rebuild of index for language
     const miniSearch = new MiniSearch({
       fields: ['title', 'question', 'answer', 'tags'],
       storeFields: ['id', 'title', 'category', 'difficulty', 'lang', 'tags'],
@@ -261,7 +286,7 @@ export class SearchEngine {
 
     return {
       documentCount: miniSearch.documentCount,
-      termCount: Object.keys(miniSearch.termFrequency).length
+      termCount: Object.keys((miniSearch as any).termFrequency || {}).length
     }
   }
 

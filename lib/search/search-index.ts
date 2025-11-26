@@ -26,7 +26,7 @@ export class SearchIndexManager {
   async buildAllIndexes(): Promise<void> {
     console.log('🔍 Building search indexes for all languages...')
 
-    const languages = ['en', 'tl'] // Start with English and Tagalog
+    const languages = ['en', 'tl', 'ceb'] // English, Tagalog, and Cebuano
 
     for (const language of languages) {
       try {
@@ -43,14 +43,14 @@ export class SearchIndexManager {
   async buildIndexForLanguage(language: string): Promise<void> {
     console.log(`Building search index for ${language}...`)
 
-    // Load content for the language
+    // Load content for language
     const content = await contentLoader.loadContent(language)
 
     if (!content.topics || content.topics.length === 0) {
       throw new Error(`No content found for language: ${language}`)
     }
 
-    // Initialize search engine with the content
+    // Initialize search engine with content
     await searchEngine.initialize(language, content.topics)
 
     // Save metadata
@@ -150,7 +150,7 @@ export class SearchIndexManager {
   }
 
   async validateAllIndexes(): Promise<Record<string, boolean>> {
-    const languages = ['en', 'tl']
+    const languages = ['en', 'tl', 'ceb']
     const results: Record<string, boolean> = {}
 
     for (const language of languages) {
@@ -185,7 +185,7 @@ export class SearchIndexManager {
   }
 
   async getIndexStats(): Promise<Record<string, { documentCount: number; termCount: number } | null>> {
-    const languages = ['en', 'tl']
+    const languages = ['en', 'tl', 'ceb']
     const stats: Record<string, { documentCount: number; termCount: number } | null> = {}
 
     for (const language of languages) {
@@ -237,7 +237,7 @@ export class SearchIndexManager {
     }
   ): Promise<any[]> {
     try {
-      const searchOptions = {}
+      const searchOptions: any = {}
 
       if (filters) {
         if (filters.category || filters.difficulty || filters.tags) {
@@ -270,7 +270,7 @@ export class SearchIndexManager {
   async clearAllIndexes(): Promise<void> {
     console.log('Clearing all search indexes...')
 
-    const languages = ['en', 'tl']
+    const languages = ['en', 'tl', 'ceb']
 
     for (const language of languages) {
       searchEngine.clearIndex(language)

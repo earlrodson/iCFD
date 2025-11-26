@@ -10,15 +10,15 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { TopicSchema, HandbookContentSchema } from '../data/schema/topic.schema.js'
+import { TopicSchema, HandbookContentSchema } from '../data/schema/topic.schema'
 import { z } from 'zod'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Define the content directory structure
-const CONTENT_DIR = path.join(__dirname, '../data/content')
-const LANGUAGES = ['en', 'tl'] // Start with English and Tagalog
+const CONTENT_DIR = path.join(__dirname, '../public/data/content')
+const LANGUAGES = ['en', 'tl', 'ceb'] // Include all supported languages
 
 interface ValidationResult {
   valid: boolean

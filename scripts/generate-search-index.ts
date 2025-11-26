@@ -165,7 +165,20 @@ class SearchIndexGenerator {
         }
 
         // Try to load the index
-        const miniSearch = MiniSearch.loadJSON(indexData.index)
+        const miniSearch = MiniSearch.loadJSON(indexData.index, {
+          fields: ['title', 'question', 'answer', 'tags'],
+          storeFields: ['id', 'title', 'category', 'difficulty', 'lang', 'tags'],
+          searchOptions: {
+            fuzzy: 0.2,
+            prefix: true,
+            boost: {
+              title: 2,
+              question: 1.5,
+              answer: 1,
+              tags: 1.2
+            }
+          }
+        })
 
         // Test search
         const results = miniSearch.search('test')

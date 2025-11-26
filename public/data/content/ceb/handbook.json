@@ -1,0 +1,430 @@
+{
+  "topics": [
+    {
+      "id": "eucharist-real-presence",
+      "category": "sacraments",
+      "title": "Eukaristiya - Tinood nga Presensya",
+      "question": "Unsa man ang tinood nga kamahinungdanon sa Eukaristiya?",
+      "answer": "Sa Katolisismo, ang Eukaristiya mao'y sentro sa atong pagtuo. Giisip kini isip pinakasagrado sa tulo ka sakramento, diin ang tunay nga lawas ug dugo ni Hesukristo, matarong ug tinood, anaa ubos sa species sa tinapay ug bino. Kini nga pagtuo gitawag og Real Presence. Sumala sa doktrina sa simbahan, matapos kanang konsekrasyon, ang tinapay ug bino mahimong tinong kinabuhi ni Kristo - dili lamang simbolo, apan tinong Lawas ug Dugo sa Iyang kaugalingon.",
+      "scripture": [
+        {
+          "reference": "Juan 6:53-56",
+          "text": "Ingganako kaninyo: Inyo Kong gisigon, kon dili mo mokaon sa lawas sa Manunubos sa tawo ug inyong dili inumon ang iyang dugo, wala koy kinabuhi sa inyo. Kinsa man ang mokaon sa akong lawas ug inumon sa akong dugo, may kinabuhi nga dayon, ug Ako ipahimulos ko sa kaniya sa katapusan sa mga panahon. Tungod kay ang akong lawas tinuod nga pagkaon ug ang akong dugo tinuod nga inum. Kinsa man ang mokaon sa akong lawas ug inumon sa akong dugo, nagpuyo sa Akong ug Ako sa kaniya.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "1 Corintios 11:23-26",
+          "text": "Tungod kay gitagak ko kaninyo gikan sa Ginoo, kung giakong nadawat, kung giingon sa Ginoo si Hesus, sa gabii nga gipangondili siya, nga kuhaa ang tinapay, ug ug sa pagpaalam, pasalamata; ug ang gipasagmuyo gipasagmuyo, ug ingon niini: Kuhaa kini ug inyong pag-uli, kining pamaagi sa paghinumdom kanako; matag higayon nga inyong makakaon kining tinapay ug inyong inom kining bino, nagpasumbagay kang kakusgon sa pagpakamatay sa Ginoo, hangtod nga siya moabut.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Mateo 26:26-28",
+          "text": "Samtang nagpangaon sila, gikuha ni Hesus ang tinapay, ug gipasagmuyo, ug gipahapos sa mga disipulo, ug nagkanayon, Kuhaa kini ug inyong pag-uli. Kini mao ang akong lawas. Ug gikuha ang bino ug pasalamat, ug gihatag kanila, ug nagkanayon, Inominyo kini tanan, tungod kay kini mao ang akong dugo sa bag-ong kasundalohan, nga gilahid alang sa daghang mga tawo alang sa pasaylo sa mga sala.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "1374",
+        "1376",
+        "1380",
+        "1413"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Ignatius of Antioch",
+          "quote": "Ang Eukaristiya mao'y lawas sa atong Manunubos nga si Hesukristo, nga nagsagol sa dugo sa Iyang pagpakigdait.",
+          "source": "Letter to the Smyrneans, c. 110 AD"
+        },
+        {
+          "author": "St. Justin Martyr",
+          "quote": "Kining pagkaon gitawag namon nga Eukaristiya, nga walay usa nga mamahimo'g makapahimo sa gipasagmuyo ubos sa imong pagtuo, bisan kung siya usa ka heretiko.",
+          "source": "First Apology, c. 150 AD"
+        }
+      ],
+      "tags": ["eukaristiya", "tinood nga presensya", "sacramento", "lawas ni kristo", "dugo ni kristo"],
+      "difficulty": "intermediate",
+      "lang": "ceb",
+      "relatedTopics": ["confession-sacrament", "tradition-authority"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "confession-sacrament",
+      "category": "sacraments",
+      "title": "Kumpisal - Sakramento",
+      "question": "Ngano man kinahanglan ang kumpisal sa usa ka Katoliko?",
+      "answer": "Ang Kumpisal mao'y sakramento sa pagpapositibo, gihimo ni Kristo sa pagsalida sa pag-ayo sa mga sakit sa kaluwasan. Sa atong pagpangayo, ang pari naga'laum isip Kristo, naghatag ug pasaylo sa atong mga sala. Tungod niining sakramento, malikayan ang mortal nga sala, ug ang kaluwasan malig-on. Kini dili lamang pagpasaylo, apan usab pag-ayo sa espirituhanon ug pagsiguro sa pag-uli sa grasya sa Dios.",
+      "scripture": [
+        {
+          "reference": "Juan 20:21-23",
+          "text": "Ug gikan ni Jesus, miingon sila kaniya: Kamoy kalinaw, sama sa akong gihatag kaninyo ang kalinaw, mao kini akong gihatag kaninyo. Ug sa diha giingon sila ni Jesus pag-uli, ug ang Espiritu Santo gipadala sa kanila. Kung ikaw mopasaylo bisan kinsa ang mga sala, sila pasaylo-a; ug kung ikaw gitagoan ang mga sala, sila gitago-an.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Santiago 5:16",
+          "text": "Tungod kay Usa kang lain, pag-ayo ang inyong mga sala; pag-ampo alang sa usa ka lain, aron maluwas. Tungod kay daghan ang pag-ampo sa tawo nga matarong ug makapahimo sa daghan.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "2 Corintios 5:18-20",
+          "text": "Ug ang tanan gikan sa Dios, nga nag-ayo kanato kaniliya kaniya pinaagi ni Kristo, ug gihatag kanami ang pag-ayo sa kaluwasan; mao nga ang pag-ayo sa kaluwasan mao'y paagi sa pag-ayo sa kaluwasan sa Dios, sa diha nga ang kaluwasan sa Dios gikan sa Dios. Mibalik kita sa Dios, ug ang tanan gikan sa Dios.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "1446",
+        "1455",
+        "1456",
+        "1496"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine",
+          "quote": "Ang pagpangayo sa pari sa pagpangandam sa Dios, kung ang pag-usab sa Dios sa mga sala sa atong mga kaugalingon.",
+          "source": "Sermon 44, c. 400 AD"
+        },
+        {
+          "author": "Origen",
+          "quote": "Ang pari mao'y doktor sa espiritu, nga nag-ayo sa mga sakit sa kaluwasan pinaagi sa pag-ayo sa grasya sa Dios.",
+          "source": "Homilies on Leviticus, c. 240 AD"
+        }
+      ],
+      "tags": ["kumpisal", "sakramento", "pasaylo", "pagpangandam", "kaluwasan"],
+      "difficulty": "intermediate",
+      "lang": "ceb",
+      "relatedTopics": ["eucharist-real-presence", "salvation-faith-works"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "mary-mother-of-god",
+      "category": "mary",
+      "title": "Maria - Ina sa Dios",
+      "question": "Giunsa nato ma-apod ang Ina sa Dios si Maria?",
+      "answer": "Ang tawag sa Ina sa Dios (Theotokos) si Maria dili tungod kay siya gimugna sa Dios, apan tungod kay siya nanganak sa Iyang Anak nga si Hesus, kinsa mao'y tinuod nga Dios ug tinuod nga tawo. Sa Konseho sa Ephesus (431 AD), gideklarar sa simbahan nga ang Maria mao'y Theotokos o Ina sa Dios, aron protektahan ang pagtuo sa kabubut-on sa Kristo. Kung si Jesus mao'y Dios, ug si Maria mao'y Iyang ina, busa si Maria mao'y Ina sa Dios.",
+      "scripture": [
+        {
+          "reference": "Lucas 1:43",
+          "text": "Ug diha, mahimong matarong, Inahan sa akong Ginoo! Ug ang Inahan sa akong Ginoo mosulod kanako!",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Lucas 1:35",
+          "text": "Ug ang espiritung balaan mosulod kanimo, ug ang gahum sa Most High mosalop kanimo; mao nga ang Santo nga mopanganak kanimo ug gipahinungod nga Anak sa Dios.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Juan 1:14",
+          "text": "Ug ang puli nahimong tawo, ug nagpuyo taliwala kanato, ug ang iyang himaya, sama sa usa ka anak sa Amahan, puno sa grasya ug kamatooran.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "495",
+        "496",
+        "509",
+        "721"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Athanasius",
+          "quote": "Ang Maria, nga gipahinungod nga Ina sa Dios, mao'y labing maayo sa tanang mga babaye, ug ang labing masigon sa tanang mga santos.",
+          "source": "On the Incarnation of the Word, c. 330 AD"
+        },
+        {
+          "author": "St. Ephrem the Syrian",
+          "quote": "Ang Maria mao'y bag-ong Eva, diin sa pagsalida sa pagpaugat sa atong inahan, gihatag kanato ang bag-ong kinabuhi.",
+          "source": "Hymns on the Nativity, c. 370 AD"
+        }
+      ],
+      "tags": ["maria", "ina sa diyos", "theotokos", "birhen maria", "inahan ni kristo"],
+      "difficulty": "beginner",
+      "lang": "ceb",
+      "relatedTopics": ["saints-intercession", "tradition-authority"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "papacy-peters-succession",
+      "category": "papacy",
+      "title": "Papasya - Masunod ni Pedro",
+      "question": "Giunsa gikan ni Pedro ang modernong Papa?",
+      "answer": "Sumala sa doktrina sa Katolisismo, ang Papa mao'y masunod ni Pedro isip Obispo sa Roma. Ni Kristo gihatag kang Pedro ang usa ka espesyal nga katungdanan sa pagpangulo sa simbahan (Mateo 16:18-19). Kining katungdanan gipasar sa mga obispo sa Roma pinaagi sa apostolikong pagmasunod. Ang Papa nagsilbi isip visible head sa simbahan unibersal, nga nagpahigayon sa pag-espirituhanon nga pag-ulo ni Pedro sa tibuuk kalibutan.",
+      "scripture": [
+        {
+          "reference": "Mateo 16:18-19",
+          "text": "Ug Ako nganong nganong sa iyo, nga ikaw Pedro, ug sa kining bato akongtukod ang akong simbahan, ug ang mga pultahan sa impierno dili makadaug niini. Ako maghatag kanimo sa mga yawe sa gingharian sa langit: ug sa imong gipabukal sa yuta, gipabukal sa langit; ug sa imong gitakop sa yuta, gitan-om sa langit.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Juan 21:15-17",
+          "text": "Ug sa ilang pag-ula, gipangutana ni Jesus si Simon Pedro, Simon, anak ni Juan, sa imong paghigugma kaniko labaw niining? Iya siyang gisulti: Oo, Ginoo, ikaw nahibawo nga nagahigugma ko kanimo. Iya siyang gisulti: Panginabuhian ko sa akong mga karnero. Ug gipahigugma siya sa ikaduha: Simon, anak ni Juan, sa imong paghigugma kaniko? Iya siyang gisulti: Oo, Ginoo, ikaw nahibawo nga nagahigugma ko kaniko. Ug gipahigugma siya sa ikatulo: Simon, anak ni Juan, sa imong paghigugma kaniko? Nag-antos si Pedro sa iyang gipangutana: Ginoo, ikaw nahibawo sa tanan, ikaw nahibawo nga nagahigugma ko kaniko. Iya siyang gisulti: Panginabuhian ko sa akong mga karnero.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Lucas 22:31-32",
+          "text": "Ug ang Ginoo miingon, Simon, Simon, tan-awa, ang Satan nangayo kanimo sa pagpangsilot sa mga trigo, apan Ako nangandam sa imong pagtuo, nga diha ka makapakusog sa imong mga igsoon.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "857",
+        "880",
+        "882",
+        "936"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Irenaeus",
+          "quote": "Sa pagtukod sa simbahan, ang mga apostol ug ilang mga sinugdanan, ubos sa pagpangulo ni Pedro, gitawag kining mga magtutudlo sa simbahan.",
+          "source": "Against Heresies, c. 180 AD"
+        },
+        {
+          "author": "Tertullian",
+          "quote": "Kung ang simbahan nagtukod sa Roma, kung ang simbahan gikan sa Roma, kanimo makita kung giunsa ang pagkasunod-sunod ni Pedro.",
+          "source": "The Prescription Against Heretics, c. 200 AD"
+        }
+      ],
+      "tags": ["papa", "pedro", "papacy", "masunod", "obispo sa roma"],
+      "difficulty": "intermediate",
+      "lang": "ceb",
+      "relatedTopics": ["tradition-authority", "church-teaching-contraception"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "salvation-faith-works",
+      "category": "salvation",
+      "title": "Kaluwasan - Pagtuo ug Mga Buhat",
+      "question": "Unsa man ang relasyon sa pagtuo ug mga buhat sa kaluwasan?",
+      "answer": "Sa pagtuo sa Katoliko, ang kaluwasan naggikan sa grasya sa Dios pinaagi sa pagtuo ug mga buhat. Ang pagtuo amo ang pundasyon sa kaluwasan - apan kini usa ka buhat nga naghatag ug pag-ayo sa grasya. Ang mga buhat sa pagtuo, sama sa pag-ampo, pag-ampo, ug pagmahal sa kapin, dili makaluwas sa ato; apan sila gikinahanglan alang sa atong pagtuo. Ang pagtuo nga walay buhat patay (Santiago 2:17), ug ang mga buhat nga walang pagtuo wala'g bili. Ang mga duha nagtrabaho usab alang sa pagpapuslan sa kaluwasan.",
+      "scripture": [
+        {
+          "reference": "Santiago 2:14-26",
+          "text": "Ania man, akong mga igsoon, kon ang usa ka tawo moingon nga adunay pagtuo, apan wala'y mga buhat? Unsa man ang gamit sa pagtuo niini? Kon usa ka igsoon o igsoong babaye nawong nga walay sul-ug, ug walay pagkaon sa lawas, unsa man ang gamit niini? Mao usab ang pagtuo, kon walay mga buhat, patay sa iyang kaugalingon. Apan ang usa ka tawo moingon, Ikaw adunay pagtuo, ug Ako adunay mga buhat. Ipakita kanako ang imong pagtuo nga walay mga buhat, ug Ako ipakita kanimo ang akong pagtuyo pinaagi sa akong mga buhat. Tungod kay ikaw nagtuo nga ang usa ka Dios, ug buhat ka maayo; ug ang demonyo nagtuo ug naggilis.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Efeso 2:8-10",
+          "text": "Tungod kay sa grasya kamo maluwas, pinaagi sa pagtuo; ug kini dili gikan kaninyo, kini mao ang regalo sa Dios; dili gikan sa mga buhat, aron walay makahambog. Tungod kay kami gibuhat sa Dios alang sa maayong buhat, nga gihimo sa Dios nga atong lakang pinaagi ni Kristo Jesus.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Mateo 25:31-46",
+          "text": "Ug sa diha ang Manunubos sa tawo moabot sa iyang himaya, ug tanan nga mga anghel uban kaniya, ug maglingkod siya sa iyang gampingan sa himaya. Ug tanan nga mga nasud magkat-on sa atubangan kaniya, ug mag-ilis sila sa mga tawo, sama sa usa ka pastor nag-ilis sa mga karnero gikan sa mga kanding. Ug paghimo niya sa mga karnero sa iyang tuo, ug sa mga kanding sa iyang wala. Ug ang hari moingon kanila sa iyang tuo, Maluwas, pabor kaninyo sa akong Amahan, paghimo sa gingharian alang kaninyo sukad sa pundasyon sa kalibutan.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "1987",
+        "1996",
+        "2008",
+        "2010"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Chrysostom",
+          "quote": "Ang pagtuo walay buhat sama sa lawas nga walay espiritu; ug ang buhat walay pagtuo sama sa espiritu nga walay lawas.",
+          "source": "Homilies on Romans, c. 390 AD"
+        },
+        {
+          "author": "St. Augustine",
+          "quote": "Ang Dios nagbuhat kanato nga walay atong buhat, apan dili gibuhat kanilo nga walay atong pagtuo.",
+          "source": "On Grace and Free Will, c. 426 AD"
+        }
+      ],
+      "tags": ["kaluwasan", "pagtuo", "mga buhat", "grasya", "matrimonio"],
+      "difficulty": "advanced",
+      "lang": "ceb",
+      "relatedTopics": ["confession-sacrament", "eucharist-real-presence"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "bible-deuterocanonical-books",
+      "category": "bible",
+      "title": "Biblia - Mga Libro nga Deuterocanonical",
+      "question": "Ngano man ang Katoliko Simbahan naglakip sa mga libro nga deuterocanonical sa Biblia?",
+      "answer": "Ang mga libro nga deuterocanonical (gitawag usab nga apocryphal sa Protestante) mao'y bahin sa Septuagint, ang Griyego nga paghubit sa Hebreo nga Biblia nga gigamit sa mga una nga Kristiano. Kining mga libro (Tobit, Judith, Wisdom, Sirach, Baruch, 1 & 2 Maccabees, ug mga bahin sa Esther ug Daniel) gisidikyahan sa Simbahan sa Simbahan sa Ortocdokso, Katoliko, ug karamihan sa mga una nga Reformation. Naghatag sila og importante kaalaman mahitungod sa kasaysayan sa pagtuo sa Israel ug sa pag-uswag sa doktrina sa simbahan.",
+      "scripture": [
+        {
+          "reference": "Sabdos 2:12-20",
+          "text": "Tungod kay ang kamatayon dili moabot sa ato, apan ang paghinulsol sa mga deuterokanon nahimo kanato. Aron kung ang espiritu sa kasal-anan moabot, dili niya makit-an ang bulawan sa kamahinungdanon, tungod kay ang kahibalo nagtagbaw sa tanan nga daotan; ug ang kahitas-an moagi gikan niini ngadto sa Dios nga nagbuhat sa tanan.",
+          "version": "Septuagint"
+        },
+        {
+          "reference": "2 Maccabees 12:46",
+          "text": "Mao nga kini maayo ug sagad nga pag-ampo alang sa mga minatay, aron sila maluwas gikan sa sala; tungod kay kini sagad ug matarong nga paghunahuna.",
+          "version": "Septuagint"
+        },
+        {
+          "reference": "Sirach 24:23-25",
+          "text": "Tanang kining mga butang mao ang libro sa kasaysayan ni Hesus nga anak ni Sirach, sa Jerusalem, nga naghatag sa kaniya sa pag-ayo sa kahibalo sa diha nga gipahigayon sa Espiritu sa Dios. Malipayon ang tawo nga magtukmod niini, ug dili maglisod niini; ug ang tawo nga nag-ila kini mao ang malipayon sa pag-ila.",
+          "version": "Septuagint"
+        }
+      ],
+      "catechism": [
+        "120",
+        "138",
+        "2003"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine",
+          "quote": "Ang simbahan sa Kristo nagdawat sa mga libro nga Wisdom of Solomon, Sirach, Tobit, Judith, ug Maccabees isip parte sa sagradong kasulatan.",
+          "source": "City of God, c. 426 AD"
+        },
+        {
+          "author": "Pope St. Clement I",
+          "quote": "Kita gikuha sa grasya pinaagi sa pagpangayo, dili tungod sa atong buhat, apan tungod sa pag-ayo sa Dios.",
+          "source": "First Epistle to the Corinthians, c. 96 AD"
+        }
+      ],
+      "tags": ["biblia", "deuterocanonical", "apocrypha", "septuagint", "sagradong kasulatan"],
+      "difficulty": "intermediate",
+      "lang": "ceb",
+      "relatedTopics": ["tradition-authority", "salvation-faith-works"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "saints-intercession",
+      "category": "saints",
+      "title": "Mga Santo - Pag-ampo",
+      "question": "Unsa man ang basehan sa pag-ampo sa mga santo?",
+      "answer": "Ang Katoliko nga pagtuo nagtuo sa communion of saints - ang tanan nga miyembro sa simbahan, sa langit ug sa yuta, nagkaig usab isip usa ka pamilya sa Kristo. Ang mga santo, nagsulod sa kaluwasan, mopadayon sa pag-ampo alang kanato. Dili sila gikonsidera isip kabalaka, apan isip mga igsoon nga nag-ampo alang sa ato, sama sa pag-ampo sa atong mga amigo sa yuta. Ang ilang pag-ampo hilabong gamay tungod kay sila anaa sa presensya sa Dios ug nakit-an sa kahimtang sa pagkapuros.",
+      "scripture": [
+        {
+          "reference": "Apocalipsis 5:8",
+          "text": "Ug sa diha, sa pagkuha sa libro, ang upat ka mga binuhat nga buhi ug ang upat ka mga apo-apo napahigayon sa apat ka kaupat sa mga kalalakin-an; ug sila adunay mga gold harp, ug mga bulawan nga bowles puno sa mga incense, nga mao ang mga pag-ampo sa mga santo.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Apocalipsis 8:3-4",
+          "text": "Ug ang usa ka anghel miabut, ug nag-alagad sa hawan sa altar, adunay usa ka golden censer; ug daghan nga incense gihatag kaniya, aron isalikay kini sama sa mga pag-ampo sa tanan nga mga santo sa hawan sa bulawan nga altar sa atubangan sa trono.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "2 Macabeos 15:14-16",
+          "text": "Ug sa diha si Jeremias, usa ka propeta sa Dios, nag-ukom sa mga tawo nga namatay sa pagpakig-away, ug anaa sa pag-ampo, ug anaa sa mga kamot sa iyang mga kaaway, ug nag-ampo alang sa kaluwasan sa mga katawhan sa Israel. Ug gipahigayon niya ang imong pagpangayo sa Dios, ug ang Dios makadungog sa imong pag-ampo.",
+          "version": "Septuagint"
+        }
+      ],
+      "catechism": [
+        "956",
+        "2683",
+        "2684"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Chrysostom",
+          "quote": "Kung adunay mga buhat nga nagpuyo sa ato, giunsa dili ang mga santo mopadayon sa pagbuhat kanato?",
+          "source": "Homilies on 2 Thessalonians, c. 400 AD"
+        },
+        {
+          "author": "St. Augustine",
+          "quote": "Ang mga santo mopadayon sa pag-ampo alang kanato, dili aron makapahimo sa Dios, apan aron ipadayag ang ilang paghigugma ug pagtuo.",
+          "source": "Letters, c. 420 AD"
+        }
+      ],
+      "tags": ["mga santo", "pag-ampo", "communion of saints", "intercession", "santos"],
+      "difficulty": "beginner",
+      "lang": "ceb",
+      "relatedTopics": ["mary-mother-of-god", "tradition-authority"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "tradition-authority",
+      "category": "tradition",
+      "title": "Tradisyon - Katungdanan",
+      "question": "Giunsa ang Sacred Tradition nagkaig katungdanan ubos sa Biblia?",
+      "answer": "Sa pagtuo sa Katoliko, ang Sacred Tradition ug Sacred Scripture nagkaig usab isip usa ka sagradong deposito sa pagtuo (depositum fidei). Ang Tradisyon mao'y pagpasa sa pagtuo gikan sa mga apostol pinaagi sa ilang mga sinugdanan - ang obispo sa simbahan. Kini naglakip sa mga doktrina, mga porma sa pag-ampo, ug mga kasulatan nga gipasar pinaagi sa pag-ulo sa simbahan. Ang Bibliya mismo usa ka produkto sa Sacred Tradition - gisulat pinaagi sa mga tawo nga nagkinabuhi sulod sa tradisyon sa simbahan.",
+      "scripture": [
+        {
+          "reference": "2 Tesalonica 2:15",
+          "text": "Mao nga, mga igsoon, pagpuyo ug hinungdon, ug pagkuha sa mga tradisyon nga atong gitudlo, bisan pinaagi sa pulong, o pinaagi sa atong sulat.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "1 Corintios 11:2",
+          "text": "Ug Ako nagdayeg kaninyo, mga igsoon, tungod kay inyong gihinumodan sa tanan nga mga tradisyon nga Ako gihatag kaninyo.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Juan 21:25",
+          "text": "Ug daghan pang mga butang nga gibuhat ni Jesus, nga kon isulat sa matag usa, wala man tingali kini moabut sa tanan nga mga libro nga gisulat; Ako nagtuo, ang kalibutan mismo dili makahimo sa mga libro nga gisulat.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "78",
+        "80",
+        "82",
+        "83"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Basil the Great",
+          "quote": "Sa pagtibo sa doctrina, ang Biblia ug Tradisyon managsama; ang tanan mao'y sama importante sa pagtukmod sa pagtuo sa simbahan.",
+          "source": "On the Holy Spirit, c. 375 AD"
+        },
+        {
+          "author": "St. Vincent of Lérins",
+          "quote": "Ang pagtibo sa simbahan mao'ng kining mga butang nga gisalikway sa tanan, nga gitudlo sa tanan, sa tanan nga lugar ug sa tanan nga higayon.",
+          "source": "Commonitory, c. 434 AD"
+        }
+      ],
+      "tags": ["tradisyon", "katungdanan", "sacred tradition", "apostolic succession", "magtutudlo"],
+      "difficulty": "advanced",
+      "lang": "ceb",
+      "relatedTopics": ["papacy-peters-succession", "bible-deuterocanonical-books"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    },
+    {
+      "id": "church-teaching-contraception",
+      "category": "church-teaching",
+      "title": "Turo sa Simbahan - Kontrasepsyon",
+      "question": "Ngano man ang Katoliko Simbahan nagtudlo laban sa kontrasepsyon?",
+      "answer": "Ang simbahan nagtudlo nga ang sekswal nga kalihokan adunay duha ka natural nga katungdanan: unitive (pag-ambit sa paghigugma) ug procreative (pagbukas sa kinabuhi). Ang kontrasepsyon sagad nagpalayo sa duha ka katungdanan, nga nagsagol sa desinyo sa Dios alang sa sekswalidad sa kasal. Ang simbahan nagtawag sa mga mag-asawa sa paggamit sa Natural Family Planning (NFP) nga respeto sa natural nga balaan sa sekswal nga kalihokan samtang nagplano sa pamilya nga responsibly.",
+      "scripture": [
+        {
+          "reference": "Genesis 1:28",
+          "text": "Ug Dios nagpasigarbo kanila, ug Dios nganong kanila, Magpunga ug daghan, ug punoa ang yuta; ug dominahini kini, ug pagharihan sa mga isda sa dagat, ug sa mga langgam sa langit, ug sa tanang buhi nga moagi sa yuta.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Genesis 38:8-10",
+          "text": "Ug ingon ni Judah kang Onan, Paga-asawa kanako sa imong balo, ug pagpahimo sa ikapulong anak alang sa imong igsoon. Ug si Onan nahibalo nga ang kaliwat dili mau alang kaniya; ug diha sa iyang pagdungog sa imong balo, gilahad niya sa yuta, aron dili makapahimo sa ikapulong anak alang sa iyang igsoon. Ug ang butang nga gibuhat ni Onon wala makapahimuot sa Ginoo; mao nga gipatay siya.",
+          "version": "Cebuano Ang Dating Biblia"
+        },
+        {
+          "reference": "Efeso 5:31-32",
+          "text": "Mao ang tawo maglakip sa iyang amahan ug inahan, ug mangandam ang duha sa usa ka lawas. Kining misteryo dagko; Ako nagtudlo niini samtang Kristo ug ang simbahan.",
+          "version": "Cebuano Ang Dating Biblia"
+        }
+      ],
+      "catechism": [
+        "2370",
+        "2399",
+        "2400",
+        "2412"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine",
+          "quote": "Ang mga tawo nga mopatay sa mga anak sa wala pa sila nataod, o sa wala pa sila nataod sa womb, sa kamatuoran mopatay sa ilang kaugalingon.",
+          "source": "On Marriage and Concupiscence, c. 419 AD"
+        },
+        {
+          "author": "Pope Paul VI",
+          "quote": "Ang paggamit sa kontrasepsyon naglapas sa natural nga balaan sa sekswal nga kalihokan ug nagbukas sa dalan sa moral nga disorder.",
+          "source": "Humanae Vitae, 1968"
+        }
+      ],
+      "tags": ["kontrasepsyon", "turo sa simbahan", "kasal", "sekswalidad", "natural family planning"],
+      "difficulty": "advanced",
+      "lang": "ceb",
+      "relatedTopics": ["salvation-faith-works", "tradition-authority"],
+      "lastUpdated": "2024-11-26T10:00:00.000Z"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2024-11-26T10:00:00.000Z",
+    "totalTopics": 9
+  }
+}
