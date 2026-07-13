@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { PWASetup } from './pwa'
-import { OfflineBanner } from '@/components/shared/OfflineBanner'
-import { PWAInstallPrompt } from '@/components/shared/PWAInstallPrompt'
+import { ClientOverlays } from './client-overlays'
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -73,8 +72,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div id="root">
           <PWASetup />
-          <OfflineBanner />
-          <PWAInstallPrompt />
+          <ClientOverlays />
           {children}
         </div>
       </body>
