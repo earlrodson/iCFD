@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { MobileNav } from '@/components/shared/MobileNav'
+import { FontSizeController } from '@/components/shared/FontSizeController'
 
 const OfflineBanner = dynamic(
   () => import('@/components/shared/OfflineBanner').then(m => m.OfflineBanner),
@@ -19,6 +20,7 @@ export function ClientOverlays() {
       <OfflineBanner />
       <PWAInstallPrompt />
       <MobileNav />
+      <FontSizeController />
     </>
   )
 }

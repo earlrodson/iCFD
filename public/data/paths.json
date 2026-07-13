@@ -1,0 +1,63 @@
+[
+  {
+    "slug": "new-catholic",
+    "title": "New Catholic Journey",
+    "description": "A guided introduction to the Catholic faith for RCIA candidates and new Catholics. Covers the foundational beliefs and practices that define what it means to be Catholic.",
+    "audience": "RCIA candidates and new Catholics",
+    "estimatedMinutes": 90,
+    "difficulty": "beginner",
+    "icon": "🕊️",
+    "topics": [
+      "true-church",
+      "bible-tradition-authority",
+      "holy-trinity",
+      "infant-baptism",
+      "confession-to-priest",
+      "holy-eucharist",
+      "holy-mass",
+      "prayer-to-saints",
+      "primacy-of-peter",
+      "sunday-observance"
+    ]
+  },
+  {
+    "slug": "defend-the-faith",
+    "title": "Defend the Faith",
+    "description": "Answers to the most common Protestant challenges to Catholic teaching. Equips you to explain and defend Catholic beliefs clearly and charitably.",
+    "audience": "Catholics in dialogue with Protestants",
+    "estimatedMinutes": 120,
+    "difficulty": "intermediate",
+    "icon": "🛡️",
+    "topics": [
+      "bible-tradition-authority",
+      "true-church",
+      "primacy-of-peter",
+      "holy-eucharist",
+      "confession-to-priest",
+      "infant-baptism",
+      "purgatory",
+      "indulgences",
+      "prayer-to-saints",
+      "sacred-images",
+      "holy-orders",
+      "salvation"
+    ]
+  },
+  {
+    "slug": "marian-apologetics",
+    "title": "Marian Apologetics",
+    "description": "A deep dive into Catholic teachings about the Blessed Virgin Mary — her immaculate conception, perpetual virginity, role as intercessor, and place in the Church.",
+    "audience": "Catholics seeking to defend Marian doctrine",
+    "estimatedMinutes": 60,
+    "difficulty": "intermediate",
+    "icon": "🌹",
+    "topics": [
+      "immaculate-conception",
+      "perpetual-virginity",
+      "prayer-to-saints",
+      "sacred-images",
+      "true-church",
+      "bible-tradition-authority"
+    ]
+  }
+]

@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
 import { TopicPageContent } from '@/components/topic/TopicPageContent'
 import type { Topic } from '@/data/schema/topic.schema'
@@ -21,7 +22,11 @@ export default async function TopicPage({ params }: TopicPageProps) {
     const topicData: Topic | undefined = content.topics?.find((t: { id: string }) => t.id === topicId)
     if (!topicData) notFound()
 
-    return <TopicPageContent topicId={topicId} fallbackTopic={topicData} />
+    return (
+      <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>}>
+        <TopicPageContent topicId={topicId} fallbackTopic={topicData} />
+      </Suspense>
+    )
   } catch {
     notFound()
   }

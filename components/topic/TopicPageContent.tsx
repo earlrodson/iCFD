@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useState, useCallback } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, Calendar, BookOpen, User, Heart, Share2, Copy, CheckCircle, Circle, StickyNote } from 'lucide-react'
+import { ArrowLeft, Calendar, BookOpen, User, Heart, Share2, Copy, CheckCircle, Circle, StickyNote, ChevronRight } from 'lucide-react'
 import { getCategoryName, getCategoryColor, getCategoryIcon } from '@/lib/utils/categories'
 import Link from 'next/link'
 import { TopicContent } from '@/components/topic/TopicContent'
@@ -12,6 +13,8 @@ import { useCurrentLanguage } from '@/store/useAppStore'
 import { useFavoritesStore, useFavoriteActions } from '@/store/useFavoritesStore'
 import { useNotesStore } from '@/store/useNotesStore'
 import { useProgressStore, useIsRead } from '@/store/useProgressStore'
+import { useViewHistoryStore } from '@/store/useViewHistoryStore'
+import { usePathsStore } from '@/store/usePathsStore'
 import type { Topic } from '@/data/schema/topic.schema'
 
 const NOTE_MAX = 1000
@@ -23,6 +26,9 @@ interface TopicPageContentProps {
 
 export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentProps) {
   const language = useCurrentLanguage()
+  const searchParams = useSearchParams()
+  const pathSlug = searchParams.get('path')
+
   const [topicData, setTopicData] = useState<Topic>(fallbackTopic)
   const [relatedTopics, setRelatedTopics] = useState<Topic[]>([])
   const [copied, setCopied] = useState(false)
@@ -35,14 +41,21 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
   const favorited = isFavorite(topicId)
 
   const { loadNotes, setNote, getNote } = useNotesStore()
-  const { loadProgress, markAsRead, markAsUnread } = useProgressStore()
+  const { loadProgress, markAsRead, markAsUnread, readTopicIds } = useProgressStore()
   const isRead = useIsRead(topicId)
+  const { pushView } = useViewHistoryStore()
+  const { loadPaths, getNextTopic } = usePathsStore()
 
-  // Load stores on mount
+  const nextPathTopicId = pathSlug ? getNextTopic(pathSlug, readTopicIds) : undefined
+  const nextIsAfterThis = nextPathTopicId !== topicId ? nextPathTopicId : undefined
+
+  // Load stores on mount + track view
   useEffect(() => {
     loadNotes()
     loadProgress()
-  }, [loadNotes, loadProgress])
+    loadPaths()
+    pushView(topicId)
+  }, [loadNotes, loadProgress, loadPaths, pushView, topicId])
 
   // Sync note text when store loads
   useEffect(() => {
@@ -244,6 +257,21 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
         )}
 
         <TopicContent topic={topicData} />
+
+        {/* Next in Path CTA */}
+        {pathSlug && nextIsAfterThis && (
+          <div className="mt-8 border rounded-xl p-5 bg-muted/30">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-2">
+              Next in path
+            </p>
+            <Button asChild className="w-full sm:w-auto">
+              <Link href={`/${encodeURIComponent(nextIsAfterThis)}?path=${pathSlug}`}>
+                Continue Path
+                <ChevronRight className="h-4 w-4 ml-2" />
+              </Link>
+            </Button>
+          </div>
+        )}
 
         {relatedTopics.length > 0 && (
           <div className="mt-8 border rounded-lg p-6">
