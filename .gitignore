@@ -53,3 +53,12 @@ logs
 
 # Claude
 .claude/
+
+# Playwright test output (generated)
+/playwright-report/
+/test-results/
+test-results.json
+test-results.xml
+
+# Source documents — large binaries, not app code
+documents/*.pdf
