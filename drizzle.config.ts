@@ -5,8 +5,8 @@ export default {
   out: './drizzle/migrations',
   dialect: 'postgresql',
   dbCredentials: {
-    // Use the DIRECT connection URL (not pooler) for migrations.
-    // Format: postgresql://postgres.[project-ref]:[password]@db.[project-ref].supabase.co:5432/postgres
+    // Supabase transaction-mode pooler (port 6543).
+    // Set DATABASE_URL in .env.local — see .env.example for format.
     url: process.env.DATABASE_URL!,
   },
   verbose: true,

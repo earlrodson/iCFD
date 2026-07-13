@@ -12,7 +12,8 @@ export function getDb() {
   if (_db) return _db
   const url = process.env.DATABASE_URL
   if (!url) throw new Error('DATABASE_URL is required for server-side DB access')
-  const client = postgres(url)
+  // prepare: false required for Supabase transaction-mode pooler (pgBouncer)
+  const client = postgres(url, { prepare: false })
   _db = drizzle(client, { schema })
   return _db
 }

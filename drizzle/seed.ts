@@ -24,7 +24,8 @@ async function seed() {
   const url = process.env.DATABASE_URL
   if (!url) throw new Error('DATABASE_URL is not set in environment')
 
-  const client = postgres(url, { max: 1 })
+  // prepare: false required for Supabase transaction-mode pooler (pgBouncer)
+  const client = postgres(url, { prepare: false, max: 1 })
   const db = drizzle(client)
 
   // ── Topics ───────────────────────────────────────────────────────────────────
