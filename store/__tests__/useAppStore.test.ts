@@ -208,10 +208,11 @@ describe('useAppStore', () => {
       expect(mockContentLoader.loadContent).toHaveBeenCalledWith('en')
       expect(mockContentLoader.loadMetadata).toHaveBeenCalledWith('en')
       expect(mockDb.topics.putMany).toHaveBeenCalledWith(mockTopics)
-      expect(store.loading).toBe(false)
-      expect(store.availableTopics).toEqual(mockTopics)
-      expect(store.currentLanguage).toBe('en')
-      expect(store.contentVersion).toBe('1.0.0')
+      const state = useAppStore.getState()
+      expect(state.loading).toBe(false)
+      expect(state.availableTopics).toEqual(mockTopics)
+      expect(state.currentLanguage).toBe('en')
+      expect(state.contentVersion).toBe('1.0.0')
     })
 
     it('should handle content loading error', async () => {
@@ -221,8 +222,9 @@ describe('useAppStore', () => {
       const store = useAppStore.getState()
       await store.loadContent('en')
 
-      expect(store.loading).toBe(false)
-      expect(store.error).toBe('Content load failed')
+      const state = useAppStore.getState()
+      expect(state.loading).toBe(false)
+      expect(state.error).toBe('Content load failed')
     })
 
     it('should use default language when none provided', async () => {
@@ -258,10 +260,11 @@ describe('useAppStore', () => {
       await store.setCurrentLanguage('tl')
 
       expect(mockDb.topics.getByLanguage).toHaveBeenCalledWith('tl')
-      expect(store.loading).toBe(false)
-      expect(store.currentLanguage).toBe('tl')
-      expect(store.availableTopics).toEqual(tlTopics)
-      expect(store.currentTopic).toBeNull()
+      const state = useAppStore.getState()
+      expect(state.loading).toBe(false)
+      expect(state.currentLanguage).toBe('tl')
+      expect(state.availableTopics).toEqual(tlTopics)
+      expect(state.currentTopic).toBeNull()
     })
 
     it('should load content when no cached topics found', async () => {
@@ -287,8 +290,9 @@ describe('useAppStore', () => {
       const store = useAppStore.getState()
       await store.setCurrentLanguage('tl')
 
-      expect(store.loading).toBe(false)
-      expect(store.error).toBe('Language switch failed')
+      const state = useAppStore.getState()
+      expect(state.loading).toBe(false)
+      expect(state.error).toBe('Language switch failed')
     })
 
     it('should set current topic', () => {
@@ -306,17 +310,18 @@ describe('useAppStore', () => {
         theme: 'dark' as const,
         fontSize: 'large' as const
       }
-
       const store = useAppStore.getState()
+      const settingsBefore = store.settings
+      const expectedMerged = { ...settingsBefore, ...newSettings }
+      mockValidateSettings.mockReturnValue(expectedMerged)
+
       await store.updateSettings(newSettings)
 
-      expect(mockValidateSettings).toHaveBeenCalledWith({
-        ...store.settings,
-        ...newSettings
-      })
+      expect(mockValidateSettings).toHaveBeenCalledWith(expectedMerged)
       expect(mockDb.settings.set).toHaveBeenCalledWith('user-settings', expect.any(Object))
-      expect(store.settings.theme).toBe('dark')
-      expect(store.settings.fontSize).toBe('large')
+      const state = useAppStore.getState()
+      expect(state.settings.theme).toBe('dark')
+      expect(state.settings.fontSize).toBe('large')
     })
 
     it('should handle settings update error', async () => {
@@ -328,7 +333,7 @@ describe('useAppStore', () => {
       const store = useAppStore.getState()
       await store.updateSettings({ theme: 'dark' })
 
-      expect(store.error).toBe('Settings update failed')
+      expect(useAppStore.getState().error).toBe('Settings update failed')
     })
 
     it('should reset settings', async () => {
@@ -338,7 +343,7 @@ describe('useAppStore', () => {
       await store.resetSettings()
 
       expect(mockDb.settings.set).toHaveBeenCalledWith('user-settings', defaultSettings)
-      expect(store.settings).toEqual(defaultSettings)
+      expect(useAppStore.getState().settings).toEqual(defaultSettings)
     })
 
     it('should handle reset settings error', async () => {
@@ -348,7 +353,7 @@ describe('useAppStore', () => {
       const store = useAppStore.getState()
       await store.resetSettings()
 
-      expect(store.error).toBe('Reset failed')
+      expect(useAppStore.getState().error).toBe('Reset failed')
     })
 
     it('should get settings', () => {
@@ -368,26 +373,28 @@ describe('useAppStore', () => {
 
     it('should initialize app successfully', async () => {
       const mockStoredSettings = {
-        value: {
-          language: 'tl',
-          theme: 'dark'
-        }
+        language: 'tl' as const,
+        theme: 'dark' as const,
+        fontSize: 'medium' as const,
+        autoSync: false,
+        lastSync: null,
+        searchFilters: { categories: [], difficulties: [], showScripture: true, showChurchFathers: true }
       }
       mockDb.settings.get.mockResolvedValue(mockStoredSettings)
+      mockValidateSettings.mockReturnValue(mockStoredSettings)
 
       const store = useAppStore.getState()
       const cleanup = await store.initialize()
 
       expect(mockDb.settings.get).toHaveBeenCalledWith('user-settings')
-      expect(mockValidateSettings).toHaveBeenCalledWith(mockStoredSettings.value)
+      expect(mockValidateSettings).toHaveBeenCalledWith(mockStoredSettings)
       expect(mockContentLoader.loadContent).toHaveBeenCalledWith('tl')
-      expect(store.loading).toBe(false)
+      expect(useAppStore.getState().loading).toBe(false)
 
       expect(typeof cleanup).toBe('function')
       expect(window.addEventListener).toHaveBeenCalledWith('online', expect.any(Function))
       expect(window.addEventListener).toHaveBeenCalledWith('offline', expect.any(Function))
 
-      // Test cleanup function
       cleanup()
       expect(window.removeEventListener).toHaveBeenCalledWith('online', expect.any(Function))
       expect(window.removeEventListener).toHaveBeenCalledWith('offline', expect.any(Function))
@@ -400,8 +407,9 @@ describe('useAppStore', () => {
       const store = useAppStore.getState()
       await store.initialize()
 
-      expect(store.loading).toBe(false)
-      expect(store.error).toBe('Initialization failed')
+      const state = useAppStore.getState()
+      expect(state.loading).toBe(false)
+      expect(state.error).toBe('Initialization failed')
     })
 
     it('should use default language when no stored settings', async () => {

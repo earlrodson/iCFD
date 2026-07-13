@@ -43,9 +43,19 @@ const customJestConfig = {
     '**/__tests__/**/*.{js,jsx,ts,tsx}',
     '**/*.{test,spec}.{js,jsx,ts,tsx}'
   ],
+  testPathIgnorePatterns: [
+    '/node_modules/',
+    '/e2e/',
+    '/.next/',
+    '/out/'
+  ],
   transform: {
     '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', {
-      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
+      presets: [
+        '@babel/preset-env',
+        ['@babel/preset-react', { runtime: 'automatic' }],
+        '@babel/preset-typescript'
+      ]
     }]
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],

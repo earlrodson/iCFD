@@ -380,7 +380,7 @@ describe('Accessibility Tests', () => {
   })
 
   describe('Responsive Design Accessibility', () => {
-    it('should maintain accessibility across viewport sizes', () => {
+    it('should maintain accessibility across viewport sizes', async () => {
       // Mock different viewport sizes
       Object.defineProperty(window, 'innerWidth', {
         writable: true,

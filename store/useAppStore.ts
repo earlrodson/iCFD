@@ -46,7 +46,7 @@ export interface AppState {
   getSettings: () => ValidatedSettings
 
   // Initialization
-  initialize: () => Promise<void>
+  initialize: () => Promise<() => void>
 
   // Utility actions
   refreshContent: () => Promise<void>
@@ -223,39 +223,37 @@ export const useAppStore = create<AppState>()(
       initialize: async () => {
         set({ loading: true, error: null })
 
+        const handleOnline = () => set({ offline: false })
+        const handleOffline = () => set({ offline: true })
+        const cleanup = () => {
+          window.removeEventListener('online', handleOnline)
+          window.removeEventListener('offline', handleOffline)
+        }
+
         try {
-          // Load settings from IndexedDB
           const storedSettings = await db.settings.get('user-settings')
 
           if (storedSettings) {
             const validatedSettings = validateSettings(storedSettings)
             set({ settings: validatedSettings })
-
-            // Apply theme
             if (typeof window !== 'undefined') {
               applyTheme(validatedSettings.theme)
             }
           }
 
-          // Set up offline detection
-          const handleOnline = () => set({ offline: false })
-          const handleOffline = () => set({ offline: true })
-
           window.addEventListener('online', handleOnline)
           window.addEventListener('offline', handleOffline)
 
-          // Load initial content
           await get().loadContent(storedSettings?.language || 'en')
 
-          // Note: Event listeners are cleaned up when component unmounts
-          // or through proper effect cleanup in React components
-
+          return cleanup
         } catch (error) {
           console.error('Failed to initialize app:', error)
           set({
             loading: false,
             error: error instanceof Error ? error.message : 'Failed to initialize app'
           })
+          return cleanup
         }
       },
 
