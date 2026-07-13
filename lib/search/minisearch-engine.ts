@@ -24,14 +24,15 @@ export interface SearchResult {
 
 export class SearchEngine {
   private searchIndexes = new Map<string, MiniSearch>()
+  private topicsMap = new Map<string, Map<string, Topic>>()
   private defaultOptions: SearchOptions = {
     fuzzy: 0.2,
     prefix: true,
     boost: {
-      title: 2,
-      question: 1.5,
+      title: 3,
+      question: 1,
       answer: 1,
-      tags: 1.2
+      tags: 2
     }
   }
 
@@ -40,6 +41,11 @@ export class SearchEngine {
   }
 
   async initialize(language: string, topics: Topic[]): Promise<void> {
+    // Store topics for retrieval after search
+    const topicMap = new Map<string, Topic>()
+    topics.forEach(t => topicMap.set(t.id, t))
+    this.topicsMap.set(language, topicMap)
+
     // Create MiniSearch instance for language
     const miniSearch = new MiniSearch({
       fields: ['title', 'question', 'answer', 'tags'],
@@ -220,6 +226,11 @@ export class SearchEngine {
   }
 
   async reindex(language: string, topics: Topic[]): Promise<void> {
+    // Update topic map
+    const topicMap = new Map<string, Topic>()
+    topics.forEach(t => topicMap.set(t.id, t))
+    this.topicsMap.set(language, topicMap)
+
     // Completely rebuild of index for language
     const miniSearch = new MiniSearch({
       fields: ['title', 'question', 'answer', 'tags'],
@@ -261,20 +272,7 @@ export class SearchEngine {
   }
 
   private getTopicById(topicId: string, language: string): Topic | null {
-    // This should be replaced with actual topic retrieval logic
-    // For now, return a placeholder
-    return {
-      id: topicId,
-      category: 'sacraments',
-      title: 'Topic Not Found',
-      question: 'Topic not found in database',
-      answer: 'This topic could not be loaded from the database',
-      scripture: [],
-      tags: [],
-      difficulty: 'beginner',
-      lang: language as 'en' | 'tl' | 'ceb',
-      lastUpdated: new Date().toISOString()
-    }
+    return this.topicsMap.get(language)?.get(topicId) ?? null
   }
 
   getIndexStats(language: string): { documentCount: number; termCount: number } | null {

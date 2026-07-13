@@ -62,9 +62,24 @@ interface DefenderDB extends DBSchema {
       book: string
       chapter: number
       version: string
-      verses: Record<string, string>  // { "1": "In the beginning...", "16": "For God so loved..." }
+      verses: Record<string, string>
       fetchedAt: number
-      expiresAt: number               // 30-day TTL
+      expiresAt: number
+    }
+  }
+  notes: {
+    key: string  // topicId
+    value: {
+      topicId: string
+      text: string
+      updatedAt: number
+    }
+  }
+  readProgress: {
+    key: string  // topicId
+    value: {
+      topicId: string
+      readAt: number
     }
   }
 }

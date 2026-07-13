@@ -3,14 +3,18 @@
 import { useEffect, useState, useCallback } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, Calendar, BookOpen, User, Heart, Share2, Check, Copy } from 'lucide-react'
+import { ArrowLeft, Calendar, BookOpen, User, Heart, Share2, Copy, CheckCircle, Circle, StickyNote } from 'lucide-react'
 import { getCategoryName, getCategoryColor, getCategoryIcon } from '@/lib/utils/categories'
 import Link from 'next/link'
 import { TopicContent } from '@/components/topic/TopicContent'
 import { getCitations } from '@/lib/content/normalize'
 import { useCurrentLanguage } from '@/store/useAppStore'
 import { useFavoritesStore, useFavoriteActions } from '@/store/useFavoritesStore'
+import { useNotesStore } from '@/store/useNotesStore'
+import { useProgressStore, useIsRead } from '@/store/useProgressStore'
 import type { Topic } from '@/data/schema/topic.schema'
+
+const NOTE_MAX = 1000
 
 interface TopicPageContentProps {
   topicId: string
@@ -22,10 +26,29 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
   const [topicData, setTopicData] = useState<Topic>(fallbackTopic)
   const [relatedTopics, setRelatedTopics] = useState<Topic[]>([])
   const [copied, setCopied] = useState(false)
+  const [showNotes, setShowNotes] = useState(false)
+  const [noteText, setNoteText] = useState('')
+  const [noteSaved, setNoteSaved] = useState(false)
 
   const { isFavorite } = useFavoritesStore()
   const { toggleFavorite } = useFavoriteActions()
   const favorited = isFavorite(topicId)
+
+  const { loadNotes, setNote, getNote } = useNotesStore()
+  const { loadProgress, markAsRead, markAsUnread } = useProgressStore()
+  const isRead = useIsRead(topicId)
+
+  // Load stores on mount
+  useEffect(() => {
+    loadNotes()
+    loadProgress()
+  }, [loadNotes, loadProgress])
+
+  // Sync note text when store loads
+  useEffect(() => {
+    const stored = getNote(topicId)
+    setNoteText(stored)
+  }, [getNote, topicId])
 
   // Reload topic when language changes
   useEffect(() => {
@@ -39,12 +62,12 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
       .then(data => {
         const found: Topic | undefined = data.topics?.find((t: Topic) => t.id === topicId)
         if (found) setTopicData(found)
-        else setTopicData(fallbackTopic) // language version not yet available
+        else setTopicData(fallbackTopic)
       })
       .catch(() => setTopicData(fallbackTopic))
   }, [language, topicId, fallbackTopic])
 
-  // Load related topics (always from current language)
+  // Load related topics
   useEffect(() => {
     if (!topicData.relatedTopics?.length) {
       setRelatedTopics([])
@@ -67,22 +90,14 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
 
   const handleShare = useCallback(async () => {
     const url = window.location.href
-    const shareData = {
-      title: topicData.title,
-      text: topicData.question,
-      url,
-    }
-
     if (navigator.share) {
       try {
-        await navigator.share(shareData)
+        await navigator.share({ title: topicData.title, text: topicData.question, url })
         return
       } catch {
         // fall through to clipboard
       }
     }
-
-    // Fallback: copy to clipboard
     try {
       await navigator.clipboard.writeText(url)
       setCopied(true)
@@ -92,12 +107,23 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
     }
   }, [topicData.title, topicData.question])
 
+  const handleToggleRead = useCallback(async () => {
+    if (isRead) await markAsUnread(topicId)
+    else await markAsRead(topicId)
+  }, [isRead, markAsRead, markAsUnread, topicId])
+
+  const handleNoteSave = useCallback(async () => {
+    await setNote(topicId, noteText)
+    setNoteSaved(true)
+    setTimeout(() => setNoteSaved(false), 2000)
+  }, [setNote, topicId, noteText])
+
   const citations = getCitations(topicData)
   const scriptureCount = citations.filter(c => c.type === 'scripture').length
   const fathersCount = citations.filter(c => c.type === 'church-father').length
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
       <div className="container mx-auto px-4 py-8 max-w-4xl">
 
         <div className="mb-6">
@@ -117,6 +143,11 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             </Badge>
             <Badge variant="outline">{topicData.difficulty}</Badge>
             <Badge variant="secondary">{topicData.lang.toUpperCase()}</Badge>
+            {isRead && (
+              <Badge variant="secondary" className="text-green-600 border-green-200 dark:border-green-800">
+                <CheckCircle className="h-3 w-3 mr-1" /> Read
+              </Badge>
+            )}
           </div>
 
           <h1 className="text-3xl font-bold mb-4">{topicData.title}</h1>
@@ -149,7 +180,8 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
           </div>
         </div>
 
-        <div className="flex gap-2 mb-8">
+        {/* Action buttons */}
+        <div className="flex flex-wrap gap-2 mb-8">
           <Button
             variant={favorited ? 'default' : 'outline'}
             size="sm"
@@ -158,6 +190,27 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             <Heart className={`h-4 w-4 mr-2 ${favorited ? 'fill-current' : ''}`} />
             {favorited ? 'Saved' : 'Add to Favorites'}
           </Button>
+
+          <Button
+            variant={isRead ? 'default' : 'outline'}
+            size="sm"
+            onClick={handleToggleRead}
+          >
+            {isRead
+              ? <><CheckCircle className="h-4 w-4 mr-2" />Read</>
+              : <><Circle className="h-4 w-4 mr-2" />Mark as Read</>
+            }
+          </Button>
+
+          <Button
+            variant={showNotes ? 'default' : 'outline'}
+            size="sm"
+            onClick={() => setShowNotes(v => !v)}
+          >
+            <StickyNote className="h-4 w-4 mr-2" />
+            Notes{noteText ? ' ·' : ''}
+          </Button>
+
           <Button variant="outline" size="sm" onClick={handleShare}>
             {copied
               ? <><Copy className="h-4 w-4 mr-2" />Copied!</>
@@ -165,6 +218,30 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             }
           </Button>
         </div>
+
+        {/* Notes panel */}
+        {showNotes && (
+          <div className="mb-8 border rounded-lg p-4 bg-muted/30">
+            <div className="flex items-center justify-between mb-2">
+              <p className="text-sm font-medium">Personal notes</p>
+              <span className={`text-xs ${noteText.length > NOTE_MAX * 0.9 ? 'text-destructive' : 'text-muted-foreground'}`}>
+                {noteText.length}/{NOTE_MAX}
+              </span>
+            </div>
+            <textarea
+              value={noteText}
+              onChange={e => setNoteText(e.target.value.slice(0, NOTE_MAX))}
+              placeholder="Add your personal notes, reflections, or questions about this topic…"
+              className="w-full min-h-[120px] text-sm bg-background border rounded p-3 resize-y focus:outline-none focus:ring-1 focus:ring-primary"
+              maxLength={NOTE_MAX}
+            />
+            <div className="flex justify-end mt-2">
+              <Button size="sm" onClick={handleNoteSave} disabled={noteSaved}>
+                {noteSaved ? 'Saved!' : 'Save note'}
+              </Button>
+            </div>
+          </div>
+        )}
 
         <TopicContent topic={topicData} />
 

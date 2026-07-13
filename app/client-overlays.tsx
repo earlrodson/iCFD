@@ -1,6 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
+import { MobileNav } from '@/components/shared/MobileNav'
 
 const OfflineBanner = dynamic(
   () => import('@/components/shared/OfflineBanner').then(m => m.OfflineBanner),
@@ -17,6 +18,7 @@ export function ClientOverlays() {
     <>
       <OfflineBanner />
       <PWAInstallPrompt />
+      <MobileNav />
     </>
   )
 }

@@ -9,7 +9,8 @@ import { TopicCard, TopicCardGrid } from '@/components/handbook/TopicCard'
 import { Badge } from '@/components/ui/badge'
 import { useAppStore, useAvailableTopics, useAppLoading, useAppError } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
-import { Search, Book, Heart, Globe, Shield, Moon, Sun } from 'lucide-react'
+import { Search, Book, Heart, Globe, Shield, Moon, Sun, CheckCircle } from 'lucide-react'
+import { useProgressStore } from '@/store/useProgressStore'
 import { getCategoryName, getCategoryIcon } from '@/lib/utils'
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -31,17 +32,17 @@ export default function HomePage() {
   const { loading, error, initialize, settings, updateSettings } = useAppStore()
   const availableTopics = useAvailableTopics()
   const { loadFavorites } = useFavoritesStore()
+  const { loadProgress, getReadCount } = useProgressStore()
 
   const isDark = settings.theme === 'dark'
   const toggleDark = () => updateSettings({ theme: isDark ? 'light' : 'dark' })
 
   useEffect(() => {
-    // Initialize the app on component mount
     initialize().then(() => {
-      // Load favorites after initialization
       loadFavorites()
+      loadProgress()
     }).catch(console.error)
-  }, [initialize, loadFavorites])
+  }, [initialize, loadFavorites, loadProgress])
 
   // Filter topics based on search and category
   const filteredTopics = availableTopics.filter(topic => {
@@ -109,7 +110,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background pb-20 md:pb-0">
       {/* Header */}
       <header className="border-b bg-card sticky top-0 z-30">
         <div className="container mx-auto px-4 py-4">
@@ -146,13 +147,19 @@ export default function HomePage() {
             Access comprehensive Catholic apologetics resources including scripture references,
             Church Fathers quotes, and Catechism citations to help you understand and defend the Catholic faith.
           </p>
-          <div className="flex items-center justify-center space-x-4">
+          <div className="flex items-center justify-center space-x-4 flex-wrap gap-2">
             <Badge variant="secondary" className="text-sm">
               {availableTopics.length} Topics Available
             </Badge>
             <Badge variant="secondary" className="text-sm">
-              English & Tagalog
+              English · Tagalog · Cebuano
             </Badge>
+            {getReadCount() > 0 && (
+              <Badge variant="outline" className="text-sm text-green-600 border-green-300 dark:border-green-700">
+                <CheckCircle className="h-3.5 w-3.5 mr-1" />
+                {getReadCount()} of {availableTopics.length} read
+              </Badge>
+            )}
           </div>
         </section>
 

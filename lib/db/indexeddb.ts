@@ -5,7 +5,7 @@ import type { Topic, HandbookContent } from '@/data/schema/topic.schema'
 class DatabaseManager {
   private db: IDBPDatabase<DefenderDB> | null = null
   private readonly DB_NAME = 'catholic-defender'
-  private readonly DB_VERSION = 2
+  private readonly DB_VERSION = 3
 
   async getDB(): Promise<IDBPDatabase<DefenderDB>> {
     if (!this.db) {
@@ -40,6 +40,16 @@ class DatabaseManager {
             if (!db.objectStoreNames.contains('cache')) db.createObjectStore('cache', { keyPath: 'key' })
             if (!db.objectStoreNames.contains('bibleChapters')) {
               db.createObjectStore('bibleChapters', { keyPath: 'key' })
+            }
+          }
+
+          // v3: add notes and readProgress stores
+          if (oldVersion < 3) {
+            if (!db.objectStoreNames.contains('notes')) {
+              db.createObjectStore('notes', { keyPath: 'topicId' })
+            }
+            if (!db.objectStoreNames.contains('readProgress')) {
+              db.createObjectStore('readProgress', { keyPath: 'topicId' })
             }
           }
         },
@@ -419,5 +429,61 @@ export const db = {
       const db = await dbManager.getDB()
       return db.clear('bibleChapters')
     },
-  }
+  },
+
+  // Notes operations
+  notes: {
+    getAll: async () => {
+      const database = await dbManager.getDB()
+      return database.getAll('notes')
+    },
+
+    get: async (topicId: string) => {
+      const database = await dbManager.getDB()
+      return database.get('notes', topicId)
+    },
+
+    set: async (topicId: string, text: string): Promise<void> => {
+      const database = await dbManager.getDB()
+      await database.put('notes', { topicId, text, updatedAt: Date.now() })
+    },
+
+    delete: async (topicId: string): Promise<void> => {
+      const database = await dbManager.getDB()
+      return database.delete('notes', topicId)
+    },
+
+    clear: async (): Promise<void> => {
+      const database = await dbManager.getDB()
+      return database.clear('notes')
+    },
+  },
+
+  // Read progress operations
+  readProgress: {
+    getAll: async () => {
+      const database = await dbManager.getDB()
+      return database.getAll('readProgress')
+    },
+
+    get: async (topicId: string) => {
+      const database = await dbManager.getDB()
+      return database.get('readProgress', topicId)
+    },
+
+    set: async (topicId: string, readAt: number): Promise<void> => {
+      const database = await dbManager.getDB()
+      await database.put('readProgress', { topicId, readAt })
+    },
+
+    delete: async (topicId: string): Promise<void> => {
+      const database = await dbManager.getDB()
+      return database.delete('readProgress', topicId)
+    },
+
+    clear: async (): Promise<void> => {
+      const database = await dbManager.getDB()
+      return database.clear('readProgress')
+    },
+  },
 }
