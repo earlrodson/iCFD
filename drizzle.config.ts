@@ -1,4 +1,8 @@
+import { config } from 'dotenv'
 import type { Config } from 'drizzle-kit'
+
+// drizzle-kit doesn't auto-load .env.local — load it explicitly
+config({ path: '.env.local' })
 
 export default {
   schema: './drizzle/schema.ts',

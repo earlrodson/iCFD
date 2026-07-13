@@ -5,7 +5,8 @@
  * Requires DATABASE_URL in environment (direct connection, not pooler).
  */
 
-import 'dotenv/config'
+import { config } from 'dotenv'
+config({ path: '.env.local' })
 import { readFileSync } from 'fs'
 import { join } from 'path'
 import postgres from 'postgres'
