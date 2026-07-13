@@ -9,7 +9,7 @@ import { TopicCard, TopicCardGrid } from '@/components/handbook/TopicCard'
 import { Badge } from '@/components/ui/badge'
 import { useAppStore, useAvailableTopics, useAppLoading, useAppError } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
-import { Search, Book, Heart, Globe, Shield } from 'lucide-react'
+import { Search, Book, Heart, Globe, Shield, Moon, Sun } from 'lucide-react'
 import { getCategoryName, getCategoryIcon } from '@/lib/utils'
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -28,9 +28,12 @@ export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
-  const { loading, error, initialize } = useAppStore()
+  const { loading, error, initialize, settings, updateSettings } = useAppStore()
   const availableTopics = useAvailableTopics()
   const { loadFavorites } = useFavoritesStore()
+
+  const isDark = settings.theme === 'dark'
+  const toggleDark = () => updateSettings({ theme: isDark ? 'light' : 'dark' })
 
   useEffect(() => {
     // Initialize the app on component mount
@@ -125,6 +128,9 @@ export default function HomePage() {
                 onSearch={(query, results) => setSearchQuery(query)}
               />
               <LanguageSwitcher />
+              <Button variant="ghost" size="icon" onClick={toggleDark} title="Toggle dark mode">
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
             </div>
           </div>
         </div>
