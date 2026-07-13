@@ -71,6 +71,9 @@ export function LanguageSwitcher({
         onClick={() => setIsOpen(!isOpen)}
         disabled={loading}
         className="flex items-center space-x-2"
+        data-testid="language-switcher"
+        aria-label="Select language"
+        aria-expanded={isOpen}
       >
         {showFlag && currentLanguageData?.flag}
         {showName && <span>{currentLanguageData?.name}</span>}
@@ -87,8 +90,8 @@ export function LanguageSwitcher({
           />
 
           {/* Dropdown */}
-          <div className="absolute top-full left-0 mt-1 bg-background border rounded-md shadow-lg z-50 min-w-[150px]">
-            <ul className="py-1">
+          <div className="absolute top-full left-0 mt-1 bg-background border rounded-md shadow-lg z-50 min-w-[150px]" data-testid="lang-dropdown">
+            <ul className="py-1" role="menu">
               {languages.map((language) => (
                 <li key={language.code}>
                   <button
@@ -99,6 +102,8 @@ export function LanguageSwitcher({
                     )}
                     onClick={() => handleLanguageChange(language.code)}
                     disabled={loading}
+                    data-testid={`lang-${language.code}`}
+                    role="menuitem"
                   >
                     <div className="flex items-center space-x-2">
                       <span>{language.flag}</span>
@@ -148,6 +153,9 @@ export function CompactLanguageSwitcher({ className }: { className?: string }) {
         onClick={() => setIsOpen(!isOpen)}
         disabled={loading}
         className="p-1 h-8 w-8"
+        data-testid="language-switcher-mobile"
+        aria-label="Select language (mobile)"
+        aria-expanded={isOpen}
       >
         {currentLanguageData?.flag}
       </Button>
@@ -159,8 +167,8 @@ export function CompactLanguageSwitcher({ className }: { className?: string }) {
             onClick={() => setIsOpen(false)}
           />
 
-          <div className="absolute top-full right-0 mt-1 bg-background border rounded-md shadow-lg z-50">
-            <ul className="py-1">
+          <div className="absolute top-full right-0 mt-1 bg-background border rounded-md shadow-lg z-50" data-testid="lang-dropdown-mobile">
+            <ul className="py-1" role="menu">
               {languages.map((language) => (
                 <li key={language.code}>
                   <button
@@ -171,6 +179,8 @@ export function CompactLanguageSwitcher({ className }: { className?: string }) {
                     )}
                     onClick={() => handleLanguageChange(language.code)}
                     disabled={loading}
+                    data-testid={`lang-${language.code}`}
+                    role="menuitem"
                   >
                     <div className="flex items-center space-x-2">
                       <span>{language.flag}</span>

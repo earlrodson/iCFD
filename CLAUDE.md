@@ -4,153 +4,100 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Catholic Faith Defender is a Progressive Web Application (PWA) built with Next.js 15 for Catholic apologetics content. It's designed as an offline-first mobile-capable application supporting multiple languages (English, Tagalog, Cebuano).
+Catholic Faith Defender (iCFD) is an offline-first PWA for Catholic apologetics content, built with Next.js 15 App Router and static export. It supports English, Tagalog, and Cebuano.
 
-**Key Technologies:**
-- Next.js 15 with App Router and static export
-- TypeScript with strict mode
-- TailwindCSS + shadcn/ui for styling
-- Zustand for state management
-- IndexedDB (via idb) for offline storage
-- MiniSearch for full-text search functionality
-- Zod for schema validation
-- Jest for testing with coverage thresholds
+**Stack:** Next.js 15 · TypeScript (strict) · TailwindCSS + shadcn/ui · Zustand · IndexedDB (idb) · MiniSearch · Zod · Jest · Playwright
+
+**Package Manager:** `pnpm`
 
 ## Development Commands
 
-**Package Manager:** Use `pnpm` (not npm)
-
 ```bash
-# Development
-pnpm dev                # Start development server
-pnpm build              # Build for production
-pnpm start              # Start production server
+pnpm dev             # Start dev server (default port 3000)
+pnpm build           # Static export build → out/
+pnpm type-check      # tsc --noEmit
+pnpm lint            # next lint (ESLint with next/typescript preset)
+pnpm validate        # Validate content JSON structure
+pnpm index           # Regenerate search index from content files
 
-# Code Quality
-pnpm type-check         # Run TypeScript compiler without emitting files
-pnpm lint               # Run ESLint (currently has configuration issues)
-pnpm validate           # Validate content structure
+# Jest unit tests
+pnpm test                          # Run all unit tests
+pnpm test:coverage                 # With coverage report
+pnpm test -- --testPathPattern=lib/db   # Run a specific test file/dir
 
-# Testing
-pnpm test               # Run all tests
-pnpm test:watch         # Run tests in watch mode
-pnpm test:coverage      # Run tests with coverage report
-pnpm test:ci            # Run tests for CI (no watch, with coverage)
-
-# Content Management
-pnpm index              # Generate search index
+# Playwright E2E (dev server must be running on port 3002)
+pnpm test:e2e        # All browsers
+pnpm test:e2e:headed # Headed mode for debugging
 ```
 
 ## Architecture
 
-### Offline-First Data Management
-- **IndexedDB Schema** (`lib/db/`): Core offline database with topic storage, favorites, and search indexes
-- **Content Loader** (`lib/content/`): Loads and validates JSON content from `data/content/`
-- **Search Engine** (`lib/search/`): MiniSearch implementation for offline full-text search
+### App Router pages
+- `app/page.tsx` — Home: loads content, category browsing, search
+- `app/[topic]/page.tsx` — Topic detail page
+- `app/layout.tsx` — Root layout with PWA setup, offline banner, install prompt
 
-### State Management (Zustand)
-- **useAppStore**: Global app state, language/theme settings, PWA functionality
-- **useSearchStore**: Search state, filters, and results management
-- **useFavoritesStore**: Local favorites management with future cloud sync capability
+### Data flow
+Content is static JSON served from `public/data/content/{lang}/handbook.json` (fetched at runtime by `ContentLoader`). The fetch path is `/data/content/${language}/handbook.json`.
 
-### Multi-Language Support
-Content structure in `data/content/{lang}/handbook.json`:
-- Each language contains identical topic structures with different content
-- Topics are categorized by theological areas (sacraments, mary, papacy, etc.)
-- Zod schemas ensure content consistency across languages
+1. `app/page.tsx` calls `useAppStore.initialize()` on mount
+2. `useAppStore` calls `contentLoader.loadContent(language)` (singleton in `lib/content/loader.ts`)
+3. `ContentLoader` fetches + Zod-validates the JSON, then caches it in memory
+4. Topics flow into Zustand (`availableTopics`), rendered via `TopicCard`/`TopicCardGrid`
 
-### Component Architecture
-- **shadcn/ui components** in `components/ui/`: Reusable UI primitives
-- **Feature components**: SearchBar, TopicCard, OfflineBanner, PWAInstallPrompt
-- **Layout components**: LanguageSwitcher, responsive navigation
+### State management (Zustand with `persist`)
+- `store/useAppStore.ts` — language, topics, settings, loading/error state
+- `store/useSearchStore.ts` — search query, filters, results
+- `store/useFavoritesStore.ts` — local favorites (IndexedDB-backed)
 
-### PWA Implementation
-- Service worker via `@ducanh2912/next-pwa`
-- Static export configuration (`output: 'export'`)
-- Offline caching strategies for fonts and images
-- Install prompt functionality
+Settings are persisted to localStorage via `zustand/middleware/persist`.
 
-## Data Schemas
+### Offline storage
+`lib/db/indexeddb.ts` wraps IndexedDB via `idb`. Schema defined in `lib/db/schema.ts`. Used for favorites and caching.
 
-### Topic Schema (Zod validation)
+### Search
+`lib/search/minisearch-engine.ts` wraps MiniSearch for offline full-text search across topics. `lib/search/search-index.ts` manages the index lifecycle.
+
+### Content schema
+Zod schema lives in `data/schema/topic.schema.ts`. Key types: `Topic` and `HandbookContent`.
+
 ```typescript
-{
-  id: string;
-  category: 'sacraments' | 'mary' | 'papacy' | 'salvation' | 'bible' | 'saints' | 'tradition' | 'church-teaching';
-  title: string;
-  question: string;
-  answer: string;
-  scripture: Array<{reference: string; text: string; version?: string}>;
-  catechism?: string[];
-  churchFathers?: Array<{author: string; quote: string; source: string}>;
-  tags: string[];
-  difficulty: 'beginner' | 'intermediate' | 'advanced';
-  lang: 'en' | 'tl' | 'ceb';
-  relatedTopics?: string[];
-  lastUpdated: string; // ISO date
-}
+// Topic fields
+id, category, title, question, answer,
+scripture: [{reference, text, version?}],
+catechism?: string[],
+churchFathers?: [{author, quote, source}],
+tags, difficulty: 'beginner'|'intermediate'|'advanced',
+lang: 'en'|'tl'|'ceb',
+relatedTopics?, lastUpdated
 ```
+
+Valid categories: `sacraments | mary | papacy | salvation | bible | saints | tradition | church-teaching`
+
+### PWA
+Service worker via `@ducanh2912/next-pwa` (disabled in dev). SW is built to `public/sw.js` and `public/workbox-*.js` during build. `next.config.js` uses `output: 'export'` — no SSR/API routes, everything is client-side.
+
+### Path aliases (tsconfig.json)
+`@/*` maps to the repo root.
+
+## Adding Content
+
+When adding or updating apologetics content:
+1. Edit `public/data/content/{lang}/handbook.json` for each language
+2. Keep topic `id` values consistent across all three language files
+3. Run `pnpm validate` to check schema conformance
+4. Run `pnpm index` to regenerate the search index
 
 ## Testing Strategy
 
-- **Unit Tests**: Components, stores, and utilities with Jest
-- **Integration Tests**: User workflows (search, favorites)
-- **Accessibility Tests**: jest-axe for compliance checking
-- **Coverage Requirements**: 70% global, 80% for lib/, 75% for components/
-- **Test Structure**: Co-located `__tests__/` directories
+**Coverage thresholds:** 70% global, 80% for `lib/`, 75% for `components/`
 
-## Known Issues & TODOs
+Jest tests are co-located in `__tests__/` directories alongside source files. Integration tests live in `__tests__/integration/`. Test environment is jsdom; IndexedDB is mocked with `fake-indexeddb`.
 
-### TypeScript Issues
-- Multiple type errors in test files due to missing jest setup exports
-- ESLint configuration incompatible with current Next.js version
-- Missing type declarations for jest-axe and other testing utilities
-- Language type enforcement issues in stores and components
+E2E tests in `e2e/*.spec.ts` run against the dev server on port 3002 (set in `playwright.config.ts`). Run `pnpm dev` first when running E2E tests locally.
 
-### Linting Configuration
-- Current ESLint config uses deprecated `next/typescript` preset
-- Needs migration to standalone ESLint CLI as recommended by Next.js 15
+## Known Issues
 
-### Missing Dependencies
-- `@types/jest-axe` for accessibility testing
-- Missing `useDebounce` hook referenced in SearchBar component
-- PWA utilities referenced but not implemented
-
-## File Structure Patterns
-
-### Path Aliases (configured in tsconfig.json)
-- `@/*` → root directory
-- `@/components/*` → components directory
-- `@/lib/*` → lib directory
-- `@/store/*` → store directory
-- `@/data/*` → data directory
-
-### Test Organization
-- Tests co-located in `__tests__/` directories
-- Integration tests in `__tests__/integration/`
-- Performance tests in `__tests__/performance/`
-- Mock data and utilities in `jest.setup.js`
-
-## Content Development
-
-When adding new apologetics content:
-1. Follow the Zod schema structure exactly
-2. Maintain consistency across all languages
-3. Run `pnpm validate` to check content integrity
-4. Regenerate search index with `pnpm index`
-5. Test search functionality across all supported languages
-
-## Static Export Considerations
-
-The app uses Next.js static export for PWA functionality:
-- All dynamic functionality must work client-side
-- No server-side API routes in current architecture
-- Image optimization disabled (`unoptimized: true`)
-- Service worker handles all offline functionality
-
-## Future Development Path
-
-**Phase 2**: Online features with Supabase integration for authentication and cloud sync
-**Phase 3**: Native mobile apps via Capacitor wrapper
-
-Current codebase is structured to accommodate these phases without major architectural changes.
+- ESLint uses the deprecated `next/typescript` preset (eslint-config-next 14.2.0 pinned); some lint rules may conflict with Next.js 15
+- TypeScript errors exist in some test files due to missing jest setup type exports
+- Language type enforcement inconsistencies between stores and components

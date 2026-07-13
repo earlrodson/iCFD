@@ -75,6 +75,7 @@ export function TopicCard({
         tabIndex={0}
         role="button"
         aria-label={`View topic: ${topic.title}`}
+        data-testid="search-result"
       >
         <CardContent className="p-4">
           <div className="flex items-start justify-between space-x-3">
@@ -125,6 +126,7 @@ export function TopicCard({
       tabIndex={0}
       role="button"
       aria-label={`View topic: ${topic.title}`}
+      data-testid="search-result"
     >
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between space-y-2">
@@ -276,7 +278,7 @@ export function TopicCardGrid({
   }
 
   return (
-    <div className={cn("grid gap-4", gridCols[columns], className)}>
+    <div className={cn("grid gap-4", gridCols[columns], className)} data-testid="search-results">
       {topics.map((topic) => (
         <TopicCard
           key={topic.id}

@@ -5,6 +5,7 @@ import { contentLoader } from '@/lib/content/loader'
 import { validateSettings } from '@/lib/utils/validation'
 import type { Topic } from '@/data/schema/topic.schema'
 import type { ValidatedSettings } from '@/lib/utils/validation'
+import type { PresentationMode } from '@/lib/content/normalize'
 
 export interface AppState {
   // UI state
@@ -19,6 +20,9 @@ export interface AppState {
   currentTopic: Topic | null
   contentVersion: string | null
 
+  // Presentation mode — session-only, not persisted
+  presentationMode: PresentationMode
+
   // User settings
   settings: ValidatedSettings
 
@@ -32,6 +36,9 @@ export interface AppState {
   loadContent: (language?: string) => Promise<void>
   setCurrentLanguage: (language: 'en' | 'tl' | 'ceb') => Promise<void>
   setCurrentTopic: (topic: Topic | null) => void
+
+  // Presentation mode actions
+  setPresentationMode: (mode: PresentationMode) => void
 
   // Settings actions
   updateSettings: (settings: Partial<ValidatedSettings>) => Promise<void>
@@ -61,6 +68,8 @@ export const useAppStore = create<AppState>()(
       availableTopics: [] as Topic[],
       currentTopic: null as Topic | null,
       contentVersion: null as string | null,
+
+      presentationMode: 'full' as PresentationMode,
 
       settings: {
         language: 'en' as const,
@@ -154,6 +163,8 @@ export const useAppStore = create<AppState>()(
       },
 
       setCurrentTopic: (topic) => set({ currentTopic: topic }),
+
+      setPresentationMode: (mode) => set({ presentationMode: mode }),
 
       // Settings actions
       updateSettings: async (newSettings) => {
@@ -303,7 +314,7 @@ export const useAppStore = create<AppState>()(
         return localStorage
       }),
       partialize: (state) => ({
-        // Only persist essential state
+        // Only persist essential state — presentationMode is session-only
         settings: state.settings,
         currentLanguage: state.currentLanguage
       }),
@@ -333,3 +344,5 @@ export const useAvailableTopics = () => useAppStore((state) => state.availableTo
 export const useCurrentTopic = () => useAppStore((state) => state.currentTopic)
 export const useAppSettings = () => useAppStore((state) => state.settings)
 export const useSyncStatus = () => useAppStore((state) => state.syncStatus)
+export const usePresentationMode = () => useAppStore((state) => state.presentationMode)
+export const useSetPresentationMode = () => useAppStore((state) => state.setPresentationMode)

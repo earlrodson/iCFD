@@ -42,10 +42,13 @@ export default function HomePage() {
 
   // Filter topics based on search and category
   const filteredTopics = availableTopics.filter(topic => {
+    const answerText = typeof topic.answer === 'string'
+      ? topic.answer
+      : `${topic.answer.summary} ${topic.answer.full}`
     const matchesSearch = !searchQuery ||
       topic.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       topic.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      topic.answer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      answerText.toLowerCase().includes(searchQuery.toLowerCase()) ||
       topic.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()))
 
     const matchesCategory = !selectedCategory || topic.category === selectedCategory

@@ -2,7 +2,7 @@ import React from 'react';
 import { Copy, Check, Palette, Moon, Sun } from 'lucide-react';
 
 const ColorPalette = () => {
-  const [copiedColor, setCopiedColor] = React.useState(null);
+  const [copiedColor, setCopiedColor] = React.useState<string | null>(null);
   const [darkMode, setDarkMode] = React.useState(false);
 
   const colors = {
@@ -154,13 +154,13 @@ const ColorPalette = () => {
     ]
   };
 
-  const copyToClipboard = (text, colorName) => {
+  const copyToClipboard = (text: string, colorName: string) => {
     navigator.clipboard.writeText(text);
     setCopiedColor(colorName);
     setTimeout(() => setCopiedColor(null), 2000);
   };
 
-  const ColorCard = ({ color, index }) => (
+  const ColorCard = ({ color, index }: { color: any; index: number }) => (
     <div className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-1">
       <div 
         className="h-40 w-full relative transition-transform duration-500 group-hover:scale-110"
@@ -221,7 +221,7 @@ const ColorPalette = () => {
     </div>
   );
 
-  const Section = ({ title, colors, icon, gradient }) => (
+  const Section = ({ title, colors, icon, gradient }: { title: string; colors: any[]; icon: React.ReactNode; gradient: string }) => (
     <section className="mb-16">
       <div className="flex items-center gap-4 mb-8">
         <div 

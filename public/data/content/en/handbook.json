@@ -1,53 +1,490 @@
 {
   "topics": [
     {
-      "id": "eucharist-real-presence",
-      "category": "sacraments",
-      "title": "The Real Presence of Christ in the Eucharist",
-      "question": "Why do Catholics believe that the bread and wine become the actual Body and Blood of Christ?",
-      "answer": "Catholics believe in the Real Presence because Jesus explicitly stated 'This is my body' and 'This is my blood' at the Last Supper. This is not symbolic language—the Greek word used is 'sarx' meaning actual flesh. Early Christians consistently understood this literally, as evidenced by writings from the Church Fathers. The Eucharist is the source and summit of Christian life, making Christ truly present among us under the appearances of bread and wine through the miracle of transubstantiation.",
+      "id": "bible-tradition-authority",
+      "category": "bible",
+      "title": "The Bible, Tradition, and Church Authority",
+      "question": "Is the Bible alone sufficient as the rule of faith, or do we need Sacred Tradition and the Church's teaching authority?",
+      "answer": "The Bible itself teaches that Scripture alone is not sufficient as the sole rule of faith. The Bible is the inspired Word of God (2 Tim 3:16), but it requires the Church's authority to determine which books belong to it, which translations are accurate, and how to interpret it correctly. St. Peter warns that Scripture is not a matter of private interpretation (2 Pet 1:20). Paul commands us to hold fast to the traditions he passed on orally and in writing (2 Thes 2:15). Christ founded a Church with authority to teach, not just a book (Mat 28:18-20). The Church preceded the written New Testament — the earliest Christians had only the oral apostolic tradition. Three questions no book can answer for itself: (1) Which books belong in the Bible? (2) Which translation is accurate? (3) What do disputed passages mean? The Catholic Church, guided by the Holy Spirit, answers all three through its teaching authority (Magisterium). Without the Church, there would be no Bible.",
       "scripture": [
         {
-          "reference": "John 6:53-56",
-          "text": "Jesus said to them, 'Amen, amen, I say to you, unless you eat the flesh of the Son of Man and drink his blood, you do not have life within you. Whoever eats my flesh and drinks my blood has eternal life, and I will raise him on the last day. For my flesh is true food, and my blood is true drink. Whoever eats my flesh and drinks my blood remains in me and I in him.'",
+          "reference": "2 Thessalonians 2:15",
+          "text": "Therefore, brothers, stand firm and hold fast to the traditions that you were taught, either by an oral statement or by a letter of ours.",
           "version": "NABRE"
         },
         {
-          "reference": "1 Corinthians 11:27-29",
-          "text": "Therefore whoever eats the bread or drinks the cup of the Lord unworthily will have to answer for the body and blood of the Lord. A person should examine himself, and so eat the bread and drink the cup. For anyone who eats and drinks without discerning the body, eats and drinks judgment on himself.",
+          "reference": "Matthew 16:18",
+          "text": "And so I say to you, you are Peter, and upon this rock I will build my church, and the gates of the netherworld shall not prevail against it.",
           "version": "NABRE"
         },
         {
-          "reference": "Luke 22:19-20",
-          "text": "Then he took the bread, said the blessing, broke it, and gave it to them, saying, 'This is my body, which will be given for you; do this in memory of me.' And likewise the cup after they had eaten, saying, 'This cup is the new covenant in my blood, which will be shed for you.'",
+          "reference": "1 Timothy 3:15",
+          "text": "But if I should be delayed, you should know how to behave in the household of God, which is the church of the living God, the pillar and foundation of truth.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Peter 1:20-21",
+          "text": "Know this first of all, that there is no prophecy of scripture that is a matter of personal interpretation, for no prophecy ever came through human will; but rather human beings moved by the holy Spirit spoke under the influence of God.",
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1374", "CCC 1375", "CCC 1413"],
+      "catechism": ["CCC 80", "CCC 81", "CCC 82", "CCC 95", "CCC 107"],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "I would not believe in the Gospel, had not the authority of the Catholic Church already moved me.",
+          "source": "Against the Epistle of Manichaeus, 397 AD"
+        },
+        {
+          "author": "St. Irenaeus of Lyon",
+          "quote": "When there is a dispute about questions of some importance, should we not have recourse to the oldest Churches, the ones where the Apostles lived, and learn from them the definitive and clear answer to the problem at issue?",
+          "source": "Against Heresies, Book III, 189 AD"
+        }
+      ],
+      "tags": ["bible", "tradition", "sola scriptura", "authority", "magisterium", "scripture"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["true-church", "primacy-of-peter"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "true-church",
+      "category": "church-teaching",
+      "title": "The True Church of Christ",
+      "question": "Among all Christian denominations, how do we identify the true Church founded by Jesus Christ?",
+      "answer": "Christ founded one Church, not many (Eph 4:4-5). He promised that this Church would endure until the end of time and that the gates of hell would not prevail against it (Mat 16:18). The true Church can be identified by four marks: it is One (unified in faith, sacraments, and leadership), Holy (set apart by God, producing saints), Catholic (universal, for all people of all ages), and Apostolic (tracing its authority directly to the Apostles through unbroken succession). The Catholic Church alone can demonstrate all four marks throughout history. No denomination founded by a human being in the 16th century or later can claim apostolic continuity. The Catholic Church traces its founding directly to Christ through Peter and the Apostles. There is no other Church that can claim an unbroken line of succession from the Apostles to the present day.",
+      "scripture": [
+        {
+          "reference": "Matthew 16:18-19",
+          "text": "And so I say to you, you are Peter, and upon this rock I will build my church, and the gates of the netherworld shall not prevail against it. I will give you the keys to the kingdom of heaven. Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Ephesians 4:4-5",
+          "text": "One body and one Spirit, as you were also called to the one hope of your call; one Lord, one faith, one baptism.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Daniel 2:44",
+          "text": "In the lifetime of those kings the God of heaven will set up a kingdom that shall never be destroyed or delivered up to another people; rather, it shall break in pieces all these kingdoms and put an end to them, and it shall stand forever.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 811", "CCC 830", "CCC 857", "CCC 869"],
+      "churchFathers": [
+        {
+          "author": "St. Cyprian of Carthage",
+          "quote": "He cannot have God as Father who does not have the Church as Mother.",
+          "source": "On the Unity of the Church, 251 AD"
+        },
+        {
+          "author": "St. Ignatius of Antioch",
+          "quote": "Where the bishop is present, there let the congregation gather, just as where Jesus Christ is, there is the Catholic Church.",
+          "source": "Letter to the Smyrnaeans, 107 AD"
+        }
+      ],
+      "tags": ["church", "apostolic succession", "four marks", "one holy catholic apostolic", "denomination"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["bible-tradition-authority", "primacy-of-peter"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "holy-trinity",
+      "category": "church-teaching",
+      "title": "The Holy Trinity",
+      "question": "Where is the Trinity in the Bible, and how can one God be three Persons?",
+      "answer": "While the word 'Trinity' does not appear in the Bible, the doctrine is thoroughly biblical. God reveals himself as three distinct Persons — Father, Son, and Holy Spirit — who share one divine nature. At Jesus' baptism, all three Persons are simultaneously present: the Father speaks from heaven, the Son is baptized, and the Holy Spirit descends as a dove (Mat 3:16-17). Jesus commands baptism 'in the name' (singular) of the Father, Son, and Holy Spirit (Mat 28:19). The Son is called God in John 1:1; the Holy Spirit is called God in Acts 5:3-4. The mystery is that God is not three gods (that would be polytheism), nor is he one Person who plays three roles (that is the heresy of Modalism). Rather, there is one divine Being in three co-equal, co-eternal Persons. This truth, beyond full human comprehension, was revealed by God himself and has been the consistent faith of the Church from the beginning.",
+      "scripture": [
+        {
+          "reference": "Matthew 28:19",
+          "text": "Go, therefore, and make disciples of all nations, baptizing them in the name of the Father, and of the Son, and of the holy Spirit.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 1:1",
+          "text": "In the beginning was the Word, and the Word was with God, and the Word was God.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Matthew 3:16-17",
+          "text": "After Jesus was baptized, he came up from the water and behold, the heavens were opened and he saw the Spirit of God descending like a dove and coming upon him. And a voice came from the heavens, saying, 'This is my beloved Son, with whom I am well pleased.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Corinthians 13:13",
+          "text": "The grace of the Lord Jesus Christ and the love of God and the fellowship of the holy Spirit be with all of you.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 232", "CCC 253", "CCC 261", "CCC 266"],
+      "churchFathers": [
+        {
+          "author": "St. Athanasius of Alexandria",
+          "quote": "The Father is God, the Son is God, and the Holy Spirit is God, and yet there are not three Gods but one God.",
+          "source": "On the Incarnation, 4th century"
+        },
+        {
+          "author": "Tertullian",
+          "quote": "All the simple people who never consider what is due to the uniqueness of the Godhead, interpret it as if God were either diluted or multiplied, suppose that we are preaching three Gods.",
+          "source": "Against Praxeas, 213 AD"
+        }
+      ],
+      "tags": ["trinity", "father", "son", "holy spirit", "three persons", "one god", "divinity"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["divinity-of-christ"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "divinity-of-christ",
+      "category": "church-teaching",
+      "title": "The Divinity of Jesus Christ",
+      "question": "Did Jesus claim to be God, and what evidence supports his divine nature?",
+      "answer": "Jesus clearly claimed to be God in multiple ways. He said 'Before Abraham came to be, I AM' (Jn 8:58) — using God's own name from Exodus 3:14. He claimed the power to forgive sins (Mk 2:5-7), which Jews rightly understood as a divine prerogative. He accepted worship (Mat 28:9, Jn 20:28). The Gospel of John opens by calling the Word (Jesus) 'God' (Jn 1:1). Paul declares that 'in him dwells the whole fullness of the deity bodily' (Col 2:9). The Letter to the Hebrews addresses Christ as 'God' (Heb 1:8). His resurrection from the dead is the ultimate confirmation of his divine nature (Rom 1:4). The early Church, those closest to the events, consistently worshipped Jesus as God — and were persecuted precisely for refusing to worship pagan gods while worshipping Christ.",
+      "scripture": [
+        {
+          "reference": "John 1:1",
+          "text": "In the beginning was the Word, and the Word was with God, and the Word was God.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 8:58",
+          "text": "Jesus said to them, 'Amen, amen, I say to you, before Abraham came to be, I AM.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Colossians 2:9",
+          "text": "For in him dwells the whole fullness of the deity bodily.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Hebrews 1:8",
+          "text": "But of the Son he says: 'Your throne, O God, stands forever and ever; and a righteous scepter is the scepter of your kingdom.'",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 422", "CCC 464", "CCC 469", "CCC 480"],
       "churchFathers": [
         {
           "author": "St. Ignatius of Antioch",
-          "quote": "They abstain from the Eucharist and from prayer because they do not confess that the Eucharist is the flesh of our Savior Jesus Christ.",
-          "source": "Letter to the Smyrnaeans, 107 AD"
-        },
-        {
-          "author": "St. Justin Martyr",
-          "quote": "For not as common bread and common drink do we receive these; but in like manner as Jesus Christ our Savior, having been made flesh by the Word of God, had both flesh and blood for our salvation, so likewise have we been taught that the food which is blessed by the prayer of His word, and from which our blood and flesh by transmutation are nourished, is the flesh and blood of that Jesus who was made flesh.",
-          "source": "First Apology, 151 AD"
+          "quote": "There is one Physician who is possessed both of flesh and spirit; both made and not made; God existing in flesh; true life in death; both of Mary and of God.",
+          "source": "Letter to the Ephesians, 107 AD"
         }
       ],
-      "tags": ["eucharist", "transubstantiation", "sacraments", "mass", "real presence"],
+      "tags": ["jesus", "divinity", "incarnation", "i am", "son of god", "god made flesh"],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["mass-sacrifice", "communion-hand-tongue", "eucharistic-adoration"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
+      "relatedTopics": ["holy-trinity", "salvation"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
-      "id": "confession-sacrament",
+      "id": "immaculate-conception",
+      "category": "mary",
+      "title": "The Immaculate Conception of Mary",
+      "question": "Why do Catholics believe Mary was conceived without original sin, and where is this in Scripture?",
+      "answer": "The Immaculate Conception means that Mary, by a singular grace of God, was preserved from original sin from the moment of her conception. God prepared a pure vessel to bear His Son, just as the Ark of the Covenant — the dwelling place of God's Word — was made of pure gold. The angel Gabriel's greeting 'full of grace' (kecharitomene in Greek) is a perfect passive participle indicating a permanent, completed state of grace — not merely 'favored' at that moment. In Genesis 3:15, God foretells enmity between the serpent and the woman — total enmity requires that she be untouched by sin. Elizabeth exclaims that Mary is 'blessed among women' (Lk 1:42) — a Hebrew superlative meaning the most blessed of all women. Mary herself proclaims 'My spirit rejoices in God my savior' — she needed a savior too, but God saved her preemptively, like catching someone before they fall.",
+      "scripture": [
+        {
+          "reference": "Luke 1:28",
+          "text": "And coming to her, he said, 'Hail, favored one! The Lord is with you.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Genesis 3:15",
+          "text": "I will put enmity between you and the woman, and between your offspring and hers; he will strike at your head, while you strike at his heel.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 1:42",
+          "text": "Most blessed are you among women, and blessed is the fruit of your womb.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 491", "CCC 492", "CCC 493", "CCC 722"],
+      "churchFathers": [
+        {
+          "author": "St. Ephrem the Syrian",
+          "quote": "You alone and your Mother are more beautiful than anything. For on you, O Lord, there is no flaw, and in your Mother there is no stain.",
+          "source": "Nisibene Hymns, 4th century"
+        }
+      ],
+      "tags": ["mary", "immaculate conception", "original sin", "full of grace", "kecharitomene", "ark"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["perpetual-virginity", "prayer-to-saints"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "perpetual-virginity",
+      "category": "mary",
+      "title": "The Perpetual Virginity of Mary",
+      "question": "Did Mary remain a virgin after the birth of Jesus, and who were the 'brothers of Jesus' mentioned in the Gospels?",
+      "answer": "The Catholic Church teaches that Mary remained a perpetual virgin before, during, and after the birth of Jesus. The 'brothers of Jesus' mentioned in the Gospels (Mk 6:3) refer to cousins or close kinsmen — the common usage of the Greek word 'adelphos' in a Semitic cultural context where no separate word for 'cousin' existed. Evidence: (1) The same 'brothers' — James and Joses — are identified in Matthew 27:56 as sons of 'the other Mary,' not of Mary the mother of Jesus. (2) On the cross, Jesus entrusted his mother to John (Jn 19:26-27) — he would not have done this if Mary had other children to care for her. (3) Luke 1:34 — Mary's question 'How can this be, since I have no relations with a man?' implies a vow of virginity already made before the angel spoke. (4) Ezekiel 44:2 prophetically describes a gate that remains shut because the Lord God of Israel passed through it — a type of Mary's perpetual virginity.",
+      "scripture": [
+        {
+          "reference": "Luke 1:34",
+          "text": "But Mary said to the angel, 'How can this be, since I have no relations with a man?'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 19:26-27",
+          "text": "When Jesus saw his mother and the disciple there whom he loved, he said to his mother, 'Woman, behold, your son.' Then he said to the disciple, 'Behold, your mother.' And from that hour the disciple took her into his own home.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Ezekiel 44:2",
+          "text": "This gate must remain closed; it must not be opened, no one may enter through it. Since the LORD, the God of Israel, has entered through it, it must remain closed.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 499", "CCC 500", "CCC 502", "CCC 507"],
+      "churchFathers": [
+        {
+          "author": "St. Jerome",
+          "quote": "Mary, of whom Christ was born, in her virginity had no equal. She is virgin before the birth, virgin in the birth, and virgin after the birth.",
+          "source": "Against Helvidius, 383 AD"
+        }
+      ],
+      "tags": ["mary", "perpetual virginity", "brothers of jesus", "cousins", "ever virgin", "theotokos"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["immaculate-conception"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "sacred-images",
+      "category": "tradition",
+      "title": "Sacred Images and Statues",
+      "question": "Does using statues and images in Catholic worship violate the commandment against idolatry?",
+      "answer": "The Catholic use of sacred images is not idolatry. Idolatry means worshipping a created thing as God. Catholics do not worship statues — they venerate them as reminders of holy persons, just as we keep photos of loved ones. God himself commanded the making of religious images: He ordered the golden Cherubim on the Ark of the Covenant (Exo 25:18-20), the bronze serpent on a pole (Num 21:8-9), and twelve bronze oxen supporting the bronze sea in the Temple (1 Kgs 7:25). The prohibition in Exodus 20:4 is against making images to worship as gods, not against images per se. When Israel began worshipping the bronze serpent, Hezekiah destroyed it (2 Kgs 18:4) — not because it was an image, but because they were treating it as a deity. Catholics use images to aid devotion and recall the holy persons they represent. We honor the person, not the material object. This is no different from saluting a flag — you honor the country the flag represents, not the cloth itself.",
+      "scripture": [
+        {
+          "reference": "Exodus 25:18-20",
+          "text": "Make two cherubim of hammered gold for the two ends of the cover. Make one cherub at one end, and the other at the other end, of one piece with the cover, at each end. The cherubim shall have their wings spread out above, sheltering the cover with their wings, facing each other, with their faces looking toward the cover.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Numbers 21:8-9",
+          "text": "The LORD said to Moses: Make a seraph and mount it on a pole, and everyone who has been bitten will look at it and recover. Accordingly Moses made a bronze serpent and mounted it on a pole, and whenever the serpent bit someone, the person looked at the bronze serpent and recovered.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 2130", "CCC 2131", "CCC 2132"],
+      "churchFathers": [
+        {
+          "author": "St. John of Damascus",
+          "quote": "I do not worship matter; I worship the Creator of matter who became matter for my sake and deigned to dwell in matter, who worked out my salvation through matter.",
+          "source": "On Divine Images, 8th century"
+        }
+      ],
+      "tags": ["images", "statues", "idolatry", "veneration", "commandments", "icons", "ark of covenant"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["cross-sign-of-cross", "prayer-to-saints"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "prayer-to-saints",
+      "category": "saints",
+      "title": "Asking Saints to Intercede",
+      "question": "Why do Catholics pray to saints? Is this not forbidden since there is only one mediator, Jesus Christ?",
+      "answer": "Catholics do not worship saints — they ask them to pray on our behalf, just as we ask living friends to pray for us. The objection about 'one mediator' (1 Tim 2:5) misses the point: Paul writes this in the same passage where he urges Christians to pray for one another (1 Tim 2:1). If asking others to pray for you violated Christ's unique mediation, then asking a pastor or friend to pray for you would also be wrong. The saints in heaven are alive in God (Lk 20:38) and more powerful in intercession than anyone on earth. Revelation shows the saints and angels in heaven presenting our prayers to God like incense (Rev 5:8, Rev 8:3-4). Mary's intercession at Cana moved Jesus to act (Jn 2:3-11). The communion of saints means we remain united in prayer — those in heaven, those on earth, and those in purgatory — as one family of God.",
+      "scripture": [
+        {
+          "reference": "Revelation 5:8",
+          "text": "When he took it, the four living creatures and the twenty-four elders fell down before the Lamb. Each of the elders held a harp and gold bowls filled with incense, which are the prayers of the holy ones.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Timothy 2:1-3",
+          "text": "First of all, then, I ask that supplications, prayers, petitions, and thanksgivings be offered for everyone, for kings and for all in authority, that we may lead a quiet and tranquil life in all devotion and dignity. This is good and pleasing to God our savior.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 20:38",
+          "text": "He is not God of the dead, but of the living, for to him all are alive.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 956", "CCC 957", "CCC 2683", "CCC 2684"],
+      "churchFathers": [
+        {
+          "author": "Origen of Alexandria",
+          "quote": "But not the high priest alone prays for those who pray sincerely, but also the angels... and also the souls of the saints who have already fallen asleep.",
+          "source": "On Prayer, 233 AD"
+        }
+      ],
+      "tags": ["saints", "intercession", "prayer", "mediation", "communion of saints", "veneration"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["sacred-images", "purgatory"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "purgatory",
+      "category": "church-teaching",
+      "title": "Purgatory",
+      "question": "Is purgatory found in Scripture, and why do Catholics believe in it?",
+      "answer": "Purgatory is the state of purification for those who die in God's friendship but still need cleansing before entering heaven. Nothing unclean can enter heaven (Rev 21:27). It follows logically that a person who dies with minor sins or imperfectly repented sins cannot go straight to heaven — yet they are not lost. Paul describes being saved 'as through fire,' with incomplete works burned away (1 Cor 3:15). Jesus speaks of sins forgiven 'in the age to come' (Mat 12:32) — implying a process after death. The Book of Maccabees records Judas Maccabeus offering prayers and sacrifices for soldiers who died in sin (2 Mac 12:43-46) — and the text calls this a 'holy and devout thought.' The ancient Jewish practice of praying for the dead confirms this understanding. Purgatory is not a second chance for the damned — only those already saved pass through it. It is God's mercy and our greatest hope: that even our imperfections do not keep us from Him.",
+      "scripture": [
+        {
+          "reference": "1 Corinthians 3:15",
+          "text": "But if someone's work is burned up, that one will suffer loss; the person will be saved, but only as through fire.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Matthew 12:32",
+          "text": "And whoever speaks a word against the Son of Man will be forgiven; but whoever speaks against the holy Spirit will not be forgiven, either in this age or in the age to come.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Maccabees 12:46",
+          "text": "Thus he made atonement for the dead that they might be freed from this sin.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Revelation 21:27",
+          "text": "Nothing unclean will enter it, nor anyone who does abominable things or tells lies. Only those will enter whose names are written in the Lamb's book of life.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1030", "CCC 1031", "CCC 1032"],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "That there should be some fire even after this life is not incredible, and it can be inquired into and either be discovered or left hidden whether some of the faithful may be saved, some more slowly and some more quickly in the greater or lesser degree in which they loved the good things that perish.",
+          "source": "Enchiridion, 421 AD"
+        }
+      ],
+      "tags": ["purgatory", "afterlife", "purification", "prayers for the dead", "indulgences", "salvation"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["prayer-to-saints", "indulgences", "salvation"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "primacy-of-peter",
+      "category": "papacy",
+      "title": "The Primacy of Peter and the Papacy",
+      "question": "Did Jesus give Peter a unique leadership role, and does the Pope have authority over the Church today?",
+      "answer": "Jesus gave Peter a unique role that he did not give to any other apostle. He renamed him 'Cephas' (Rock) — a name never before given to anyone — and built his Church on this rock (Mat 16:18). He gave Peter the 'keys of the kingdom,' symbolizing supreme authority (Mat 16:19), exactly as a king's prime minister held 'the key of the house of David' (Isa 22:22). He commissioned Peter to 'strengthen your brothers' (Lk 22:32) and to 'feed my sheep' (Jn 21:15-17). In Acts, Peter is consistently the spokesman and leader of the apostolic community. The bishops of Rome, as successors of Peter, inherited this unique authority. This is not merely a Catholic claim — early Church Fathers from the first and second centuries recognized the special position of the Roman bishop. The papacy ensures unity of faith and protects the Church from error in defining doctrines of faith and morals.",
+      "scripture": [
+        {
+          "reference": "Matthew 16:18-19",
+          "text": "And so I say to you, you are Peter, and upon this rock I will build my church, and the gates of the netherworld shall not prevail against it. I will give you the keys to the kingdom of heaven. Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 22:31-32",
+          "text": "Simon, Simon, behold Satan has demanded to sift all of you like wheat, but I have prayed that your own faith may not fail; and once you have turned back, you must strengthen your brothers.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 21:15-17",
+          "text": "When they had finished breakfast, Jesus said to Simon Peter, 'Simon, son of John, do you love me more than these?' He said to him, 'Yes, Lord, you know that I love you.' He said to him, 'Feed my lambs.'",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 880", "CCC 881", "CCC 882", "CCC 891"],
+      "churchFathers": [
+        {
+          "author": "St. Clement of Rome",
+          "quote": "If anyone disobey the things which have been said by Him through us, let them know that they will involve themselves in transgression and in no small danger.",
+          "source": "Letter to the Corinthians, 96 AD"
+        },
+        {
+          "author": "St. Irenaeus of Lyon",
+          "quote": "For it is a matter of necessity that every church should agree with this church, on account of its preeminent authority.",
+          "source": "Against Heresies, 189 AD"
+        }
+      ],
+      "tags": ["pope", "papacy", "peter", "rock", "keys", "authority", "bishop of rome", "successor"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["true-church", "bible-tradition-authority"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "indulgences",
+      "category": "church-teaching",
+      "title": "Indulgences",
+      "question": "What exactly is an indulgence, and did the Church ever sell them?",
+      "answer": "An indulgence is the remission of the temporal punishment due to already-forgiven sins. Sin has two consequences: guilt (removed in confession) and temporal punishment (satisfied through penance, suffering, or purgatory). An indulgence draws on the 'treasury of merit' — the superabundant merits of Christ and the saints — and applies them to remove temporal punishment, either for oneself or for a soul in purgatory. The basis is the binding-and-loosing authority given to the Church (Mat 16:19, Mat 18:18). The historical abuse of selling indulgences was a corruption condemned by the Church itself — the Council of Trent (1563) explicitly forbade any exchange of money for indulgences. The abuse was real, but it does not invalidate the doctrine, just as corrupt banking does not make money itself evil. Today, indulgences are obtained through prayer, pilgrimage, acts of charity, and reception of sacraments — never for money.",
+      "scripture": [
+        {
+          "reference": "Matthew 16:19",
+          "text": "I will give you the keys to the kingdom of heaven. Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Corinthians 2:10",
+          "text": "Whomever you forgive anything, so do I. For indeed what I have forgiven, if I have forgiven anything, has been for you in the presence of Christ.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Colossians 1:24",
+          "text": "Now I rejoice in my sufferings for your sake, and in my flesh I am filling up what is lacking in the afflictions of Christ on behalf of his body, which is the church.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1471", "CCC 1478", "CCC 1479", "CCC 1498"],
+      "churchFathers": [
+        {
+          "author": "Tertullian",
+          "quote": "If, because of the shortness of life, some people do not make full atonement, peace is granted them, so that they may be aided by the full atonement of others.",
+          "source": "On Modesty, 3rd century"
+        }
+      ],
+      "tags": ["indulgences", "purgatory", "temporal punishment", "treasury of merit", "penance", "forgiveness"],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": ["purgatory", "confession-to-priest"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "infant-baptism",
+      "category": "sacraments",
+      "title": "Infant Baptism",
+      "question": "Is baptizing infants biblical, or should baptism only be given to believing adults?",
+      "answer": "Infant baptism has been practiced since apostolic times and is well grounded in Scripture. In the New Testament, entire households were baptized when the head of household believed — and households included infants and children (Acts 16:15, Acts 16:33, 1 Cor 1:16). Paul explicitly connects baptism to circumcision (Col 2:11-12), and circumcision was performed on 8-day-old infants in the Old Covenant — the New Covenant sacrament that replaces circumcision therefore also applies to infants. Jesus declared that children belong to the Kingdom of God (Mk 10:14) and warned against preventing them from coming to him. Original sin is inherited, not chosen — infants need salvation just as adults do. Since baptism is the 'door to salvation' (CCC 1213), withholding it from infants is withholding grace from the most vulnerable. The early Church universally baptized infants: Origen (c. 184–253) writes that 'the Church received from the apostles the tradition of baptizing infants.'",
+      "scripture": [
+        {
+          "reference": "Acts 16:33",
+          "text": "He took them in at that hour of the night and bathed their wounds; then he and all his family were baptized at once.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Colossians 2:11-12",
+          "text": "In him you were also circumcised with a circumcision not administered by hand, by stripping off the carnal body, with the circumcision of Christ. You were buried with him in baptism, in which you were also raised with him through faith in the power of God, who raised him from the dead.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Mark 10:14",
+          "text": "When Jesus saw this he became indignant and said to them, 'Let the children come to me; do not prevent them, for the kingdom of God belongs to such as these.'",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1250", "CCC 1251", "CCC 1252", "CCC 1257"],
+      "churchFathers": [
+        {
+          "author": "Origen of Alexandria",
+          "quote": "The Church received from the apostles the tradition of giving baptism even to infants. For the apostles, to whom were committed the secrets of divine mysteries, knew that there is in everyone the innate stains of sin, which must be washed away through water and the Spirit.",
+          "source": "Commentary on Romans, early 3rd century"
+        }
+      ],
+      "tags": ["baptism", "infants", "household baptism", "original sin", "circumcision", "sacraments"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["confession-to-priest", "holy-eucharist", "salvation"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "confession-to-priest",
       "category": "sacraments",
       "title": "The Sacrament of Confession",
-      "question": "Why do Catholics confess their sins to a priest instead of directly to God?",
-      "answer": "Catholics confess to priests because Jesus gave his apostles the authority to forgive sins in his name. The priest acts in persona Christi (in the person of Christ) as a visible sign of God's mercy. While we can always pray directly to God, the sacrament of confession provides certainty of forgiveness, grace to resist future sin, and spiritual guidance. It follows Christ's institution and the consistent practice of the early Church.",
+      "question": "Why do Catholics confess sins to a priest? Can we not confess directly to God?",
+      "answer": "We can and should always speak to God about our sins. But the sacrament of Confession is Christ's own gift for the certain forgiveness of sins committed after baptism. On Easter Sunday, the Risen Christ breathed on the apostles and said: 'Receive the holy Spirit. Whose sins you forgive are forgiven them, and whose sins you retain are retained' (Jn 20:22-23). This authority to forgive or retain sins is meaningless unless a priest actually hears confessed sins — how can he discern what to forgive if he does not know what was done? James commands us to 'confess your sins to one another' (Jas 5:16). The priest does not forgive by his own power — he acts as Christ's instrument. The sacrament provides three gifts unavailable in private prayer: absolute certainty of forgiveness, grace to resist the same sin in the future, and authoritative spiritual direction. This visible sign of invisible grace is exactly what incarnational religion — God becoming human — looks like in practice.",
       "scripture": [
         {
           "reference": "John 20:21-23",
@@ -56,292 +493,300 @@
         },
         {
           "reference": "James 5:16",
-          "text": "Therefore, confess your sins to one another and pray for one another, that you may be healed. The fervent prayer of a righteous person is very powerful.",
+          "text": "Therefore, confess your sins to one another and pray for one another, that you may be healed.",
           "version": "NABRE"
         },
         {
           "reference": "2 Corinthians 5:18-20",
-          "text": "And all this is from God, who has reconciled us to himself through Christ and given us the ministry of reconciliation, namely, God was reconciling the world to himself in Christ, not counting their trespasses against them and entrusting to us the message of reconciliation. So we are ambassadors for Christ, as if God were appealing through us.",
+          "text": "And all this is from God, who has reconciled us to himself through Christ and given us the ministry of reconciliation... So we are ambassadors for Christ, as if God were appealing through us. We implore you on behalf of Christ, be reconciled to God.",
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1422", "CCC 1446", "CCC 1461"],
+      "catechism": ["CCC 1440", "CCC 1444", "CCC 1449", "CCC 1456"],
       "churchFathers": [
         {
           "author": "St. Cyprian of Carthage",
-          "quote": "Of how much greater faith and salutary fear are they who... confess their sins to the priests of God in a straightforward manner and in sorrow, making an open declaration of conscience.",
-          "source": "The Lapsed, 251 AD"
+          "quote": "Of how much greater faith and salutary fear are they who do not defer confessing their sins to the priests of God, but confess with a humble and simple confession.",
+          "source": "On the Lapsed, 251 AD"
         }
       ],
-      "tags": ["confession", "reconciliation", "penance", "priest", "forgiveness", "sacraments"],
+      "tags": ["confession", "reconciliation", "penance", "forgiveness", "priest", "absolution", "sacrament"],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["priesthood-ministry", "sin-mortal-venial", "grace"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
+      "relatedTopics": ["infant-baptism", "indulgences", "salvation"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
-      "id": "mary-mother-of-god",
-      "category": "mary",
-      "title": "Mary as Mother of God",
-      "question": "Why do Catholics call Mary the 'Mother of God'?",
-      "answer": "Catholics call Mary 'Mother of God' (Theotokos in Greek) not because she existed before God, but because she gave birth to Jesus Christ, who is fully God and fully man. If Jesus is God, then Mary is truly the mother who bore God. This title was defended at the Council of Ephesus in 431 AD and affirms the reality of the Incarnation - that God truly became man in the womb of Mary.",
+      "id": "holy-eucharist",
+      "category": "sacraments",
+      "title": "The Real Presence in the Holy Eucharist",
+      "question": "Are the bread and wine at Mass truly the Body and Blood of Christ, or are they just symbols?",
+      "answer": "Catholics believe — as Christians did for the first fifteen centuries — that the bread and wine at Mass truly become the Body and Blood of Christ. This is not a symbol. Jesus said 'This is my body' and 'This is my blood' using the Greek word 'sarx' (real flesh), not 'semeion' (sign). In John 6, when Jesus said 'Unless you eat my flesh and drink my blood you have no life in you' (Jn 6:53), many disciples left — and Jesus did not call them back to explain he was only speaking symbolically. Paul warns that eating the bread or drinking the cup 'unworthily' makes one guilty of 'the body and blood of the Lord' (1 Cor 11:27) — a warning absurd if these were mere symbols. 1 Corinthians 10:16 calls the cup 'a participation in the blood of Christ.' The early Church — St. Ignatius, St. Justin, St. Irenaeus — all wrote explicitly that the Eucharist is the real flesh and blood of Christ. The change of substance while appearances remain is called transubstantiation.",
       "scripture": [
         {
-          "reference": "Luke 1:43",
-          "text": "And how does this happen to me, that the mother of my Lord should come to me?",
+          "reference": "John 6:53-56",
+          "text": "Jesus said to them, 'Amen, amen, I say to you, unless you eat the flesh of the Son of Man and drink his blood, you do not have life within you. Whoever eats my flesh and drinks my blood has eternal life, and I will raise him on the last day. For my flesh is true food, and my blood is true drink. Whoever eats my flesh and drinks my blood remains in me and I in him.'",
           "version": "NABRE"
         },
         {
-          "reference": "John 1:14",
-          "text": "And the Word became flesh, and made his dwelling among us, and we saw his glory, the glory as of the Father's only Son, full of grace and truth.",
+          "reference": "1 Corinthians 10:16",
+          "text": "The cup of blessing that we bless, is it not a participation in the blood of Christ? The bread that we break, is it not a participation in the body of Christ?",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 22:19-20",
+          "text": "Then he took the bread, said the blessing, broke it, and gave it to them, saying, 'This is my body, which will be given for you; do this in memory of me.' And likewise the cup after they had eaten, saying, 'This cup is the new covenant in my blood, which will be shed for you.'",
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 495", "CCC 466", "CCC 722"],
+      "catechism": ["CCC 1374", "CCC 1375", "CCC 1377", "CCC 1413"],
       "churchFathers": [
         {
-          "author": "St. Athanasius",
-          "quote": "The Word begotten of the Father from on high, in an ineffable and incomprehensible manner, He it is who is Himself in Mary, fashioned into a body from her, and was issued man, and therefore He is Emmanuel.",
-          "source": "Incarnation of the Word, 4th century"
+          "author": "St. Ignatius of Antioch",
+          "quote": "They abstain from the Eucharist and from prayer because they do not confess that the Eucharist is the flesh of our Savior Jesus Christ, flesh which suffered for our sins and which the Father, in his goodness, raised up again.",
+          "source": "Letter to the Smyrnaeans, 107 AD"
         },
         {
-          "author": "St. Cyril of Jerusalem",
-          "quote": "For if He were born of the Father, and not likewise of the Mother, He could not truly be said to have taken flesh of her.",
-          "source": "Catechetical Lectures, 4th century"
+          "author": "St. Justin Martyr",
+          "quote": "For not as common bread and common drink do we receive these; but... the food which is blessed by the prayer of His word is the flesh and blood of that Jesus who was made flesh.",
+          "source": "First Apology, 151 AD"
         }
       ],
-      "tags": ["mary", "theotokos", "mother of god", "incarnation", "christology"],
-      "difficulty": "beginner",
-      "lang": "en",
-      "relatedTopics": ["mary-perpetual-virginity", "mary-immaculate-conception", "mary-assumption"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
-    },
-    {
-      "id": "papacy-peter-succession",
-      "category": "papacy",
-      "title": "Papal Succession from Peter",
-      "question": "How can the Catholic Church claim that popes are successors of Saint Peter?",
-      "answer": "The Catholic Church bases papal succession on Christ's words to Peter in Matthew 16:18-19, where He gave Peter the keys to the kingdom and the authority to bind and loose. Peter was clearly the leader of the apostles, and historical evidence shows an unbroken line of bishops of Rome tracing back to Peter. This succession is maintained through the laying on of hands in apostolic succession.",
-      "scripture": [
-        {
-          "reference": "Matthew 16:18-19",
-          "text": "And so I say to you, you are Peter, and upon this rock I will build my church, and the gates of the netherworld shall not prevail against it. I will give you the keys to the kingdom of heaven. Whatever you bind on earth shall be bound in heaven; and whatever you loose on earth shall be loosed in heaven.",
-          "version": "NABRE"
-        },
-        {
-          "reference": "John 21:15-17",
-          "text": "Jesus said to Simon Peter, 'Simon, son of John, do you love me more than these?' He said to him, 'Yes, Lord, you know that I love you.' He said to him, 'Feed my lambs.' He then said to him a second time, 'Simon, son of John, do you love me?' He said to him, 'Yes, Lord, you know that I love you.' He said to him, 'Tend my sheep.' He said to him the third time, 'Simon, son of John, do you love me?' Peter was distressed that he had said to him a third time, 'Do you love me?' and he said to him, 'Lord, you know everything; you know that I love you.' Jesus said to him, 'Feed my sheep.'",
-          "version": "NABRE"
-        },
-        {
-          "reference": "Luke 22:31-32",
-          "text": "Simon, Simon, behold Satan has demanded to sift all of you like wheat, but I have prayed that your own faith may not fail; and once you have turned back, you must strengthen your brothers.",
-          "version": "NABRE"
-        }
-      ],
-      "catechism": ["CCC 880", "CCC 881", "CCC 862"],
-      "churchFathers": [
-        {
-          "author": "St. Irenaeus of Lyons",
-          "quote": "The blessed apostles, then, having founded and built up the Church, committed into the hands of Linus the office of the episcopate... To him succeeded Anacletus; and after him, in the third place from the apostles, Clement was allotted the bishopric.",
-          "source": "Against Heresies, 180 AD"
-        },
-        {
-          "author": "Tertullian",
-          "quote": "For if the apostles themselves appointed...bishops... Clement was ordained by Peter himself.",
-          "source": "The Demurrer Against the Heretics, 200 AD"
-        }
-      ],
-      "tags": ["papacy", "peter", "succession", "authority", "church leadership"],
+      "tags": ["eucharist", "real presence", "transubstantiation", "mass", "body and blood", "communion"],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["papal-infallibility", "church-unity", "apostolic-succession"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
+      "relatedTopics": ["holy-mass", "holy-orders", "infant-baptism"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
-      "id": "salvation-faith-works",
-      "category": "salvation",
-      "title": "Salvation by Faith and Works",
-      "question": "Why does the Catholic Church teach that both faith and works are necessary for salvation?",
-      "answer": "Catholics believe that salvation comes through God's grace, which we receive through faith that expresses itself in works. Faith without works is dead, as James teaches. We are saved by faith alone, but faith that saves is never alone - it produces good works. This is not 'works-based salvation' but rather a holistic understanding that authentic faith naturally results in transformed lives and good works done in cooperation with God's grace.",
+      "id": "holy-orders",
+      "category": "sacraments",
+      "title": "The Sacrament of Holy Orders",
+      "question": "Is the Catholic priesthood biblical, or was it invented by the Church? Why can priests not marry?",
+      "answer": "The New Testament priesthood is not a continuation of the Levitical priesthood but a participation in Christ's own eternal priesthood (Heb 7:24). Christ chose twelve apostles, gave them unique authority to teach (Mat 28:18-20), forgive sins (Jn 20:22-23), judge (Mat 18:17-18), and consecrate the Eucharist (Lk 22:19-20). He gave them authority to ordain others — this is demonstrated in Acts 6:3-6 (the seven deacons ordained by apostles) and in Paul's letters to Timothy and Titus. Paul explicitly says he was made a priest to offer the sacrifice of the Gentiles (Rom 15:16). The laying on of hands passes this sacred power in unbroken succession. Regarding celibacy: the requirement that bishops be 'husband of one wife' (1 Tim 3:2) refers to being faithful in marriage, not to mandatory marriage. Paul himself was celibate and recommended it for total dedication to God (1 Cor 7:32-34). Jesus acknowledged that some renounce marriage 'for the sake of the kingdom of heaven' (Mat 19:12). Priestly celibacy is not a doctrinal requirement but a disciplinary one in the Latin Rite, rooted in apostolic example.",
       "scripture": [
         {
-          "reference": "James 2:14-26",
-          "text": "What good is it, my brothers, if someone says he has faith but does not have works? Can that faith save him? If a brother or sister has nothing to wear and has no food for the day, and one of you says to them, 'Go in peace, keep warm, and eat well,' but you do not give them the necessities of the body, what good is it? So also faith of itself, if it does not have works, is dead... See how a person is justified by works and not by faith alone... For just as a body without a spirit is dead, so also faith without works is dead.",
+          "reference": "Hebrews 7:24",
+          "text": "But he, because he remains forever, has a priesthood that does not pass away.",
           "version": "NABRE"
         },
+        {
+          "reference": "Acts 6:3-6",
+          "text": "Brothers, select from among you seven reputable men, filled with the Spirit and wisdom, whom we shall appoint to this task... They presented these men to the apostles who prayed and laid hands on them.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Timothy 1:6",
+          "text": "For this reason, I remind you to stir into flame the gift of God that you have through the imposition of my hands.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1536", "CCC 1546", "CCC 1562", "CCC 1577"],
+      "churchFathers": [
+        {
+          "author": "St. Ignatius of Antioch",
+          "quote": "The bishop presides in the place of God, while the presbyters function as the council of the Apostles, and the deacons, who are most dear to me, are entrusted with the ministry of Jesus Christ.",
+          "source": "Letter to the Magnesians, 107 AD"
+        },
+        {
+          "author": "St. Cyprian of Carthage",
+          "quote": "The bishops are the successors of the apostles, bound to them by an unbroken chain of ordination.",
+          "source": "Epistle 66, 3rd century"
+        }
+      ],
+      "tags": ["priesthood", "holy orders", "ordination", "celibacy", "bishop", "apostolic succession", "sacrament"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["holy-eucharist", "holy-mass", "confession-to-priest"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "holy-mass",
+      "category": "sacraments",
+      "title": "The Holy Mass as a Sacrifice",
+      "question": "Is the Mass a re-crucifixion of Christ? Hebrews says Christ died once for all — why repeat the sacrifice?",
+      "answer": "The Mass does not re-crucify Christ or repeat his sacrifice. Christ died 'once for all' (Heb 9:26) — that one sacrifice is eternally sufficient. The Mass is the sacramental re-presentation (making present again) of that one sacrifice — not a new sacrifice, but the same sacrifice made accessible across time. At the Last Supper, Jesus said 'Do this in memory of me' — in Greek, 'anamnesis' does not mean merely to recall, but to make present again. He instituted the Mass as the ongoing ritual making his once-and-for-all sacrifice present to every generation. The daily offerings of animal blood in the Old Testament could not take away sins (Heb 10:4, 11) — but the priestly sacrifice of Christ's own body and blood on the cross can. This sacrifice was foretold in Malachi 1:11: 'From the rising of the sun to its setting, my name is great among the nations; everywhere incense is offered to my name and a pure offering.' Only the Mass fulfills this worldwide, daily sacrifice to God. Through Mass, Christ offers himself to the Father through the ministry of the priest.",
+      "scripture": [
+        {
+          "reference": "Luke 22:19-20",
+          "text": "Then he took the bread, said the blessing, broke it, and gave it to them, saying, 'This is my body, which will be given for you; do this in memory of me.' And likewise the cup after they had eaten, saying, 'This cup is the new covenant in my blood, which will be shed for you.'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Malachi 1:11",
+          "text": "For from the rising of the sun, even to its setting, my name is great among the nations; Everywhere they bring sacrifice, offerings, and a clean oblation; For great is my name among the nations, says the LORD of hosts.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 11:25-26",
+          "text": "'This cup is the new covenant in my blood. Do this, as often as you drink it, in remembrance of me.' For as often as you eat this bread and drink the cup, you proclaim the death of the Lord until he comes.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1362", "CCC 1364", "CCC 1366", "CCC 1372"],
+      "churchFathers": [
+        {
+          "author": "St. Justin Martyr",
+          "quote": "God speaks by the mouth of Malachi about the sacrifices which we Gentiles offer to Him in every place, i.e., the Eucharist of bread and the cup.",
+          "source": "Dialogue with Trypho, 155 AD"
+        }
+      ],
+      "tags": ["mass", "sacrifice", "eucharist", "once for all", "anamnesis", "re-presentation", "liturgy"],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": ["holy-eucharist", "holy-orders"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "sunday-observance",
+      "category": "tradition",
+      "title": "Sunday Worship and the Lord's Day",
+      "question": "Did the Church wrongly change the Sabbath from Saturday to Sunday? Are Catholics breaking the Fourth Commandment?",
+      "answer": "Christians worship on Sunday, not Saturday, because Sunday is the day of the Resurrection — the defining event of the New Covenant. The early Christians called it 'the Lord's Day' (Rev 1:10) and gathered for the Eucharist on 'the first day of the week' (Acts 20:7, 1 Cor 16:2). Paul explicitly warns against judging Christians on Sabbath observance (Col 2:16-17), since the Sabbath was a 'shadow' pointing to the reality of Christ. Jesus himself was lord of the Sabbath (Mk 2:28) and rose on Sunday, the eighth day — a new creation. The Didache (c. 100 AD), the earliest Christian manual outside the New Testament, prescribes Sunday worship. The change from Saturday to Sunday was not the Pope's invention — it was the organic practice of the Church from apostolic times, rooted in the Resurrection. The Fourth Commandment requires dedicating one day to God each week — Catholics fulfill this on Sunday, the Lord's Day.",
+      "scripture": [
+        {
+          "reference": "Revelation 1:10",
+          "text": "I was caught up in spirit on the Lord's day and heard behind me a voice as loud as a trumpet.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Acts 20:7",
+          "text": "On the first day of the week when we gathered to break bread, Paul spoke to them because he was going to leave on the next day, and he kept on speaking until midnight.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Colossians 2:16-17",
+          "text": "Let no one, then, pass judgment on you in matters of food and drink or with regard to a festival or new moon or sabbath. These are shadows of things to come; the reality belongs to Christ.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 2174", "CCC 2176", "CCC 2190"],
+      "churchFathers": [
+        {
+          "author": "St. Ignatius of Antioch",
+          "quote": "Those who were brought up in the ancient order of things have come to the possession of a new hope, no longer observing the Sabbath, but living in the observance of the Lord's Day, on which also our life has sprung up again by Him and by His death.",
+          "source": "Letter to the Magnesians, 107 AD"
+        }
+      ],
+      "tags": ["sunday", "sabbath", "lord's day", "worship", "resurrection", "commandment", "saturday"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["holy-mass"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "dietary-abstinence",
+      "category": "tradition",
+      "title": "Catholic Dietary Practices and Abstinence",
+      "question": "Why do Catholics abstain from meat on Fridays? Are there foods Catholics are forbidden to eat?",
+      "answer": "Catholic dietary discipline (abstinence from meat on Fridays, fasting during Lent) is a penitential practice — not a declaration that certain foods are spiritually unclean. Jesus declared all foods clean (Mk 7:18-19), and Peter's vision in Acts 11 confirmed this. The New Testament explicitly warns against teachers who 'forbid marriage and require abstinence from foods that God created to be received with thanksgiving' (1 Tim 4:3) — a condemnation of those who make dietary laws a spiritual requirement for salvation. Catholic fasting is voluntary discipline for the sake of spiritual growth and solidarity with Christ's suffering — a legitimate Christian practice commended by Jesus himself (Mat 6:16-18). Paul teaches that food itself does not affect our relationship with God (1 Cor 8:8), but he also notes that those with weak consciences should be respected. The Jerusalem Council's guideline about blood and strangled animals (Acts 15:29) was a pastoral accommodation, not a permanent moral law. Catholic abstinence is a Church discipline, not a doctrine — and it cultivates self-control and solidarity.",
+      "scripture": [
+        {
+          "reference": "1 Timothy 4:4-5",
+          "text": "For everything created by God is good, and nothing is to be rejected when received with thanksgiving, for it is made holy by the invocation of God in prayer.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Mark 7:18-19",
+          "text": "Are you likewise without understanding? Do you not realize that everything that goes into a person from outside cannot defile, since it enters not the heart but the stomach and passes out into the latrine? (Thus he declared all foods clean.)",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Romans 14:17",
+          "text": "For the kingdom of God is not a matter of food and drink, but of righteousness, peace, and joy in the holy Spirit.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 1434", "CCC 2043"],
+      "tags": ["abstinence", "fasting", "dietary laws", "friday", "lent", "penance", "meat", "clean foods"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["sunday-observance"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "cross-sign-of-cross",
+      "category": "tradition",
+      "title": "The Cross and the Sign of the Cross",
+      "question": "Is venerating the cross idol worship? Should Catholics make the Sign of the Cross?",
+      "answer": "The cross is the central symbol of Christianity because it is the instrument of our salvation (Gal 6:14). Galatians 3:13 says Christ 'became a curse for us' — but this does not make the cross cursed; it means he transformed the curse into glory. Paul says the message of the cross is 'the power of God' (1 Cor 1:18) and he boasts only in 'the cross of our Lord Jesus Christ' (Gal 6:14). God himself commanded signs that recall his saving acts: the mezuzah (Deut 6:6-9), the fringes on garments, the marking of Israelite homes. Ezekiel 9:4-6 describes God commanding a saving mark (the Hebrew letter 'taw' — which looks like a cross) on the foreheads of the righteous. Revelation shows God's servants marked on their foreheads (Rev 7:3, Rev 14:1). The Sign of the Cross professes three central mysteries: the Trinity (invoking Father, Son, Spirit), the Incarnation (making the cross on our body), and our Redemption. St. Paul writes: 'I bear the marks of Jesus branded on my body' (Gal 6:17). The cross is not an idol — it is the banner of our salvation.",
+      "scripture": [
+        {
+          "reference": "Galatians 6:14",
+          "text": "But may I never boast except in the cross of our Lord Jesus Christ, through which the world has been crucified to me, and I to the world.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 1:18",
+          "text": "The message of the cross is foolishness to those who are perishing, but to us who are being saved it is the power of God.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Ezekiel 9:4",
+          "text": "The LORD said to him: Pass through the city, through Jerusalem, and mark a taw on the foreheads of those who grieve and lament over all the abominations practiced within it.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": ["CCC 2157", "CCC 1235"],
+      "churchFathers": [
+        {
+          "author": "Tertullian",
+          "quote": "At every forward step and movement, at every going in and out, when we put on our clothes and shoes, when we bathe, when we sit at table, when we light the lamps, on couch, on seat, in all the ordinary actions of daily life, we trace upon the forehead the sign of the cross.",
+          "source": "The Crown, 211 AD"
+        }
+      ],
+      "tags": ["cross", "sign of cross", "crucifixion", "symbol", "salvation", "veneration", "mark"],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": ["sacred-images"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "salvation",
+      "category": "salvation",
+      "title": "Catholic Teaching on Salvation",
+      "question": "Are Catholics saved by faith alone (sola fide), or does salvation require faith plus works?",
+      "answer": "Catholics believe salvation is entirely by God's grace — a free gift we cannot earn (Eph 2:8-9). But genuine faith that saves is never alone: it is always accompanied by love and action (Gal 5:6). James is emphatic: 'Faith without works is dead' (Jas 2:17, 24, 26). Paul himself says we will be judged 'according to our works' (Rom 2:6-7). The 'grace alone' and 'faith alone' debate is often a misunderstanding: Catholics fully agree we are saved by grace alone. The question is what saving faith looks like — and the Bible consistently shows it is a living faith that expresses itself in obedience and love, not an intellectual assent alone. Ephesians 2:10 immediately follows the grace passage: 'We are his handiwork, created in Christ Jesus for the good works that God has prepared in advance, that we should live in them.' Salvation involves three tenses: we have been saved (justification — past), we are being saved (sanctification — present), and we will be saved (glorification — future). Catholic teaching holds that grace can be resisted and rejected — which is why Paul urges us to 'work out your salvation with fear and trembling' (Phil 2:12).",
+      "scripture": [
         {
           "reference": "Ephesians 2:8-10",
           "text": "For by grace you have been saved through faith, and this is not from you; it is the gift of God; it is not from works, so no one may boast. For we are his handiwork, created in Christ Jesus for the good works that God has prepared in advance, that we should live in them.",
           "version": "NABRE"
         },
         {
-          "reference": "Philippians 2:12-13",
-          "text": "So then, my beloved, obedient as you have always been, not only when I am present but all the more now when I am absent, work out your salvation with fear and trembling. For God is the one who, for his good purpose, works in you both to desire and to work.",
-          "version": "NABRE"
-        }
-      ],
-      "catechism": ["CCC 1987", "CCC 2008", "CCC 2010"],
-      "churchFathers": [
-        {
-          "author": "St. Augustine",
-          "quote": "Without love, faith can indeed exist, but it can be of no profit to the man who has it. For though a man should have all knowledge, and know all mysteries, yet if he have not charity, what profiteth he it? For as the body without the spirit is dead, so faith without works is dead also.",
-          "source": "On Faith and Works, 5th century"
-        }
-      ],
-      "tags": ["salvation", "faith", "works", "grace", "justification", "james"],
-      "difficulty": "intermediate",
-      "lang": "en",
-      "relatedTopics": ["grace", "justification", "merit", "good-works"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
-    },
-    {
-      "id": "bible-canon-deuterocanonical",
-      "category": "bible",
-      "title": "The Deuterocanonical Books",
-      "question": "Why do Catholics include books in the Bible that Protestants don't have?",
-      "answer": "Catholics include seven additional Old Testament books (Tobit, Judith, Wisdom, Sirach, Baruch, 1 & 2 Maccabees) and additions to Esther and Daniel because they were part of the Septuagint, the Greek translation used by most early Christians. These books were considered canonical until the Protestant Reformation, when Martin Luther removed them based on Jewish canon decisions made after Christ's time. The Catholic Church continues to recognize them as inspired Scripture.",
-      "scripture": [
-        {
-          "reference": "Wisdom 1:1",
-          "text": "Love justice, you who judge the earth; think of the Lord in goodness, and seek him in integrity of heart.",
+          "reference": "James 2:24, 26",
+          "text": "See how a person is justified by works and not by faith alone... For just as a body without a spirit is dead, so also faith without works is dead.",
           "version": "NABRE"
         },
         {
-          "reference": "2 Maccabees 12:46",
-          "text": "Thus he made atonement for the dead that they might be absolved from sin.",
+          "reference": "John 3:16",
+          "text": "For God so loved the world that he gave his only Son, so that everyone who believes in him might not perish but might have eternal life.",
           "version": "NABRE"
         },
         {
-          "reference": "Sirach 3:2-6",
-          "text": "For the LORD sets a father in honor over his children and confirms a mother's authority over her sons. Whoever honors his father atones for sins; he who reveres his mother stores up riches. Whoever honors his father is gladdened by children, and when he prays he is heard. Whoever reveres his father will live a long life; he obeys the LORD who brings comfort to a mother.",
+          "reference": "Romans 2:6-7",
+          "text": "Who will repay everyone according to his works: eternal life to those who seek glory, honor, and immortality through perseverance in good works.",
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 120", "CCC 138", "CCC 120"],
+      "catechism": ["CCC 1987", "CCC 1988", "CCC 1996", "CCC 2010"],
       "churchFathers": [
         {
           "author": "St. Clement of Rome",
-          "quote": "By humility and the fear of the Lord let us make our approach, and let us be attentive to His words... let us consider how He continually says to us, 'Draw near to me, and I will draw near to you: as it is written, 'I said, Thou art my God; I have not known thee, O Lord.' And, 'My soul has thirsted after the strong living God.'",
-          "source": "First Epistle to the Corinthians, 96 AD (citing Sirach 2:18-20)"
+          "quote": "We are not justified through ourselves or through our own wisdom or understanding or piety, or works which we have wrought in holiness of heart; but through faith, whereby, from the beginning, Almighty God has justified all men.",
+          "source": "First Letter to the Corinthians, 96 AD"
         }
       ],
-      "tags": ["bible", "canon", "deuterocanonical", "apocrypha", "septuagint"],
-      "difficulty": "advanced",
+      "tags": ["salvation", "faith", "works", "grace", "sola fide", "justification", "sanctification"],
+      "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["scripture-authority", "tradition", "bible-interpretation"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
-    },
-    {
-      "id": "saints-intercession",
-      "category": "saints",
-      "title": "Praying to Saints",
-      "question": "Why do Catholics pray to saints instead of directly to God?",
-      "answer": "Catholics don't pray to saints instead of God - we worship God alone. Asking saints to pray for us is like asking a friend on earth to pray for us. The saints in heaven are alive in Christ and can intercede for us before God. This biblical practice is supported by references to the 'communion of saints' and examples of heavenly intercession in Revelation and Hebrews.",
-      "scripture": [
-        {
-          "reference": "Revelation 5:8",
-          "text": "When he took it, the four living creatures and the twenty-four elders fell down before the Lamb. Each had a harp and gold bowls filled with incense, which are the prayers of the holy ones.",
-          "version": "NABRE"
-        },
-        {
-          "reference": "Revelation 8:3-4",
-          "text": "Another angel came and stood at the altar, holding a gold censer. He was given a great quantity of incense to offer, along with the prayers of all the holy ones, on the gold altar that was before the throne. The smoke of the incense along with the prayers of the holy ones rose up before God from the hand of the angel.",
-          "version": "NABRE"
-        },
-        {
-          "reference": "Hebrews 12:1",
-          "text": "Therefore, since we are surrounded by so great a cloud of witnesses, let us rid ourselves of every burden and sin that clings to us and persevere in running the race that lies before us.",
-          "version": "NABRE"
-        }
-      ],
-      "catechism": ["CCC 2683", "CCC 956", "CCC 2683"],
-      "churchFathers": [
-        {
-          "author": "St. Augustine",
-          "quote": "What then? Do we think that the blessed martyrs... are not willing to pray for us? For they are our brethren; and if their merits do not profit us, their prayers will.",
-          "source": "Homilies on John, 5th century"
-        }
-      ],
-      "tags": ["saints", "intercession", "prayer", "communion of saints", "heaven"],
-      "difficulty": "beginner",
-      "lang": "en",
-      "relatedTopics": ["mary-intercession", "purgatory", "prayer-types"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
-    },
-    {
-      "id": "tradition-authority",
-      "category": "tradition",
-      "title": "Sacred Tradition and Scripture",
-      "question": "Why does the Catholic Church give equal authority to Tradition and Scripture?",
-      "answer": "The Catholic Church believes that Sacred Tradition and Sacred Scripture form one sacred deposit of the Word of God. Scripture itself points to the authority of Tradition (2 Thessalonians 2:15) and the Church existed and taught the faith before the New Testament was written. Tradition preserves the correct interpretation of Scripture and contains apostolic teaching not explicitly recorded in the biblical text.",
-      "scripture": [
-        {
-          "reference": "2 Thessalonians 2:15",
-          "text": "Therefore, brothers, stand firm and hold fast to the traditions that you were taught, either by an oral statement or by a letter of ours.",
-          "version": "NABRE"
-        },
-        {
-          "reference": "2 Timothy 2:2",
-          "text": "And what you heard from me through many witnesses entrust to faithful people who will have the ability to teach others as well.",
-          "version": "NABRE"
-        },
-        {
-          "reference": "1 Corinthians 11:2",
-          "text": "I praise you because you remember me in everything and hold fast to the traditions, just as I handed them on to you.",
-          "version": "NABRE"
-        }
-      ],
-      "catechism": ["CCC 80", "CCC 82", "CCC 97"],
-      "churchFathers": [
-        {
-          "author": "St. Basil the Great",
-          "quote": "Of the beliefs and practices whether generally accepted or publicly enjoined, which are preserved in the Church some we possess derived from written teaching; others we have received delivered to us 'in a mystery' by the tradition of the apostles; and both of these have the same force for piety.",
-          "source": "On the Holy Spirit, 4th century"
-        }
-      ],
-      "tags": ["tradition", "scripture", "magisterium", "revelation", "apostolic tradition"],
-      "difficulty": "advanced",
-      "lang": "en",
-      "relatedTopics": ["bible-canon-deuterocanonical", "church-teaching-authority", "magisterium"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
-    },
-    {
-      "id": "contraception-teaching",
-      "category": "church-teaching",
-      "title": "Contraception and Marriage",
-      "question": "Why does the Catholic Church oppose artificial contraception?",
-      "answer": "The Catholic Church teaches that every marital act must remain open to life because contraception separates the unitive and procreative aspects of marital love that God designed to be inseparable. This teaching is based on natural law, Scripture, and constant Church teaching. The Church promotes Natural Family Planning as a morally acceptable way to plan families that respects God's design for sexuality.",
-      "scripture": [
-        {
-          "reference": "Genesis 1:28",
-          "text": "God blessed them and God said to them: Be fertile and multiply; fill the earth and subdue it. Have dominion over the fish of the sea, the birds of the air, and all the living things that crawl on the earth.",
-          "version": "NABRE"
-        },
-        {
-          "reference": "Genesis 38:8-10",
-          "text": "Judah then said to Onan, 'Unite with your brother's widow, in fulfillment of your duty as brother-in-law, and thus preserve your brother's line.' Onan, however, knew that the offspring would not be his; so whenever he had relations with his brother's widow, he wasted his seed on the ground, to avoid contributing offspring for his brother. What he did greatly offended the LORD, and the LORD took his life too.",
-          "version": "NABRE"
-        }
-      ],
-      "catechism": ["CCC 2370", "CCC 2399", "CCC 1652"],
-      "churchFathers": [
-        {
-          "author": "St. Clement of Alexandria",
-          "quote": "Because of its divine institution for the propagation of man, the seed is not to be vainly ejaculated, nor is it to be damaged, nor is it to be wasted.",
-          "source": "The Instructor of Children, 3rd century"
-        }
-      ],
-      "tags": ["contraception", "marriage", "family planning", "procreation", "natural law"],
-      "difficulty": "advanced",
-      "lang": "en",
-      "relatedTopics": ["marriage-sacrament", "natural-family-planning", "sexual-ethics"],
-      "lastUpdated": "2025-01-15T00:00:00Z"
+      "relatedTopics": ["confession-to-priest", "infant-baptism", "divinity-of-christ"],
+      "lastUpdated": "2026-07-10T00:00:00Z"
     }
   ],
   "metadata": {
-    "version": "1.0.0",
-    "lastUpdated": "2025-01-15T00:00:00Z",
-    "totalTopics": 9
+    "version": "2.0.0",
+    "lastUpdated": "2026-07-10T00:00:00Z",
+    "totalTopics": 20
   }
 }

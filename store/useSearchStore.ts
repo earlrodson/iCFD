@@ -185,7 +185,10 @@ export const useSearchStore = create<SearchState>()(
           const searchResults = filteredTopics.filter(topic => {
             const title = topic.title.toLowerCase()
             const question = topic.question.toLowerCase()
-            const answer = topic.answer.toLowerCase()
+            const answerRaw = typeof topic.answer === 'string'
+              ? topic.answer
+              : `${topic.answer.summary} ${topic.answer.full}`
+            const answer = answerRaw.toLowerCase()
             const tags = topic.tags.join(' ').toLowerCase()
 
             return (

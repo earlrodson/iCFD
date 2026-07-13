@@ -122,6 +122,9 @@ export function SearchBar({
           autoFocus={autoFocus}
           className="pl-10 pr-10"
           onFocus={() => setShowSuggestionsList(suggestions.length > 0)}
+          data-testid="search-input"
+          role="searchbox"
+          aria-label="Search apologetics topics"
         />
 
         {(localQuery || loading) && (
@@ -132,6 +135,8 @@ export function SearchBar({
             className="absolute right-1 top-1/2 transform -translate-y-1/2 h-6 w-6"
             onClick={handleClear}
             disabled={loading}
+            data-testid="search-clear-button"
+            aria-label="Clear search"
           >
             {loading ? (
               <Loader2 className="h-4 w-4 animate-spin" />
@@ -144,14 +149,16 @@ export function SearchBar({
 
       {/* Suggestions dropdown */}
       {showSuggestionsList && suggestions.length > 0 && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-background border rounded-md shadow-lg z-50 max-h-60 overflow-auto">
-          <ul className="py-1">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-background border rounded-md shadow-lg z-50 max-h-60 overflow-auto" data-testid="search-suggestions">
+          <ul className="py-1" role="listbox">
             {suggestions.map((suggestion, index) => (
               <li key={index}>
                 <button
                   type="button"
                   className="w-full text-left px-3 py-2 hover:bg-accent hover:text-accent-foreground transition-colors"
                   onClick={() => handleSuggestionClick(suggestion)}
+                  data-testid="suggestion-item"
+                  role="option"
                 >
                   <div className="flex items-center space-x-2">
                     <Search className="h-3 w-3 text-muted-foreground" />

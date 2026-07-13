@@ -5,39 +5,42 @@ import type { Topic, HandbookContent } from '@/data/schema/topic.schema'
 class DatabaseManager {
   private db: IDBPDatabase<DefenderDB> | null = null
   private readonly DB_NAME = 'catholic-defender'
-  private readonly DB_VERSION = 1
+  private readonly DB_VERSION = 2
 
   async getDB(): Promise<IDBPDatabase<DefenderDB>> {
     if (!this.db) {
       this.db = await openDB<DefenderDB>(this.DB_NAME, this.DB_VERSION, {
-        upgrade(db, oldVersion, newVersion) {
-          // Create topics store
-          if (!db.objectStoreNames.contains('topics')) {
+        upgrade(db, oldVersion) {
+          // v1: initial stores
+          if (oldVersion < 1) {
             const topicsStore = db.createObjectStore('topics', { keyPath: 'id' })
             topicsStore.createIndex('by-category', 'category')
             topicsStore.createIndex('by-lang', 'lang')
             topicsStore.createIndex('by-tags', 'tags', { multiEntry: true })
             topicsStore.createIndex('by-difficulty', 'difficulty')
-          }
 
-          // Create favorites store
-          if (!db.objectStoreNames.contains('favorites')) {
             db.createObjectStore('favorites', { keyPath: 'topicId' })
-          }
-
-          // Create settings store
-          if (!db.objectStoreNames.contains('settings')) {
             db.createObjectStore('settings', { keyPath: 'key' })
-          }
-
-          // Create search index store
-          if (!db.objectStoreNames.contains('searchIndex')) {
             db.createObjectStore('searchIndex', { keyPath: 'lang' })
+            db.createObjectStore('cache', { keyPath: 'key' })
           }
 
-          // Create cache store
-          if (!db.objectStoreNames.contains('cache')) {
-            db.createObjectStore('cache', { keyPath: 'key' })
+          // v2: add bibleChapters store
+          if (oldVersion < 2) {
+            if (!db.objectStoreNames.contains('topics')) {
+              const topicsStore = db.createObjectStore('topics', { keyPath: 'id' })
+              topicsStore.createIndex('by-category', 'category')
+              topicsStore.createIndex('by-lang', 'lang')
+              topicsStore.createIndex('by-tags', 'tags', { multiEntry: true })
+              topicsStore.createIndex('by-difficulty', 'difficulty')
+            }
+            if (!db.objectStoreNames.contains('favorites')) db.createObjectStore('favorites', { keyPath: 'topicId' })
+            if (!db.objectStoreNames.contains('settings')) db.createObjectStore('settings', { keyPath: 'key' })
+            if (!db.objectStoreNames.contains('searchIndex')) db.createObjectStore('searchIndex', { keyPath: 'lang' })
+            if (!db.objectStoreNames.contains('cache')) db.createObjectStore('cache', { keyPath: 'key' })
+            if (!db.objectStoreNames.contains('bibleChapters')) {
+              db.createObjectStore('bibleChapters', { keyPath: 'key' })
+            }
           }
         },
         blocked() {
@@ -343,5 +346,78 @@ export const db = {
 
       await tx.done
     }
+  },
+
+  // Bible chapter cache operations
+  bibleChapters: {
+    // key format: "{version}-{book}-{chapter}"  e.g. "NABRE-John-3"
+    buildKey: (version: string, book: string, chapter: number) =>
+      `${version}-${book}-${chapter}`,
+
+    get: async (version: string, book: string, chapter: number) => {
+      const db = await dbManager.getDB()
+      const key = `${version}-${book}-${chapter}`
+      const cached = await db.get('bibleChapters', key)
+
+      if (!cached) return null
+      if (Date.now() > cached.expiresAt) {
+        await db.delete('bibleChapters', key)
+        return null
+      }
+      return cached
+    },
+
+    set: async (
+      version: string,
+      book: string,
+      chapter: number,
+      verses: Record<string, string>
+    ): Promise<void> => {
+      const db = await dbManager.getDB()
+      const key = `${version}-${book}-${chapter}`
+      const now = Date.now()
+      const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000
+      await db.put('bibleChapters', {
+        key,
+        book,
+        chapter,
+        version,
+        verses,
+        fetchedAt: now,
+        expiresAt: now + THIRTY_DAYS,
+      })
+    },
+
+    getVerse: async (
+      version: string,
+      book: string,
+      chapter: number,
+      verse: string
+    ): Promise<string | null> => {
+      const db = await dbManager.getDB()
+      const key = `${version}-${book}-${chapter}`
+      const cached = await db.get('bibleChapters', key)
+
+      if (!cached || Date.now() > cached.expiresAt) return null
+      return cached.verses[verse] ?? null
+    },
+
+    clearExpired: async (): Promise<void> => {
+      const db = await dbManager.getDB()
+      const now = Date.now()
+      const all = await db.getAll('bibleChapters')
+
+      const tx = db.transaction('bibleChapters', 'readwrite')
+      const store = tx.objectStore('bibleChapters')
+      for (const item of all) {
+        if (now > item.expiresAt) await store.delete(item.key)
+      }
+      await tx.done
+    },
+
+    clear: async (): Promise<void> => {
+      const db = await dbManager.getDB()
+      return db.clear('bibleChapters')
+    },
   }
 }

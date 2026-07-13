@@ -177,13 +177,17 @@ export const sanitizeString = (str: string): string => {
 }
 
 export const sanitizeTopic = (topic: Topic): Topic => {
+  const sanitizedAnswer = typeof topic.answer === 'string'
+    ? sanitizeString(topic.answer)
+    : { ...topic.answer, summary: sanitizeString(topic.answer.summary), full: sanitizeString(topic.answer.full) }
+
   return {
     ...topic,
     title: sanitizeString(topic.title),
     question: sanitizeString(topic.question),
-    answer: sanitizeString(topic.answer),
+    answer: sanitizedAnswer,
     tags: topic.tags.map(tag => sanitizeString(tag.toLowerCase())),
-    scripture: topic.scripture.map(ref => ({
+    scripture: topic.scripture?.map(ref => ({
       ...ref,
       reference: sanitizeString(ref.reference),
       text: sanitizeString(ref.text)

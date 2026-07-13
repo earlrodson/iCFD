@@ -141,12 +141,18 @@ export class ContentLoader {
     const content = await this.loadContent(language)
     const normalizedQuery = query.toLowerCase()
 
-    return content.topics.filter(topic =>
-      topic.title.toLowerCase().includes(normalizedQuery) ||
-      topic.question.toLowerCase().includes(normalizedQuery) ||
-      topic.answer.toLowerCase().includes(normalizedQuery) ||
-      topic.tags.some(tag => tag.toLowerCase().includes(normalizedQuery))
-    )
+    return content.topics.filter(topic => {
+      const answerText = typeof topic.answer === 'string'
+        ? topic.answer
+        : `${topic.answer.summary} ${topic.answer.full}`
+
+      return (
+        topic.title.toLowerCase().includes(normalizedQuery) ||
+        topic.question.toLowerCase().includes(normalizedQuery) ||
+        answerText.toLowerCase().includes(normalizedQuery) ||
+        topic.tags.some(tag => tag.toLowerCase().includes(normalizedQuery))
+      )
+    })
   }
 
   async getRelatedTopics(language: string, topic: Topic): Promise<Topic[]> {
@@ -190,13 +196,11 @@ export class ContentLoader {
   transformTopicForDisplay(topic: Topic): Topic {
     return {
       ...topic,
-      // Ensure scripture references have proper formatting
-      scripture: topic.scripture.map(ref => ({
+      scripture: topic.scripture?.map(ref => ({
         ...ref,
         text: ref.text.trim(),
         reference: ref.reference.trim()
       })),
-      // Ensure tags are lowercase for consistency
       tags: topic.tags.map(tag => tag.toLowerCase())
     }
   }

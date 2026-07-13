@@ -55,6 +55,18 @@ interface DefenderDB extends DBSchema {
       expiresAt: number
     }
   }
+  bibleChapters: {
+    key: string  // "{version}-{book}-{chapter}" e.g. "NABRE-John-3"
+    value: {
+      key: string
+      book: string
+      chapter: number
+      version: string
+      verses: Record<string, string>  // { "1": "In the beginning...", "16": "For God so loved..." }
+      fetchedAt: number
+      expiresAt: number               // 30-day TTL
+    }
+  }
 }
 
 export type DefenderDBType = IDBPDatabase<DefenderDB>
