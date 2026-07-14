@@ -21,6 +21,8 @@ export const CATEGORIES = [
 export const DIFFICULTIES = ['beginner', 'intermediate', 'advanced'] as const
 export const THEMES = ['light', 'dark', 'system'] as const
 export const FONT_SIZES = ['small', 'medium', 'large'] as const
+export const ROLES = ['user', 'editor', 'admin'] as const
+export type Role = typeof ROLES[number]
 
 // ── Public content tables ──────────────────────────────────────────────────────
 
@@ -183,6 +185,9 @@ export const viewHistory = pgTable(
  */
 export const userSettings = pgTable('user_settings', {
   user_id: uuid('user_id').primaryKey(),
+  role: text('role').notNull().default('user').$type<Role>(),
+  display_name: text('display_name'),
+  avatar_url: text('avatar_url'),
   language: text('language')
     .default('en')
     .notNull()
