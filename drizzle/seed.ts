@@ -47,7 +47,7 @@ async function seed() {
     const rows: TopicInsert[] = data.topics.map((t) => ({
       id: t.id as string,
       lang,
-      category: t.category as string,
+      category: t.category as TopicInsert['category'],
       title: t.title as string,
       question: t.question as string,
       answer: t.answer as object,
@@ -56,7 +56,7 @@ async function seed() {
       catechism: (t.catechism ?? []) as object[],
       church_fathers: (t.churchFathers ?? []) as object[],
       tags: (t.tags ?? []) as string[],
-      difficulty: t.difficulty as string,
+      difficulty: t.difficulty as TopicInsert['difficulty'],
       related_topics: (t.relatedTopics ?? []) as string[],
       last_updated: new Date(t.lastUpdated as string),
       last_reviewed: null,
@@ -98,7 +98,7 @@ async function seed() {
     description: string
     audience: string
     estimatedMinutes: number
-    difficulty: string
+    difficulty: PathInsert['difficulty']
     icon: string
     topics: string[]
   }>>('public/data/paths.json')
