@@ -3,17 +3,15 @@
 import { useEffect, useState, useCallback } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { SearchBar } from '@/components/search/SearchBar'
 import { LanguageSwitcher } from '@/components/shared/LanguageSwitcher'
-import { TopicCard } from '@/components/handbook/TopicCard'
+import { TopicCard, TopicList } from '@/components/handbook/TopicCard'
 import { useAppStore, useAvailableTopics } from '@/store/useAppStore'
 import { useFavoritesStore, useFavoritesCount } from '@/store/useFavoritesStore'
 import { useProgressStore, useReadCount } from '@/store/useProgressStore'
 import { useViewHistoryStore, useRecentViews } from '@/store/useViewHistoryStore'
 import { usePathsStore } from '@/store/usePathsStore'
-import { Shield, Moon, Sun, BookOpen, Heart, CheckCircle, Map, Download, Loader2, ChevronRight, Star } from 'lucide-react'
+import { Shield, Moon, Sun, BookOpen, Heart, CheckCircle, Map, Download, Loader2, ChevronRight } from 'lucide-react'
 import { getCategoryName, getCategoryIcon, type Category } from '@/lib/utils/categories'
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -28,19 +26,14 @@ function getTodayTopic(topics: Topic[]): Topic | null {
   return topics[dayIndex % topics.length]
 }
 
-function getRecommended(topics: Topic[], readIds: string[], limit = 3): Topic[] {
+function getRecommended(topics: Topic[], readIds: string[], limit = 4): Topic[] {
   if (!readIds.length) return topics.filter(t => t.difficulty === 'beginner').slice(0, limit)
   const readSet = new Set(readIds)
   const readTopics = topics.filter(t => readSet.has(t.id))
-
-  // Find most common difficulty among read topics
   const counts: Record<string, number> = {}
   for (const t of readTopics) counts[t.difficulty] = (counts[t.difficulty] ?? 0) + 1
   const [topDifficulty] = Object.entries(counts).sort((a, b) => b[1] - a[1])[0] ?? ['beginner']
-
-  return topics
-    .filter(t => !readSet.has(t.id) && t.difficulty === topDifficulty)
-    .slice(0, limit)
+  return topics.filter(t => !readSet.has(t.id) && t.difficulty === topDifficulty).slice(0, limit)
 }
 
 export default function HomePage() {
@@ -54,7 +47,7 @@ export default function HomePage() {
   const { loadProgress, readTopicIds } = useProgressStore()
   const { loadPaths, paths } = usePathsStore()
   const pathsStore = usePathsStore()
-  const recentViews = useRecentViews(3)
+  const recentViews = useRecentViews(4)
   const favCount = useFavoritesCount()
   const readCount = useReadCount()
 
@@ -67,7 +60,6 @@ export default function HomePage() {
       loadProgress()
       loadPaths()
     }).catch(console.error)
-    // Apply dark mode class
     document.documentElement.classList.toggle('dark', isDark)
   }, [initialize, loadFavorites, loadProgress, loadPaths, isDark])
 
@@ -82,20 +74,14 @@ export default function HomePage() {
       await fetch('/data/paths.json', { cache: 'reload' })
       setDownloadDone(true)
       setTimeout(() => setDownloadDone(false), 3000)
-    } catch {
-      // silently fail
-    } finally {
-      setDownloading(false)
-    }
+    } catch { /* silently fail */ }
+    finally { setDownloading(false) }
   }, [])
 
   const topicMap = availableTopics.reduce<Record<string, Topic>>((acc, t) => { acc[t.id] = t; return acc }, {})
   const todayTopic = getTodayTopic(availableTopics)
   const recommended = getRecommended(availableTopics, readTopicIds)
-
-  const recentTopics = recentViews
-    .map(v => topicMap[v.topicId])
-    .filter((t): t is Topic => t !== undefined)
+  const recentTopics = recentViews.map(v => topicMap[v.topicId]).filter((t): t is Topic => t !== undefined)
 
   const filteredTopics = searchQuery
     ? availableTopics.filter(t => {
@@ -114,8 +100,8 @@ export default function HomePage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center space-y-3">
-          <Loader2 className="h-10 w-10 animate-spin text-primary mx-auto" />
-          <p className="text-muted-foreground text-sm">Loading…</p>
+          <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
+          <p className="text-[13px] text-muted-foreground">Loading…</p>
         </div>
       </div>
     )
@@ -124,174 +110,143 @@ export default function HomePage() {
   if (error) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background px-4">
-        <Card className="max-w-sm w-full">
-          <CardContent className="p-6 text-center space-y-3">
-            <p className="text-destructive font-medium">Failed to load content</p>
-            <p className="text-sm text-muted-foreground">{error}</p>
-            <Button onClick={() => window.location.reload()}>Try Again</Button>
-          </CardContent>
-        </Card>
+        <div className="rounded-2xl bg-card p-6 text-center max-w-sm w-full shadow-sm space-y-3">
+          <p className="text-destructive font-semibold">Failed to load content</p>
+          <p className="text-[14px] text-muted-foreground">{error}</p>
+          <Button onClick={() => window.location.reload()} className="w-full rounded-xl">Try Again</Button>
+        </div>
       </div>
     )
   }
 
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
-      {/* Header */}
-      <header className="border-b bg-card sticky top-0 z-30">
-        <div className="container mx-auto px-4 py-3">
-          <div className="flex items-center gap-3">
-            <Shield className="h-7 w-7 text-primary shrink-0" />
-            <div className="flex-1 min-w-0">
-              <h1 className="text-base font-bold text-primary leading-tight">Catholic Faith Defender</h1>
-              <p className="text-[11px] text-muted-foreground hidden sm:block">Defending the Faith offline</p>
-            </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <div className="hidden sm:block">
-                <SearchBar
-                  placeholder="Search…"
-                  className="w-48"
-                  onSearch={(q) => setSearchQuery(q)}
-                />
-              </div>
+      {/* Navigation bar */}
+      <header className="bg-background/80 backdrop-blur-xl sticky top-0 z-30 border-b border-border/60">
+        <div className="container mx-auto px-4 max-w-2xl">
+          <div className="flex items-center gap-3 h-12">
+            <Shield className="h-5 w-5 text-primary shrink-0" />
+            <h1 className="text-[17px] font-semibold flex-1 text-foreground">iCFD</h1>
+            <div className="flex items-center gap-1 shrink-0">
               <LanguageSwitcher />
-              <Button variant="ghost" size="icon" onClick={toggleDark} className="h-8 w-8">
-                {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-              </Button>
+              <button
+                onClick={toggleDark}
+                className="h-8 w-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {isDark ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
+              </button>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-5 space-y-7 max-w-5xl">
+      <main className="container mx-auto px-4 max-w-2xl py-4 space-y-6">
 
-        {/* Search results overlay */}
+        {/* Search */}
+        <SearchBar
+          placeholder="Search topics…"
+          onSearch={setSearchQuery}
+          className="w-full"
+        />
+
+        {/* Search results */}
         {searchQuery && (
           <section>
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="font-semibold">Results for &ldquo;{searchQuery}&rdquo;</h2>
-              <span className="text-sm text-muted-foreground">{filteredTopics.length} found</span>
-            </div>
+            <p className="section-header">{filteredTopics.length} result{filteredTopics.length !== 1 ? 's' : ''} for &ldquo;{searchQuery}&rdquo;</p>
             {filteredTopics.length === 0 ? (
-              <p className="text-muted-foreground text-sm py-4">No topics match your search.</p>
+              <div className="rounded-2xl bg-card p-8 text-center shadow-sm">
+                <p className="text-[15px] text-muted-foreground">No topics match your search.</p>
+              </div>
             ) : (
-              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {filteredTopics.slice(0, 9).map(t => (
-                  <TopicCard key={t.id} topic={t} showCategory showDifficulty showExcerpt />
-                ))}
-              </div>
-            )}
-            {filteredTopics.length > 9 && (
-              <div className="text-center mt-3">
-                <Button variant="outline" asChild size="sm">
-                  <Link href={`/search?q=${encodeURIComponent(searchQuery)}`}>
-                    See all {filteredTopics.length} results
+              <>
+                <TopicList topics={filteredTopics.slice(0, 8)} />
+                {filteredTopics.length > 8 && (
+                  <Link
+                    href={`/search?q=${encodeURIComponent(searchQuery)}`}
+                    className="flex items-center justify-center gap-1 mt-2 text-[14px] text-primary font-medium py-2"
+                  >
+                    See all {filteredTopics.length} results <ChevronRight className="h-4 w-4" />
                   </Link>
-                </Button>
-              </div>
+                )}
+              </>
             )}
           </section>
         )}
 
         {!searchQuery && (
           <>
-            {/* Real-time stats */}
-            <section className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {/* Stats row */}
+            <section className="grid grid-cols-4 gap-2">
               {[
-                { icon: BookOpen, label: 'Topics', value: availableTopics.length, color: 'text-primary', href: '/handbook' },
-                { icon: Map, label: 'Paths', value: paths.length, color: 'text-purple-600', href: '/paths' },
-                { icon: Heart, label: 'Saved', value: favCount, color: 'text-rose-500', href: '/favorites' },
-                { icon: CheckCircle, label: 'Read', value: readCount, color: 'text-green-600', href: null },
-              ].map(({ icon: Icon, label, value, color, href }) => {
-                const content = (
-                  <Card className={`${href ? 'hover:bg-accent/40 cursor-pointer transition-colors' : ''}`}>
-                    <CardContent className="p-3 flex items-center gap-3">
-                      <Icon className={`h-6 w-6 ${color} shrink-0`} />
-                      <div>
-                        <div className="text-xl font-bold leading-none">{value}</div>
-                        <div className="text-xs text-muted-foreground mt-0.5">{label}</div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                { label: 'Topics', value: availableTopics.length, icon: BookOpen, href: '/handbook' },
+                { label: 'Paths', value: paths.length, icon: Map, href: '/paths' },
+                { label: 'Saved', value: favCount, icon: Heart, href: '/favorites' },
+                { label: 'Read', value: readCount, icon: CheckCircle, href: null },
+              ].map(({ label, value, icon: Icon, href }) => {
+                const inner = (
+                  <div className="rounded-2xl bg-card shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)] p-3 flex flex-col items-center gap-1 active:bg-muted transition-colors">
+                    <Icon className="h-5 w-5 text-primary" />
+                    <span className="text-[20px] font-bold leading-none">{value}</span>
+                    <span className="text-[10px] text-muted-foreground font-medium">{label}</span>
+                  </div>
                 )
                 return href
-                  ? <Link key={label} href={href}>{content}</Link>
-                  : <div key={label}>{content}</div>
+                  ? <Link key={label} href={href}>{inner}</Link>
+                  : <div key={label}>{inner}</div>
               })}
             </section>
 
-            {/* Continue Reading */}
-            {recentTopics.length > 0 && (
+            {/* Today's topic — featured */}
+            {todayTopic && (
               <section>
-                <h2 className="font-semibold mb-3">Continue Reading</h2>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {recentTopics.map(t => (
-                    <TopicCard key={t.id} topic={t} showCategory showDifficulty />
-                  ))}
-                </div>
+                <p className="section-header">Today&rsquo;s Topic</p>
+                <TopicCard topic={todayTopic} />
               </section>
             )}
 
-            {/* Today's Topic */}
-            {todayTopic && (
+            {/* Continue reading */}
+            {recentTopics.length > 0 && (
               <section>
-                <div className="flex items-center gap-2 mb-3">
-                  <Star className="h-4 w-4 text-amber-500" />
-                  <h2 className="font-semibold">Today&rsquo;s Topic</h2>
-                </div>
-                <Link
-                  href={`/${encodeURIComponent(todayTopic.id)}`}
-                  className="block border rounded-xl p-4 hover:bg-accent/40 transition-colors"
-                >
-                  <div className="flex items-center gap-2 mb-2">
-                    <Badge variant="secondary" className="text-xs">
-                      {getCategoryIcon(todayTopic.category as Category)} {getCategoryName(todayTopic.category)}
-                    </Badge>
-                    <Badge variant="outline" className="text-xs capitalize">{todayTopic.difficulty}</Badge>
-                  </div>
-                  <h3 className="font-semibold mb-1">{todayTopic.title}</h3>
-                  <p className="text-sm text-muted-foreground line-clamp-2">{todayTopic.question}</p>
-                </Link>
+                <p className="section-header">Continue Reading</p>
+                <TopicList topics={recentTopics} />
               </section>
             )}
 
             {/* Recommended */}
             {recommended.length > 0 && (
               <section>
-                <h2 className="font-semibold mb-3">Recommended for You</h2>
-                <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                  {recommended.map(t => (
-                    <TopicCard key={t.id} topic={t} showCategory showDifficulty showExcerpt />
-                  ))}
-                </div>
+                <p className="section-header">Recommended</p>
+                <TopicList topics={recommended} />
               </section>
             )}
 
             {/* Learning Paths */}
             {paths.length > 0 && (
               <section>
-                <div className="flex items-center justify-between mb-3">
-                  <h2 className="font-semibold">Learning Paths</h2>
-                  <Link href="/paths" className="text-xs text-primary hover:underline flex items-center gap-1">
-                    View all <ChevronRight className="h-3 w-3" />
-                  </Link>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="section-header mb-0">Learning Paths</p>
+                  <Link href="/paths" className="text-[13px] text-primary font-medium">See all</Link>
                 </div>
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="rounded-2xl bg-card overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)] divide-y divide-border">
                   {paths.map(path => {
                     const { completed, total, percent } = pathsStore.getPathProgress(path.slug, readTopicIds)
                     return (
                       <Link
                         key={path.slug}
                         href={`/paths/${path.slug}`}
-                        className="block border rounded-xl p-4 hover:bg-accent/40 transition-colors"
+                        className="flex items-center gap-3 px-4 py-3 active:bg-muted transition-colors"
                       >
-                        <div className="text-2xl mb-2">{path.icon}</div>
-                        <p className="font-medium text-sm mb-1">{path.title}</p>
-                        <p className="text-xs text-muted-foreground mb-2">{total} topics</p>
-                        <div className="h-1 bg-muted rounded-full overflow-hidden">
-                          <div className="h-full bg-primary rounded-full" style={{ width: `${percent}%` }} />
+                        <span className="text-2xl shrink-0">{path.icon}</span>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-[15px] font-medium text-foreground">{path.title}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <div className="flex-1 h-1.5 bg-muted rounded-full overflow-hidden">
+                              <div className="h-full bg-primary rounded-full transition-all" style={{ width: `${percent}%` }} />
+                            </div>
+                            <span className="text-[11px] text-muted-foreground shrink-0">{completed}/{total}</span>
+                          </div>
                         </div>
-                        <p className="text-xs text-muted-foreground mt-1">{completed}/{total}</p>
+                        <ChevronRight className="h-4 w-4 text-muted-foreground/50 shrink-0" />
                       </Link>
                     )
                   })}
@@ -299,78 +254,74 @@ export default function HomePage() {
               </section>
             )}
 
-            {/* Browse by category — compact scrollable strip */}
+            {/* Browse by category */}
             <section>
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="font-semibold">Browse by Category</h2>
-                <Link href="/handbook" className="text-xs text-primary hover:underline flex items-center gap-1">
-                  All topics <ChevronRight className="h-3 w-3" />
-                </Link>
+              <div className="flex items-center justify-between mb-2">
+                <p className="section-header mb-0">Browse</p>
+                <Link href="/handbook" className="text-[13px] text-primary font-medium">All topics</Link>
               </div>
-              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                {CATEGORIES.map(cat => {
-                  const count = availableTopics.filter(t => t.category === cat).length
-                  return (
-                    <Link
-                      key={cat}
-                      href={`/handbook?category=${cat}`}
-                      className="flex-shrink-0 flex flex-col items-center gap-1.5 px-4 py-3 border rounded-xl text-center hover:bg-accent/40 transition-colors min-w-[80px]"
-                    >
-                      <span className="text-xl">{getCategoryIcon(cat as Category)}</span>
-                      <span className="text-xs font-medium leading-tight">{getCategoryName(cat)}</span>
-                      <Badge variant="secondary" className="text-[10px] px-1.5 py-0">{count}</Badge>
-                    </Link>
-                  )
-                })}
-              </div>
-            </section>
-
-            {/* Offline download */}
-            <section className="border rounded-xl p-4 bg-muted/30">
-              <div className="flex items-center justify-between gap-4">
-                <div>
-                  <p className="font-medium text-sm">Download for Offline</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    Cache all content so the app works without internet
-                  </p>
-                </div>
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={handleOfflineDownload}
-                  disabled={downloading || downloadDone}
-                >
-                  {downloading ? (
-                    <><Loader2 className="h-4 w-4 mr-1 animate-spin" />Caching…</>
-                  ) : downloadDone ? (
-                    <><CheckCircle className="h-4 w-4 mr-1 text-green-600" />Cached!</>
-                  ) : (
-                    <><Download className="h-4 w-4 mr-1" />Download</>
-                  )}
-                </Button>
-              </div>
-            </section>
-
-            {/* Font size setting */}
-            <section className="border rounded-xl p-4">
-              <p className="font-medium text-sm mb-3">Text Size</p>
-              <div className="flex gap-2">
-                {(['small', 'medium', 'large'] as const).map(size => (
-                  <button
-                    key={size}
-                    onClick={() => updateSettings({ fontSize: size })}
-                    className={`flex-1 py-2 rounded-lg border text-sm font-medium capitalize transition-colors ${
-                      settings.fontSize === size
-                        ? 'bg-primary text-primary-foreground border-primary'
-                        : 'border-muted-foreground/30 text-muted-foreground hover:border-primary/50'
-                    }`}
+              <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+                {CATEGORIES.map(cat => (
+                  <Link
+                    key={cat}
+                    href={`/handbook?category=${cat}`}
+                    className="flex-shrink-0 flex flex-col items-center gap-1 px-3 py-2.5 rounded-2xl bg-card shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)] min-w-[68px] text-center active:bg-muted transition-colors"
                   >
-                    {size === 'small' ? 'A' : size === 'medium' ? 'A' : 'A'}
-                    <span className="text-xs ml-1">({size})</span>
-                  </button>
+                    <span className="text-[22px] leading-none">{getCategoryIcon(cat as Category)}</span>
+                    <span className="text-[10px] font-medium text-foreground leading-tight">{getCategoryName(cat)}</span>
+                  </Link>
                 ))}
               </div>
             </section>
+
+            {/* Settings row */}
+            <section className="rounded-2xl bg-card overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)] divide-y divide-border">
+              {/* Offline download */}
+              <div className="flex items-center justify-between px-4 py-3 gap-4">
+                <div>
+                  <p className="text-[15px] font-medium text-foreground">Offline Content</p>
+                  <p className="text-[12px] text-muted-foreground mt-0.5">Cache all content for offline use</p>
+                </div>
+                <button
+                  onClick={handleOfflineDownload}
+                  disabled={downloading || downloadDone}
+                  className="flex items-center gap-1.5 text-[14px] text-primary font-medium disabled:opacity-50"
+                >
+                  {downloading ? (
+                    <><Loader2 className="h-4 w-4 animate-spin" />Caching</>
+                  ) : downloadDone ? (
+                    <><CheckCircle className="h-4 w-4 text-green-500" />Done</>
+                  ) : (
+                    <><Download className="h-4 w-4" />Download</>
+                  )}
+                </button>
+              </div>
+
+              {/* Text size */}
+              <div className="px-4 py-3">
+                <div className="flex items-center justify-between mb-2.5">
+                  <p className="text-[15px] font-medium text-foreground">Text Size</p>
+                  <p className="text-[13px] text-muted-foreground capitalize">{settings.fontSize}</p>
+                </div>
+                <div className="flex gap-2">
+                  {(['small', 'medium', 'large'] as const).map((size, i) => (
+                    <button
+                      key={size}
+                      onClick={() => updateSettings({ fontSize: size })}
+                      className={`flex-1 py-2 rounded-xl text-[${['14px', '16px', '18px'][i]}] font-semibold transition-colors ${
+                        settings.fontSize === size
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted text-muted-foreground'
+                      }`}
+                    >
+                      A
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <div className="pb-2" />
           </>
         )}
       </main>

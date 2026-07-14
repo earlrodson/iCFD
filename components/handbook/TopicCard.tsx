@@ -1,289 +1,148 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Heart, BookOpen, Clock } from 'lucide-react'
-import { useFavoritesStore, useFavoriteActions } from '@/store/useFavoritesStore'
+import { ChevronRight } from 'lucide-react'
 import { useAppStore } from '@/store/useAppStore'
 import type { Topic } from '@/data/schema/topic.schema'
 import { cn } from '@/lib/utils'
-import { getCategoryName, getCategoryIcon, getCategoryColor } from '@/lib/utils/categories'
-import { getDifficultyLabel, formatRelativeTime } from '@/lib/utils/general'
+import { getCategoryName, getCategoryIcon, type Category } from '@/lib/utils/categories'
+import { getDifficultyLabel } from '@/lib/utils/general'
+
+// ── Topic Row — iOS list item ─────────────────────────────────────────────────
+
+interface TopicRowProps {
+  topic: Topic
+  className?: string
+}
+
+export function TopicRow({ topic, className }: TopicRowProps) {
+  const router = useRouter()
+  const { currentLanguage: language } = useAppStore()
+
+  return (
+    <button
+      onClick={() => router.push(`/${encodeURIComponent(topic.id)}?lang=${language}`)}
+      className={cn(
+        'w-full flex items-center px-4 py-3 text-left bg-card transition-colors active:bg-muted',
+        className
+      )}
+    >
+      <span className="text-[22px] mr-3 shrink-0 leading-none w-8 text-center">
+        {getCategoryIcon(topic.category as Category)}
+      </span>
+      <div className="flex-1 min-w-0">
+        <p className="text-[16px] font-medium text-foreground leading-snug line-clamp-1">
+          {topic.title}
+        </p>
+        <p className="text-[13px] text-muted-foreground mt-0.5">
+          {getCategoryName(topic.category)} · {getDifficultyLabel(topic.difficulty)}
+        </p>
+      </div>
+      <ChevronRight className="h-4 w-4 text-muted-foreground/50 shrink-0 ml-2" />
+    </button>
+  )
+}
+
+// ── Topic List — grouped container with dividers ──────────────────────────────
+
+interface TopicListProps {
+  topics: Topic[]
+  className?: string
+}
+
+export function TopicList({ topics, className }: TopicListProps) {
+  if (topics.length === 0) return null
+  return (
+    <div
+      className={cn(
+        'rounded-2xl bg-card overflow-hidden shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)]',
+        className
+      )}
+    >
+      {topics.map((topic, i) => (
+        <div key={topic.id} className={i > 0 ? 'border-t border-border' : undefined}>
+          <TopicRow topic={topic} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+// ── Topic Card — featured card (Today's Topic, Continue Reading, etc.) ────────
 
 interface TopicCardProps {
   topic: Topic
-  onClick?: (topic: Topic) => void
-  onFavoriteToggle?: (topicId: string, isFavorited: boolean) => void
-  showFavorite?: boolean
+  className?: string
+  // legacy props accepted but ignored — all rendering is unified now
   showCategory?: boolean
   showDifficulty?: boolean
   showExcerpt?: boolean
   compact?: boolean
-  className?: string
+  onClick?: (topic: Topic) => void
+  onFavoriteToggle?: (topicId: string, isFavorited: boolean) => void
+  showFavorite?: boolean
 }
 
-export function TopicCard({
-  topic,
-  onClick,
-  onFavoriteToggle,
-  showFavorite = true,
-  showCategory = true,
-  showDifficulty = true,
-  showExcerpt = true,
-  compact = false,
-  className
-}: TopicCardProps) {
+export function TopicCard({ topic, className, onClick }: TopicCardProps) {
   const router = useRouter()
-  const { isFavorite } = useFavoritesStore()
-  const { toggleFavorite } = useFavoriteActions()
   const { currentLanguage: language } = useAppStore()
 
-  const isFavorited = isFavorite(topic.id)
-
-  const handleCardClick = () => {
-    // Navigate to topic detail page
+  const handleClick = () => {
     router.push(`/${encodeURIComponent(topic.id)}?lang=${language}`)
     onClick?.(topic)
   }
 
-  const handleFavoriteClick = async (e: React.MouseEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-
-    const newFavoriteState = await toggleFavorite(topic.id)
-    onFavoriteToggle?.(topic.id, newFavoriteState)
-  }
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault()
-      handleCardClick()
-    }
-  }
-
-  if (compact) {
-    return (
-      <Card
-        className={cn(
-          "topic-card cursor-pointer hover:shadow-md transition-all duration-200",
-          className
-        )}
-        onClick={handleCardClick}
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
-        role="button"
-        aria-label={`View topic: ${topic.title}`}
-        data-testid="search-result"
-      >
-        <CardContent className="p-4">
-          <div className="flex items-start justify-between space-x-3">
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center space-x-2 mb-2">
-                <span className="text-lg">{getCategoryIcon(topic.category)}</span>
-                <Badge variant="secondary" className="text-xs">
-                  {getCategoryName(topic.category)}
-                </Badge>
-                <Badge variant="outline" className={`difficulty-${topic.difficulty} text-xs`}>
-                  {getDifficultyLabel(topic.difficulty)}
-                </Badge>
-              </div>
-              <h3 className="font-semibold text-sm leading-tight line-clamp-2">
-                {topic.title}
-              </h3>
-            </div>
-            {showFavorite && (
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 flex-shrink-0"
-                onClick={handleFavoriteClick}
-                aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
-              >
-                <Heart
-                  className={cn(
-                    "h-4 w-4",
-                    isFavorited ? "fill-red-500 text-red-500" : "text-gray-400"
-                  )}
-                />
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
-    )
-  }
-
   return (
-    <Card
+    <button
+      onClick={handleClick}
       className={cn(
-        "topic-card cursor-pointer hover:shadow-lg transition-all duration-300 group",
+        'w-full rounded-2xl bg-card p-4 text-left transition-colors active:bg-muted shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)]',
         className
       )}
-      onClick={handleCardClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={0}
-      role="button"
-      aria-label={`View topic: ${topic.title}`}
-      data-testid="search-result"
     >
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between space-y-2">
-          <div className="flex-1">
-            <div className="flex items-center space-x-2 mb-2">
-              <span className="text-lg">{getCategoryIcon(topic.category)}</span>
-              <Badge className={getCategoryColor(topic.category)}>
-                {getCategoryName(topic.category)}
-              </Badge>
-              {showDifficulty && (
-                <Badge variant="outline" className={`difficulty-${topic.difficulty}`}>
-                  {getDifficultyLabel(topic.difficulty)}
-                </Badge>
-              )}
-            </div>
-            <CardTitle className="text-lg leading-tight group-hover:text-primary transition-colors">
-              {topic.title}
-            </CardTitle>
-          </div>
-          {showFavorite && (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity"
-              onClick={handleFavoriteClick}
-              aria-label={isFavorited ? 'Remove from favorites' : 'Add to favorites'}
-            >
-              <Heart
-                className={cn(
-                  "h-4 w-4",
-                  isFavorited ? "fill-red-500 text-red-500" : "text-gray-400"
-                )}
-              />
-            </Button>
-          )}
-        </div>
-      </CardHeader>
-
-      <CardContent className="space-y-4">
-        {showExcerpt && (
-          <CardDescription className="text-sm leading-relaxed flex items-start space-x-2">
-            <BookOpen className="h-4 w-4 text-catholic-gold mt-0.5 flex-shrink-0" />
-            <span className="line-clamp-3">{topic.question}</span>
-          </CardDescription>
-        )}
-
-        <div className="flex items-center justify-between text-xs text-muted-foreground">
-          <div className="flex items-center space-x-4">
-            {topic.scripture && topic.scripture.length > 0 && (
-              <div className="flex items-center space-x-1">
-                <BookOpen className="h-3 w-3" />
-                <span>{topic.scripture.length} scripture{topic.scripture.length !== 1 ? 's' : ''}</span>
-              </div>
-            )}
-
-            {topic.churchFathers && topic.churchFathers.length > 0 && (
-              <div className="flex items-center space-x-1">
-                <span>📜</span>
-                <span>{topic.churchFathers.length} quote{topic.churchFathers.length !== 1 ? 's' : ''}</span>
-              </div>
-            )}
-          </div>
-
-          <div className="flex items-center space-x-1">
-            <Clock className="h-3 w-3" />
-            <span>{formatRelativeTime(topic.lastUpdated)}</span>
-          </div>
-        </div>
-
-        {topic.tags && topic.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1">
-            {topic.tags.slice(0, 3).map((tag, index) => (
-              <Badge key={index} variant="outline" className="text-xs">
-                {tag}
-              </Badge>
-            ))}
-            {topic.tags.length > 3 && (
-              <Badge variant="outline" className="text-xs">
-                +{topic.tags.length - 3}
-              </Badge>
-            )}
-          </div>
-        )}
-      </CardContent>
-    </Card>
+      <p className="text-[12px] text-muted-foreground font-medium mb-1.5 flex items-center gap-1">
+        <span>{getCategoryIcon(topic.category as Category)}</span>
+        <span>{getCategoryName(topic.category)}</span>
+        <span className="mx-0.5">·</span>
+        <span>{getDifficultyLabel(topic.difficulty)}</span>
+      </p>
+      <h3 className="text-[17px] font-semibold text-foreground leading-snug mb-1.5">
+        {topic.title}
+      </h3>
+      <p className="text-[14px] text-muted-foreground line-clamp-2 leading-relaxed">
+        {topic.question}
+      </p>
+    </button>
   )
 }
 
-// Topic card grid component
+// ── Topic Card Grid — kept for search results, renders as list ────────────────
+
 interface TopicCardGridProps {
   topics: Topic[]
   loading?: boolean
   onTopicClick?: (topic: Topic) => void
   onFavoriteToggle?: (topicId: string, isFavorited: boolean) => void
-  columns?: 1 | 2 | 3 | 4
+  columns?: number
   compact?: boolean
   className?: string
 }
 
-export function TopicCardGrid({
-  topics,
-  loading = false,
-  onTopicClick,
-  onFavoriteToggle,
-  columns = 3,
-  compact = false,
-  className
-}: TopicCardGridProps) {
-  const gridCols = {
-    1: 'grid-cols-1',
-    2: 'grid-cols-1 md:grid-cols-2',
-    3: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3',
-    4: 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-  }
-
+export function TopicCardGrid({ topics, loading, className }: TopicCardGridProps) {
   if (loading) {
     return (
-      <div className={cn("grid gap-4", gridCols[columns], className)}>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Card key={index} className="animate-pulse">
-            <CardContent className="p-6">
-              <div className="space-y-3">
-                <div className="h-4 bg-muted rounded w-3/4"></div>
-                <div className="h-3 bg-muted rounded w-full"></div>
-                <div className="h-3 bg-muted rounded w-2/3"></div>
-              </div>
-            </CardContent>
-          </Card>
+      <div className={cn('rounded-2xl bg-card overflow-hidden shadow-sm', className)}>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className={cn('flex items-center px-4 py-3', i > 0 && 'border-t border-border')}>
+            <div className="w-8 h-8 rounded-lg bg-muted animate-pulse mr-3 shrink-0" />
+            <div className="flex-1 space-y-1.5">
+              <div className="h-4 bg-muted rounded animate-pulse w-3/4" />
+              <div className="h-3 bg-muted rounded animate-pulse w-1/3" />
+            </div>
+          </div>
         ))}
       </div>
     )
   }
-
-  if (topics.length === 0) {
-    return (
-      <div className="text-center py-12">
-        <div className="text-muted-foreground text-lg">
-          No topics found
-        </div>
-        <p className="text-muted-foreground text-sm mt-2">
-          Try adjusting your search or filters
-        </p>
-      </div>
-    )
-  }
-
-  return (
-    <div className={cn("grid gap-4", gridCols[columns], className)} data-testid="search-results">
-      {topics.map((topic) => (
-        <TopicCard
-          key={topic.id}
-          topic={topic}
-          onClick={onTopicClick}
-          onFavoriteToggle={onFavoriteToggle}
-          compact={compact}
-        />
-      ))}
-    </div>
-  )
+  return <TopicList topics={topics} className={className} />
 }

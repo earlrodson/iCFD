@@ -2,10 +2,8 @@
 
 import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { TopicCard } from '@/components/handbook/TopicCard'
+import { TopicList } from '@/components/handbook/TopicCard'
 import { useAppStore, useAvailableTopics, useCurrentLanguage } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { getCategoryName, getCategoryIcon, type Category } from '@/lib/utils/categories'
@@ -76,19 +74,15 @@ function HandbookContent() {
 
   return (
     <div className="min-h-screen bg-background pb-20 md:pb-0">
-      {/* Header */}
-      <div className="border-b bg-card sticky top-0 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <BookOpen className="h-5 w-5 text-primary" />
-              <h1 className="text-xl font-bold">Handbook</h1>
-              <Badge variant="secondary">{filtered.length} topics</Badge>
-            </div>
+      {/* Navigation bar */}
+      <div className="bg-background/80 backdrop-blur-xl sticky top-0 z-10 border-b border-border/60">
+        <div className="container mx-auto px-4 max-w-2xl">
+          <div className="flex items-center justify-between h-12">
+            <h1 className="text-[17px] font-semibold">Handbook</h1>
             <div className="flex items-center gap-2">
               <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
               <select
-                className="text-sm border rounded px-2 py-1 bg-background"
+                className="text-[13px] text-foreground bg-transparent border-0 outline-none font-medium"
                 value={sort}
                 onChange={e => setSort(e.target.value as SortOption)}
               >
@@ -102,30 +96,17 @@ function HandbookContent() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-6">
-        {/* Breadcrumb */}
-        <nav className="text-sm text-muted-foreground mb-4">
-          <Link href="/" className="hover:underline">Home</Link>
-          <span className="mx-2">/</span>
-          <span>Handbook</span>
-          {selectedCategory !== 'all' && (
-            <>
-              <span className="mx-2">/</span>
-              <span className="capitalize">{getCategoryName(selectedCategory as Category)}</span>
-            </>
-          )}
-        </nav>
-
-        {/* Category tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2 mb-4 scrollbar-hide">
+      <div className="container mx-auto px-4 max-w-2xl py-4 space-y-4">
+        {/* Category pills */}
+        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
           {categories.map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${
+              className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
                 selectedCategory === cat
                   ? 'bg-primary text-primary-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  : 'bg-card text-muted-foreground shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
               }`}
             >
               {cat === 'all' ? 'All' : `${getCategoryIcon(cat as Category)} ${getCategoryName(cat as Category)}`}
@@ -133,16 +114,16 @@ function HandbookContent() {
           ))}
         </div>
 
-        {/* Difficulty filter chips */}
-        <div className="flex gap-2 mb-6">
+        {/* Difficulty chips */}
+        <div className="flex gap-2">
           {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(d => (
             <button
               key={d}
               onClick={() => setSelectedDifficulty(selectedDifficulty === d ? null : d)}
-              className={`px-3 py-1 rounded-full text-xs font-medium border transition-colors ${
+              className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
                 selectedDifficulty === d
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'border-muted-foreground/30 text-muted-foreground hover:border-primary/50'
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-card text-muted-foreground shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
               }`}
             >
               {d.charAt(0).toUpperCase() + d.slice(1)}
@@ -150,25 +131,26 @@ function HandbookContent() {
           ))}
         </div>
 
-        {/* Topic grid */}
+        {/* Result count */}
+        <p className="section-header">{filtered.length} topic{filtered.length !== 1 ? 's' : ''}</p>
+
+        {/* Topic list */}
         {filtered.length === 0 ? (
-          <div className="text-center py-16 text-muted-foreground">
-            <BookOpen className="h-12 w-12 mx-auto mb-4 opacity-30" />
-            <p className="text-lg font-medium mb-2">No topics found</p>
-            <p className="text-sm mb-4">Try a different category or difficulty level</p>
-            <Button variant="outline" onClick={() => {
-              setSelectedCategory('all')
-              setSelectedDifficulty(null)
-            }}>
+          <div className="rounded-2xl bg-card p-10 text-center shadow-sm">
+            <BookOpen className="h-8 w-8 mx-auto mb-3 text-muted-foreground/40" />
+            <p className="text-[15px] font-medium mb-1">No topics found</p>
+            <p className="text-[13px] text-muted-foreground mb-4">Try a different category or difficulty</p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="rounded-xl"
+              onClick={() => { setSelectedCategory('all'); setSelectedDifficulty(null) }}
+            >
               Clear filters
             </Button>
           </div>
         ) : (
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map(topic => (
-              <TopicCard key={topic.id} topic={topic} showCategory showDifficulty showExcerpt />
-            ))}
-          </div>
+          <TopicList topics={filtered} />
         )}
       </div>
     </div>
