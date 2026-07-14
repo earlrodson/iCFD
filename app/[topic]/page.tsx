@@ -1,98 +1,47 @@
-import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
-import { TopicPageContent } from '@/components/topic/TopicPageContent'
-import type { Topic } from '@/data/schema/topic.schema'
+import { HandbookContentSchema } from '@/data/schema/topic.schema'
+import { TopicContent } from '@/components/topic/TopicContent'
+import { readFileSync } from 'fs'
+import { join } from 'path'
 
 interface TopicPageProps {
   params: Promise<{ topic: string }>
 }
 
-export default async function TopicPage({ params }: TopicPageProps) {
-  const { topic } = await params
-  const topicId = decodeURIComponent(topic)
-
-  try {
-    const fs = await import('fs/promises')
-    const path = await import('path')
-
-    const contentPath = path.join(process.cwd(), 'public', 'data', 'content', 'en', 'handbook.json')
-    const contentData = await fs.readFile(contentPath, 'utf-8')
-    const content = JSON.parse(contentData)
-
-    const topicData: Topic | undefined = content.topics?.find((t: { id: string }) => t.id === topicId)
-    if (!topicData) notFound()
-
-    return (
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>}>
-        <TopicPageContent topicId={topicId} fallbackTopic={topicData} />
-      </Suspense>
-    )
-  } catch {
-    notFound()
-  }
+function loadHandbook() {
+  const filePath = join(process.cwd(), 'public', 'data', 'content', 'en', 'handbook.json')
+  const raw = JSON.parse(readFileSync(filePath, 'utf-8')) as unknown
+  return HandbookContentSchema.parse(raw)
 }
 
 export async function generateStaticParams() {
-  try {
-    const fs = await import('fs/promises')
-    const path = await import('path')
-
-    const languages = ['en', 'tl', 'ceb']
-    const params: Array<{ topic: string }> = []
-    const seen = new Set<string>()
-
-    for (const lang of languages) {
-      try {
-        const contentPath = path.join(process.cwd(), 'public', 'data', 'content', lang, 'handbook.json')
-        const contentData = await fs.readFile(contentPath, 'utf-8')
-        const content = JSON.parse(contentData)
-
-        if (content.topics && Array.isArray(content.topics)) {
-          for (const topic of content.topics as { id: string }[]) {
-            const encoded = encodeURIComponent(topic.id)
-            if (!seen.has(encoded)) {
-              seen.add(encoded)
-              params.push({ topic: encoded })
-            }
-          }
-        }
-      } catch {
-        // Missing language file — skip
-      }
-    }
-    return params
-  } catch {
-    return []
-  }
+  const handbook = loadHandbook()
+  return handbook.topics.map((t) => ({ topic: t.id }))
 }
 
 export async function generateMetadata({ params }: TopicPageProps) {
-  const { topic } = await params
-  const topicId = decodeURIComponent(topic)
+  const { topic: topicId } = await params
+  const handbook = loadHandbook()
+  const topic = handbook.topics.find((t) => t.id === topicId)
 
-  try {
-    const fs = await import('fs/promises')
-    const path = await import('path')
+  if (!topic) return { title: 'Topic Not Found' }
 
-    const contentPath = path.join(process.cwd(), 'public', 'data', 'content', 'en', 'handbook.json')
-    const contentData = await fs.readFile(contentPath, 'utf-8')
-    const content = JSON.parse(contentData)
-    const topicData = content.topics?.find((t: { id: string }) => t.id === topicId)
-
-    if (!topicData) return { title: 'Topic Not Found' }
-
-    return {
-      title: `${topicData.title} — Catholic Faith Defender`,
-      description: topicData.question,
-      keywords: topicData.tags?.join(', ') ?? '',
-      openGraph: {
-        title: topicData.title,
-        description: topicData.question,
-        type: 'article',
-        publishedTime: topicData.lastUpdated,
-      },
-    }
-  } catch {
-    return { title: 'Catholic Faith Defender' }
+  return {
+    title: `${topic.title} — Catholic Faith Defender`,
+    description: topic.question,
   }
+}
+
+export default async function TopicPage({ params }: TopicPageProps) {
+  const { topic: topicId } = await params
+  const handbook = loadHandbook()
+  const topic = handbook.topics.find((t) => t.id === topicId)
+
+  if (!topic) notFound()
+
+  return (
+    <div className="min-h-screen bg-background">
+      <TopicContent topic={topic} />
+    </div>
+  )
 }

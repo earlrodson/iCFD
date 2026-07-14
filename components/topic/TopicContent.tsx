@@ -1,288 +1,187 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { BookOpen, User, BookBookmark, Buildings, Crown, FileText } from '@phosphor-icons/react'
-import { PresentationToggle } from '@/components/topic/PresentationToggle'
-import { usePresentationMode } from '@/store/useAppStore'
-import {
-  getAnswerText,
-  getCitations,
-  groupCitationsByType,
-  type PresentationMode,
-} from '@/lib/content/normalize'
-import type { Topic, Citation } from '@/data/schema/topic.schema'
+import Link from 'next/link'
+import { BookOpen, Quotes, Heart, ArrowLeft } from '@phosphor-icons/react'
+import type { Topic } from '@/data/schema/topic.schema'
+import { Badge } from '@/components/ui/Badge'
+import { useFavoritesStore } from '@/store/useFavoritesStore'
+import { formatDate } from '@/lib/utils'
 
 interface TopicContentProps {
   topic: Topic
 }
 
-// ─── Citation renderers ────────────────────────────────────────────────────────
-
-function ScriptureCard({ citations, mode }: { citations: Extract<Citation, { type: 'scripture' }>[], mode: PresentationMode }) {
-  if (citations.length === 0) return null
-
-  return (
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle className="text-xl flex items-center gap-2">
-          <BookOpen weight="light" className="h-5 w-5" />
-          Scripture References
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {citations.map((ref, i) => (
-            <div key={i}>
-              {mode === 'guide' ? (
-                // Guide mode: reference + context only
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold text-primary">{ref.reference}</span>
-                  {ref.version && (
-                    <span className="text-xs text-muted-foreground">{ref.version}</span>
-                  )}
-                  {ref.context && (
-                    <p className="text-sm text-muted-foreground mt-1 italic">→ {ref.context}</p>
-                  )}
-                </div>
-              ) : (
-                // Full / Concise mode: full verse text
-                <div className="border-l-4 border-primary pl-4">
-                  <blockquote className="italic text-base mb-2">
-                    &ldquo;{ref.text}&rdquo;
-                  </blockquote>
-                  <cite className="text-sm text-muted-foreground not-italic">
-                    — {ref.reference}
-                    {ref.version && ` (${ref.version})`}
-                  </cite>
-                  {mode === 'full' && ref.context && (
-                    <p className="text-sm text-muted-foreground mt-2 italic">→ {ref.context}</p>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-function CatechismCard({ citations, mode }: { citations: Extract<Citation, { type: 'catechism' }>[], mode: PresentationMode }) {
-  if (citations.length === 0) return null
-  if (mode === 'guide') return null // catechism hidden in guide mode
-
-  return (
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle className="text-xl flex items-center gap-2">
-          <BookBookmark weight="light" className="h-5 w-5" />
-          Catechism of the Catholic Church
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="flex flex-wrap gap-2">
-          {citations.map((c, i) => (
-            <div key={i} className="flex flex-col">
-              <Badge variant="outline" className="font-mono">{c.reference}</Badge>
-              {mode === 'full' && c.text && (
-                <p className="text-sm text-muted-foreground mt-1 pl-1">{c.text}</p>
-              )}
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-function ChurchFathersCard({ citations, mode }: { citations: Extract<Citation, { type: 'church-father' }>[], mode: PresentationMode }) {
-  if (citations.length === 0) return null
-
-  return (
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle className="text-xl flex items-center gap-2">
-          <User weight="light" className="h-5 w-5" />
-          Church Fathers
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          {citations.map((f, i) => (
-            <div key={i}>
-              {mode === 'guide' ? (
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold">{f.author}</span>
-                  <span className="text-xs text-muted-foreground">{f.source}{f.year && `, ${f.year}`}</span>
-                  {f.context && <p className="text-sm italic text-muted-foreground mt-1">→ {f.context}</p>}
-                </div>
-              ) : (
-                <div className="border-l-4 border-secondary pl-4">
-                  <div className="mb-2">
-                    <span className="font-medium">{f.author}</span>
-                    <span className="text-sm text-muted-foreground ml-2">
-                      ({f.source}{f.year && `, ${f.year}`})
-                    </span>
-                  </div>
-                  <blockquote className="italic">&ldquo;{f.quote}&rdquo;</blockquote>
-                  {mode === 'full' && f.context && (
-                    <p className="text-sm text-muted-foreground mt-2 italic">→ {f.context}</p>
-                  )}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-function CouncilCard({ citations, mode }: { citations: Extract<Citation, { type: 'council' }>[], mode: PresentationMode }) {
-  if (citations.length === 0) return null
-  if (mode === 'guide') return null
-
-  return (
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle className="text-xl flex items-center gap-2">
-          <Buildings weight="light" className="h-5 w-5" />
-          Church Councils
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {citations.map((c, i) => (
-            <div key={i} className="border-l-4 border-amber-500 pl-4">
-              <p className="font-medium">{c.council}</p>
-              <p className="text-sm text-muted-foreground">{c.document}{c.year && ` (${c.year})`}</p>
-              {c.text && mode === 'full' && (
-                <blockquote className="italic mt-2">&ldquo;{c.text}&rdquo;</blockquote>
-              )}
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-function PapalCard({ citations, mode }: { citations: Extract<Citation, { type: 'papal' }>[], mode: PresentationMode }) {
-  if (citations.length === 0) return null
-  if (mode === 'guide') return null
-
-  return (
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle className="text-xl flex items-center gap-2">
-          <Crown weight="light" className="h-5 w-5" />
-          Papal Documents
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {citations.map((c, i) => (
-            <div key={i} className="border-l-4 border-yellow-500 pl-4">
-              <p className="font-medium">{c.document}</p>
-              <p className="text-sm text-muted-foreground">{c.pope}{c.year && ` (${c.year})`}</p>
-              {c.text && mode === 'full' && (
-                <blockquote className="italic mt-2">&ldquo;{c.text}&rdquo;</blockquote>
-              )}
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-function CustomCard({ citations }: { citations: Extract<Citation, { type: 'custom' }>[] }) {
-  if (citations.length === 0) return null
-
-  return (
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle className="text-xl flex items-center gap-2">
-          <FileText weight="light" className="h-5 w-5" />
-          Notes
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
-          {citations.map((c, i) => (
-            <div key={i}>
-              <p className="font-medium text-sm mb-1">{c.label}</p>
-              <p className="text-sm">{c.text}</p>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
-  )
-}
-
-// ─── Main component ────────────────────────────────────────────────────────────
-
 export function TopicContent({ topic }: TopicContentProps) {
-  const mode = usePresentationMode()
-  const answerText = getAnswerText(topic, mode)
-  const citations = getCitations(topic)
-  const grouped = groupCitationsByType(citations)
+  const { toggleFavorite, isFavorite } = useFavoritesStore()
+  const favorited = isFavorite(topic.id)
 
   return (
-    <div>
-      {/* Mode selector */}
-      <div className="flex items-center justify-between mb-6">
-        <PresentationToggle />
-        {mode === 'guide' && (
-          <span className="text-xs text-muted-foreground italic">
-            References + context only — ideal for dialogue
-          </span>
-        )}
+    <article className="mx-auto max-w-3xl px-4 pb-24 pt-4">
+      {/* Back nav */}
+      <div className="mb-6">
+        <Link
+          href="/handbook"
+          className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <ArrowLeft weight="light" size={16} />
+          Back to Handbook
+        </Link>
       </div>
 
-      {/* Question */}
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle className="text-xl">The Question</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-lg leading-relaxed">{topic.question}</p>
-        </CardContent>
-      </Card>
+      {/* Header */}
+      <header className="mb-6">
+        <div className="mb-3 flex flex-wrap items-center gap-2">
+          <Badge variant="category" value={topic.category} />
+          <Badge variant="difficulty" value={topic.difficulty} />
+        </div>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="text-2xl font-bold text-foreground leading-tight">
+            {topic.title}
+          </h1>
+          <button
+            onClick={() => toggleFavorite(topic.id)}
+            className="shrink-0 mt-1 p-2 rounded-xl bg-muted text-muted-foreground hover:text-red-500 transition-colors"
+            aria-label={favorited ? 'Remove from favorites' : 'Add to favorites'}
+          >
+            <Heart
+              weight={favorited ? 'fill' : 'light'}
+              size={22}
+              className={favorited ? 'text-red-500' : ''}
+            />
+          </button>
+        </div>
+        <p className="mt-3 text-base text-muted-foreground italic leading-relaxed">
+          &ldquo;{topic.question}&rdquo;
+        </p>
+      </header>
 
       {/* Answer */}
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle className="text-xl flex items-center gap-2">
-            The Answer
-            {mode === 'concise' && (
-              <Badge variant="secondary" className="text-xs font-normal">Summary</Badge>
-            )}
-            {mode === 'guide' && (
-              <Badge variant="outline" className="text-xs font-normal">Quick ref</Badge>
-            )}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="prose prose-slate max-w-none">
-            {answerText.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="mb-4 leading-relaxed">
-                {paragraph}
-              </p>
+      <section className="mb-8 rounded-2xl bg-card p-5 shadow-sm border border-border">
+        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+          Answer
+        </h2>
+        <p className="text-foreground leading-relaxed whitespace-pre-line">{topic.answer}</p>
+      </section>
+
+      {/* Scripture */}
+      {topic.scripture.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <BookOpen weight="light" size={16} />
+            Scripture References
+          </h2>
+          <div className="space-y-3">
+            {topic.scripture.map((verse, i) => (
+              <div
+                key={i}
+                className="rounded-2xl bg-card p-4 shadow-sm border border-border"
+              >
+                <p className="mb-2 text-sm font-semibold text-primary">
+                  {verse.reference}
+                  {verse.version && (
+                    <span className="ml-2 font-normal text-muted-foreground">
+                      ({verse.version})
+                    </span>
+                  )}
+                </p>
+                <p className="text-sm text-foreground leading-relaxed italic">
+                  &ldquo;{verse.text}&rdquo;
+                </p>
+              </div>
             ))}
           </div>
-        </CardContent>
-      </Card>
+        </section>
+      )}
 
-      {/* Citations — rendered by type */}
-      <ScriptureCard citations={grouped.scripture} mode={mode} />
-      <ChurchFathersCard citations={grouped.churchFathers} mode={mode} />
-      <CatechismCard citations={grouped.catechism} mode={mode} />
-      <CouncilCard citations={grouped.council} mode={mode} />
-      <PapalCard citations={grouped.papal} mode={mode} />
-      <CustomCard citations={grouped.custom} />
-    </div>
+      {/* Catechism */}
+      {topic.catechism && topic.catechism.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            Catechism References
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {topic.catechism.map((ref) => (
+              <span
+                key={ref}
+                className="rounded-lg bg-card border border-border px-3 py-1.5 text-sm font-medium text-foreground shadow-sm"
+              >
+                {ref}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Church Fathers */}
+      {topic.churchFathers && topic.churchFathers.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <Quotes weight="light" size={16} />
+            Church Fathers
+          </h2>
+          <div className="space-y-3">
+            {topic.churchFathers.map((father, i) => (
+              <div
+                key={i}
+                className="rounded-2xl bg-card p-4 shadow-sm border border-border"
+              >
+                <p className="mb-2 text-sm text-foreground leading-relaxed italic">
+                  &ldquo;{father.quote}&rdquo;
+                </p>
+                <div className="mt-2 text-xs text-muted-foreground">
+                  <span className="font-semibold text-foreground">{father.author}</span>
+                  {' — '}
+                  {father.source}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Tags */}
+      {topic.tags.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            Tags
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {topic.tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground"
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Related Topics */}
+      {topic.relatedTopics && topic.relatedTopics.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            Related Topics
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {topic.relatedTopics.map((id) => (
+              <Link
+                key={id}
+                href={`/${id}`}
+                className="rounded-xl bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/20 transition-colors"
+              >
+                {id.replace(/-/g, ' ')}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Footer */}
+      <footer className="text-xs text-muted-foreground">
+        Last updated: {formatDate(topic.lastUpdated)}
+      </footer>
+    </article>
   )
 }

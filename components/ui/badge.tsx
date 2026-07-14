@@ -1,39 +1,46 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cn } from '@/lib/utils'
+import type { Category, Difficulty } from '@/data/schema/topic.schema'
 
-import { cn } from "@/lib/utils"
-
-const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    variants: {
-      variant: {
-        default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
-        // Custom Catholic-themed variants
-        catholic: "border-transparent bg-catholic-blue text-white hover:bg-catholic-blue/80",
-        catholicSecondary: "border-transparent bg-catholic-gold text-white hover:bg-catholic-gold/80"
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-)
-
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof badgeVariants> {}
-
-function Badge({ className, variant, ...props }: BadgeProps) {
-  return (
-    <div className={cn(badgeVariants({ variant }), className)} {...props} />
-  )
+const categoryColors: Record<Category, string> = {
+  bible: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
+  'church-teaching': 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
+  mary: 'bg-pink-100 text-pink-700 dark:bg-pink-900/40 dark:text-pink-300',
+  tradition: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+  saints: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300',
+  papacy: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
+  sacraments: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300',
+  salvation: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
 }
 
-export { Badge, badgeVariants }
+const difficultyColors: Record<Difficulty, string> = {
+  beginner: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+  intermediate: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
+  advanced: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+}
+
+interface BadgeProps {
+  variant: 'category' | 'difficulty'
+  value: Category | Difficulty
+  className?: string
+}
+
+export function Badge({ variant, value, className }: BadgeProps) {
+  const colorClass =
+    variant === 'category'
+      ? categoryColors[value as Category]
+      : difficultyColors[value as Difficulty]
+
+  const label = value === 'church-teaching' ? 'Church Teaching' : value.charAt(0).toUpperCase() + value.slice(1)
+
+  return (
+    <span
+      className={cn(
+        'inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize',
+        colorClass,
+        className,
+      )}
+    >
+      {label}
+    </span>
+  )
+}

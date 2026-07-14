@@ -1,101 +1,56 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    /* iOS system palette */
-    --background: 240 11% 96%;     /* #F2F2F7 */
-    --foreground: 240 1% 11%;      /* #1C1C1E */
-    --card: 0 0% 100%;
-    --card-foreground: 240 1% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 1% 11%;
-    --primary: 211 100% 50%;       /* #007AFF */
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 4% 46%;
-    --muted: 240 5% 94%;
-    --muted-foreground: 240 4% 46%; /* #8E8E93 */
-    --accent: 240 5% 94%;
-    --accent-foreground: 240 1% 11%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 211 100% 50%;
-    --radius: 0.75rem;
-    --catholic-gold: 42 66% 46%;   /* #C59B28 */
-  }
-
-  .dark {
-    --background: 0 0% 0%;         /* #000000 */
-    --foreground: 0 0% 100%;
-    --card: 240 1% 11%;            /* #1C1C1E */
-    --card-foreground: 0 0% 100%;
-    --popover: 240 1% 11%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 211 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 240 2% 17%;       /* #2C2C2E */
-    --secondary-foreground: 0 0% 100%;
-    --muted: 240 2% 17%;
-    --muted-foreground: 240 3% 55%;
-    --accent: 240 2% 17%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 240 2% 22%;          /* #38383A */
-    --input: 240 2% 22%;
-    --ring: 211 100% 50%;
-  }
+/* ── Light mode design tokens ── */
+:root {
+  --background: oklch(96% 0.004 264);
+  --foreground: oklch(13% 0.008 264);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(13% 0.008 264);
+  --primary: oklch(51% 0.215 250);
+  --primary-foreground: oklch(100% 0 0);
+  --muted: oklch(94% 0.004 264);
+  --muted-foreground: oklch(56% 0.008 264);
+  --border: oklch(90% 0.004 264);
+  --radius: 0.75rem;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+/* ── Dark mode design tokens ── */
+.dark {
+  --background: oklch(0% 0 0);
+  --foreground: oklch(100% 0 0);
+  --card: oklch(13% 0.008 264);
+  --card-foreground: oklch(100% 0 0);
+  --primary: oklch(55% 0.215 250);
+  --primary-foreground: oklch(100% 0 0);
+  --muted: oklch(18% 0.008 264);
+  --muted-foreground: oklch(65% 0.008 264);
+  --border: oklch(22% 0.008 264);
 }
 
-/* Scrollbar hidden */
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-/* iOS section header */
-.section-header {
-  @apply text-[11px] font-semibold uppercase tracking-widest text-muted-foreground px-1 mb-2;
-}
-
-/* Scripture reference */
-.scripture-reference {
-  @apply italic text-muted-foreground text-sm mt-2 border-l-2 border-[hsl(var(--catholic-gold))] pl-3;
+/* ── Tailwind 4 theme mapping ── */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --radius-lg: var(--radius);
+  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
 }
 
-/* Church Fathers quote */
-.church-fathers-quote {
-  @apply border-l-4 border-primary bg-primary/5 pl-4 py-3 my-4 rounded-r-xl;
+/* ── Base styles ── */
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.church-fathers-quote blockquote {
-  @apply italic text-base leading-relaxed;
+* {
+  border-color: var(--border);
 }
-
-.church-fathers-quote cite {
-  @apply text-sm text-muted-foreground not-italic mt-1 block;
-}
-
-/* Difficulty chips */
-.difficulty-beginner   { @apply bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-400; }
-.difficulty-intermediate { @apply bg-amber-50 text-amber-700 dark:bg-amber-950 dark:text-amber-400; }
-.difficulty-advanced   { @apply bg-red-50 text-red-700 dark:bg-red-950 dark:text-red-400; }

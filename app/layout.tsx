@@ -1,80 +1,58 @@
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import { PWASetup } from './pwa'
-import { ClientOverlays } from './client-overlays'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Header } from '@/components/layout/Header'
+import { MobileNav } from '@/components/layout/MobileNav'
+import { OfflineBanner } from '@/components/ui/OfflineBanner'
 
 export const metadata: Metadata = {
-  title: {
-    default: 'Catholic Faith Defender',
-    template: '%s | Catholic Faith Defender'
-  },
-  description: 'Catholic apologetics handbook for defending the faith with scripture, tradition, and reason',
-  keywords: ['catholic', 'apologetics', 'faith', 'defender', 'christianity', 'bible', 'catechism'],
-  authors: [{ name: 'Catholic Faith Defender' }],
-  creator: 'Catholic Faith Defender',
-  publisher: 'Catholic Faith Defender',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://catholicdefender.app'),
-  alternates: {
-    canonical: '/',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://catholicdefender.app',
-    title: 'Catholic Faith Defender',
-    description: 'Catholic apologetics handbook for defending the faith with scripture, tradition, and reason',
-    siteName: 'Catholic Faith Defender',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Catholic Faith Defender',
-    description: 'Catholic apologetics handbook for defending the faith',
-    creator: '@catholicdefender',
+  title: 'Catholic Faith Defender',
+  description:
+    'Offline-first Catholic apologetics app with Scripture, Tradition, and Catechism references in English, Tagalog, and Cebuano.',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'iCFD',
   },
 }
 
-export const viewport = {
+export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
+    { media: '(prefers-color-scheme: light)', color: '#F2F2F7' },
+    { media: '(prefers-color-scheme: dark)', color: '#000000' },
   ],
 }
 
+// Dark mode script injected before first paint to avoid flash
+const darkModeScript = `
+(function() {
+  try {
+    var stored = localStorage.getItem('theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  } catch(e) {}
+})();
+`
+
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <div id="root">
-          <PWASetup />
-          <ClientOverlays />
-          {children}
-        </div>
+      <head>
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script dangerouslySetInnerHTML={{ __html: darkModeScript }} />
+      </head>
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <OfflineBanner />
+        <Header />
+        <main className="flex-1">{children}</main>
+        <MobileNav />
       </body>
     </html>
   )

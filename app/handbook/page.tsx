@@ -1,172 +1,212 @@
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { Button } from '@/components/ui/button'
-import { TopicList } from '@/components/handbook/TopicCard'
-import { useAppStore, useAvailableTopics, useCurrentLanguage } from '@/store/useAppStore'
-import { useFavoritesStore } from '@/store/useFavoritesStore'
-import { getCategoryName, type Category } from '@/lib/utils/categories'
-import { CategoryIcon } from '@/components/ui/CategoryIcon'
-import { BookOpen, Sliders } from '@phosphor-icons/react'
-import type { Topic } from '@/data/schema/topic.schema'
+import { useEffect, useState } from 'react'
+import {
+  BookOpen,
+  Buildings,
+  Flower,
+  Scroll,
+  Star,
+  Crown,
+  Drop,
+  Heart,
+  SortAscending,
+} from '@phosphor-icons/react'
+import { useAppStore } from '@/store/useAppStore'
+import { TopicCard } from '@/components/topic/TopicCard'
+import { Badge } from '@/components/ui/Badge'
+import { cn } from '@/lib/utils'
+import type { Category, Difficulty, Topic } from '@/data/schema/topic.schema'
 
-const categories = [
-  'all',
-  'sacraments',
-  'mary',
-  'papacy',
-  'salvation',
-  'bible',
-  'saints',
-  'tradition',
-  'church-teaching',
-] as const
+const categoryItems: { value: Category | 'all'; label: string; Icon: React.ElementType }[] = [
+  { value: 'all', label: 'All Topics', Icon: BookOpen },
+  { value: 'bible', label: 'Bible', Icon: BookOpen },
+  { value: 'church-teaching', label: 'Church Teaching', Icon: Buildings },
+  { value: 'mary', label: 'Mary', Icon: Flower },
+  { value: 'tradition', label: 'Tradition', Icon: Scroll },
+  { value: 'saints', label: 'Saints', Icon: Star },
+  { value: 'papacy', label: 'Papacy', Icon: Crown },
+  { value: 'sacraments', label: 'Sacraments', Icon: Drop },
+  { value: 'salvation', label: 'Salvation', Icon: Heart },
+]
 
-type SortOption = 'alphabetical' | 'newest' | 'difficulty-asc' | 'difficulty-desc'
-type Difficulty = 'beginner' | 'intermediate' | 'advanced'
+const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced']
 
-const difficultyOrder: Record<Difficulty, number> = { beginner: 0, intermediate: 1, advanced: 2 }
+type SortOption = 'title' | 'difficulty' | 'recent'
 
-function HandbookContent() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  const { initialize } = useAppStore()
-  const { loadFavorites } = useFavoritesStore()
-  const availableTopics = useAvailableTopics()
-  const language = useCurrentLanguage()
-
-  const [sort, setSort] = useState<SortOption>(
-    (searchParams.get('sort') as SortOption) ?? 'alphabetical'
-  )
-  const [selectedCategory, setSelectedCategory] = useState<string>(
-    searchParams.get('category') ?? 'all'
-  )
-  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | null>(
-    (searchParams.get('difficulty') as Difficulty) ?? null
-  )
-
-  useEffect(() => {
-    initialize().then(() => loadFavorites()).catch(console.error)
-  }, [initialize, loadFavorites])
-
-  // Sync URL params
-  useEffect(() => {
-    const params = new URLSearchParams()
-    if (selectedCategory !== 'all') params.set('category', selectedCategory)
-    if (sort !== 'alphabetical') params.set('sort', sort)
-    if (selectedDifficulty) params.set('difficulty', selectedDifficulty)
-    router.replace(`/handbook?${params.toString()}`, { scroll: false })
-  }, [selectedCategory, sort, selectedDifficulty, router])
-
-  const filtered = availableTopics
-    .filter(t => selectedCategory === 'all' || t.category === selectedCategory)
-    .filter(t => !selectedDifficulty || t.difficulty === selectedDifficulty)
-    .sort((a, b) => {
-      switch (sort) {
-        case 'alphabetical': return a.title.localeCompare(b.title)
-        case 'newest': return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
-        case 'difficulty-asc': return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty]
-        case 'difficulty-desc': return difficultyOrder[b.difficulty] - difficultyOrder[a.difficulty]
-        default: return 0
-      }
-    })
-
-  return (
-    <div className="min-h-screen bg-background pb-20 md:pb-0">
-      {/* Navigation bar */}
-      <div className="bg-background/80 backdrop-blur-xl sticky top-0 z-10 border-b border-border/60">
-        <div className="container mx-auto px-4 max-w-2xl">
-          <div className="flex items-center justify-between h-12">
-            <h1 className="text-[17px] font-semibold">Handbook</h1>
-            <div className="flex items-center gap-2">
-              <Sliders weight="light" className="h-4 w-4 text-muted-foreground" />
-              <select
-                className="text-[13px] text-foreground bg-transparent border-0 outline-none font-medium"
-                value={sort}
-                onChange={e => setSort(e.target.value as SortOption)}
-              >
-                <option value="alphabetical">A → Z</option>
-                <option value="newest">Newest</option>
-                <option value="difficulty-asc">Easiest first</option>
-                <option value="difficulty-desc">Hardest first</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto px-4 max-w-2xl py-4 space-y-4">
-        {/* Category pills */}
-        <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`flex-shrink-0 px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-colors ${
-                selectedCategory === cat
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-card text-muted-foreground shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
-              }`}
-            >
-              {cat === 'all' ? 'All' : (
-                <span className="flex items-center gap-1.5">
-                  <CategoryIcon category={cat} className="h-3.5 w-3.5" />
-                  {getCategoryName(cat as Category)}
-                </span>
-              )}
-            </button>
-          ))}
-        </div>
-
-        {/* Difficulty chips */}
-        <div className="flex gap-2">
-          {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(d => (
-            <button
-              key={d}
-              onClick={() => setSelectedDifficulty(selectedDifficulty === d ? null : d)}
-              className={`px-3 py-1 rounded-full text-[12px] font-medium transition-colors ${
-                selectedDifficulty === d
-                  ? 'bg-primary text-primary-foreground'
-                  : 'bg-card text-muted-foreground shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
-              }`}
-            >
-              {d.charAt(0).toUpperCase() + d.slice(1)}
-            </button>
-          ))}
-        </div>
-
-        {/* Result count */}
-        <p className="section-header">{filtered.length} topic{filtered.length !== 1 ? 's' : ''}</p>
-
-        {/* Topic list */}
-        {filtered.length === 0 ? (
-          <div className="rounded-2xl bg-card p-10 text-center shadow-sm">
-            <BookOpen weight="light" className="h-8 w-8 mx-auto mb-3 text-muted-foreground/40" />
-            <p className="text-[15px] font-medium mb-1">No topics found</p>
-            <p className="text-[13px] text-muted-foreground mb-4">Try a different category or difficulty</p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="rounded-xl"
-              onClick={() => { setSelectedCategory('all'); setSelectedDifficulty(null) }}
-            >
-              Clear filters
-            </Button>
-          </div>
-        ) : (
-          <TopicList topics={filtered} />
-        )}
-      </div>
-    </div>
-  )
+function sortTopics(topics: Topic[], sort: SortOption): Topic[] {
+  return [...topics].sort((a, b) => {
+    if (sort === 'title') return a.title.localeCompare(b.title)
+    if (sort === 'recent') return new Date(b.lastUpdated).getTime() - new Date(a.lastUpdated).getTime()
+    if (sort === 'difficulty') {
+      const order: Record<Difficulty, number> = { beginner: 0, intermediate: 1, advanced: 2 }
+      return order[a.difficulty] - order[b.difficulty]
+    }
+    return 0
+  })
 }
 
 export default function HandbookPage() {
+  const { availableTopics, loading, error, initialize } = useAppStore()
+  const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all')
+  const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | ''>('')
+  const [sort, setSort] = useState<SortOption>('title')
+
+  useEffect(() => {
+    if (availableTopics.length === 0) initialize()
+  }, [availableTopics.length, initialize])
+
+  let filtered = selectedCategory === 'all'
+    ? availableTopics
+    : availableTopics.filter((t) => t.category === selectedCategory)
+
+  if (selectedDifficulty) {
+    filtered = filtered.filter((t) => t.difficulty === selectedDifficulty)
+  }
+
+  filtered = sortTopics(filtered, sort)
+
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>}>
-      <HandbookContent />
-    </Suspense>
+    <div className="min-h-screen bg-background">
+      <div className="mx-auto max-w-5xl">
+        {/* Page header */}
+        <div className="px-4 pt-6 pb-4">
+          <h1 className="text-2xl font-bold text-foreground">Handbook</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Browse all {availableTopics.length} apologetics topics
+          </p>
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-0">
+          {/* Sidebar — desktop */}
+          <aside className="hidden md:block w-52 shrink-0 px-4 pb-24">
+            <nav className="space-y-1 sticky top-20">
+              {categoryItems.map(({ value, label, Icon }) => {
+                const active = selectedCategory === value
+                const count =
+                  value === 'all'
+                    ? availableTopics.length
+                    : availableTopics.filter((t) => t.category === value).length
+                return (
+                  <button
+                    key={value}
+                    onClick={() => setSelectedCategory(value)}
+                    className={cn(
+                      'w-full flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm text-left transition-colors',
+                      active
+                        ? 'bg-primary text-primary-foreground font-medium'
+                        : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                    )}
+                  >
+                    <Icon weight={active ? 'fill' : 'light'} size={16} />
+                    <span className="flex-1">{label}</span>
+                    <span className={cn('text-xs', active ? 'text-primary-foreground/70' : 'text-muted-foreground')}>
+                      {count}
+                    </span>
+                  </button>
+                )
+              })}
+            </nav>
+          </aside>
+
+          {/* Mobile category tabs */}
+          <div className="md:hidden px-4 pb-3">
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
+              {categoryItems.map(({ value, label, Icon }) => {
+                const active = selectedCategory === value
+                return (
+                  <button
+                    key={value}
+                    onClick={() => setSelectedCategory(value)}
+                    className={cn(
+                      'flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+                      active
+                        ? 'bg-primary text-primary-foreground'
+                        : 'bg-card border border-border text-muted-foreground',
+                    )}
+                  >
+                    <Icon weight={active ? 'fill' : 'light'} size={14} />
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Main content */}
+          <main className="flex-1 px-4 pb-24 min-w-0">
+            {/* Filters row */}
+            <div className="mb-4 flex items-center gap-2 flex-wrap">
+              {/* Difficulty pills */}
+              <div className="flex gap-1.5">
+                {difficulties.map((d) => (
+                  <button
+                    key={d}
+                    onClick={() => setSelectedDifficulty(selectedDifficulty === d ? '' : d)}
+                    className={cn(
+                      'rounded-full px-2.5 py-1 text-xs font-medium transition-colors',
+                      selectedDifficulty === d
+                        ? 'bg-foreground text-background'
+                        : 'bg-card border border-border text-muted-foreground hover:text-foreground',
+                    )}
+                  >
+                    {d.charAt(0).toUpperCase() + d.slice(1)}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex-1" />
+
+              {/* Sort */}
+              <div className="flex items-center gap-1.5">
+                <SortAscending weight="light" size={14} className="text-muted-foreground" />
+                <select
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value as SortOption)}
+                  className="rounded-lg bg-card border border-border px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                >
+                  <option value="title">Title A–Z</option>
+                  <option value="difficulty">Difficulty</option>
+                  <option value="recent">Most Recent</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Count */}
+            {!loading && (
+              <p className="mb-3 text-xs text-muted-foreground">
+                {filtered.length} {filtered.length === 1 ? 'topic' : 'topics'}
+              </p>
+            )}
+
+            {loading && (
+              <div className="flex items-center justify-center py-16">
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+              </div>
+            )}
+
+            {error && (
+              <div className="rounded-2xl bg-red-50 p-4 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+                {error}
+              </div>
+            )}
+
+            {!loading && !error && filtered.length === 0 && (
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <p className="text-muted-foreground">No topics found for the selected filters.</p>
+              </div>
+            )}
+
+            {!loading && !error && filtered.length > 0 && (
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {filtered.map((topic) => (
+                  <TopicCard key={topic.id} topic={topic} />
+                ))}
+              </div>
+            )}
+          </main>
+        </div>
+      </div>
+    </div>
   )
 }
