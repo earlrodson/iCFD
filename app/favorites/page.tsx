@@ -9,7 +9,7 @@ import { useFavoritesStore, useFavoriteActions } from '@/store/useFavoritesStore
 import { db } from '@/lib/db/indexeddb'
 import { getCategoryColor, getCategoryName, type Category } from '@/lib/utils/categories'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
-import { Heart, BookOpen, Download, Upload, Trash2, ArrowUpDown, LayoutList } from 'lucide-react'
+import { Heart, BookOpen, DownloadSimple, UploadSimple, Trash, ArrowsDownUp, List } from '@phosphor-icons/react'
 import type { Topic } from '@/data/schema/topic.schema'
 
 type SortOption = 'date-added' | 'alphabetical' | 'category' | 'difficulty'
@@ -145,7 +145,7 @@ export default function FavoritesPage() {
         title="Remove from favorites"
         aria-label={`Remove ${topic.title} from favorites`}
       >
-        <Trash2 className="h-4 w-4" />
+        <Trash weight="light" className="h-4 w-4" />
       </button>
     </div>
   )
@@ -157,17 +157,17 @@ export default function FavoritesPage() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Heart className="h-5 w-5 text-primary" />
+              <Heart weight="light" className="h-5 w-5 text-primary" />
               <h1 className="text-xl font-bold">Favorites</h1>
               <Badge variant="secondary">{favoriteIds.length}</Badge>
             </div>
             {favoriteIds.length > 0 && (
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" onClick={handleExport} title="Export favorites">
-                  <Download className="h-4 w-4" />
+                  <DownloadSimple weight="light" className="h-4 w-4" />
                 </Button>
                 <Button variant="outline" size="sm" onClick={() => importRef.current?.click()} title="Import favorites">
-                  <Upload className="h-4 w-4" />
+                  <UploadSimple weight="light" className="h-4 w-4" />
                 </Button>
                 <input ref={importRef} type="file" accept=".json" className="hidden" onChange={handleImport} />
               </div>
@@ -188,12 +188,12 @@ export default function FavoritesPage() {
           <div className="text-center py-16 text-muted-foreground">Loading…</div>
         ) : sorted.length === 0 ? (
           <div className="text-center py-16 text-muted-foreground">
-            <Heart className="h-12 w-12 mx-auto mb-4 opacity-30" />
+            <Heart weight="light" className="h-12 w-12 mx-auto mb-4 opacity-30" />
             <p className="text-lg font-medium mb-2">No favorites yet</p>
             <p className="text-sm mb-6">Save topics you want to revisit quickly</p>
             <Button asChild>
               <Link href="/handbook">
-                <BookOpen className="h-4 w-4 mr-2" />
+                <BookOpen weight="light" className="h-4 w-4 mr-2" />
                 Browse Handbook
               </Link>
             </Button>
@@ -214,11 +214,11 @@ export default function FavoritesPage() {
                       : 'border-muted-foreground/30 text-muted-foreground hover:border-primary/50'
                   }`}
                 >
-                  <LayoutList className="h-3 w-3" />
+                  <List weight="light" className="h-3 w-3" />
                   Group by category
                 </button>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <ArrowUpDown className="h-3 w-3" />
+                  <ArrowsDownUp weight="light" className="h-3 w-3" />
                   <select
                     className="text-xs border rounded px-2 py-1 bg-background"
                     value={sort}

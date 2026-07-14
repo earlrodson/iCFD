@@ -2,7 +2,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { BookOpen, User, BookMarked, Landmark, Crown, FileText } from 'lucide-react'
+import { BookOpen, User, BookBookmark, Buildings, Crown, FileText } from '@phosphor-icons/react'
 import { PresentationToggle } from '@/components/topic/PresentationToggle'
 import { usePresentationMode } from '@/store/useAppStore'
 import {
@@ -26,7 +26,7 @@ function ScriptureCard({ citations, mode }: { citations: Extract<Citation, { typ
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
-          <BookOpen className="h-5 w-5" />
+          <BookOpen weight="light" className="h-5 w-5" />
           Scripture References
         </CardTitle>
       </CardHeader>
@@ -76,7 +76,7 @@ function CatechismCard({ citations, mode }: { citations: Extract<Citation, { typ
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
-          <BookMarked className="h-5 w-5" />
+          <BookBookmark weight="light" className="h-5 w-5" />
           Catechism of the Catholic Church
         </CardTitle>
       </CardHeader>
@@ -103,7 +103,7 @@ function ChurchFathersCard({ citations, mode }: { citations: Extract<Citation, {
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
-          <User className="h-5 w-5" />
+          <User weight="light" className="h-5 w-5" />
           Church Fathers
         </CardTitle>
       </CardHeader>
@@ -147,7 +147,7 @@ function CouncilCard({ citations, mode }: { citations: Extract<Citation, { type:
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
-          <Landmark className="h-5 w-5" />
+          <Buildings weight="light" className="h-5 w-5" />
           Church Councils
         </CardTitle>
       </CardHeader>
@@ -176,7 +176,7 @@ function PapalCard({ citations, mode }: { citations: Extract<Citation, { type: '
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
-          <Crown className="h-5 w-5" />
+          <Crown weight="light" className="h-5 w-5" />
           Papal Documents
         </CardTitle>
       </CardHeader>
@@ -204,7 +204,7 @@ function CustomCard({ citations }: { citations: Extract<Citation, { type: 'custo
     <Card className="mb-6">
       <CardHeader>
         <CardTitle className="text-xl flex items-center gap-2">
-          <FileText className="h-5 w-5" />
+          <FileText weight="light" className="h-5 w-5" />
           Notes
         </CardTitle>
       </CardHeader>

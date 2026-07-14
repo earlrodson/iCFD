@@ -9,7 +9,7 @@ import { useAppStore, useAvailableTopics, useCurrentLanguage } from '@/store/use
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useSearchStore } from '@/store/useSearchStore'
 import { searchEngine } from '@/lib/search/minisearch-engine'
-import { Search, X, Clock, SlidersHorizontal, BookOpen, Quote, ScrollText } from 'lucide-react'
+import { MagnifyingGlass, X, Clock, Sliders, BookOpen, Quotes, Scroll } from '@phosphor-icons/react'
 import Link from 'next/link'
 import { getCategoryColor, getCategoryName, type Category } from '@/lib/utils/categories'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
@@ -164,7 +164,7 @@ function SearchContent() {
 
           <div className="flex items-center gap-2">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <MagnifyingGlass weight="light" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 ref={inputRef}
                 value={query}
@@ -180,7 +180,7 @@ function SearchContent() {
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
                   aria-label="Clear search"
                 >
-                  <X className="h-4 w-4" />
+                  <X weight="light" className="h-4 w-4" />
                 </button>
               )}
             </div>
@@ -189,7 +189,7 @@ function SearchContent() {
               size="sm"
               onClick={() => setShowFilters(s => !s)}
             >
-              <SlidersHorizontal className="h-4 w-4" />
+              <Sliders weight="light" className="h-4 w-4" />
               {filterCount > 0 && <span className="ml-1 text-xs">{filterCount}</span>}
             </Button>
           </div>
@@ -245,8 +245,8 @@ function SearchContent() {
                 <div className="flex flex-wrap gap-2">
                   {[
                     { label: 'Scripture', icon: BookOpen, active: hasScripture, toggle: () => setHasScripture(v => !v) },
-                    { label: 'Church Fathers', icon: Quote, active: hasFathers, toggle: () => setHasFathers(v => !v) },
-                    { label: 'Catechism', icon: ScrollText, active: hasCatechism, toggle: () => setHasCatechism(v => !v) },
+                    { label: 'Church Fathers', icon: Quotes, active: hasFathers, toggle: () => setHasFathers(v => !v) },
+                    { label: 'Catechism', icon: Scroll, active: hasCatechism, toggle: () => setHasCatechism(v => !v) },
                   ].map(({ label, icon: Icon, active, toggle }) => (
                     <button
                       key={label}
@@ -257,7 +257,7 @@ function SearchContent() {
                           : 'border-muted-foreground/30 text-muted-foreground hover:border-primary/50'
                       }`}
                     >
-                      <Icon className="h-3 w-3" />
+                      <Icon weight="light" className="h-3 w-3" />
                       {label}
                     </button>
                   ))}
@@ -287,7 +287,7 @@ function SearchContent() {
               <div>
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-sm font-medium text-muted-foreground flex items-center gap-1">
-                    <Clock className="h-4 w-4" /> Recent searches
+                    <Clock weight="light" className="h-4 w-4" /> Recent searches
                   </p>
                   <button onClick={clearHistory} className="text-xs text-muted-foreground hover:text-foreground">
                     Clear all
@@ -311,7 +311,7 @@ function SearchContent() {
               </div>
             ) : (
               <div className="text-center py-16 text-muted-foreground">
-                <Search className="h-12 w-12 mx-auto mb-4 opacity-30" />
+                <MagnifyingGlass weight="light" className="h-12 w-12 mx-auto mb-4 opacity-30" />
                 <p className="font-medium">Search apologetics topics</p>
                 <p className="text-sm mt-1">Try &ldquo;baptism&rdquo;, &ldquo;Mary&rdquo;, or &ldquo;papal authority&rdquo;</p>
                 <p className="text-xs mt-2 opacity-60">Use ↑↓ arrow keys to navigate results, Enter to open</p>
@@ -327,7 +327,7 @@ function SearchContent() {
             </p>
             {results.length === 0 ? (
               <div className="text-center py-16 text-muted-foreground">
-                <Search className="h-12 w-12 mx-auto mb-4 opacity-30" />
+                <MagnifyingGlass weight="light" className="h-12 w-12 mx-auto mb-4 opacity-30" />
                 <p className="font-medium">No results found</p>
                 <p className="text-sm mt-1">Try different keywords or remove filters</p>
               </div>

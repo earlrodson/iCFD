@@ -12,7 +12,7 @@ import { useFavoritesStore, useFavoritesCount } from '@/store/useFavoritesStore'
 import { useProgressStore, useReadCount } from '@/store/useProgressStore'
 import { useViewHistoryStore, useRecentViews } from '@/store/useViewHistoryStore'
 import { usePathsStore } from '@/store/usePathsStore'
-import { Shield, Moon, Sun, BookOpen, Heart, CheckCircle, Map, Download, Loader2, ChevronRight } from 'lucide-react'
+import { Shield, Moon, Sun, BookOpen, Heart, CheckCircle, MapTrifold, DownloadSimple, CircleNotch, CaretRight } from '@phosphor-icons/react'
 import { getCategoryName, type Category } from '@/lib/utils/categories'
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -101,7 +101,7 @@ export default function HomePage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
         <div className="text-center space-y-3">
-          <Loader2 className="h-8 w-8 animate-spin text-primary mx-auto" />
+          <CircleNotch weight="light" className="h-8 w-8 animate-spin text-primary mx-auto" />
           <p className="text-[13px] text-muted-foreground">Loading…</p>
         </div>
       </div>
@@ -126,7 +126,7 @@ export default function HomePage() {
       <header className="bg-background/80 backdrop-blur-xl sticky top-0 z-30 border-b border-border/60">
         <div className="container mx-auto px-4 max-w-2xl">
           <div className="flex items-center gap-3 h-12">
-            <Shield className="h-5 w-5 text-primary shrink-0" />
+            <Shield weight="light" className="h-5 w-5 text-primary shrink-0" />
             <h1 className="text-[17px] font-semibold flex-1 text-foreground">iCFD</h1>
             <div className="flex items-center gap-1 shrink-0">
               <LanguageSwitcher />
@@ -134,7 +134,7 @@ export default function HomePage() {
                 onClick={toggleDark}
                 className="h-8 w-8 flex items-center justify-center rounded-full text-muted-foreground hover:text-foreground transition-colors"
               >
-                {isDark ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
+                {isDark ? <Sun weight="light" className="h-[18px] w-[18px]" /> : <Moon weight="light" className="h-[18px] w-[18px]" />}
               </button>
             </div>
           </div>
@@ -166,7 +166,7 @@ export default function HomePage() {
                     href={`/search?q=${encodeURIComponent(searchQuery)}`}
                     className="flex items-center justify-center gap-1 mt-2 text-[14px] text-primary font-medium py-2"
                   >
-                    See all {filteredTopics.length} results <ChevronRight className="h-4 w-4" />
+                    See all {filteredTopics.length} results <CaretRight weight="light" className="h-4 w-4" />
                   </Link>
                 )}
               </>
@@ -180,13 +180,13 @@ export default function HomePage() {
             <section className="grid grid-cols-4 gap-2">
               {[
                 { label: 'Topics', value: availableTopics.length, icon: BookOpen, href: '/handbook' },
-                { label: 'Paths', value: paths.length, icon: Map, href: '/paths' },
+                { label: 'Paths', value: paths.length, icon: MapTrifold, href: '/paths' },
                 { label: 'Saved', value: favCount, icon: Heart, href: '/favorites' },
                 { label: 'Read', value: readCount, icon: CheckCircle, href: null },
               ].map(({ label, value, icon: Icon, href }) => {
                 const inner = (
                   <div className="rounded-2xl bg-card shadow-[0_1px_4px_rgba(0,0,0,0.07),0_0_1px_rgba(0,0,0,0.04)] p-3 flex flex-col items-center gap-1 active:bg-muted transition-colors">
-                    <Icon className="h-5 w-5 text-primary" />
+                    <Icon weight="light" className="h-5 w-5 text-primary" />
                     <span className="text-[20px] font-bold leading-none">{value}</span>
                     <span className="text-[10px] text-muted-foreground font-medium">{label}</span>
                   </div>
@@ -247,7 +247,7 @@ export default function HomePage() {
                             <span className="text-[11px] text-muted-foreground shrink-0">{completed}/{total}</span>
                           </div>
                         </div>
-                        <ChevronRight className="h-4 w-4 text-muted-foreground/50 shrink-0" />
+                        <CaretRight weight="light" className="h-4 w-4 text-muted-foreground/50 shrink-0" />
                       </Link>
                     )
                   })}
@@ -289,11 +289,11 @@ export default function HomePage() {
                   className="flex items-center gap-1.5 text-[14px] text-primary font-medium disabled:opacity-50"
                 >
                   {downloading ? (
-                    <><Loader2 className="h-4 w-4 animate-spin" />Caching</>
+                    <><CircleNotch weight="light" className="h-4 w-4 animate-spin" />Caching</>
                   ) : downloadDone ? (
-                    <><CheckCircle className="h-4 w-4 text-green-500" />Done</>
+                    <><CheckCircle weight="light" className="h-4 w-4 text-green-500" />Done</>
                   ) : (
-                    <><Download className="h-4 w-4" />Download</>
+                    <><DownloadSimple weight="light" className="h-4 w-4" />Download</>
                   )}
                 </button>
               </div>

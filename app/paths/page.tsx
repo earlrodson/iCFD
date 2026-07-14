@@ -4,13 +4,13 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { usePathsStore } from '@/store/usePathsStore'
 import { useProgressStore } from '@/store/useProgressStore'
-import { BookOpen, Clock, ChevronRight, GraduationCap, Shield, Flower2 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { BookOpen, Clock, CaretRight, GraduationCap, Shield, Flower } from '@phosphor-icons/react'
+import type { Icon } from '@phosphor-icons/react'
 
-const PATH_ICONS: Record<string, LucideIcon> = {
+const PATH_ICONS: Record<string, Icon> = {
   'new-catholic': GraduationCap,
   'defend-the-faith': Shield,
-  'marian-apologetics': Flower2,
+  'marian-apologetics': Flower,
 }
 
 export default function PathsPage() {
@@ -49,16 +49,16 @@ export default function PathsPage() {
                 className="flex items-center gap-4 px-4 py-4 active:bg-muted transition-colors"
               >
                 <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                  <PathIcon className="h-5 w-5 text-primary" />
+                  <PathIcon weight="light" className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[16px] font-semibold text-foreground leading-snug">{path.title}</p>
                   <div className="flex items-center gap-2 mt-0.5 mb-2">
                     <span className="text-[12px] text-muted-foreground flex items-center gap-1">
-                      <BookOpen className="h-3 w-3" />{total} topics
+                      <BookOpen weight="light" className="h-3 w-3" />{total} topics
                     </span>
                     <span className="text-[12px] text-muted-foreground flex items-center gap-1">
-                      <Clock className="h-3 w-3" />~{path.estimatedMinutes} min
+                      <Clock weight="light" className="h-3 w-3" />~{path.estimatedMinutes} min
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -68,7 +68,7 @@ export default function PathsPage() {
                     <span className="text-[11px] text-muted-foreground shrink-0">{completed}/{total}</span>
                   </div>
                 </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground/50 shrink-0" />
+                <CaretRight weight="light" className="h-4 w-4 text-muted-foreground/50 shrink-0" />
               </Link>
             )
           })}
@@ -76,7 +76,7 @@ export default function PathsPage() {
 
         {paths.length === 0 && (
           <div className="rounded-2xl bg-card p-10 text-center shadow-sm">
-            <BookOpen className="h-8 w-8 mx-auto mb-3 text-muted-foreground/30" />
+            <BookOpen weight="light" className="h-8 w-8 mx-auto mb-3 text-muted-foreground/30" />
             <p className="text-[14px] text-muted-foreground">Loading paths…</p>
           </div>
         )}

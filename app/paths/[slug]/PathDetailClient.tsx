@@ -10,13 +10,13 @@ import { useProgressStore } from '@/store/useProgressStore'
 import { useAppStore, useAvailableTopics } from '@/store/useAppStore'
 import { getCategoryName, type Category } from '@/lib/utils/categories'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
-import { CheckCircle, Circle, BookOpen, Clock, ArrowLeft, ChevronRight, GraduationCap, Shield, Flower2 } from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+import { CheckCircle, Circle, BookOpen, Clock, ArrowLeft, CaretRight, GraduationCap, Shield, Flower } from '@phosphor-icons/react'
+import type { Icon } from '@phosphor-icons/react'
 
-const PATH_ICONS: Record<string, LucideIcon> = {
+const PATH_ICONS: Record<string, Icon> = {
   'new-catholic': GraduationCap,
   'defend-the-faith': Shield,
-  'marian-apologetics': Flower2,
+  'marian-apologetics': Flower,
 }
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -56,10 +56,10 @@ export default function PathDetailClient({ params }: Props) {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-3">
             <Button variant="ghost" size="icon" asChild className="-ml-2">
-              <Link href="/paths"><ArrowLeft className="h-4 w-4" /></Link>
+              <Link href="/paths"><ArrowLeft weight="light" className="h-4 w-4" /></Link>
             </Button>
             <div className="flex-1 min-w-0 flex items-center gap-2">
-              {(() => { const PathIcon = PATH_ICONS[path.slug] ?? BookOpen; return <PathIcon className="h-5 w-5 text-primary" /> })()}
+              {(() => { const PathIcon = PATH_ICONS[path.slug] ?? BookOpen; return <PathIcon weight="light" className="h-5 w-5 text-primary" /> })()}
               <h1 className="font-bold text-lg truncate">{path.title}</h1>
             </div>
           </div>
@@ -69,8 +69,8 @@ export default function PathDetailClient({ params }: Props) {
       <div className="container mx-auto px-4 py-6 max-w-2xl">
         <p className="text-muted-foreground text-sm mb-4">{path.description}</p>
         <div className="flex flex-wrap gap-3 text-xs text-muted-foreground mb-6">
-          <span className="flex items-center gap-1"><BookOpen className="h-3.5 w-3.5" /> {total} topics</span>
-          <span className="flex items-center gap-1"><Clock className="h-3.5 w-3.5" /> ~{path.estimatedMinutes} min</span>
+          <span className="flex items-center gap-1"><BookOpen weight="light" className="h-3.5 w-3.5" /> {total} topics</span>
+          <span className="flex items-center gap-1"><Clock weight="light" className="h-3.5 w-3.5" /> ~{path.estimatedMinutes} min</span>
           <Badge variant="outline" className="text-xs capitalize">{path.difficulty}</Badge>
         </div>
 
@@ -91,7 +91,7 @@ export default function PathDetailClient({ params }: Props) {
         {nextTopicId && (
           <Button className="w-full mb-6" asChild>
             <Link href={`/${encodeURIComponent(nextTopicId)}?path=${slug}`}>
-              Continue Path <ChevronRight className="h-4 w-4 ml-2" />
+              Continue Path <CaretRight weight="light" className="h-4 w-4 ml-2" />
             </Link>
           </Button>
         )}
@@ -108,8 +108,8 @@ export default function PathDetailClient({ params }: Props) {
               >
                 <span className="text-xs text-muted-foreground w-5 shrink-0 text-center font-medium">{idx + 1}</span>
                 {isRead
-                  ? <CheckCircle className="h-5 w-5 text-green-500 shrink-0" />
-                  : <Circle className="h-5 w-5 text-muted-foreground/40 shrink-0" />
+                  ? <CheckCircle weight="light" className="h-5 w-5 text-green-500 shrink-0" />
+                  : <Circle weight="light" className="h-5 w-5 text-muted-foreground/40 shrink-0" />
                 }
                 <div className="flex-1 min-w-0">
                   {topic ? (
@@ -124,7 +124,7 @@ export default function PathDetailClient({ params }: Props) {
                     <p className="text-sm text-muted-foreground">{topicId}</p>
                   )}
                 </div>
-                <ChevronRight className="h-4 w-4 text-muted-foreground shrink-0" />
+                <CaretRight weight="light" className="h-4 w-4 text-muted-foreground shrink-0" />
               </Link>
             )
           })}

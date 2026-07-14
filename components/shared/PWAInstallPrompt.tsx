@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { X, Download, Smartphone, Monitor } from 'lucide-react'
+import { X, DownloadSimple, DeviceMobile, Monitor } from '@phosphor-icons/react'
 import { usePWAInstall } from '@/app/pwa'
 import { cn } from '@/lib/utils'
 
@@ -69,13 +69,13 @@ export function PWAInstallPrompt({
     <div className={cn("fixed top-4 right-4 left-4 z-50 md:left-auto md:right-4 md:w-auto md:max-w-md", className)}>
       <Alert className="border-catholic-blue/50 bg-catholic-blue/10 dark:bg-catholic-blue/5 dark:border-catholic-blue">
         {showIcon && (
-          <Download className="h-4 w-4 text-catholic-blue" />
+          <DownloadSimple weight="light" className="h-4 w-4 text-catholic-blue" />
         )}
         <AlertTitle className="text-catholic-blue flex items-center space-x-2">
           <span>Install Catholic Faith Defender</span>
           <div className="flex space-x-1">
-            <Smartphone className="h-3 w-3" />
-            <Monitor className="h-3 w-3" />
+            <DeviceMobile weight="light" className="h-3 w-3" />
+            <Monitor weight="light" className="h-3 w-3" />
           </div>
         </AlertTitle>
         <AlertDescription className="text-catholic-blue/90 dark:text-catholic-blue/80">
@@ -98,7 +98,7 @@ export function PWAInstallPrompt({
                   </>
                 ) : (
                   <>
-                    <Download className="h-3 w-3 mr-2" />
+                    <DownloadSimple weight="light" className="h-3 w-3 mr-2" />
                     Install App
                   </>
                 )}
@@ -111,7 +111,7 @@ export function PWAInstallPrompt({
                   onClick={handleDismiss}
                   className="text-catholic-blue hover:bg-catholic-blue/10"
                 >
-                  <X className="h-3 w-3 mr-1" />
+                  <X weight="light" className="h-3 w-3 mr-1" />
                   Not now
                 </Button>
               )}
@@ -161,7 +161,7 @@ export function FloatingInstallButton({ className }: { className?: string }) {
         <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
       ) : (
         <>
-          <Download className="h-4 w-4" />
+          <DownloadSimple weight="light" className="h-4 w-4" />
           <span className="ml-2 hidden sm:inline">Install</span>
         </>
       )}
@@ -179,7 +179,7 @@ export function InstallInstructions({ isOpen, onClose }: { isOpen: boolean; onCl
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold">How to Install</h3>
           <Button variant="ghost" size="icon" onClick={onClose}>
-            <X className="h-4 w-4" />
+            <X weight="light" className="h-4 w-4" />
           </Button>
         </div>
 
@@ -259,7 +259,7 @@ export function AppInstallBanner({ className }: { className?: string }) {
             </>
           ) : (
             <>
-              <Download className="h-3 w-3 mr-1" />
+              <DownloadSimple weight="light" className="h-3 w-3 mr-1" />
               Install
             </>
           )}
@@ -270,7 +270,7 @@ export function AppInstallBanner({ className }: { className?: string }) {
           size="sm"
           className="text-white/80 hover:text-white hover:bg-white/10"
         >
-          <X className="h-3 w-3" />
+          <X weight="light" className="h-3 w-3" />
         </Button>
       </div>
     </div>

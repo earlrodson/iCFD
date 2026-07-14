@@ -12,7 +12,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from '@/components/ui/dialog'
-import { LogOut, Mail, CheckCircle2, User, RefreshCw } from 'lucide-react'
+import { SignOut, EnvelopeSimple, CheckCircle, User, ArrowClockwise } from '@phosphor-icons/react'
 
 interface AuthModalProps {
   open: boolean
@@ -81,7 +81,7 @@ export function AuthModal({ open, onClose }: AuthModalProps) {
           <div className="space-y-4">
             <div className="flex items-center gap-3 p-3 bg-muted rounded-lg">
               <div className="h-9 w-9 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
-                <User className="h-4 w-4 text-primary" />
+                <User weight="light" className="h-4 w-4 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-medium truncate">{user.email}</p>
@@ -97,7 +97,7 @@ export function AuthModal({ open, onClose }: AuthModalProps) {
               onClick={handleManualSync}
               disabled={syncing}
             >
-              <RefreshCw className={`h-4 w-4 mr-2 ${syncing ? 'animate-spin' : ''}`} />
+              <ArrowClockwise weight="light" className={`h-4 w-4 mr-2 ${syncing ? 'animate-spin' : ''}`} />
               {syncing ? 'Syncing…' : 'Sync now'}
             </Button>
 
@@ -106,13 +106,13 @@ export function AuthModal({ open, onClose }: AuthModalProps) {
               className="w-full text-destructive hover:text-destructive"
               onClick={handleSignOut}
             >
-              <LogOut className="h-4 w-4 mr-2" />
+              <SignOut weight="light" className="h-4 w-4 mr-2" />
               Sign out
             </Button>
           </div>
         ) : sent ? (
           <div className="flex flex-col items-center gap-3 py-4 text-center">
-            <CheckCircle2 className="h-10 w-10 text-green-500" />
+            <CheckCircle weight="light" className="h-10 w-10 text-green-500" />
             <p className="font-medium">Check your email</p>
             <p className="text-sm text-muted-foreground">
               We sent a sign-in link to{' '}
@@ -136,7 +136,7 @@ export function AuthModal({ open, onClose }: AuthModalProps) {
             />
             {error && <p className="text-sm text-destructive">{error}</p>}
             <Button type="submit" className="w-full" disabled={loading || !email.trim()}>
-              <Mail className="h-4 w-4 mr-2" />
+              <EnvelopeSimple weight="light" className="h-4 w-4 mr-2" />
               {loading ? 'Sending…' : 'Send magic link'}
             </Button>
           </form>

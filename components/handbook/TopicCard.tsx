@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { ChevronRight } from 'lucide-react'
+import { CaretRight } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import type { Topic } from '@/data/schema/topic.schema'
 import { cn } from '@/lib/utils'
@@ -28,7 +28,7 @@ export function TopicRow({ topic, className }: TopicRowProps) {
       )}
     >
       <span className="mr-3 shrink-0 w-8 flex items-center justify-center text-muted-foreground">
-        {(() => { const Icon = getCategoryIcon(topic.category); return <Icon className="h-[18px] w-[18px]" /> })()}
+        {(() => { const Icon = getCategoryIcon(topic.category); return <Icon weight="light" className="h-[18px] w-[18px]" /> })()}
       </span>
       <div className="flex-1 min-w-0">
         <p className="text-[16px] font-medium text-foreground leading-snug line-clamp-1">
@@ -38,7 +38,7 @@ export function TopicRow({ topic, className }: TopicRowProps) {
           {getCategoryName(topic.category)} · {getDifficultyLabel(topic.difficulty)}
         </p>
       </div>
-      <ChevronRight className="h-4 w-4 text-muted-foreground/50 shrink-0 ml-2" />
+      <CaretRight weight="light" className="h-4 w-4 text-muted-foreground/50 shrink-0 ml-2" />
     </button>
   )
 }
@@ -101,7 +101,7 @@ export function TopicCard({ topic, className, onClick }: TopicCardProps) {
       )}
     >
       <p className="text-[12px] text-muted-foreground font-medium mb-1.5 flex items-center gap-1">
-        {(() => { const Icon = getCategoryIcon(topic.category); return <Icon className="h-3.5 w-3.5" /> })()}
+        {(() => { const Icon = getCategoryIcon(topic.category); return <Icon weight="light" className="h-3.5 w-3.5" /> })()}
         <span>{getCategoryName(topic.category)}</span>
         <span className="mx-0.5">·</span>
         <span>{getDifficultyLabel(topic.difficulty)}</span>

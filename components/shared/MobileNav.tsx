@@ -3,15 +3,15 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
-import { Home, BookOpen, Search, Heart, User } from 'lucide-react'
+import { House, BookOpen, MagnifyingGlass, Heart, User } from '@phosphor-icons/react'
 import { useFavoritesCount } from '@/store/useFavoritesStore'
 import { useAuthStore } from '@/store/useAuthStore'
 import { AuthModal } from '@/components/auth/AuthModal'
 
 const navItems = [
-  { href: '/', label: 'Home', icon: Home },
+  { href: '/', label: 'Home', icon: House },
   { href: '/handbook', label: 'Handbook', icon: BookOpen },
-  { href: '/search', label: 'Search', icon: Search },
+  { href: '/search', label: 'Search', icon: MagnifyingGlass },
   { href: '/favorites', label: 'Favorites', icon: Heart },
 ]
 
@@ -36,7 +36,7 @@ export function MobileNav() {
                 }`}
               >
                 <div className="relative">
-                  <Icon className={`h-[22px] w-[22px] ${isActive ? 'stroke-[2.2px]' : 'stroke-[1.8px]'}`} />
+                  <Icon weight={isActive ? 'regular' : 'light'} className="h-[22px] w-[22px]" />
                   {href === '/favorites' && favCount > 0 && (
                     <span className="absolute -top-1.5 -right-2 bg-primary text-primary-foreground text-[9px] font-bold rounded-full min-w-[15px] h-[15px] flex items-center justify-center px-1 leading-none">
                       {favCount > 99 ? '99+' : favCount}
@@ -55,7 +55,7 @@ export function MobileNav() {
             }`}
           >
             <div className="relative">
-              <User className={`h-[22px] w-[22px] ${user ? 'stroke-[2.2px]' : 'stroke-[1.8px]'}`} />
+              <User weight={user ? 'regular' : 'light'} className="h-[22px] w-[22px]" />
               {user && (
                 <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-green-500 border border-card" />
               )}

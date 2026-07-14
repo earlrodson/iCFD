@@ -4,7 +4,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, Calendar, BookOpen, User, Heart, Share2, Copy, CheckCircle, Circle, StickyNote, ChevronRight } from 'lucide-react'
+import { ArrowLeft, Calendar, BookOpen, User, Heart, ShareNetwork, Copy, CheckCircle, Circle, Note, CaretRight } from '@phosphor-icons/react'
 import { getCategoryName, getCategoryColor } from '@/lib/utils/categories'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import Link from 'next/link'
@@ -143,7 +143,7 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
         <div className="mb-6">
           <Button variant="ghost" asChild className="mb-4">
             <Link href="/" className="flex items-center gap-2">
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft weight="light" className="h-4 w-4" />
               Back to Topics
             </Link>
           </Button>
@@ -159,7 +159,7 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             <Badge variant="secondary">{topicData.lang.toUpperCase()}</Badge>
             {isRead && (
               <Badge variant="secondary" className="text-green-600 border-green-200 dark:border-green-800">
-                <CheckCircle className="h-3 w-3 mr-1" /> Read
+                <CheckCircle weight="light" className="h-3 w-3 mr-1" /> Read
               </Badge>
             )}
           </div>
@@ -168,18 +168,18 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
 
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4 flex-wrap">
             <div className="flex items-center gap-1">
-              <Calendar className="h-4 w-4" />
+              <Calendar weight="light" className="h-4 w-4" />
               {new Date(topicData.lastUpdated).toLocaleDateString()}
             </div>
             {scriptureCount > 0 && (
               <div className="flex items-center gap-1">
-                <BookOpen className="h-4 w-4" />
+                <BookOpen weight="light" className="h-4 w-4" />
                 {scriptureCount} Scripture {scriptureCount === 1 ? 'reference' : 'references'}
               </div>
             )}
             {fathersCount > 0 && (
               <div className="flex items-center gap-1">
-                <User className="h-4 w-4" />
+                <User weight="light" className="h-4 w-4" />
                 {fathersCount} Church {fathersCount === 1 ? 'Father' : 'Fathers'}
               </div>
             )}
@@ -201,7 +201,7 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             size="sm"
             onClick={handleFavorite}
           >
-            <Heart className={`h-4 w-4 mr-2 ${favorited ? 'fill-current' : ''}`} />
+            <Heart weight={favorited ? 'fill' : 'light'} className="h-4 w-4 mr-2" />
             {favorited ? 'Saved' : 'Add to Favorites'}
           </Button>
 
@@ -211,8 +211,8 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             onClick={handleToggleRead}
           >
             {isRead
-              ? <><CheckCircle className="h-4 w-4 mr-2" />Read</>
-              : <><Circle className="h-4 w-4 mr-2" />Mark as Read</>
+              ? <><CheckCircle weight="light" className="h-4 w-4 mr-2" />Read</>
+              : <><Circle weight="light" className="h-4 w-4 mr-2" />Mark as Read</>
             }
           </Button>
 
@@ -221,14 +221,14 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             size="sm"
             onClick={() => setShowNotes(v => !v)}
           >
-            <StickyNote className="h-4 w-4 mr-2" />
+            <Note weight="light" className="h-4 w-4 mr-2" />
             Notes{noteText ? ' ·' : ''}
           </Button>
 
           <Button variant="outline" size="sm" onClick={handleShare}>
             {copied
-              ? <><Copy className="h-4 w-4 mr-2" />Copied!</>
-              : <><Share2 className="h-4 w-4 mr-2" />Share</>
+              ? <><Copy weight="light" className="h-4 w-4 mr-2" />Copied!</>
+              : <><ShareNetwork weight="light" className="h-4 w-4 mr-2" />Share</>
             }
           </Button>
         </div>
@@ -268,7 +268,7 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
             <Button asChild className="w-full sm:w-auto">
               <Link href={`/${encodeURIComponent(nextIsAfterThis)}?path=${pathSlug}`}>
                 Continue Path
-                <ChevronRight className="h-4 w-4 ml-2" />
+                <CaretRight weight="light" className="h-4 w-4 ml-2" />
               </Link>
             </Button>
           </div>

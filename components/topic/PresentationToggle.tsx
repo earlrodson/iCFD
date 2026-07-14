@@ -1,10 +1,11 @@
 'use client'
 
-import { BookOpen, Zap, MessageSquare } from 'lucide-react'
+import { BookOpen, Lightning, ChatText } from '@phosphor-icons/react'
+import type { Icon } from '@phosphor-icons/react'
 import { usePresentationMode, useSetPresentationMode } from '@/store/useAppStore'
 import type { PresentationMode } from '@/lib/content/normalize'
 
-const MODES: { id: PresentationMode; label: string; description: string; Icon: React.ComponentType<{ className?: string }> }[] = [
+const MODES: { id: PresentationMode; label: string; description: string; Icon: Icon }[] = [
   {
     id: 'full',
     label: 'Full',
@@ -15,13 +16,13 @@ const MODES: { id: PresentationMode; label: string; description: string; Icon: R
     id: 'concise',
     label: 'Concise',
     description: 'Summary with abbreviated sources',
-    Icon: Zap,
+    Icon: Lightning,
   },
   {
     id: 'guide',
     label: 'Guide',
     description: 'Reference + context only — debate ready',
-    Icon: MessageSquare,
+    Icon: ChatText,
   },
 ]
 
@@ -44,7 +45,7 @@ export function PresentationToggle() {
           ].join(' ')}
           aria-pressed={mode === id}
         >
-          <Icon className="h-3.5 w-3.5" />
+          <Icon weight="light" className="h-3.5 w-3.5" />
           {label}
         </button>
       ))}

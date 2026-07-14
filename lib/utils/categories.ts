@@ -1,7 +1,7 @@
 import {
-  Droplets, Flower2, Crown, Heart, BookOpen, Star, Landmark, ScrollText
-} from 'lucide-react'
-import type { LucideIcon } from 'lucide-react'
+  Drop, Flower, Crown, Heart, BookOpen, Star, Buildings, Scroll
+} from '@phosphor-icons/react'
+import type { Icon } from '@phosphor-icons/react'
 
 export type Category =
   | 'sacraments' | 'mary' | 'papacy' | 'salvation'
@@ -10,7 +10,7 @@ export type Category =
 export interface CategoryInfo {
   name: string
   description: string
-  Icon: LucideIcon
+  Icon: Icon
   color: string
 }
 
@@ -18,13 +18,13 @@ export const categoryInfo: Record<Category, CategoryInfo> = {
   sacraments: {
     name: 'Sacraments',
     description: 'The seven sacraments of the Catholic Church',
-    Icon: Droplets,
+    Icon: Drop,
     color: 'bg-purple-100 text-purple-800',
   },
   mary: {
     name: 'Mary',
     description: 'Teachings about the Blessed Virgin Mary',
-    Icon: Flower2,
+    Icon: Flower,
     color: 'bg-pink-100 text-pink-800',
   },
   papacy: {
@@ -54,13 +54,13 @@ export const categoryInfo: Record<Category, CategoryInfo> = {
   tradition: {
     name: 'Tradition',
     description: 'Sacred Tradition and Church History',
-    Icon: Landmark,
+    Icon: Buildings,
     color: 'bg-orange-100 text-orange-800',
   },
   'church-teaching': {
     name: 'Church Teaching',
     description: 'Official Church Teachings and Documents',
-    Icon: ScrollText,
+    Icon: Scroll,
     color: 'bg-red-100 text-red-800',
   },
 }
@@ -69,7 +69,7 @@ export function getCategoryName(category: string): string {
   return categoryInfo[category as Category]?.name ?? category
 }
 
-export function getCategoryIcon(category: string): LucideIcon {
+export function getCategoryIcon(category: string): Icon {
   return categoryInfo[category as Category]?.Icon ?? BookOpen
 }
 

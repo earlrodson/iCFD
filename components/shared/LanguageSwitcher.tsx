@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { useAppStore, useCurrentLanguage } from '@/store/useAppStore'
 import { getLanguageName, getLanguageFlag } from '@/lib/utils'
-import { ChevronDown, Check } from 'lucide-react'
+import { CaretDown, Check } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 
 const languages = [
@@ -59,7 +59,7 @@ export function LanguageSwitcher({
       >
         {showFlag && currentLanguageData?.flag}
         {showName && <span className="ml-1 text-xs">{currentLanguage?.toUpperCase()}</span>}
-        <ChevronDown className="ml-1 h-3 w-3" />
+        <CaretDown weight="light" className="ml-1 h-3 w-3" />
       </Button>
     )
   }
@@ -77,7 +77,7 @@ export function LanguageSwitcher({
       >
         {showFlag && currentLanguageData?.flag}
         {showName && <span>{currentLanguageData?.name}</span>}
-        <ChevronDown className="h-4 w-4" />
+        <CaretDown weight="light" className="h-4 w-4" />
         {loading && <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />}
       </Button>
 
@@ -110,7 +110,7 @@ export function LanguageSwitcher({
                       <span className="text-sm">{language.name}</span>
                     </div>
                     {language.code === currentLanguage && (
-                      <Check className="h-4 w-4" />
+                      <Check weight="light" className="h-4 w-4" />
                     )}
                   </button>
                 </li>
@@ -187,7 +187,7 @@ export function CompactLanguageSwitcher({ className }: { className?: string }) {
                       <span className="text-sm">{language.name}</span>
                     </div>
                     {language.code === currentLanguage && (
-                      <Check className="h-4 w-4" />
+                      <Check weight="light" className="h-4 w-4" />
                     )}
                   </button>
                 </li>

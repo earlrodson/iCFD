@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Search, X, Loader2 } from 'lucide-react'
+import { MagnifyingGlass, X, CircleNotch } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 import { useDebounce } from '@/lib/hooks/useDebounce'
 import { useSearchStore } from '@/store/useSearchStore'
@@ -112,7 +112,7 @@ export function SearchBar({
   return (
     <div className={cn("relative w-full max-w-md", className)}>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+        <MagnifyingGlass weight="light" className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
         <Input
           type="text"
           placeholder={placeholder}
@@ -139,9 +139,9 @@ export function SearchBar({
             aria-label="Clear search"
           >
             {loading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
+              <CircleNotch weight="light" className="h-4 w-4 animate-spin" />
             ) : (
-              <X className="h-4 w-4" />
+              <X weight="light" className="h-4 w-4" />
             )}
           </Button>
         )}
@@ -161,7 +161,7 @@ export function SearchBar({
                   role="option"
                 >
                   <div className="flex items-center space-x-2">
-                    <Search className="h-3 w-3 text-muted-foreground" />
+                    <MagnifyingGlass weight="light" className="h-3 w-3 text-muted-foreground" />
                     <span>{suggestion}</span>
                   </div>
                 </button>
@@ -175,7 +175,7 @@ export function SearchBar({
       {loading && (
         <div className="absolute top-full left-0 right-0 mt-1 text-center text-sm text-muted-foreground">
           <div className="flex items-center justify-center space-x-2">
-            <Loader2 className="h-3 w-3 animate-spin" />
+            <CircleNotch weight="light" className="h-3 w-3 animate-spin" />
             <span>Searching...</span>
           </div>
         </div>

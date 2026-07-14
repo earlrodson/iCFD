@@ -8,7 +8,7 @@ import { useAppStore, useAvailableTopics, useCurrentLanguage } from '@/store/use
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { getCategoryName, type Category } from '@/lib/utils/categories'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
-import { BookOpen, SlidersHorizontal } from 'lucide-react'
+import { BookOpen, Sliders } from '@phosphor-icons/react'
 import type { Topic } from '@/data/schema/topic.schema'
 
 const categories = [
@@ -81,7 +81,7 @@ function HandbookContent() {
           <div className="flex items-center justify-between h-12">
             <h1 className="text-[17px] font-semibold">Handbook</h1>
             <div className="flex items-center gap-2">
-              <SlidersHorizontal className="h-4 w-4 text-muted-foreground" />
+              <Sliders weight="light" className="h-4 w-4 text-muted-foreground" />
               <select
                 className="text-[13px] text-foreground bg-transparent border-0 outline-none font-medium"
                 value={sort}
@@ -143,7 +143,7 @@ function HandbookContent() {
         {/* Topic list */}
         {filtered.length === 0 ? (
           <div className="rounded-2xl bg-card p-10 text-center shadow-sm">
-            <BookOpen className="h-8 w-8 mx-auto mb-3 text-muted-foreground/40" />
+            <BookOpen weight="light" className="h-8 w-8 mx-auto mb-3 text-muted-foreground/40" />
             <p className="text-[15px] font-medium mb-1">No topics found</p>
             <p className="text-[13px] text-muted-foreground mb-4">Try a different category or difficulty</p>
             <Button
