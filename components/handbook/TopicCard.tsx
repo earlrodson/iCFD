@@ -167,13 +167,9 @@ export function TopicCard({
 
       <CardContent className="space-y-4">
         {showExcerpt && (
-          <CardDescription className="text-sm leading-relaxed">
-            <div className="flex items-start space-x-2">
-              <BookOpen className="h-4 w-4 text-catholic-gold mt-0.5 flex-shrink-0" />
-              <span className="line-clamp-3">
-                {topic.question}
-              </span>
-            </div>
+          <CardDescription className="text-sm leading-relaxed flex items-start space-x-2">
+            <BookOpen className="h-4 w-4 text-catholic-gold mt-0.5 flex-shrink-0" />
+            <span className="line-clamp-3">{topic.question}</span>
           </CardDescription>
         )}
 
