@@ -6,7 +6,8 @@ import { Button } from '@/components/ui/button'
 import { TopicList } from '@/components/handbook/TopicCard'
 import { useAppStore, useAvailableTopics, useCurrentLanguage } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
-import { getCategoryName, getCategoryIcon, type Category } from '@/lib/utils/categories'
+import { getCategoryName, type Category } from '@/lib/utils/categories'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { BookOpen, SlidersHorizontal } from 'lucide-react'
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -109,7 +110,12 @@ function HandbookContent() {
                   : 'bg-card text-muted-foreground shadow-[0_1px_3px_rgba(0,0,0,0.06)]'
               }`}
             >
-              {cat === 'all' ? 'All' : `${getCategoryIcon(cat as Category)} ${getCategoryName(cat as Category)}`}
+              {cat === 'all' ? 'All' : (
+                <span className="flex items-center gap-1.5">
+                  <CategoryIcon category={cat} className="h-3.5 w-3.5" />
+                  {getCategoryName(cat as Category)}
+                </span>
+              )}
             </button>
           ))}
         </div>

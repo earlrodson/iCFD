@@ -5,7 +5,8 @@ import { useSearchParams } from 'next/navigation'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { ArrowLeft, Calendar, BookOpen, User, Heart, Share2, Copy, CheckCircle, Circle, StickyNote, ChevronRight } from 'lucide-react'
-import { getCategoryName, getCategoryColor, getCategoryIcon } from '@/lib/utils/categories'
+import { getCategoryName, getCategoryColor } from '@/lib/utils/categories'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import Link from 'next/link'
 import { TopicContent } from '@/components/topic/TopicContent'
 import { getCitations } from '@/lib/content/normalize'
@@ -150,8 +151,8 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
 
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4 flex-wrap">
-            <Badge className={getCategoryColor(topicData.category)}>
-              <span className="mr-1">{getCategoryIcon(topicData.category)}</span>
+            <Badge className={`${getCategoryColor(topicData.category)} flex items-center gap-1`}>
+              <CategoryIcon category={topicData.category} className="h-3 w-3" />
               {getCategoryName(topicData.category)}
             </Badge>
             <Badge variant="outline">{topicData.difficulty}</Badge>
@@ -284,8 +285,8 @@ export function TopicPageContent({ topicId, fallbackTopic }: TopicPageContentPro
                   className="block p-4 border rounded-lg hover:bg-accent transition-colors"
                 >
                   <div className="flex items-center gap-2 mb-2">
-                    <Badge className={getCategoryColor(related.category)}>
-                      {getCategoryIcon(related.category)}
+                    <Badge className={`${getCategoryColor(related.category)} flex items-center gap-1`}>
+                      <CategoryIcon category={related.category} className="h-3 w-3" />
                     </Badge>
                     <span className="text-sm text-muted-foreground">
                       {getCategoryName(related.category)}

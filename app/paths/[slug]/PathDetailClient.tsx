@@ -8,8 +8,16 @@ import { Button } from '@/components/ui/button'
 import { usePathsStore } from '@/store/usePathsStore'
 import { useProgressStore } from '@/store/useProgressStore'
 import { useAppStore, useAvailableTopics } from '@/store/useAppStore'
-import { getCategoryIcon, getCategoryName, type Category } from '@/lib/utils/categories'
-import { CheckCircle, Circle, BookOpen, Clock, ArrowLeft, ChevronRight } from 'lucide-react'
+import { getCategoryName, type Category } from '@/lib/utils/categories'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
+import { CheckCircle, Circle, BookOpen, Clock, ArrowLeft, ChevronRight, GraduationCap, Shield, Flower2 } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
+
+const PATH_ICONS: Record<string, LucideIcon> = {
+  'new-catholic': GraduationCap,
+  'defend-the-faith': Shield,
+  'marian-apologetics': Flower2,
+}
 import type { Topic } from '@/data/schema/topic.schema'
 
 interface Props {
@@ -51,7 +59,7 @@ export default function PathDetailClient({ params }: Props) {
               <Link href="/paths"><ArrowLeft className="h-4 w-4" /></Link>
             </Button>
             <div className="flex-1 min-w-0 flex items-center gap-2">
-              <span className="text-xl">{path.icon}</span>
+              {(() => { const PathIcon = PATH_ICONS[path.slug] ?? BookOpen; return <PathIcon className="h-5 w-5 text-primary" /> })()}
               <h1 className="font-bold text-lg truncate">{path.title}</h1>
             </div>
           </div>
@@ -107,8 +115,9 @@ export default function PathDetailClient({ params }: Props) {
                   {topic ? (
                     <>
                       <p className="font-medium text-sm truncate">{topic.title}</p>
-                      <p className="text-xs text-muted-foreground">
-                        {getCategoryIcon(topic.category as Category)} {getCategoryName(topic.category as Category)} · {topic.difficulty}
+                      <p className="text-xs text-muted-foreground flex items-center gap-1">
+                        <CategoryIcon category={topic.category} className="h-3 w-3" />
+                        {getCategoryName(topic.category as Category)} · {topic.difficulty}
                       </p>
                     </>
                   ) : (

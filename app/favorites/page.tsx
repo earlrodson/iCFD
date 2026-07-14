@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button'
 import { useAppStore, useAvailableTopics } from '@/store/useAppStore'
 import { useFavoritesStore, useFavoriteActions } from '@/store/useFavoritesStore'
 import { db } from '@/lib/db/indexeddb'
-import { getCategoryColor, getCategoryIcon, getCategoryName, type Category } from '@/lib/utils/categories'
+import { getCategoryColor, getCategoryName, type Category } from '@/lib/utils/categories'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { Heart, BookOpen, Download, Upload, Trash2, ArrowUpDown, LayoutList } from 'lucide-react'
 import type { Topic } from '@/data/schema/topic.schema'
 
@@ -124,8 +125,9 @@ export default function FavoritesPage() {
     <div className="flex items-start gap-3 p-4 border rounded-lg hover:bg-accent/30 transition-colors group">
       <Link href={`/${encodeURIComponent(topic.id)}`} className="flex-1 min-w-0">
         <div className="flex items-center gap-2 mb-1 flex-wrap">
-          <Badge className={`${getCategoryColor(topic.category)} text-xs`}>
-            {getCategoryIcon(topic.category as Category)} {getCategoryName(topic.category as Category)}
+          <Badge className={`${getCategoryColor(topic.category)} text-xs flex items-center gap-1`}>
+            <CategoryIcon category={topic.category} className="h-3 w-3" />
+            {getCategoryName(topic.category as Category)}
           </Badge>
           <span className="text-xs text-muted-foreground capitalize">{topic.difficulty}</span>
           {timestamps[topic.id] && (
@@ -236,8 +238,9 @@ export default function FavoritesPage() {
                 {Array.from(grouped.entries()).map(([category, catTopics]) => (
                   <div key={category}>
                     <div className="flex items-center gap-2 mb-3">
-                      <h2 className="font-semibold text-sm">
-                        {getCategoryIcon(category as Category)} {getCategoryName(category as Category)}
+                      <h2 className="font-semibold text-sm flex items-center gap-1.5">
+                        <CategoryIcon category={category} className="h-4 w-4 text-muted-foreground" />
+                        {getCategoryName(category as Category)}
                       </h2>
                       <Badge variant="secondary" className="text-xs">{catTopics.length}</Badge>
                     </div>

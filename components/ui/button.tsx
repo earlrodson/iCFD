@@ -5,35 +5,34 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-xl text-sm font-semibold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 active:scale-[0.97]",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default:
+          "bg-primary text-primary-foreground shadow-[0_2px_8px_rgba(0,122,255,0.32),0_1px_2px_rgba(0,0,0,0.08)] hover:bg-primary/90 active:shadow-none",
         destructive:
-          "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+          "bg-destructive text-destructive-foreground shadow-[0_2px_8px_rgba(220,38,38,0.28),0_1px_2px_rgba(0,0,0,0.08)] hover:bg-destructive/90 active:shadow-none",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border border-border bg-card text-foreground shadow-[0_1px_3px_rgba(0,0,0,0.08),0_0_1px_rgba(0,0,0,0.04)] hover:bg-muted/60 active:shadow-none",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        // Custom Catholic-themed variants
-        catholic: "bg-catholic-blue text-white hover:bg-catholic-blue/90",
-        catholicOutline: "border border-catholic-blue text-catholic-blue hover:bg-catholic-blue hover:text-white",
-        catholicSecondary: "bg-catholic-gold text-white hover:bg-catholic-gold/90"
+          "bg-secondary text-secondary-foreground shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:bg-secondary/80",
+        ghost:
+          "text-foreground hover:bg-muted",
+        link:
+          "text-primary underline-offset-4 hover:underline h-auto p-0 shadow-none",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        icon: "h-10 w-10"
-      }
+        default: "h-11 px-5 py-2.5",
+        sm: "h-9 px-4 text-[13px]",
+        lg: "h-12 px-8 text-base",
+        icon: "h-10 w-10 rounded-xl",
+      },
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
-    }
+      size: "default",
+    },
   }
 )
 

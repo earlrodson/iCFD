@@ -11,7 +11,8 @@ import { useSearchStore } from '@/store/useSearchStore'
 import { searchEngine } from '@/lib/search/minisearch-engine'
 import { Search, X, Clock, SlidersHorizontal, BookOpen, Quote, ScrollText } from 'lucide-react'
 import Link from 'next/link'
-import { getCategoryColor, getCategoryIcon, getCategoryName, type Category } from '@/lib/utils/categories'
+import { getCategoryColor, getCategoryName, type Category } from '@/lib/utils/categories'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { Badge } from '@/components/ui/badge'
 import type { Topic } from '@/data/schema/topic.schema'
 import type { SearchResult } from '@/lib/search/minisearch-engine'
@@ -211,7 +212,8 @@ function SearchContent() {
                           : 'border-muted-foreground/30 text-muted-foreground hover:border-primary/50'
                       }`}
                     >
-                      {getCategoryIcon(cat as Category)} {getCategoryName(cat as Category)}
+                      <CategoryIcon category={cat} className="h-3.5 w-3.5 inline-block mr-1" />
+                      {getCategoryName(cat as Category)}
                     </button>
                   ))}
                 </div>
@@ -349,8 +351,9 @@ function SearchContent() {
                       onMouseEnter={() => setFocusedIndex(idx)}
                     >
                       <div className="flex items-center gap-2 mb-1 flex-wrap">
-                        <Badge className={`${getCategoryColor(topic.category)} text-xs`}>
-                          {getCategoryIcon(topic.category as Category)} {getCategoryName(topic.category as Category)}
+                        <Badge className={`${getCategoryColor(topic.category)} text-xs flex items-center gap-1`}>
+                          <CategoryIcon category={topic.category} className="h-3 w-3" />
+                          {getCategoryName(topic.category as Category)}
                         </Badge>
                         <span className="text-xs text-muted-foreground capitalize">{topic.difficulty}</span>
                       </div>
