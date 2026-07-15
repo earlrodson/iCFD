@@ -28,7 +28,13 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 80", "CCC 81", "CCC 82", "CCC 95", "CCC 107"],
+      "catechism": [
+        "CCC 80",
+        "CCC 81",
+        "CCC 82",
+        "CCC 95",
+        "CCC 107"
+      ],
       "churchFathers": [
         {
           "author": "St. Augustine of Hippo",
@@ -41,10 +47,20 @@
           "source": "Against Heresies, Book III, 189 AD"
         }
       ],
-      "tags": ["bible", "tradition", "sola scriptura", "authority", "magisterium", "scripture"],
+      "tags": [
+        "bible",
+        "tradition",
+        "sola scriptura",
+        "authority",
+        "magisterium",
+        "scripture"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["true-church", "primacy-of-peter"],
+      "relatedTopics": [
+        "true-church",
+        "primacy-of-peter"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -70,7 +86,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 811", "CCC 830", "CCC 857", "CCC 869"],
+      "catechism": [
+        "CCC 811",
+        "CCC 830",
+        "CCC 857",
+        "CCC 869"
+      ],
       "churchFathers": [
         {
           "author": "St. Cyprian of Carthage",
@@ -83,10 +104,19 @@
           "source": "Letter to the Smyrnaeans, 107 AD"
         }
       ],
-      "tags": ["church", "apostolic succession", "four marks", "one holy catholic apostolic", "denomination"],
+      "tags": [
+        "church",
+        "apostolic succession",
+        "four marks",
+        "one holy catholic apostolic",
+        "denomination"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["bible-tradition-authority", "primacy-of-peter"],
+      "relatedTopics": [
+        "bible-tradition-authority",
+        "primacy-of-peter"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -117,7 +147,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 232", "CCC 253", "CCC 261", "CCC 266"],
+      "catechism": [
+        "CCC 232",
+        "CCC 253",
+        "CCC 261",
+        "CCC 266"
+      ],
       "churchFathers": [
         {
           "author": "St. Athanasius of Alexandria",
@@ -130,10 +165,20 @@
           "source": "Against Praxeas, 213 AD"
         }
       ],
-      "tags": ["trinity", "father", "son", "holy spirit", "three persons", "one god", "divinity"],
+      "tags": [
+        "trinity",
+        "father",
+        "son",
+        "holy spirit",
+        "three persons",
+        "one god",
+        "divinity"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["divinity-of-christ"],
+      "relatedTopics": [
+        "divinity-of-christ"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -164,7 +209,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 422", "CCC 464", "CCC 469", "CCC 480"],
+      "catechism": [
+        "CCC 422",
+        "CCC 464",
+        "CCC 469",
+        "CCC 480"
+      ],
       "churchFathers": [
         {
           "author": "St. Ignatius of Antioch",
@@ -172,10 +222,20 @@
           "source": "Letter to the Ephesians, 107 AD"
         }
       ],
-      "tags": ["jesus", "divinity", "incarnation", "i am", "son of god", "god made flesh"],
+      "tags": [
+        "jesus",
+        "divinity",
+        "incarnation",
+        "i am",
+        "son of god",
+        "god made flesh"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["holy-trinity", "salvation"],
+      "relatedTopics": [
+        "holy-trinity",
+        "salvation"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -201,7 +261,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 491", "CCC 492", "CCC 493", "CCC 722"],
+      "catechism": [
+        "CCC 491",
+        "CCC 492",
+        "CCC 493",
+        "CCC 722"
+      ],
       "churchFathers": [
         {
           "author": "St. Ephrem the Syrian",
@@ -209,10 +274,20 @@
           "source": "Nisibene Hymns, 4th century"
         }
       ],
-      "tags": ["mary", "immaculate conception", "original sin", "full of grace", "kecharitomene", "ark"],
+      "tags": [
+        "mary",
+        "immaculate conception",
+        "original sin",
+        "full of grace",
+        "kecharitomene",
+        "ark"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["perpetual-virginity", "prayer-to-saints"],
+      "relatedTopics": [
+        "perpetual-virginity",
+        "prayer-to-saints"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -238,7 +313,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 499", "CCC 500", "CCC 502", "CCC 507"],
+      "catechism": [
+        "CCC 499",
+        "CCC 500",
+        "CCC 502",
+        "CCC 507"
+      ],
       "churchFathers": [
         {
           "author": "St. Jerome",
@@ -246,10 +326,19 @@
           "source": "Against Helvidius, 383 AD"
         }
       ],
-      "tags": ["mary", "perpetual virginity", "brothers of jesus", "cousins", "ever virgin", "theotokos"],
+      "tags": [
+        "mary",
+        "perpetual virginity",
+        "brothers of jesus",
+        "cousins",
+        "ever virgin",
+        "theotokos"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["immaculate-conception"],
+      "relatedTopics": [
+        "immaculate-conception"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -270,7 +359,11 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 2130", "CCC 2131", "CCC 2132"],
+      "catechism": [
+        "CCC 2130",
+        "CCC 2131",
+        "CCC 2132"
+      ],
       "churchFathers": [
         {
           "author": "St. John of Damascus",
@@ -278,10 +371,21 @@
           "source": "On Divine Images, 8th century"
         }
       ],
-      "tags": ["images", "statues", "idolatry", "veneration", "commandments", "icons", "ark of covenant"],
+      "tags": [
+        "images",
+        "statues",
+        "idolatry",
+        "veneration",
+        "commandments",
+        "icons",
+        "ark of covenant"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["cross-sign-of-cross", "prayer-to-saints"],
+      "relatedTopics": [
+        "cross-sign-of-cross",
+        "prayer-to-saints"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -307,7 +411,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 956", "CCC 957", "CCC 2683", "CCC 2684"],
+      "catechism": [
+        "CCC 956",
+        "CCC 957",
+        "CCC 2683",
+        "CCC 2684"
+      ],
       "churchFathers": [
         {
           "author": "Origen of Alexandria",
@@ -315,10 +424,20 @@
           "source": "On Prayer, 233 AD"
         }
       ],
-      "tags": ["saints", "intercession", "prayer", "mediation", "communion of saints", "veneration"],
+      "tags": [
+        "saints",
+        "intercession",
+        "prayer",
+        "mediation",
+        "communion of saints",
+        "veneration"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["sacred-images", "purgatory"],
+      "relatedTopics": [
+        "sacred-images",
+        "purgatory"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -349,7 +468,11 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1030", "CCC 1031", "CCC 1032"],
+      "catechism": [
+        "CCC 1030",
+        "CCC 1031",
+        "CCC 1032"
+      ],
       "churchFathers": [
         {
           "author": "St. Augustine of Hippo",
@@ -357,10 +480,21 @@
           "source": "Enchiridion, 421 AD"
         }
       ],
-      "tags": ["purgatory", "afterlife", "purification", "prayers for the dead", "indulgences", "salvation"],
+      "tags": [
+        "purgatory",
+        "afterlife",
+        "purification",
+        "prayers for the dead",
+        "indulgences",
+        "salvation"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["prayer-to-saints", "indulgences", "salvation"],
+      "relatedTopics": [
+        "prayer-to-saints",
+        "indulgences",
+        "salvation"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -386,7 +520,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 880", "CCC 881", "CCC 882", "CCC 891"],
+      "catechism": [
+        "CCC 880",
+        "CCC 881",
+        "CCC 882",
+        "CCC 891"
+      ],
       "churchFathers": [
         {
           "author": "St. Clement of Rome",
@@ -399,10 +538,22 @@
           "source": "Against Heresies, 189 AD"
         }
       ],
-      "tags": ["pope", "papacy", "peter", "rock", "keys", "authority", "bishop of rome", "successor"],
+      "tags": [
+        "pope",
+        "papacy",
+        "peter",
+        "rock",
+        "keys",
+        "authority",
+        "bishop of rome",
+        "successor"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["true-church", "bible-tradition-authority"],
+      "relatedTopics": [
+        "true-church",
+        "bible-tradition-authority"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -428,7 +579,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1471", "CCC 1478", "CCC 1479", "CCC 1498"],
+      "catechism": [
+        "CCC 1471",
+        "CCC 1478",
+        "CCC 1479",
+        "CCC 1498"
+      ],
       "churchFathers": [
         {
           "author": "Tertullian",
@@ -436,10 +592,20 @@
           "source": "On Modesty, 3rd century"
         }
       ],
-      "tags": ["indulgences", "purgatory", "temporal punishment", "treasury of merit", "penance", "forgiveness"],
+      "tags": [
+        "indulgences",
+        "purgatory",
+        "temporal punishment",
+        "treasury of merit",
+        "penance",
+        "forgiveness"
+      ],
       "difficulty": "advanced",
       "lang": "en",
-      "relatedTopics": ["purgatory", "confession-to-priest"],
+      "relatedTopics": [
+        "purgatory",
+        "confession-to-priest"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -465,7 +631,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1250", "CCC 1251", "CCC 1252", "CCC 1257"],
+      "catechism": [
+        "CCC 1250",
+        "CCC 1251",
+        "CCC 1252",
+        "CCC 1257"
+      ],
       "churchFathers": [
         {
           "author": "Origen of Alexandria",
@@ -473,10 +644,21 @@
           "source": "Commentary on Romans, early 3rd century"
         }
       ],
-      "tags": ["baptism", "infants", "household baptism", "original sin", "circumcision", "sacraments"],
+      "tags": [
+        "baptism",
+        "infants",
+        "household baptism",
+        "original sin",
+        "circumcision",
+        "sacraments"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["confession-to-priest", "holy-eucharist", "salvation"],
+      "relatedTopics": [
+        "confession-to-priest",
+        "holy-eucharist",
+        "salvation"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -502,7 +684,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1440", "CCC 1444", "CCC 1449", "CCC 1456"],
+      "catechism": [
+        "CCC 1440",
+        "CCC 1444",
+        "CCC 1449",
+        "CCC 1456"
+      ],
       "churchFathers": [
         {
           "author": "St. Cyprian of Carthage",
@@ -510,10 +697,22 @@
           "source": "On the Lapsed, 251 AD"
         }
       ],
-      "tags": ["confession", "reconciliation", "penance", "forgiveness", "priest", "absolution", "sacrament"],
+      "tags": [
+        "confession",
+        "reconciliation",
+        "penance",
+        "forgiveness",
+        "priest",
+        "absolution",
+        "sacrament"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["infant-baptism", "indulgences", "salvation"],
+      "relatedTopics": [
+        "infant-baptism",
+        "indulgences",
+        "salvation"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -539,7 +738,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1374", "CCC 1375", "CCC 1377", "CCC 1413"],
+      "catechism": [
+        "CCC 1374",
+        "CCC 1375",
+        "CCC 1377",
+        "CCC 1413"
+      ],
       "churchFathers": [
         {
           "author": "St. Ignatius of Antioch",
@@ -552,10 +756,21 @@
           "source": "First Apology, 151 AD"
         }
       ],
-      "tags": ["eucharist", "real presence", "transubstantiation", "mass", "body and blood", "communion"],
+      "tags": [
+        "eucharist",
+        "real presence",
+        "transubstantiation",
+        "mass",
+        "body and blood",
+        "communion"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["holy-mass", "holy-orders", "infant-baptism"],
+      "relatedTopics": [
+        "holy-mass",
+        "holy-orders",
+        "infant-baptism"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -581,7 +796,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1536", "CCC 1546", "CCC 1562", "CCC 1577"],
+      "catechism": [
+        "CCC 1536",
+        "CCC 1546",
+        "CCC 1562",
+        "CCC 1577"
+      ],
       "churchFathers": [
         {
           "author": "St. Ignatius of Antioch",
@@ -594,10 +814,22 @@
           "source": "Epistle 66, 3rd century"
         }
       ],
-      "tags": ["priesthood", "holy orders", "ordination", "celibacy", "bishop", "apostolic succession", "sacrament"],
+      "tags": [
+        "priesthood",
+        "holy orders",
+        "ordination",
+        "celibacy",
+        "bishop",
+        "apostolic succession",
+        "sacrament"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["holy-eucharist", "holy-mass", "confession-to-priest"],
+      "relatedTopics": [
+        "holy-eucharist",
+        "holy-mass",
+        "confession-to-priest"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -623,7 +855,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1362", "CCC 1364", "CCC 1366", "CCC 1372"],
+      "catechism": [
+        "CCC 1362",
+        "CCC 1364",
+        "CCC 1366",
+        "CCC 1372"
+      ],
       "churchFathers": [
         {
           "author": "St. Justin Martyr",
@@ -631,10 +868,21 @@
           "source": "Dialogue with Trypho, 155 AD"
         }
       ],
-      "tags": ["mass", "sacrifice", "eucharist", "once for all", "anamnesis", "re-presentation", "liturgy"],
+      "tags": [
+        "mass",
+        "sacrifice",
+        "eucharist",
+        "once for all",
+        "anamnesis",
+        "re-presentation",
+        "liturgy"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["holy-eucharist", "holy-orders"],
+      "relatedTopics": [
+        "holy-eucharist",
+        "holy-orders"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -660,7 +908,11 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 2174", "CCC 2176", "CCC 2190"],
+      "catechism": [
+        "CCC 2174",
+        "CCC 2176",
+        "CCC 2190"
+      ],
       "churchFathers": [
         {
           "author": "St. Ignatius of Antioch",
@@ -668,10 +920,20 @@
           "source": "Letter to the Magnesians, 107 AD"
         }
       ],
-      "tags": ["sunday", "sabbath", "lord's day", "worship", "resurrection", "commandment", "saturday"],
+      "tags": [
+        "sunday",
+        "sabbath",
+        "lord's day",
+        "worship",
+        "resurrection",
+        "commandment",
+        "saturday"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["holy-mass"],
+      "relatedTopics": [
+        "holy-mass"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -697,11 +959,25 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1434", "CCC 2043"],
-      "tags": ["abstinence", "fasting", "dietary laws", "friday", "lent", "penance", "meat", "clean foods"],
+      "catechism": [
+        "CCC 1434",
+        "CCC 2043"
+      ],
+      "tags": [
+        "abstinence",
+        "fasting",
+        "dietary laws",
+        "friday",
+        "lent",
+        "penance",
+        "meat",
+        "clean foods"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["sunday-observance"],
+      "relatedTopics": [
+        "sunday-observance"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -727,7 +1003,10 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 2157", "CCC 1235"],
+      "catechism": [
+        "CCC 2157",
+        "CCC 1235"
+      ],
       "churchFathers": [
         {
           "author": "Tertullian",
@@ -735,10 +1014,20 @@
           "source": "The Crown, 211 AD"
         }
       ],
-      "tags": ["cross", "sign of cross", "crucifixion", "symbol", "salvation", "veneration", "mark"],
+      "tags": [
+        "cross",
+        "sign of cross",
+        "crucifixion",
+        "symbol",
+        "salvation",
+        "veneration",
+        "mark"
+      ],
       "difficulty": "beginner",
       "lang": "en",
-      "relatedTopics": ["sacred-images"],
+      "relatedTopics": [
+        "sacred-images"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
     },
     {
@@ -769,7 +1058,12 @@
           "version": "NABRE"
         }
       ],
-      "catechism": ["CCC 1987", "CCC 1988", "CCC 1996", "CCC 2010"],
+      "catechism": [
+        "CCC 1987",
+        "CCC 1988",
+        "CCC 1996",
+        "CCC 2010"
+      ],
       "churchFathers": [
         {
           "author": "St. Clement of Rome",
@@ -777,16 +1071,1429 @@
           "source": "First Letter to the Corinthians, 96 AD"
         }
       ],
-      "tags": ["salvation", "faith", "works", "grace", "sola fide", "justification", "sanctification"],
+      "tags": [
+        "salvation",
+        "faith",
+        "works",
+        "grace",
+        "sola fide",
+        "justification",
+        "sanctification"
+      ],
       "difficulty": "intermediate",
       "lang": "en",
-      "relatedTopics": ["confession-to-priest", "infant-baptism", "divinity-of-christ"],
+      "relatedTopics": [
+        "confession-to-priest",
+        "infant-baptism",
+        "divinity-of-christ"
+      ],
       "lastUpdated": "2026-07-10T00:00:00Z"
+    },
+    {
+      "id": "biblical-canon",
+      "category": "bible",
+      "title": "How the Bible Was Compiled",
+      "question": "Who decided which books belong in the Bible? Didn't the Bible just fall from heaven complete?",
+      "answer": "The Bible did not arrive as a single bound volume; it was assembled by the Catholic Church over centuries. In the early Church many writings circulated, and disputes arose over which were truly inspired (for example, some rejected Hebrews, James, Revelation, or 2 Peter). The canon was settled by Catholic councils under the Church's teaching authority: the regional councils of Rome (382), Hippo (393), and Carthage (397) listed the same 73 books Catholics use today. Christ never wrote a book but founded a Church (Mat 16:18) with authority to bind and loose (Mat 16:19), and that Church, guided by the Holy Spirit whom Jesus promised (Jn 16:13), discerned the canon. Thus one cannot appeal to 'the Bible alone' without first accepting the authority of the Church that identified those books. The table of contents is itself an act of Tradition.",
+      "scripture": [
+        {
+          "reference": "John 16:13",
+          "text": "Jesus promises the Spirit of truth will guide the Church into all truth.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Matthew 16:18-19",
+          "text": "Christ builds his Church on Peter and grants the keys with authority to bind and loose.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 120",
+        "CCC 105",
+        "CCC 138"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "I would not believe in the Gospel, had not the authority of the Catholic Church already moved me.",
+          "source": "Against the Epistle of Manichaeus, 397 AD"
+        }
+      ],
+      "tags": [
+        "canon",
+        "bible",
+        "councils",
+        "carthage",
+        "inspiration",
+        "tradition"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "deuterocanonical-books",
+        "bible-tradition-authority",
+        "sola-scriptura-refuted"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "deuterocanonical-books",
+      "category": "bible",
+      "title": "The Seven Deuterocanonical Books",
+      "question": "Why do Catholic Bibles have seven more Old Testament books than Protestant Bibles? Didn't Catholics add them?",
+      "answer": "Catholics did not add books; Protestants removed them. The seven Deuterocanonicals (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Maccabees, plus parts of Esther and Daniel) were part of the Septuagint, the Greek Old Testament used by the Apostles and quoted throughout the New Testament. The early Church received these books, and the councils of Hippo (393) and Carthage (397) listed them as canonical Scripture. They remained in every Christian Bible for over a thousand years until Martin Luther relegated them in the 16th century, partly because 2 Maccabees 12:46 supports prayer for the dead, which conflicted with his rejection of Purgatory. The Jewish rabbis who excluded them did so around 90 AD at Jamnia, after Christianity had already adopted them, so their exclusion cannot bind Christians. The Council of Trent (1546) simply reaffirmed the ancient canon against the novel deletion.",
+      "scripture": [
+        {
+          "reference": "2 Maccabees 12:46",
+          "text": "It is a holy and pious thought to pray for the dead that they may be freed from sin.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Wisdom 2:12-20",
+          "text": "The wicked plot against the righteous one, a passage the Gospels echo in Christ's Passion.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 120"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "The whole canon of Scripture is comprised in these books... Tobias, Judith, and the two books of Maccabees.",
+          "source": "On Christian Doctrine, Book II, 397 AD"
+        }
+      ],
+      "tags": [
+        "deuterocanon",
+        "apocrypha",
+        "septuagint",
+        "maccabees",
+        "canon",
+        "trent"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "biblical-canon",
+        "purgatory",
+        "bible-tradition-authority"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "scripture-interpretation",
+      "category": "bible",
+      "title": "How the Church Interprets Scripture",
+      "question": "Why can't every believer just read the Bible and interpret it for themselves under the Holy Spirit?",
+      "answer": "Scripture itself warns against purely private interpretation: St. Peter says no prophecy of Scripture is a matter of personal interpretation (2 Pet 1:20), and that the unlearned distort Paul's letters to their own destruction (2 Pet 3:16). When the Ethiopian eunuch was reading Isaiah, Philip asked if he understood, and he replied, 'How can I, unless someone guides me?' (Acts 8:31). The Church interprets Scripture according to its literal, allegorical, moral, and anagogical senses, in harmony with the whole of Tradition and the analogy of faith. The multiplication of contradictory interpretations that followed the principle of private judgment demonstrates its instability. Catholics still read and pray Scripture personally, but final judgment on its authentic meaning belongs to the living Magisterium guided by the Holy Spirit, not to each isolated reader.",
+      "scripture": [
+        {
+          "reference": "2 Peter 1:20",
+          "text": "No prophecy of scripture is a matter of one's own private interpretation.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Acts 8:30-31",
+          "text": "The Ethiopian confesses he cannot understand Isaiah unless someone guides him.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 115",
+        "CCC 116",
+        "CCC 117",
+        "CCC 119"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Vincent of Lerins",
+          "quote": "In the Catholic Church itself all possible care must be taken, that we hold that faith which has been believed everywhere, always, by all.",
+          "source": "Commonitory, 434 AD"
+        }
+      ],
+      "tags": [
+        "interpretation",
+        "private judgment",
+        "magisterium",
+        "senses of scripture",
+        "bible"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "sola-scriptura-refuted",
+        "bible-tradition-authority",
+        "true-church"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "new-testament-reliability",
+      "category": "bible",
+      "title": "Is the New Testament Reliable?",
+      "question": "Wasn't the New Testament written long after Jesus, full of legends, and corrupted through copying?",
+      "answer": "The New Testament is the best-attested document of antiquity, surviving in over 5,800 Greek manuscripts, some fragments dating within a century of the originals, far exceeding the handful of late copies we have for authors like Tacitus or Caesar. The Gospels were composed within the lifetime of eyewitnesses; Paul's letters date to the 50s AD, and he appeals to over five hundred living witnesses of the risen Christ (1 Cor 15:6). Luke writes explicitly as a careful historian relying on eyewitness testimony (Lk 1:1-4). The textual variants are overwhelmingly minor spelling or word-order differences and affect no doctrine, so the message has been transmitted with remarkable fidelity. The Church that authored, preserved, and canonized these writings vouches for their apostolic origin, and their internal candor about the disciples' failures argues against legendary invention.",
+      "scripture": [
+        {
+          "reference": "Luke 1:1-4",
+          "text": "Luke writes an orderly account based on eyewitnesses so Theophilus may know the certainty of the teaching.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 15:6",
+          "text": "The risen Christ appeared to more than five hundred at once, most still living.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 126",
+        "CCC 76"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Irenaeus of Lyon",
+          "quote": "The Gospels could not possibly be either more or fewer in number than they are.",
+          "source": "Against Heresies, Book III, 189 AD"
+        }
+      ],
+      "tags": [
+        "reliability",
+        "manuscripts",
+        "gospels",
+        "history",
+        "resurrection",
+        "eyewitness"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "biblical-canon",
+        "divinity-of-christ",
+        "new-testament-reliability"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "sola-scriptura-refuted",
+      "category": "bible",
+      "title": "Sola Scriptura Refutes Itself",
+      "question": "Where does the Bible teach that Scripture alone is the sole authority for Christians?",
+      "answer": "Nowhere does the Bible teach 'Scripture alone,' which makes the doctrine self-refuting: a rule of faith that demands biblical proof cannot itself be proven from the Bible. The verse most often cited, 2 Tim 3:16-17, says Scripture is inspired and profitable for teaching and makes the believer complete, but 'profitable' and 'useful' are not the same as 'sufficient by itself'; prayer and good works are also called profitable without excluding everything else. Paul commands the Thessalonians to hold fast to traditions delivered both orally and in writing (2 Thes 2:15), placing oral Tradition on par with written word. He calls the Church, not the Bible, the pillar and foundation of truth (1 Tim 3:15). The Bible presupposes a teaching Church that determined its own canon, so Scripture and Tradition together, under the Magisterium, form the rule of faith.",
+      "scripture": [
+        {
+          "reference": "2 Thessalonians 2:15",
+          "text": "Hold fast to the traditions taught by word of mouth or by letter.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Timothy 3:15",
+          "text": "The Church of the living God is the pillar and foundation of truth.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 80",
+        "CCC 81",
+        "CCC 82"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Basil the Great",
+          "quote": "Of the dogmas and messages preserved in the Church, some we possess from written teaching and others we receive from the tradition of the Apostles.",
+          "source": "On the Holy Spirit, 375 AD"
+        }
+      ],
+      "tags": [
+        "sola scriptura",
+        "tradition",
+        "authority",
+        "rule of faith",
+        "bible"
+      ],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": [
+        "bible-tradition-authority",
+        "scripture-interpretation",
+        "true-church"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "papal-infallibility",
+      "category": "church-teaching",
+      "title": "Understanding Papal Infallibility",
+      "question": "Does papal infallibility mean the Pope can never sin and is right about everything he says?",
+      "answer": "Papal infallibility is frequently misunderstood; it does not mean the Pope is sinless (impeccable), nor that his every opinion, political view, or casual remark is protected from error. It is the narrow charism, defined at the First Vatican Council (1870), by which the Pope, when he speaks ex cathedra, that is, as universal shepherd defining a doctrine of faith or morals to be held by the whole Church, is preserved by the Holy Spirit from teaching error. This rests on Christ's promise that Peter's faith would not fail and his commission to strengthen the brethren (Lk 22:32), and on the keys given to Peter with the power to bind and loose (Mat 16:18-19). It has been exercised only rarely, as in the definitions of the Immaculate Conception and the Assumption. Popes can and have sinned personally and erred in private opinions; infallibility guards the Church's official teaching, not the man's character.",
+      "scripture": [
+        {
+          "reference": "Luke 22:32",
+          "text": "Jesus tells Peter he has prayed that his faith may not fail, and charges him to strengthen his brethren.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Matthew 16:18-19",
+          "text": "Christ gives Peter the keys with authority to bind and loose.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 891",
+        "CCC 890",
+        "CCC 2035"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Cyprian of Carthage",
+          "quote": "The Lord speaks to Peter... that He might set forth unity. He builds His Church upon one.",
+          "source": "On the Unity of the Church, 251 AD"
+        }
+      ],
+      "tags": [
+        "infallibility",
+        "papacy",
+        "ex cathedra",
+        "vatican i",
+        "pope",
+        "magisterium"
+      ],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": [
+        "primacy-of-peter",
+        "bishop-of-rome",
+        "bad-popes-history"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "original-sin",
+      "category": "church-teaching",
+      "title": "The Doctrine of Original Sin",
+      "question": "Why should anyone be born guilty because of what Adam did? Isn't that unjust?",
+      "answer": "Original sin is not personal guilt for Adam's act but the loss of the original holiness and grace that Adam was meant to pass on to all humanity, leaving human nature wounded, inclined to sin, and subject to death. St. Paul teaches that through one man sin entered the world and death spread to all because all sinned in him (Rom 5:12), and that in Adam all die (1 Cor 15:22). This explains the universal human experience of moral struggle and the need for a Savior; without it, the redemption wrought by Christ, the New Adam, would be unnecessary. Baptism removes original sin and restores grace, which is why the Church baptizes even infants (Acts 2:38-39). Far from being unjust, the doctrine magnifies God's mercy, for where sin abounded, grace abounded all the more.",
+      "scripture": [
+        {
+          "reference": "Romans 5:12",
+          "text": "Through one man sin entered the world, and death through sin, and so death spread to all.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 15:22",
+          "text": "As in Adam all die, so too in Christ shall all be brought to life.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 402",
+        "CCC 403",
+        "CCC 404",
+        "CCC 405"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "By the greatness of the first sin, we have all lost the ability not to sin, unless grace liberates us.",
+          "source": "On Rebuke and Grace, 427 AD"
+        }
+      ],
+      "tags": [
+        "original sin",
+        "adam",
+        "grace",
+        "baptism",
+        "concupiscence",
+        "salvation"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "infant-baptism",
+        "immaculate-conception",
+        "salvation"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "heaven-and-hell",
+      "category": "church-teaching",
+      "title": "Heaven, Hell, and Judgment",
+      "question": "Does the Church really teach a literal hell? How can a loving God send anyone there?",
+      "answer": "The Church teaches that heaven and hell are real, eternal states, both grounded in the words of Christ himself, who spoke of hell more than anyone in Scripture. Heaven is the fullness of communion with God, the beatific vision in which we see him face to face (1 Cor 13:12). Hell is definitive self-exclusion from that communion, chosen by those who die in unrepented mortal sin; Jesus warns of the eternal fire prepared for the devil and his angels (Mat 25:41, 46). God does not arbitrarily 'send' people to hell; he desires all to be saved (1 Tim 2:4), but he respects the freedom he gave, and hell is the ratification of a soul's own final refusal of his love. The Church proclaims the reality of hell as a call to responsible use of freedom, never presuming to name any particular person as damned, while entrusting all to God's mercy.",
+      "scripture": [
+        {
+          "reference": "Matthew 25:46",
+          "text": "These will go off to eternal punishment, but the righteous to eternal life.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Timothy 2:4",
+          "text": "God wills everyone to be saved and to come to knowledge of the truth.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1023",
+        "CCC 1033",
+        "CCC 1035",
+        "CCC 1037"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Chrysostom",
+          "quote": "The fear of hell teaches us to fly from sin; the desire of heaven persuades us to despise all present things.",
+          "source": "Homilies on Matthew, 390 AD"
+        }
+      ],
+      "tags": [
+        "heaven",
+        "hell",
+        "judgment",
+        "eternal life",
+        "free will",
+        "salvation"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "purgatory",
+        "salvation",
+        "original-sin"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "real-presence",
+      "category": "church-teaching",
+      "title": "The Real Presence in the Eucharist",
+      "question": "Isn't the Eucharist just a symbol of Christ's body? Why insist he is really present?",
+      "answer": "Christ is truly, really, and substantially present, Body, Blood, Soul, and Divinity, in the Eucharist, not merely symbolically. In the Bread of Life discourse Jesus insists his flesh is true food and his blood true drink (Jn 6:55), and when many disciples left because the teaching was too hard, he did not soften it into metaphor but let them go (Jn 6:66). At the Last Supper he said plainly, 'This is my body' and 'This is my blood' (Mat 26:26-28), and Paul warns that whoever eats unworthily sins against the very body and blood of the Lord, which makes no sense if the elements were mere symbols (1 Cor 11:27-29). The earliest Christians universally understood this literally. The change is called transubstantiation: the substance becomes Christ while the appearances of bread and wine remain.",
+      "scripture": [
+        {
+          "reference": "John 6:55",
+          "text": "My flesh is true food, and my blood is true drink.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 11:27",
+          "text": "Whoever eats the bread or drinks the cup unworthily sins against the body and blood of the Lord.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1374",
+        "CCC 1376",
+        "CCC 1413"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Ignatius of Antioch",
+          "quote": "The Eucharist is the flesh of our Savior Jesus Christ, which suffered for our sins.",
+          "source": "Letter to the Smyrnaeans, 110 AD"
+        }
+      ],
+      "tags": [
+        "eucharist",
+        "real presence",
+        "transubstantiation",
+        "mass",
+        "bread of life"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "holy-eucharist",
+        "transubstantiation",
+        "holy-mass"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "assumption-of-mary",
+      "category": "mary",
+      "title": "The Assumption of Mary",
+      "question": "Where does the Bible say Mary was taken bodily into heaven? Isn't this an invented doctrine?",
+      "answer": "The Assumption holds that Mary, at the end of her earthly life, was taken body and soul into heavenly glory, a dogma solemnly defined by Pope Pius XII in 1950 as belonging to the ancient faith. While not stated in explicit words, it is deeply consonant with Scripture: as the Immaculate one, free from sin, Mary was fittingly spared the bodily corruption that is sin's penalty (Gen 3:19). The Ark of the Covenant, which prefigures Mary who bore God incarnate, was made of incorruptible wood, and Revelation 12 shows the woman crowned in heaven, body and soul. Scripture already records bodily assumptions of Enoch (Gen 5:24) and Elijah (2 Kgs 2:11), so a similar grace for the Mother of God is entirely fitting. The belief is attested in the Church's liturgy and the Fathers from antiquity, and no relics of Mary's body have ever been claimed by any church, an eloquent silence.",
+      "scripture": [
+        {
+          "reference": "Revelation 12:1",
+          "text": "A great sign appeared in heaven, a woman clothed with the sun, with the moon under her feet and a crown of twelve stars.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Kings 2:11",
+          "text": "Elijah was taken up to heaven in a whirlwind.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 966",
+        "CCC 974"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Damascene",
+          "quote": "It was fitting that she who had kept her virginity undamaged in childbirth should keep her body without corruption after death.",
+          "source": "Homily on the Dormition, 730 AD"
+        }
+      ],
+      "tags": [
+        "assumption",
+        "mary",
+        "dormition",
+        "immaculate",
+        "revelation 12",
+        "dogma"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "immaculate-conception",
+        "queenship-of-mary",
+        "mary-mother-of-god"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "mary-mother-of-god",
+      "category": "mary",
+      "title": "Mary, Mother of God (Theotokos)",
+      "question": "How can Mary be the Mother of God? God has no beginning, so isn't this blasphemy?",
+      "answer": "Calling Mary the Mother of God (Theotokos, 'God-bearer') is a statement about Christ, not a claim that Mary predates the divinity. Because Jesus is one divine Person with two natures, human and divine, the one whom Mary conceived and bore is truly God the Son. Motherhood refers to a person, not merely a nature; a mother bears her child, not just his human body, so Mary is mother of the Person who is God. Elizabeth, filled with the Holy Spirit, already confessed this when she called Mary 'the mother of my Lord' (Lk 1:43). The title was solemnly defined at the Council of Ephesus in 431 to defend the truth that Jesus is a single, undivided divine Person. To deny Mary this title is to divide Christ into two persons, the heresy of Nestorius; thus Theotokos safeguards the deity of Christ himself.",
+      "scripture": [
+        {
+          "reference": "Luke 1:43",
+          "text": "Elizabeth asks, 'How does this happen to me, that the mother of my Lord should come to me?'",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Galatians 4:4",
+          "text": "God sent his Son, born of a woman, born under the law.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 495",
+        "CCC 466",
+        "CCC 509"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Cyril of Alexandria",
+          "quote": "If anyone does not confess that Emmanuel is truly God, and that the holy Virgin is therefore the Mother of God, let him be anathema.",
+          "source": "Third Letter to Nestorius, 430 AD"
+        }
+      ],
+      "tags": [
+        "theotokos",
+        "mother of god",
+        "ephesus",
+        "incarnation",
+        "mary",
+        "christology"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "divinity-of-christ",
+        "perpetual-virginity",
+        "assumption-of-mary"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "queenship-of-mary",
+      "category": "mary",
+      "title": "Mary as Queen of Heaven",
+      "question": "Isn't calling Mary 'Queen of Heaven' just borrowing a pagan title condemned in Jeremiah?",
+      "answer": "Mary's queenship has nothing to do with the pagan goddess condemned in Jeremiah 44; it flows directly from her Son's kingship. In the Davidic kingdom, the queen was not the king's wife but his mother, the Gebirah or Queen Mother, who sat at the king's right hand and interceded with him, as Bathsheba did before Solomon (1 Kgs 2:19-20). Since Jesus is the eternal King who inherits the throne of David (Lk 1:32), his mother Mary is the Queen Mother of his kingdom. Revelation 12 depicts her crowned with twelve stars in heaven. Her queenship is entirely subordinate and derivative; she reigns not by her own power but as the first redeemed creature, honored by her Son and interceding for his people. The title exalts Christ's kingship, not a rival deity.",
+      "scripture": [
+        {
+          "reference": "1 Kings 2:19",
+          "text": "Solomon sets a throne for his mother Bathsheba, who sits at his right hand as queen mother.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Revelation 12:1",
+          "text": "The woman in heaven is crowned with twelve stars.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 966",
+        "CCC 2679"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Ephrem the Syrian",
+          "quote": "Most holy Lady, Mother of God, alone most pure in soul and body... my Queen and my Mother.",
+          "source": "Prayers to the Mother of God, 4th century AD"
+        }
+      ],
+      "tags": [
+        "queen of heaven",
+        "queen mother",
+        "gebirah",
+        "mary",
+        "davidic kingdom"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "assumption-of-mary",
+        "mary-mother-of-god",
+        "intercession-of-saints"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "mediatrix",
+      "category": "mary",
+      "title": "Mary as Mediatrix",
+      "question": "Doesn't calling Mary 'Mediatrix' contradict 1 Timothy 2:5, that there is one mediator between God and man?",
+      "answer": "Christ is the one mediator by nature, the sole bridge between God and humanity through his cross, and the Church affirms this without reservation. Yet the very same chapter that declares one mediator (1 Tim 2:5) opens by urging that intercessions be made for all people (1 Tim 2:1), showing that subordinate, participated mediation does not rival Christ's unique mediation but flows from it. Just as Christians are called to intercede for one another, Mary's role as Mediatrix means she cooperates in and distributes the graces won solely by her Son, never as a competing source. Her mediation is like the moon reflecting the sun: it has no light of its own. At Cana she interceded and Jesus acted through her request (Jn 2:3-5), a model of her maternal mediation. All her power is entirely dependent on and directed toward Christ.",
+      "scripture": [
+        {
+          "reference": "1 Timothy 2:1",
+          "text": "Supplications, prayers, and intercessions should be offered for everyone.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "John 2:3-5",
+          "text": "At Cana Mary intercedes and tells the servants to do whatever Jesus commands.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 969",
+        "CCC 970"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Irenaeus of Lyon",
+          "quote": "As Eve was seduced to flee from God, so Mary was persuaded to obey God, that the Virgin Mary might become the advocate of the virgin Eve.",
+          "source": "Against Heresies, Book V, 189 AD"
+        }
+      ],
+      "tags": [
+        "mediatrix",
+        "mediation",
+        "intercession",
+        "mary",
+        "one mediator",
+        "cana"
+      ],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": [
+        "intercession-of-saints",
+        "prayer-to-saints",
+        "hail-mary-biblical"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "hail-mary-biblical",
+      "category": "mary",
+      "title": "Is the Hail Mary Biblical?",
+      "question": "Where in the Bible is the Hail Mary prayer? Isn't it unbiblical to pray to Mary?",
+      "answer": "The Hail Mary is thoroughly biblical in its core. Its first half is drawn word for word from Scripture: the angel Gabriel's greeting, 'Hail, full of grace, the Lord is with you' (Lk 1:28), and Elizabeth's Spirit-inspired words, 'Blessed are you among women, and blessed is the fruit of your womb' (Lk 1:42). Mary herself prophesied that all generations would call her blessed (Lk 1:48), so honoring her fulfills Scripture rather than violating it. The second half, 'Holy Mary, Mother of God, pray for us sinners,' is simply a request for her intercession, the same thing we ask when we ask a friend to pray for us, addressed to one who is alive in Christ (Mk 12:27). We do not adore Mary; adoration belongs to God alone. We honor her and ask her prayers, exactly as Scripture and the earliest Christians did.",
+      "scripture": [
+        {
+          "reference": "Luke 1:28",
+          "text": "The angel greets Mary: Hail, full of grace, the Lord is with you.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 1:48",
+          "text": "Mary declares that from now on all ages will call her blessed.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 2676",
+        "CCC 2677"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Athanasius of Alexandria",
+          "quote": "It is right for us to remember and honor the most holy Mother of God, ever-Virgin Mary.",
+          "source": "Homily on the Deipara, 4th century AD"
+        }
+      ],
+      "tags": [
+        "hail mary",
+        "prayer",
+        "mary",
+        "intercession",
+        "luke",
+        "rosary"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "rosary-biblical",
+        "prayer-to-saints",
+        "mediatrix"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "fatima-apparitions",
+      "category": "mary",
+      "title": "The Apparitions at Fatima",
+      "question": "What happened at Fatima, and are Catholics required to believe in Marian apparitions?",
+      "answer": "At Fatima, Portugal, in 1917, three shepherd children reported six apparitions of the Virgin Mary, who called for prayer of the Rosary, penance, and conversion. The events culminated on October 13 in the 'Miracle of the Sun,' witnessed by an estimated 70,000 people, including skeptics and secular journalists, who reported the sun appearing to spin and plunge toward the earth. After careful investigation the Church approved Fatima as worthy of belief in 1930. However, such approved apparitions are called private revelation, which the Church distinguishes sharply from public Revelation that closed with the death of the last Apostle (CCC 66-67). No private revelation adds to the deposit of faith, and Catholics are not obliged to believe in any apparition. Approved apparitions like Fatima and Lourdes are commended as aids to devotion when they call people back to the Gospel already given.",
+      "scripture": [
+        {
+          "reference": "Acts 2:17",
+          "text": "In the last days your sons and daughters will prophesy, and your young men will see visions.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Thessalonians 5:20-21",
+          "text": "Do not despise prophetic utterances; test everything and retain what is good.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 66",
+        "CCC 67"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John of the Cross",
+          "quote": "In giving us his Son, his only Word, he spoke everything to us at once in this sole Word, and he has no more to say.",
+          "source": "The Ascent of Mount Carmel, 1585 AD"
+        }
+      ],
+      "tags": [
+        "fatima",
+        "apparitions",
+        "private revelation",
+        "mary",
+        "miracle of the sun",
+        "rosary"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "rosary-biblical",
+        "hail-mary-biblical",
+        "canonization-process"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "rosary-biblical",
+      "category": "tradition",
+      "title": "Is the Rosary Biblical?",
+      "question": "Doesn't the Rosary violate Jesus' warning against vain repetition in prayer?",
+      "answer": "The Rosary does not violate Jesus' words; he condemned 'babbling' like the pagans who think they are heard for their many words (Mat 6:7), that is, mindless attempts to manipulate God, not repetition itself. Scripture is full of holy repetition: the seraphim eternally cry 'Holy, holy, holy' (Isa 6:3), Psalm 136 repeats 'his mercy endures forever' twenty-six times, and Jesus himself in Gethsemane prayed 'saying the same words' three times (Mat 26:44). The Rosary is a scriptural meditation on the mysteries of Christ's life, death, and resurrection, with the repeated Hail Marys (themselves biblical, Lk 1:28, 42) forming a gentle rhythm that focuses the heart on those events, much as background music aids concentration. It is fundamentally Christ-centered, leading the one who prays through the Gospel with Mary as guide. Loving repetition offered with attention is the language of devotion, not vanity.",
+      "scripture": [
+        {
+          "reference": "Revelation 4:8",
+          "text": "Day and night the living creatures never cease to cry, Holy, holy, holy.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Matthew 26:44",
+          "text": "Jesus prayed a third time, saying the same words.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 2678",
+        "CCC 971",
+        "CCC 1674"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Chrysostom",
+          "quote": "Continue knocking; ask again and again; be not ashamed, for God delights in persevering prayer.",
+          "source": "Homilies on Prayer, 4th century AD"
+        }
+      ],
+      "tags": [
+        "rosary",
+        "repetition",
+        "prayer",
+        "meditation",
+        "mary",
+        "mysteries"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "hail-mary-biblical",
+        "fatima-apparitions",
+        "prayer-to-saints"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "priestly-celibacy",
+      "category": "tradition",
+      "title": "Why Catholic Priests Are Celibate",
+      "question": "Why don't Catholic priests marry? Doesn't the Bible say a bishop should be the husband of one wife?",
+      "answer": "Priestly celibacy is a discipline of the Latin Church, not an unchangeable doctrine, freely embraced in imitation of Christ, who was himself celibate. Jesus praised those who become 'eunuchs for the sake of the kingdom of heaven' and said whoever can accept it should (Mat 19:12). St. Paul, unmarried, wished all could be as he was and taught that the unmarried person is anxious about the things of the Lord, undivided in devotion (1 Cor 7:32-35). The phrase 'husband of one wife' (1 Tim 3:2) forbade remarriage or polygamy in an era when married men were often ordained; it does not mandate marriage. Celibacy frees the priest to be wholly given to his flock as a spiritual father, a living sign of the world to come where there is no marrying (Mat 22:30). Eastern Catholic Churches ordain married men, showing the rule is a discipline the Church can and does adapt.",
+      "scripture": [
+        {
+          "reference": "Matthew 19:12",
+          "text": "Some have renounced marriage for the sake of the kingdom of heaven; whoever can accept this ought to accept it.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 7:32",
+          "text": "An unmarried man is anxious about the things of the Lord, how he may please the Lord.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1579",
+        "CCC 1580",
+        "CCC 1618"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Jerome",
+          "quote": "Christ loves virgins more than others, because they willingly give what was not commanded of them.",
+          "source": "Against Jovinianus, 393 AD"
+        }
+      ],
+      "tags": [
+        "celibacy",
+        "priesthood",
+        "discipline",
+        "chastity",
+        "holy orders"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "holy-orders",
+        "confirmation-sacrament",
+        "canonization-process"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "canonization-process",
+      "category": "tradition",
+      "title": "How Canonization Works",
+      "question": "How does the Church 'make' saints, and can it be wrong when it declares someone a saint?",
+      "answer": "Canonization does not make a person holy; it is the Church's solemn recognition that a person is already in heaven and may be venerated by the universal Church and invoked as an intercessor. The process is rigorous: after a waiting period, the person's life and writings are examined for heroic virtue, earning the title Venerable, then beatification (title Blessed) normally requires one verified miracle attributed to their intercession, and canonization requires a second, medically inexplicable miracle. These miracles serve as God's own confirmation from heaven. Because Scripture calls all the faithful 'saints' (Rom 1:7) and pictures the martyrs alive before God (Rev 6:9-11), the Church simply identifies specific witnesses for imitation. Many theologians hold that formal canonization engages the Church's infallibility, since it would be gravely misleading to command the universal veneration of someone not truly saved; thus the Church trusts it cannot err in this solemn act.",
+      "scripture": [
+        {
+          "reference": "Revelation 6:9-10",
+          "text": "John sees the souls of the martyrs under the altar, alive and crying out to God.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Hebrews 12:1",
+          "text": "We are surrounded by so great a cloud of witnesses.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 828",
+        "CCC 956",
+        "CCC 2683"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "We do not build temples to our martyrs as if they were gods, but as memorials to dead men whose spirits live with God.",
+          "source": "The City of God, 426 AD"
+        }
+      ],
+      "tags": [
+        "canonization",
+        "saints",
+        "beatification",
+        "miracles",
+        "veneration",
+        "heroic virtue"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "intercession-of-saints",
+        "all-saints-souls",
+        "veneration-vs-worship"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "liturgical-calendar",
+      "category": "tradition",
+      "title": "The Liturgical Seasons",
+      "question": "Why do Catholics observe Lent, Advent, and feast days? Isn't every day the same to God?",
+      "answer": "The liturgical calendar sanctifies time by walking the Church annually through the mysteries of Christ's life, from his awaited coming in Advent, to his birth at Christmas, his passion and resurrection through Lent and Easter, and his reign in Ordinary Time. This has deep biblical roots: God himself established a calendar of sacred seasons and feasts for Israel (Lev 23), and there is 'a time for everything' under heaven (Eccl 3:1). Jesus and the Apostles observed the appointed feasts, and Paul spoke of keeping the feast with sincerity and truth (1 Cor 5:8). Seasons like Lent's forty days mirror Christ's fast in the desert (Mat 4:2) and dispose us to conversion through prayer, fasting, and almsgiving. Far from making days identical, the rhythm of fast and feast forms disciples over a lifetime, teaching the whole Gospel through repetition and helping the faithful enter each mystery ever more deeply.",
+      "scripture": [
+        {
+          "reference": "Ecclesiastes 3:1",
+          "text": "There is an appointed time for everything, a time for every affair under the heavens.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Leviticus 23:2",
+          "text": "These are the festivals of the Lord which you shall declare holy days.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1163",
+        "CCC 1168",
+        "CCC 1171",
+        "CCC 1438"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Athanasius of Alexandria",
+          "quote": "Let us keep the feast, brethren, observing the days of the Paschal fast which lead us to the great Sunday.",
+          "source": "Festal Letters, 4th century AD"
+        }
+      ],
+      "tags": [
+        "liturgical calendar",
+        "lent",
+        "advent",
+        "seasons",
+        "feasts",
+        "fasting"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "sunday-observance",
+        "dietary-abstinence",
+        "holy-mass"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "intercession-of-saints",
+      "category": "saints",
+      "title": "The Intercession of the Saints",
+      "question": "Can the dead in heaven really hear us and pray for us? Isn't contacting the dead forbidden?",
+      "answer": "The saints in heaven are not dead but supremely alive in Christ, for God is God of the living, not of the dead (Mk 12:27), and death cannot separate us from the love of Christ or from one another in him (Rom 8:38-39). Asking their intercession is not the forbidden necromancy of Deuteronomy 18, which sought secret knowledge from spirits apart from God; it is asking fellow members of Christ's Body, more alive and closer to God than we are, to pray for us. Scripture shows the saints in heaven aware of earthly events and offering the prayers of God's people before his throne as incense in golden bowls (Rev 5:8, 8:3-4). If the prayer of a righteous person on earth is powerful (Jas 5:16), how much more that of the righteous made perfect in heaven. The whole Church, in heaven and on earth, forms one communion of saints who pray for one another.",
+      "scripture": [
+        {
+          "reference": "Revelation 5:8",
+          "text": "The elders hold golden bowls full of incense, which are the prayers of the holy ones.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "James 5:16",
+          "text": "The fervent prayer of a righteous person is very powerful.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 956",
+        "CCC 957",
+        "CCC 2683",
+        "CCC 962"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Jerome",
+          "quote": "If the Apostles and martyrs while still in the body can pray for others, how much more after their crowns and victories?",
+          "source": "Against Vigilantius, 406 AD"
+        }
+      ],
+      "tags": [
+        "intercession",
+        "saints",
+        "communion of saints",
+        "prayer",
+        "heaven"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "prayer-to-saints",
+        "veneration-vs-worship",
+        "all-saints-souls"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "veneration-vs-worship",
+      "category": "saints",
+      "title": "Veneration Is Not Worship",
+      "question": "Isn't honoring saints and their images the same idolatry the Bible condemns?",
+      "answer": "The Church draws a sharp and ancient distinction between the adoration owed to God alone (Latin latria) and the honor given to saints (dulia), which differ not merely in degree but in kind. Worship in the strict sense, sacrifice and supreme adoration, belongs only to the Triune God; venerating a saint is honoring God's own handiwork of grace, much as Scripture honors heroes of faith (Heb 11) and Paul urges imitation of holy people (1 Cor 11:1). Honoring the righteous is commanded, not condemned: the king bowed before the prophet, and the sons of the prophets bowed to Elisha (2 Kgs 2:15) without idolatry. Idolatry means treating a creature as if it were God, offering it the adoration due to him alone, which Catholics never do toward any saint. Images serve as reminders, like family photographs, directing love to the person portrayed, not to wood or paint. To honor the saints is ultimately to praise the God whose grace made them holy.",
+      "scripture": [
+        {
+          "reference": "1 Corinthians 11:1",
+          "text": "Be imitators of me, as I am of Christ.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Hebrews 11:2",
+          "text": "By faith the people of old received divine approval.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 2132",
+        "CCC 971",
+        "CCC 1674"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Damascene",
+          "quote": "I do not worship matter; I worship the God of matter, who became matter for my sake.",
+          "source": "On the Divine Images, 730 AD"
+        }
+      ],
+      "tags": [
+        "veneration",
+        "worship",
+        "idolatry",
+        "latria",
+        "dulia",
+        "saints"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "sacred-images",
+        "relics-veneration",
+        "intercession-of-saints"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "relics-veneration",
+      "category": "saints",
+      "title": "The Veneration of Relics",
+      "question": "Why does the Church keep and honor the bones of saints? Isn't that superstition?",
+      "answer": "Veneration of relics is rooted in Scripture, where God works miracles through the physical remains and objects of holy people. The bones of the prophet Elisha raised a dead man to life when a corpse touched them (2 Kgs 13:21), and God worked extraordinary miracles through cloths that had merely touched St. Paul's skin, healing the sick and driving out spirits (Acts 19:11-12). Even the woman healed by touching the hem of Jesus' garment shows God's power flowing through physical means (Mat 9:20-22). The Church honors relics not as magic but because the bodies of the saints were temples of the Holy Spirit (1 Cor 6:19) and are destined for glorious resurrection. The honor passes to God, who is wonderful in his saints; relics are tangible reminders of holy lives and occasions through which God still chooses to bless. This is why early Christians celebrated the Eucharist over the tombs of the martyrs.",
+      "scripture": [
+        {
+          "reference": "2 Kings 13:21",
+          "text": "A dead man revived and stood up when his body touched the bones of Elisha.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Acts 19:11-12",
+          "text": "God worked mighty deeds through cloths that had touched Paul, so the sick were healed.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1674"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Jerome",
+          "quote": "We honor the relics of the martyrs, that we may adore Him whose martyrs they are.",
+          "source": "Against Vigilantius, 406 AD"
+        }
+      ],
+      "tags": [
+        "relics",
+        "saints",
+        "veneration",
+        "miracles",
+        "martyrs",
+        "body"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "veneration-vs-worship",
+        "sacred-images",
+        "intercession-of-saints"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "all-saints-souls",
+      "category": "saints",
+      "title": "All Saints and All Souls Days",
+      "question": "What are All Saints Day and All Souls Day, and why do Catholics have them?",
+      "answer": "All Saints Day (November 1) honors all the holy men and women in heaven, both the canonized and the countless unknown saints, celebrating the whole triumphant Church that stands before God's throne, the great multitude no one can number from every nation (Rev 7:9). All Souls Day (November 2) prays for the faithful departed who are being purified before entering heaven, expressing the Church's ancient conviction that it is a holy thing to pray for the dead that they may be released from their sins (2 Mac 12:46). Together these feasts express the three states of the one Church: the Church Triumphant in heaven, the Church Suffering in purgatory, and the Church Militant on earth, all united in the communion of saints. They remind the living of their destiny in Christ, encourage imitation of the saints, and fulfill the works of mercy by praying for those who have died. Nothing unclean can enter heaven (Rev 21:27), so this purification and prayer make sense.",
+      "scripture": [
+        {
+          "reference": "Revelation 7:9",
+          "text": "A great multitude that no one could count, from every nation, stood before the throne and the Lamb.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Maccabees 12:46",
+          "text": "It is a holy and pious thought to pray for the dead, that they may be freed from sin.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 954",
+        "CCC 955",
+        "CCC 1032"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Chrysostom",
+          "quote": "Let us help and commemorate the dead. Let us not hesitate to help those who have died and to offer our prayers for them.",
+          "source": "Homilies on First Corinthians, 392 AD"
+        }
+      ],
+      "tags": [
+        "all saints",
+        "all souls",
+        "purgatory",
+        "communion of saints",
+        "prayer for the dead"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "purgatory",
+        "intercession-of-saints",
+        "canonization-process"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "papal-succession",
+      "category": "papacy",
+      "title": "Apostolic Succession and the Papacy",
+      "question": "How can a bishop today claim the authority Jesus gave to Peter two thousand years ago?",
+      "answer": "Apostolic succession is the unbroken transmission of the office and authority Christ gave the Apostles, handed on through the laying on of hands from generation to generation. The Apostles clearly intended their office to continue: when Judas fell, the Eleven chose Matthias to take his 'office' (Acts 1:20-26, quoting Ps 109:8), showing that apostolic ministry is an office that passes to a successor, not a personal privilege that dies with the man. Paul instructs Timothy to entrust what he received to reliable men who will teach others in turn (2 Tim 2:2), a fourfold chain of succession. Just as Peter held a unique primacy among the Apostles, that primacy passes to his successor, the Bishop of Rome, where Peter established his see and was martyred. The early Fathers listed the Roman bishops in unbroken order precisely to prove the authenticity of their teaching against innovators. This visible, historical continuity guarantees that the Church today teaches with the very authority Christ conferred.",
+      "scripture": [
+        {
+          "reference": "Acts 1:20",
+          "text": "Let another take his office, Scripture says of the vacancy left by Judas.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "2 Timothy 2:2",
+          "text": "Entrust what you heard from me to faithful people who will teach others as well.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 861",
+        "CCC 862",
+        "CCC 880",
+        "CCC 882"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Irenaeus of Lyon",
+          "quote": "We can enumerate those who were instituted bishops by the Apostles, and their successors down to our own times.",
+          "source": "Against Heresies, Book III, 189 AD"
+        }
+      ],
+      "tags": [
+        "apostolic succession",
+        "papacy",
+        "peter",
+        "matthias",
+        "bishops",
+        "ordination"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "primacy-of-peter",
+        "bishop-of-rome",
+        "papal-succession"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "bad-popes-history",
+      "category": "papacy",
+      "title": "Sinful Popes and the Papacy",
+      "question": "If some popes were corrupt or immoral, doesn't that prove the papacy is not from God?",
+      "answer": "The existence of sinful popes actually confirms rather than refutes the Catholic claim, because the Church's guarantee was never the personal holiness of the officeholder but Christ's promise that his Church would endure. Jesus chose Peter, who denied him three times (Lk 22:61-62), and Judas, a betrayer, was among the Twelve, showing from the start that God works through flawed men. Christ promised that the gates of hell would not prevail against his Church (Mat 16:18), not that every pope would be a saint. Papal infallibility protects official teaching on faith and morals, not the pope's private conduct; strikingly, even the worst popes never used their office to define heresy as binding doctrine, an eloquent testimony to that protection. That the Church survived scandalous popes, the Renaissance corruption, and every human failure for two thousand years is itself a mark of divine sustenance, for no merely human institution led by such men could have endured. God writes straight with crooked lines.",
+      "scripture": [
+        {
+          "reference": "Matthew 16:18",
+          "text": "Upon this rock I will build my Church, and the gates of the netherworld shall not prevail against it.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Luke 22:61-62",
+          "text": "Peter, having denied the Lord, went out and wept bitterly.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 869",
+        "CCC 890",
+        "CCC 827"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Augustine of Hippo",
+          "quote": "The good shepherd sought even in bad ministers the sheep that belong to Christ, for the water flows pure even through stone channels.",
+          "source": "Tractates on the Gospel of John, 416 AD"
+        }
+      ],
+      "tags": [
+        "bad popes",
+        "papacy",
+        "corruption",
+        "holiness",
+        "indefectibility",
+        "infallibility"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "papal-infallibility",
+        "primacy-of-peter",
+        "bishop-of-rome"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "bishop-of-rome",
+      "category": "papacy",
+      "title": "Why the Bishop of Rome Leads the Church",
+      "question": "Why should the Bishop of Rome, of all the bishops, be the head of the whole Church?",
+      "answer": "The Bishop of Rome heads the universal Church because he is the successor of St. Peter, whom Christ singled out as the rock on which he would build his Church and to whom he alone gave the keys of the kingdom (Mat 16:18-19). Peter exercised a unique leadership among the Apostles: his name always heads the lists, Christ commanded him to strengthen his brethren (Lk 22:32) and to feed the whole flock (Jn 21:15-17), and he spoke first at Pentecost and at the Council of Jerusalem. Peter went to Rome, led the Church there, and was martyred and buried in that city, so his authority naturally passed to the Bishop of Rome as his successor. From the earliest centuries the Roman church was recognized as holding a special preeminence, and disputes were appealed to Rome for settlement. The keys symbolize the office of royal steward (Isa 22:22), a single delegated authority that continues in an ongoing succession, so the Roman see is the visible center of unity for the whole Church.",
+      "scripture": [
+        {
+          "reference": "John 21:17",
+          "text": "Jesus tells Peter three times, Feed my sheep.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Isaiah 22:22",
+          "text": "I will place the key of the House of David on his shoulder; what he opens, no one will shut.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 881",
+        "CCC 882",
+        "CCC 834"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Irenaeus of Lyon",
+          "quote": "With this Church, because of its superior origin, all the churches must agree... it is here that the tradition of the Apostles has been preserved.",
+          "source": "Against Heresies, Book III, 189 AD"
+        }
+      ],
+      "tags": [
+        "bishop of rome",
+        "pope",
+        "peter",
+        "keys",
+        "primacy",
+        "rome"
+      ],
+      "difficulty": "intermediate",
+      "lang": "en",
+      "relatedTopics": [
+        "primacy-of-peter",
+        "papal-succession",
+        "councils-and-popes"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "councils-and-popes",
+      "category": "papacy",
+      "title": "Ecumenical Councils and the Pope",
+      "question": "Do ecumenical councils have authority over the Pope, or does the Pope override the councils?",
+      "answer": "An ecumenical council and the Pope are not rival authorities but form one teaching body: a council is only ecumenical, that is, universally binding, when it acts in union with and is confirmed by the Successor of Peter, the head of the college of bishops. The bishops of the whole world are the successors of the Apostles and, together with the Pope as their head, exercise supreme authority, exactly as the Apostles gathered with Peter at the Council of Jerusalem, where Peter spoke decisively and the assembly wrote, 'It is the decision of the holy Spirit and of us' (Acts 15:28). The Pope cannot be simply overruled by the bishops apart from him, for the college has no authority without its head, just as the body has none without Peter. Neither does the Pope govern in isolation from the bishops; ordinarily he teaches with and through them. This is why the doctrine of conciliarism, that a council stands above the Pope, was rejected. The Church's authority is always Peter-with-the-bishops, never one against the other.",
+      "scripture": [
+        {
+          "reference": "Acts 15:28",
+          "text": "It is the decision of the holy Spirit and of us not to place on you any burden beyond these necessities.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Matthew 18:18",
+          "text": "Whatever you bind on earth shall be bound in heaven.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 883",
+        "CCC 884",
+        "CCC 885"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Gregory the Great",
+          "quote": "I confess that I receive and venerate the four councils as I do the four books of the holy Gospel.",
+          "source": "Letter to John of Constantinople, 590 AD"
+        }
+      ],
+      "tags": [
+        "councils",
+        "papacy",
+        "collegiality",
+        "conciliarism",
+        "jerusalem council",
+        "bishops"
+      ],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": [
+        "papal-infallibility",
+        "bishop-of-rome",
+        "papal-succession"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "confirmation-sacrament",
+      "category": "sacraments",
+      "title": "The Sacrament of Confirmation",
+      "question": "What is Confirmation, and why is it a separate sacrament if we already received the Spirit at Baptism?",
+      "answer": "Confirmation is the sacrament that completes baptismal grace by a special outpouring of the Holy Spirit, sealing and strengthening the baptized for witness and mature discipleship. Its biblical basis is clear: in Samaria, though the people had already been baptized, the Apostles Peter and John came, laid hands on them, and they received the Holy Spirit in a distinct action (Acts 8:14-17), and Paul likewise laid hands on the disciples at Ephesus so the Spirit came upon them (Acts 19:5-6). Scripture speaks of being sealed with the promised Holy Spirit (Eph 1:13). This shows the early Church distinguished the gift of the Spirit in Confirmation from Baptism itself, ordinarily conferred through the laying on of hands and anointing by a bishop or his delegate. Just as the Apostles were baptized in a sense by following Christ yet needed Pentecost to be strengthened for mission, so Confirmation deepens and perfects what Baptism began, equipping the Christian to profess and defend the faith.",
+      "scripture": [
+        {
+          "reference": "Acts 8:17",
+          "text": "The Apostles laid hands on them, and they received the holy Spirit.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Ephesians 1:13",
+          "text": "You were sealed with the promised holy Spirit.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1285",
+        "CCC 1288",
+        "CCC 1302",
+        "CCC 1316"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Cyprian of Carthage",
+          "quote": "They who are baptized in the Church are brought to the bishops, and by our prayer and the imposition of hands receive the Holy Spirit.",
+          "source": "Epistle 73, 255 AD"
+        }
+      ],
+      "tags": [
+        "confirmation",
+        "sacrament",
+        "holy spirit",
+        "sealing",
+        "chrism",
+        "laying on of hands"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "infant-baptism",
+        "holy-orders",
+        "holy-eucharist"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "anointing-of-sick",
+      "category": "sacraments",
+      "title": "The Anointing of the Sick",
+      "question": "What is the Anointing of the Sick? Is it just 'Last Rites' for people who are dying?",
+      "answer": "The Anointing of the Sick is a sacrament of healing given to those who are seriously ill or facing the frailty of old age, not merely a ritual for the dying. Its direct biblical mandate is found in James, who instructs the sick to call the presbyters (priests) of the Church to pray over them and anoint them with oil in the name of the Lord, promising that the prayer of faith will save the sick person, the Lord will raise them up, and their sins will be forgiven (Jas 5:14-15). Jesus' own apostles anointed the sick with oil and healed them (Mk 6:13). The sacrament confers grace, spiritual strength, peace, courage, union with Christ's passion, and forgiveness of sins, and when God wills, physical healing. It can be received more than once, whenever a person falls gravely ill again. 'Last Rites' more properly refers to the final sacraments given to the dying, which include this Anointing along with Confession and Viaticum (final Communion), but the Anointing itself is for anyone seriously sick, meant to heal and console, not only to prepare for death.",
+      "scripture": [
+        {
+          "reference": "James 5:14-15",
+          "text": "Are any among you sick? Let them call the presbyters, who will pray over them and anoint them with oil.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "Mark 6:13",
+          "text": "The apostles anointed many sick people with oil and cured them.",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1499",
+        "CCC 1511",
+        "CCC 1514",
+        "CCC 1520"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. John Chrysostom",
+          "quote": "The priests of the Church can forgive sins... for they anoint the sick and pray for their recovery.",
+          "source": "On the Priesthood, 387 AD"
+        }
+      ],
+      "tags": [
+        "anointing of the sick",
+        "last rites",
+        "healing",
+        "sacrament",
+        "oil",
+        "james"
+      ],
+      "difficulty": "beginner",
+      "lang": "en",
+      "relatedTopics": [
+        "confession-to-priest",
+        "holy-orders",
+        "holy-eucharist"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
+    },
+    {
+      "id": "transubstantiation",
+      "category": "sacraments",
+      "title": "The Doctrine of Transubstantiation",
+      "question": "What does transubstantiation actually mean, and what is its basis in the Bible?",
+      "answer": "Transubstantiation is the Church's precise term for what happens at the consecration of the Mass: the whole substance of the bread and wine is changed into the substance of the Body and Blood of Christ, while the appearances (accidents) of bread and wine, taste, texture, and shape, remain. It affirms that Christ is truly present, not merely symbolically or spiritually alongside the bread. The biblical foundation lies in Christ's own words, which he stated in the plainest terms: 'This is my body' and 'This is my blood' (Lk 22:19-20), and in his insistence in the Bread of Life discourse that his flesh is real food, using increasingly literal language even as disciples left in disbelief (Jn 6:53-55). St. Paul confirms that the bread we break is a participation in the Body of Christ (1 Cor 10:16) and warns that receiving unworthily makes one guilty of the Lord's Body and Blood (1 Cor 11:27), which requires a real presence. The term describes the reality; the how is a mystery accomplished by God's power and received in faith, just as the early Fathers taught from the beginning.",
+      "scripture": [
+        {
+          "reference": "Luke 22:19",
+          "text": "This is my body, which will be given for you; do this in memory of me.",
+          "version": "NABRE"
+        },
+        {
+          "reference": "1 Corinthians 10:16",
+          "text": "The bread that we break, is it not a participation in the body of Christ?",
+          "version": "NABRE"
+        }
+      ],
+      "catechism": [
+        "CCC 1376",
+        "CCC 1377",
+        "CCC 1413"
+      ],
+      "churchFathers": [
+        {
+          "author": "St. Cyril of Jerusalem",
+          "quote": "Since He Himself has declared, 'This is My Body,' who shall dare to doubt? Do not think of it as mere bread and wine, for it is the Body and Blood of Christ.",
+          "source": "Catechetical Lectures, 350 AD"
+        }
+      ],
+      "tags": [
+        "transubstantiation",
+        "eucharist",
+        "real presence",
+        "consecration",
+        "mass",
+        "substance"
+      ],
+      "difficulty": "advanced",
+      "lang": "en",
+      "relatedTopics": [
+        "real-presence",
+        "holy-eucharist",
+        "holy-mass"
+      ],
+      "lastUpdated": "2026-07-15T00:00:00Z"
     }
   ],
   "metadata": {
     "version": "2.0.0",
-    "lastUpdated": "2026-07-10T00:00:00Z",
-    "totalTopics": 20
+    "lastUpdated": "2026-07-15T00:00:00Z",
+    "totalTopics": 50
   }
 }

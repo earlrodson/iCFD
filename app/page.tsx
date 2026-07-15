@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Clock } from '@phosphor-icons/react'
+import { Clock, Sparkle } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useSearchStore } from '@/store/useSearchStore'
 import { useReadingStore } from '@/store/useReadingStore'
@@ -12,6 +12,34 @@ import { TopicCard } from '@/components/topic/TopicCard'
 import { DailyCarousel } from '@/components/home/DailyCarousel'
 import { SearchBar } from '@/components/search/SearchBar'
 import type { Category, Topic } from '@/data/schema/topic.schema'
+
+const DIFFICULTY_UP: Record<string, string> = {
+  beginner: 'intermediate',
+  intermediate: 'advanced',
+  advanced: 'advanced',
+}
+
+function getRecommended(allTopics: Topic[], readProgress: Record<string, { isRead: boolean }>, recentTopics: Topic[]): Topic[] {
+  const unread = allTopics.filter((t) => !readProgress[t.id]?.isRead)
+  if (unread.length === 0) return []
+
+  // Determine dominant difficulty of recent reads
+  const recentDiffs = recentTopics.map((t) => t.difficulty)
+  const dominant = recentDiffs.length > 0
+    ? recentDiffs.sort((a, b) =>
+        recentDiffs.filter(d => d === b).length - recentDiffs.filter(d => d === a).length
+      )[0]
+    : 'beginner'
+
+  const targetDiff = DIFFICULTY_UP[dominant]
+  const sameLevel = unread.filter((t) => t.difficulty === targetDiff)
+  const pool = sameLevel.length >= 3 ? sameLevel : unread
+
+  // Deterministic shuffle by topic id
+  return [...pool]
+    .sort((a, b) => a.id.localeCompare(b.id))
+    .slice(0, 3)
+}
 
 export default function HomePage() {
   const { availableTopics, loading, error, initialize } = useAppStore()
@@ -37,6 +65,8 @@ export default function HomePage() {
     .map((id) => availableTopics.find((t) => t.id === id))
     .filter((t): t is Topic => t !== undefined)
 
+  const recommended = getRecommended(availableTopics, readProgress, recentTopics)
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl">
@@ -57,6 +87,23 @@ export default function HomePage() {
             </h2>
             <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-none">
               {recentTopics.map((topic) => (
+                <div key={topic.id} className="w-64 shrink-0">
+                  <TopicCard topic={topic} />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Recommended */}
+        {recommended.length > 0 && (
+          <section className="px-4 pb-6">
+            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              <Sparkle weight="light" size={15} />
+              Recommended for You
+            </h2>
+            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-none">
+              {recommended.map((topic) => (
                 <div key={topic.id} className="w-64 shrink-0">
                   <TopicCard topic={topic} />
                 </div>

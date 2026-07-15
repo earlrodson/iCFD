@@ -504,14 +504,32 @@ interface LearningPath {
 ### Phase 2E — Brand & Backend Config (§4.14) ✅ Delivered
 See §4.14 below.
 
-### Phase 3 — Online Features (Future)
-- ⬜ Supabase auth + cloud sync of favorites, notes, progress
+### Phase 3A — Cloud Sync & Auth ✅ Delivered
+- ✅ `@supabase/supabase-js` + `@supabase/ssr` installed
+- ✅ `lib/supabase/client.ts` — browser Supabase client (returns null when keys not configured)
+- ✅ `lib/supabase/auth.ts` — signIn, signUp, signOut, getSession helpers
+- ✅ `lib/supabase/sync.ts` — upload/download favorites, notes, read progress to/from Supabase
+- ✅ Account page — sign in / sign up form + profile card + cloud sync buttons
+- ✅ Header — User icon links to /account; green dot indicator when signed in
+- ✅ Graceful fallback — all cloud features no-op when keys are missing; "Not Configured" screen shown
+
+### Phase 3B — Content Expansion ✅ Delivered
+- ✅ 30 new topics written across all 8 categories (20 → 50 total in English)
+- ✅ Topics added to Tagalog + Cebuano handbooks as English stubs pending translation
+- ✅ Category coverage: Bible 6, Church Teaching 9, Mary 8, Tradition 8, Sacraments 8, Saints 5, Papacy 5, Salvation 1
+
+### Phase 3C — Discovery & UX Polish ✅ Delivered
+- ✅ "Recommended for You" section on home page — surfaces unread topics at the user's next difficulty level
+- ✅ Favorites: Import from JSON file (completes export/import pair)
+
+### Phase 3 — Remaining (Future)
 - ⬜ Content submission form (community contributions)
 - ⬜ Admin panel — manage `site_config` key-value overrides via UI
 - ⬜ Native mobile apps via Capacitor
 - ⬜ "Download as PDF" for topics and paths
 - ⬜ Push notifications for daily topic
-- ⬜ Content expansion to 100+ topics per language
+- ⬜ Content expansion to 100+ topics per language (currently 50)
+- ⬜ Professional Filipino translations for 30 new stubs
 
 ---
 

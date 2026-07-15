@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Heart, SortAscending, Rows, GridFour, Export } from '@phosphor-icons/react'
+import { Heart, SortAscending, Rows, GridFour, Export, Upload } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { TopicCard } from '@/components/topic/TopicCard'
@@ -51,7 +51,7 @@ function groupByCategory(topics: Topic[]): [Category, Topic[]][] {
 
 export default function FavoritesPage() {
   const { availableTopics, initialize } = useAppStore()
-  const { favoriteIds, addedAt, exportFavorites } = useFavoritesStore()
+  const { favoriteIds, addedAt, exportFavorites, toggleFavorite } = useFavoritesStore()
   const [sort, setSort] = useState<SortOption>('added')
   const [grouped, setGrouped] = useState(false)
 
@@ -74,6 +74,31 @@ export default function FavoritesPage() {
     URL.revokeObjectURL(url)
   }
 
+  function handleImport(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      try {
+        const parsed = JSON.parse(ev.target?.result as string)
+        const entries: { id: string }[] = Array.isArray(parsed) ? parsed : []
+        let count = 0
+        for (const { id } of entries) {
+          if (typeof id === 'string' && !favoriteIds.includes(id)) {
+            toggleFavorite(id)
+            count++
+          }
+        }
+        if (count === 0) alert('No new favorites found in file.')
+        else alert(`Imported ${count} favorite${count === 1 ? '' : 's'}.`)
+      } catch {
+        alert('Invalid file format. Expected a JSON array of favorites.')
+      }
+    }
+    reader.readAsText(file)
+    e.target.value = '' // reset so same file can be re-imported
+  }
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 pb-24">
@@ -88,6 +113,16 @@ export default function FavoritesPage() {
 
           {favorites.length > 0 && (
             <div className="flex items-center gap-2">
+              {/* Import */}
+              <label
+                className="cursor-pointer p-1.5 rounded-lg text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Import favorites from JSON"
+                title="Import favorites"
+              >
+                <Upload weight="light" size={18} />
+                <input type="file" accept=".json" className="sr-only" onChange={handleImport} />
+              </label>
+
               {/* Export */}
               <button
                 onClick={handleExport}
