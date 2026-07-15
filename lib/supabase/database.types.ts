@@ -48,6 +48,22 @@ export type Database = {
         Update: Partial<Database['public']['Tables']['topics']['Insert']>
         Relationships: []
       }
+      admins: {
+        Row: {
+          user_id: string
+          email: string
+          granted_by: string | null
+          created_at: string
+        }
+        Insert: {
+          user_id: string
+          email: string
+          granted_by?: string | null
+          created_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['admins']['Insert']>
+        Relationships: []
+      }
       submissions: {
         Row: {
           id: string
