@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { Sun, Moon, CloudArrowUp, CloudArrowDown } from '@phosphor-icons/react'
 import { SectionLabel, SyncButton, type SyncStatus } from './components'
+import { OfflineCacheSection } from './OfflineCacheSection'
 import { useAppStore } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useNotesStore } from '@/store/useNotesStore'
@@ -178,6 +179,9 @@ export default function SettingsPage() {
             ))}
           </div>
         </section>
+
+        {/* ── Offline Access ── */}
+        <OfflineCacheSection />
 
         {/* ── Cloud Sync ── */}
         {isSupabaseConfigured() && (
