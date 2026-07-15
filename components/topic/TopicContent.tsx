@@ -15,7 +15,7 @@ import {
   Warning,
 } from '@phosphor-icons/react'
 import type { Topic } from '@/data/schema/topic.schema'
-import { Badge } from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { useNotesStore, NOTE_MAX_LENGTH } from '@/store/useNotesStore'

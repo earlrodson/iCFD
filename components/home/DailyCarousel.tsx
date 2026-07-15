@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { CaretLeft, CaretRight, CalendarStar } from '@phosphor-icons/react'
 import type { Topic, Category } from '@/data/schema/topic.schema'
-import { Badge } from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
 // ── Category config ───────────────────────────────────────────────────────────

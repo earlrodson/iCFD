@@ -12,7 +12,7 @@ import {
   Heart,
 } from '@phosphor-icons/react'
 import type { Topic, Category } from '@/data/schema/topic.schema'
-import { Badge } from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { truncate } from '@/lib/utils'
 

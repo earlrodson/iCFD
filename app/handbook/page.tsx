@@ -14,7 +14,7 @@ import {
 } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { TopicCard } from '@/components/topic/TopicCard'
-import { Badge } from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import type { Category, Difficulty, Topic } from '@/data/schema/topic.schema'
 

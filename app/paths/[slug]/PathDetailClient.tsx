@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ArrowLeft, CheckCircle, Clock, User } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
-import { Badge } from '@/components/ui/Badge'
+import { Badge } from '@/components/ui/badge'
 import type { Topic } from '@/data/schema/topic.schema'
 
 interface LearningPath {
