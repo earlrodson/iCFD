@@ -167,7 +167,7 @@ export default function AccountPage() {
           </p>
           <div className="mt-4 rounded-xl bg-muted p-3 text-left text-xs font-mono text-muted-foreground space-y-1">
             <p>NEXT_PUBLIC_SUPABASE_URL=https://…supabase.co</p>
-            <p>NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ…</p>
+            <p>NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=sbp_…</p>
           </div>
           <p className="mt-3 text-xs text-muted-foreground">
             Find these in your Supabase dashboard → Project Settings → API
