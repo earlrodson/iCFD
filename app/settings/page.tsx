@@ -1,7 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Sun, Moon, CloudArrowUp, CloudArrowDown, CheckCircle } from '@phosphor-icons/react'
+import { Sun, Moon, CloudArrowUp, CloudArrowDown } from '@phosphor-icons/react'
+import { SectionLabel, SyncButton, type SyncStatus } from './components'
 import { useAppStore } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useNotesStore } from '@/store/useNotesStore'
@@ -28,8 +29,6 @@ const FONT_SIZES: { value: FontSize; label: string; description: string }[] = [
   { value: 'medium', label: 'A',  description: 'Medium' },
   { value: 'large',  label: 'A+', description: 'Large'  },
 ]
-
-type SyncStatus = 'idle' | 'syncing' | 'done' | 'error'
 
 export default function SettingsPage() {
   const { currentLanguage, setLanguage, fontSize, setFontSize } = useAppStore()
@@ -215,41 +214,3 @@ export default function SettingsPage() {
   )
 }
 
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-      {children}
-    </p>
-  )
-}
-
-function SyncButton({
-  status, onClick, icon, title, idleDesc, syncingDesc,
-}: {
-  status: SyncStatus
-  onClick: () => void
-  icon: React.ReactNode
-  title: string
-  idleDesc: string
-  syncingDesc: string
-}) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={status === 'syncing'}
-      className="flex w-full items-center gap-3 rounded-2xl border border-border bg-card p-4 hover:bg-muted transition-colors disabled:opacity-60"
-    >
-      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-        {status === 'done'
-          ? <CheckCircle weight="fill" size={20} className="text-emerald-500" />
-          : icon}
-      </div>
-      <div className="text-left">
-        <p className="text-sm font-medium text-foreground">{title}</p>
-        <p className="text-xs text-muted-foreground">
-          {status === 'syncing' ? syncingDesc : status === 'error' ? 'Error — try again' : idleDesc}
-        </p>
-      </div>
-    </button>
-  )
-}

@@ -1,5 +1,3 @@
-'use client'
-
 import { useEffect, useState } from 'react'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
 import { APP_CONFIG } from '@/lib/config'
