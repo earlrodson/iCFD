@@ -10,6 +10,8 @@ import {
   Export,
   CheckCircle,
   Circle,
+  ArrowRight,
+  Warning,
 } from '@phosphor-icons/react'
 import type { Topic } from '@/data/schema/topic.schema'
 import { Badge } from '@/components/ui/Badge'
@@ -18,24 +20,35 @@ import { useReadingStore } from '@/store/useReadingStore'
 import { useNotesStore, NOTE_MAX_LENGTH } from '@/store/useNotesStore'
 import { useAppStore } from '@/store/useAppStore'
 import { formatDate, cn } from '@/lib/utils'
+import pathsData from '@/public/data/content/paths.json'
+
+const LANGUAGE_NAMES: Record<string, string> = { en: 'English', tl: 'Tagalog', ceb: 'Cebuano' }
 
 interface TopicContentProps {
   topic: Topic
 }
 
 export function TopicContent({ topic: initialTopic }: TopicContentProps) {
-  const { availableTopics, initialize } = useAppStore()
+  const { availableTopics, currentLanguage, initialize } = useAppStore()
   const { toggleFavorite, isFavorite } = useFavoritesStore()
   const { markAsRead, markAsUnread, isRead, recordVisit } = useReadingStore()
   const notes = useNotesStore((s) => s.notes)
   const { setNote } = useNotesStore()
 
   const [displayTopic, setDisplayTopic] = useState(initialTopic)
+  const [notAvailable, setNotAvailable] = useState(false)
   const [copied, setCopied] = useState(false)
   const [noteLocal, setNoteLocal] = useState('')
+  const [pathSlug, setPathSlug] = useState<string | null>(null)
 
   const favorited = isFavorite(displayTopic.id)
   const read = isRead(displayTopic.id)
+
+  // Read ?path= from URL (no Suspense needed — not required for SSR)
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    setPathSlug(params.get('path'))
+  }, [])
 
   // Language switching: look up topic in current-language store
   useEffect(() => {
@@ -43,9 +56,15 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
       initialize()
     } else {
       const found = availableTopics.find((t) => t.id === initialTopic.id)
-      setDisplayTopic(found ?? initialTopic)
+      if (found) {
+        setDisplayTopic(found)
+        setNotAvailable(false)
+      } else {
+        setDisplayTopic(initialTopic)
+        setNotAvailable(currentLanguage !== 'en')
+      }
     }
-  }, [availableTopics, initialTopic, initialize])
+  }, [availableTopics, initialTopic, currentLanguage, initialize])
 
   // Record visit once per mount
   useEffect(() => {
@@ -79,15 +98,23 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   return (
     <article className="mx-auto max-w-3xl px-4 pb-24 pt-4">
       {/* Back nav */}
-      <div className="mb-6">
+      <div className="mb-4 flex items-center gap-3">
         <Link
-          href="/handbook"
+          href={pathSlug ? `/paths/${pathSlug}` : '/handbook'}
           className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <ArrowLeft weight="light" size={16} />
-          Back to Handbook
+          {pathSlug ? 'Back to Path' : 'Back to Handbook'}
         </Link>
       </div>
+
+      {/* Language unavailable banner */}
+      {notAvailable && (
+        <div className="mb-5 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-700 dark:border-amber-800/60 dark:bg-amber-900/20 dark:text-amber-400">
+          <Warning weight="fill" size={16} className="shrink-0" />
+          Not available in {LANGUAGE_NAMES[currentLanguage] ?? currentLanguage} — showing English
+        </div>
+      )}
 
       {/* Header */}
       <header className="mb-6">
@@ -290,6 +317,47 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
           </div>
         </section>
       )}
+
+      {/* Next Topic CTA — only when navigating from a learning path */}
+      {pathSlug && (() => {
+        const path = (pathsData.paths as { slug: string; title: string; topicIds: string[] }[])
+          .find((p) => p.slug === pathSlug)
+        if (!path) return null
+        const idx = path.topicIds.indexOf(initialTopic.id)
+        const nextId = idx !== -1 && idx < path.topicIds.length - 1 ? path.topicIds[idx + 1] : null
+        if (!nextId) {
+          return (
+            <div className="mb-8 rounded-2xl bg-primary/5 border border-primary/20 p-5 text-center">
+              <p className="text-sm font-semibold text-primary">
+                You&rsquo;ve reached the end of <span className="font-bold">{path.title}</span>!
+              </p>
+              <Link
+                href={`/paths/${pathSlug}`}
+                className="mt-3 inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
+              >
+                Back to path overview
+                <ArrowRight weight="light" size={15} />
+              </Link>
+            </div>
+          )
+        }
+        return (
+          <div className="mb-8">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              Next in {path.title}
+            </p>
+            <Link
+              href={`/${nextId}?path=${pathSlug}`}
+              className="flex items-center justify-between gap-4 rounded-2xl bg-card border border-border p-4 shadow-sm hover:shadow-md transition-shadow group"
+            >
+              <span className="font-medium text-foreground group-hover:text-primary transition-colors">
+                {nextId.replace(/-/g, ' ')}
+              </span>
+              <ArrowRight weight="light" size={18} className="shrink-0 text-muted-foreground group-hover:text-primary transition-colors" />
+            </Link>
+          </div>
+        )
+      })()}
 
       {/* Footer */}
       <footer className="text-xs text-muted-foreground">

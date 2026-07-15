@@ -104,7 +104,7 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                 {/* Topic info */}
                 <div className="min-w-0 flex-1">
                   {topic ? (
-                    <Link href={`/${topic.id}`} className="group block">
+                    <Link href={`/${topic.id}?path=${path.slug}`} className="group block">
                       <div className="mb-1 flex flex-wrap items-center gap-2">
                         <Badge variant="category" value={topic.category} />
                         <Badge variant="difficulty" value={topic.difficulty} />

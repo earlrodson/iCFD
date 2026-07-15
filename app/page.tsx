@@ -16,7 +16,7 @@ import type { Category, Topic } from '@/data/schema/topic.schema'
 export default function HomePage() {
   const { availableTopics, loading, error, initialize } = useAppStore()
   const { getFilteredTopics } = useSearchStore()
-  const { getRecentlyViewed } = useReadingStore()
+  const { getRecentlyViewed, readProgress } = useReadingStore()
   const [selectedCategory, setSelectedCategory] = useState<Category | ''>('')
 
   useEffect(() => {
@@ -31,6 +31,7 @@ export default function HomePage() {
 
   const displayTopics = getFilteredTopics(categoryFiltered)
 
+  const readCount = Object.values(readProgress).filter((p) => p.isRead).length
   const recentIds = getRecentlyViewed(3)
   const recentTopics = recentIds
     .map((id) => availableTopics.find((t) => t.id === id))
@@ -40,7 +41,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl">
         {/* Hero */}
-        <HeroSection topics={availableTopics} />
+        <HeroSection topics={availableTopics} readCount={readCount} />
 
         {/* Search */}
         <div className="px-4 pb-4">
