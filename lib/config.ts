@@ -27,7 +27,10 @@ export const APP_CONFIG = {
     process.env.NEXT_PUBLIC_APP_DESCRIPTION ??
     'Offline-first Catholic apologetics app with Scripture, Tradition, and Catechism',
 
-  version: process.env.NEXT_PUBLIC_APP_VERSION ?? '2.0.0',
+  version: process.env.NEXT_PUBLIC_APP_VERSION ?? '3.0.0',
+
+  /** Base URL for OAuth redirects. Set NEXT_PUBLIC_SITE_URL in each environment. */
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3001',
 } as const
 
 export type AppConfig = typeof APP_CONFIG

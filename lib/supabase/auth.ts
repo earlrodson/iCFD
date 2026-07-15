@@ -9,6 +9,7 @@
  */
 
 import { createClient } from './client'
+import { APP_CONFIG } from '@/lib/config'
 import type { User, Session, AuthError } from '@supabase/supabase-js'
 
 export type { User, Session, AuthError }
@@ -34,7 +35,8 @@ export async function signInWithMagicLink(email: string) {
     email,
     options: {
       shouldCreateUser: true,
-      emailRedirectTo: `${window.location.origin}/account`,
+      emailRedirectTo: `${APP_CONFIG.siteUrl}/account`,
+      // Magic link uses PKCE by default in @supabase/ssr
     },
   })
 }
@@ -44,14 +46,14 @@ export async function signInWithMagicLink(email: string) {
 export async function signInWithGoogle() {
   return createClient().auth.signInWithOAuth({
     provider: 'google',
-    options: { redirectTo: `${window.location.origin}/account` },
+    options: { redirectTo: `${APP_CONFIG.siteUrl}/account` },
   })
 }
 
 export async function signInWithApple() {
   return createClient().auth.signInWithOAuth({
     provider: 'apple',
-    options: { redirectTo: `${window.location.origin}/account` },
+    options: { redirectTo: `${APP_CONFIG.siteUrl}/account` },
   })
 }
 
