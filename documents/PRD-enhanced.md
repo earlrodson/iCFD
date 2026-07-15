@@ -206,65 +206,71 @@ A full-page search experience replacing the inline header search.
 
 ---
 
-### 4.13 Daily Featured Topics Carousel (New)
+### 4.13 Daily Featured Topics Image Slider (Updated)
 
-**User story:** *As a daily user, I want to see 3 visually distinct highlighted topics each day so I have a clear starting point and discover content I might have missed.*
+**User story:** *As a daily user, I want to see a rich, photo-driven highlight reel of 3 topics each day — shown one at a time with smooth transitions — so the app feels alive and gives me an immediate reason to dive in.*
 
-**Background:** The current "Today's Topic" shows a single text card with no imagery, which provides minimal visual engagement. Elevating this to a branded carousel with category visuals will increase daily active use and surface the breadth of the app's content.
+**Selection** (unchanged)
+- 3 daily picks, each from a different category, deterministically seeded by day-of-year
+- Same 3 picks for all users on the same calendar day — no server required
 
-**Requirements:**
+#### Visual Design — Image Slider
+- **Full-width slider** showing **one card at a time** — no peeking, no grid
+- Each card is a full-bleed **photo background** sourced from Unsplash (free CDN, no API key), with a dark-to-transparent gradient overlay for text legibility
+- **Auto-advances** every 5 seconds; timer resets on manual navigation
+- **Pause on hover** (desktop)
+- **Touch swipe** to navigate (left swipe = next, right swipe = prev) — native touch events, no library
+- **Arrow buttons** (◄ ►) overlaid on left/right edges
+- **Dot indicators** overlaid at the bottom center — clickable, active dot widens to a pill
 
-#### Selection
-- Display **3 daily picks** instead of 1 — each from a **different category**, deterministically seeded by the current date
-- Algorithm: for each of the 3 slots, compute `hash(date + slot_index)` to pick a category, then pick a topic within it using `hash(date + category)` as the offset — guarantees variety without repeating categories
-- The same 3 picks are shown to all users on the same calendar day (no server required)
+#### Card anatomy (top → bottom, image fills full card height)
+```
+┌──────────────────────────────────────┐
+│  [Unsplash photo, object-cover]      │
+│                                      │
+│  ◄                              ►   │
+│                                      │
+│  ▓▓▓▓▓ dark gradient overlay ▓▓▓▓▓  │
+│  CATEGORY LABEL  [difficulty badge]  │
+│  Topic Title in Bold                 │
+│  "Question excerpt, italic…"         │
+│           ○ ● ○                      │
+└──────────────────────────────────────┘
+```
 
-#### Visual Design
-- Full-width **swipeable horizontal carousel** on mobile; shows 1 card at a time with peek of next card
-- Desktop: show all 3 cards side-by-side in a 3-column grid
-- Each card has:
-  - A **category cover banner** — a full-bleed gradient or illustration background unique to each of the 8 categories (see Category Visuals below)
-  - Category icon (Phosphor) centered in the banner
-  - Topic title and truncated question below the banner
-  - Difficulty badge in the bottom corner
-- Dot indicators below carousel on mobile showing position (1/2/3)
-- Swipe gesture support (touch events or a lightweight library)
+#### Category Images (Unsplash CDN)
+One curated photo per category. Falls back to the category gradient if the image fails to load.
 
-#### Category Visuals
-Each category gets a fixed gradient pair (light/dark) and its Phosphor icon displayed at 48px:
+| Category | Unsplash photo ID |
+|---|---|
+| bible | `1504052434569-70ad5836ab65` |
+| church-teaching | `1548625149-720f618c04cb` |
+| mary | `1544761634-dc512f2238a3` |
+| tradition | `1509023464322-41a1e1f09a50` |
+| saints | `1548164557-fd01dc0e7485` |
+| papacy | `1531572753322-ad063cecc140` |
+| sacraments | `1547592180-85f173990554` |
+| salvation | `1499209974431-9dddcece7f88` |
 
-| Category | Light gradient | Dark gradient |
-|---|---|---|
-| bible | `#1e3a5f → #2563eb` | `#0f2040 → #1d4ed8` |
-| church-teaching | `#1e3a5f → #7c3aed` | `#120d2e → #5b21b6` |
-| mary | `#701a75 → #c026d3` | `#3b0764 → #86198f` |
-| tradition | `#713f12 → #d97706` | `#3b1f07 → #b45309` |
-| saints | `#14532d → #16a34a` | `#052e16 → #15803d` |
-| papacy | `#1e3a5f → #0891b2` | `#0a1628 → #0e7490` |
-| sacraments | `#0c4a6e → #06b6d4` | `#062030 → #0891b2` |
-| salvation | `#7f1d1d → #dc2626` | `#3b0a0a → #b91c1c` |
-
-#### Optional Topic Cover Image
-- Add optional `coverImage?: string` field to `TopicSchema` (relative path under `public/images/topics/`)
-- When present, the carousel card uses the image as the banner background (cover fit) with a dark overlay for text readability
-- When absent, falls back to the category gradient + icon
-- No topic images required for launch — all cards use gradient fallback by default
+URL pattern: `https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&q=80`
 
 #### Implementation Notes
-- Component: `components/home/DailyCarousel.tsx` (client component)
-- Uses CSS scroll-snap for swipe on mobile (`scroll-snap-type: x mandatory`)
-- No external carousel library — native CSS + touch events only
-- Category gradient map lives in `lib/categoryVisuals.ts`
-- Carousel replaces the current single "Today's Topic" card in `app/page.tsx`
+- Component: `components/home/DailyCarousel.tsx`
+- Transition: CSS opacity crossfade (`transition-opacity duration-700`) — all 3 slides stacked absolutely, only active is `opacity-100`
+- Timer: `setTimeout` (not `setInterval`) — restarted after each slide change, so manual navigation resets the 5s countdown
+- Gradient fallback: category gradient painted on the card container; image absolutely positioned on top — if image fails, gradient shows through
+- No `next/image` — plain `<img>` with `object-cover` to avoid remote domain config
 
 #### Acceptance Criteria
-- [ ] 3 cards shown each day, each from a different category
-- [ ] Same 3 picks on page reload (deterministic)
-- [ ] Swipeable on mobile; 3-column grid on ≥ md breakpoint
-- [ ] Each card uses the correct category gradient when no `coverImage` is set
-- [ ] Tapping/clicking a card navigates to the topic detail page
-- [ ] Dot indicators update on swipe
-- [ ] Works offline (no external images required for gradient fallback)
+- [x] 3 picks per day, each from a different category, deterministic
+- [x] One card visible at a time, full-width
+- [x] Crossfade transition between slides (~700 ms)
+- [x] Auto-advances every 5 s; pauses on hover
+- [x] Touch swipe (≥ 50 px delta) triggers prev/next
+- [x] Arrow buttons navigate prev/next
+- [x] Dot indicators reflect active slide; clicking a dot jumps to that slide
+- [x] Tapping the card navigates to the topic detail page
+- [x] Gradient fallback shown if Unsplash image fails to load
 
 ---
 
