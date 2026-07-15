@@ -13,7 +13,10 @@ import {
   Circle,
   ArrowRight,
   Warning,
+  ArrowCircleDown,
+  Spinner,
 } from '@phosphor-icons/react'
+import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic } from '@/data/schema/topic.schema'
 import { Badge } from '@/components/ui/badge'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
@@ -44,6 +47,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
 
   const favorited = isFavorite(displayTopic.id)
   const read = isRead(displayTopic.id)
+  const { status: offlineStatus, supported: offlineSupported, download: downloadOffline, remove: removeOffline } = useTopicOfflineCache(initialTopic.id)
 
   // Read ?path= from URL (no Suspense needed — not required for SSR)
   useEffect(() => {
@@ -146,6 +150,23 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 <Export weight="light" size={22} />
               )}
             </button>
+            {offlineSupported && (
+              <button
+                onClick={offlineStatus === 'done' ? removeOffline : downloadOffline}
+                disabled={offlineStatus === 'downloading'}
+                className="p-2 rounded-xl bg-muted text-muted-foreground hover:text-primary transition-colors disabled:opacity-50"
+                aria-label={offlineStatus === 'done' ? 'Remove offline copy' : 'Save for offline'}
+                title={offlineStatus === 'done' ? 'Saved offline — tap to remove' : 'Save for offline'}
+              >
+                {offlineStatus === 'downloading' ? (
+                  <Spinner weight="light" size={22} className="animate-spin" />
+                ) : offlineStatus === 'done' ? (
+                  <ArrowCircleDown weight="fill" size={22} className="text-primary" />
+                ) : (
+                  <ArrowCircleDown weight="light" size={22} />
+                )}
+              </button>
+            )}
             <button
               onClick={() => toggleFavorite(topic.id)}
               className="p-2 rounded-xl bg-muted text-muted-foreground hover:text-red-500 transition-colors"
