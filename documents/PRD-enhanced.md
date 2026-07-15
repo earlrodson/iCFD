@@ -475,7 +475,7 @@ interface LearningPath {
 - ✅ Cebuano added to `generateStaticParams`
 - ✅ Share button (Web Share API + clipboard fallback)
 - ✅ `public/sw.js` dev stub (fixes 500 on `/sw.js` in dev mode)
-- 🔄 PWA icons folder exists; production-ready PNGs not yet generated
+- ✅ PWA icons — all 8 sizes generated (72–512px) including maskable variant; manifest updated
 
 ### Phase 2B — Core Features ✅ Delivered
 - ✅ `useReadingStore` — mark as read, reading history, recently viewed
@@ -499,37 +499,54 @@ interface LearningPath {
 - ✅ App renamed to **Codex Defensoris** (§4.14) — layout, manifest, hero, header updated
 - ✅ Backend-ready `site_config` table + `lib/config.ts` for admin-managed name overrides
 - ⬜ Optional `coverImage` field in topic schema
-- ⬜ PWA icons (all 8 PNG sizes)
 
 ### Phase 2E — Brand & Backend Config (§4.14) ✅ Delivered
 See §4.14 below.
 
 ### Phase 3A — Cloud Sync & Auth ✅ Delivered
 - ✅ `@supabase/supabase-js` + `@supabase/ssr` installed
-- ✅ `lib/supabase/client.ts` — browser Supabase client (returns null when keys not configured)
-- ✅ `lib/supabase/auth.ts` — signIn, signUp, signOut, getSession helpers
-- ✅ `lib/supabase/sync.ts` — upload/download favorites, notes, read progress to/from Supabase
-- ✅ Account page — sign in / sign up form + profile card + cloud sync buttons
-- ✅ Header — User icon links to /account; green dot indicator when signed in
-- ✅ Graceful fallback — all cloud features no-op when keys are missing; "Not Configured" screen shown
+- ✅ Supabase modern key pattern — Publishable key (browser) + Secret key (server/seed)
+- ✅ `lib/supabase/client.ts` — factory `createBrowserClient`, `isSupabaseConfigured` guard
+- ✅ `lib/supabase/auth.ts` — signIn, signUp, signOut, getUser (JWT-verified), onAuthStateChange
+- ✅ `lib/supabase/sync.ts` — upload/download favorites, notes, read progress
+- ✅ Google OAuth + Apple OAuth + Magic Link + Email/Password auth on `/account`
+- ✅ Supabase MCP server wired to project — migrations and SQL run directly from Claude Code
+- ✅ Graceful fallback — all cloud features no-op when keys missing
 
 ### Phase 3B — Content Expansion ✅ Delivered
-- ✅ 30 new topics written across all 8 categories (20 → 50 total in English)
-- ✅ Topics added to Tagalog + Cebuano handbooks as English stubs pending translation
-- ✅ Category coverage: Bible 6, Church Teaching 9, Mary 8, Tradition 8, Sacraments 8, Saints 5, Papacy 5, Salvation 1
+- ✅ 30 new topics across all 8 categories (20 → 50 total in English)
+- ✅ Tagalog + Cebuano stubs added (pending professional translation)
+- ✅ `scripts/seed.mjs` — admin reseed via SUPABASE_SECRET_KEY (no DATABASE_URL required)
+- ✅ DB: 127 topic rows (50 EN + 39 TL + 38 CEB), 3 paths, 19 path_topics, 5 site_config rows
 
 ### Phase 3C — Discovery & UX Polish ✅ Delivered
-- ✅ "Recommended for You" section on home page — surfaces unread topics at the user's next difficulty level
-- ✅ Favorites: Import from JSON file (completes export/import pair)
+- ✅ "Recommended for You" section — surfaces unread topics at next difficulty level
+- ✅ Favorites export/import (JSON round-trip)
+- ✅ Hero replaced with DailyCarousel as top home element
+- ✅ Badge system — neutral pill + category colour dot (uniform, light-mode readable)
+- ✅ PWA icons — 10 sizes generated (72–512px incl. maskable)
 
-### Phase 3 — Remaining (Future)
-- ⬜ Content submission form (community contributions)
-- ⬜ Admin panel — manage `site_config` key-value overrides via UI
-- ⬜ Native mobile apps via Capacitor
-- ⬜ "Download as PDF" for topics and paths
+### Phase 3D — Navigation & Settings ✅ Delivered
+- ✅ Header simplified — logo + hamburger only
+- ✅ Slide-in drawer — profile card (→ /account), General Settings, Contribute, Admin (admin-only)
+- ✅ `/settings` page — language, text size, theme toggle, cloud sync
+- ✅ `/account` page — auth-only (sign in/up, profile card, stats); sync moved to /settings
+- ✅ Mobile nav — 5 tabs: Home, Handbook, Search, Favorites, Paths (Submit removed)
+
+### Phase 3E — Community & Admin ✅ Delivered
+- ✅ `/submit` — topic suggestion form → `submissions` table (RLS: anyone can insert)
+- ✅ `/admin` — site_config editor; admin management (grant/revoke by email)
+- ✅ `admins` table — replaces hardcoded email list; multiple admins supported
+- ✅ `submissions` table with RLS policies
+
+### Phase 4 — Remaining (Future)
 - ⬜ Push notifications for daily topic
-- ⬜ Content expansion to 100+ topics per language (currently 50)
-- ⬜ Professional Filipino translations for 30 new stubs
+- ⬜ PDF export for topics and paths
+- ⬜ Native mobile apps via Capacitor
+- ⬜ Content expansion to 100+ topics per language (currently 50 EN)
+- ⬜ Professional Filipino translations for 30 new topic stubs
+- ⬜ Optional `coverImage` field in topic schema
+- ⬜ Offline pre-cache UI ("Download for offline" button with progress)
 
 ---
 
