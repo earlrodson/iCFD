@@ -1,79 +1,86 @@
 'use client'
 
 /**
- * Cloud sync helpers — push local Zustand store data to Supabase.
- * All functions are no-ops when the user is not signed in or Supabase is not configured.
- * Called after sign-in and whenever local state changes (debounced by callers).
+ * Cloud sync — push/pull Zustand store data to/from Supabase.
+ * Each function creates its own client instance (factory pattern).
+ * All operations are protected by RLS (auth.uid() = user_id).
  */
 
-import { getSupabaseBrowserClient } from './client'
+import { createClient } from './client'
+import type { TablesInsert } from './database.types'
 
-// ── Favorites ────────────────────────────────────────────────────────────────
+// ── Favorites ─────────────────────────────────────────────────────────────────
 
 export async function syncFavoritesToCloud(
   userId: string,
   favorites: { id: string; addedAt: string | null }[],
 ) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return
+  if (!favorites.length) return
 
-  if (favorites.length === 0) return
-
-  const rows = favorites.map(({ id, addedAt }) => ({
+  const rows: TablesInsert<'favorites'>[] = favorites.map(({ id, addedAt }) => ({
     user_id: userId,
     topic_id: id,
     added_at: addedAt ?? new Date().toISOString(),
   }))
 
-  await sb.from('favorites').upsert(rows, { onConflict: 'user_id,topic_id', ignoreDuplicates: false })
+  const { error } = await createClient()
+    .from('favorites')
+    .upsert(rows, { onConflict: 'user_id,topic_id', ignoreDuplicates: false })
+
+  if (error) throw error
 }
 
-export async function fetchFavoritesFromCloud(userId: string) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return null
-
-  const { data, error } = await sb
+export async function fetchFavoritesFromCloud(
+  userId: string,
+): Promise<{ id: string; addedAt: string }[] | null> {
+  const { data, error } = await createClient()
     .from('favorites')
     .select('topic_id, added_at')
     .eq('user_id', userId)
 
-  if (error || !data) return null
-  return data.map((r) => ({ id: r.topic_id as string, addedAt: r.added_at as string }))
+  if (error) throw error
+  return data.map((r) => ({ id: r.topic_id, addedAt: r.added_at }))
+}
+
+export async function removeFavoriteFromCloud(userId: string, topicId: string) {
+  const { error } = await createClient()
+    .from('favorites')
+    .delete()
+    .eq('user_id', userId)
+    .eq('topic_id', topicId)
+
+  if (error) throw error
 }
 
 // ── Notes ─────────────────────────────────────────────────────────────────────
 
-export async function syncNotesToCloud(
-  userId: string,
-  notes: Record<string, string>,
-) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return
-
+export async function syncNotesToCloud(userId: string, notes: Record<string, string>) {
   const entries = Object.entries(notes).filter(([, text]) => text.trim())
-  if (entries.length === 0) return
+  if (!entries.length) return
 
-  const rows = entries.map(([topicId, text]) => ({
+  const rows: TablesInsert<'notes'>[] = entries.map(([topicId, text]) => ({
     user_id: userId,
     topic_id: topicId,
     text,
-    updated_at: new Date().toISOString(),
   }))
 
-  await sb.from('notes').upsert(rows, { onConflict: 'user_id,topic_id' })
+  const { error } = await createClient()
+    .from('notes')
+    .upsert(rows, { onConflict: 'user_id,topic_id' })
+
+  if (error) throw error
 }
 
-export async function fetchNotesFromCloud(userId: string) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return null
-
-  const { data, error } = await sb
+export async function fetchNotesFromCloud(
+  userId: string,
+): Promise<Record<string, string> | null> {
+  const { data, error } = await createClient()
     .from('notes')
     .select('topic_id, text')
     .eq('user_id', userId)
 
-  if (error || !data) return null
-  return Object.fromEntries(data.map((r) => [r.topic_id as string, r.text as string]))
+  if (error) throw error
+  return Object.fromEntries(data.map((r) => [r.topic_id, r.text]))
 }
 
 // ── Read Progress ─────────────────────────────────────────────────────────────
@@ -82,32 +89,56 @@ export async function syncReadProgressToCloud(
   userId: string,
   progress: Record<string, { isRead: boolean; readAt: string | null }>,
 ) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return
+  const read = Object.entries(progress).filter(([, p]) => p.isRead)
+  if (!read.length) return
 
-  const read = Object.entries(progress)
-    .filter(([, p]) => p.isRead)
-    .map(([topicId, p]) => ({
-      user_id: userId,
-      topic_id: topicId,
-      read_at: p.readAt ?? new Date().toISOString(),
-    }))
+  const rows: TablesInsert<'read_progress'>[] = read.map(([topicId, p]) => ({
+    user_id: userId,
+    topic_id: topicId,
+    read_at: p.readAt ?? new Date().toISOString(),
+  }))
 
-  if (read.length === 0) return
-  await sb.from('read_progress').upsert(read, { onConflict: 'user_id,topic_id' })
+  const { error } = await createClient()
+    .from('read_progress')
+    .upsert(rows, { onConflict: 'user_id,topic_id' })
+
+  if (error) throw error
 }
 
-export async function fetchReadProgressFromCloud(userId: string) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return null
-
-  const { data, error } = await sb
+export async function fetchReadProgressFromCloud(
+  userId: string,
+): Promise<Record<string, { isRead: boolean; readAt: string }> | null> {
+  const { data, error } = await createClient()
     .from('read_progress')
     .select('topic_id, read_at')
     .eq('user_id', userId)
 
-  if (error || !data) return null
+  if (error) throw error
   return Object.fromEntries(
-    data.map((r) => [r.topic_id as string, { isRead: true, readAt: r.read_at as string }]),
+    data.map((r) => [r.topic_id, { isRead: true, readAt: r.read_at }]),
   )
+}
+
+// ── User Settings ─────────────────────────────────────────────────────────────
+
+export async function syncUserSettingsToCloud(
+  userId: string,
+  settings: { language: 'en' | 'tl' | 'ceb'; theme: 'light' | 'dark' | 'system'; font_size: 'small' | 'medium' | 'large' },
+) {
+  const { error } = await createClient()
+    .from('user_settings')
+    .upsert({ user_id: userId, ...settings })
+
+  if (error) throw error
+}
+
+export async function fetchUserSettingsFromCloud(userId: string) {
+  const { data, error } = await createClient()
+    .from('user_settings')
+    .select('language, theme, font_size, display_name, role')
+    .eq('user_id', userId)
+    .single()
+
+  if (error) return null
+  return data
 }

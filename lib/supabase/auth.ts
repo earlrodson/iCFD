@@ -1,40 +1,94 @@
 'use client'
 
-import { getSupabaseBrowserClient } from './client'
-import type { User, Session } from '@supabase/supabase-js'
+/**
+ * Auth helpers — all use createClient() factory (not a module-level singleton).
+ *
+ * Key rule from Supabase docs: use getUser() for any security check.
+ * getUser() always validates the JWT with the Supabase server.
+ * getSession() only reads from localStorage and can be spoofed client-side.
+ */
 
-export type { User, Session }
+import { createClient } from './client'
+import type { User, Session, AuthError } from '@supabase/supabase-js'
+
+export type { User, Session, AuthError }
+
+// ── Email / password ──────────────────────────────────────────────────────────
 
 export async function signInWithEmail(email: string, password: string) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return { data: null, error: new Error('Supabase not configured') }
-  return sb.auth.signInWithPassword({ email, password })
+  return createClient().auth.signInWithPassword({ email, password })
 }
 
 export async function signUpWithEmail(email: string, password: string, displayName?: string) {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return { data: null, error: new Error('Supabase not configured') }
-  return sb.auth.signUp({
+  return createClient().auth.signUp({
     email,
     password,
     options: displayName ? { data: { display_name: displayName } } : undefined,
   })
 }
 
+// ── Magic link (passwordless) ─────────────────────────────────────────────────
+
+export async function signInWithMagicLink(email: string) {
+  return createClient().auth.signInWithOtp({
+    email,
+    options: {
+      shouldCreateUser: true,
+      emailRedirectTo: `${window.location.origin}/account`,
+    },
+  })
+}
+
+// ── OAuth (social login) ──────────────────────────────────────────────────────
+
+export async function signInWithGoogle() {
+  return createClient().auth.signInWithOAuth({
+    provider: 'google',
+    options: { redirectTo: `${window.location.origin}/account` },
+  })
+}
+
+export async function signInWithApple() {
+  return createClient().auth.signInWithOAuth({
+    provider: 'apple',
+    options: { redirectTo: `${window.location.origin}/account` },
+  })
+}
+
+// ── Session management ────────────────────────────────────────────────────────
+
 export async function signOut() {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return
-  await sb.auth.signOut()
+  await createClient().auth.signOut()
 }
 
-export async function getSession(): Promise<Session | null> {
-  const sb = getSupabaseBrowserClient()
-  if (!sb) return null
-  const { data } = await sb.auth.getSession()
-  return data.session
-}
-
+/**
+ * Securely verify the current user — always makes a server request.
+ * Use this for any auth-gated logic. Never rely on getSession() alone.
+ */
 export async function getUser(): Promise<User | null> {
-  const session = await getSession()
-  return session?.user ?? null
+  const { data: { user } } = await createClient().auth.getUser()
+  return user
+}
+
+/**
+ * Get the current session from local storage (fast, no network).
+ * Safe for display purposes (e.g. showing the user's name) but NOT
+ * for security checks — use getUser() for that.
+ */
+export async function getSession(): Promise<Session | null> {
+  const { data: { session } } = await createClient().auth.getSession()
+  return session
+}
+
+/**
+ * Subscribe to auth state changes. Returns an unsubscribe function.
+ * INITIAL_SESSION fires on mount with the existing session (if any).
+ */
+export function onAuthStateChange(
+  callback: (user: User | null) => void,
+): () => void {
+  const { data: { subscription } } = createClient().auth.onAuthStateChange(
+    (_event, session) => callback(session?.user ?? null),
+  )
+  return () => subscription.unsubscribe()
 }

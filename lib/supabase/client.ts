@@ -1,17 +1,33 @@
 'use client'
 
+/**
+ * Browser Supabase client — factory pattern (not a singleton).
+ *
+ * Call createClient() once per component/hook, not at module level.
+ * @supabase/ssr's createBrowserClient handles token storage and refresh
+ * automatically via localStorage and PKCE flow.
+ *
+ * Server-side equivalent: lib/supabase/server.ts (for when output: 'export'
+ * is switched to a server deployment — see middleware.ts for session refresh).
+ */
+
 import { createBrowserClient } from '@supabase/ssr'
+import type { Database } from './database.types'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
-
-// Returns null when keys are not configured (e.g. dev without .env.local).
-// All callers must handle null gracefully — cloud features simply no-op offline.
-export function getSupabaseBrowserClient() {
-  if (!supabaseUrl || !supabaseAnonKey || supabaseAnonKey === 'your-anon-key-here') {
-    return null
-  }
-  return createBrowserClient(supabaseUrl, supabaseAnonKey)
+export function createClient() {
+  return createBrowserClient<Database>(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+  )
 }
 
-export type SupabaseClient = NonNullable<ReturnType<typeof getSupabaseBrowserClient>>
+/** True when env vars are present (non-placeholder values). */
+export function isSupabaseConfigured(): boolean {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? ''
+  return (
+    url.startsWith('https://') &&
+    key.length > 20 &&
+    !key.startsWith('your-')
+  )
+}
