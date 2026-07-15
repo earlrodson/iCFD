@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { X, Gear, PaperPlaneTilt, ShieldCheck, User } from '@phosphor-icons/react'
+import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange, signOut } from '@/lib/supabase/auth'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
 import { InstallAppButton } from '@/components/pwa/InstallAppButton'
@@ -136,6 +136,11 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
           <NavItem href="/settings" icon={<Gear weight="light" size={20} />} onClick={onClose}>
             General Settings
           </NavItem>
+          {user && (
+            <NavItem href="/paths" icon={<Ladder weight="light" size={20} />} onClick={onClose}>
+              Learning Paths
+            </NavItem>
+          )}
           <NavItem href="/submit" icon={<PaperPlaneTilt weight="light" size={20} />} onClick={onClose}>
             Contribute a Topic
           </NavItem>

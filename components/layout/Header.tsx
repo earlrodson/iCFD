@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import { List } from '@phosphor-icons/react'
-import { useState } from 'react'
 import { AppDrawer } from './AppDrawer'
 import { useSiteConfig } from '@/lib/useSiteConfig'
+import { useDrawerStore } from '@/store/useDrawerStore'
 
 export function Header() {
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const { open, openDrawer, closeDrawer } = useDrawerStore()
   const { appName, appShortName } = useSiteConfig()
 
   return (
@@ -26,7 +26,7 @@ export function Header() {
 
           {/* Hamburger */}
           <button
-            onClick={() => setDrawerOpen(true)}
+            onClick={openDrawer}
             className="flex h-9 w-9 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Open menu"
           >
@@ -35,7 +35,7 @@ export function Header() {
         </div>
       </header>
 
-      <AppDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <AppDrawer open={open} onClose={closeDrawer} />
     </>
   )
 }

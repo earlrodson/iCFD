@@ -7,23 +7,24 @@ import {
   BookOpen,
   MagnifyingGlass,
   Heart,
-  Ladder,
+  UserCircle,
 } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
+import { useDrawerStore } from '@/store/useDrawerStore'
 
 const tabs = [
-  { href: '/',         label: 'Home',     Icon: House },
-  { href: '/handbook', label: 'Handbook', Icon: BookOpen },
-  { href: '/search',   label: 'Search',   Icon: MagnifyingGlass },
-  { href: '/favorites',label: 'Favorites',Icon: Heart },
-  { href: '/paths',    label: 'Paths',    Icon: Ladder },
+  { href: '/',          label: 'Home',      Icon: House },
+  { href: '/handbook',  label: 'Handbook',  Icon: BookOpen },
+  { href: '/search',    label: 'Search',    Icon: MagnifyingGlass },
+  { href: '/favorites', label: 'Favorites', Icon: Heart },
 ]
 
 export function MobileNav() {
   const pathname = usePathname()
   const { favoriteIds } = useFavoritesStore()
   const favCount = favoriteIds.length
+  const { openDrawer } = useDrawerStore()
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/90 backdrop-blur-md md:hidden">
@@ -52,6 +53,16 @@ export function MobileNav() {
             </Link>
           )
         })}
+
+        {/* Profile — opens drawer */}
+        <button
+          onClick={openDrawer}
+          className="flex flex-col items-center gap-0.5 py-2 px-3 min-w-[52px] text-muted-foreground"
+          aria-label="Open menu"
+        >
+          <UserCircle weight="light" size={24} />
+          <span className="text-[10px] font-medium">Menu</span>
+        </button>
       </div>
     </nav>
   )
