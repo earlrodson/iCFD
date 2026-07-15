@@ -7,7 +7,7 @@ import {
   BookOpen,
   MagnifyingGlass,
   Heart,
-  User,
+  Ladder,
 } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 
@@ -16,7 +16,7 @@ const tabs = [
   { href: '/handbook', label: 'Handbook', Icon: BookOpen },
   { href: '/search', label: 'Search', Icon: MagnifyingGlass },
   { href: '/favorites', label: 'Favorites', Icon: Heart },
-  { href: '/account', label: 'Account', Icon: User },
+  { href: '/paths', label: 'Paths', Icon: Ladder },
 ]
 
 export function MobileNav() {

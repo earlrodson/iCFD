@@ -1,13 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Heart, SortAscending } from '@phosphor-icons/react'
+import { Heart, SortAscending, Rows, GridFour } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { TopicCard } from '@/components/topic/TopicCard'
-import type { Topic } from '@/data/schema/topic.schema'
+import type { Topic, Category } from '@/data/schema/topic.schema'
+import { cn } from '@/lib/utils'
 
 type SortOption = 'title' | 'category' | 'difficulty'
+
+const CATEGORY_LABELS: Record<Category, string> = {
+  bible: 'Bible',
+  'church-teaching': 'Church Teaching',
+  mary: 'Mary',
+  tradition: 'Tradition',
+  saints: 'Saints',
+  papacy: 'Papacy',
+  sacraments: 'Sacraments',
+  salvation: 'Salvation',
+}
 
 function sortTopics(topics: Topic[], sort: SortOption): Topic[] {
   return [...topics].sort((a, b) => {
@@ -18,10 +30,21 @@ function sortTopics(topics: Topic[], sort: SortOption): Topic[] {
   })
 }
 
+function groupByCategory(topics: Topic[]): [Category, Topic[]][] {
+  const map = new Map<Category, Topic[]>()
+  for (const t of topics) {
+    const group = map.get(t.category) ?? []
+    group.push(t)
+    map.set(t.category, group)
+  }
+  return Array.from(map.entries()).sort(([a], [b]) => a.localeCompare(b))
+}
+
 export default function FavoritesPage() {
   const { availableTopics, initialize } = useAppStore()
   const { favoriteIds } = useFavoritesStore()
   const [sort, setSort] = useState<SortOption>('title')
+  const [grouped, setGrouped] = useState(false)
 
   useEffect(() => {
     if (availableTopics.length === 0) initialize()
@@ -29,6 +52,7 @@ export default function FavoritesPage() {
 
   const favorites = availableTopics.filter((t) => favoriteIds.includes(t.id))
   const sorted = sortTopics(favorites, sort)
+  const groups = groupByCategory(sorted)
 
   return (
     <div className="min-h-screen bg-background">
@@ -43,17 +67,41 @@ export default function FavoritesPage() {
           </div>
 
           {favorites.length > 0 && (
-            <div className="flex items-center gap-1.5">
-              <SortAscending weight="light" size={14} className="text-muted-foreground" />
-              <select
-                value={sort}
-                onChange={(e) => setSort(e.target.value as SortOption)}
-                className="rounded-lg bg-card border border-border px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+            <div className="flex items-center gap-2">
+              {/* Group toggle */}
+              <button
+                onClick={() => setGrouped((g) => !g)}
+                className={cn(
+                  'p-1.5 rounded-lg transition-colors',
+                  grouped
+                    ? 'bg-primary/10 text-primary'
+                    : 'text-muted-foreground hover:text-foreground',
+                )}
+                aria-label={grouped ? 'Show as flat list' : 'Group by category'}
+                title={grouped ? 'Ungroup' : 'Group by category'}
               >
-                <option value="title">Title A–Z</option>
-                <option value="category">Category</option>
-                <option value="difficulty">Difficulty</option>
-              </select>
+                {grouped ? (
+                  <GridFour weight="fill" size={18} />
+                ) : (
+                  <Rows weight="light" size={18} />
+                )}
+              </button>
+
+              {/* Sort select */}
+              {!grouped && (
+                <div className="flex items-center gap-1.5">
+                  <SortAscending weight="light" size={14} className="text-muted-foreground" />
+                  <select
+                    value={sort}
+                    onChange={(e) => setSort(e.target.value as SortOption)}
+                    className="rounded-lg bg-card border border-border px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+                  >
+                    <option value="title">Title A–Z</option>
+                    <option value="category">Category</option>
+                    <option value="difficulty">Difficulty</option>
+                  </select>
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -71,8 +119,26 @@ export default function FavoritesPage() {
           </div>
         )}
 
-        {/* Topic grid */}
-        {sorted.length > 0 && (
+        {/* Grouped view */}
+        {grouped && groups.length > 0 && (
+          <div className="space-y-8">
+            {groups.map(([category, topics]) => (
+              <div key={category}>
+                <h2 className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                  {CATEGORY_LABELS[category]}
+                </h2>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {topics.map((topic) => (
+                    <TopicCard key={topic.id} topic={topic} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Flat view */}
+        {!grouped && sorted.length > 0 && (
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             {sorted.map((topic) => (
               <TopicCard key={topic.id} topic={topic} />

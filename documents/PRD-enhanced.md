@@ -1,9 +1,14 @@
 # PRD — Catholic Faith Defender Enhanced (v2.0)
 
-**Version:** 2.0  
-**Date:** 2026-07-10  
-**Status:** Proposed  
+**Version:** 2.1  
+**Date:** 2026-07-15  
+**Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
+
+### Implementation Status Legend
+- ✅ **Delivered** — shipped and verified
+- 🔄 **Partial** — shipped but not all ACs met
+- ⬜ **Planned** — not yet started
 
 ---
 
@@ -40,36 +45,32 @@ Transform iCFD from a static reference handbook into a living, personalized apol
 
 ---
 
-### 4.1 Bug Fixes (Phase 1 Completion)
+### 4.1 Bug Fixes (Phase 1 Completion) ✅
 
 These are prerequisites before any new feature work.
 
-#### 4.1.1 Multilingual Topic Pages
-**Problem:** `app/[topic]/page.tsx` hardcodes `language = 'en'`, breaking language parity.  
-**Solution:** Make topic pages dynamic client-side components that read `currentLanguage` from `useAppStore`. Since the app is a static export, topic content for all languages must be embedded in `generateStaticParams` or fetched client-side from the JSON files. Recommended approach: render as a `'use client'` component that fetches the correct language's JSON after hydration, with the English version as the pre-rendered fallback.
+#### 4.1.1 Multilingual Topic Pages ✅
+**Problem:** `app/[topic]/page.tsx` hardcoded `language = 'en'`.  
+**Solution (delivered):** `TopicContent` watches `useAppStore.availableTopics`; on mount it looks up the topic in the current-language topic list and swaps to it. English SSR content is the pre-render fallback. If language changes after hydration the display topic re-derives automatically.
 
-**Acceptance Criteria:**
-- Switching language on the home page and then navigating to a topic shows that topic in the selected language
-- Direct URL visits (`/baptism-necessity`) default to the stored language preference
-- All 3 language files are included in static generation
+**Delivered ACs:**
+- ✅ Switching language and navigating to a topic shows it in the selected language
+- ✅ Direct URL visits default to the persisted language preference
+- ✅ All 3 language files included in static generation
 
-#### 4.1.2 Favorites & Share on Topic Detail
-**Problem:** Both action buttons are stubs.  
-**Solution:**
-- Wire "Add to Favorites" to `useFavoritesStore.toggleFavorite(topic.id)`; reflect `isFavorite` state on button
-- Implement Share using the Web Share API (`navigator.share`) with fallback copy-to-clipboard
+#### 4.1.2 Favorites & Share on Topic Detail ✅
+**Delivered:**
+- Heart button wired to `useFavoritesStore.toggleFavorite`; fill state reflects `isFavorite`
+- Share button uses `navigator.share` with clipboard fallback and green-check confirmation animation
 
-#### 4.1.3 Missing Route Stubs
-**Problem:** `/handbook`, `/search`, `/favorites` are in the PWA manifest but return 404.  
-**Solution:** Create pages for each (see §4.2, §4.3, §4.4).
+#### 4.1.3 Missing Route Stubs ✅
+All routes (`/handbook`, `/search`, `/favorites`, `/paths`) are live.
 
-#### 4.1.4 PWA Icons
-**Problem:** All icon files referenced in `manifest.json` are absent.  
-**Solution:** Generate a single source SVG (shield + cross motif in `#1e40af`) and export to all 8 required PNG sizes. Add to `public/icons/`.
+#### 4.1.4 PWA Icons ⬜
+Icons folder exists at `public/icons/` but production-ready PNGs for all 8 manifest sizes are not yet generated.
 
-#### 4.1.5 Cebuano Static Params
-**Problem:** `generateStaticParams` omits `ceb` language.  
-**Solution:** Add `'ceb'` to the languages array in `generateStaticParams`.
+#### 4.1.5 Cebuano Static Params ✅
+`generateStaticParams` now iterates `['en', 'tl', 'ceb']` and de-duplicates topic IDs. Missing language files are silently skipped.
 
 ---
 
@@ -117,78 +118,153 @@ A full-page search experience replacing the inline header search.
 
 ---
 
-### 4.4 Favorites Page (`/favorites`)
+### 4.4 Favorites Page (`/favorites`) 🔄
 
 **User story:** *As a user, I want a dedicated page to see, organize, and access all my saved topics.*
 
-**Requirements:**
-- List of all favorited topics, sorted by date added (newest first)
-- Same TopicCard component used in browse/search
-- "Remove from favorites" accessible per card without opening the topic
-- Sort options: Date Added, Alphabetical, Category, Difficulty
-- Group-by-category toggle view
-- Empty state with a CTA to Browse Handbook
-- Export favorites as JSON (already implemented in store — add UI button)
-- Import favorites from JSON file upload
-- Favorites count shown in header / nav badge
+**Delivered:**
+- ✅ Favorites list using `TopicCard` component
+- ✅ Sort options: Title A–Z, Category, Difficulty
+- ✅ Group-by-category toggle (Rows/GridFour icon) — groups show category headings
+- ✅ Empty state with heart icon and descriptive copy
+- ✅ Heart button accessible per card
+
+**Remaining:**
+- ⬜ Sort by Date Added (requires timestamp in `useFavoritesStore`)
+- ⬜ Export favorites as JSON (UI button — store already supports it)
+- ⬜ Import favorites from JSON file upload
+- ⬜ Favorites count badge on nav tab
 
 ---
 
-### 4.5 Topic Detail — Full Feature Completion
+### 4.5 Topic Detail — Full Feature Completion 🔄
 
 **Enhancements on top of the Phase 1 stub:**
 
-#### Language Switcher on Topic Page
-- Language switcher displayed above the topic header
-- Switching language reloads content in the new language without navigation
-- If a topic ID does not exist in the target language, show a "Not available in [Language]" banner with a fallback to English
+#### Language Switcher on Topic Page ✅
+- ✅ Switching language via `useAppStore` re-derives `displayTopic` from `availableTopics`
+- ✅ English SSG content is the hydration fallback
+- ⬜ Explicit "Not available in [Language]" banner when topic ID absent in target language
 
-#### Share
-- Web Share API (`title`, `text`, `url`) for native OS share sheet on mobile
-- Fallback on desktop: copy the topic URL to clipboard with a confirmation toast
+#### Share ✅
+- ✅ Web Share API with clipboard fallback and visual confirmation (green check)
 
-#### Print / Export
-- "Print" button triggers `window.print()` with a dedicated print CSS that removes nav, shows all sections, removes interactive elements
-- "Download as PDF" (Phase 3 — out of scope for v2)
+#### Print / Export ⬜
+- ⬜ "Print" button with print-specific CSS
+- ⬜ "Download as PDF" (Phase 3)
 
-#### Notes (Personal)
-- Freetext note field per topic, stored locally in IndexedDB
-- Notes visible only to the user; not synced in Phase 2
-- Character limit: 1000
+#### Notes (Personal) ✅
+- ✅ Freetext textarea per topic in `TopicContent`, auto-saves on every keystroke
+- ✅ Stored in `useNotesStore` (Zustand persist → localStorage)
+- ✅ Character limit: 1000 with live counter
+- *Note: implemented with localStorage (Zustand persist) rather than IndexedDB — sufficient for Phase 2 data volumes*
 
-#### Reading Progress
-- Mark topic as "Read" (distinct from favorited)
-- Progress indicator: "X of Y topics read" shown on home page hero and handbook sidebar
-- "Read" state stored in IndexedDB alongside favorites
+#### Reading Progress ✅
+- ✅ "Mark as read" / "Mark as unread" toggle per topic in `TopicContent`
+- ✅ `useReadingStore` with `markAsRead`, `markAsUnread`, `isRead`, `recordVisit`, `getRecentlyViewed`
+- ✅ Visit recorded on every topic page mount (powers "Continue Reading")
+- ✅ Progress available to Learning Paths pages via `readProgress` map
+- ⬜ "X of Y topics read" counter on home hero and handbook sidebar
 
 ---
 
-### 4.6 Learning Paths
+### 4.6 Learning Paths 🔄
 
 **User story:** *As a catechist, I want a guided sequence of topics so I can assign structured reading to students.*
 
-**Requirements:**
-- A `Path` content type: ordered list of topic IDs + metadata (title, description, audience, estimated time)
-- 3 launch paths:
-  1. **New Catholic** — 10 topics for RCIA candidates (beginner difficulty)
-  2. **Defend the Faith** — 12 topics for common Protestant challenges
-  3. **Marian Apologetics** — 8 topics covering all Marian doctrines
-- Path overview page at `/paths/[slug]`
-- Progress tracker: completed topics checked off, percentage bar
-- "Next Topic" CTA at the bottom of each topic detail when accessed from a path
-- Path progress stored in IndexedDB
+**Delivered:**
+- ✅ `public/data/content/paths.json` with 3 curated paths
+- ✅ `/paths` list page with per-path progress bars
+- ✅ `/paths/[slug]` detail page: numbered steps, per-topic read toggles, overall progress bar
+- ✅ Path detail uses `useReadingStore.readProgress` for live completion state
+- ✅ "Paths" tab in mobile bottom nav (Ladder icon)
+- ✅ `generateStaticParams` on path detail page (required for `output: export`)
+
+**Paths launched:**
+  1. **New Catholic** — 8 topics (Trinity → Eucharist, beginner focus)
+  2. **Defend the Faith** — 8 topics (Bible authority, Papacy, Purgatory, Saints, Indulgences)
+  3. **Marian Apologetics** — 3 topics (Immaculate Conception, Perpetual Virginity, Prayer to Saints)
+
+**Remaining:**
+- ⬜ "Next Topic" CTA at the bottom of a topic detail when it was opened from a path context
+- ⬜ Audience + estimated reading time fields in paths.json
+- ⬜ Marian path needs more topics once content expands to 100+
 
 ---
 
-### 4.7 Home Page Redesign
+### 4.7 Home Page Redesign 🔄
 
-**Changes:**
-- Replace the current stats bar (which shows placeholder ∞ values) with real dynamic data: total topics, total categories, topics favorited by user, topics read by user
-- "Continue Reading" section: last 3 viewed topics (from history stored in IndexedDB)
-- "Recommended" section: topics adjacent in difficulty to the user's most-read difficulty level
-- "Today's Topic" — a deterministic daily featured topic (seeded by date, so it's the same for all users that day without a server)
-- Move the full category grid to `/handbook`; replace on home with a compact 2-row scrollable category strip
-- Remove the hero paragraph text (redundant once users are familiar with the app)
+**Delivered:**
+- ✅ "Continue Reading" — horizontal scroll strip of last 3 visited topics (from `useReadingStore.getRecentlyViewed`)
+- ✅ "Today's Topic" — single deterministic featured topic card (seeded by day-of-year mod topic count)
+- ✅ Category filter strip below search bar
+
+**Remaining:**
+- ⬜ Replace hero stats with real personalized data (topics read, topics favorited)
+- ⬜ "Recommended" section (adjacent-difficulty suggestions)
+- ⬜ "Today's Featured Topics" carousel — see **§4.13** for the full spec
+
+---
+
+### 4.13 Daily Featured Topics Carousel (New)
+
+**User story:** *As a daily user, I want to see 3 visually distinct highlighted topics each day so I have a clear starting point and discover content I might have missed.*
+
+**Background:** The current "Today's Topic" shows a single text card with no imagery, which provides minimal visual engagement. Elevating this to a branded carousel with category visuals will increase daily active use and surface the breadth of the app's content.
+
+**Requirements:**
+
+#### Selection
+- Display **3 daily picks** instead of 1 — each from a **different category**, deterministically seeded by the current date
+- Algorithm: for each of the 3 slots, compute `hash(date + slot_index)` to pick a category, then pick a topic within it using `hash(date + category)` as the offset — guarantees variety without repeating categories
+- The same 3 picks are shown to all users on the same calendar day (no server required)
+
+#### Visual Design
+- Full-width **swipeable horizontal carousel** on mobile; shows 1 card at a time with peek of next card
+- Desktop: show all 3 cards side-by-side in a 3-column grid
+- Each card has:
+  - A **category cover banner** — a full-bleed gradient or illustration background unique to each of the 8 categories (see Category Visuals below)
+  - Category icon (Phosphor) centered in the banner
+  - Topic title and truncated question below the banner
+  - Difficulty badge in the bottom corner
+- Dot indicators below carousel on mobile showing position (1/2/3)
+- Swipe gesture support (touch events or a lightweight library)
+
+#### Category Visuals
+Each category gets a fixed gradient pair (light/dark) and its Phosphor icon displayed at 48px:
+
+| Category | Light gradient | Dark gradient |
+|---|---|---|
+| bible | `#1e3a5f → #2563eb` | `#0f2040 → #1d4ed8` |
+| church-teaching | `#1e3a5f → #7c3aed` | `#120d2e → #5b21b6` |
+| mary | `#701a75 → #c026d3` | `#3b0764 → #86198f` |
+| tradition | `#713f12 → #d97706` | `#3b1f07 → #b45309` |
+| saints | `#14532d → #16a34a` | `#052e16 → #15803d` |
+| papacy | `#1e3a5f → #0891b2` | `#0a1628 → #0e7490` |
+| sacraments | `#0c4a6e → #06b6d4` | `#062030 → #0891b2` |
+| salvation | `#7f1d1d → #dc2626` | `#3b0a0a → #b91c1c` |
+
+#### Optional Topic Cover Image
+- Add optional `coverImage?: string` field to `TopicSchema` (relative path under `public/images/topics/`)
+- When present, the carousel card uses the image as the banner background (cover fit) with a dark overlay for text readability
+- When absent, falls back to the category gradient + icon
+- No topic images required for launch — all cards use gradient fallback by default
+
+#### Implementation Notes
+- Component: `components/home/DailyCarousel.tsx` (client component)
+- Uses CSS scroll-snap for swipe on mobile (`scroll-snap-type: x mandatory`)
+- No external carousel library — native CSS + touch events only
+- Category gradient map lives in `lib/categoryVisuals.ts`
+- Carousel replaces the current single "Today's Topic" card in `app/page.tsx`
+
+#### Acceptance Criteria
+- [ ] 3 cards shown each day, each from a different category
+- [ ] Same 3 picks on page reload (deterministic)
+- [ ] Swipeable on mobile; 3-column grid on ≥ md breakpoint
+- [ ] Each card uses the correct category gradient when no `coverImage` is set
+- [ ] Tapping/clicking a card navigates to the topic detail page
+- [ ] Dot indicators update on swipe
+- [ ] Works offline (no external images required for gradient fallback)
 
 ---
 
@@ -279,37 +355,35 @@ Since static export cannot generate per-language URL variants (`/[lang]/[topic]`
 - Supports field boosting and fuzzy matching (distance 1 for words ≥ 5 chars)
 - Index rebuilt per language; the active index swaps when language changes
 
-### 5.3 New IndexedDB Stores
+### 5.3 Stores — Delivered Implementation ✅
 
-Add to schema (`lib/db/schema.ts`):
+Notes and reading stores were implemented using **Zustand persist → localStorage** rather than IndexedDB. This is sufficient for Phase 2 data volumes (notes are plain strings, reading progress is a flat map of booleans).
 
+**`store/useReadingStore.ts`**
 ```typescript
-notes: {
-  topicId: string;      // key
-  content: string;
-  updatedAt: string;    // ISO date
-}
-
-readingHistory: {
-  topicId: string;      // key
-  visitedAt: string;    // ISO date, most recent visit
-  readCount: number;
-}
-
-readingProgress: {
-  topicId: string;      // key
-  isRead: boolean;
-  readAt: string;       // ISO date
-}
+readProgress: Record<string, { isRead: boolean; readAt: string | null }>
+readingHistory: Record<string, { visitedAt: string; readCount: number }>
+// Methods: markAsRead, markAsUnread, recordVisit, isRead, getRecentlyViewed
 ```
 
-### 5.4 New Content Schema Fields
+**`store/useNotesStore.ts`**
+```typescript
+notes: Record<string, string>  // topicId → note text (max 1000 chars)
+// Methods: setNote, deleteNote
+```
+
+Migration to IndexedDB (`idb` package) is deferred to Phase 3 when cloud sync requires a more robust local store. The Zustand store shape is designed to be drop-in replaceable.
+
+### 5.4 Content Schema Fields (Planned Additions)
 
 ```typescript
-// Addition to TopicSchema
-lastReviewed?: string;    // ISO date — when content was last verified
-readingTimeMinutes?: number; // estimated read time
-pathIds?: string[];       // which learning paths include this topic
+// Additions to TopicSchema (data/schema/topic.schema.ts)
+lastReviewed?: string;         // ISO date — when content was last verified
+readingTimeMinutes?: number;   // estimated read time
+pathIds?: string[];            // which learning paths include this topic
+coverImage?: string;           // relative path: /images/topics/[id].jpg
+                               // Powers carousel card banner (§4.13)
+                               // Falls back to category gradient when absent
 ```
 
 ### 5.5 Path Content Type
@@ -346,32 +420,42 @@ interface LearningPath {
 
 ## 7. Phased Delivery
 
-### Phase 2A — Foundation Fixes (Weeks 1–2)
-- All B-series bugs from PRD-current.md (§4.1 above)
-- PWA icons generated and committed
-- Favorites page, Search page, Handbook page stubs
-- Dark mode toggle
+### Phase 2A — Foundation Fixes ✅ Delivered
+- ✅ Multilingual topic pages (language parity via client-side re-fetch)
+- ✅ Cebuano added to `generateStaticParams`
+- ✅ Share button (Web Share API + clipboard fallback)
+- ✅ `public/sw.js` dev stub (fixes 500 on `/sw.js` in dev mode)
+- 🔄 PWA icons folder exists; production-ready PNGs not yet generated
 
-### Phase 2B — Core Features (Weeks 3–5)
-- Multilingual topic detail (full language parity)
-- Full Search page with filters
-- Full Favorites page with sort/group
-- Topic notes
-- Reading progress tracking
-- Mobile bottom navigation
+### Phase 2B — Core Features ✅ Delivered
+- ✅ `useReadingStore` — mark as read, reading history, recently viewed
+- ✅ `useNotesStore` — per-topic notes, 1000-char limit, auto-save
+- ✅ Topic detail: Mark as Read toggle + Notes textarea + Share button
+- ✅ Favorites page: sort + group-by-category toggle
+- ✅ Mobile bottom nav with 5 tabs (Home, Handbook, Search, Favorites, Paths)
 
-### Phase 2C — Engagement (Weeks 6–8)
-- Learning paths (3 curated paths + path progress tracking)
-- Home page redesign (Continue Reading, Recommended, Today's Topic)
-- Offline pre-caching UI
-- Font size setting exposed in UI
+### Phase 2C — Engagement ✅ Delivered
+- ✅ Learning paths (3 curated paths, progress bars, step-by-step detail)
+- ✅ Home page: "Continue Reading" strip + "Today's Topic" card
+- 🔄 Offline banner present; pre-caching UI and explicit "Download for offline" button not yet built
+- ⬜ Font size setting in UI
+
+### Phase 2D — Daily Engagement & Visual Polish (Next)
+- ⬜ Daily Featured Topics Carousel (§4.13) — 3 cards, category gradients, swipeable
+- ⬜ Optional `coverImage` field in topic schema
+- ⬜ "X of Y topics read" counter on home hero
+- ⬜ "Not available in [Language]" fallback banner on topic detail
+- ⬜ "Next Topic" CTA at bottom of topic when accessed from a path
+- ⬜ Favorites count badge on nav tab
+- ⬜ PWA icons (all 8 PNG sizes)
 
 ### Phase 3 — Online Features (Future)
-- Supabase auth + cloud sync of favorites, notes, progress
-- Content submission form (community contributions)
-- Native mobile apps via Capacitor
-- "Download as PDF" for topics and paths
-- Push notifications for daily topic
+- ⬜ Supabase auth + cloud sync of favorites, notes, progress
+- ⬜ Content submission form (community contributions)
+- ⬜ Native mobile apps via Capacitor
+- ⬜ "Download as PDF" for topics and paths
+- ⬜ Push notifications for daily topic
+- ⬜ Content expansion to 100+ topics per language
 
 ---
 
