@@ -5,9 +5,6 @@ import {
   User,
   SignIn,
   SignOut,
-  CloudArrowUp,
-  CloudArrowDown,
-  CheckCircle,
   Warning,
   EnvelopeSimple,
   GoogleLogo,
@@ -23,15 +20,7 @@ import {
   getUser,
   onAuthStateChange,
 } from '@/lib/supabase/auth'
-import {
-  syncFavoritesToCloud,
-  syncNotesToCloud,
-  syncReadProgressToCloud,
-  fetchFavoritesFromCloud,
-  fetchNotesFromCloud,
-  fetchReadProgressFromCloud,
-  fetchUserSettingsFromCloud,
-} from '@/lib/supabase/sync'
+import { fetchUserSettingsFromCloud } from '@/lib/supabase/sync'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useNotesStore } from '@/store/useNotesStore'
 import { useReadingStore } from '@/store/useReadingStore'
@@ -40,7 +29,6 @@ import { isSupabaseConfigured } from '@/lib/supabase/client'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
 type AuthMode = 'signin' | 'signup' | 'magic'
-type SyncStatus = 'idle' | 'syncing' | 'done' | 'error'
 
 export default function AccountPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null)
@@ -51,12 +39,10 @@ export default function AccountPage() {
   const [authError, setAuthError] = useState('')
   const [magicSent, setMagicSent] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [uploadStatus, setUploadStatus] = useState<SyncStatus>('idle')
-  const [downloadStatus, setDownloadStatus] = useState<SyncStatus>('idle')
 
-  const { favoriteIds, addedAt, toggleFavorite } = useFavoritesStore()
-  const { notes, setNote } = useNotesStore()
-  const { readProgress, markAsRead } = useReadingStore()
+  const { favoriteIds } = useFavoritesStore()
+  const { notes } = useNotesStore()
+  const { readProgress } = useReadingStore()
   const { setLanguage, setFontSize } = useAppStore()
 
   // Initial auth state + subscribe to changes
