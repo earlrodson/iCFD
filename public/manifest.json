@@ -1,12 +1,18 @@
 {
+  "id": "/",
   "name": "Codex Defensoris",
   "short_name": "iCFD",
   "description": "Offline-first Catholic apologetics app with Scripture, Tradition, and Catechism",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
   "background_color": "#F2F2F7",
   "theme_color": "#007AFF",
   "orientation": "portrait-primary",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "lifestyle"],
   "icons": [
     { "src": "/icons/icon-72.png",           "sizes": "72x72",   "type": "image/png" },
     { "src": "/icons/icon-96.png",           "sizes": "96x96",   "type": "image/png" },
@@ -22,18 +28,24 @@
   "shortcuts": [
     {
       "name": "Handbook",
+      "short_name": "Handbook",
       "url": "/handbook",
-      "description": "Browse all apologetics topics"
+      "description": "Browse all apologetics topics",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     },
     {
       "name": "Search",
+      "short_name": "Search",
       "url": "/search",
-      "description": "Search topics and scripture"
+      "description": "Search topics and scripture",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     },
     {
       "name": "Favorites",
+      "short_name": "Favorites",
       "url": "/favorites",
-      "description": "View saved topics"
+      "description": "View saved topics",
+      "icons": [{ "src": "/icons/icon-96.png", "sizes": "96x96" }]
     }
   ]
 }
