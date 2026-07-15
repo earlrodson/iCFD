@@ -1,9 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { List } from '@phosphor-icons/react'
+import { List, ShareNetwork, DownloadSimple } from '@phosphor-icons/react'
 import { useState } from 'react'
-import { ShareNetwork, DownloadSimple } from '@phosphor-icons/react'
 import { AppDrawer } from './AppDrawer'
 import { useSiteConfig } from '@/lib/useSiteConfig'
 import { useDrawerStore } from '@/store/useDrawerStore'
@@ -37,32 +36,36 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Right action: install prompt takes over when available */}
-          {showInstall ? (
-            <div className="relative">
-              <button
-                onClick={handleInstall}
-                aria-label="Install app"
-                className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
-              >
-                <InstallIcon weight="light" size={20} />
-              </button>
-              {isIOS && showIOSHelp && (
-                <div className="absolute right-0 top-full mt-2 w-52 rounded-xl bg-card border border-border px-3 py-2.5 text-xs leading-5 text-muted-foreground shadow-lg z-50">
-                  Tap <ShareNetwork weight="bold" size={11} className="inline mx-0.5" /> Share,
-                  then <strong className="text-foreground">Add to Home Screen</strong>.
-                </div>
-              )}
-            </div>
-          ) : (
+          {/* Right slot */}
+          <div className="flex items-center gap-2">
+            {/* Install button — shown whenever app is installable */}
+            {showInstall && (
+              <div className="relative">
+                <button
+                  onClick={handleInstall}
+                  aria-label="Install app"
+                  className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
+                >
+                  <InstallIcon weight="light" size={20} />
+                </button>
+                {isIOS && showIOSHelp && (
+                  <div className="absolute right-0 top-full mt-2 w-52 rounded-xl bg-card border border-border px-3 py-2.5 text-xs leading-5 text-muted-foreground shadow-lg z-50">
+                    Tap <ShareNetwork weight="bold" size={11} className="inline mx-0.5" /> Share,
+                    then <strong className="text-foreground">Add to Home Screen</strong>.
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Hamburger — desktop only (mobile uses bottom nav Menu tab) */}
             <button
               onClick={openDrawer}
-              className="flex h-9 w-9 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
+              className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
               aria-label="Open menu"
             >
               <List weight="light" size={22} />
             </button>
-          )}
+          </div>
         </div>
       </header>
 
