@@ -8,16 +8,18 @@ import {
   MagnifyingGlass,
   Heart,
   Ladder,
+  PaperPlaneTilt,
 } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 
 const tabs = [
-  { href: '/', label: 'Home', Icon: House },
-  { href: '/handbook', label: 'Handbook', Icon: BookOpen },
-  { href: '/search', label: 'Search', Icon: MagnifyingGlass },
-  { href: '/favorites', label: 'Favorites', Icon: Heart },
-  { href: '/paths', label: 'Paths', Icon: Ladder },
+  { href: '/',        label: 'Home',     Icon: House },
+  { href: '/handbook',label: 'Handbook', Icon: BookOpen },
+  { href: '/search',  label: 'Search',   Icon: MagnifyingGlass },
+  { href: '/favorites',label: 'Favorites',Icon: Heart },
+  { href: '/paths',   label: 'Paths',    Icon: Ladder },
+  { href: '/submit',  label: 'Submit',   Icon: PaperPlaneTilt },
 ]
 
 export function MobileNav() {

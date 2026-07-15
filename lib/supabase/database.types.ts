@@ -48,6 +48,36 @@ export type Database = {
         Update: Partial<Database['public']['Tables']['topics']['Insert']>
         Relationships: []
       }
+      submissions: {
+        Row: {
+          id: string
+          title: string
+          question: string
+          answer: string
+          category: string
+          difficulty: string
+          scripture_refs: string | null
+          submitter_notes: string | null
+          submitted_by: string | null
+          status: string
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          title: string
+          question: string
+          answer: string
+          category: string
+          difficulty: string
+          scripture_refs?: string | null
+          submitter_notes?: string | null
+          submitted_by?: string | null
+          status?: string
+          created_at?: string
+        }
+        Update: Partial<Database['public']['Tables']['submissions']['Insert']>
+        Relationships: []
+      }
       favorites: {
         Row: {
           id: string
