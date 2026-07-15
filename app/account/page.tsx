@@ -94,50 +94,6 @@ export default function AccountPage() {
     }
   }
 
-  async function handleUpload() {
-    if (!user) return
-    setUploadStatus('syncing')
-    try {
-      const favList = favoriteIds.map((id) => ({ id, addedAt: addedAt[id] ?? null }))
-      await Promise.all([
-        syncFavoritesToCloud(user.id, favList),
-        syncNotesToCloud(user.id, notes),
-        syncReadProgressToCloud(user.id, readProgress),
-      ])
-      setUploadStatus('done')
-    } catch {
-      setUploadStatus('error')
-    }
-  }
-
-  async function handleDownload() {
-    if (!user) return
-    setDownloadStatus('syncing')
-    try {
-      const [remoteFavs, remoteNotes, remoteProgress] = await Promise.all([
-        fetchFavoritesFromCloud(user.id),
-        fetchNotesFromCloud(user.id),
-        fetchReadProgressFromCloud(user.id),
-      ])
-      if (remoteFavs) {
-        for (const { id } of remoteFavs) {
-          if (!favoriteIds.includes(id)) toggleFavorite(id)
-        }
-      }
-      if (remoteNotes) {
-        for (const [topicId, text] of Object.entries(remoteNotes)) setNote(topicId, text)
-      }
-      if (remoteProgress) {
-        for (const [topicId, { isRead }] of Object.entries(remoteProgress)) {
-          if (isRead) markAsRead(topicId)
-        }
-      }
-      setDownloadStatus('done')
-    } catch {
-      setDownloadStatus('error')
-    }
-  }
-
   // ── Not configured ─────────────────────────────────────────────────────────
 
   if (!isSupabaseConfigured()) {
@@ -193,52 +149,6 @@ export default function AccountPage() {
                 <p className="text-xs text-muted-foreground">{label}</p>
               </div>
             ))}
-          </div>
-
-          {/* Sync */}
-          <div className="mt-6 space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Cloud Sync
-            </p>
-            <button
-              onClick={handleUpload}
-              disabled={uploadStatus === 'syncing'}
-              className="flex w-full items-center gap-3 rounded-2xl bg-card border border-border p-4 shadow-sm hover:shadow-md transition-shadow disabled:opacity-60"
-            >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                {uploadStatus === 'done' ? (
-                  <CheckCircle weight="fill" size={20} className="text-green-500" />
-                ) : (
-                  <CloudArrowUp weight="light" size={20} className="text-primary" />
-                )}
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-foreground">Upload to Cloud</p>
-                <p className="text-xs text-muted-foreground">
-                  {uploadStatus === 'syncing' ? 'Uploading…' : uploadStatus === 'error' ? 'Error — try again' : 'Push favorites, notes & progress'}
-                </p>
-              </div>
-            </button>
-
-            <button
-              onClick={handleDownload}
-              disabled={downloadStatus === 'syncing'}
-              className="flex w-full items-center gap-3 rounded-2xl bg-card border border-border p-4 shadow-sm hover:shadow-md transition-shadow disabled:opacity-60"
-            >
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                {downloadStatus === 'done' ? (
-                  <CheckCircle weight="fill" size={20} className="text-green-500" />
-                ) : (
-                  <CloudArrowDown weight="light" size={20} className="text-primary" />
-                )}
-              </div>
-              <div className="text-left">
-                <p className="text-sm font-medium text-foreground">Download from Cloud</p>
-                <p className="text-xs text-muted-foreground">
-                  {downloadStatus === 'syncing' ? 'Downloading…' : downloadStatus === 'error' ? 'Error — try again' : 'Merge cloud data into this device'}
-                </p>
-              </div>
-            </button>
           </div>
 
           {/* Sign out */}
