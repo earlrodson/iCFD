@@ -1,4 +1,5 @@
 import { HandbookContentSchema, type HandbookContent, type Language } from '@/data/schema/topic.schema'
+import { loadTopicsFromDatabase } from './database'
 
 class ContentLoader {
   private cache: Map<Language, HandbookContent> = new Map()
@@ -6,6 +7,16 @@ class ContentLoader {
   async loadContent(lang: Language): Promise<HandbookContent> {
     const cached = this.cache.get(lang)
     if (cached) return cached
+
+    const databaseContent = await loadTopicsFromDatabase(lang).catch((error) => {
+      console.warn(error)
+      return null
+    })
+
+    if (databaseContent) {
+      this.cache.set(lang, databaseContent)
+      return databaseContent
+    }
 
     const response = await fetch(`/data/content/${lang}/handbook.json`)
     if (!response.ok) {
