@@ -41,7 +41,7 @@ export function Header() {
             iCFD
           </div>
           <span className="hidden font-semibold text-foreground sm:block">
-            Catholic Faith Defender
+            Codex Defensoris
           </span>
         </div>
 

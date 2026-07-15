@@ -205,6 +205,23 @@ export const userSettings = pgTable('user_settings', {
     .notNull(),
 })
 
+/**
+ * Key-value store for backend-managed app configuration.
+ * Allows admins to override build-time env vars (e.g. appName) without redeploying.
+ * Client reads NEXT_PUBLIC_* env vars; the admin panel syncs changes to this table.
+ * See lib/config.ts for the full list of recognized keys.
+ */
+export const siteConfig = pgTable('site_config', {
+  key: text('key').primaryKey(),
+  value: text('value').notNull(),
+  description: text('description'),
+  updated_at: timestamp('updated_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+export type SiteConfigRow = typeof siteConfig.$inferSelect
+
 // ── Inferred types ─────────────────────────────────────────────────────────────
 
 export type TopicRow = typeof topics.$inferSelect

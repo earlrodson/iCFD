@@ -5,7 +5,7 @@ import { MobileNav } from '@/components/layout/MobileNav'
 import { OfflineBanner } from '@/components/ui/OfflineBanner'
 
 export const metadata: Metadata = {
-  title: 'Catholic Faith Defender',
+  title: 'Codex Defensoris',
   description:
     'Offline-first Catholic apologetics app with Scripture, Tradition, and Catechism references in English, Tagalog, and Cebuano.',
   manifest: '/manifest.json',

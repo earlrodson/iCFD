@@ -1,9 +1,13 @@
-# PRD — Catholic Faith Defender Enhanced (v2.0)
+# PRD — Codex Defensoris / iCFD Enhanced (v2.0)
 
-**Version:** 2.1  
+**Product name:** Codex Defensoris  
+**Site / PWA short name:** iCFD  
+**Version:** 2.2  
 **Date:** 2026-07-15  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
+
+> **Naming convention:** The full brand name is **Codex Defensoris** (Latin: "Defender's Code"). The site URL, PWA short name, and app badge display **iCFD**. Both identifiers coexist — "iCFD" for brevity, "Codex Defensoris" in hero, installers, and formal copy.
 
 ### Implementation Status Legend
 - ✅ **Delivered** — shipped and verified
@@ -345,6 +349,46 @@ URL pattern: `https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&
 
 ---
 
+### 4.14 Brand Identity & Backend-Configurable App Name ✅
+
+**User story:** *As an admin, I want to change the app's displayed name without redeploying, so we can rebrand or localize the name as the app scales.*
+
+**Naming decision:**
+- **Full brand name:** Codex Defensoris *(Latin: "Defender's Code")*
+- **Site / PWA short name:** iCFD *(displayed in logo badge, home screen icon label)*
+- Both identifiers appear together — "iCFD" for navigation density; "Codex Defensoris" in hero, browser tab, manifest installer, and formal copy.
+
+**Delivered ACs:**
+- ✅ `app/layout.tsx` title = "Codex Defensoris"
+- ✅ `public/manifest.json` name = "Codex Defensoris", short_name = "iCFD"
+- ✅ `HeroSection` h1 reads "Codex Defensoris"
+- ✅ `Header` tagline reads "Codex Defensoris"
+- ✅ `lib/config.ts` — single source of truth for config values; reads from `NEXT_PUBLIC_*` env vars with hardcoded defaults as fallback
+- ✅ `drizzle/schema.ts` → `siteConfig` table — key-value store for admin-managed config overrides
+- ✅ `drizzle/migrations/003_site_config.sql` — migration + seed with all default config keys
+
+**Backend config architecture:**
+
+```
+Build time:  .env.local → NEXT_PUBLIC_APP_NAME → baked into JS bundle
+Runtime:     Admin updates site_config table → Phase 3 admin panel syncs changes
+             → client fetches /api/config (Phase 3) → overrides APP_CONFIG at runtime
+```
+
+**Recognized config keys (site_config table):**
+
+| key | default | description |
+|-----|---------|-------------|
+| `appName` | Codex Defensoris | Full name in PWA installer and browser tab |
+| `appShortName` | iCFD | Home screen label (≤ 12 chars) |
+| `appId` | codex-defensoris | URL-safe identifier for storage keys |
+| `description` | Offline-first Catholic… | PWA install prompt description |
+| `version` | 2.0.0 | Current app version |
+
+**Phase 3 follow-up:** Build `/admin/config` panel UI that writes to `site_config` table; expose `/api/config` route returning current values (DB overrides env vars) for runtime hydration.
+
+---
+
 ## 5. Technical Requirements
 
 ### 5.1 Content Loading — Language-Aware Topic Pages
@@ -446,18 +490,24 @@ interface LearningPath {
 - 🔄 Offline banner present; pre-caching UI and explicit "Download for offline" button not yet built
 - ⬜ Font size setting in UI
 
-### Phase 2D — Daily Engagement & Visual Polish (Next)
-- ⬜ Daily Featured Topics Carousel (§4.13) — 3 cards, category gradients, swipeable
+### Phase 2D — Daily Engagement & Visual Polish ✅ Delivered
+- ✅ Daily Featured Topics Image Slider (§4.13) — full-bleed Unsplash photos, crossfade, auto-advance, touch swipe
+- ✅ "X of Y topics read" counter on home hero with progress bar
+- ✅ "Not available in [Language]" fallback banner on topic detail
+- ✅ "Next Topic" CTA at bottom of topic when accessed from a learning path
+- ✅ Favorites count badge on nav tab
+- ✅ App renamed to **Codex Defensoris** (§4.14) — layout, manifest, hero, header updated
+- ✅ Backend-ready `site_config` table + `lib/config.ts` for admin-managed name overrides
 - ⬜ Optional `coverImage` field in topic schema
-- ⬜ "X of Y topics read" counter on home hero
-- ⬜ "Not available in [Language]" fallback banner on topic detail
-- ⬜ "Next Topic" CTA at bottom of topic when accessed from a path
-- ⬜ Favorites count badge on nav tab
 - ⬜ PWA icons (all 8 PNG sizes)
+
+### Phase 2E — Brand & Backend Config (§4.14) ✅ Delivered
+See §4.14 below.
 
 ### Phase 3 — Online Features (Future)
 - ⬜ Supabase auth + cloud sync of favorites, notes, progress
 - ⬜ Content submission form (community contributions)
+- ⬜ Admin panel — manage `site_config` key-value overrides via UI
 - ⬜ Native mobile apps via Capacitor
 - ⬜ "Download as PDF" for topics and paths
 - ⬜ Push notifications for daily topic
@@ -471,4 +521,4 @@ interface LearningPath {
 - Video or audio content
 - Live chat or community forums
 - Content translation tooling (translators work externally, JSON files submitted via PR)
-- CMS admin panel
+- CMS admin panel (deferred to Phase 3)

@@ -14,9 +14,9 @@ export function HeroSection({ topics, readCount = 0 }: HeroSectionProps) {
         Offline-First Catholic Apologetics
       </div>
       <h1 className="mt-3 text-3xl font-bold text-foreground tracking-tight">
-        Catholic Faith
+        Codex
         <br />
-        <span className="text-primary">Defender</span>
+        <span className="text-primary">Defensoris</span>
       </h1>
       <p className="mt-3 text-base text-muted-foreground max-w-sm mx-auto leading-relaxed">
         Defend your faith with Scripture, Tradition, and the Catechism — available offline.
