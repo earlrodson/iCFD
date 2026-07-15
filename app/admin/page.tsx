@@ -1,11 +1,9 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { FloppyDisk, ArrowClockwise, Lock, Trash, UserPlus } from '@phosphor-icons/react'
+import { FloppyDisk, ArrowClockwise, Trash, UserPlus } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
-import { getUser } from '@/lib/supabase/auth'
-import { isSupabaseConfigured } from '@/lib/supabase/client'
-import type { User } from '@/lib/supabase/auth'
+import { getSession } from '@/lib/supabase/auth'
 
 interface ConfigRow {
   key: string
@@ -23,46 +21,25 @@ interface AdminRow {
 type SaveStatus = 'idle' | 'saving' | 'saved' | 'error'
 
 export default function AdminPage() {
-  const [user, setUser]         = useState<User | null>(null)
-  const [isAdmin, setIsAdmin]   = useState(false)
-  const [loading, setLoading]   = useState(true)
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null)
 
-  const [rows, setRows]         = useState<ConfigRow[]>([])
-  const [edits, setEdits]       = useState<Record<string, string>>({})
+  const [rows, setRows]     = useState<ConfigRow[]>([])
+  const [edits, setEdits]   = useState<Record<string, string>>({})
   const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle')
   const [saveError, setSaveError]   = useState('')
 
-  const [admins, setAdmins]         = useState<AdminRow[]>([])
+  const [admins, setAdmins]             = useState<AdminRow[]>([])
   const [newAdminEmail, setNewAdminEmail] = useState('')
-  const [adminMsg, setAdminMsg]     = useState('')
+  const [adminMsg, setAdminMsg]         = useState('')
 
   useEffect(() => {
-    async function init() {
-      const u = await getUser()
-      setUser(u)
-      if (!u || !isSupabaseConfigured()) { setLoading(false); return }
-
-      // Check admin status from DB (not hardcoded list)
-      const supabase = createClient()
-      const { data } = await supabase
-        .from('admins')
-        .select('user_id')
-        .eq('user_id', u.id)
-        .maybeSingle()
-
-      const admin = !!data
-      setIsAdmin(admin)
-      setLoading(false)
-      if (admin) { loadConfig(); loadAdmins() }
-    }
-    init()
+    getSession().then((s) => setCurrentUserId(s?.user.id ?? null))
+    loadConfig()
+    loadAdmins()
   }, [])
 
-  // ── Config ─────────────────────────────────────────────────────────────────
-
   async function loadConfig() {
-    const supabase = createClient()
-    const { data } = await supabase
+    const { data } = await createClient()
       .from('site_config')
       .select('key, value, description, updated_at')
       .order('key')
@@ -76,18 +53,14 @@ export default function AdminPage() {
 
   async function saveConfig() {
     setSaveStatus('saving'); setSaveError('')
-    const supabase = createClient()
     const updates = Object.entries(edits).map(([key, value]) => ({ key, value }))
-    const { error } = await supabase.from('site_config').upsert(updates, { onConflict: 'key' })
+    const { error } = await createClient().from('site_config').upsert(updates, { onConflict: 'key' })
     if (error) { setSaveStatus('error'); setSaveError(error.message) }
     else { setSaveStatus('saved'); await loadConfig(); setTimeout(() => setSaveStatus('idle'), 2000) }
   }
 
-  // ── Admins ─────────────────────────────────────────────────────────────────
-
   async function loadAdmins() {
-    const supabase = createClient()
-    const { data } = await supabase
+    const { data } = await createClient()
       .from('admins')
       .select('user_id, email, created_at')
       .order('created_at')
@@ -98,53 +71,32 @@ export default function AdminPage() {
     e.preventDefault()
     if (!newAdminEmail.trim()) return
     setAdminMsg('')
-    const supabase = createClient()
-
-    // Look up user by email via RPC (requires service role in production;
-    // for now inserts with email — user_id resolved server-side on first login)
-    const { error } = await supabase.from('admins').insert({
-      user_id: '00000000-0000-0000-0000-000000000000', // placeholder — see note below
+    const { error } = await createClient().from('admins').insert({
+      user_id: '00000000-0000-0000-0000-000000000000',
       email: newAdminEmail.trim(),
-      granted_by: user?.id,
+      granted_by: currentUserId,
     })
-
     if (error) {
       setAdminMsg('Could not grant access: ' + error.message)
     } else {
-      setAdminMsg(`Invite sent to ${newAdminEmail.trim()}. They will have admin access after next sign-in.`)
+      setAdminMsg(`Added ${newAdminEmail.trim()}. They will have admin access after next sign-in.`)
       setNewAdminEmail('')
       loadAdmins()
     }
   }
 
   async function revokeAdmin(targetUserId: string, targetEmail: string) {
-    if (targetUserId === user?.id) { setAdminMsg("You can't revoke your own access."); return }
-    const supabase = createClient()
-    await supabase.from('admins').delete().eq('user_id', targetUserId)
+    if (targetUserId === currentUserId) { setAdminMsg("You can't revoke your own access."); return }
+    await createClient().from('admins').delete().eq('user_id', targetUserId)
     setAdminMsg(`Removed admin access for ${targetEmail}.`)
     loadAdmins()
   }
 
   const isDirty = rows.some((r) => edits[r.key] !== r.value)
 
-  // ── Guards ─────────────────────────────────────────────────────────────────
-
-  if (loading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-      </div>
-    )
-  }
-
-  if (!user)    return <AccessDenied message="Sign in to access the admin panel." />
-  if (!isAdmin) return <AccessDenied message="Your account does not have admin access." />
-
-  // ── Admin UI ───────────────────────────────────────────────────────────────
-
   return (
-    <div className="min-h-screen bg-background pb-24">
-      <div className="mx-auto max-w-2xl px-4 pt-6 space-y-10">
+    <div className="pb-24">
+      <div className="mx-auto max-w-2xl px-4 pt-8 space-y-10">
 
         {/* ── App Config ── */}
         <section>
@@ -153,7 +105,11 @@ export default function AdminPage() {
               <h1 className="text-xl font-bold text-foreground">App Config</h1>
               <p className="text-xs text-muted-foreground mt-0.5">Changes take effect immediately — no redeploy needed.</p>
             </div>
-            <button onClick={loadConfig} className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors" aria-label="Reload">
+            <button
+              onClick={loadConfig}
+              className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Reload"
+            >
               <ArrowClockwise weight="light" size={18} />
             </button>
           </div>
@@ -216,7 +172,6 @@ export default function AdminPage() {
             <p className="text-xs text-muted-foreground mt-0.5">Admins can edit app config and manage this list.</p>
           </div>
 
-          {/* Current admins */}
           <div className="space-y-2 mb-5">
             {admins.map((a) => (
               <div key={a.user_id} className="flex items-center justify-between rounded-xl border border-border bg-card px-4 py-3">
@@ -224,7 +179,7 @@ export default function AdminPage() {
                   <p className="text-sm font-medium text-foreground">{a.email}</p>
                   <p className="text-xs text-muted-foreground">Since {new Date(a.created_at).toLocaleDateString()}</p>
                 </div>
-                {a.user_id !== user?.id ? (
+                {a.user_id !== currentUserId ? (
                   <button
                     onClick={() => revokeAdmin(a.user_id, a.email)}
                     className="flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 transition-colors"
@@ -239,7 +194,6 @@ export default function AdminPage() {
             ))}
           </div>
 
-          {/* Grant access form */}
           <form onSubmit={grantAdmin} className="flex gap-2">
             <input
               type="email"
@@ -258,20 +212,9 @@ export default function AdminPage() {
             </button>
           </form>
 
-          {adminMsg && (
-            <p className="mt-3 text-xs text-muted-foreground">{adminMsg}</p>
-          )}
+          {adminMsg && <p className="mt-3 text-xs text-muted-foreground">{adminMsg}</p>}
         </section>
       </div>
-    </div>
-  )
-}
-
-function AccessDenied({ message }: { message: string }) {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-3 px-4 text-center">
-      <Lock weight="light" size={40} className="text-muted-foreground" />
-      <p className="text-sm text-muted-foreground">{message}</p>
     </div>
   )
 }

@@ -55,6 +55,16 @@ body {
   border-color: var(--border);
 }
 
+/* ── Admin form utilities ── */
+@layer components {
+  .field {
+    @apply w-full rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary;
+  }
+  .icon-btn {
+    @apply flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-muted-foreground transition-colors;
+  }
+}
+
 /* ── Font size scaling ── */
 html.text-small { font-size: 14px; }
 html.text-medium { font-size: 16px; }
