@@ -135,7 +135,7 @@ export async function syncUserSettingsToCloud(
 export async function fetchUserSettingsFromCloud(userId: string) {
   const { data, error } = await createClient()
     .from('user_settings')
-    .select('language, theme, font_size, display_name, role')
+    .select('language, theme, font_size')
     .eq('user_id', userId)
     .single()
 

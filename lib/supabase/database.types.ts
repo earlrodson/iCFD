@@ -1,296 +1,496 @@
-/**
- * Database types — mirrors drizzle/schema.ts.
- * Regenerate with: npx supabase gen types typescript --project-id gdobgalhdepfpxexssvq > lib/supabase/database.types.ts
- */
+// Auto-generated from Supabase — regenerate with:
+// npx supabase gen types typescript --project-id gdobgalhdepfpxexssvq > lib/supabase/database.types.ts
 
-export type Json = string | number | boolean | null | { [key: string]: Json } | Json[]
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[]
 
 export type Database = {
+  __InternalSupabase: {
+    PostgrestVersion: "14.5"
+  }
   public: {
     Tables: {
-      topics: {
-        Row: {
-          id: string
-          lang: 'en' | 'tl' | 'ceb'
-          category: 'sacraments' | 'mary' | 'papacy' | 'salvation' | 'bible' | 'saints' | 'tradition' | 'church-teaching'
-          title: string
-          question: string
-          answer: Json
-          citations: Json | null
-          scripture: Json | null
-          catechism: Json | null
-          church_fathers: Json | null
-          tags: Json
-          difficulty: 'beginner' | 'intermediate' | 'advanced'
-          related_topics: Json | null
-          last_updated: string
-          last_reviewed: string | null
-          created_at: string
-        }
-        Insert: {
-          id: string
-          lang: 'en' | 'tl' | 'ceb'
-          category: 'sacraments' | 'mary' | 'papacy' | 'salvation' | 'bible' | 'saints' | 'tradition' | 'church-teaching'
-          title: string
-          question: string
-          answer: Json
-          citations?: Json | null
-          scripture?: Json | null
-          catechism?: Json | null
-          church_fathers?: Json | null
-          tags: Json
-          difficulty: 'beginner' | 'intermediate' | 'advanced'
-          related_topics?: Json | null
-          last_updated: string
-          last_reviewed?: string | null
-          created_at?: string
-        }
-        Update: Partial<Database['public']['Tables']['topics']['Insert']>
-        Relationships: []
-      }
       admins: {
         Row: {
-          user_id: string
+          created_at: string
           email: string
           granted_by: string | null
-          created_at: string
+          user_id: string
         }
         Insert: {
-          user_id: string
+          created_at?: string
           email: string
           granted_by?: string | null
+          user_id: string
+        }
+        Update: {
           created_at?: string
+          email?: string
+          granted_by?: string | null
+          user_id?: string
         }
-        Update: Partial<Database['public']['Tables']['admins']['Insert']>
-        Relationships: []
-      }
-      submissions: {
-        Row: {
-          id: string
-          title: string
-          question: string
-          answer: string
-          category: string
-          difficulty: string
-          scripture_refs: string | null
-          submitter_notes: string | null
-          submitted_by: string | null
-          status: string
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          title: string
-          question: string
-          answer: string
-          category: string
-          difficulty: string
-          scripture_refs?: string | null
-          submitter_notes?: string | null
-          submitted_by?: string | null
-          status?: string
-          created_at?: string
-        }
-        Update: Partial<Database['public']['Tables']['submissions']['Insert']>
-        Relationships: []
-      }
-      push_subscriptions: {
-        Row: {
-          id: string
-          user_id: string | null
-          endpoint: string
-          p256dh: string
-          auth: string
-          created_at: string
-        }
-        Insert: {
-          id?: string
-          user_id?: string | null
-          endpoint: string
-          p256dh: string
-          auth: string
-          created_at?: string
-        }
-        Update: Partial<Database['public']['Tables']['push_subscriptions']['Insert']>
         Relationships: []
       }
       favorites: {
         Row: {
-          id: string
-          user_id: string
-          topic_id: string
           added_at: string
+          id: string
+          topic_id: string
+          user_id: string
         }
         Insert: {
-          id?: string
-          user_id: string
-          topic_id: string
           added_at?: string
+          id?: string
+          topic_id: string
+          user_id: string
         }
         Update: {
-          id?: string
-          user_id?: string
-          topic_id?: string
           added_at?: string
+          id?: string
+          topic_id?: string
+          user_id?: string
         }
         Relationships: []
       }
       notes: {
         Row: {
           id: string
-          user_id: string
-          topic_id: string
           text: string
+          topic_id: string
           updated_at: string
+          user_id: string
         }
         Insert: {
           id?: string
-          user_id: string
+          text?: string
           topic_id: string
-          text: string
           updated_at?: string
+          user_id: string
         }
         Update: {
           id?: string
-          user_id?: string
-          topic_id?: string
           text?: string
+          topic_id?: string
           updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      path_topics: {
+        Row: {
+          path_slug: string
+          position: number
+          topic_id: string
+        }
+        Insert: {
+          path_slug: string
+          position: number
+          topic_id: string
+        }
+        Update: {
+          path_slug?: string
+          position?: number
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "path_topics_path_slug_paths_slug_fk"
+            columns: ["path_slug"]
+            isOneToOne: false
+            referencedRelation: "paths"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      paths: {
+        Row: {
+          audience: string
+          created_at: string
+          description: string
+          difficulty: string
+          estimated_minutes: number
+          icon: string
+          slug: string
+          title: string
+        }
+        Insert: {
+          audience: string
+          created_at?: string
+          description: string
+          difficulty: string
+          estimated_minutes: number
+          icon: string
+          slug: string
+          title: string
+        }
+        Update: {
+          audience?: string
+          created_at?: string
+          description?: string
+          difficulty?: string
+          estimated_minutes?: number
+          icon?: string
+          slug?: string
+          title?: string
+        }
+        Relationships: []
+      }
+      push_subscriptions: {
+        Row: {
+          auth: string
+          created_at: string | null
+          endpoint: string
+          id: string
+          p256dh: string
+          user_id: string | null
+        }
+        Insert: {
+          auth: string
+          created_at?: string | null
+          endpoint: string
+          id?: string
+          p256dh: string
+          user_id?: string | null
+        }
+        Update: {
+          auth?: string
+          created_at?: string | null
+          endpoint?: string
+          id?: string
+          p256dh?: string
+          user_id?: string | null
         }
         Relationships: []
       }
       read_progress: {
         Row: {
           id: string
-          user_id: string
-          topic_id: string
           read_at: string
+          topic_id: string
+          user_id: string
         }
         Insert: {
           id?: string
-          user_id: string
-          topic_id: string
           read_at?: string
+          topic_id: string
+          user_id: string
         }
         Update: {
           id?: string
-          user_id?: string
-          topic_id?: string
           read_at?: string
+          topic_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      site_config: {
+        Row: {
+          description: string | null
+          key: string
+          updated_at: string
+          value: string
+        }
+        Insert: {
+          description?: string | null
+          key: string
+          updated_at?: string
+          value: string
+        }
+        Update: {
+          description?: string | null
+          key?: string
+          updated_at?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      submissions: {
+        Row: {
+          answer: string
+          category: string
+          created_at: string
+          difficulty: string
+          id: string
+          question: string
+          scripture_refs: string | null
+          status: string
+          submitted_by: string | null
+          submitter_notes: string | null
+          title: string
+        }
+        Insert: {
+          answer: string
+          category: string
+          created_at?: string
+          difficulty: string
+          id?: string
+          question: string
+          scripture_refs?: string | null
+          status?: string
+          submitted_by?: string | null
+          submitter_notes?: string | null
+          title: string
+        }
+        Update: {
+          answer?: string
+          category?: string
+          created_at?: string
+          difficulty?: string
+          id?: string
+          question?: string
+          scripture_refs?: string | null
+          status?: string
+          submitted_by?: string | null
+          submitter_notes?: string | null
+          title?: string
+        }
+        Relationships: []
+      }
+      topics: {
+        Row: {
+          answer: Json
+          catechism: Json | null
+          category: string
+          church_fathers: Json | null
+          citations: Json | null
+          created_at: string
+          difficulty: string
+          id: string
+          lang: string
+          last_reviewed: string | null
+          last_updated: string
+          objections: Json | null
+          question: string
+          related_topics: Json | null
+          scripture: Json | null
+          tags: Json
+          title: string
+        }
+        Insert: {
+          answer: Json
+          catechism?: Json | null
+          category: string
+          church_fathers?: Json | null
+          citations?: Json | null
+          created_at?: string
+          difficulty: string
+          id: string
+          lang: string
+          last_reviewed?: string | null
+          last_updated: string
+          objections?: Json | null
+          question: string
+          related_topics?: Json | null
+          scripture?: Json | null
+          tags?: Json
+          title: string
+        }
+        Update: {
+          answer?: Json
+          catechism?: Json | null
+          category?: string
+          church_fathers?: Json | null
+          citations?: Json | null
+          created_at?: string
+          difficulty?: string
+          id?: string
+          lang?: string
+          last_reviewed?: string | null
+          last_updated?: string
+          objections?: Json | null
+          question?: string
+          related_topics?: Json | null
+          scripture?: Json | null
+          tags?: Json
+          title?: string
+        }
+        Relationships: []
+      }
+      user_settings: {
+        Row: {
+          font_size: string
+          language: string
+          theme: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          font_size?: string
+          language?: string
+          theme?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          font_size?: string
+          language?: string
+          theme?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
       view_history: {
         Row: {
           id: string
-          user_id: string
           topic_id: string
+          user_id: string
           viewed_at: string
         }
         Insert: {
           id?: string
-          user_id: string
           topic_id: string
+          user_id: string
           viewed_at?: string
         }
         Update: {
           id?: string
-          user_id?: string
           topic_id?: string
+          user_id?: string
           viewed_at?: string
         }
         Relationships: []
       }
-      user_settings: {
-        Row: {
-          user_id: string
-          role: 'user' | 'editor' | 'admin'
-          display_name: string | null
-          avatar_url: string | null
-          language: 'en' | 'tl' | 'ceb'
-          theme: 'light' | 'dark' | 'system'
-          font_size: 'small' | 'medium' | 'large'
-          updated_at: string
-        }
-        Insert: {
-          user_id: string
-          role?: 'user' | 'editor' | 'admin'
-          display_name?: string | null
-          avatar_url?: string | null
-          language?: 'en' | 'tl' | 'ceb'
-          theme?: 'light' | 'dark' | 'system'
-          font_size?: 'small' | 'medium' | 'large'
-          updated_at?: string
-        }
-        Update: Partial<Database['public']['Tables']['user_settings']['Insert']>
-        Relationships: []
-      }
-      site_config: {
-        Row: {
-          key: string
-          value: string
-          description: string | null
-          updated_at: string
-        }
-        Insert: {
-          key: string
-          value: string
-          description?: string | null
-          updated_at?: string
-        }
-        Update: Partial<Database['public']['Tables']['site_config']['Insert']>
-        Relationships: []
-      }
-      paths: {
-        Row: {
-          slug: string
-          title: string
-          description: string
-          audience: string
-          estimated_minutes: number
-          difficulty: 'beginner' | 'intermediate' | 'advanced'
-          icon: string
-          created_at: string
-        }
-        Insert: {
-          slug: string
-          title: string
-          description: string
-          audience: string
-          estimated_minutes: number
-          difficulty: 'beginner' | 'intermediate' | 'advanced'
-          icon: string
-          created_at?: string
-        }
-        Update: Partial<Database['public']['Tables']['paths']['Insert']>
-        Relationships: []
-      }
-      path_topics: {
-        Row: {
-          path_slug: string
-          topic_id: string
-          position: number
-        }
-        Insert: {
-          path_slug: string
-          topic_id: string
-          position: number
-        }
-        Update: Partial<Database['public']['Tables']['path_topics']['Insert']>
-        Relationships: []
-      }
     }
-    Views: Record<string, never>
-    Functions: Record<string, never>
-    Enums: Record<string, never>
+    Views: {
+      [_ in never]: never
+    }
+    Functions: {
+      [_ in never]: never
+    }
+    Enums: {
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
   }
 }
 
-export type Tables<T extends keyof Database['public']['Tables']> =
-  Database['public']['Tables'][T]['Row']
+type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">
 
-export type TablesInsert<T extends keyof Database['public']['Tables']> =
-  Database['public']['Tables'][T]['Insert']
+type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">]
 
-export type TablesUpdate<T extends keyof Database['public']['Tables']> =
-  Database['public']['Tables'][T]['Update']
+export type Tables<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof (DefaultSchema["Tables"] & DefaultSchema["Views"])
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+        DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? (DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"] &
+      DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Views"])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+export type TablesInsert<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+export type TablesUpdate<
+  DefaultSchemaTableNameOrOptions extends
+    | keyof DefaultSchema["Tables"]
+    | { schema: keyof DatabaseWithoutInternals },
+  TableName extends DefaultSchemaTableNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"]
+    : never = never,
+> = DefaultSchemaTableNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaTableNameOrOptions["schema"]]["Tables"][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+export type Enums<
+  DefaultSchemaEnumNameOrOptions extends
+    | keyof DefaultSchema["Enums"]
+    | { schema: keyof DatabaseWithoutInternals },
+  EnumName extends DefaultSchemaEnumNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"]
+    : never = never,
+> = DefaultSchemaEnumNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
+  : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof DefaultSchema["CompositeTypes"]
+    | { schema: keyof DatabaseWithoutInternals },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof DatabaseWithoutInternals
+  }
+    ? keyof DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends {
+  schema: keyof DatabaseWithoutInternals
+}
+  ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
+
+export const Constants = {
+  public: {
+    Enums: {},
+  },
+} as const

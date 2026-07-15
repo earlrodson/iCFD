@@ -27,6 +27,11 @@ export const DifficultySchema = z.enum(['beginner', 'intermediate', 'advanced'])
 
 export const LanguageSchema = z.enum(['en', 'tl', 'ceb'])
 
+export const ObjectionSchema = z.object({
+  objection: z.string(),
+  response: z.string(),
+})
+
 export const TopicSchema = z.object({
   id: z.string(),
   category: CategorySchema,
@@ -36,6 +41,7 @@ export const TopicSchema = z.object({
   scripture: z.array(ScriptureSchema),
   catechism: z.array(z.string()).optional(),
   churchFathers: z.array(ChurchFatherSchema).optional(),
+  objections: z.array(ObjectionSchema).optional(),
   tags: z.array(z.string()),
   difficulty: DifficultySchema,
   lang: LanguageSchema,
@@ -49,6 +55,7 @@ export const HandbookContentSchema = z.object({
 
 export type Scripture = z.infer<typeof ScriptureSchema>
 export type ChurchFather = z.infer<typeof ChurchFatherSchema>
+export type Objection = z.infer<typeof ObjectionSchema>
 export type Category = z.infer<typeof CategorySchema>
 export type Difficulty = z.infer<typeof DifficultySchema>
 export type Language = z.infer<typeof LanguageSchema>

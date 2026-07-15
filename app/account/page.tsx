@@ -56,8 +56,8 @@ export default function AccountPage() {
     if (!user) return
     fetchUserSettingsFromCloud(user.id).then((s) => {
       if (!s) return
-      if (s.language) setLanguage(s.language)
-      if (s.font_size) setFontSize(s.font_size)
+      if (s.language) setLanguage(s.language as 'en' | 'tl' | 'ceb')
+      if (s.font_size) setFontSize(s.font_size as 'small' | 'medium' | 'large')
     })
   }, [user, setLanguage, setFontSize])
 

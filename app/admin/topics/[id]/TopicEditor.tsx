@@ -10,6 +10,7 @@ import type { Json } from '@/lib/supabase/database.types'
 
 interface Scripture { reference: string; text: string; version: string }
 interface ChurchFather { author: string; quote: string; source: string }
+interface Objection { objection: string; response: string }
 
 type Lang = 'en' | 'tl' | 'ceb'
 
@@ -26,6 +27,7 @@ interface FormState {
   scripture: Scripture[]
   catechism: string[]
   churchFathers: ChurchFather[]
+  objections: Objection[]
 }
 
 const CATEGORIES = ['sacraments', 'mary', 'papacy', 'salvation', 'bible', 'saints', 'tradition', 'church-teaching']
@@ -35,7 +37,7 @@ const LANGS = ['en', 'tl', 'ceb']
 const EMPTY: FormState = {
   id: '', lang: 'en', category: 'bible', title: '', question: '', answer: '',
   difficulty: 'beginner', tags: '', relatedTopics: '',
-  scripture: [], catechism: [], churchFathers: [],
+  scripture: [], catechism: [], churchFathers: [], objections: [],
 }
 
 type SaveStatus = 'idle' | 'saving' | 'saved' | 'error'
@@ -64,7 +66,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
       if (data) {
         setForm({
           id: data.id,
-          lang: data.lang,
+          lang: data.lang as Lang,
           category: data.category,
           title: data.title,
           question: data.question,
@@ -75,6 +77,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
           scripture: Array.isArray(data.scripture) ? data.scripture as unknown as Scripture[] : [],
           catechism: Array.isArray(data.catechism) ? data.catechism as unknown as string[] : [],
           churchFathers: Array.isArray(data.church_fathers) ? data.church_fathers as unknown as ChurchFather[] : [],
+          objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
         })
       }
       setLoading(false)
@@ -104,6 +107,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
       scripture: form.scripture.filter((s) => s.reference.trim()) as unknown as Json,
       catechism: form.catechism.filter((c) => c.trim()) as unknown as Json,
       church_fathers: form.churchFathers.filter((f) => f.author.trim()) as unknown as Json,
+      objections: form.objections.filter((o) => o.objection.trim()) as unknown as Json,
       last_updated: new Date().toISOString(),
     }
 
@@ -161,6 +165,19 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
   }
   function removeFather(i: number) {
     set('churchFathers', form.churchFathers.filter((_, idx) => idx !== i))
+  }
+
+  // ── Objection helpers ───────────────────────────────────────────────────────
+
+  function addObjection() {
+    set('objections', [...form.objections, { objection: '', response: '' }])
+  }
+  function updateObjection(i: number, field: keyof Objection, val: string) {
+    const next = form.objections.map((o, idx) => idx === i ? { ...o, [field]: val } : o)
+    set('objections', next)
+  }
+  function removeObjection(i: number) {
+    set('objections', form.objections.filter((_, idx) => idx !== i))
   }
 
   // ── Render ──────────────────────────────────────────────────────────────────
@@ -399,6 +416,46 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
                 placeholder="Quote text…"
                 className="field resize-none"
               />
+            </div>
+          ))}
+        </Section>
+
+        {/* ── Objections ── */}
+        <Section
+          title="Common Objections"
+          action={<AddButton onClick={addObjection} label="Add objection" />}
+        >
+          {form.objections.length === 0 && (
+            <p className="text-xs text-muted-foreground">No objections yet. Add common counter-arguments and responses.</p>
+          )}
+          {form.objections.map((o, i) => (
+            <div key={i} className="rounded-xl border border-border bg-muted/30 p-3 space-y-2">
+              <div className="flex items-start justify-between gap-2">
+                <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide pt-1">#{i + 1}</p>
+                <button onClick={() => removeObjection(i)} className="icon-btn ml-auto text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-900/20">
+                  <Trash weight="light" size={15} />
+                </button>
+              </div>
+              <div>
+                <Label>Objection</Label>
+                <textarea
+                  value={o.objection}
+                  onChange={(e) => updateObjection(i, 'objection', e.target.value)}
+                  rows={2}
+                  placeholder="e.g. Mary was a sinner too — she said 'God my Savior'"
+                  className="field resize-none"
+                />
+              </div>
+              <div>
+                <Label>Response</Label>
+                <textarea
+                  value={o.response}
+                  onChange={(e) => updateObjection(i, 'response', e.target.value)}
+                  rows={4}
+                  placeholder="Catholic response to this objection…"
+                  className="field resize-y"
+                />
+              </div>
             </div>
           ))}
         </Section>

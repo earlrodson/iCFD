@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {
   BookOpen,
   Quotes,
+  ChatTeardropText,
   Heart,
   ArrowLeft,
   Export,
@@ -301,6 +302,30 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                   <span className="font-semibold text-foreground">{father.author}</span>
                   {' — '}
                   {father.source}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Objections */}
+      {topic.objections && topic.objections.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <ChatTeardropText weight="light" size={16} />
+            Common Objections
+          </h2>
+          <div className="space-y-4">
+            {topic.objections.map((item, i) => (
+              <div key={i} className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden">
+                <div className="border-b border-border bg-muted/50 px-4 py-3">
+                  <p className="text-sm font-medium text-foreground leading-snug">
+                    &ldquo;{item.objection}&rdquo;
+                  </p>
+                </div>
+                <div className="px-4 py-3">
+                  <p className="text-sm text-foreground leading-relaxed">{item.response}</p>
                 </div>
               </div>
             ))}

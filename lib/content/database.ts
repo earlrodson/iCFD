@@ -16,6 +16,7 @@ interface TopicRow {
   scripture: Json | null
   catechism: Json | null
   church_fathers: Json | null
+  objections: Json | null
   tags: Json
   difficulty: Topic['difficulty']
   related_topics: Json | null
@@ -32,6 +33,7 @@ const TOPIC_SELECT = [
   'scripture',
   'catechism',
   'church_fathers',
+  'objections',
   'tags',
   'difficulty',
   'related_topics',
@@ -80,6 +82,7 @@ export function topicRowToTopic(row: TopicRow): Topic {
     scripture: jsonArray(row.scripture),
     catechism: jsonArray(row.catechism),
     churchFathers: jsonArray(row.church_fathers),
+    objections: jsonArray(row.objections),
     tags: jsonArray(row.tags),
     difficulty: row.difficulty,
     lang: row.lang,
