@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle } from '@phosphor-icons/react'
+import { ArrowLeft, CheckCircle, Clock, User } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { Badge } from '@/components/ui/Badge'
@@ -13,6 +13,8 @@ interface LearningPath {
   title: string
   description: string
   icon: string
+  audience?: string
+  estimatedMinutes?: number
   topicIds: string[]
 }
 
@@ -58,6 +60,22 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
         {/* Header */}
         <h1 className="text-2xl font-bold text-foreground">{path.title}</h1>
         <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{path.description}</p>
+        {(path.audience || path.estimatedMinutes) && (
+          <div className="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground">
+            {path.estimatedMinutes && (
+              <span className="flex items-center gap-1">
+                <Clock weight="light" size={12} />
+                ~{path.estimatedMinutes} min read
+              </span>
+            )}
+            {path.audience && (
+              <span className="flex items-center gap-1">
+                <User weight="light" size={12} />
+                {path.audience}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* Overall progress */}
         <div className="mt-4 rounded-2xl bg-card border border-border p-4 shadow-sm">

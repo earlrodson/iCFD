@@ -1,14 +1,14 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Heart, SortAscending, Rows, GridFour } from '@phosphor-icons/react'
+import { Heart, SortAscending, Rows, GridFour, Export } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { TopicCard } from '@/components/topic/TopicCard'
 import type { Topic, Category } from '@/data/schema/topic.schema'
 import { cn } from '@/lib/utils'
 
-type SortOption = 'title' | 'category' | 'difficulty'
+type SortOption = 'title' | 'category' | 'difficulty' | 'added'
 
 const CATEGORY_LABELS: Record<Category, string> = {
   bible: 'Bible',
@@ -21,10 +21,19 @@ const CATEGORY_LABELS: Record<Category, string> = {
   salvation: 'Salvation',
 }
 
-function sortTopics(topics: Topic[], sort: SortOption): Topic[] {
+function sortTopics(
+  topics: Topic[],
+  sort: SortOption,
+  addedAt: Record<string, string>,
+): Topic[] {
   return [...topics].sort((a, b) => {
     if (sort === 'title') return a.title.localeCompare(b.title)
     if (sort === 'category') return a.category.localeCompare(b.category)
+    if (sort === 'added') {
+      const ta = addedAt[a.id] ?? ''
+      const tb = addedAt[b.id] ?? ''
+      return tb.localeCompare(ta) // newest first
+    }
     const order = { beginner: 0, intermediate: 1, advanced: 2 }
     return order[a.difficulty] - order[b.difficulty]
   })
@@ -42,8 +51,8 @@ function groupByCategory(topics: Topic[]): [Category, Topic[]][] {
 
 export default function FavoritesPage() {
   const { availableTopics, initialize } = useAppStore()
-  const { favoriteIds } = useFavoritesStore()
-  const [sort, setSort] = useState<SortOption>('title')
+  const { favoriteIds, addedAt, exportFavorites } = useFavoritesStore()
+  const [sort, setSort] = useState<SortOption>('added')
   const [grouped, setGrouped] = useState(false)
 
   useEffect(() => {
@@ -51,8 +60,19 @@ export default function FavoritesPage() {
   }, [availableTopics.length, initialize])
 
   const favorites = availableTopics.filter((t) => favoriteIds.includes(t.id))
-  const sorted = sortTopics(favorites, sort)
+  const sorted = sortTopics(favorites, sort, addedAt)
   const groups = groupByCategory(sorted)
+
+  function handleExport() {
+    const json = exportFavorites()
+    const blob = new Blob([json], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'icfd-favorites.json'
+    a.click()
+    URL.revokeObjectURL(url)
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -68,6 +88,16 @@ export default function FavoritesPage() {
 
           {favorites.length > 0 && (
             <div className="flex items-center gap-2">
+              {/* Export */}
+              <button
+                onClick={handleExport}
+                className="p-1.5 rounded-lg text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Export favorites as JSON"
+                title="Export favorites"
+              >
+                <Export weight="light" size={18} />
+              </button>
+
               {/* Group toggle */}
               <button
                 onClick={() => setGrouped((g) => !g)}
@@ -96,6 +126,7 @@ export default function FavoritesPage() {
                     onChange={(e) => setSort(e.target.value as SortOption)}
                     className="rounded-lg bg-card border border-border px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
                   >
+                    <option value="added">Date Added</option>
                     <option value="title">Title A–Z</option>
                     <option value="category">Category</option>
                     <option value="difficulty">Difficulty</option>

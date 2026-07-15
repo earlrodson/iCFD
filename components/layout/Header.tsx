@@ -4,6 +4,7 @@ import { Sun, Moon, Globe } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import { useAppStore } from '@/store/useAppStore'
 import type { Language } from '@/data/schema/topic.schema'
+import type { FontSize } from '@/store/useAppStore'
 
 const languages: { value: Language; label: string }[] = [
   { value: 'en', label: 'EN' },
@@ -11,13 +12,23 @@ const languages: { value: Language; label: string }[] = [
   { value: 'ceb', label: 'CEB' },
 ]
 
+const FONT_CYCLE: FontSize[] = ['small', 'medium', 'large']
+const FONT_LABEL: Record<FontSize, string> = { small: 'A−', medium: 'A', large: 'A+' }
+
 export function Header() {
   const [isDark, setIsDark] = useState(false)
-  const { currentLanguage, setLanguage } = useAppStore()
+  const { currentLanguage, setLanguage, fontSize, setFontSize } = useAppStore()
 
   useEffect(() => {
     setIsDark(document.documentElement.classList.contains('dark'))
   }, [])
+
+  // Apply font size class to <html>
+  useEffect(() => {
+    const html = document.documentElement
+    html.classList.remove('text-small', 'text-medium', 'text-large')
+    html.classList.add(`text-${fontSize}`)
+  }, [fontSize])
 
   const toggleDark = () => {
     const html = document.documentElement
@@ -32,8 +43,13 @@ export function Header() {
     }
   }
 
+  const cycleFontSize = () => {
+    const idx = FONT_CYCLE.indexOf(fontSize)
+    setFontSize(FONT_CYCLE[(idx + 1) % FONT_CYCLE.length])
+  }
+
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-border bg-card/80 backdrop-blur-md no-print">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
         {/* Logo */}
         <div className="flex items-center gap-2">
@@ -64,6 +80,16 @@ export function Header() {
               </button>
             ))}
           </div>
+
+          {/* Font size cycle */}
+          <button
+            onClick={cycleFontSize}
+            className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors text-xs font-semibold"
+            aria-label={`Font size: ${fontSize}. Click to cycle.`}
+            title={`Text size: ${fontSize}`}
+          >
+            {FONT_LABEL[fontSize]}
+          </button>
 
           {/* Dark mode toggle */}
           <button

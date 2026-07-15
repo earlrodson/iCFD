@@ -8,6 +8,7 @@ import {
   Heart,
   ArrowLeft,
   Export,
+  Printer,
   CheckCircle,
   Circle,
   ArrowRight,
@@ -126,7 +127,14 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
           <h1 className="text-2xl font-bold text-foreground leading-tight">
             {topic.title}
           </h1>
-          <div className="flex shrink-0 items-center gap-1 mt-1">
+          <div className="flex shrink-0 items-center gap-1 mt-1 no-print">
+            <button
+              onClick={() => window.print()}
+              className="p-2 rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Print topic"
+            >
+              <Printer weight="light" size={22} />
+            </button>
             <button
               onClick={handleShare}
               className="p-2 rounded-xl bg-muted text-muted-foreground hover:text-primary transition-colors"

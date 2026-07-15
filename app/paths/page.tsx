@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Cross, Shield, Star, ArrowRight } from '@phosphor-icons/react'
+import { Cross, Shield, Star, ArrowRight, Clock, User } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import pathsData from '@/public/data/content/paths.json'
@@ -12,6 +12,8 @@ interface LearningPath {
   title: string
   description: string
   icon: string
+  audience?: string
+  estimatedMinutes?: number
   topicIds: string[]
 }
 
@@ -72,6 +74,23 @@ export default function PathsPage() {
                       <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
                         {path.description}
                       </p>
+                      {/* Audience + time */}
+                      {(path.audience || path.estimatedMinutes) && (
+                        <div className="mt-2 flex flex-wrap gap-3 text-xs text-muted-foreground">
+                          {path.estimatedMinutes && (
+                            <span className="flex items-center gap-1">
+                              <Clock weight="light" size={12} />
+                              ~{path.estimatedMinutes} min
+                            </span>
+                          )}
+                          {path.audience && (
+                            <span className="flex items-center gap-1">
+                              <User weight="light" size={12} />
+                              {path.audience}
+                            </span>
+                          )}
+                        </div>
+                      )}
                       {/* Progress */}
                       <div className="mt-3">
                         <div className="mb-1 flex items-center justify-between text-xs text-muted-foreground">

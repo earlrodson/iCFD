@@ -5,6 +5,8 @@
       "title": "New Catholic",
       "description": "Core doctrines every Catholic should know — from the Trinity to the Eucharist.",
       "icon": "cross",
+      "audience": "New Catholics, RCIA candidates, and curious seekers exploring the faith.",
+      "estimatedMinutes": 40,
       "topicIds": [
         "holy-trinity",
         "divinity-of-christ",
@@ -21,6 +23,8 @@
       "title": "Defend the Faith",
       "description": "Apologetics essentials for answering the most common objections to Catholicism.",
       "icon": "shield",
+      "audience": "Catholics who encounter objections from Protestants or secular friends.",
+      "estimatedMinutes": 45,
       "topicIds": [
         "bible-tradition-authority",
         "primacy-of-peter",
@@ -37,6 +41,8 @@
       "title": "Marian Apologetics",
       "description": "Understanding and defending the Catholic Church's doctrines about Mary.",
       "icon": "star",
+      "audience": "Catholics who want to defend Marian doctrines with Scripture and Tradition.",
+      "estimatedMinutes": 15,
       "topicIds": [
         "immaculate-conception",
         "perpetual-virginity",

@@ -54,3 +54,24 @@ body {
 * {
   border-color: var(--border);
 }
+
+/* ── Font size scaling ── */
+html.text-small { font-size: 14px; }
+html.text-medium { font-size: 16px; }
+html.text-large  { font-size: 18px; }
+
+/* ── Print styles ── */
+@media print {
+  header, nav, .no-print { display: none !important; }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt;
+  }
+  article {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  a { color: black !important; text-decoration: none; }
+  .shadow-sm, .shadow-md { box-shadow: none !important; }
+}

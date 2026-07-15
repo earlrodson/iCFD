@@ -6,15 +6,21 @@ import { contentLoader } from '@/lib/content/loader'
 import { searchEngine } from '@/lib/search/engine'
 import type { Topic, Language } from '@/data/schema/topic.schema'
 
+type FontSize = 'small' | 'medium' | 'large'
+
 interface AppState {
   currentLanguage: Language
   availableTopics: Topic[]
   loading: boolean
   error: string | null
+  fontSize: FontSize
 
   setLanguage: (lang: Language) => void
+  setFontSize: (size: FontSize) => void
   initialize: (lang?: Language) => Promise<void>
 }
+
+export type { FontSize }
 
 export const useAppStore = create<AppState>()(
   persist(
@@ -23,11 +29,14 @@ export const useAppStore = create<AppState>()(
       availableTopics: [],
       loading: false,
       error: null,
+      fontSize: 'medium',
 
       setLanguage: (lang) => {
         set({ currentLanguage: lang })
         get().initialize(lang)
       },
+
+      setFontSize: (size) => set({ fontSize: size }),
 
       initialize: async (lang?: Language) => {
         const language = lang ?? get().currentLanguage
@@ -46,7 +55,7 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'app-store',
-      partialize: (state) => ({ currentLanguage: state.currentLanguage }),
+      partialize: (state) => ({ currentLanguage: state.currentLanguage, fontSize: state.fontSize }),
     },
   ),
 )

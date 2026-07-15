@@ -7,6 +7,8 @@ interface LearningPath {
   title: string
   description: string
   icon: string
+  audience?: string
+  estimatedMinutes?: number
   topicIds: string[]
 }
 
