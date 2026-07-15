@@ -532,6 +532,8 @@ See §4.14 below.
 - ✅ `/settings` page — language, text size, theme toggle, cloud sync
 - ✅ `/account` page — auth-only (sign in/up, profile card, stats); sync moved to /settings
 - ✅ Mobile nav — 5 tabs: Home, Handbook, Search, Favorites, Paths (Submit removed)
+- ✅ App name "Codex Defensoris" always visible beside logo on all screen sizes (mobile + desktop)
+- ✅ App name and badge label read from `site_config` table at runtime via `useSiteConfig` hook (falls back to `APP_CONFIG`/env vars when DB is unavailable)
 
 ### Phase 3E — Community & Admin ✅ Delivered
 - ✅ `/submit` — topic suggestion form → `submissions` table (RLS: anyone can insert)

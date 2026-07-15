@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { List } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { AppDrawer } from './AppDrawer'
+import { useSiteConfig } from '@/lib/useSiteConfig'
 
 export function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const { appName, appShortName } = useSiteConfig()
 
   return (
     <>
@@ -15,10 +17,10 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold">
-              iCFD
+              {appShortName}
             </div>
-            <span className="hidden font-semibold text-foreground sm:block">
-              Codex Defensoris
+            <span className="font-semibold text-foreground">
+              {appName}
             </span>
           </Link>
 
