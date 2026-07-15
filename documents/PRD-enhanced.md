@@ -541,14 +541,50 @@ See §4.14 below.
 - ✅ `admins` table — replaces hardcoded email list; multiple admins supported
 - ✅ `submissions` table with RLS policies
 
-### Phase 4 — Remaining (Future)
-- ⬜ Push notifications for daily topic
+### Phase 4 — In Progress
+- ✅ Offline pre-cache UI — Settings → "Download for offline" button with progress bar
+- ✅ Per-topic offline download button on topic detail page (Cache API, localStorage tracking)
+- ✅ PWA install button replaces hamburger in header when install prompt is available
+- 🔄 Push notifications for daily topic (in progress)
 - ⬜ PDF export for topics and paths
 - ⬜ Native mobile apps via Capacitor
 - ⬜ Content expansion to 100+ topics per language (currently 50 EN)
 - ⬜ Professional Filipino translations for 30 new topic stubs
 - ⬜ Optional `coverImage` field in topic schema
-- ⬜ Offline pre-cache UI ("Download for offline" button with progress)
+
+---
+
+### Phase 5 — Admin CMS (Planned)
+
+**Goal:** Allow admins to manage all content directly from `/admin` without touching JSON files or redeploying. The `topics` Supabase table already holds all content from the seed — Phase 5 wires up CRUD on top of it.
+
+#### 5A — Topic Editor
+- List all topics in a searchable/filterable table (by category, difficulty, language)
+- Inline edit: title, question, answer, citations, scripture refs, catechism refs, church fathers, tags
+- Difficulty and category dropdowns
+- Per-language tabs (EN / TL / CEB) to manage translations side by side
+- Publish / unpublish toggle (add `published` boolean column to topics table)
+- Delete with confirmation
+
+#### 5B — Submission Review Queue
+- List all rows from `submissions` table with status filter (pending / approved / rejected)
+- Approve: copy submission fields into `topics` table as a new topic
+- Reject: set status = 'rejected', optionally add reviewer note
+- Status badge on each row (pending = amber, approved = green, rejected = red)
+
+#### 5C — Translation Management
+- For each topic, show EN content alongside a TL or CEB editor
+- Mark a translation as "stub" vs "reviewed"
+- Bulk export missing translations as JSON for external translators
+
+#### 5D — Path Editor
+- Create / edit / delete learning paths
+- Drag-and-drop topic ordering within a path (or manual order input)
+- Assign audience, difficulty, estimated minutes, icon
+
+#### 5E — Media & Config
+- `coverImage` URL per topic (used by DailyCarousel)
+- All existing site_config rows editable (already live)
 
 ---
 
@@ -558,4 +594,3 @@ See §4.14 below.
 - Video or audio content
 - Live chat or community forums
 - Content translation tooling (translators work externally, JSON files submitted via PR)
-- CMS admin panel (deferred to Phase 3)

@@ -11,6 +11,7 @@ if (process.env.NODE_ENV === 'production') {
     dest: 'public',
     register: true,
     skipWaiting: true,
+    customWorkerSrc: 'worker',
     runtimeCaching: [
       {
         urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|ico)$/i,
