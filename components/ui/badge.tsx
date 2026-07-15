@@ -1,21 +1,21 @@
 import { cn } from '@/lib/utils'
 import type { Category, Difficulty } from '@/data/schema/topic.schema'
 
-const categoryColors: Record<Category, string> = {
-  bible: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300',
-  'church-teaching': 'bg-purple-100 text-purple-700 dark:bg-purple-900/40 dark:text-purple-300',
-  mary: 'bg-pink-100 text-pink-700 dark:bg-pink-900/40 dark:text-pink-300',
-  tradition: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
-  saints: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/40 dark:text-yellow-300',
-  papacy: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300',
-  sacraments: 'bg-cyan-100 text-cyan-700 dark:bg-cyan-900/40 dark:text-cyan-300',
-  salvation: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
+const categoryDot: Record<Category, string> = {
+  bible:            'bg-blue-500',
+  'church-teaching':'bg-violet-500',
+  mary:             'bg-pink-500',
+  tradition:        'bg-amber-500',
+  saints:           'bg-emerald-500',
+  papacy:           'bg-indigo-500',
+  sacraments:       'bg-sky-500',
+  salvation:        'bg-rose-500',
 }
 
-const difficultyColors: Record<Difficulty, string> = {
-  beginner: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300',
-  intermediate: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300',
-  advanced: 'bg-red-100 text-red-700 dark:bg-red-900/40 dark:text-red-300',
+const difficultyDot: Record<Difficulty, string> = {
+  beginner:     'bg-emerald-500',
+  intermediate: 'bg-amber-500',
+  advanced:     'bg-rose-500',
 }
 
 interface BadgeProps {
@@ -25,21 +25,24 @@ interface BadgeProps {
 }
 
 export function Badge({ variant, value, className }: BadgeProps) {
-  const colorClass =
-    variant === 'category'
-      ? categoryColors[value as Category]
-      : difficultyColors[value as Difficulty]
+  const dot = variant === 'category'
+    ? categoryDot[value as Category]
+    : difficultyDot[value as Difficulty]
 
-  const label = value === 'church-teaching' ? 'Church Teaching' : value.charAt(0).toUpperCase() + value.slice(1)
+  const label =
+    value === 'church-teaching'
+      ? 'Church Teaching'
+      : value.charAt(0).toUpperCase() + value.slice(1)
 
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium capitalize',
-        colorClass,
+        'inline-flex items-center gap-1.5 rounded-full bg-white px-2 py-0.5 text-xs font-medium text-slate-500 ring-1 ring-slate-200',
+        'dark:bg-slate-800 dark:text-slate-300 dark:ring-slate-700',
         className,
       )}
     >
+      <span className={cn('h-1.5 w-1.5 shrink-0 rounded-full', dot)} />
       {label}
     </span>
   )

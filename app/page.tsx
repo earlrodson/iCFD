@@ -1,17 +1,28 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { Clock, Sparkle } from '@phosphor-icons/react'
+import Link from 'next/link'
+import { Clock, Sparkle } from '@phosphor-icons/react/dist/ssr'
 import { useAppStore } from '@/store/useAppStore'
 import { useSearchStore } from '@/store/useSearchStore'
 import { useReadingStore } from '@/store/useReadingStore'
-import { HeroSection } from '@/components/home/HeroSection'
 import { CategoryFilter } from '@/components/home/CategoryFilter'
 import { TopicGrid } from '@/components/home/TopicGrid'
 import { TopicCard } from '@/components/topic/TopicCard'
 import { DailyCarousel } from '@/components/home/DailyCarousel'
-import { SearchBar } from '@/components/search/SearchBar'
 import type { Category, Topic } from '@/data/schema/topic.schema'
+
+// Compact category colour dot for Continue Reading chips
+const CHIP_COLOR: Record<string, string> = {
+  bible:            'bg-blue-600',
+  'church-teaching':'bg-violet-600',
+  mary:             'bg-fuchsia-600',
+  tradition:        'bg-amber-600',
+  saints:           'bg-green-600',
+  papacy:           'bg-cyan-700',
+  sacraments:       'bg-sky-500',
+  salvation:        'bg-red-600',
+}
 
 const DIFFICULTY_UP: Record<string, string> = {
   beginner: 'intermediate',
@@ -19,26 +30,29 @@ const DIFFICULTY_UP: Record<string, string> = {
   advanced: 'advanced',
 }
 
-function getRecommended(allTopics: Topic[], readProgress: Record<string, { isRead: boolean }>, recentTopics: Topic[]): Topic[] {
+function getRecommended(
+  allTopics: Topic[],
+  readProgress: Record<string, { isRead: boolean }>,
+  recentTopics: Topic[],
+): Topic[] {
   const unread = allTopics.filter((t) => !readProgress[t.id]?.isRead)
   if (unread.length === 0) return []
 
-  // Determine dominant difficulty of recent reads
   const recentDiffs = recentTopics.map((t) => t.difficulty)
-  const dominant = recentDiffs.length > 0
-    ? recentDiffs.sort((a, b) =>
-        recentDiffs.filter(d => d === b).length - recentDiffs.filter(d => d === a).length
-      )[0]
-    : 'beginner'
+  const dominant =
+    recentDiffs.length > 0
+      ? recentDiffs.sort(
+          (a, b) =>
+            recentDiffs.filter((d) => d === b).length -
+            recentDiffs.filter((d) => d === a).length,
+        )[0]
+      : 'beginner'
 
   const targetDiff = DIFFICULTY_UP[dominant]
   const sameLevel = unread.filter((t) => t.difficulty === targetDiff)
   const pool = sameLevel.length >= 3 ? sameLevel : unread
 
-  // Deterministic shuffle by topic id
-  return [...pool]
-    .sort((a, b) => a.id.localeCompare(b.id))
-    .slice(0, 3)
+  return [...pool].sort((a, b) => a.id.localeCompare(b.id)).slice(0, 3)
 }
 
 export default function HomePage() {
@@ -48,9 +62,7 @@ export default function HomePage() {
   const [selectedCategory, setSelectedCategory] = useState<Category | ''>('')
 
   useEffect(() => {
-    if (availableTopics.length === 0) {
-      initialize()
-    }
+    if (availableTopics.length === 0) initialize()
   }, [availableTopics.length, initialize])
 
   const categoryFiltered = selectedCategory
@@ -59,8 +71,7 @@ export default function HomePage() {
 
   const displayTopics = getFilteredTopics(categoryFiltered)
 
-  const readCount = Object.values(readProgress).filter((p) => p.isRead).length
-  const recentIds = getRecentlyViewed(3)
+  const recentIds = getRecentlyViewed(5)
   const recentTopics = recentIds
     .map((id) => availableTopics.find((t) => t.id === id))
     .filter((t): t is Topic => t !== undefined)
@@ -70,36 +81,44 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl">
-        {/* Hero */}
-        <HeroSection topics={availableTopics} readCount={readCount} />
 
-        {/* Search */}
-        <div className="px-4 pb-4">
-          <SearchBar placeholder="Search topics, scripture, tags…" />
+        {/* Today's Picks — hero carousel */}
+        <div className="pt-4">
+          <DailyCarousel topics={availableTopics} />
         </div>
 
-        {/* Continue Reading */}
+        {/* Continue Reading — compact chips */}
         {recentTopics.length > 0 && (
-          <section className="px-4 pb-6">
-            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              <Clock weight="light" size={15} />
+          <section className="px-4 pb-5">
+            <h2 className="mb-2.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <Clock weight="bold" size={13} />
               Continue Reading
             </h2>
-            <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-none">
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-none">
               {recentTopics.map((topic) => (
-                <div key={topic.id} className="w-64 shrink-0">
-                  <TopicCard topic={topic} />
-                </div>
+                <Link
+                  key={topic.id}
+                  href={`/${topic.id}`}
+                  className="flex shrink-0 items-center gap-2.5 rounded-xl border border-border bg-card px-3 py-2.5 transition-colors hover:bg-muted active:scale-95"
+                  style={{ minWidth: '148px', maxWidth: '180px' }}
+                >
+                  <span
+                    className={`h-7 w-7 shrink-0 rounded-lg ${CHIP_COLOR[topic.category] ?? 'bg-primary'}`}
+                  />
+                  <span className="line-clamp-2 text-xs font-medium leading-snug text-foreground">
+                    {topic.title}
+                  </span>
+                </Link>
               ))}
             </div>
           </section>
         )}
 
-        {/* Recommended */}
+        {/* Recommended for You */}
         {recommended.length > 0 && (
           <section className="px-4 pb-6">
-            <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              <Sparkle weight="light" size={15} />
+            <h2 className="mb-2.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+              <Sparkle weight="bold" size={13} />
               Recommended for You
             </h2>
             <div className="flex gap-3 overflow-x-auto pb-1 scrollbar-none">
@@ -112,13 +131,9 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* Daily Featured Topics Carousel */}
-        <DailyCarousel topics={availableTopics} />
-
-        {/* Category filter */}
+        {/* Category filter + topic grid */}
         <CategoryFilter selected={selectedCategory} onChange={setSelectedCategory} />
 
-        {/* Results */}
         <div className="mt-4 pb-24">
           {loading && (
             <div className="flex items-center justify-center py-16">
