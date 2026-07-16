@@ -223,7 +223,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 : 'border-transparent text-muted-foreground hover:text-foreground'
             }`}
           >
-            Apol. Brief
+            Brief
           </button>
         </div>
 

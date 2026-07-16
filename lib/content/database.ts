@@ -63,8 +63,8 @@ function answerToString(answer: Json): string {
     const full = answer.full
     const summary = answer.summary
 
-    if (typeof full === 'string') return full
     if (typeof summary === 'string') return summary
+    if (typeof full === 'string') return full
   }
 
   return ''

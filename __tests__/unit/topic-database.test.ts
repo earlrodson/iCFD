@@ -99,28 +99,28 @@ describe('loadTopicFromDatabase — field mapping', () => {
     expect(topic!.answerFull).toBeUndefined()
   })
 
-  it('extracts answer string from {summary, full} JSONB object', async () => {
+  it('extracts summary from {summary, full} JSONB object for concise answer', async () => {
     vi.mocked(fetch).mockResolvedValueOnce({
       ok: true,
-      json: async () => [makeRow({ answer: { summary: 'Short answer.', full: 'Long answer.' } })],
+      json: async () => [makeRow({ answer: { summary: 'Short answer.', full: 'Long markdown essay.' } })],
     } as Response)
 
     const { loadTopicFromDatabase } = await import('@/lib/content/database')
     const topic = await loadTopicFromDatabase('sacred-images', 'en')
 
-    expect(topic!.answer).toBe('Long answer.')
+    expect(topic!.answer).toBe('Short answer.')
   })
 
-  it('falls back to summary when full is missing from answer object', async () => {
+  it('falls back to full when summary is missing from answer object', async () => {
     vi.mocked(fetch).mockResolvedValueOnce({
       ok: true,
-      json: async () => [makeRow({ answer: { summary: 'Summary only.' } })],
+      json: async () => [makeRow({ answer: { full: 'Full content only.' } })],
     } as Response)
 
     const { loadTopicFromDatabase } = await import('@/lib/content/database')
     const topic = await loadTopicFromDatabase('sacred-images', 'en')
 
-    expect(topic!.answer).toBe('Summary only.')
+    expect(topic!.answer).toBe('Full content only.')
   })
 
   it('returns empty arrays for null JSONB fields', async () => {
