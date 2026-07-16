@@ -168,7 +168,7 @@ A full-page search experience replacing the inline header search.
 - ✅ `useReadingStore` with `markAsRead`, `markAsUnread`, `isRead`, `recordVisit`, `getRecentlyViewed`
 - ✅ Visit recorded on every topic page mount (powers "Continue Reading")
 - ✅ Progress available to Learning Paths pages via `readProgress` map
-- ⬜ "X of Y topics read" counter on home hero and handbook sidebar
+- ✅ "X of Y topics read" counter on home hero and handbook sidebar
 
 ---
 

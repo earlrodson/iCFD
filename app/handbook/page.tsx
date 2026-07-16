@@ -13,6 +13,7 @@ import {
   SortAscending,
 } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
+import { useReadingStore } from '@/store/useReadingStore'
 import { TopicCard } from '@/components/topic/TopicCard'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
@@ -49,6 +50,7 @@ function sortTopics(topics: Topic[], sort: SortOption): Topic[] {
 
 export default function HandbookPage() {
   const { availableTopics, loading, error, initialize } = useAppStore()
+  const { readProgress } = useReadingStore()
   const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all')
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | ''>('')
   const [sort, setSort] = useState<SortOption>('title')
@@ -93,6 +95,10 @@ export default function HandbookPage() {
   const visible = filtered.slice(0, visibleCount)
   const hasMore = visibleCount < filtered.length
 
+  const total = availableTopics.length
+  const readCount = Object.values(readProgress).filter((p) => p.isRead).length
+  const pct = total > 0 ? Math.round((readCount / total) * 100) : 0
+
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-5xl">
@@ -100,14 +106,42 @@ export default function HandbookPage() {
         <div className="px-4 pt-6 pb-4">
           <h1 className="text-2xl font-bold text-foreground">Handbook</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Browse all {availableTopics.length} apologetics topics
+            Browse all {total} apologetics topics
           </p>
+          {readCount > 0 && (
+            <div className="mt-3">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs text-muted-foreground">{readCount} of {total} read</span>
+                <span className="text-xs font-medium text-primary">{pct}%</span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-primary transition-all duration-500"
+                  style={{ width: `${pct}%` }}
+                />
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="flex flex-col md:flex-row gap-0">
           {/* Sidebar — desktop */}
           <aside className="hidden md:block w-52 shrink-0 px-4 pb-24">
             <nav className="space-y-1 sticky top-20">
+              {readCount > 0 && (
+                <div className="mb-3 rounded-xl border border-border bg-card px-3 py-2.5">
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="text-xs text-muted-foreground">{readCount} / {total} read</span>
+                    <span className="text-xs font-semibold text-primary">{pct}%</span>
+                  </div>
+                  <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                    <div
+                      className="h-full rounded-full bg-primary transition-all duration-500"
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
+                </div>
+              )}
               {categoryItems.map(({ value, label, Icon }) => {
                 const active = selectedCategory === value
                 const count =
