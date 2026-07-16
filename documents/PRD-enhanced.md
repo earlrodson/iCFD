@@ -692,11 +692,11 @@ ALTER TABLE public.topics ADD COLUMN translation_source TEXT DEFAULT 'manual';
 
 ---
 
-### Phase 7 — Reference Library ⬜
+### Phase 7 — Reference Library ✅
 
 **Goal:** Normalize shared reference data (scripture verses, CCC paragraphs, Church Father quotes) into dedicated tables so each record is stored once and reused across topics — eliminating duplication, enabling single-point updates, and powering a searchable reference picker in the admin Topic Editor.
 
-#### 7A — Schema: Reference Tables ⬜
+#### 7A — Schema: Reference Tables ✅
 
 Three new tables replacing embedded JSONB content in `topics`:
 
@@ -731,7 +731,7 @@ CREATE TABLE church_father_quotes (
 );
 ```
 
-#### 7B — Topics Table Migration ⬜
+#### 7B — Topics Table Migration ✅
 
 The three JSONB arrays on `topics` change from embedded content to ID references:
 
@@ -743,13 +743,13 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 
 **Migration strategy:** Extract unique values from all existing `topics` JSONB arrays into the reference tables, then replace arrays with resolved IDs. Existing API shape preserved via resolved JOIN at read time.
 
-#### 7C — Data Layer Update ⬜
+#### 7C — Data Layer Update ✅
 
 - `lib/content/database.ts`: batch-resolve reference IDs after fetching topic rows — three parallel `WHERE id IN (...)` queries against the small reference tables
 - TypeScript types updated: `Topic.scripture[]`, `Topic.catechism`, `Topic.churchFathers[]` remain unchanged in shape (resolved before returning)
 - RLS: public read on all three reference tables; admin write only
 
-#### 7D — Admin: Reference Library UI ⬜
+#### 7D — Admin: Reference Library UI ✅
 
 - New `/admin/references` tab with sub-tabs: Scripture | CCC | Church Fathers
 - Search existing entries before creating new ones
@@ -758,7 +758,7 @@ The three JSONB arrays on `topics` change from embedded content to ID references
   - "Add CCC" → type "464" → shows paragraph preview → click to attach
   - "Add quote" → search by author or keyword → shows matching `church_father_quotes` → click to attach
 
-#### 7E — Content Shortcodes (Optional, Phase 7+) ⬜
+#### 7E — Content Shortcodes (Optional, Phase 7+) ⬜ *(deferred)*
 
 `answer_full` markdown may embed shortcodes resolved server-side before rendering:
 - `{{verse:jn-1-1-nabre}}` → inserts blockquote with verse text + reference
