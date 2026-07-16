@@ -2,10 +2,11 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Clock, Sparkle } from '@phosphor-icons/react/dist/ssr'
+import { BookOpen, Clock, Heart, Sparkle } from '@phosphor-icons/react/dist/ssr'
 import { useAppStore } from '@/store/useAppStore'
 import { useSearchStore } from '@/store/useSearchStore'
 import { useReadingStore } from '@/store/useReadingStore'
+import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { CategoryFilter } from '@/components/home/CategoryFilter'
 import { TopicGrid } from '@/components/home/TopicGrid'
 import { TopicCard } from '@/components/topic/TopicCard'
@@ -59,7 +60,12 @@ export default function HomePage() {
   const { availableTopics, loading, error, initialize } = useAppStore()
   const { getFilteredTopics } = useSearchStore()
   const { getRecentlyViewed, readProgress } = useReadingStore()
+  const { favoriteIds } = useFavoritesStore()
   const [selectedCategory, setSelectedCategory] = useState<Category | ''>('')
+
+  const topicsReadCount = Object.values(readProgress).filter((p) => p.isRead).length
+  const favoritesCount = favoriteIds.length
+  const totalTopics = availableTopics.length
 
   useEffect(() => {
     if (availableTopics.length === 0) initialize()
@@ -86,6 +92,53 @@ export default function HomePage() {
         <div className="pt-4">
           <DailyCarousel topics={availableTopics} />
         </div>
+
+        {/* Personal stats bar */}
+        {(topicsReadCount > 0 || favoritesCount > 0) && (
+          <div className="mx-4 mb-5 flex gap-3">
+            <div className="flex flex-1 items-center gap-2.5 rounded-2xl bg-card border border-border px-4 py-3">
+              <BookOpen weight="fill" size={18} className="shrink-0 text-primary" />
+              <div>
+                <p className="text-xs text-muted-foreground leading-none mb-0.5">Read</p>
+                <p className="text-sm font-semibold text-foreground leading-none">
+                  {topicsReadCount}
+                  {totalTopics > 0 && (
+                    <span className="text-muted-foreground font-normal"> / {totalTopics}</span>
+                  )}
+                </p>
+              </div>
+            </div>
+            <div className="flex flex-1 items-center gap-2.5 rounded-2xl bg-card border border-border px-4 py-3">
+              <Heart weight="fill" size={18} className="shrink-0 text-rose-500" />
+              <div>
+                <p className="text-xs text-muted-foreground leading-none mb-0.5">Saved</p>
+                <p className="text-sm font-semibold text-foreground leading-none">{favoritesCount}</p>
+              </div>
+            </div>
+            {totalTopics > 0 && topicsReadCount > 0 && (
+              <div className="flex flex-1 items-center gap-2.5 rounded-2xl bg-card border border-border px-4 py-3">
+                <div className="shrink-0 h-[18px] w-[18px] relative">
+                  <svg viewBox="0 0 18 18" className="h-full w-full -rotate-90">
+                    <circle cx="9" cy="9" r="7" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-muted/40" />
+                    <circle
+                      cx="9" cy="9" r="7" fill="none" stroke="currentColor" strokeWidth="2.5"
+                      strokeDasharray={`${2 * Math.PI * 7}`}
+                      strokeDashoffset={`${2 * Math.PI * 7 * (1 - topicsReadCount / totalTopics)}`}
+                      strokeLinecap="round"
+                      className="text-primary transition-all duration-500"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground leading-none mb-0.5">Progress</p>
+                  <p className="text-sm font-semibold text-foreground leading-none">
+                    {Math.round((topicsReadCount / totalTopics) * 100)}%
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
 
         {/* Continue Reading — compact chips */}
         {recentTopics.length > 0 && (

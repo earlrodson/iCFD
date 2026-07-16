@@ -204,7 +204,7 @@ A full-page search experience replacing the inline header search.
 - ✅ Category filter strip below search bar
 
 **Remaining:**
-- ⬜ Replace hero stats with real personalized data (topics read, topics favorited)
+- ✅ Replace hero stats with real personalized data (topics read, topics favorited)
 - ⬜ "Recommended" section (adjacent-difficulty suggestions)
 - ⬜ "Today's Featured Topics" carousel — see **§4.13** for the full spec
 
