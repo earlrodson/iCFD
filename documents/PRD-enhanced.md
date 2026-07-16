@@ -148,13 +148,13 @@ A full-page search experience replacing the inline header search.
 #### Language Switcher on Topic Page ✅
 - ✅ Switching language via `useAppStore` re-derives `displayTopic` from `availableTopics`
 - ✅ English SSG content is the hydration fallback
-- ⬜ Explicit "Not available in [Language]" banner when topic ID absent in target language
+- ✅ Explicit "Not available in [Language]" banner when topic ID absent in target language
 
 #### Share ✅
 - ✅ Web Share API with clipboard fallback and visual confirmation (green check)
 
-#### Print / Export ⬜
-- ⬜ "Print" button with print-specific CSS
+#### Print / Export 🔄
+- ✅ "Print" button with print-specific CSS
 - ⬜ "Download as PDF" (Phase 3)
 
 #### Notes (Personal) ✅
@@ -172,7 +172,7 @@ A full-page search experience replacing the inline header search.
 
 ---
 
-### 4.6 Learning Paths 🔄
+### 4.6 Learning Paths ✅
 
 **User story:** *As a catechist, I want a guided sequence of topics so I can assign structured reading to students.*
 
@@ -190,13 +190,13 @@ A full-page search experience replacing the inline header search.
   3. **Marian Apologetics** — 3 topics (Immaculate Conception, Perpetual Virginity, Prayer to Saints)
 
 **Remaining:**
-- ⬜ "Next Topic" CTA at the bottom of a topic detail when it was opened from a path context
-- ⬜ Audience + estimated reading time fields in paths.json
+- ✅ "Next Topic" CTA at the bottom of a topic detail when it was opened from a path context
+- ✅ Audience + estimated reading time fields in paths.json
 - ⬜ Marian path needs more topics once content expands to 100+
 
 ---
 
-### 4.7 Home Page Redesign 🔄
+### 4.7 Home Page Redesign ✅
 
 **Delivered:**
 - ✅ "Continue Reading" — horizontal scroll strip of last 3 visited topics (from `useReadingStore.getRecentlyViewed`)
@@ -205,8 +205,8 @@ A full-page search experience replacing the inline header search.
 
 **Remaining:**
 - ✅ Replace hero stats with real personalized data (topics read, topics favorited)
-- ⬜ "Recommended" section (adjacent-difficulty suggestions)
-- ⬜ "Today's Featured Topics" carousel — see **§4.13** for the full spec
+- ✅ "Recommended" section (adjacent-difficulty suggestions)
+- ✅ "Today's Featured Topics" carousel — see **§4.13** for the full spec
 
 ---
 
@@ -488,7 +488,7 @@ interface LearningPath {
 - ✅ Learning paths (3 curated paths, progress bars, step-by-step detail)
 - ✅ Home page: "Continue Reading" strip + "Today's Topic" card
 - 🔄 Offline banner present; pre-caching UI and explicit "Download for offline" button not yet built
-- ⬜ Font size setting in UI
+- ✅ Font size setting in UI
 
 ### Phase 2D — Daily Engagement & Visual Polish ✅ Delivered
 - ✅ Daily Featured Topics Image Slider (§4.13) — full-bleed Unsplash photos, crossfade, auto-advance, touch swipe
