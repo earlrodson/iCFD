@@ -122,7 +122,7 @@ A full-page search experience replacing the inline header search.
 
 ---
 
-### 4.4 Favorites Page (`/favorites`) 🔄
+### 4.4 Favorites Page (`/favorites`) ✅
 
 **User story:** *As a user, I want a dedicated page to see, organize, and access all my saved topics.*
 
@@ -134,10 +134,10 @@ A full-page search experience replacing the inline header search.
 - ✅ Heart button accessible per card
 
 **Remaining:**
-- ⬜ Sort by Date Added (requires timestamp in `useFavoritesStore`)
-- ⬜ Export favorites as JSON (UI button — store already supports it)
-- ⬜ Import favorites from JSON file upload
-- ⬜ Favorites count badge on nav tab
+- ✅ Sort by Date Added (requires timestamp in `useFavoritesStore`)
+- ✅ Export favorites as JSON (UI button — store already supports it)
+- ✅ Import favorites from JSON file upload
+- ✅ Favorites count badge on nav tab
 
 ---
 
