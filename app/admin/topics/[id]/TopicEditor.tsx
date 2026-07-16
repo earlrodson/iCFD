@@ -32,7 +32,6 @@ interface FormState {
 
 const CATEGORIES = ['sacraments','mary','papacy','salvation','bible','saints','tradition','church-teaching']
 const DIFFICULTIES = ['beginner','intermediate','advanced']
-const LANGS = ['en','tl','ceb']
 
 const EMPTY: FormState = {
   id:'', lang:'en', category:'bible', title:'', question:'', answer:'',
@@ -374,84 +373,120 @@ function FatherPicker({
 
 // ── TopicEditor ────────────────────────────────────────────────────────────────
 
+const LANG_LABELS: Record<Lang, string> = { en: 'EN', tl: 'TL', ceb: 'CEB' }
+
 export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }) {
   const router  = useRouter()
   const isNew   = topicId === 'new'
   const safeLang = (['en','tl','ceb'].includes(lang) ? lang : 'en') as Lang
 
-  const [form, setForm]     = useState<FormState>({ ...EMPTY, lang: safeLang })
-  const [loading, setLoading] = useState(!isNew)
-  const [status, setStatus] = useState<SaveStatus>('idle')
-  const [error, setError]   = useState('')
+  const [form, setForm]         = useState<FormState>({ ...EMPTY, lang: safeLang })
+  const [selectedLang, setSelectedLang] = useState<Lang>(safeLang)
+  const [loading, setLoading]   = useState(!isNew)
+  const [status, setStatus]     = useState<SaveStatus>('idle')
+  const [error, setError]       = useState('')
+  const [dirty, setDirty] = useState(false)
+  const isDirty = useRef(false)
+  // Keep a stable ref to current form so tab-switch can read it without stale closure
+  const formRef = useRef<FormState>(form)
+  useEffect(() => { formRef.current = form }, [form])
+
+  async function loadFormForLang(targetLang: Lang, fallback?: FormState) {
+    if (isNew) {
+      setForm(f => ({ ...f, lang: targetLang, title: '', question: '', answer: '', answerFull: '', translationNotes: '' }))
+      setSelectedLang(targetLang)
+      isDirty.current = false
+      setDirty(false)
+      return
+    }
+    setLoading(true)
+    const supabase = createClient()
+    const { data } = await supabase
+      .from('topics').select('*')
+      .eq('id', topicId).eq('lang', targetLang).maybeSingle()
+
+    if (data) {
+      const scriptureIds: number[] = Array.isArray(data.scripture)
+        ? (data.scripture as number[]).filter((x): x is number => typeof x === 'number')
+        : []
+      const fatherIds: number[] = Array.isArray(data.church_fathers)
+        ? (data.church_fathers as number[]).filter((x): x is number => typeof x === 'number')
+        : []
+      const catechismNums: number[] = Array.isArray(data.catechism)
+        ? (data.catechism as number[]).filter((x): x is number => typeof x === 'number')
+        : []
+
+      const [verseRows, quoteRows] = await Promise.all([
+        scriptureIds.length
+          ? supabase.from('scripture_verses').select('id,reference,version,text').in('id', scriptureIds).then(r => r.data ?? [])
+          : Promise.resolve([]),
+        fatherIds.length
+          ? supabase.from('church_father_quotes').select('id,author,quote,source,year_approx').in('id', fatherIds).then(r => r.data ?? [])
+          : Promise.resolve([]),
+      ])
+
+      const verseMap = new Map((verseRows as ScriptureVerse[]).map(v => [v.id, v]))
+      const quoteMap = new Map((quoteRows as FatherQuote[]).map(q => [q.id, q]))
+
+      const answer = typeof data.answer === 'string'
+        ? data.answer
+        : (data.answer as Record<string,string>)?.summary ?? (data.answer as Record<string,string>)?.full ?? ''
+
+      setForm({
+        id: data.id, lang: targetLang, category: data.category,
+        title: data.title, question: data.question, answer,
+        difficulty: data.difficulty,
+        tags: Array.isArray(data.tags) ? (data.tags as string[]).join(', ') : '',
+        relatedTopics: Array.isArray(data.related_topics) ? (data.related_topics as string[]).join(', ') : '',
+        scriptureIds,
+        scriptureItems: scriptureIds.map(id => verseMap.get(id)).filter((v): v is ScriptureVerse => !!v),
+        catechismNums,
+        fatherIds,
+        fatherItems: fatherIds.map(id => quoteMap.get(id)).filter((q): q is FatherQuote => !!q),
+        objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
+        translationNotes: data.translation_notes ?? '',
+        answerFull: data.answer_full ?? '',
+        published: data.published ?? true,
+      })
+    } else {
+      // No row for this lang yet — inherit shared fields, clear content fields
+      const base = fallback ?? formRef.current
+      setForm({
+        ...base,
+        lang: targetLang,
+        title: '',
+        question: '',
+        answer: '',
+        answerFull: '',
+        translationNotes: '',
+      })
+    }
+
+    setSelectedLang(targetLang)
+    isDirty.current = false
+    setDirty(false)
+    setLoading(false)
+  }
 
   useEffect(() => {
     if (isNew) return
-    async function load() {
-      const supabase = createClient()
-      const { data } = await supabase
-        .from('topics').select('*')
-        .eq('id', topicId).eq('lang', safeLang).single()
+    loadFormForLang(safeLang)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-      if (data) {
-        const scriptureIds: number[] = Array.isArray(data.scripture)
-          ? (data.scripture as number[]).filter((x): x is number => typeof x === 'number')
-          : []
-        const fatherIds: number[] = Array.isArray(data.church_fathers)
-          ? (data.church_fathers as number[]).filter((x): x is number => typeof x === 'number')
-          : []
-        const catechismNums: number[] = Array.isArray(data.catechism)
-          ? (data.catechism as number[]).filter((x): x is number => typeof x === 'number')
-          : []
-
-        // Batch resolve IDs to display objects
-        const [verseRows, quoteRows] = await Promise.all([
-          scriptureIds.length
-            ? supabase.from('scripture_verses').select('id,reference,version,text').in('id', scriptureIds).then(r => r.data ?? [])
-            : Promise.resolve([]),
-          fatherIds.length
-            ? supabase.from('church_father_quotes').select('id,author,quote,source,year_approx').in('id', fatherIds).then(r => r.data ?? [])
-            : Promise.resolve([]),
-        ])
-
-        const verseMap  = new Map((verseRows  as ScriptureVerse[]).map(v => [v.id, v]))
-        const quoteMap  = new Map((quoteRows  as FatherQuote[]).map(q => [q.id, q]))
-
-        const answer = typeof data.answer === 'string'
-          ? data.answer
-          : (data.answer as Record<string,string>)?.summary ?? (data.answer as Record<string,string>)?.full ?? ''
-
-        setForm({
-          id: data.id, lang: data.lang as Lang, category: data.category,
-          title: data.title, question: data.question, answer,
-          difficulty: data.difficulty,
-          tags: Array.isArray(data.tags) ? (data.tags as string[]).join(', ') : '',
-          relatedTopics: Array.isArray(data.related_topics) ? (data.related_topics as string[]).join(', ') : '',
-          scriptureIds,
-          scriptureItems: scriptureIds.map(id => verseMap.get(id)).filter((v): v is ScriptureVerse => !!v),
-          catechismNums,
-          fatherIds,
-          fatherItems: fatherIds.map(id => quoteMap.get(id)).filter((q): q is FatherQuote => !!q),
-          objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
-          translationNotes: data.translation_notes ?? '',
-          answerFull: data.answer_full ?? '',
-          published: data.published ?? true,
-        })
-      }
-      setLoading(false)
+  async function handleSave(silent = false) {
+    if (!form.id.trim() || !form.title.trim()) {
+      if (!silent) setError('ID and Title are required.')
+      return false
     }
-    load()
-  }, [isNew, topicId, lang])
-
-  async function handleSave() {
-    if (!form.id.trim() || !form.title.trim()) { setError('ID and Title are required.'); return }
-    setStatus('saving'); setError('')
+    if (!silent) { setStatus('saving'); setError('') }
 
     type Category = 'sacraments'|'mary'|'papacy'|'salvation'|'bible'|'saints'|'tradition'|'church-teaching'
     type Difficulty = 'beginner'|'intermediate'|'advanced'
 
     const row = {
       id: form.id.trim().toLowerCase().replace(/\s+/g,'-'),
-      lang: form.lang,
+      lang: selectedLang,
       category: form.category as Category,
       title: form.title.trim(),
       question: form.question.trim(),
@@ -470,14 +505,30 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
     }
 
     const { error: dbErr } = await createClient().from('topics').upsert(row, { onConflict: 'id,lang' })
-    if (dbErr) { setError(dbErr.message); setStatus('error') }
-    else {
+    if (dbErr) {
+      if (!silent) { setError(dbErr.message); setStatus('error') }
+      return false
+    }
+    isDirty.current = false
+    setDirty(false)
+    if (!silent) {
       setStatus('saved')
       setTimeout(() => { setStatus('idle'); if (isNew) router.push('/admin/topics') }, 1200)
     }
+    return true
+  }
+
+  async function switchLang(targetLang: Lang) {
+    if (targetLang === selectedLang) return
+    if (isDirty.current && form.title.trim()) {
+      await handleSave(true)
+    }
+    await loadFormForLang(targetLang, formRef.current)
   }
 
   function set<K extends keyof FormState>(key: K, value: FormState[K]) {
+    isDirty.current = true
+    setDirty(true)
     setForm(f => ({ ...f, [key]: value }))
   }
 
@@ -532,8 +583,31 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
             className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors">
             <ArrowLeft weight="light" size={18} /> Back
           </button>
-          <h2 className="text-sm font-semibold text-foreground">{isNew ? 'New Topic' : 'Edit Topic'}</h2>
-          <button onClick={handleSave} disabled={status === 'saving'}
+
+          {/* Language tabs */}
+          {!isNew && (
+            <div className="flex items-center gap-0.5 rounded-xl bg-muted p-1">
+              {(Object.keys(LANG_LABELS) as Lang[]).map(l => (
+                <button
+                  key={l}
+                  onClick={() => switchLang(l)}
+                  disabled={loading}
+                  className={`relative rounded-lg px-3 py-1 text-xs font-semibold transition-colors disabled:opacity-40 ${
+                    selectedLang === l
+                      ? 'bg-card text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {LANG_LABELS[l]}
+                  {selectedLang === l && dirty && (
+                    <span className="absolute -top-0.5 -right-0.5 h-1.5 w-1.5 rounded-full bg-primary" />
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
+
+          <button onClick={() => handleSave()} disabled={status === 'saving'}
             className="flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 disabled:opacity-60 transition-colors">
             {status === 'saving' ? <Spinner weight="light" size={16} className="animate-spin" /> : <FloppyDisk weight="fill" size={16} />}
             {status === 'saved' ? 'Saved!' : status === 'saving' ? 'Saving…' : 'Save'}
@@ -548,19 +622,12 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
 
         {/* ── Identity ── */}
         <Section title="Identity">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            <div className="col-span-2 sm:col-span-1">
+          <div className="grid grid-cols-2 gap-3">
+            <div>
               <Label>ID (slug)</Label>
               <input value={form.id} onChange={e => set('id', e.target.value)} disabled={!isNew}
                 placeholder="e.g. papal-infallibility"
                 className="field disabled:opacity-50 disabled:cursor-not-allowed" />
-            </div>
-            <div>
-              <Label>Language</Label>
-              <select value={form.lang} onChange={e => set('lang', e.target.value as Lang)} disabled={!isNew}
-                className="field disabled:opacity-50 disabled:cursor-not-allowed">
-                {LANGS.map(l => <option key={l} value={l}>{l.toUpperCase()}</option>)}
-              </select>
             </div>
             <div>
               <Label>Difficulty</Label>

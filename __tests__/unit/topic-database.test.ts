@@ -175,6 +175,46 @@ describe('loadTopicFromDatabase — field mapping', () => {
   })
 })
 
+// ── loadTopicsFromDatabase — published filter ─────────────────────────────────
+
+describe('loadTopicsFromDatabase — published filter', () => {
+  it('sends published=eq.true in the query URL', async () => {
+    mockFetch([makeRow()])
+    const { loadTopicsFromDatabase } = await import('@/lib/content/database')
+    await loadTopicsFromDatabase('en')
+
+    const calledUrl = vi.mocked(fetch).mock.calls[0][0].toString()
+    expect(calledUrl).toContain('published=eq.true')
+  })
+
+  it('sends lang=eq.en when called with "en"', async () => {
+    mockFetch([makeRow()])
+    const { loadTopicsFromDatabase } = await import('@/lib/content/database')
+    await loadTopicsFromDatabase('en')
+
+    const calledUrl = vi.mocked(fetch).mock.calls[0][0].toString()
+    expect(calledUrl).toContain('lang=eq.en')
+  })
+
+  it('sends lang=eq.tl when called with "tl"', async () => {
+    mockFetch([makeRow({ lang: 'tl' })])
+    const { loadTopicsFromDatabase } = await import('@/lib/content/database')
+    await loadTopicsFromDatabase('tl')
+
+    const calledUrl = vi.mocked(fetch).mock.calls[0][0].toString()
+    expect(calledUrl).toContain('lang=eq.tl')
+  })
+
+  it('does NOT send a published filter in loadTopicFromDatabase (single fetch by id)', async () => {
+    mockFetch([makeRow()])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    await loadTopicFromDatabase('sacred-images', 'en')
+
+    const calledUrl = vi.mocked(fetch).mock.calls[0][0].toString()
+    expect(calledUrl).not.toContain('published=eq.true')
+  })
+})
+
 // ── loadTopicsFromDatabase — collection loading ───────────────────────────────
 
 describe('loadTopicsFromDatabase — collection loading', () => {
