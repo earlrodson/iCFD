@@ -229,8 +229,8 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
 
         {/* Concise */}
         {contentTab === 'concise' && (
-          <div className="rounded-b-2xl rounded-tr-2xl bg-card p-5 shadow-sm border border-t-0 border-border">
-            <p className="text-foreground leading-relaxed whitespace-pre-line">{topic.answer}</p>
+          <div className="rounded-b-2xl rounded-tr-2xl bg-card p-5 shadow-sm border border-t-0 border-border prose prose-sm dark:prose-invert max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{topic.answer}</ReactMarkdown>
           </div>
         )}
 
