@@ -343,6 +343,7 @@ export type Database = {
           last_reviewed: string | null
           last_updated: string
           objections: Json | null
+          published: boolean
           question: string
           related_topics: Json | null
           scripture: Json | null
@@ -365,6 +366,7 @@ export type Database = {
           last_reviewed?: string | null
           last_updated: string
           objections?: Json | null
+          published?: boolean
           question: string
           related_topics?: Json | null
           scripture?: Json | null
@@ -387,6 +389,7 @@ export type Database = {
           last_reviewed?: string | null
           last_updated?: string
           objections?: Json | null
+          published?: boolean
           question?: string
           related_topics?: Json | null
           scripture?: Json | null

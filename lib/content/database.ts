@@ -159,7 +159,7 @@ async function fetchTopicRows(params: URLSearchParams): Promise<TopicRow[] | nul
 }
 
 export async function loadTopicsFromDatabase(lang: Language): Promise<HandbookContent | null> {
-  const rows = await fetchTopicRows(new URLSearchParams({ lang: `eq.${lang}`, order: 'title.asc' }))
+  const rows = await fetchTopicRows(new URLSearchParams({ lang: `eq.${lang}`, published: 'eq.true', order: 'title.asc' }))
   if (!rows?.length) return null
   const refs = await resolveRefs(rows)
   return HandbookContentSchema.parse({ topics: rows.map(r => topicRowToTopic(r, refs)) })

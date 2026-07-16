@@ -567,7 +567,7 @@ See §4.14 below.
 - ✅ RLS policies: admins can INSERT/UPDATE/DELETE topics from the browser client
 - ✅ `objections` JSONB column added to topics table via migration
 - ✅ Objections rendered on topic detail page as styled Q&A cards
-- ⬜ Publish / unpublish toggle (`published` boolean column — deferred to 5B)
+- ✅ Publish / unpublish toggle (`published` boolean column — deferred to 5B)
 - ⬜ Per-language tabs (EN / TL / CEB) side by side — currently separate edit URLs
 
 #### 5B — Submission Review Queue ✅ Delivered

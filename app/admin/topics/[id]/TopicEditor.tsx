@@ -27,6 +27,7 @@ interface FormState {
   fatherIds: number[]; fatherItems: FatherQuote[]
   objections: Objection[]
   translationNotes: string; answerFull: string
+  published: boolean
 }
 
 const CATEGORIES = ['sacraments','mary','papacy','salvation','bible','saints','tradition','church-teaching']
@@ -41,6 +42,7 @@ const EMPTY: FormState = {
   fatherIds:[], fatherItems:[],
   objections:[],
   translationNotes:'', answerFull:'',
+  published: true,
 }
 
 type SaveStatus = 'idle' | 'saving' | 'saved' | 'error'
@@ -432,6 +434,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
           objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
           translationNotes: data.translation_notes ?? '',
           answerFull: data.answer_full ?? '',
+          published: data.published ?? true,
         })
       }
       setLoading(false)
@@ -462,6 +465,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
       objections: form.objections.filter(o => o.objection.trim()) as unknown as Json,
       translation_notes: form.translationNotes.trim() || null,
       answer_full: form.answerFull.trim() || null,
+      published: form.published,
       last_updated: new Date().toISOString(),
     }
 
@@ -570,6 +574,23 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
             <select value={form.category} onChange={e => set('category', e.target.value)} className="field">
               {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
             </select>
+          </div>
+          <div className="flex items-center justify-between rounded-xl border border-border bg-muted/30 px-4 py-3">
+            <div>
+              <p className="text-sm font-medium text-foreground">Published</p>
+              <p className="text-xs text-muted-foreground">Unpublished topics are hidden from the handbook</p>
+            </div>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={form.published}
+              onClick={() => set('published', !form.published)}
+              className={`relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${form.published ? 'bg-primary' : 'bg-muted-foreground/30'}`}
+            >
+              <span
+                className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-lg transition-transform ${form.published ? 'translate-x-5' : 'translate-x-0'}`}
+              />
+            </button>
           </div>
         </Section>
 
