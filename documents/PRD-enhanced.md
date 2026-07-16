@@ -70,7 +70,7 @@ These are prerequisites before any new feature work.
 #### 4.1.3 Missing Route Stubs ✅
 All routes (`/handbook`, `/search`, `/favorites`, `/paths`) are live.
 
-#### 4.1.4 PWA Icons ⬜
+#### 4.1.4 PWA Icons ✅
 Icons folder exists at `public/icons/` but production-ready PNGs for all 8 manifest sizes are not yet generated.
 
 #### 4.1.5 Cebuano Static Params ✅

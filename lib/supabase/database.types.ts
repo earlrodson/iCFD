@@ -35,6 +35,51 @@ export type Database = {
         }
         Relationships: []
       }
+      ccc_paragraphs: {
+        Row: {
+          paragraph: number
+          section: string | null
+          summary: string | null
+          text: string | null
+        }
+        Insert: {
+          paragraph: number
+          section?: string | null
+          summary?: string | null
+          text?: string | null
+        }
+        Update: {
+          paragraph?: number
+          section?: string | null
+          summary?: string | null
+          text?: string | null
+        }
+        Relationships: []
+      }
+      church_father_quotes: {
+        Row: {
+          author: string
+          id: number
+          quote: string
+          source: string
+          year_approx: number | null
+        }
+        Insert: {
+          author: string
+          id?: number
+          quote: string
+          source: string
+          year_approx?: number | null
+        }
+        Update: {
+          author?: string
+          id?: number
+          quote?: string
+          source?: string
+          year_approx?: number | null
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           added_at: string
@@ -184,6 +229,39 @@ export type Database = {
           read_at?: string
           topic_id?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      scripture_verses: {
+        Row: {
+          book: string | null
+          chapter: number | null
+          id: number
+          reference: string
+          text: string
+          verse_end: number | null
+          verse_start: number | null
+          version: string
+        }
+        Insert: {
+          book?: string | null
+          chapter?: number | null
+          id?: number
+          reference: string
+          text: string
+          verse_end?: number | null
+          verse_start?: number | null
+          version?: string
+        }
+        Update: {
+          book?: string | null
+          chapter?: number | null
+          id?: number
+          reference?: string
+          text?: string
+          verse_end?: number | null
+          verse_start?: number | null
+          version?: string
         }
         Relationships: []
       }
@@ -405,13 +483,13 @@ export type Tables<
     : never
   : DefaultSchemaTableNameOrOptions extends keyof (DefaultSchema["Tables"] &
         DefaultSchema["Views"])
-  ? (DefaultSchema["Tables"] &
-      DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
-      Row: infer R
-    }
-    ? R
+    ? (DefaultSchema["Tables"] &
+        DefaultSchema["Views"])[DefaultSchemaTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
     : never
-  : never
 
 export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
@@ -431,12 +509,12 @@ export type TablesInsert<
     ? I
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-  ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-      Insert: infer I
-    }
-    ? I
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
     : never
-  : never
 
 export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
@@ -456,12 +534,12 @@ export type TablesUpdate<
     ? U
     : never
   : DefaultSchemaTableNameOrOptions extends keyof DefaultSchema["Tables"]
-  ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
-      Update: infer U
-    }
-    ? U
+    ? DefaultSchema["Tables"][DefaultSchemaTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
     : never
-  : never
 
 export type Enums<
   DefaultSchemaEnumNameOrOptions extends
@@ -477,8 +555,8 @@ export type Enums<
 }
   ? DatabaseWithoutInternals[DefaultSchemaEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"]
-  ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
-  : never
+    ? DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions]
+    : never
 
 export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
@@ -494,8 +572,8 @@ export type CompositeTypes<
 }
   ? DatabaseWithoutInternals[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
   : PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"]
-  ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
-  : never
+    ? DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
+    : never
 
 export const Constants = {
   public: {

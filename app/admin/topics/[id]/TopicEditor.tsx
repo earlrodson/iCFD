@@ -64,7 +64,7 @@ function ScripturePicker({
   const [showNew, setShowNew] = useState(false)
   const [newForm, setNewForm] = useState({ reference:'', version:'NABRE', text:'' })
   const [saving, setSaving] = useState(false)
-  const debounce = useRef<ReturnType<typeof setTimeout>>()
+  const debounce = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
     clearTimeout(debounce.current)
@@ -173,7 +173,7 @@ function CatechismPicker({
   const [input, setInput] = useState('')
   const [preview, setPreview] = useState<CCCParagraph | null>(null)
   const [notFound, setNotFound] = useState(false)
-  const debounce = useRef<ReturnType<typeof setTimeout>>()
+  const debounce = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
     clearTimeout(debounce.current)
@@ -267,7 +267,7 @@ function FatherPicker({
   const [showNew, setShowNew] = useState(false)
   const [newForm, setNewForm] = useState({ author:'', quote:'', source:'', year_approx:'' })
   const [saving, setSaving] = useState(false)
-  const debounce = useRef<ReturnType<typeof setTimeout>>()
+  const debounce = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
     clearTimeout(debounce.current)
@@ -429,7 +429,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
           catechismNums,
           fatherIds,
           fatherItems: fatherIds.map(id => quoteMap.get(id)).filter((q): q is FatherQuote => !!q),
-          objections: Array.isArray(data.objections) ? data.objections as Objection[] : [],
+          objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
           translationNotes: data.translation_notes ?? '',
           answerFull: data.answer_full ?? '',
         })
