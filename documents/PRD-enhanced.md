@@ -2,8 +2,8 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.2  
-**Date:** 2026-07-15  
+**Version:** 2.3  
+**Date:** 2026-07-16  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
 
@@ -541,11 +541,12 @@ See §4.14 below.
 - ✅ `admins` table — replaces hardcoded email list; multiple admins supported
 - ✅ `submissions` table with RLS policies
 
-### Phase 4 — In Progress
+### Phase 4 — Largely Delivered
 - ✅ Offline pre-cache UI — Settings → "Download for offline" button with progress bar
 - ✅ Per-topic offline download button on topic detail page (Cache API, localStorage tracking)
 - ✅ PWA install button replaces hamburger in header when install prompt is available
-- 🔄 Push notifications for daily topic (in progress)
+- ✅ Push notifications — VAPID keys generated, Edge Function deployed, daily cron at 8 AM Manila (00:00 UTC via pg_cron + pg_net)
+- ✅ Android PWA "older version" warning fixed — manifest updated with `id`, `scope`, `lang`, `dir`, `display_override`, `categories`
 - ⬜ PDF export for topics and paths
 - ⬜ Native mobile apps via Capacitor
 - ⬜ Content expansion to 100+ topics per language (currently 50 EN)
@@ -554,37 +555,131 @@ See §4.14 below.
 
 ---
 
-### Phase 5 — Admin CMS (Planned)
+### Phase 5 — Admin CMS
 
 **Goal:** Allow admins to manage all content directly from `/admin` without touching JSON files or redeploying. The `topics` Supabase table already holds all content from the seed — Phase 5 wires up CRUD on top of it.
 
-#### 5A — Topic Editor
-- List all topics in a searchable/filterable table (by category, difficulty, language)
-- Inline edit: title, question, answer, citations, scripture refs, catechism refs, church fathers, tags
-- Difficulty and category dropdowns
-- Per-language tabs (EN / TL / CEB) to manage translations side by side
-- Publish / unpublish toggle (add `published` boolean column to topics table)
-- Delete with confirmation
+#### 5A — Topic Editor ✅ Delivered
+- ✅ Admin layout with tab navigation (Config / Topics) + shared auth guard
+- ✅ Topic list: searchable/filterable table (category, difficulty, lang), delete with confirm modal
+- ✅ Topic editor: full CRUD — title, question, answer, scripture, catechism, church fathers, tags, related topics
+- ✅ Common Objections section: add/remove `{objection, response}` pairs per topic
+- ✅ RLS policies: admins can INSERT/UPDATE/DELETE topics from the browser client
+- ✅ `objections` JSONB column added to topics table via migration
+- ✅ Objections rendered on topic detail page as styled Q&A cards
+- ⬜ Publish / unpublish toggle (`published` boolean column — deferred to 5B)
+- ⬜ Per-language tabs (EN / TL / CEB) side by side — currently separate edit URLs
 
-#### 5B — Submission Review Queue
+#### 5B — Submission Review Queue ⬜
 - List all rows from `submissions` table with status filter (pending / approved / rejected)
-- Approve: copy submission fields into `topics` table as a new topic
+- Approve: copy submission fields into `topics` table as a new topic (pre-fills topic editor)
 - Reject: set status = 'rejected', optionally add reviewer note
 - Status badge on each row (pending = amber, approved = green, rejected = red)
+- RLS policies already added (admins can SELECT all submissions + UPDATE status)
 
-#### 5C — Translation Management
+#### 5C — Translation Management ⬜
 - For each topic, show EN content alongside a TL or CEB editor
-- Mark a translation as "stub" vs "reviewed"
+- Mark a translation as "stub" / "machine" / "reviewed" (via `translation_source` column — see Phase 6)
 - Bulk export missing translations as JSON for external translators
+- "Re-translate" button to trigger machine re-translation via active provider
 
-#### 5D — Path Editor
+#### 5D — Path Editor ⬜
 - Create / edit / delete learning paths
 - Drag-and-drop topic ordering within a path (or manual order input)
 - Assign audience, difficulty, estimated minutes, icon
 
-#### 5E — Media & Config
+#### 5E — Media & Config ⬜
 - `coverImage` URL per topic (used by DailyCarousel)
 - All existing site_config rows editable (already live)
+
+---
+
+### Phase 6 — Content Depth & Translation Engine ⬜
+
+**Goal:** Store one comprehensive content version per topic, derive shorter views from it, and auto-translate to TL/CEB on demand using a swappable provider controlled from the admin panel.
+
+#### 6A — Content Depth Architecture
+
+**Three views, two columns, zero extra storage for the Brief:**
+
+| View | Source | Description |
+|------|--------|-------------|
+| **Concise** | `answer` (text) | 2–3 paragraph quick answer. Auto-generated from `answer_full` at seed time via Claude API. Admins can override. |
+| **Comprehensive** | `answer_full` (text) | Full markdown essay — historical context, theological depth, all arguments. The master authored version. |
+| **Apologetics Brief** | existing structured columns | UI-only rendering mode. Compiles `scripture[]` + `catechism[]` + `church_fathers[]` + `objections[]` into a compact, copyable reference card. No new column needed. |
+
+**DB changes:**
+```sql
+ALTER TABLE public.topics ADD COLUMN answer_full TEXT;
+```
+
+**Content generation workflow (per topic):**
+1. Generate one JSON file with `answer_full` + all structured arrays
+2. Seed script auto-generates `answer` (concise) via Claude API — stored, not derived at runtime
+3. Single upsert per topic — no multiple file problem
+
+**Topic detail page:** Three-tab UI (Concise / Comprehensive / Brief) rendered from existing DB columns.
+
+**`answer_full` in admin editor:** Replaced `<textarea>` with a markdown editor (`@uiw/react-md-editor`, MIT) with live split preview. Display uses `react-markdown` + `remark-gfm`.
+
+#### 6B — Translation Engine
+
+**Architecture:** Provider abstraction layer — swap translation services from the admin Config tab without code changes or redeployment.
+
+**Supported providers:**
+
+| Provider | Package | TL | CEB | Notes |
+|---|---|---|---|---|
+| Claude (Anthropic) | `@anthropic-ai/sdk` | ✅ | ✅ | Best for theological terms |
+| OpenAI | `openai` | ✅ | ✅ | Fallback option |
+| Google Translate | `@google-cloud/translate` | ✅ | ⚠️ | Cheapest, weak on CEB |
+| Azure Translator | `@azure/ai-translation-text` | ✅ | ✅ | Good quality |
+
+**Admin-controlled config (site_config rows):**
+```
+translation_provider   →  'claude' | 'openai' | 'google' | 'azure'
+translation_fallback   →  secondary provider if primary fails / out of tokens
+translation_prompt     →  global base instructions for all translations (textarea in Config tab)
+```
+
+**Per-topic control:**
+```sql
+ALTER TABLE public.topics ADD COLUMN translation_notes TEXT;
+-- Example value: "Do not translate: kecharitomene, latria, hyperdulia.
+--                'grace' → 'biyaya' not 'pagpapala'."
+```
+`translation_notes` is shown in the topic editor. Injected into the prompt for that topic only.
+
+**Translation lifecycle (lazy + persistent):**
+```
+Request topic in TL/CEB
+  ↓
+DB has row for (id, lang)?
+  ├── YES, translation_source = 'manual'   → serve immediately ✅
+  ├── YES, translation_source = 'machine'  → serve immediately ✅
+  └── NO / stub
+        → call active provider API (one-time)
+        → save to DB with translation_source = 'machine'
+        → serve result ✅
+
+Future requests → DB read only, no API call ever again
+```
+
+**`translation_source` column:**
+```sql
+ALTER TABLE public.topics ADD COLUMN translation_source TEXT DEFAULT 'manual';
+-- 'manual'  — human-authored, never auto-overwrite
+-- 'machine' — auto-translated, admin can review/override
+-- 'stub'    — placeholder, treat as missing
+```
+
+**Content change handling:** When EN topic is edited, TL/CEB machine rows are NOT silently regenerated. Admin sees a "Re-translate" button on machine-translated rows in 5C. Manual rows are never touched by automation.
+
+**Protected terms:** Combined from global `translation_prompt` + per-topic `translation_notes`. Built into the system prompt sent to any provider:
+- Latin: latria, dulia, hyperdulia, transubstantiation, ex cathedra, in persona Christi, filioque, sola scriptura
+- Greek: kecharitomene, theotokos, homoousios
+- References: all CCC numbers, scripture references, NABRE, RSV-CE
+- Names: saint names, pope names, council names
 
 ---
 

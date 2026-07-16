@@ -1,10 +1,13 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { FloppyDisk, ArrowLeft, Plus, Trash, Spinner } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import type { Json } from '@/lib/supabase/database.types'
+
+const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -28,6 +31,8 @@ interface FormState {
   catechism: string[]
   churchFathers: ChurchFather[]
   objections: Objection[]
+  translationNotes: string
+  answerFull: string
 }
 
 const CATEGORIES = ['sacraments', 'mary', 'papacy', 'salvation', 'bible', 'saints', 'tradition', 'church-teaching']
@@ -38,6 +43,8 @@ const EMPTY: FormState = {
   id: '', lang: 'en', category: 'bible', title: '', question: '', answer: '',
   difficulty: 'beginner', tags: '', relatedTopics: '',
   scripture: [], catechism: [], churchFathers: [], objections: [],
+  translationNotes: '',
+  answerFull: '',
 }
 
 type SaveStatus = 'idle' | 'saving' | 'saved' | 'error'
@@ -78,6 +85,8 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
           catechism: Array.isArray(data.catechism) ? data.catechism as unknown as string[] : [],
           churchFathers: Array.isArray(data.church_fathers) ? data.church_fathers as unknown as ChurchFather[] : [],
           objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
+          translationNotes: data.translation_notes ?? '',
+          answerFull: data.answer_full ?? '',
         })
       }
       setLoading(false)
@@ -108,6 +117,8 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
       catechism: form.catechism.filter((c) => c.trim()) as unknown as Json,
       church_fathers: form.churchFathers.filter((f) => f.author.trim()) as unknown as Json,
       objections: form.objections.filter((o) => o.objection.trim()) as unknown as Json,
+      translation_notes: form.translationNotes.trim() || null,
+      answer_full: form.answerFull.trim() || null,
       last_updated: new Date().toISOString(),
     }
 
@@ -284,14 +295,25 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
             />
           </div>
           <div>
-            <Label>Answer</Label>
+            <Label>Answer <span className="text-muted-foreground font-normal">(Concise — shown on the Concise tab)</span></Label>
             <textarea
               value={form.answer}
               onChange={(e) => set('answer', e.target.value)}
-              rows={8}
-              placeholder="Full answer text…"
+              rows={6}
+              placeholder="2–3 paragraph summary answer…"
               className="field resize-y"
             />
+          </div>
+          <div>
+            <Label>Comprehensive Answer <span className="text-muted-foreground font-normal">(Markdown — shown on the Comprehensive tab)</span></Label>
+            <div data-color-mode="auto" className="rounded-xl overflow-hidden border border-border">
+              <MDEditor
+                value={form.answerFull}
+                onChange={(val) => set('answerFull', val ?? '')}
+                height={400}
+                preview="live"
+              />
+            </div>
           </div>
         </Section>
 
@@ -458,6 +480,20 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
               </div>
             </div>
           ))}
+        </Section>
+
+        {/* ── Translation Notes ── */}
+        <Section title="Translation Notes">
+          <p className="text-xs text-muted-foreground -mt-1">
+            Injected into the AI prompt when auto-translating this topic. Use to protect terms, specify preferred word choices, or clarify context.
+          </p>
+          <textarea
+            value={form.translationNotes}
+            onChange={(e) => set('translationNotes', e.target.value)}
+            rows={4}
+            placeholder={'Do not translate: kecharitomene, latria, hyperdulia.\n\'grace\' → \'biyaya\' not \'pagpapala\'.\nThis topic discusses the Latin Mass — keep Mass untranslated.'}
+            className="field resize-y font-mono text-xs"
+          />
         </Section>
       </div>
     </div>

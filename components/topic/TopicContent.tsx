@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 import {
   BookOpen,
   Quotes,
@@ -45,6 +47,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   const [copied, setCopied] = useState(false)
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
+  const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>('concise')
 
   const favorited = isFavorite(displayTopic.id)
   const read = isRead(displayTopic.id)
@@ -186,12 +189,124 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
         </p>
       </header>
 
-      {/* Answer */}
-      <section className="mb-8 rounded-2xl bg-card p-5 shadow-sm border border-border">
-        <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-          Answer
-        </h2>
-        <p className="text-foreground leading-relaxed whitespace-pre-line">{topic.answer}</p>
+      {/* Content tabs */}
+      <section className="mb-8">
+        {/* Tab bar */}
+        <div className="flex gap-1 border-b border-border mb-0">
+          <button
+            onClick={() => setContentTab('concise')}
+            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+              contentTab === 'concise'
+                ? 'border-primary text-primary'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            Concise
+          </button>
+          {topic.answerFull && (
+            <button
+              onClick={() => setContentTab('comprehensive')}
+              className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+                contentTab === 'comprehensive'
+                  ? 'border-primary text-primary'
+                  : 'border-transparent text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Comprehensive
+            </button>
+          )}
+          <button
+            onClick={() => setContentTab('brief')}
+            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+              contentTab === 'brief'
+                ? 'border-primary text-primary'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            Apol. Brief
+          </button>
+        </div>
+
+        {/* Concise */}
+        {contentTab === 'concise' && (
+          <div className="rounded-b-2xl rounded-tr-2xl bg-card p-5 shadow-sm border border-t-0 border-border">
+            <p className="text-foreground leading-relaxed whitespace-pre-line">{topic.answer}</p>
+          </div>
+        )}
+
+        {/* Comprehensive */}
+        {contentTab === 'comprehensive' && topic.answerFull && (
+          <div className="rounded-b-2xl rounded-tr-2xl bg-card p-5 shadow-sm border border-t-0 border-border prose prose-sm dark:prose-invert max-w-none">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {topic.answerFull}
+            </ReactMarkdown>
+          </div>
+        )}
+
+        {/* Apologetics Brief — compact reference card */}
+        {contentTab === 'brief' && (
+          <div className="rounded-b-2xl rounded-tr-2xl bg-card border border-t-0 border-border overflow-hidden">
+            {topic.scripture.length > 0 && (
+              <div className="border-b border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
+                  <BookOpen weight="light" size={13} /> Scripture
+                </p>
+                <div className="space-y-1.5">
+                  {topic.scripture.map((v, i) => (
+                    <div key={i} className="text-xs">
+                      <span className="font-semibold text-primary">{v.reference}</span>
+                      {v.version && <span className="text-muted-foreground ml-1">({v.version})</span>}
+                      {v.text && <span className="text-foreground ml-2 italic">&ldquo;{v.text.slice(0, 120)}{v.text.length > 120 ? '…' : ''}&rdquo;</span>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {topic.catechism && topic.catechism.length > 0 && (
+              <div className="border-b border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Catechism</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {topic.catechism.map((c, i) => (
+                    <span key={i} className="rounded-lg bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">{c}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+            {topic.churchFathers && topic.churchFathers.length > 0 && (
+              <div className="border-b border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
+                  <Quotes weight="light" size={13} /> Church Fathers
+                </p>
+                <div className="space-y-2">
+                  {topic.churchFathers.map((f, i) => (
+                    <div key={i} className="text-xs">
+                      <span className="font-semibold text-foreground">{f.author}:</span>
+                      <span className="text-muted-foreground ml-1 italic">&ldquo;{f.quote.slice(0, 140)}{f.quote.length > 140 ? '…' : ''}&rdquo;</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {topic.objections && topic.objections.length > 0 && (
+              <div className="p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
+                  <ChatTeardropText weight="light" size={13} /> Objections
+                </p>
+                <div className="space-y-2">
+                  {topic.objections.map((o, i) => (
+                    <div key={i} className="text-xs">
+                      <span className="font-semibold text-foreground">&ldquo;{o.objection}&rdquo;</span>
+                      <span className="text-muted-foreground ml-1">→ {o.response.slice(0, 120)}{o.response.length > 120 ? '…' : ''}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && (
+              <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
+            )}
+          </div>
+        )}
       </section>
 
       {/* Mark as Read + Notes */}

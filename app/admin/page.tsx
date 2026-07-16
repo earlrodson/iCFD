@@ -1,9 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { FloppyDisk, ArrowClockwise, Trash, UserPlus } from '@phosphor-icons/react'
+import { FloppyDisk, ArrowClockwise, Trash, UserPlus, Translate } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
+
+const TRANSLATION_KEYS = ['translation_provider', 'translation_fallback', 'translation_prompt']
+const PROVIDER_OPTIONS = ['claude', 'openai', 'google', 'azure', 'none']
 
 interface ConfigRow {
   key: string
@@ -160,6 +163,62 @@ export default function AdminPage() {
                 Discard
               </button>
             )}
+          </div>
+        </section>
+
+        <div className="border-t border-border" />
+
+        {/* ── Translation Engine ── */}
+        <section>
+          <div className="mb-4 flex items-center gap-2">
+            <Translate weight="light" size={20} className="text-muted-foreground" />
+            <div>
+              <h2 className="text-xl font-bold text-foreground">Translation Engine</h2>
+              <p className="text-xs text-muted-foreground mt-0.5">Controls auto-translation of TL/CEB topics. Run <code className="font-mono bg-muted px-1 rounded">pnpm db:translate</code> to batch-translate all stubs.</p>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {rows.filter((r) => TRANSLATION_KEYS.includes(r.key)).map((row) => (
+              <div key={row.key} className="rounded-2xl border border-border bg-card p-4 space-y-2">
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <span className="text-xs font-mono font-semibold text-primary">{row.key}</span>
+                    {row.description && <p className="mt-0.5 text-xs text-muted-foreground">{row.description}</p>}
+                  </div>
+                  {edits[row.key] !== row.value && (
+                    <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700 dark:bg-amber-900/30 dark:text-amber-300">unsaved</span>
+                  )}
+                </div>
+                {row.key === 'translation_prompt' ? (
+                  <textarea
+                    value={edits[row.key] ?? row.value}
+                    onChange={(e) => setEdits((p) => ({ ...p, [row.key]: e.target.value }))}
+                    rows={5}
+                    className="w-full rounded-xl border border-border bg-muted px-3 py-2 text-sm text-foreground font-mono focus:outline-none focus:ring-2 focus:ring-primary resize-y"
+                  />
+                ) : (
+                  <select
+                    value={edits[row.key] ?? row.value}
+                    onChange={(e) => setEdits((p) => ({ ...p, [row.key]: e.target.value }))}
+                    className="w-full rounded-xl border border-border bg-muted px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                  >
+                    {PROVIDER_OPTIONS.map((p) => <option key={p} value={p}>{p}</option>)}
+                  </select>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4">
+            <button
+              onClick={saveConfig}
+              disabled={!TRANSLATION_KEYS.some((k) => rows.find((r) => r.key === k && edits[k] !== r.value)) || saveStatus === 'saving'}
+              className="flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary/90 disabled:opacity-50 transition-colors"
+            >
+              <FloppyDisk weight="fill" size={16} />
+              {saveStatus === 'saving' ? 'Saving…' : saveStatus === 'saved' ? 'Saved!' : 'Save Translation Config'}
+            </button>
           </div>
         </section>
 

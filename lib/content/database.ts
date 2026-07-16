@@ -13,6 +13,7 @@ interface TopicRow {
   title: string
   question: string
   answer: Json
+  answer_full: string | null
   scripture: Json | null
   catechism: Json | null
   church_fathers: Json | null
@@ -30,6 +31,7 @@ const TOPIC_SELECT = [
   'title',
   'question',
   'answer',
+  'answer_full',
   'scripture',
   'catechism',
   'church_fathers',
@@ -79,6 +81,7 @@ export function topicRowToTopic(row: TopicRow): Topic {
     title: row.title,
     question: row.question,
     answer: answerToString(row.answer),
+    answerFull: row.answer_full ?? undefined,
     scripture: jsonArray(row.scripture),
     catechism: jsonArray(row.catechism),
     churchFathers: jsonArray(row.church_fathers),

@@ -11,6 +11,9 @@ import { cn } from '@/lib/utils'
 const TABS = [
   { label: 'Config', href: '/admin' },
   { label: 'Topics', href: '/admin/topics' },
+  { label: 'Translations', href: '/admin/translations' },
+  { label: 'Submissions', href: '/admin/submissions' },
+  { label: 'Paths', href: '/admin/paths' },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
