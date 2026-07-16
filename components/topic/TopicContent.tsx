@@ -18,6 +18,7 @@ import {
   Warning,
   ArrowCircleDown,
   Spinner,
+  X,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic } from '@/data/schema/topic.schema'
@@ -48,6 +49,30 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
   const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>('concise')
+  const [refPopover, setRefPopover] = useState<{ title: string; meta?: string; body: string; loading?: boolean } | null>(null)
+  const [cccData, setCccData] = useState<Map<number, { paragraph: number; summary: string | null; text: string | null; section: string | null }>>(new Map())
+
+  async function openCccPopover(cccRef: string) {
+    setRefPopover({ title: cccRef, loading: true, body: '' })
+    try {
+      const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+      const num = cccRef.replace('CCC ', '')
+      const res = await fetch(
+        `${url}/rest/v1/ccc_paragraphs?paragraph=eq.${num}&select=paragraph,summary,text,section`,
+        { headers: { apikey: key!, Authorization: `Bearer ${key}` } },
+      )
+      const rows = await res.json() as { paragraph: number; summary: string | null; text: string | null; section: string | null }[]
+      const row = rows[0]
+      setRefPopover({
+        title: cccRef,
+        meta: row?.section ?? undefined,
+        body: row?.text ?? row?.summary ?? 'Full paragraph text not yet available.',
+      })
+    } catch {
+      setRefPopover({ title: cccRef, body: 'Could not load paragraph text.' })
+    }
+  }
 
   const favorited = isFavorite(displayTopic.id)
   const read = isRead(displayTopic.id)
@@ -84,6 +109,24 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   useEffect(() => {
     setNoteLocal(notes[initialTopic.id] ?? '')
   }, [initialTopic.id]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Fetch CCC paragraph text for all catechism refs on this topic
+  useEffect(() => {
+    const nums = (initialTopic.catechism ?? []).map((c) => Number(c.replace('CCC ', ''))).filter(Boolean)
+    if (!nums.length) return
+    const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+    if (!url || !key) return
+    fetch(
+      `${url}/rest/v1/ccc_paragraphs?paragraph=in.(${nums.join(',')})&select=paragraph,summary,text,section`,
+      { headers: { apikey: key, Authorization: `Bearer ${key}` } },
+    )
+      .then((r) => r.json())
+      .then((rows: { paragraph: number; summary: string | null; text: string | null; section: string | null }[]) => {
+        setCccData(new Map(rows.map((r) => [r.paragraph, r])))
+      })
+      .catch(() => {/* silent — chips still show without text */})
+  }, [initialTopic.catechism])
 
   async function handleShare() {
     const url = window.location.href
@@ -253,11 +296,19 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 </p>
                 <div className="space-y-1.5">
                   {topic.scripture.map((v, i) => (
-                    <div key={i} className="text-xs">
+                    <button
+                      key={i}
+                      onClick={() => setRefPopover({
+                        title: v.reference,
+                        meta: v.version,
+                        body: v.text ?? '',
+                      })}
+                      className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1 -mx-1.5 transition-colors"
+                    >
                       <span className="font-semibold text-primary">{v.reference}</span>
                       {v.version && <span className="text-muted-foreground ml-1">({v.version})</span>}
-                      {v.text && <span className="text-foreground ml-2 italic">&ldquo;{v.text.slice(0, 120)}{v.text.length > 120 ? '…' : ''}&rdquo;</span>}
-                    </div>
+                      {v.text && <span className="text-foreground ml-2 italic">&ldquo;{v.text.slice(0, 100)}{v.text.length > 100 ? '…' : ''}&rdquo;</span>}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -267,7 +318,13 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Catechism</p>
                 <div className="flex flex-wrap gap-1.5">
                   {topic.catechism.map((c, i) => (
-                    <span key={i} className="rounded-lg bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary">{c}</span>
+                    <button
+                      key={i}
+                      onClick={() => openCccPopover(c)}
+                      className="rounded-lg bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary hover:bg-primary/20 active:bg-primary/30 transition-colors"
+                    >
+                      {c}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -279,10 +336,18 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 </p>
                 <div className="space-y-2">
                   {topic.churchFathers.map((f, i) => (
-                    <div key={i} className="text-xs">
+                    <button
+                      key={i}
+                      onClick={() => setRefPopover({
+                        title: f.author,
+                        meta: f.source,
+                        body: f.quote,
+                      })}
+                      className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1 -mx-1.5 transition-colors"
+                    >
                       <span className="font-semibold text-foreground">{f.author}:</span>
                       <span className="text-muted-foreground ml-1 italic">&ldquo;{f.quote.slice(0, 140)}{f.quote.length > 140 ? '…' : ''}&rdquo;</span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -294,10 +359,17 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 </p>
                 <div className="space-y-2">
                   {topic.objections.map((o, i) => (
-                    <div key={i} className="text-xs">
+                    <button
+                      key={i}
+                      onClick={() => setRefPopover({
+                        title: o.objection,
+                        body: o.response,
+                      })}
+                      className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1 -mx-1.5 transition-colors"
+                    >
                       <span className="font-semibold text-foreground">&ldquo;{o.objection}&rdquo;</span>
                       <span className="text-muted-foreground ml-1">→ {o.response.slice(0, 120)}{o.response.length > 120 ? '…' : ''}</span>
-                    </div>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -305,6 +377,41 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
             {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && (
               <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
             )}
+          </div>
+        )}
+
+        {/* Reference popover */}
+        {refPopover && (
+          <div
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            onClick={() => setRefPopover(null)}
+          >
+            <div
+              className="w-full max-w-sm rounded-2xl bg-card border border-border shadow-2xl p-5 space-y-3"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="font-semibold text-sm text-foreground leading-snug">{refPopover.title}</p>
+                  {refPopover.meta && (
+                    <p className="text-xs text-muted-foreground mt-0.5">{refPopover.meta}</p>
+                  )}
+                </div>
+                <button
+                  onClick={() => setRefPopover(null)}
+                  className="shrink-0 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                >
+                  <X weight="light" size={18} />
+                </button>
+              </div>
+              {refPopover.loading ? (
+                <div className="flex justify-center py-3">
+                  <Spinner weight="light" size={22} className="animate-spin text-muted-foreground" />
+                </div>
+              ) : (
+                <p className="text-sm text-foreground leading-relaxed italic">&ldquo;{refPopover.body}&rdquo;</p>
+              )}
+            </div>
           </div>
         )}
       </section>
@@ -382,17 +489,36 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
       {topic.catechism && topic.catechism.length > 0 && (
         <section className="mb-8">
           <h2 className="mb-3 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-            Catechism References
+            Catechism Citations
           </h2>
-          <div className="flex flex-wrap gap-2">
-            {topic.catechism.map((ref) => (
-              <span
-                key={ref}
-                className="rounded-lg bg-card border border-border px-3 py-1.5 text-sm font-medium text-foreground shadow-sm"
-              >
-                {ref}
-              </span>
-            ))}
+          <div className="space-y-3">
+            {topic.catechism.map((ref) => {
+              const num = Number(ref.replace('CCC ', ''))
+              const data = cccData.get(num)
+              return (
+                <div key={ref} className="rounded-2xl bg-card p-4 shadow-sm border border-border">
+                  <div className="mb-2 flex items-center justify-between gap-2">
+                    <span className="text-sm font-semibold text-primary">{ref}</span>
+                    {data?.section && (
+                      <span className="text-xs text-muted-foreground text-right leading-snug max-w-[60%]">
+                        {data.section}
+                      </span>
+                    )}
+                  </div>
+                  {data?.text ? (
+                    <p className="text-sm text-foreground leading-relaxed italic">
+                      &ldquo;{data.text}&rdquo;
+                    </p>
+                  ) : data?.summary ? (
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {data.summary}
+                    </p>
+                  ) : (
+                    <p className="text-xs text-muted-foreground">Loading…</p>
+                  )}
+                </div>
+              )
+            })}
           </div>
         </section>
       )}

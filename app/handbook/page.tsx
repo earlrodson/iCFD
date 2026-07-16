@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import {
   BookOpen,
   Buildings,
@@ -31,6 +31,7 @@ const categoryItems: { value: Category | 'all'; label: string; Icon: React.Eleme
 ]
 
 const difficulties: Difficulty[] = ['beginner', 'intermediate', 'advanced']
+const BATCH_SIZE = 20
 
 type SortOption = 'title' | 'difficulty' | 'recent'
 
@@ -51,6 +52,8 @@ export default function HandbookPage() {
   const [selectedCategory, setSelectedCategory] = useState<Category | 'all'>('all')
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty | ''>('')
   const [sort, setSort] = useState<SortOption>('title')
+  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE)
+  const sentinelRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (availableTopics.length === 0) initialize()
@@ -65,6 +68,30 @@ export default function HandbookPage() {
   }
 
   filtered = sortTopics(filtered, sort)
+
+  // Reset visible count when filters/sort change
+  useEffect(() => {
+    setVisibleCount(BATCH_SIZE)
+  }, [selectedCategory, selectedDifficulty, sort])
+
+  // IntersectionObserver: load next batch when sentinel enters viewport
+  const loadMore = useCallback(() => {
+    setVisibleCount((n) => Math.min(n + BATCH_SIZE, filtered.length))
+  }, [filtered.length])
+
+  useEffect(() => {
+    const el = sentinelRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0].isIntersecting) loadMore() },
+      { rootMargin: '200px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [loadMore])
+
+  const visible = filtered.slice(0, visibleCount)
+  const hasMore = visibleCount < filtered.length
 
   return (
     <div className="min-h-screen bg-background">
@@ -198,11 +225,18 @@ export default function HandbookPage() {
             )}
 
             {!loading && !error && filtered.length > 0 && (
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {filtered.map((topic) => (
-                  <TopicCard key={topic.id} topic={topic} />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {visible.map((topic) => (
+                    <TopicCard key={topic.id} topic={topic} />
+                  ))}
+                </div>
+                {hasMore && (
+                  <div ref={sentinelRef} className="flex justify-center py-6">
+                    <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                  </div>
+                )}
+              </>
             )}
           </main>
         </div>
