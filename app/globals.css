@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 /* ── Light mode design tokens ── */
 :root {
@@ -53,6 +54,102 @@ body {
 
 * {
   border-color: var(--border);
+}
+
+/* ── Prose / markdown rendering ── */
+.prose {
+  --tw-prose-body: var(--foreground);
+  --tw-prose-headings: var(--foreground);
+  --tw-prose-lead: var(--muted-foreground);
+  --tw-prose-links: var(--primary);
+  --tw-prose-bold: var(--foreground);
+  --tw-prose-counters: var(--muted-foreground);
+  --tw-prose-bullets: var(--muted-foreground);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--foreground);
+  --tw-prose-quote-borders: var(--primary);
+  --tw-prose-captions: var(--muted-foreground);
+  --tw-prose-code: var(--foreground);
+  --tw-prose-pre-code: var(--foreground);
+  --tw-prose-pre-bg: var(--muted);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+
+  --tw-prose-invert-body: var(--foreground);
+  --tw-prose-invert-headings: var(--foreground);
+  --tw-prose-invert-links: var(--primary);
+  --tw-prose-invert-bold: var(--foreground);
+  --tw-prose-invert-hr: var(--border);
+  --tw-prose-invert-quotes: var(--foreground);
+  --tw-prose-invert-quote-borders: var(--primary);
+  --tw-prose-invert-th-borders: var(--border);
+  --tw-prose-invert-td-borders: var(--border);
+}
+
+/* Blockquote: left-border accent, italic, no quote marks from plugin */
+.prose blockquote {
+  border-left-width: 3px;
+  border-left-color: var(--primary);
+  background-color: color-mix(in oklch, var(--primary) 6%, transparent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.75rem 1rem;
+  font-style: italic;
+  color: var(--foreground);
+}
+.prose blockquote p::before,
+.prose blockquote p::after { content: none; }
+
+/* Tables: clean borders using design tokens */
+.prose table {
+  font-size: 0.8125rem;
+  width: 100%;
+}
+.prose thead th {
+  background-color: var(--muted);
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.prose tbody td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.prose tbody tr:last-child td { border-bottom: none; }
+
+/* HR: subtle separator */
+.prose hr {
+  border-color: var(--border);
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+/* ## / ### headings: clear hierarchy */
+.prose h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: var(--foreground);
+}
+.prose h3 {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  margin-top: 1.25rem;
+  margin-bottom: 0.375rem;
+  color: var(--foreground);
+}
+
+/* Paragraphs: comfortable reading line-height */
+.prose p { line-height: 1.75; }
+
+/* Code inline */
+.prose :not(pre) > code {
+  background-color: var(--muted);
+  border-radius: 0.25rem;
+  padding: 0.1em 0.35em;
+  font-size: 0.85em;
 }
 
 /* ── Admin form utilities ── */
