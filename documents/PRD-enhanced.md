@@ -2,7 +2,7 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.3  
+**Version:** 2.4  
 **Date:** 2026-07-16  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
@@ -570,23 +570,28 @@ See §4.14 below.
 - ⬜ Publish / unpublish toggle (`published` boolean column — deferred to 5B)
 - ⬜ Per-language tabs (EN / TL / CEB) side by side — currently separate edit URLs
 
-#### 5B — Submission Review Queue ⬜
-- List all rows from `submissions` table with status filter (pending / approved / rejected)
-- Approve: copy submission fields into `topics` table as a new topic (pre-fills topic editor)
-- Reject: set status = 'rejected', optionally add reviewer note
-- Status badge on each row (pending = amber, approved = green, rejected = red)
-- RLS policies already added (admins can SELECT all submissions + UPDATE status)
+#### 5B — Submission Review Queue ✅ Delivered
+- ✅ `/admin/submissions` — lists all rows from `submissions` table with status tabs (Pending / Approved / Rejected / All) and live counts
+- ✅ Approve: creates topic row + marks submission approved; "Approve & Edit" redirects to topic editor
+- ✅ Reject: sets status = 'rejected'; "Restore to Pending" available on rejected rows
+- ✅ Status badges: pending = amber, approved = green, rejected = red
+- ✅ Cards collapsed by default, click to expand full content
 
-#### 5C — Translation Management ⬜
-- For each topic, show EN content alongside a TL or CEB editor
-- Mark a translation as "stub" / "machine" / "reviewed" (via `translation_source` column — see Phase 6)
-- Bulk export missing translations as JSON for external translators
-- "Re-translate" button to trigger machine re-translation via active provider
+#### 5C — Translation Management ✅ Delivered
+- ✅ `/admin/translations` — table of all EN topics with TL and CEB status columns
+- ✅ Status badges: Manual (green), Machine (blue), Stub (amber), Missing (red)
+- ✅ Per-cell Translate / Re-translate button calling `/api/translate`
+- ✅ "Translate All Stubs" bulk button with live progress counter
+- ✅ Filter by language and status
+- ✅ Real-time cell state (translating spinner, success checkmark, error message)
 
-#### 5D — Path Editor ⬜
-- Create / edit / delete learning paths
-- Drag-and-drop topic ordering within a path (or manual order input)
-- Assign audience, difficulty, estimated minutes, icon
+#### 5D — Path Editor ✅ Delivered
+- ✅ `/admin/paths` — lists all paths with icon, title, difficulty, topic count, audience; delete with confirmation modal
+- ✅ `/admin/paths/[slug]` — PathEditor: metadata fields (title, description, audience, difficulty, minutes, icon)
+- ✅ Topic list with ↑/↓ reorder and × remove buttons
+- ✅ Live topic search (filters out already-added topics, shows 8 results max)
+- ✅ Save upserts path row, deletes then re-inserts path_topics with position index
+- ✅ New path: URL replaces to `/admin/paths/[generated-slug]` after first save
 
 #### 5E — Media & Config ⬜
 - `coverImage` URL per topic (used by DailyCarousel)
@@ -594,35 +599,37 @@ See §4.14 below.
 
 ---
 
-### Phase 6 — Content Depth & Translation Engine ⬜
+### Phase 6 — Content Depth & Translation Engine ✅ Delivered
 
 **Goal:** Store one comprehensive content version per topic, derive shorter views from it, and auto-translate to TL/CEB on demand using a swappable provider controlled from the admin panel.
 
-#### 6A — Content Depth Architecture
+#### 6A — Content Depth Architecture ✅ Delivered
 
 **Three views, two columns, zero extra storage for the Brief:**
 
 | View | Source | Description |
 |------|--------|-------------|
-| **Concise** | `answer` (text) | 2–3 paragraph quick answer. Auto-generated from `answer_full` at seed time via Claude API. Admins can override. |
-| **Comprehensive** | `answer_full` (text) | Full markdown essay — historical context, theological depth, all arguments. The master authored version. |
-| **Apologetics Brief** | existing structured columns | UI-only rendering mode. Compiles `scripture[]` + `catechism[]` + `church_fathers[]` + `objections[]` into a compact, copyable reference card. No new column needed. |
+| **Concise** | `answer->>'summary'` (JSONB key, rendered as markdown) | 5-paragraph answer — Catholic position, biblical objection, positive evidence, key theological distinction, early Church. Authored or AI-assisted. |
+| **Comprehensive** | `answer_full` (TEXT, markdown) | Full essay — historical context, theological depth, all arguments, patristic sources, CCC table, objections section. The master authored version. |
+| **Brief** | existing structured columns | UI-only rendering mode. Compiles `scripture[]` + `catechism[]` + `church_fathers[]` + `objections[]` into a compact reference card. No new column needed. |
 
-**DB changes:**
+**DB changes delivered:**
 ```sql
 ALTER TABLE public.topics ADD COLUMN answer_full TEXT;
+ALTER TABLE public.topics ADD COLUMN translation_source TEXT DEFAULT 'manual';
+ALTER TABLE public.topics ADD COLUMN translation_notes TEXT;
 ```
 
-**Content generation workflow (per topic):**
-1. Generate one JSON file with `answer_full` + all structured arrays
-2. Seed script auto-generates `answer` (concise) via Claude API — stored, not derived at runtime
-3. Single upsert per topic — no multiple file problem
+**Content generation workflow:**
+1. Generate topic JSON using `documents/content-generation-prompt.md` with any capable AI model
+2. Paste `summary` and `answer_full` into the Topic Editor; structured fields from JSON into their respective admin fields
+3. `answer_full` backfill migration available for rows where `answer` JSONB contains a `full` key
 
-**Topic detail page:** Three-tab UI (Concise / Comprehensive / Brief) rendered from existing DB columns.
+**Topic detail page:** Three-tab UI (Concise / Comprehensive / Brief) — all tabs render markdown via `react-markdown` + `remark-gfm` inside Tailwind Typography `.prose` container.
 
-**`answer_full` in admin editor:** Replaced `<textarea>` with a markdown editor (`@uiw/react-md-editor`, MIT) with live split preview. Display uses `react-markdown` + `remark-gfm`.
+**`answer_full` in admin editor:** MDEditor (`@uiw/react-md-editor`, SSR-disabled via `dynamic()`) with live split preview.
 
-#### 6B — Translation Engine
+#### 6B — Translation Engine ✅ Delivered
 
 **Architecture:** Provider abstraction layer — swap translation services from the admin Config tab without code changes or redeployment.
 
@@ -683,9 +690,91 @@ ALTER TABLE public.topics ADD COLUMN translation_source TEXT DEFAULT 'manual';
 
 ---
 
+---
+
+### Phase 7 — Reference Library ⬜
+
+**Goal:** Normalize shared reference data (scripture verses, CCC paragraphs, Church Father quotes) into dedicated tables so each record is stored once and reused across topics — eliminating duplication, enabling single-point updates, and powering a searchable reference picker in the admin Topic Editor.
+
+#### 7A — Schema: Reference Tables ⬜
+
+Three new tables replacing embedded JSONB content in `topics`:
+
+```sql
+-- Canonical scripture verse storage
+CREATE TABLE scripture_verses (
+  id          TEXT PRIMARY KEY,       -- e.g. 'jn-1-1-nabre'
+  reference   TEXT NOT NULL,          -- 'John 1:1'
+  book        TEXT NOT NULL,
+  chapter     INTEGER NOT NULL,
+  verse_start INTEGER NOT NULL,
+  verse_end   INTEGER,                -- for ranges like Jn 1:1–3
+  version     TEXT NOT NULL DEFAULT 'NABRE',
+  text        TEXT NOT NULL
+);
+
+-- CCC paragraph storage
+CREATE TABLE ccc_paragraphs (
+  paragraph   INTEGER PRIMARY KEY,    -- e.g. 464
+  text        TEXT NOT NULL,          -- full paragraph text
+  summary     TEXT,                   -- one-line digest
+  section     TEXT                    -- 'Part 1 › Section 2 › Chapter 2'
+);
+
+-- Shared Church Father quote library
+CREATE TABLE church_father_quotes (
+  id          SERIAL PRIMARY KEY,
+  author      TEXT NOT NULL,          -- 'St. Athanasius of Alexandria'
+  quote       TEXT NOT NULL,
+  source      TEXT NOT NULL,          -- 'On the Incarnation, 54, c. AD 318'
+  year_approx INTEGER                 -- for chronological sorting
+);
+```
+
+#### 7B — Topics Table Migration ⬜
+
+The three JSONB arrays on `topics` change from embedded content to ID references:
+
+| Column | Before | After |
+|--------|--------|-------|
+| `scripture` | `[{reference, text, version}]` | `["jn-1-1-nabre", "ex-25-18-nabre"]` |
+| `catechism` | `["CCC 464", "CCC 469"]` | `[464, 469]` (integers) |
+| `church_fathers` | `[{author, quote, source}]` | `[1, 5, 23]` (serial IDs) |
+
+**Migration strategy:** Extract unique values from all existing `topics` JSONB arrays into the reference tables, then replace arrays with resolved IDs. Existing API shape preserved via resolved JOIN at read time.
+
+#### 7C — Data Layer Update ⬜
+
+- `lib/content/database.ts`: batch-resolve reference IDs after fetching topic rows — three parallel `WHERE id IN (...)` queries against the small reference tables
+- TypeScript types updated: `Topic.scripture[]`, `Topic.catechism`, `Topic.churchFathers[]` remain unchanged in shape (resolved before returning)
+- RLS: public read on all three reference tables; admin write only
+
+#### 7D — Admin: Reference Library UI ⬜
+
+- New `/admin/references` tab with sub-tabs: Scripture | CCC | Church Fathers
+- Search existing entries before creating new ones
+- **Topic Editor integration:** Replace manual JSONB fields with a searchable reference picker
+  - "Add verse" → type "John 1" → shows matching `scripture_verses` rows → click to attach
+  - "Add CCC" → type "464" → shows paragraph preview → click to attach
+  - "Add quote" → search by author or keyword → shows matching `church_father_quotes` → click to attach
+
+#### 7E — Content Shortcodes (Optional, Phase 7+) ⬜
+
+`answer_full` markdown may embed shortcodes resolved server-side before rendering:
+- `{{verse:jn-1-1-nabre}}` → inserts blockquote with verse text + reference
+- `{{ccc:464}}` → inserts styled CCC paragraph callout
+- `{{father:3}}` → inserts blockquote with quote + attribution
+
+**Key benefits:**
+- Edit a verse or quote once → propagates to all topics that reference it
+- Cross-topic queries: "which topics cite CCC 464?" → `WHERE catechism @> '[464]'`
+- Translation-ready: reference tables can grow `lang` columns for TL/CEB verse text
+- Admin efficiency: Topic Editor becomes a reference picker, not a free-text JSON field
+
+---
+
 ## 8. Out of Scope for v2
 
 - Payments or subscriptions
 - Video or audio content
 - Live chat or community forums
-- Content translation tooling (translators work externally, JSON files submitted via PR)
