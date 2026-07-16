@@ -14,6 +14,7 @@ const TABS = [
   { label: 'Translations', href: '/admin/translations' },
   { label: 'Submissions', href: '/admin/submissions' },
   { label: 'Paths', href: '/admin/paths' },
+  { label: 'References', href: '/admin/references' },
 ]
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
