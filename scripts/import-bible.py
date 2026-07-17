@@ -7,6 +7,7 @@ Usage:
   python3 scripts/import-bible.py --version all
 """
 
+import os
 import argparse
 import json
 import urllib.request
@@ -15,8 +16,8 @@ import urllib.parse
 import re
 import sys
 
-SUPABASE_URL = "https://gdobgalhdepfpxexssvq.supabase.co"
-SUPABASE_KEY = "REDACTED"
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 # GitHub raw content base URLs
 NABRE_BASE = "https://raw.githubusercontent.com/nirmalben/bible-nabre-json-dataset/master/generated_data/books"

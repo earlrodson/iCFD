@@ -7,6 +7,7 @@ Run from project root:
 Requires: pip install pdfplumber  (or use the venv from earlier)
 """
 
+import os
 import re
 import json
 import urllib.request
@@ -19,9 +20,9 @@ except ImportError:
     subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'pdfplumber', '-q'])
     import pdfplumber
 
-PDF_PATH = "documents/Catechism of the Catholic Church.pdf"
-SUPABASE_URL = "https://gdobgalhdepfpxexssvq.supabase.co"
-SUPABASE_KEY = "REDACTED"
+PDF_PATH = os.environ.get("CCC_PDF_PATH", "documents/Catechism of the Catholic Church.pdf")
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 # All valid CCC paragraph numbers
 FULL_RANGE = set(range(1, 2866))

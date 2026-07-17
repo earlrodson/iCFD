@@ -4,15 +4,16 @@ Extract CCC paragraphs from PDF and upsert into Supabase ccc_paragraphs table.
 Cross-references appear at line ends (e.g. "...to draw 355, 170") — stripped before parsing.
 """
 
+import os
 import re
 import json
 import urllib.request
 import urllib.error
 import pdfplumber
 
-PDF_PATH = "/opt/homebrew/var/www/iCFD/documents/Catechism of the Catholic Church.pdf"
-SUPABASE_URL = "https://gdobgalhdepfpxexssvq.supabase.co"
-SUPABASE_KEY = "REDACTED"
+PDF_PATH = os.environ.get("CCC_PDF_PATH", "documents/Catechism of the Catholic Church.pdf")
+SUPABASE_URL = os.environ["SUPABASE_URL"]
+SUPABASE_KEY = os.environ["SUPABASE_SERVICE_KEY"]
 
 NEEDED = {
     66, 67, 76, 78, 80, 81, 82, 83, 95, 97, 105, 107, 115, 116, 117, 119, 120, 126, 138,
