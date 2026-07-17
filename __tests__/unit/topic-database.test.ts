@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 
 // ── Fixtures ──────────────────────────────────────────────────────────────────
 
-// Topic rows now store integer IDs into reference tables
+// Topic rows store reference strings into scripture_verses (migrated from IDs)
 const makeRow = (overrides: Record<string, unknown> = {}) => ({
   id: 'sacred-images',
   lang: 'en',
@@ -11,9 +11,9 @@ const makeRow = (overrides: Record<string, unknown> = {}) => ({
   question: 'Why do Catholics use sacred images?',
   answer: 'Catholics do not worship statues.',
   answer_full: null,
-  scripture: [1],       // references scripture_verses.id
+  scripture: ['Exodus 25:18'],  // reference strings — resolved by (reference, version)
   catechism: [1159, 2130],
-  church_fathers: [1],  // references church_father_quotes.id
+  church_fathers: [1],          // still integer IDs into church_father_quotes
   objections: [{ objection: 'Exodus 20 forbids images.', response: 'God commanded images in Exodus 25.' }],
   tags: ['sacred-images', 'idolatry'],
   difficulty: 'intermediate',
@@ -22,7 +22,7 @@ const makeRow = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 })
 
-const VERSE_1 = { id: 1, reference: 'Exodus 25:18', text: 'Make two cherubim.', version: 'NABRE' }
+const VERSE_1 = { reference: 'Exodus 25:18', text: 'Make two cherubim.', version: 'NABRE' }
 const QUOTE_1 = { id: 1, author: 'St. John Damascene', quote: 'I do not worship matter.', source: 'On the Divine Images' }
 
 // Dispatch fetch mocks by URL path so parallel reference lookups resolve correctly
@@ -146,9 +146,9 @@ describe('loadTopicFromDatabase — field mapping', () => {
     expect(topic!.objections).toEqual([])
   })
 
-  it('silently drops IDs that have no matching reference row', async () => {
-    // topic references verse id=99 but scripture_verses returns nothing
-    mockFetch([makeRow({ scripture: [99] })], [], [QUOTE_1])
+  it('silently drops references that have no matching verse row', async () => {
+    // topic references a verse that scripture_verses returns nothing for
+    mockFetch([makeRow({ scripture: ['Unknown 99:99'] })], [], [QUOTE_1])
     const { loadTopicFromDatabase } = await import('@/lib/content/database')
     const topic = await loadTopicFromDatabase('sacred-images', 'en')
 
@@ -241,10 +241,10 @@ describe('loadTopicsFromDatabase — collection loading', () => {
   })
 
   it('deduplicates reference fetches across rows sharing the same verse', async () => {
-    // Both topics reference verse id=1 — only one verse_id in the IN query
+    // Both topics reference the same verse — only one reference in the IN query
     mockFetch([
-      makeRow({ id: 'topic-1', scripture: [1] }),
-      makeRow({ id: 'topic-2', scripture: [1] }),
+      makeRow({ id: 'topic-1', scripture: ['Exodus 25:18'] }),
+      makeRow({ id: 'topic-2', scripture: ['Exodus 25:18'] }),
     ])
     const { loadTopicsFromDatabase } = await import('@/lib/content/database')
     const result = await loadTopicsFromDatabase('en')

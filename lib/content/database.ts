@@ -16,7 +16,7 @@ interface TopicRow {
   question: string
   answer: Json
   answer_full: string | null
-  scripture: Json | null       // [number, ...]  — scripture_verses.id
+  scripture: Json | null       // [string, ...]  — scripture_verses.reference
   catechism: Json | null       // [number, ...]  — ccc_paragraphs.paragraph
   church_fathers: Json | null  // [number, ...]  — church_father_quotes.id
   objections: Json | null
@@ -27,7 +27,6 @@ interface TopicRow {
 }
 
 interface ScriptureVerseRow {
-  id: number
   reference: string
   version: string
   text: string
@@ -41,7 +40,8 @@ interface ChurchFatherQuoteRow {
 }
 
 interface ResolvedRefs {
-  verses: Map<number, ScriptureVerseRow>
+  // keyed by reference; preferred version wins, falls back to any available
+  verses: Map<string, ScriptureVerseRow>
   quotes: Map<number, ChurchFatherQuoteRow>
 }
 
@@ -83,15 +83,22 @@ async function restFetch<T>(path: string, params: URLSearchParams): Promise<T[]>
 
 // ── Reference resolvers ───────────────────────────────────────────────────────
 
-async function resolveRefs(rows: TopicRow[]): Promise<ResolvedRefs> {
-  const verseIds = [...new Set(rows.flatMap(r => jsonArray<number>(r.scripture)))]
-  const quoteIds = [...new Set(rows.flatMap(r => jsonArray<number>(r.church_fathers)))]
+async function resolveRefs(
+  rows: TopicRow[],
+  preferredVersion = 'NABRE',
+): Promise<ResolvedRefs> {
+  const verseRefs = [...new Set(rows.flatMap(r => jsonArray<string>(r.scripture)))]
+  const quoteIds  = [...new Set(rows.flatMap(r => jsonArray<number>(r.church_fathers)))]
 
-  const [verses, quotes] = await Promise.all([
-    verseIds.length
+  const [allVerses, quotes] = await Promise.all([
+    verseRefs.length
       ? restFetch<ScriptureVerseRow>(
           'scripture_verses',
-          new URLSearchParams({ id: `in.(${verseIds.join(',')})`, select: 'id,reference,version,text' }),
+          new URLSearchParams({
+            // Quote each reference so spaces survive the URL
+            reference: `in.(${verseRefs.map(r => `"${r}"`).join(',')})`,
+            select: 'reference,version,text',
+          }),
         )
       : Promise.resolve([]),
     quoteIds.length
@@ -102,8 +109,17 @@ async function resolveRefs(rows: TopicRow[]): Promise<ResolvedRefs> {
       : Promise.resolve([]),
   ])
 
+  // Prefer the requested version; fall back to whatever is in DB
+  const verseMap = new Map<string, ScriptureVerseRow>()
+  for (const v of allVerses) {
+    const existing = verseMap.get(v.reference)
+    if (!existing || v.version === preferredVersion) {
+      verseMap.set(v.reference, v)
+    }
+  }
+
   return {
-    verses: new Map(verses.map(v => [v.id, v])),
+    verses: verseMap,
     quotes: new Map(quotes.map(q => [q.id, q])),
   }
 }
@@ -111,8 +127,8 @@ async function resolveRefs(rows: TopicRow[]): Promise<ResolvedRefs> {
 // ── Row → Topic ───────────────────────────────────────────────────────────────
 
 export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
-  const scriptureIds = jsonArray<number>(row.scripture)
-  const quoteIds = jsonArray<number>(row.church_fathers)
+  const verseRefs     = jsonArray<string>(row.scripture)
+  const quoteIds      = jsonArray<number>(row.church_fathers)
   const catechismNums = jsonArray<number>(row.catechism)
 
   return {
@@ -122,8 +138,8 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     question: row.question,
     answer: answerToString(row.answer),
     answerFull: row.answer_full ?? undefined,
-    scripture: scriptureIds
-      .map(id => refs.verses.get(id))
+    scripture: verseRefs
+      .map(ref => refs.verses.get(ref))
       .filter((v): v is ScriptureVerseRow => !!v),
     catechism: catechismNums.map(n => `CCC ${n}`),
     churchFathers: quoteIds
