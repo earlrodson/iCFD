@@ -27,6 +27,7 @@ interface FormState {
   fatherIds: number[]; fatherItems: FatherQuote[]
   objections: Objection[]
   translationNotes: string; answerFull: string
+  coverImage: string
   published: boolean
 }
 
@@ -41,6 +42,7 @@ const EMPTY: FormState = {
   fatherIds:[], fatherItems:[],
   objections:[],
   translationNotes:'', answerFull:'',
+  coverImage:'',
   published: true,
 }
 
@@ -446,6 +448,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
         objections: Array.isArray(data.objections) ? data.objections as unknown as Objection[] : [],
         translationNotes: data.translation_notes ?? '',
         answerFull: data.answer_full ?? '',
+        coverImage: (data as Record<string, unknown>).cover_image as string ?? '',
         published: data.published ?? true,
       })
     } else {
@@ -500,11 +503,13 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
       objections: form.objections.filter(o => o.objection.trim()) as unknown as Json,
       translation_notes: form.translationNotes.trim() || null,
       answer_full: form.answerFull.trim() || null,
+      cover_image: form.coverImage.trim() || null,
       published: form.published,
       last_updated: new Date().toISOString(),
     }
 
-    const { error: dbErr } = await createClient().from('topics').upsert(row, { onConflict: 'id,lang' })
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { error: dbErr } = await createClient().from('topics').upsert(row as any, { onConflict: 'id,lang' })
     if (dbErr) {
       if (!silent) { setError(dbErr.message); setStatus('error') }
       return false
@@ -683,6 +688,19 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
             <div data-color-mode="auto" className="rounded-xl overflow-hidden border border-border">
               <MDEditor value={form.answerFull} onChange={val => set('answerFull', val ?? '')} height={400} preview="live" />
             </div>
+          </div>
+          <div>
+            <Label>Cover Image URL <span className="text-muted-foreground font-normal">(optional — shown in Daily Carousel; falls back to category image)</span></Label>
+            <input
+              value={form.coverImage}
+              onChange={e => set('coverImage', e.target.value)}
+              placeholder="https://images.unsplash.com/photo-…"
+              className="field"
+            />
+            {form.coverImage && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img src={form.coverImage} alt="Cover preview" className="mt-2 h-32 w-full rounded-xl object-cover" />
+            )}
           </div>
         </Section>
 

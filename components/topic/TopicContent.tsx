@@ -271,15 +271,19 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
         </div>
 
         {/* Concise */}
-        {contentTab === 'concise' && (
-          <div className="rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{topic.answer}</ReactMarkdown>
-          </div>
-        )}
+        <div
+          data-tab="concise"
+          className={contentTab === 'concise' ? 'rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none' : 'hidden'}
+        >
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{topic.answer}</ReactMarkdown>
+        </div>
 
         {/* Comprehensive */}
-        {contentTab === 'comprehensive' && topic.answerFull && (
-          <div className="rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none overflow-x-auto">
+        {topic.answerFull && (
+          <div
+            data-tab="comprehensive"
+            className={contentTab === 'comprehensive' ? 'rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none overflow-x-auto' : 'hidden'}
+          >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {topic.answerFull}
             </ReactMarkdown>
@@ -287,8 +291,10 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
         )}
 
         {/* Apologetics Brief — compact reference card */}
-        {contentTab === 'brief' && (
-          <div className="rounded-b-2xl rounded-tr-2xl bg-card border border-t-0 border-border overflow-hidden">
+        <div
+          data-tab="brief"
+          className={contentTab === 'brief' ? 'rounded-b-2xl rounded-tr-2xl bg-card border border-t-0 border-border overflow-hidden' : 'hidden'}
+        >
             {topic.scripture.length > 0 && (
               <div className="border-b border-border p-4">
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
@@ -378,7 +384,6 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
               <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
             )}
           </div>
-        )}
 
         {/* Reference popover */}
         {refPopover && (

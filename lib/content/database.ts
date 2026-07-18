@@ -16,6 +16,7 @@ interface TopicRow {
   question: string
   answer: Json
   answer_full: string | null
+  cover_image: string | null
   scripture: Json | null       // [string, ...]  — scripture_verses.reference
   catechism: Json | null       // [number, ...]  — ccc_paragraphs.paragraph
   church_fathers: Json | null  // [number, ...]  — church_father_quotes.id
@@ -138,6 +139,7 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     question: row.question,
     answer: answerToString(row.answer),
     answerFull: row.answer_full ?? undefined,
+    coverImage: row.cover_image ?? undefined,
     scripture: verseRefs
       .map(ref => refs.verses.get(ref))
       .filter((v): v is ScriptureVerseRow => !!v),
@@ -157,7 +159,7 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
 // ── Topic fetchers ────────────────────────────────────────────────────────────
 
 const TOPIC_SELECT = [
-  'id','lang','category','title','question','answer','answer_full',
+  'id','lang','category','title','question','answer','answer_full','cover_image',
   'scripture','catechism','church_fathers','objections',
   'tags','difficulty','related_topics','last_updated',
 ].join(',')

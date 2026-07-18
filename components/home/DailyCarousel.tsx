@@ -98,10 +98,10 @@ function Slide({ topic, active }: { topic: Topic; active: boolean }) {
         style={{ background: GRADIENTS[topic.category] }}
       />
 
-      {/* Unsplash photo */}
+      {/* Topic-specific or category-level photo */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={imageUrl(topic.category)}
+        src={topic.coverImage ?? imageUrl(topic.category)}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
         loading="lazy"

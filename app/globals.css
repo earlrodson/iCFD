@@ -208,9 +208,23 @@ html.text-large  { font-size: 18px; }
   article section:has(textarea),
   article section:has(input) { display: none !important; }
 
-  /* Always show Concise content, hide tab panels that aren't active */
+  /* Always show Concise content panel; hide others */
   article [data-tab="comprehensive"],
   article [data-tab="brief"] { display: none !important; }
+  article [data-tab="concise"] { display: block !important; opacity: 1 !important; }
+
+  /* Scripture, Catechism, Fathers, Objections: keep visible; hide action buttons */
+  article section { page-break-inside: avoid; }
+  article .no-print { display: none !important; }
+
+  /* Badge and tag styling for print */
+  article [class*="rounded-full"],
+  article [class*="rounded-lg"] {
+    background: none !important;
+    border: 0.5pt solid #aaa !important;
+    color: black !important;
+    padding: 1pt 4pt !important;
+  }
 
   /* Typography */
   h1 { font-size: 18pt; font-weight: 700; margin-bottom: 6pt; }

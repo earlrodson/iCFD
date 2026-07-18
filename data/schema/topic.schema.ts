@@ -39,6 +39,7 @@ export const TopicSchema = z.object({
   question: z.string(),
   answer: z.string(),
   answerFull: z.string().optional(),
+  coverImage: z.string().url().optional(),
   scripture: z.array(ScriptureSchema),
   catechism: z.array(z.string()).optional(),
   churchFathers: z.array(ChurchFatherSchema).optional(),
