@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
+import { cachedLibraryFetch } from '@/lib/libraryCache'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -55,9 +56,10 @@ async function fetchArticles(from: number, to: number): Promise<GirmArticle[]> {
       select: 'article,text,summary,section',
       limit: '300',
     })
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/girm_articles?${params}`, {
-      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
-    })
+    const res = await cachedLibraryFetch(
+      `${SUPABASE_URL}/rest/v1/girm_articles?${params}`,
+      { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+    )
     if (!res.ok) return []
     return res.json()
   } catch {

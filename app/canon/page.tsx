@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { cn } from '@/lib/utils'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
+import { cachedLibraryFetch } from '@/lib/libraryCache'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -49,9 +50,10 @@ async function fetchCanons(from: number, to: number): Promise<Canon[]> {
       select: 'canon,text,summary,book',
       limit: '600',
     })
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/canons?${params}`, {
-      headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
-    })
+    const res = await cachedLibraryFetch(
+      `${SUPABASE_URL}/rest/v1/canons?${params}`,
+      { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
+    )
     if (!res.ok) return []
     return res.json()
   } catch {
