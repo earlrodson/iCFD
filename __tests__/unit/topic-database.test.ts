@@ -11,6 +11,7 @@ const makeRow = (overrides: Record<string, unknown> = {}) => ({
   question: 'Why do Catholics use sacred images?',
   answer: 'Catholics do not worship statues.',
   answer_full: null,
+  cover_image: null,
   scripture: ['Exodus 25:18'],  // reference strings — resolved by (reference, version)
   catechism: [1159, 2130],
   church_fathers: [1],          // still integer IDs into church_father_quotes
@@ -153,6 +154,31 @@ describe('loadTopicFromDatabase — field mapping', () => {
     const topic = await loadTopicFromDatabase('sacred-images', 'en')
 
     expect(topic!.scripture).toEqual([])
+  })
+
+  it('maps cover_image URL to coverImage when present', async () => {
+    mockFetch([makeRow({ cover_image: 'https://example.com/topic.jpg' })])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    const topic = await loadTopicFromDatabase('sacred-images', 'en')
+
+    expect(topic!.coverImage).toBe('https://example.com/topic.jpg')
+  })
+
+  it('sets coverImage to undefined when cover_image is null', async () => {
+    mockFetch([makeRow({ cover_image: null })])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    const topic = await loadTopicFromDatabase('sacred-images', 'en')
+
+    expect(topic!.coverImage).toBeUndefined()
+  })
+
+  it('includes cover_image in the select query', async () => {
+    mockFetch([makeRow()])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    await loadTopicFromDatabase('sacred-images', 'en')
+
+    const calledUrl = vi.mocked(fetch).mock.calls[0][0].toString()
+    expect(calledUrl).toContain('cover_image')
   })
 
   it('returns null when no rows returned', async () => {

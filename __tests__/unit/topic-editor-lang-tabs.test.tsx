@@ -32,6 +32,7 @@ const EN_TOPIC = {
   question: 'What is papal infallibility?',
   answer: 'The pope cannot err on faith and morals.',
   answer_full: null,
+  cover_image: null,
   difficulty: 'intermediate',
   tags: ['papacy', 'infallibility'],
   related_topics: [],
@@ -319,6 +320,66 @@ describe('TopicEditor — new topic mode', () => {
 
     await waitFor(() => {
       expect(screen.getByText('ID and Title are required.')).toBeInTheDocument()
+    })
+  })
+})
+
+// ── Cover image field ─────────────────────────────────────────────────────────
+
+describe('TopicEditor — cover image field', () => {
+  it('renders the Cover Image URL input', async () => {
+    mockMaybySingle.mockResolvedValue({ data: EN_TOPIC, error: null })
+    render(<TopicEditor topicId="papal-infallibility" lang="en" />)
+    await waitFor(() => {
+      expect(screen.getByPlaceholderText(/https:\/\/images\.unsplash/i)).toBeInTheDocument()
+    })
+  })
+
+  it('populates the cover image field from the DB row', async () => {
+    mockMaybySingle.mockResolvedValue({
+      data: { ...EN_TOPIC, cover_image: 'https://example.com/hero.jpg' },
+      error: null,
+    })
+    render(<TopicEditor topicId="papal-infallibility" lang="en" />)
+    await waitFor(() => {
+      expect(screen.getByDisplayValue('https://example.com/hero.jpg')).toBeInTheDocument()
+    })
+  })
+
+  it('saves cover_image in the upsert row when a URL is entered', async () => {
+    mockMaybySingle.mockResolvedValue({ data: EN_TOPIC, error: null })
+    render(<TopicEditor topicId="papal-infallibility" lang="en" />)
+    await screen.findByDisplayValue('Papal Infallibility')
+
+    const imgInput = screen.getByPlaceholderText(/https:\/\/images\.unsplash/i)
+    fireEvent.change(imgInput, { target: { value: 'https://example.com/new.jpg' } })
+
+    await userEvent.click(screen.getByRole('button', { name: /save/i }))
+
+    await waitFor(() => {
+      expect(mockUpsert).toHaveBeenCalled()
+      const savedRow = mockUpsert.mock.calls[mockUpsert.mock.calls.length - 1][0]
+      expect(savedRow.cover_image).toBe('https://example.com/new.jpg')
+    })
+  })
+
+  it('saves cover_image as null when the field is cleared', async () => {
+    mockMaybySingle.mockResolvedValue({
+      data: { ...EN_TOPIC, cover_image: 'https://example.com/old.jpg' },
+      error: null,
+    })
+    render(<TopicEditor topicId="papal-infallibility" lang="en" />)
+    await screen.findByDisplayValue('https://example.com/old.jpg')
+
+    const imgInput = screen.getByDisplayValue('https://example.com/old.jpg')
+    fireEvent.change(imgInput, { target: { value: '' } })
+
+    await userEvent.click(screen.getByRole('button', { name: /save/i }))
+
+    await waitFor(() => {
+      expect(mockUpsert).toHaveBeenCalled()
+      const savedRow = mockUpsert.mock.calls[mockUpsert.mock.calls.length - 1][0]
+      expect(savedRow.cover_image).toBeNull()
     })
   })
 })

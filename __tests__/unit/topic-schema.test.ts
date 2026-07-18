@@ -42,6 +42,20 @@ describe('TopicSchema', () => {
     const { title, ...noTitle } = validTopic
     expect(() => TopicSchema.parse(noTitle)).toThrow()
   })
+
+  it('accepts a valid coverImage URL', () => {
+    const result = TopicSchema.parse({ ...validTopic, coverImage: 'https://images.unsplash.com/photo-123?w=800' })
+    expect(result.coverImage).toBe('https://images.unsplash.com/photo-123?w=800')
+  })
+
+  it('accepts topic without coverImage (field is optional)', () => {
+    const result = TopicSchema.parse(validTopic)
+    expect(result.coverImage).toBeUndefined()
+  })
+
+  it('rejects a non-URL string for coverImage', () => {
+    expect(() => TopicSchema.parse({ ...validTopic, coverImage: 'not-a-url' })).toThrow()
+  })
 })
 
 describe('HandbookContentSchema', () => {
