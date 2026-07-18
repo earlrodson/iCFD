@@ -152,6 +152,10 @@ body {
   font-size: 0.85em;
 }
 
+/* ── Scrollbar hide utility ── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
 /* ── Admin form utilities ── */
 @layer components {
   .field {

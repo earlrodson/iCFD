@@ -2,9 +2,10 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder, Books } from '@phosphor-icons/react'
+import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder, Books, Heart } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange, signOut } from '@/lib/supabase/auth'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
+import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { cn } from '@/lib/utils'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
@@ -17,6 +18,8 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
   const [user, setUser]       = useState<SupabaseUser | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
   const drawerRef = useRef<HTMLDivElement>(null)
+  const { favoriteIds } = useFavoritesStore()
+  const favCount = favoriteIds.length
 
   useEffect(() => {
     if (!isSupabaseConfigured()) return
@@ -136,6 +139,16 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
               Library
             </NavItem>
           )}
+          {user && (
+            <NavItem
+              href="/favorites"
+              icon={<Heart weight="light" size={20} />}
+              badge={favCount > 0 ? (favCount > 99 ? '99+' : String(favCount)) : undefined}
+              onClick={onClose}
+            >
+              Favorites
+            </NavItem>
+          )}
           <NavItem href="/settings" icon={<Gear weight="light" size={20} />} onClick={onClose}>
             General Settings
           </NavItem>
@@ -159,10 +172,11 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
 }
 
 function NavItem({
-  href, icon, onClick, children,
+  href, icon, badge, onClick, children,
 }: {
   href: string
   icon: React.ReactNode
+  badge?: string
   onClick: () => void
   children: React.ReactNode
 }) {
@@ -173,7 +187,12 @@ function NavItem({
       className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors"
     >
       <span className="text-muted-foreground">{icon}</span>
-      {children}
+      <span className="flex-1">{children}</span>
+      {badge && (
+        <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground leading-none">
+          {badge}
+        </span>
+      )}
     </Link>
   )
 }
