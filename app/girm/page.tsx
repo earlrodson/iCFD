@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
 import { cachedLibraryFetch } from '@/lib/libraryCache'
@@ -105,6 +105,9 @@ export default function GirmPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
   const [search, setSearch] = useState('')
   const [isOffline, setIsOffline] = useState(false)
+  const [targetArticle, setTargetArticle] = useState<number | null>(null)
+  const [deepLink, setDeepLink] = useState<GirmArticle | null>(null)
+  const scrolled = useRef(false)
 
   useEffect(() => {
     setIsOffline(!navigator.onLine)
@@ -114,6 +117,25 @@ export default function GirmPage() {
     window.addEventListener('offline', off)
     return () => { window.removeEventListener('online', on); window.removeEventListener('offline', off) }
   }, [])
+
+  useEffect(() => {
+    const a = new URLSearchParams(window.location.search).get('article')
+    const num = a ? parseInt(a) : null
+    if (!num) return
+    setTargetArticle(num)
+    const chIdx = CHAPTERS.findIndex(({ range }) => num >= range[0] && num <= range[1])
+    if (chIdx !== -1) setActiveChapter(chIdx)
+    fetchArticles(num, num).then(rows => { if (rows[0]) setDeepLink(rows[0]) })
+  }, [])
+
+  useEffect(() => {
+    if (!targetArticle || loading || scrolled.current) return
+    const el = document.getElementById(`a-${targetArticle}`)
+    if (!el) return
+    scrolled.current = true
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    el.classList.add('highlight-flash')
+  }, [targetArticle, loading, articles])
 
   const load = useCallback(async (chapterIdx: number) => {
     setLoading(true)
@@ -164,6 +186,20 @@ export default function GirmPage() {
         ))}
       </div>
 
+      {/* Deep-link featured card */}
+      {deepLink && (
+        <div className="mb-5 rounded-xl border-2 border-primary/40 bg-primary/5 p-4">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <span className="text-xs font-mono font-bold text-primary bg-primary/10 rounded px-1.5 py-0.5">
+              GIRM {deepLink.article}
+            </span>
+            <button onClick={() => setDeepLink(null)} className="text-xs text-muted-foreground hover:text-foreground">✕</button>
+          </div>
+          <p className="text-sm text-foreground leading-relaxed">{deepLink.text ?? deepLink.summary}</p>
+          {deepLink.section && <p className="text-xs text-muted-foreground mt-2">{deepLink.section}</p>}
+        </div>
+      )}
+
       {/* Chapter subtitle */}
       <p className="text-sm font-medium text-foreground mb-3">
         {CHAPTER_SUBTITLES[activeLabel]}
@@ -201,12 +237,13 @@ export default function GirmPage() {
       {!loading && (
         <div className="space-y-2">
           {filtered.map(item => (
-            <ArticleCard
-              key={item.article}
-              item={item}
-              expanded={expandedId === item.article}
-              onToggle={() => setExpandedId(expandedId === item.article ? null : item.article)}
-            />
+            <div key={item.article} id={`a-${item.article}`}>
+              <ArticleCard
+                item={item}
+                expanded={expandedId === item.article}
+                onToggle={() => setExpandedId(expandedId === item.article ? null : item.article)}
+              />
+            </div>
           ))}
           {filtered.length === 0 && (
             isOffline && !search

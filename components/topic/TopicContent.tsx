@@ -499,11 +499,20 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 <div key={ref} className="rounded-2xl bg-card p-4 shadow-sm border border-border">
                   <div className="mb-2 flex items-center justify-between gap-2">
                     <span className="text-sm font-semibold text-primary">{ref}</span>
-                    {data?.section && (
-                      <span className="text-xs text-muted-foreground text-right leading-snug max-w-[60%]">
-                        {data.section}
-                      </span>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {data?.section && (
+                        <span className="text-xs text-muted-foreground text-right leading-snug max-w-[50%]">
+                          {data.section}
+                        </span>
+                      )}
+                      <Link
+                        href={`/catechism?p=${num}`}
+                        className="shrink-0 text-xs text-primary/70 hover:text-primary transition-colors"
+                        title="View in Catechism browser"
+                      >
+                        Browse →
+                      </Link>
+                    </div>
                   </div>
                   {data?.text ? (
                     <p className="text-sm text-foreground leading-relaxed italic">

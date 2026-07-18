@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
 import { cachedLibraryFetch } from '@/lib/libraryCache'
@@ -99,6 +99,9 @@ export default function CanonPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
   const [search, setSearch] = useState('')
   const [isOffline, setIsOffline] = useState(false)
+  const [targetCanon, setTargetCanon] = useState<number | null>(null)
+  const [deepLink, setDeepLink] = useState<Canon | null>(null)
+  const scrolled = useRef(false)
 
   useEffect(() => {
     setIsOffline(!navigator.onLine)
@@ -108,6 +111,25 @@ export default function CanonPage() {
     window.addEventListener('offline', off)
     return () => { window.removeEventListener('online', on); window.removeEventListener('offline', off) }
   }, [])
+
+  useEffect(() => {
+    const c = new URLSearchParams(window.location.search).get('canon')
+    const num = c ? parseInt(c) : null
+    if (!num) return
+    setTargetCanon(num)
+    const bookIdx = BOOKS.findIndex(({ range }) => num >= range[0] && num <= range[1])
+    if (bookIdx !== -1) setActiveBook(bookIdx)
+    fetchCanons(num, num).then(rows => { if (rows[0]) setDeepLink(rows[0]) })
+  }, [])
+
+  useEffect(() => {
+    if (!targetCanon || loading || scrolled.current) return
+    const el = document.getElementById(`c-${targetCanon}`)
+    if (!el) return
+    scrolled.current = true
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    el.classList.add('highlight-flash')
+  }, [targetCanon, loading, canons])
 
   const load = useCallback(async (bookIdx: number) => {
     setLoading(true)
@@ -158,6 +180,20 @@ export default function CanonPage() {
         ))}
       </div>
 
+      {/* Deep-link featured card */}
+      {deepLink && (
+        <div className="mb-5 rounded-xl border-2 border-primary/40 bg-primary/5 p-4">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <span className="text-xs font-mono font-bold text-primary bg-primary/10 rounded px-1.5 py-0.5">
+              c.{deepLink.canon}
+            </span>
+            <button onClick={() => setDeepLink(null)} className="text-xs text-muted-foreground hover:text-foreground">✕</button>
+          </div>
+          <p className="text-sm text-foreground leading-relaxed">{deepLink.text ?? deepLink.summary}</p>
+          {deepLink.book && <p className="text-xs text-muted-foreground mt-2">{deepLink.book}</p>}
+        </div>
+      )}
+
       {/* Book subtitle */}
       <p className="text-sm font-medium text-foreground mb-3">
         {BOOK_SUBTITLES[activeLabel]}
@@ -195,12 +231,13 @@ export default function CanonPage() {
       {!loading && (
         <div className="space-y-2">
           {filtered.map(item => (
-            <CanonCard
-              key={item.canon}
-              item={item}
-              expanded={expandedId === item.canon}
-              onToggle={() => setExpandedId(expandedId === item.canon ? null : item.canon)}
-            />
+            <div key={item.canon} id={`c-${item.canon}`}>
+              <CanonCard
+                item={item}
+                expanded={expandedId === item.canon}
+                onToggle={() => setExpandedId(expandedId === item.canon ? null : item.canon)}
+              />
+            </div>
           ))}
           {filtered.length === 0 && (
             isOffline && !search

@@ -156,6 +156,13 @@ body {
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ── Deep-link highlight flash ── */
+@keyframes highlight-flash {
+  0%   { box-shadow: 0 0 0 3px hsl(var(--primary) / 0.5); background-color: hsl(var(--primary) / 0.1); }
+  100% { box-shadow: 0 0 0 0px transparent; background-color: transparent; }
+}
+.highlight-flash { animation: highlight-flash 2.2s ease-out forwards; }
+
 /* ── Admin form utilities ── */
 @layer components {
   .field {

@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
@@ -87,6 +88,9 @@ export default function CatechismPage() {
   const [expandedId, setExpandedId] = useState<number | null>(null)
   const [search, setSearch] = useState('')
   const [isOffline, setIsOffline] = useState(false)
+  const [targetPara, setTargetPara] = useState<number | null>(null)
+  const [deepLink, setDeepLink] = useState<CccParagraph | null>(null)
+  const scrolled = useRef(false)
 
   useEffect(() => {
     setIsOffline(!navigator.onLine)
@@ -96,6 +100,29 @@ export default function CatechismPage() {
     window.addEventListener('offline', off)
     return () => { window.removeEventListener('online', on); window.removeEventListener('offline', off) }
   }, [])
+
+  // Read ?p= deep link param on mount
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search).get('p')
+    const num = p ? parseInt(p) : null
+    if (!num) return
+    setTargetPara(num)
+    // Auto-switch to the correct part
+    const partIdx = PARTS.findIndex(({ range }) => num >= range[0] && num <= range[1])
+    if (partIdx !== -1) setActivePart(partIdx)
+    // Fetch that specific paragraph for the featured card
+    fetchParagraphs(num, num).then(rows => { if (rows[0]) setDeepLink(rows[0]) })
+  }, [])
+
+  // Scroll to deep-linked paragraph once it appears in the list
+  useEffect(() => {
+    if (!targetPara || loading || scrolled.current) return
+    const el = document.getElementById(`p-${targetPara}`)
+    if (!el) return
+    scrolled.current = true
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    el.classList.add('highlight-flash')
+  }, [targetPara, loading, paragraphs])
 
   const load = useCallback(async (partIdx: number) => {
     setLoading(true)
@@ -142,6 +169,25 @@ export default function CatechismPage() {
         ))}
       </div>
 
+      {/* Deep-link featured card */}
+      {deepLink && (
+        <div className="mb-5 rounded-xl border-2 border-primary/40 bg-primary/5 p-4">
+          <div className="flex items-center justify-between gap-2 mb-2">
+            <span className="text-xs font-mono font-bold text-primary bg-primary/10 rounded px-1.5 py-0.5">
+              CCC {deepLink.paragraph}
+            </span>
+            <button
+              onClick={() => setDeepLink(null)}
+              className="text-xs text-muted-foreground hover:text-foreground"
+            >
+              ✕
+            </button>
+          </div>
+          <p className="text-sm text-foreground leading-relaxed">{deepLink.text ?? deepLink.summary}</p>
+          {deepLink.section && <p className="text-xs text-muted-foreground mt-2">{deepLink.section}</p>}
+        </div>
+      )}
+
       {/* Part title */}
       <p className="text-sm font-medium text-foreground mb-3">{PARTS[activePart].label}</p>
 
@@ -177,12 +223,13 @@ export default function CatechismPage() {
       {!loading && (
         <div className="space-y-2">
           {filtered.map(para => (
-            <ParagraphCard
-              key={para.paragraph}
-              para={para}
-              expanded={expandedId === para.paragraph}
-              onToggle={() => setExpandedId(expandedId === para.paragraph ? null : para.paragraph)}
-            />
+            <div key={para.paragraph} id={`p-${para.paragraph}`}>
+              <ParagraphCard
+                para={para}
+                expanded={expandedId === para.paragraph}
+                onToggle={() => setExpandedId(expandedId === para.paragraph ? null : para.paragraph)}
+              />
+            </div>
           ))}
           {filtered.length === 0 && (
             isOffline && !search
