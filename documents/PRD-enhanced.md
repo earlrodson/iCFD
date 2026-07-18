@@ -2,8 +2,8 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.4  
-**Date:** 2026-07-16  
+**Version:** 2.5  
+**Date:** 2026-07-19  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
 
@@ -283,10 +283,12 @@ URL pattern: `https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&
 **Current gaps:** Only fonts and images are cached; topic JSON and app shell caching are not explicitly configured.
 
 **Requirements:**
-- Cache all `handbook.json` files (all 3 languages) on first app load using a NetworkFirst strategy with IndexedDB fallback
-- Show an "Offline — showing cached content" banner when the network is unavailable (already partially built in `OfflineBanner`)
-- Pre-cache the `out/` static export shell so the app launches from cache without any network request
-- Add a "Download for offline" button that explicitly triggers pre-caching all 3 language files; show download progress
+- ✅ `OfflineBanner` — global amber banner shown at the top of every page when offline (`components/ui/OfflineBanner.tsx`)
+- ✅ `OfflineFallback` — contextual empty-state component shown inside content pages (catechism, GIRM, canon) when offline and no cached data is available (`components/ui/OfflineFallback.tsx`). Copy: *"You're offline — Connect to the internet to load this [content]. Pages you've already visited are available offline."*
+- ✅ Library content fetches (`/catechism`, `/girm`, `/canon`) now catch network errors and return `[]` instead of throwing
+- ✅ Settings → "Download for offline" button with progress bar (pre-caches handbook.json for all 3 languages)
+- ✅ Per-topic offline download button on topic detail page (Cache API, localStorage tracking)
+- ⬜ Pre-cache Sacred Texts (Bible chapters, CCC paragraphs, GIRM articles, canons) for offline use — currently the SW's 1-hour NetworkFirst cache covers only recently-visited pages; no explicit pre-fetch UI for the Library content
 
 ---
 
@@ -547,11 +549,13 @@ See §4.14 below.
 - ✅ PWA install button replaces hamburger in header when install prompt is available
 - ✅ Push notifications — VAPID keys generated, Edge Function deployed, daily cron at 8 AM Manila (00:00 UTC via pg_cron + pg_net)
 - ✅ Android PWA "older version" warning fixed — manifest updated with `id`, `scope`, `lang`, `dir`, `display_override`, `categories`
+- ✅ `OfflineFallback` component — contextual empty-state for Library content pages when offline (§4.8)
 - ⬜ PDF export for topics and paths
 - ⬜ Native mobile apps via Capacitor
 - ⬜ Content expansion to 100+ topics per language (currently 50 EN)
 - ⬜ Professional Filipino translations for 30 new topic stubs
 - ⬜ Optional `coverImage` field in topic schema
+- ⬜ Pre-cache Sacred Texts Library pages for offline (see Phase 8F)
 
 ---
 
@@ -773,7 +777,162 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 
 ---
 
-## 8. Out of Scope for v2
+### Phase 8 — Sacred Texts Library ✅ Delivered
+
+**Goal:** Give signed-in users a browseable, searchable library of the full texts of foundational Catholic documents — not just citations within topics, but the complete primary sources.
+
+**User story:** *As a Catholic lay defender, I want to read the CCC, the GIRM, or Canon Law directly in the app — offline-ready, with chapter tabs and search — so I can look up the exact wording of a paragraph when preparing an argument.*
+
+**Distinction from Phase 7:** Phase 7 normalizes citations *within* topics (admin data layer). Phase 8 is a user-facing reader for the full documents themselves.
+
+#### 8A — Library Hub ✅
+
+- `/library` — auth-gated resource catalog listing all available documents
+- Grid of resource cards with icon, title, description, and category badge
+- `OfflineBanner` shown globally when offline; content pages show `OfflineFallback` when data is unavailable
+
+**Resources listed:**
+
+| Title | Route | Badge | Status |
+|-------|-------|-------|--------|
+| Holy Bible | `/bible` | Scripture | ✅ |
+| Catechism of the Catholic Church | `/catechism` | Magisterium | ✅ |
+| General Instruction of the Roman Missal | `/girm` | Liturgy | ✅ |
+| Code of Canon Law | `/canon` | Canon Law | ✅ |
+
+#### 8B — Bible Browser (`/bible`) ✅
+
+- 73-book NABRE + Douay-Rheims, served from `bible_verses` table
+- Book selector → chapter selector → verse list
+- Multi-translation toggle
+
+#### 8C — Catechism Browser (`/catechism`) ✅
+
+**Data:** `ccc_paragraphs` table — 2,865 paragraphs with `paragraph`, `lang`, `text`, `summary`, `section`, `part`, `chapter_title`, `article` columns. PK: `(paragraph, lang)`.
+
+**Seeder:** `scripts/seed-ccc-full.py` — reads `documents/catechism.json`, generates batch SQL files, pipes to psql via `DATABASE_URL`.
+
+**UI:**
+- 4 part tabs (Part 1–4) with paragraph ranges
+- Expandable paragraph cards — collapsed shows `summary`, expanded shows full `text`
+- Paragraph number badge, search by text or paragraph number
+- `OfflineFallback` shown when offline and data is empty
+
+#### 8D — GIRM Browser (`/girm`) ✅
+
+**Data:** `girm_articles` table — 399 articles with `article`, `lang`, `text`, `summary`, `section` columns. PK: `(article, lang)`. RLS: public read.
+
+**Seeder:** `scripts/seed-girm.py` — reads `documents/girm.json` (399 entries, `{id, text}` format), maps articles to 10 chapters, generates 8 batch SQL files, pipes to psql.
+
+**Chapter mapping:**
+
+| Tab label | Articles | Chapter title |
+|-----------|----------|---------------|
+| Preamble | 1–15 | Preamble |
+| Chapter I | 16–26 | Importance and Dignity of the Eucharistic Celebration |
+| Chapter II | 27–90 | Structure, Elements, and Parts of the Mass |
+| Chapter III | 91–111 | Duties and Ministries in the Mass |
+| Chapter IV | 112–287 | Various Forms of Celebrating Mass |
+| Chapter V | 288–318 | Arrangement and Furnishing of Churches |
+| Chapter VI | 319–351 | Requisites for the Celebration of Mass |
+| Chapter VII | 352–367 | Choice of the Mass and Its Parts |
+| Chapter VIII | 368–385 | Masses and Prayers for Various Circumstances |
+| Chapter IX | 386–399 | Adaptations within the Competence of Bishops |
+
+**UI:** Same pattern as CCC browser — chapter tabs, article number badge (`article`), expandable cards, search, `OfflineFallback`.
+
+#### 8E — Canon Law Browser (`/canon`) ✅
+
+**Data:** `canons` table — 1,751 canons with `canon`, `lang`, `text`, `summary`, `book` columns. PK: `(canon, lang)`. RLS: public read.
+
+**Seeder:** `scripts/seed-canon.py` — reads `documents/canon.json` (1,751 entries; some have a top-level `text`, others have a `sections[]` array of numbered paragraphs — seeder joins sections with `§N` prefix). Maps to 7 books.
+
+**Book mapping:**
+
+| Tab label | Canons | Book title |
+|-----------|--------|------------|
+| Book I | 1–203 | General Norms |
+| Book II | 204–746 | The People of God |
+| Book III | 747–833 | The Teaching Office of the Church |
+| Book IV | 834–1253 | The Office of Sanctifying in the Church |
+| Book V | 1254–1310 | The Temporal Goods of the Church |
+| Book VI | 1311–1399 | Sanctions in the Church |
+| Book VII | 1400–1752 | Processes |
+
+**UI:** Same pattern — book tabs, canon number badge (`c.N`), expandable cards, search, `OfflineFallback`.
+
+#### 8F — Pending / Backlog ⬜
+
+| Item | Notes |
+|------|-------|
+| Pre-cache Sacred Texts for offline | Settings "Download for offline" currently covers Handbook JSON only; Library document pages rely on the SW's 1-hour NetworkFirst cache |
+| Search across all documents | Global search bar on `/library` that queries all tables simultaneously |
+| Cross-link Library ↔ Topics | Clicking a CCC citation on a topic detail opens the CCC browser at that paragraph |
+| Additional documents | Papal encyclicals, Council documents (Vatican II), Compendium of CCC |
+| TL / CEB translations | `lang` column exists on all tables; content not yet seeded for non-English |
+| Bible offline download | Chapter-level pre-caching from the Bible browser |
+
+---
+
+---
+
+## 9. Priority Backlog — Ordered by Value and Impact
+
+All ⬜ items across phases, consolidated and ranked. Ship in this order unless a specific milestone forces a different sequence.
+
+---
+
+### Tier 1 — Core promise gaps (ship next)
+
+These directly deliver the app's stated goals (G1–G4). Skipping them leaves the primary value proposition partially fulfilled.
+
+| # | Item | Why it matters |
+|---|------|----------------|
+| 1 | **Content expansion to 100+ EN topics** | The app is an apologetics tool. 50 topics leaves most categories with ≤ 6 entries — not enough for a user to study any subject in depth. Every user hits this ceiling. |
+| 2 | **Professional TL/CEB translations (30 stubs)** | Primary audience is Filipino Catholics. Tagalog and Cebuano stubs are placeholder text, not readable content. Half the intended users get a broken experience. |
+| 3 | **Pre-cache Sacred Texts Library for offline** | "Offline-first" (G1) is a core promise. Library pages (CCC, GIRM, Canon) have no offline fallback for first-time visitors — the SW's 1-hour NetworkFirst cache only helps repeat visitors. Add a "Download Library" button to Settings similar to the existing Handbook download. |
+
+---
+
+### Tier 2 — High-usability bridges (high ROI, low lift)
+
+These connect existing features or fix daily friction. Zero new data required; mostly UI work.
+
+| # | Item | Why it matters |
+|---|------|----------------|
+| 4 | **Cross-link Library ↔ Topics** | When a user reads a topic and sees "CCC 1213," tapping that citation should open the CCC browser at paragraph 1213. Bridges the two main content systems in the most natural user flow. |
+| 5 | **Global search across Library documents** | One search box on `/library` querying Bible + CCC + GIRM + Canon simultaneously. High utility for debate prep and study — currently each document is siloed. |
+| 6 | **Per-language tabs in admin Topic Editor** | Currently editing TL and CEB requires navigating to separate URLs. Side-by-side EN/TL/CEB tabs in the editor would cut translation review time significantly for admins. |
+
+---
+
+### Tier 3 — Depth and audience expansion
+
+Valuable after Tier 1–2 are solid. Broadens content or reach.
+
+| # | Item | Why it matters |
+|---|------|----------------|
+| 7 | **Additional Library documents** | Papal encyclicals (Humanae Vitae, Lumen Fidei), Vatican II documents (Lumen Gentium, Dei Verbum), Compendium of the CCC. Catechists and serious apologists will expect these. Adds to the Library the same way as GIRM/Canon. |
+| 8 | **TL/CEB seeding for Library tables** | `lang` column exists on `girm_articles` and `canons`; source documents needed. Parallel to the apologetics content translation backlog. |
+| 9 | **PDF export for topics and paths** | Catechists printing handouts or preparing lesson notes. Useful but narrow audience; lower daily-use impact than discovery features. |
+| 10 | **`coverImage` field in topic schema** | Populates the DailyCarousel banner image with topic-specific photos instead of category placeholders. Visual polish — adds engagement but doesn't change content access. |
+
+---
+
+### Tier 4 — Technical / deferred / low marginal value
+
+Do after Tier 1–3, or skip if resources are constrained.
+
+| # | Item | Why it matters |
+|---|------|----------------|
+| 11 | **Marian path expansion** | 3 topics in the Marian Path is thin. Depends on Tier 1 content expansion — unblock it first. |
+| 12 | **Content shortcodes in `answer_full`** (`{{ccc:464}}`, `{{verse:jn-1-1}}`) | Author ergonomics only; no user-visible change. Useful when content volume justifies it. |
+| 13 | **Bible chapter-level offline download** | The SW's NetworkFirst cache already covers recently-visited Bible chapters for 1 hour. Explicit pre-fetch is marginal unless users plan to go offline mid-session. |
+| 14 | **Native mobile apps via Capacitor** | The PWA covers ~90% of the native use case (install prompt, offline, push notifications). App Store presence adds discoverability, but high build/maintenance cost for the gain. |
+
+---
+
+## 10. Out of Scope for v2
 
 - Payments or subscriptions
 - Video or audio content

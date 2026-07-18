@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { BookOpen, Cross, Lock } from '@phosphor-icons/react'
+import { BookOpen, Cross, Lock, BookBookmark, Scales } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange } from '@/lib/supabase/auth'
 import type { User } from '@/lib/supabase/auth'
 
@@ -22,6 +22,20 @@ const RESOURCES = [
     title:       'Catechism of the Catholic Church',
     description: 'Second Edition · 2,865 paragraphs across four parts',
     badge:       'Magisterium',
+  },
+  {
+    href:        '/girm',
+    icon:        BookBookmark,
+    title:       'General Instruction of the Roman Missal',
+    description: 'GIRM · 399 articles across nine chapters',
+    badge:       'Liturgy',
+  },
+  {
+    href:        '/canon',
+    icon:        Scales,
+    title:       'Code of Canon Law',
+    description: '1983 · 1,752 canons across seven books',
+    badge:       'Canon Law',
   },
 ]
 
@@ -95,7 +109,7 @@ export default function LibraryPage() {
       </div>
 
       <p className="text-xs text-muted-foreground text-center mt-8">
-        More resources coming soon
+        More resources being added
       </p>
     </div>
   )
