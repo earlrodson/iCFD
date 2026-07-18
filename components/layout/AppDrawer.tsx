@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder, BookOpen, Cross } from '@phosphor-icons/react'
+import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder, Books } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange, signOut } from '@/lib/supabase/auth'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
@@ -131,12 +131,11 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
 
         {/* Nav links */}
         <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1">
-          <NavItem href="/bible" icon={<BookOpen weight="light" size={20} />} onClick={onClose}>
-            Bible
-          </NavItem>
-          <NavItem href="/catechism" icon={<Cross weight="light" size={20} />} onClick={onClose}>
-            Catechism (CCC)
-          </NavItem>
+          {user && (
+            <NavItem href="/library" icon={<Books weight="light" size={20} />} onClick={onClose}>
+              Library
+            </NavItem>
+          )}
           <NavItem href="/settings" icon={<Gear weight="light" size={20} />} onClick={onClose}>
             General Settings
           </NavItem>

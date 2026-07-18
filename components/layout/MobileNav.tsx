@@ -8,6 +8,7 @@ import {
   MagnifyingGlass,
   Heart,
   UserCircle,
+  Books,
 } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
@@ -16,6 +17,7 @@ import { useDrawerStore } from '@/store/useDrawerStore'
 const tabs = [
   { href: '/',          label: 'Home',      Icon: House },
   { href: '/handbook',  label: 'Handbook',  Icon: BookOpen },
+  { href: '/library',   label: 'Library',   Icon: Books },
   { href: '/search',    label: 'Search',    Icon: MagnifyingGlass },
   { href: '/favorites', label: 'Favorites', Icon: Heart },
 ]
