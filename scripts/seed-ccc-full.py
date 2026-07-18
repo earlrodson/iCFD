@@ -48,14 +48,20 @@ def extract_paragraphs(needed: set) -> dict:
     print(f"Extracting {len(needed)} paragraphs from PDF...")
     pages_text = []
 
+    # Pages 1-26 are front matter (TOC, indices, Apostolic Constitution).
+    # Pages 709+ are back-matter indices. Actual paragraph content: pages 27-708.
+    CONTENT_START = 26   # 0-indexed (page 27)
+    CONTENT_END   = 708  # 0-indexed exclusive (page 708 inclusive)
+
     with pdfplumber.open(PDF_PATH) as pdf:
         total = len(pdf.pages)
-        for i, page in enumerate(pdf.pages):
+        content_pages = pdf.pages[CONTENT_START:CONTENT_END]
+        for i, page in enumerate(content_pages):
             t = page.extract_text()
             if t:
                 pages_text.append(t)
             if (i + 1) % 100 == 0:
-                print(f"  {i+1}/{total} pages read...")
+                print(f"  {i+1}/{len(content_pages)} pages read...")
 
     cleaned_lines = []
     for page_text in pages_text:

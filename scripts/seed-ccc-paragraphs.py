@@ -59,14 +59,18 @@ def extract_paragraphs():
     print("Extracting text from PDF...")
     pages_text = []
 
+    # Pages 1-26 are front matter; pages 709+ are back-matter indices.
+    CONTENT_START = 26
+    CONTENT_END   = 708
+
     with pdfplumber.open(PDF_PATH) as pdf:
-        total = len(pdf.pages)
-        for i, page in enumerate(pdf.pages):
+        content_pages = pdf.pages[CONTENT_START:CONTENT_END]
+        for i, page in enumerate(content_pages):
             t = page.extract_text()
             if t:
                 pages_text.append(t)
             if (i + 1) % 100 == 0:
-                print(f"  {i+1}/{total} pages...")
+                print(f"  {i+1}/{len(content_pages)} pages...")
 
     # Clean each line: strip trailing cross-references, hyphen-break joins
     cleaned_lines = []
