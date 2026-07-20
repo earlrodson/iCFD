@@ -7,6 +7,9 @@ const HANDBOOK_CACHE_NAME = 'icfd-content-v1'
 const PAGES_CACHE_NAME     = 'pages'
 const PAGES_RSC_CACHE_NAME = 'pages-rsc'
 
+// App shell routes that must be cached for offline navigation to work
+const SHELL_URLS = ['/', '/handbook', '/library', '/search', '/favorites', '/settings', '/catechism', '/girm', '/canon', '/bible', '/paths']
+
 // Persists across app restarts; set on full download, cleared on clear()
 const OFFLINE_READY_KEY = 'icfd-offline-ready'
 
@@ -155,7 +158,7 @@ export function useOfflineCache() {
     // Resolve all counts upfront so progress never regresses
     const libraryUrls = buildLibraryApiUrls()
     const topicIds    = await getHandbookTopicIds()
-    const total       = HANDBOOK_URLS.length + libraryUrls.length + topicIds.length
+    const total       = HANDBOOK_URLS.length + libraryUrls.length + SHELL_URLS.length + topicIds.length
 
     function advance() {
       completed++
@@ -194,12 +197,32 @@ export function useOfflineCache() {
       advance()
     }
 
-    // ── Step 3: Pre-cache topic pages in Workbox's `pages` + `pages-rsc` ──
+    // ── Step 3: Pre-cache app shell + topic pages ─────────────────────────
 
     const [pagesCache, rscCache] = await Promise.all([
       caches.open(PAGES_CACHE_NAME),
       caches.open(PAGES_RSC_CACHE_NAME),
     ])
+
+    // Shell routes — nav tabs, library, etc.
+    for (const url of SHELL_URLS) {
+      try {
+        const existing = await pagesCache.match(url)
+        if (!existing) {
+          const res = await fetch(url)
+          if (res.ok) await pagesCache.put(url, res.clone())
+          else countFail()
+        }
+      } catch { countFail() }
+      try {
+        const existingRsc = await rscCache.match(url)
+        if (!existingRsc) {
+          const rsc = await fetch(url, { headers: { RSC: '1' } })
+          if (rsc.ok) await rscCache.put(url, rsc.clone())
+        }
+      } catch { /* non-fatal */ }
+      advance()
+    }
 
     for (const id of topicIds) {
       const url = `/${id}`
@@ -245,10 +268,16 @@ export function useOfflineCache() {
         caches.open(PAGES_CACHE_NAME),
         caches.open(PAGES_RSC_CACHE_NAME),
       ])
-      await Promise.all(topicIds.flatMap((id) => [
-        pagesCache.delete(`/${id}`),
-        rscCache.delete(`/${id}`),
-      ]))
+      await Promise.all([
+        ...topicIds.flatMap((id) => [
+          pagesCache.delete(`/${id}`),
+          rscCache.delete(`/${id}`),
+        ]),
+        ...SHELL_URLS.flatMap((url) => [
+          pagesCache.delete(url),
+          rscCache.delete(url),
+        ]),
+      ])
 
       await Promise.all([
         caches.delete(HANDBOOK_CACHE_NAME),
