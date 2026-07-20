@@ -81,18 +81,21 @@ Deno.serve(async (req) => {
 
   const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
 
-  // Fetch today's topic from DB
+  // Fetch published topics — prefer is_recommended pool if any exist
   const { data: topics } = await supabase
     .from('topics')
-    .select('id, title, question')
+    .select('id, title, question, is_recommended')
     .eq('lang', 'en')
+    .eq('published', true)
     .order('created_at')
 
   if (!topics?.length) {
-    return new Response(JSON.stringify({ error: 'No topics found' }), { status: 500 })
+    return new Response(JSON.stringify({ error: 'No published topics found' }), { status: 500 })
   }
 
-  const topic = topics[todayIndex(topics.length)]
+  const recommended = topics.filter((t) => t.is_recommended)
+  const pool = recommended.length >= 5 ? recommended : topics
+  const topic = pool[todayIndex(pool.length)]
   const notifBody = JSON.stringify({
     title: `Today's Topic: ${topic.title}`,
     body: topic.question.slice(0, 120) + (topic.question.length > 120 ? '…' : ''),
