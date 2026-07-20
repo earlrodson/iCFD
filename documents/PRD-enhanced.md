@@ -2,8 +2,8 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.5  
-**Date:** 2026-07-19  
+**Version:** 2.6  
+**Date:** 2026-07-20  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
 
@@ -214,9 +214,10 @@ A full-page search experience replacing the inline header search.
 
 **User story:** *As a daily user, I want to see a rich, photo-driven highlight reel of 3 topics each day — shown one at a time with smooth transitions — so the app feels alive and gives me an immediate reason to dive in.*
 
-**Selection** (unchanged)
-- 3 daily picks, each from a different category, deterministically seeded by day-of-year
-- Same 3 picks for all users on the same calendar day — no server required
+**Selection** ✅ Admin-curated with deterministic fallback
+- If any topics have `is_recommended = true` in the database, those topics are used as the carousel pool (up to 5 slides, rotated daily through the pool)
+- Falls back to the deterministic hash algorithm (3 picks, one per category, seeded by day-of-year) when no topics are marked recommended
+- Admins control the carousel via the star toggle in Admin → Topics with no redeploy required
 
 #### Visual Design — Image Slider
 - **Full-width slider** showing **one card at a time** — no peeking, no grid
@@ -278,17 +279,19 @@ URL pattern: `https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&
 
 ---
 
-### 4.8 Offline Experience Improvements
-
-**Current gaps:** Only fonts and images are cached; topic JSON and app shell caching are not explicitly configured.
+### 4.8 Offline Experience Improvements ✅
 
 **Requirements:**
 - ✅ `OfflineBanner` — global amber banner shown at the top of every page when offline (`components/ui/OfflineBanner.tsx`)
-- ✅ `OfflineFallback` — contextual empty-state component shown inside content pages (catechism, GIRM, canon) when offline and no cached data is available (`components/ui/OfflineFallback.tsx`). Copy: *"You're offline — Connect to the internet to load this [content]. Pages you've already visited are available offline."*
+- ✅ `OfflineFallback` — contextual empty-state component shown inside content pages (catechism, GIRM, canon) when offline and no cached data is available (`components/ui/OfflineFallback.tsx`)
 - ✅ Library content fetches (`/catechism`, `/girm`, `/canon`) now catch network errors and return `[]` instead of throwing
-- ✅ Settings → "Download for offline" button with progress bar (pre-caches handbook.json for all 3 languages)
-- ✅ Per-topic offline download button on topic detail page (Cache API, localStorage tracking)
-- ⬜ Pre-cache Sacred Texts (Bible chapters, CCC paragraphs, GIRM articles, canons) for offline use — currently the SW's 1-hour NetworkFirst cache covers only recently-visited pages; no explicit pre-fetch UI for the Library content
+- ✅ Settings → "Download for offline" button with progress bar — pre-caches handbook JSON (3 languages), Sacred Texts Library API (CCC, GIRM, Canon), all topic pages, and all app shell routes
+- ✅ Download pre-populates Workbox's own `pages` + `pages-rsc` caches so topic pages load offline even without a prior visit
+- ✅ App shell routes (`/`, `/handbook`, `/library`, `/search`, `/favorites`, `/settings`, `/catechism`, `/girm`, `/canon`, `/bible`, `/paths`) cached during download — bottom nav works fully offline
+- ✅ Progress bar computed from full total upfront (handbook + library + shell + topics) — never regresses mid-download
+- ✅ Download state tracked in `localStorage` (`icfd-offline-ready-v2`) — status correctly resets to idle after Clear, even across app restarts
+- ✅ Cache version bump strategy (`icfd-content-v2`) forces existing users to re-download when structure changes; old caches cleaned on next download
+- ✅ Sacred Texts Library API pre-cached (CCC 4 parts, GIRM 10 chapters, Canon 7 books) via Supabase REST in `useOfflineCache`
 
 ---
 
@@ -564,14 +567,16 @@ See §4.14 below.
 **Goal:** Allow admins to manage all content directly from `/admin` without touching JSON files or redeploying. The `topics` Supabase table already holds all content from the seed — Phase 5 wires up CRUD on top of it.
 
 #### 5A — Topic Editor ✅ Delivered
-- ✅ Admin layout with tab navigation (Config / Topics) + shared auth guard
+- ✅ Admin layout with tab navigation + shared auth guard (role-based: admin / editor)
 - ✅ Topic list: searchable/filterable table (category, difficulty, lang), delete with confirm modal
 - ✅ Topic editor: full CRUD — title, question, answer, scripture, catechism, church fathers, tags, related topics
 - ✅ Common Objections section: add/remove `{objection, response}` pairs per topic
 - ✅ RLS policies: admins can INSERT/UPDATE/DELETE topics from the browser client
 - ✅ `objections` JSONB column added to topics table via migration
-- ✅ Objections rendered on topic detail page as styled Q&A cards
-- ✅ Publish / unpublish toggle (`published` boolean column — deferred to 5B)
+- ✅ Publish / unpublish toggle (`published` boolean column)
+- ✅ `is_recommended` star toggle per topic — drives the home carousel when set
+- ✅ Status filter pills: **All · Published · Hidden · Recommended** — each with live count scoped to current lang/category/difficulty selection; clicking an active pill deselects it
+- ✅ Hidden rows visually dimmed in the table for at-a-glance identification
 - ⬜ Per-language tabs (EN / TL / CEB) side by side — currently separate edit URLs
 
 #### 5B — Submission Review Queue ✅ Delivered
@@ -597,9 +602,30 @@ See §4.14 below.
 - ✅ Save upserts path row, deletes then re-inserts path_topics with position index
 - ✅ New path: URL replaces to `/admin/paths/[generated-slug]` after first save
 
-#### 5E — Media & Config ⬜
-- `coverImage` URL per topic (used by DailyCarousel)
-- All existing site_config rows editable (already live)
+#### 5E — Media & Config 🔄
+- ✅ `coverImage` URL per topic (used by DailyCarousel)
+- ✅ All existing site_config rows editable
+- ⬜ `/admin/config` panel UI for runtime site_config overrides (app name, colors, feature flags)
+
+#### 5F — Analytics ✅ Delivered
+- ✅ `/admin/analytics` — two-tab page: Topics and Users
+- ✅ Topics tab: ranked list by view count with progress bar, filterable by user / language / category / search
+- ✅ Users tab: per-user summary (total views, topics completed, last active) with "View topics" drill-down
+- ✅ Backed by two SECURITY DEFINER RPCs: `get_topic_analytics(filter_user_id?)` and `get_user_activity_summary()`
+
+#### 5G — User Management ✅ Delivered
+- ✅ `/admin/users` — lists all auth users with email, role, last sign-in
+- ✅ Password reset button per user (envelope icon) — calls `supabase.auth.resetPasswordForEmail()` with redirect to `/auth/reset-password`; spinner while sending
+- ✅ Role management (promote/demote admin/editor)
+
+#### 5H — Duplicate Detection ✅ Delivered
+- ✅ `/admin/dedup` — one-click Claude-powered duplicate analysis
+- ✅ Sends all EN topics (id, title, question, category, answer preview) to Claude Sonnet
+- ✅ Claude scores each topic 0–100 on title clarity, question sharpness, answer quality, and apologetics value
+- ✅ Returns duplicate groups with confidence % and reason; auto-sets `published = false` on losers
+- ✅ UI shows trophy (kept) / eye-slash (hidden) per topic with score bar and confidence pill
+- ✅ Hidden topics recoverable via Admin → Topics → Hidden filter
+- ✅ API route `/api/dedup` — admin-only, POST, no body required
 
 ---
 
@@ -787,18 +813,21 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 
 #### 8A — Library Hub ✅
 
-- `/library` — auth-gated resource catalog listing all available documents
+- `/library` — resource catalog with tiered guest access
 - Grid of resource cards with icon, title, description, and category badge
 - `OfflineBanner` shown globally when offline; content pages show `OfflineFallback` when data is unavailable
+- **Guest access:** Bible and Catechism open to all users; GIRM and Canon Law require sign-in (cards shown dimmed with lock icon → redirect to `/account`)
+- **Disclaimer banner** between free and locked resources: *"Sign in to access more documents of the Catholic Church"*
+- Search scoped by auth: guests search CCC only; signed-in users search CCC + GIRM + Canon simultaneously
 
 **Resources listed:**
 
-| Title | Route | Badge | Status |
-|-------|-------|-------|--------|
-| Holy Bible | `/bible` | Scripture | ✅ |
-| Catechism of the Catholic Church | `/catechism` | Magisterium | ✅ |
-| General Instruction of the Roman Missal | `/girm` | Liturgy | ✅ |
-| Code of Canon Law | `/canon` | Canon Law | ✅ |
+| Title | Route | Badge | Guest Access | Status |
+|-------|-------|-------|-------------|--------|
+| Holy Bible | `/bible` | Scripture | ✅ Free | ✅ |
+| Catechism of the Catholic Church | `/catechism` | Magisterium | ✅ Free | ✅ |
+| General Instruction of the Roman Missal | `/girm` | Liturgy | 🔒 Members | ✅ |
+| Code of Canon Law | `/canon` | Canon Law | 🔒 Members | ✅ |
 
 #### 8B — Bible Browser (`/bible`) ✅
 
@@ -861,16 +890,17 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 
 **UI:** Same pattern — book tabs, canon number badge (`c.N`), expandable cards, search, `OfflineFallback`.
 
-#### 8F — Pending / Backlog ⬜
+#### 8F — Backlog
 
-| Item | Notes |
-|------|-------|
-| Pre-cache Sacred Texts for offline | Settings "Download for offline" currently covers Handbook JSON only; Library document pages rely on the SW's 1-hour NetworkFirst cache |
-| Search across all documents | Global search bar on `/library` that queries all tables simultaneously |
-| Cross-link Library ↔ Topics | Clicking a CCC citation on a topic detail opens the CCC browser at that paragraph |
-| Additional documents | Papal encyclicals, Council documents (Vatican II), Compendium of CCC |
-| TL / CEB translations | `lang` column exists on all tables; content not yet seeded for non-English |
-| Bible offline download | Chapter-level pre-caching from the Bible browser |
+| Item | Notes | Status |
+|------|-------|--------|
+| Pre-cache Sacred Texts for offline | CCC, GIRM, Canon pre-cached via `useOfflineCache` Step 2 | ✅ Delivered |
+| Search across all documents | Global search bar on `/library` querying all tables | ✅ Delivered |
+| Cross-link Library ↔ Topics | CCC citation on topic detail → opens CCC browser at paragraph | ✅ Delivered |
+| Guest access to Bible + Catechism | Free resources visible without sign-in | ✅ Delivered |
+| Additional documents | Papal encyclicals, Council documents (Vatican II), Compendium of CCC | ⬜ Planned |
+| TL / CEB translations | `lang` column exists on all tables; content not yet seeded | ⬜ Planned |
+| Bible offline download | Chapter-level pre-caching from the Bible browser | ⬜ Planned |
 
 ---
 
@@ -882,40 +912,47 @@ All ⬜ items across phases, consolidated and ranked. Ship in this order unless 
 
 ---
 
+### Recently Delivered (this session)
+
+| Item | What shipped |
+|------|-------------|
+| Offline full-app download | Topic pages, app shell, Sacred Texts Library all pre-cached; progress bar fixed; status persisted via localStorage; cache versioning for forced re-download |
+| Library guest access | Bible + Catechism free for all; GIRM + Canon locked behind sign-in with disclaimer |
+| Admin-curated carousel | `is_recommended` flag wired to DailyCarousel; falls back to hash algorithm when none set |
+| Admin: Analytics | `/admin/analytics` — topic view rankings + per-user activity summary |
+| Admin: User management | Password reset button per user in `/admin/users` |
+| Admin: Duplicate detection | `/admin/dedup` — Claude scans all EN topics, scores quality, auto-hides duplicates |
+| Admin: Topic filter pills | Hidden / Recommended pills with live counts replace status dropdown |
+
+---
+
 ### Tier 1 — Core promise gaps (ship next)
 
 These directly deliver the app's stated goals (G1–G4). Skipping them leaves the primary value proposition partially fulfilled.
 
 | # | Item | Why it matters |
 |---|------|----------------|
-| 1 | **Content expansion to 100+ EN topics** | The app is an apologetics tool. 50 topics leaves most categories with ≤ 6 entries — not enough for a user to study any subject in depth. Every user hits this ceiling. |
-| 2 | **Professional TL/CEB translations (30 stubs)** | Primary audience is Filipino Catholics. Tagalog and Cebuano stubs are placeholder text, not readable content. Half the intended users get a broken experience. |
-| 3 | **Pre-cache Sacred Texts Library for offline** | "Offline-first" (G1) is a core promise. Library pages (CCC, GIRM, Canon) have no offline fallback for first-time visitors — the SW's 1-hour NetworkFirst cache only helps repeat visitors. Add a "Download Library" button to Settings similar to the existing Handbook download. |
+| 1 | **TL/CEB translations** | Primary audience is Filipino Catholics. Tagalog and Cebuano stubs are placeholder text. Admin translation page + Claude API are ready — content just needs to be run. |
 
 ---
 
-### Tier 2 — High-usability bridges (high ROI, low lift)
-
-These connect existing features or fix daily friction. Zero new data required; mostly UI work.
+### Tier 2 — High-usability
 
 | # | Item | Why it matters |
 |---|------|----------------|
-| 4 | **Cross-link Library ↔ Topics** | When a user reads a topic and sees "CCC 1213," tapping that citation should open the CCC browser at paragraph 1213. Bridges the two main content systems in the most natural user flow. |
-| 5 | **Global search across Library documents** | One search box on `/library` querying Bible + CCC + GIRM + Canon simultaneously. High utility for debate prep and study — currently each document is siloed. |
-| 6 | **Per-language tabs in admin Topic Editor** | Currently editing TL and CEB requires navigating to separate URLs. Side-by-side EN/TL/CEB tabs in the editor would cut translation review time significantly for admins. |
+| 2 | **Per-language tabs in admin Topic Editor** | Currently editing TL and CEB requires navigating to separate URLs. Side-by-side EN/TL/CEB tabs would cut review time significantly. |
+| 3 | **Push notification content strategy** | Notifications wired up but no content cadence defined. Daily featured topic push would drive re-engagement. |
+| 4 | **Admin site config panel** (`/admin/config`) | App name, colors, feature flags in env vars. A UI lets non-technical admins change them without redeploy. |
 
 ---
 
 ### Tier 3 — Depth and audience expansion
 
-Valuable after Tier 1–2 are solid. Broadens content or reach.
-
 | # | Item | Why it matters |
 |---|------|----------------|
-| 7 | **Additional Library documents** | Papal encyclicals (Humanae Vitae, Lumen Fidei), Vatican II documents (Lumen Gentium, Dei Verbum), Compendium of the CCC. Catechists and serious apologists will expect these. Adds to the Library the same way as GIRM/Canon. |
-| 8 | **TL/CEB seeding for Library tables** | `lang` column exists on `girm_articles` and `canons`; source documents needed. Parallel to the apologetics content translation backlog. |
-| 9 | **PDF export for topics and paths** | Catechists printing handouts or preparing lesson notes. Useful but narrow audience; lower daily-use impact than discovery features. |
-| 10 | **`coverImage` field in topic schema** | Populates the DailyCarousel banner image with topic-specific photos instead of category placeholders. Visual polish — adds engagement but doesn't change content access. |
+| 5 | **Additional Library documents** | Papal encyclicals (Humanae Vitae, Lumen Fidei), Vatican II documents (Lumen Gentium, Dei Verbum), Compendium of CCC. Serious apologists will expect these. |
+| 6 | **TL/CEB seeding for Library tables** | `lang` column exists on `girm_articles` and `canons`; source documents needed. |
+| 7 | **PDF export for topics and paths** | Catechists printing handouts or preparing lesson notes. |
 
 ---
 
@@ -925,10 +962,10 @@ Do after Tier 1–3, or skip if resources are constrained.
 
 | # | Item | Why it matters |
 |---|------|----------------|
-| 11 | **Marian path expansion** | 3 topics in the Marian Path is thin. Depends on Tier 1 content expansion — unblock it first. |
-| 12 | **Content shortcodes in `answer_full`** (`{{ccc:464}}`, `{{verse:jn-1-1}}`) | Author ergonomics only; no user-visible change. Useful when content volume justifies it. |
-| 13 | **Bible chapter-level offline download** | The SW's NetworkFirst cache already covers recently-visited Bible chapters for 1 hour. Explicit pre-fetch is marginal unless users plan to go offline mid-session. |
-| 14 | **Native mobile apps via Capacitor** | The PWA covers ~90% of the native use case (install prompt, offline, push notifications). App Store presence adds discoverability, but high build/maintenance cost for the gain. |
+| 8 | **Marian path expansion** | 3 topics in the Marian Path is thin. Depends on Tier 1 TL/CEB completion. |
+| 9 | **Content shortcodes in `answer_full`** (`{{ccc:464}}`, `{{verse:jn-1-1}}`) | Author ergonomics only; no user-visible change. Useful when content volume justifies it. |
+| 10 | **Bible chapter-level offline download** | SW's NetworkFirst already covers recently-visited chapters. Marginal unless users plan to go offline mid-session. |
+| 11 | **Native mobile apps via Capacitor** | PWA covers ~90% of the native use case. App Store presence adds discoverability, but high build/maintenance cost. |
 
 ---
 
