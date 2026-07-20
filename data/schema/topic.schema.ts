@@ -32,6 +32,13 @@ export const ObjectionSchema = z.object({
   response: z.string(),
 })
 
+export const DocumentRefSchema = z.object({
+  docSlug:      z.string(),
+  docTitle:     z.string(),
+  sectionNum:   z.number(),
+  sectionLabel: z.string().nullable(),
+})
+
 export const TopicSchema = z.object({
   id: z.string(),
   category: CategorySchema,
@@ -48,6 +55,7 @@ export const TopicSchema = z.object({
   difficulty: DifficultySchema,
   lang: LanguageSchema,
   relatedTopics: z.array(z.string()).optional(),
+  documentRefs: z.array(DocumentRefSchema).optional(),
   lastUpdated: z.string(),
 })
 
@@ -61,5 +69,6 @@ export type Objection = z.infer<typeof ObjectionSchema>
 export type Category = z.infer<typeof CategorySchema>
 export type Difficulty = z.infer<typeof DifficultySchema>
 export type Language = z.infer<typeof LanguageSchema>
+export type DocumentRef = z.infer<typeof DocumentRefSchema>
 export type Topic = z.infer<typeof TopicSchema>
 export type HandbookContent = z.infer<typeof HandbookContentSchema>

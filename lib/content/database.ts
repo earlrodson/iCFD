@@ -3,6 +3,7 @@ import {
   type HandbookContent,
   type Language,
   type Topic,
+  type DocumentRef,
 } from '@/data/schema/topic.schema'
 import type { Json } from '@/lib/supabase/database.types'
 
@@ -153,6 +154,43 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     lang: row.lang,
     relatedTopics: jsonArray(row.related_topics),
     lastUpdated: row.last_updated,
+    documentRefs: undefined, // populated separately via fetchDocumentRefs
+  }
+}
+
+// ── Document refs fetcher ─────────────────────────────────────────────────────
+
+interface DocRefRow {
+  doc_slug:      string
+  section_num:   number
+  section_label: string | null
+  church_document_meta: { title: string } | null
+}
+
+async function fetchDocumentRefs(topicId: string): Promise<DocumentRef[]> {
+  const config = getRestConfig()
+  if (!config) return []
+  try {
+    const res = await fetch(
+      `${config.base}/rest/v1/topic_document_refs` +
+        `?topic_id=eq.${encodeURIComponent(topicId)}` +
+        `&select=doc_slug,section_num,section_label,church_document_meta(title)` +
+        `&order=doc_slug.asc,section_num.asc`,
+      {
+        headers: { apikey: config.key, Authorization: `Bearer ${config.key}` },
+        next: { revalidate: 60 },
+      },
+    )
+    if (!res.ok) return []
+    const rows: DocRefRow[] = await res.json()
+    return rows.map(r => ({
+      docSlug:      r.doc_slug,
+      docTitle:     r.church_document_meta?.title ?? r.doc_slug,
+      sectionNum:   r.section_num,
+      sectionLabel: r.section_label,
+    }))
+  } catch {
+    return []
   }
 }
 
@@ -190,6 +228,11 @@ export async function loadTopicFromDatabase(
   const rows = await fetchTopicRows(new URLSearchParams({ id: `eq.${id}`, lang: `eq.${lang}`, limit: '1' }))
   const row = rows?.[0]
   if (!row) return null
-  const refs = await resolveRefs([row])
-  return topicRowToTopic(row, refs)
+  const [refs, documentRefs] = await Promise.all([
+    resolveRefs([row]),
+    fetchDocumentRefs(id),
+  ])
+  const topic = topicRowToTopic(row, refs)
+  topic.documentRefs = documentRefs.length ? documentRefs : undefined
+  return topic
 }

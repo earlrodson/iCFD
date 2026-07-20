@@ -17,6 +17,7 @@
     "db:seed": "node scripts/seed.mjs",
     "db:translate": "node scripts/translate.mjs",
     "doc:fetch": "node scripts/fetch-vatican-doc.mjs",
+    "doc:fetch-council": "node scripts/fetch-council-doc.mjs",
     "doc:seed": "node scripts/seed-church-doc.mjs"
   },
   "dependencies": {

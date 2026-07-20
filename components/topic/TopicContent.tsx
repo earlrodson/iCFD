@@ -19,6 +19,7 @@ import {
   ArrowCircleDown,
   Spinner,
   X,
+  BookBookmark,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic } from '@/data/schema/topic.schema'
@@ -380,7 +381,33 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 </div>
               </div>
             )}
-            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && (
+            {topic.documentRefs && topic.documentRefs.length > 0 && (
+              <div className="border-t border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
+                  <BookBookmark weight="light" size={13} /> Church Documents
+                </p>
+                <div className="space-y-1.5">
+                  {topic.documentRefs.map((r, i) => (
+                    <Link
+                      key={i}
+                      href={`/documents/${r.docSlug}?s=${r.sectionNum}`}
+                      className="flex items-start gap-2 w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1 -mx-1.5 transition-colors"
+                    >
+                      <span className="shrink-0 font-mono font-bold text-primary/70 bg-primary/8 rounded px-1.5 py-0.5 mt-0.5">
+                        §{r.sectionNum}
+                      </span>
+                      <span>
+                        <span className="font-semibold text-foreground">{r.docTitle}</span>
+                        {r.sectionLabel && (
+                          <span className="text-muted-foreground ml-1">· {r.sectionLabel.split(' · ').pop()}</span>
+                        )}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && (
               <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
             )}
           </div>

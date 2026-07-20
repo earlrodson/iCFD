@@ -58,13 +58,22 @@ const h1Title   = text(doc.querySelector('h1, h2'))
 let rawTitle = (ogTitle || h1Title || pageTitle).replace(/\s*[\|\-–].*$/, '').trim()
 // Strip Vatican boilerplate: "Encyclical Letter of His Holiness Leo XIV Magnifica Humanitas (15 May 2026)"
 // → "Magnifica Humanitas"
+// Detect pope from URL early so title-stripping only applies to papal documents
+const popeInUrl = url.match(/\/content\/([^/]+)\//)
+
 rawTitle = rawTitle
-  .replace(/\s*\(\d{1,2}\s+\w+\s+\d{4}\)\s*$/, '')                       // strip date "(15 May 2026)"
-  .replace(/^(Apostolic\s+)?(Encyclical|Exhortation|Constitution|Letter|Bull)\s+(Letter\s+)?/i, '')
+  .replace(/\s*\(\w+\s+\d{1,2},?\s+\d{4}\)\s*$/, '')                     // strip "(July 25, 1968)"
+  .replace(/\s*\(\d{1,2}\s+\w+\s+\d{4}\)\s*$/, '')                       // strip "(15 May 2026)"
+  .replace(/^(Apostolic\s+)?(Dogmatic\s+)?(Pastoral\s+)?(Encyclical|Exhortation|Constitution|Letter|Bull)\s+(Letter\s+)?/i, '')
   .replace(/^of\s+(His|Her)\s+(Holiness|Eminence|Excellency)\s+/i, '')     // "of His Holiness"
   .replace(/^(Pope|Cardinal|Bishop|Archbishop)\s+/i, '')                    // leading title
-  .replace(/^[A-Z][a-z]+(\s+[A-Z]+)?\s+/,'')                               // "Leo XIV " prefix
   .trim()
+
+// Only strip "Leo XIV " style name prefix on actual papal documents (URL has /content/<pope>/)
+if (popeInUrl) {
+  rawTitle = rawTitle.replace(/^[A-Z][a-z]+(\s+[A-Z]+)?\s+/, '').trim()
+}
+
 // Fallback: use slug converted to title case
 if (!rawTitle || rawTitle.length > 80) {
   rawTitle = slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
@@ -94,8 +103,10 @@ if (!author) {
   }
 }
 
-// Year: from URL date pattern YYYYMMDD or from page
-const yearMatch = url.match(/\/(\d{4})\d{4}-/) || url.match(/(\d{4})/)
+// Year: from URL — look for YYYYMMDD pattern, or a standalone 19xx/20xx year
+const yearMatch = url.match(/[_\/]((?:19|20)\d{2})\d{4}[_\-]/)   // YYYYMMDD block
+               || url.match(/[_\/]((?:19|20)\d{2})[_\-]/)          // standalone year
+               || url.match(/((?:19|20)\d{2})/)                     // anywhere in URL
 const year = yearMatch ? parseInt(yearMatch[1]) : new Date().getFullYear()
 
 // ── Extract sections ─────────────────────────────────────────────────────────

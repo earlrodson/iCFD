@@ -15,6 +15,8 @@ interface ScriptureVerse { id: number; reference: string; version: string; text:
 interface CCCParagraph  { paragraph: number; summary: string | null; text: string | null }
 interface FatherQuote   { id: number; author: string; quote: string; source: string; year_approx: number | null }
 interface Objection     { objection: string; response: string }
+interface DocRef        { id: number; doc_slug: string; section_num: number; section_label: string | null; church_document_meta: { title: string } | null }
+interface DocSection    { slug: string; section_num: number; section_label: string | null; text: string | null; church_document_meta: { title: string } | null }
 
 type Lang = 'en' | 'tl' | 'ceb'
 
@@ -744,6 +746,16 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
           />
         </Section>
 
+        {/* ── Church Documents ── */}
+        {!isNew && (
+          <Section title="Church Documents">
+            <p className="text-xs text-muted-foreground -mt-1">
+              Link specific sections from councils or encyclicals that support this topic.
+            </p>
+            <DocumentRefSection topicId={form.id} supabaseUrl={process.env.NEXT_PUBLIC_SUPABASE_URL!} supabaseKey={process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!} />
+          </Section>
+        )}
+
         {/* ── Church Fathers ── */}
         <Section title="Church Fathers">
           <p className="text-xs text-muted-foreground -mt-1">
@@ -825,5 +837,138 @@ function AddButton({ onClick, label }: { onClick: () => void; label: string }) {
       <Plus weight="bold" size={13} />
       {label}
     </button>
+  )
+}
+
+// ── Document Refs Section ──────────────────────────────────────────────────────
+
+function DocumentRefSection({ topicId, supabaseUrl, supabaseKey }: {
+  topicId: string
+  supabaseUrl: string
+  supabaseKey: string
+}) {
+  const [refs,     setRefs]     = useState<DocRef[]>([])
+  const [query,    setQuery]    = useState('')
+  const [results,  setResults]  = useState<DocSection[]>([])
+  const [searching, setSearching] = useState(false)
+  const debounce = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const h = { apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}` }
+
+  useEffect(() => {
+    fetch(`/api/admin/topic-doc-refs?topic_id=${encodeURIComponent(topicId)}`)
+      .then(r => r.ok ? r.json() : [])
+      .then(setRefs)
+  }, [topicId])
+
+  useEffect(() => {
+    clearTimeout(debounce.current)
+    if (query.trim().length < 3) { setResults([]); return }
+    setSearching(true)
+    debounce.current = setTimeout(async () => {
+      const enc = encodeURIComponent(query.trim())
+      const res = await fetch(
+        `${supabaseUrl}/rest/v1/church_documents?text=ilike.*${enc}*&select=slug,section_num,section_label,text,church_document_meta(title)&limit=6`,
+        { headers: h },
+      )
+      setResults(res.ok ? await res.json() : [])
+      setSearching(false)
+    }, 350)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query])
+
+  async function addRef(s: DocSection) {
+    const already = refs.some(r => r.doc_slug === s.slug && r.section_num === s.section_num)
+    if (already) return
+    await fetch('/api/admin/topic-doc-refs', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic_id: topicId, doc_slug: s.slug, section_num: s.section_num, section_label: s.section_label }),
+    })
+    setRefs(prev => [...prev, {
+      id: Date.now(),
+      doc_slug: s.slug,
+      section_num: s.section_num,
+      section_label: s.section_label,
+      church_document_meta: s.church_document_meta,
+    }])
+    setQuery('')
+    setResults([])
+  }
+
+  async function removeRef(ref: DocRef) {
+    await fetch(
+      `/api/admin/topic-doc-refs?topic_id=${encodeURIComponent(topicId)}&doc_slug=${encodeURIComponent(ref.doc_slug)}&section_num=${ref.section_num}`,
+      { method: 'DELETE' },
+    )
+    setRefs(prev => prev.filter(r => !(r.doc_slug === ref.doc_slug && r.section_num === ref.section_num)))
+  }
+
+  return (
+    <div className="space-y-3">
+      {/* Current refs */}
+      {refs.length > 0 && (
+        <div className="space-y-1.5">
+          {refs.map(r => (
+            <div key={`${r.doc_slug}-${r.section_num}`}
+              className="flex items-center gap-2 rounded-lg border border-border bg-muted/30 px-3 py-2">
+              <span className="font-mono text-xs font-bold text-primary/70 bg-primary/8 rounded px-1.5 py-0.5 shrink-0">
+                §{r.section_num}
+              </span>
+              <span className="flex-1 min-w-0 text-xs">
+                <span className="font-medium text-foreground">{r.church_document_meta?.title ?? r.doc_slug}</span>
+                {r.section_label && (
+                  <span className="text-muted-foreground ml-1">· {r.section_label.split(' · ').pop()}</span>
+                )}
+              </span>
+              <button onClick={() => removeRef(r)}
+                className="shrink-0 text-muted-foreground hover:text-rose-500 transition-colors">
+                <Trash weight="light" size={14} />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Search */}
+      <div className="relative">
+        <MagnifyingGlass weight="light" size={14}
+          className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+        <input
+          type="search"
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Search councils and encyclicals…"
+          className="field pl-8 pr-8"
+        />
+        {searching && (
+          <Spinner weight="light" size={13} className="absolute right-3 top-1/2 -translate-y-1/2 animate-spin text-muted-foreground" />
+        )}
+      </div>
+
+      {results.length > 0 && (
+        <div className="rounded-xl border border-border overflow-hidden divide-y divide-border">
+          {results.map(s => (
+            <button
+              key={`${s.slug}-${s.section_num}`}
+              onClick={() => addRef(s)}
+              className="w-full text-left px-3 py-2.5 hover:bg-muted/40 transition-colors"
+            >
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xs font-bold text-primary/70 bg-primary/8 rounded px-1.5 py-0.5 shrink-0">
+                  §{s.section_num}
+                </span>
+                <span className="text-xs font-medium text-foreground">{s.church_document_meta?.title ?? s.slug}</span>
+                {s.section_label && (
+                  <span className="text-xs text-muted-foreground">· {s.section_label.split(' · ').pop()}</span>
+                )}
+              </div>
+              {s.text && (
+                <p className="text-xs text-muted-foreground mt-1 line-clamp-1 pl-8">{s.text.slice(0, 100)}</p>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
   )
 }

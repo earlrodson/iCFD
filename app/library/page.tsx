@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import { BookOpen, Cross, Lock, BookBookmark, Scales, MagnifyingGlass, Spinner } from '@phosphor-icons/react'
+import { BookOpen, Cross, Lock, BookBookmark, Scales, MagnifyingGlass, Spinner, FilePdf } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange } from '@/lib/supabase/auth'
 import type { User } from '@/lib/supabase/auth'
 
@@ -22,6 +22,81 @@ const FREE_RESOURCES = [
     title:       'Catechism of the Catholic Church',
     description: 'Second Edition · 2,865 paragraphs across four parts',
     badge:       'Magisterium',
+  },
+]
+
+const CHURCH_DOCS = [
+  {
+    href:        '/documents/magnifica-humanitas',
+    title:       'Magnifica Humanitas',
+    description: 'On artificial intelligence and human dignity — Pope Leo XIV · 2026',
+    badge:       'Encyclical',
+  },
+  {
+    href:        '/documents/lumen-gentium',
+    title:       'Lumen Gentium',
+    description: 'Dogmatic Constitution on the Church — Vatican II · 1964',
+    badge:       'Vatican II',
+  },
+  {
+    href:        '/documents/dei-verbum',
+    title:       'Dei Verbum',
+    description: 'Dogmatic Constitution on Divine Revelation — Vatican II · 1965',
+    badge:       'Vatican II',
+  },
+  {
+    href:        '/documents/gaudium-et-spes',
+    title:       'Gaudium et Spes',
+    description: 'Pastoral Constitution on the Church in the Modern World — Vatican II · 1965',
+    badge:       'Vatican II',
+  },
+  {
+    href:        '/documents/humanae-vitae',
+    title:       'Humanae Vitae',
+    description: 'On the Regulation of Birth — Pope Paul VI · 1968',
+    badge:       'Encyclical',
+  },
+  {
+    href:        '/documents/council-of-trent',
+    title:       'Council of Trent',
+    description: 'Canons and Decrees on Scripture, Sacraments & Justification · 1545–1563',
+    badge:       'Council',
+  },
+  {
+    href:        '/documents/council-nicaea-i',
+    title:       'First Council of Nicaea',
+    description: '20 canons defining the divinity of Christ and Church discipline · 325',
+    badge:       'Council',
+  },
+  {
+    href:        '/documents/council-constantinople-i',
+    title:       'First Council of Constantinople',
+    description: '7 canons expanding the Nicene Creed and affirming the Holy Spirit · 381',
+    badge:       'Council',
+  },
+  {
+    href:        '/documents/council-ephesus',
+    title:       'Council of Ephesus',
+    description: 'Defined Mary as Theotokos and condemned Nestorianism · 431',
+    badge:       'Council',
+  },
+  {
+    href:        '/documents/council-chalcedon',
+    title:       'Council of Chalcedon',
+    description: '30 canons on the two natures of Christ, against Monophysitism · 451',
+    badge:       'Council',
+  },
+  {
+    href:        '/documents/council-constantinople-ii',
+    title:       'Second Council of Constantinople',
+    description: 'Condemned the Three Chapters and affirmed Chalcedonian Christology · 553',
+    badge:       'Council',
+  },
+  {
+    href:        '/documents/council-laodicea',
+    title:       'Synod of Laodicea',
+    description: '60 canons on liturgy, Scripture canon, and Church order · c. 363',
+    badge:       'Council',
   },
 ]
 
@@ -47,11 +122,13 @@ const LOCKED_RESOURCES = [
 interface CccResult   { paragraph: number; summary: string | null; text: string | null }
 interface GirmResult  { article: number;   summary: string | null; text: string | null }
 interface CanonResult { canon: number;     summary: string | null; text: string | null }
+interface DocResult   { slug: string; section_num: number; section_label: string | null; text: string | null; church_document_meta: { title: string } | null }
 
 interface SearchResults {
   ccc:   CccResult[]
   girm:  GirmResult[]
   canon: CanonResult[]
+  docs:  DocResult[]
 }
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
@@ -60,7 +137,7 @@ const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 async function searchLibrary(q: string, signedIn: boolean): Promise<SearchResults> {
   const h = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
   const enc = encodeURIComponent(q)
-  const [ccc, girm, canon] = await Promise.all([
+  const [ccc, girm, canon, docs] = await Promise.all([
     fetch(`${SUPABASE_URL}/rest/v1/ccc_paragraphs?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=paragraph,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : []),
     signedIn
       ? fetch(`${SUPABASE_URL}/rest/v1/girm_articles?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=article,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : [])
@@ -68,8 +145,9 @@ async function searchLibrary(q: string, signedIn: boolean): Promise<SearchResult
     signedIn
       ? fetch(`${SUPABASE_URL}/rest/v1/canons?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=canon,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : [])
       : Promise.resolve([]),
+    fetch(`${SUPABASE_URL}/rest/v1/church_documents?text=ilike.*${enc}*&select=slug,section_num,section_label,text,church_document_meta(title)&limit=5`, { headers: h }).then(r => r.ok ? r.json() : []),
   ])
-  return { ccc: ccc ?? [], girm: girm ?? [], canon: canon ?? [] }
+  return { ccc: ccc ?? [], girm: girm ?? [], canon: canon ?? [], docs: docs ?? [] }
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -100,7 +178,7 @@ export default function LibraryPage() {
     }, 350)
   }, [query, signedIn])
 
-  const hasResults = results && (results.ccc.length + results.girm.length + results.canon.length) > 0
+  const hasResults = results && (results.ccc.length + results.girm.length + results.canon.length + results.docs.length) > 0
   const noResults  = results && !hasResults
 
   return (
@@ -175,6 +253,19 @@ export default function LibraryPage() {
               ))}
             </ResultGroup>
           )}
+
+          {results!.docs.length > 0 && (
+            <ResultGroup label="Church Documents" badge="Docs">
+              {results!.docs.map(r => (
+                <ResultItem
+                  key={`${r.slug}-${r.section_num}`}
+                  ref_={`§${r.section_num}`}
+                  text={`${r.church_document_meta?.title ?? r.slug} · ${r.section_label?.split(' · ').pop() ?? ''} — ${r.text ?? ''}`}
+                  href={`/documents/${r.slug}?s=${r.section_num}`}
+                />
+              ))}
+            </ResultGroup>
+          )}
         </div>
       )}
 
@@ -203,6 +294,36 @@ export default function LibraryPage() {
               <span className="text-muted-foreground text-lg shrink-0">›</span>
             </Link>
           ))}
+
+          {/* Church Documents */}
+          <div className="mt-4">
+            <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide mb-2 px-0.5">
+              Church Documents
+            </p>
+            <div className="space-y-2">
+              {CHURCH_DOCS.map(({ href, title, description, badge }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="flex items-start gap-4 rounded-xl border border-border p-4 hover:border-primary/40 hover:bg-muted/40 transition-colors"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                    <FilePdf weight="light" size={22} className="text-primary" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <span className="font-medium text-foreground text-sm">{title}</span>
+                      <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                        {badge}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
+                  </div>
+                  <span className="text-muted-foreground text-lg shrink-0">›</span>
+                </Link>
+              ))}
+            </div>
+          </div>
 
           {/* Disclaimer / sign-in CTA */}
           {!signedIn && user !== undefined && (

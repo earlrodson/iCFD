@@ -12,7 +12,6 @@
 
 import { readFileSync } from 'fs'
 import { resolve } from 'path'
-import { createClient } from '@supabase/supabase-js'
 
 // Load .env.local manually (same pattern as seed.mjs)
 const envLines = readFileSync(resolve(process.cwd(), '.env.local'), 'utf8').split('\n')
@@ -24,6 +23,27 @@ for (const line of envLines) {
   const key = trimmed.slice(0, eq).trim()
   const val = trimmed.slice(eq + 1).trim().replace(/^["']|["']$/g, '')
   if (key && !process.env[key]) process.env[key] = val
+}
+
+// Use direct REST API (supabase-js doesn't accept the sb_secret_* key format yet)
+async function restUpsert(supabaseUrl, serviceKey, table, rows, onConflict) {
+  const url = onConflict
+    ? `${supabaseUrl}/rest/v1/${table}?on_conflict=${onConflict}`
+    : `${supabaseUrl}/rest/v1/${table}`
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': serviceKey,
+      'Authorization': `Bearer ${serviceKey}`,
+      'Prefer': 'resolution=merge-duplicates,return=minimal',
+    },
+    body: JSON.stringify(rows),
+  })
+  if (!res.ok) {
+    const body = await res.text()
+    throw new Error(`REST ${res.status}: ${body}`)
+  }
 }
 
 const [jsonPath, flag] = process.argv.slice(2)
@@ -62,27 +82,23 @@ if (dryRun) {
 // ── Supabase ──────────────────────────────────────────────────────────────────
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const serviceKey  = process.env.SUPABASE_SECRET_KEY
+// Use legacy anon JWT key for REST API (sb_secret_* format not yet supported by the REST endpoint)
+const serviceKey  = process.env.SUPABASE_ANON_JWT ?? process.env.SUPABASE_SECRET_KEY
 
 if (!supabaseUrl || !serviceKey) {
-  console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SECRET_KEY in .env.local')
+  console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_ANON_JWT in .env.local')
   process.exit(1)
 }
-
-const supabase = createClient(supabaseUrl, serviceKey, {
-  auth: { autoRefreshToken: false, persistSession: false },
-})
 
 // Upsert metadata
 console.log('Upserting document metadata…')
-const { error: metaErr } = await supabase
-  .from('church_document_meta')
-  .upsert(meta, { onConflict: 'slug' })
-if (metaErr) {
-  console.error('Meta upsert failed:', metaErr.message)
+try {
+  await restUpsert(supabaseUrl, serviceKey, 'church_document_meta', [meta], 'slug')
+  console.log('  ✓ Metadata saved')
+} catch (err) {
+  console.error('Meta upsert failed:', err.message)
   process.exit(1)
 }
-console.log('  ✓ Metadata saved')
 
 // Upsert sections in batches of 50
 console.log(`Upserting ${sections.length} sections…`)
@@ -91,11 +107,10 @@ const BATCH = 50
 let inserted = 0
 for (let i = 0; i < rows.length; i += BATCH) {
   const batch = rows.slice(i, i + BATCH)
-  const { error } = await supabase
-    .from('church_documents')
-    .upsert(batch, { onConflict: 'slug,section_num' })
-  if (error) {
-    console.error(`Batch ${i}–${i + BATCH} failed:`, error.message)
+  try {
+    await restUpsert(supabaseUrl, serviceKey, 'church_documents', batch, 'slug,section_num')
+  } catch (err) {
+    console.error(`\nBatch ${i}–${i + BATCH} failed:`, err.message)
     process.exit(1)
   }
   inserted += batch.length
