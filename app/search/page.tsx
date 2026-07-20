@@ -80,10 +80,10 @@ function SearchPageInner() {
   const hasFilter = !!(filters.category || filters.difficulty)
 
   return (
-    <div className="flex flex-col bg-background" style={{ minHeight: '100dvh' }}>
+    <div className="bg-background" style={{ minHeight: '100dvh' }}>
 
-      {/* ── Scrollable results area ───────────────────────────── */}
-      <div className="flex-1 overflow-y-auto px-4 pt-6 pb-44">
+      {/* ── Results area — body scroll so browser restores position on back ── */}
+      <div className="px-4 pt-6 pb-52">
         <h1 className="text-2xl font-bold text-foreground mb-4">Search</h1>
 
         {/* Empty state */}
