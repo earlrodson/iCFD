@@ -4,6 +4,7 @@ import {
   type Language,
   type Topic,
   type DocumentRef,
+  type Term,
 } from '@/data/schema/topic.schema'
 import type { Json } from '@/lib/supabase/database.types'
 
@@ -155,6 +156,7 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     relatedTopics: jsonArray(row.related_topics),
     lastUpdated: row.last_updated,
     documentRefs: undefined, // populated separately via fetchDocumentRefs
+    keyTerms: undefined,     // populated separately via fetchKeyTerms
   }
 }
 
@@ -194,6 +196,54 @@ async function fetchDocumentRefs(topicId: string): Promise<DocumentRef[]> {
   }
 }
 
+// ── Key terms fetcher ─────────────────────────────────────────────────────────
+
+interface TermRow {
+  theological_terms: {
+    slug: string
+    term: string
+    pronunciation: string | null
+    language: string
+    root_text: string | null
+    root_meaning: string
+    definition: string
+    debate_note: string | null
+  }
+}
+
+async function fetchKeyTerms(topicId: string): Promise<Term[]> {
+  const config = getRestConfig()
+  if (!config) return []
+  try {
+    const res = await fetch(
+      `${config.base}/rest/v1/topic_terms` +
+        `?topic_id=eq.${encodeURIComponent(topicId)}` +
+        `&select=theological_terms(slug,term,pronunciation,language,root_text,root_meaning,definition,debate_note)`,
+      {
+        headers: { apikey: config.key, Authorization: `Bearer ${config.key}` },
+        next: { revalidate: 60 },
+      },
+    )
+    if (!res.ok) return []
+    const rows: TermRow[] = await res.json()
+    return rows
+      .map((r) => r.theological_terms)
+      .filter(Boolean)
+      .map((t) => ({
+        slug:          t.slug,
+        term:          t.term,
+        pronunciation: t.pronunciation,
+        language:      t.language,
+        rootText:      t.root_text,
+        rootMeaning:   t.root_meaning,
+        definition:    t.definition,
+        debateNote:    t.debate_note,
+      }))
+  } catch {
+    return []
+  }
+}
+
 // ── Topic fetchers ────────────────────────────────────────────────────────────
 
 const TOPIC_SELECT = [
@@ -228,11 +278,13 @@ export async function loadTopicFromDatabase(
   const rows = await fetchTopicRows(new URLSearchParams({ id: `eq.${id}`, lang: `eq.${lang}`, limit: '1' }))
   const row = rows?.[0]
   if (!row) return null
-  const [refs, documentRefs] = await Promise.all([
+  const [refs, documentRefs, keyTerms] = await Promise.all([
     resolveRefs([row]),
     fetchDocumentRefs(id),
+    fetchKeyTerms(id),
   ])
   const topic = topicRowToTopic(row, refs)
   topic.documentRefs = documentRefs.length ? documentRefs : undefined
+  topic.keyTerms = keyTerms.length ? keyTerms : undefined
   return topic
 }

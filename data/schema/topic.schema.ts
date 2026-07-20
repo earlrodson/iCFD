@@ -39,6 +39,17 @@ export const DocumentRefSchema = z.object({
   sectionLabel: z.string().nullable(),
 })
 
+export const TermSchema = z.object({
+  slug:        z.string(),
+  term:        z.string(),
+  pronunciation: z.string().nullable().optional(),
+  language:    z.string(),
+  rootText:    z.string().nullable().optional(),
+  rootMeaning: z.string(),
+  definition:  z.string(),
+  debateNote:  z.string().nullable().optional(),
+})
+
 export const TopicSchema = z.object({
   id: z.string(),
   category: CategorySchema,
@@ -56,6 +67,7 @@ export const TopicSchema = z.object({
   lang: LanguageSchema,
   relatedTopics: z.array(z.string()).optional(),
   documentRefs: z.array(DocumentRefSchema).optional(),
+  keyTerms: z.array(TermSchema).optional(),
   lastUpdated: z.string(),
 })
 
@@ -70,5 +82,6 @@ export type Category = z.infer<typeof CategorySchema>
 export type Difficulty = z.infer<typeof DifficultySchema>
 export type Language = z.infer<typeof LanguageSchema>
 export type DocumentRef = z.infer<typeof DocumentRefSchema>
+export type Term = z.infer<typeof TermSchema>
 export type Topic = z.infer<typeof TopicSchema>
 export type HandbookContent = z.infer<typeof HandbookContentSchema>

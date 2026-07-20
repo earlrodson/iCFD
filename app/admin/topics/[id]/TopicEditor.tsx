@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, useCallback } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { FloppyDisk, ArrowLeft, Plus, Trash, Spinner, MagnifyingGlass, X } from '@phosphor-icons/react'
+import { FloppyDisk, ArrowLeft, Plus, Trash, Spinner, MagnifyingGlass, X, TextAa } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import type { Json } from '@/lib/supabase/database.types'
 
@@ -756,6 +756,16 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
           </Section>
         )}
 
+        {/* ── Key Terms ── */}
+        {!isNew && (
+          <Section title="Key Terms & Etymology">
+            <p className="text-xs text-muted-foreground -mt-1">
+              Link theological terms from the shared glossary. Terms appear in the Brief and Comprehensive tabs.
+            </p>
+            <TermPicker topicId={form.id} />
+          </Section>
+        )}
+
         {/* ── Church Fathers ── */}
         <Section title="Church Fathers">
           <p className="text-xs text-muted-foreground -mt-1">
@@ -968,6 +978,118 @@ function DocumentRefSection({ topicId, supabaseUrl, supabaseKey }: {
             </button>
           ))}
         </div>
+      )}
+    </div>
+  )
+}
+
+// ── Term Picker ────────────────────────────────────────────────────────────────
+
+interface TermRow {
+  slug: string
+  term: string
+  pronunciation: string | null
+  language: string
+  root_meaning: string
+  definition: string
+}
+
+function TermPicker({ topicId }: { topicId: string }) {
+  const [allTerms,  setAllTerms]  = useState<TermRow[]>([])
+  const [linked,    setLinked]    = useState<string[]>([])
+  const [query,     setQuery]     = useState('')
+  const [loading,   setLoading]   = useState(true)
+  const [saving,    setSaving]    = useState<string | null>(null)
+
+  useEffect(() => {
+    if (!topicId) return
+    Promise.all([
+      fetch('/api/admin/topic-terms?all=1').then(r => r.json()),
+      fetch(`/api/admin/topic-terms?topic_id=${encodeURIComponent(topicId)}`).then(r => r.json()),
+    ]).then(([all, linked]) => {
+      setAllTerms(Array.isArray(all) ? all : [])
+      const slugs = Array.isArray(linked)
+        ? linked.map((l: { term_slug: string }) => l.term_slug)
+        : []
+      setLinked(slugs)
+      setLoading(false)
+    }).catch(() => setLoading(false))
+  }, [topicId])
+
+  async function toggle(slug: string) {
+    setSaving(slug)
+    const isLinked = linked.includes(slug)
+    if (isLinked) {
+      await fetch(`/api/admin/topic-terms?topic_id=${encodeURIComponent(topicId)}&term_slug=${encodeURIComponent(slug)}`, { method: 'DELETE' })
+      setLinked(l => l.filter(s => s !== slug))
+    } else {
+      await fetch('/api/admin/topic-terms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ topic_id: topicId, term_slug: slug }),
+      })
+      setLinked(l => [...l, slug])
+    }
+    setSaving(null)
+  }
+
+  const filtered = allTerms.filter(t =>
+    !query.trim() ||
+    t.term.toLowerCase().includes(query.toLowerCase()) ||
+    t.language.toLowerCase().includes(query.toLowerCase()) ||
+    t.root_meaning.toLowerCase().includes(query.toLowerCase()),
+  )
+
+  if (loading) return <p className="text-xs text-muted-foreground">Loading terms…</p>
+
+  return (
+    <div className="space-y-2">
+      <div className="relative">
+        <MagnifyingGlass weight="light" size={14} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground pointer-events-none" />
+        <input
+          value={query}
+          onChange={e => setQuery(e.target.value)}
+          placeholder="Filter terms…"
+          className="field pl-8 text-xs"
+        />
+      </div>
+      <div className="space-y-1 max-h-72 overflow-y-auto rounded-xl border border-border bg-muted/20 p-1">
+        {filtered.length === 0 && (
+          <p className="px-3 py-4 text-center text-xs text-muted-foreground">No terms found.</p>
+        )}
+        {filtered.map(t => {
+          const isLinked = linked.includes(t.slug)
+          return (
+            <button
+              key={t.slug}
+              onClick={() => toggle(t.slug)}
+              disabled={saving === t.slug}
+              className={`w-full text-left flex items-start gap-2.5 rounded-lg px-3 py-2 transition-colors ${
+                isLinked
+                  ? 'bg-primary/10 hover:bg-primary/15'
+                  : 'hover:bg-muted/60'
+              }`}
+            >
+              {saving === t.slug ? (
+                <Spinner weight="light" size={13} className="animate-spin mt-0.5 shrink-0 text-muted-foreground" />
+              ) : (
+                <TextAa
+                  weight={isLinked ? 'fill' : 'light'}
+                  size={13}
+                  className={`mt-0.5 shrink-0 ${isLinked ? 'text-primary' : 'text-muted-foreground'}`}
+                />
+              )}
+              <span>
+                <span className={`text-xs font-semibold ${isLinked ? 'text-primary' : 'text-foreground'}`}>{t.term}</span>
+                <span className="text-xs text-muted-foreground ml-1">({t.language})</span>
+                <span className="text-xs text-muted-foreground ml-1">· &ldquo;{t.root_meaning}&rdquo;</span>
+              </span>
+            </button>
+          )
+        })}
+      </div>
+      {linked.length > 0 && (
+        <p className="text-xs text-muted-foreground">{linked.length} term{linked.length !== 1 ? 's' : ''} linked to this topic.</p>
       )}
     </div>
   )

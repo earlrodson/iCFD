@@ -20,6 +20,8 @@ import {
   Spinner,
   X,
   BookBookmark,
+  TextAa,
+  CaretDown,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic } from '@/data/schema/topic.schema'
@@ -133,6 +135,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   }, [initialTopic.catechism])
 
   // Resolve {{ccc:N}}, {{verse:ref}}, {{father:id}} shortcodes in answerFull
+  const [expandedTerms, setExpandedTerms] = useState<Set<string>>(new Set())
   const [resolvedFull, setResolvedFull] = useState(displayTopic.answerFull ?? '')
   useEffect(() => {
     const raw = displayTopic.answerFull
@@ -334,6 +337,55 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {resolvedFull}
             </ReactMarkdown>
+            {topic.keyTerms && topic.keyTerms.length > 0 && (
+              <div className="not-prose mt-6 pt-5 border-t border-border">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
+                  <TextAa weight="light" size={13} /> Key Terms &amp; Etymology
+                </p>
+                <div className="space-y-2">
+                  {topic.keyTerms.map((t) => (
+                    <div key={t.slug} className="rounded-xl border border-border bg-muted/30 overflow-hidden">
+                      <button
+                        onClick={() => setExpandedTerms((s) => {
+                          const next = new Set(s)
+                          next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
+                          return next
+                        })}
+                        className="w-full text-left px-4 py-2.5 flex items-center justify-between gap-3"
+                      >
+                        <span className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                          <span className="font-semibold text-sm text-foreground">{t.term}</span>
+                          {t.rootText && (
+                            <span className="font-medium text-primary text-sm">{t.rootText}</span>
+                          )}
+                          {t.pronunciation && (
+                            <span className="text-xs text-muted-foreground">/{t.pronunciation}/</span>
+                          )}
+                          <span className="text-xs text-muted-foreground">({t.language})</span>
+                          <span className="text-xs text-muted-foreground">· &ldquo;{t.rootMeaning}&rdquo;</span>
+                        </span>
+                        <CaretDown
+                          weight="light"
+                          size={14}
+                          className={`shrink-0 transition-transform text-muted-foreground ${expandedTerms.has(t.slug) ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                      {expandedTerms.has(t.slug) && (
+                        <div className="px-4 pb-3 border-t border-border space-y-2 pt-2.5">
+                          <p className="text-sm text-foreground leading-relaxed">{t.definition}</p>
+                          {t.debateNote && (
+                            <div className="rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/40 px-3 py-2">
+                              <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">Debate Note</p>
+                              <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">{t.debateNote}</p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -453,7 +505,44 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 </div>
               </div>
             )}
-            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && (
+            {topic.keyTerms && topic.keyTerms.length > 0 && (
+              <div className="border-t border-border p-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
+                  <TextAa weight="light" size={13} /> Key Terms
+                </p>
+                <div className="space-y-1.5">
+                  {topic.keyTerms.map((t) => (
+                    <button
+                      key={t.slug}
+                      onClick={() => setExpandedTerms((s) => {
+                        const next = new Set(s)
+                        next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
+                        return next
+                      })}
+                      className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1.5 -mx-1.5 transition-colors"
+                    >
+                      <div className="flex items-center justify-between gap-2">
+                        <span>
+                          <span className="font-semibold text-primary">{t.term}</span>
+                          {t.pronunciation && <span className="text-muted-foreground ml-1">/{t.pronunciation}/</span>}
+                          <span className="text-muted-foreground ml-1.5">({t.language})</span>
+                          <span className="text-muted-foreground ml-1">· &ldquo;{t.rootMeaning}&rdquo;</span>
+                        </span>
+                        <CaretDown
+                          weight="light"
+                          size={12}
+                          className={`shrink-0 transition-transform text-muted-foreground ${expandedTerms.has(t.slug) ? 'rotate-180' : ''}`}
+                        />
+                      </div>
+                      {expandedTerms.has(t.slug) && (
+                        <p className="mt-1 text-foreground leading-relaxed pl-0.5">{t.definition}</p>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && !topic.keyTerms?.length && (
               <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
             )}
           </div>
@@ -655,6 +744,63 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 <div className="px-4 py-3">
                   <p className="text-sm text-foreground leading-relaxed">{item.response}</p>
                 </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Key Terms & Etymology */}
+      {topic.keyTerms && topic.keyTerms.length > 0 && (
+        <section className="mb-8">
+          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+            <TextAa weight="light" size={16} />
+            Key Terms &amp; Etymology
+          </h2>
+          <div className="space-y-3">
+            {topic.keyTerms.map((t) => (
+              <div key={t.slug} className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden">
+                <button
+                  onClick={() => setExpandedTerms((s) => {
+                    const next = new Set(s)
+                    next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
+                    return next
+                  })}
+                  className="w-full text-left px-4 py-3 flex items-start justify-between gap-3"
+                >
+                  <div>
+                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                      <span className="font-semibold text-sm text-foreground">{t.term}</span>
+                      {t.rootText && (
+                        <span className="font-medium text-primary text-sm">{t.rootText}</span>
+                      )}
+                      {t.pronunciation && (
+                        <span className="text-xs text-muted-foreground">/{t.pronunciation}/</span>
+                      )}
+                    </div>
+                    <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
+                      <span>{t.language}</span>
+                      <span>·</span>
+                      <span>&ldquo;{t.rootMeaning}&rdquo;</span>
+                    </div>
+                  </div>
+                  <CaretDown
+                    weight="light"
+                    size={16}
+                    className={`shrink-0 mt-1 transition-transform text-muted-foreground ${expandedTerms.has(t.slug) ? 'rotate-180' : ''}`}
+                  />
+                </button>
+                {expandedTerms.has(t.slug) && (
+                  <div className="px-4 pb-4 border-t border-border space-y-2.5 pt-3">
+                    <p className="text-sm text-foreground leading-relaxed">{t.definition}</p>
+                    {t.debateNote && (
+                      <div className="rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/40 px-3.5 py-3">
+                        <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-1.5">In Debate</p>
+                        <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">{t.debateNote}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             ))}
           </div>
