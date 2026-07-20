@@ -24,7 +24,7 @@ export function OfflineCacheSection() {
   }
 
   function statusSub() {
-    if (isDone)        return 'Handbook + Sacred Texts Library available offline'
+    if (isDone)        return 'All topics + Sacred Texts Library available offline'
     if (isPartial)     return 'Tap Download to retry missing items'
     if (isError)       return 'Check your connection and try again'
     if (isDownloading) return 'Please stay on this screen until complete'

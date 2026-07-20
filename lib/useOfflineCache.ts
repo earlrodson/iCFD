@@ -3,6 +3,10 @@ import { LIBRARY_CACHE_NAME } from './libraryCache'
 
 const HANDBOOK_CACHE_NAME = 'icfd-content-v1'
 
+// Workbox runtime cache names — must match what sw.js registers
+const PAGES_CACHE_NAME     = 'pages'
+const PAGES_RSC_CACHE_NAME = 'pages-rsc'
+
 const SUPABASE_URL  = (process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '').replace(/\/$/, '')
 const SUPABASE_KEY  = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ''
 
@@ -11,6 +15,18 @@ const HANDBOOK_URLS = [
   '/data/content/tl/handbook.json',
   '/data/content/ceb/handbook.json',
 ]
+
+// Read topic IDs from the already-fetched EN handbook JSON
+async function getHandbookTopicIds(): Promise<string[]> {
+  try {
+    const res = await fetch('/data/content/en/handbook.json')
+    if (!res.ok) return []
+    const data = await res.json() as { topics?: { id: string }[] }
+    return (data.topics ?? []).map((t) => t.id)
+  } catch {
+    return []
+  }
+}
 
 // Matches the exact URL format used by catechism/girm/canon pages
 function buildLibraryApiUrls(): string[] {
@@ -74,7 +90,7 @@ function buildLibraryApiUrls(): string[] {
 export type OfflineCacheStatus = 'checking' | 'idle' | 'downloading' | 'done' | 'partial' | 'error' | 'unsupported'
 
 export function useOfflineCache() {
-  const [status, setStatus]   = useState<OfflineCacheStatus>('checking')
+  const [status, setStatus]     = useState<OfflineCacheStatus>('checking')
   const [progress, setProgress] = useState(0)   // 0–100
   const [failCount, setFailCount] = useState(0)
 
@@ -88,28 +104,37 @@ export function useOfflineCache() {
 
   async function checkStatus() {
     try {
-      const [handbookCache, libraryCache] = await Promise.all([
+      const [handbookCache, libraryCache, pagesCache] = await Promise.all([
         caches.open(HANDBOOK_CACHE_NAME),
         caches.open(LIBRARY_CACHE_NAME),
+        caches.open(PAGES_CACHE_NAME),
       ])
-      const [handbookKeys, libraryKeys] = await Promise.all([
+      const [handbookKeys, libraryKeys, pagesKeys] = await Promise.all([
         handbookCache.keys(),
         libraryCache.keys(),
+        pagesCache.keys(),
       ])
+
       const cachedHandbook = new Set(handbookKeys.map((r) => new URL(r.url).pathname))
       const cachedLibrary  = new Set(libraryKeys.map((r) => r.url))
+      const cachedPages    = new Set(pagesKeys.map((r) => new URL(r.url).pathname))
       const libraryUrls    = buildLibraryApiUrls()
 
       const handbookDone = HANDBOOK_URLS.every((u) => cachedHandbook.has(u))
       const libraryDone  = libraryUrls.length > 0 && libraryUrls.every((u) => cachedLibrary.has(u))
 
-      if (handbookDone && libraryDone) {
+      // Check if at least some topic pages were pre-cached
+      const topicPagesCached = [...cachedPages].filter(
+        (p) => p !== '/' && !p.startsWith('/_next') && !p.startsWith('/data') && !p.startsWith('/api'),
+      ).length
+
+      if (handbookDone && libraryDone && topicPagesCached > 0) {
         setStatus('done')
         setProgress(100)
-      } else if (handbookDone || libraryKeys.length > 0) {
+      } else if (handbookDone || libraryKeys.length > 0 || topicPagesCached > 0) {
         setStatus('partial')
-        const done = handbookKeys.length + libraryKeys.length
-        const total = HANDBOOK_URLS.length + libraryUrls.length
+        const done  = handbookKeys.length + libraryKeys.length + topicPagesCached
+        const total = HANDBOOK_URLS.length + libraryUrls.length + Math.max(topicPagesCached, 10)
         setProgress(Math.round((done / total) * 100))
       } else {
         setStatus('idle')
@@ -126,17 +151,19 @@ export function useOfflineCache() {
     setProgress(0)
     setFailCount(0)
 
-    const libraryUrls = buildLibraryApiUrls()
-    const total = HANDBOOK_URLS.length + libraryUrls.length
     let completed = 0
-    let failed = 0
+    let failed    = 0
 
-    const advance = () => {
+    // We don't know topic count yet, so we'll update total dynamically
+    let total = HANDBOOK_URLS.length + buildLibraryApiUrls().length
+
+    function advance() {
       completed++
       setProgress(Math.round((completed / total) * 100))
     }
+    function countFail() { failed++ }
 
-    // 1. Handbook JSON — static files, no auth needed
+    // ── Step 1: Handbook JSON ──────────────────────────────────────────────
     const handbookCache = await caches.open(HANDBOOK_CACHE_NAME)
     for (const url of HANDBOOK_URLS) {
       try {
@@ -144,52 +171,88 @@ export function useOfflineCache() {
         if (!existing) {
           const res = await fetch(url)
           if (res.ok) await handbookCache.put(url, res)
-          else failed++
+          else countFail()
         }
-      } catch {
-        failed++
-      }
+      } catch { countFail() }
       advance()
     }
 
-    // 2. Library API — Supabase REST, needs auth headers
-    if (!SUPABASE_KEY) {
-      setStatus('error')
-      return
-    }
+    // ── Step 2: Library API (Supabase REST) ────────────────────────────────
+    if (!SUPABASE_KEY) { setStatus('error'); return }
     const apiHeaders = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
     const libraryCache = await caches.open(LIBRARY_CACHE_NAME)
+    const libraryUrls = buildLibraryApiUrls()
 
     for (const url of libraryUrls) {
       try {
         const existing = await libraryCache.match(url)
         if (!existing) {
           const res = await fetch(url, { headers: apiHeaders })
+          if (res.ok) await libraryCache.put(url, res.clone())
+          else countFail()
+        }
+      } catch { countFail() }
+      advance()
+    }
+
+    // ── Step 3: Pre-cache topic pages in Workbox's `pages` + `pages-rsc` ──
+    // This is what makes topics openable offline without prior visits.
+    const topicIds = await getHandbookTopicIds()
+    total += topicIds.length   // expand total now that we know it
+
+    const [pagesCache, rscCache] = await Promise.all([
+      caches.open(PAGES_CACHE_NAME),
+      caches.open(PAGES_RSC_CACHE_NAME),
+    ])
+
+    for (const id of topicIds) {
+      const url = `/${id}`
+      try {
+        // Full HTML (for direct URL visits / hard reloads)
+        const existing = await pagesCache.match(url)
+        if (!existing) {
+          const res = await fetch(url)
           if (res.ok) {
-            // Store a clone so the original can still be read
-            await libraryCache.put(url, res.clone())
+            await pagesCache.put(url, res.clone())
           } else {
-            failed++
+            countFail()
           }
         }
-      } catch {
-        failed++
-      }
+      } catch { countFail() }
+
+      // RSC payload (for Next.js soft navigation / Link clicks) — non-fatal
+      try {
+        const existingRsc = await rscCache.match(url)
+        if (!existingRsc) {
+          const rsc = await fetch(url, { headers: { RSC: '1' } })
+          if (rsc.ok) await rscCache.put(url, rsc.clone())
+        }
+      } catch { /* non-fatal */ }
+
       advance()
     }
 
     setFailCount(failed)
-    if (failed === 0) {
-      setStatus('done')
-    } else if (completed - failed > 0) {
-      setStatus('partial')
-    } else {
-      setStatus('error')
-    }
+    setStatus(
+      failed === 0             ? 'done'
+      : completed - failed > 0 ? 'partial'
+      :                          'error',
+    )
   }, [])
 
   const clear = useCallback(async () => {
     try {
+      // Remove topic page entries from Workbox caches (leave other cached pages)
+      const topicIds = await getHandbookTopicIds()
+      const [pagesCache, rscCache] = await Promise.all([
+        caches.open(PAGES_CACHE_NAME),
+        caches.open(PAGES_RSC_CACHE_NAME),
+      ])
+      await Promise.all(topicIds.flatMap((id) => [
+        pagesCache.delete(`/${id}`),
+        rscCache.delete(`/${id}`),
+      ]))
+
       await Promise.all([
         caches.delete(HANDBOOK_CACHE_NAME),
         caches.delete(LIBRARY_CACHE_NAME),
