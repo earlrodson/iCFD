@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { LIBRARY_CACHE_NAME } from './libraryCache'
 
-const HANDBOOK_CACHE_NAME = 'icfd-content-v1'
+const HANDBOOK_CACHE_NAME = 'icfd-content-v2'
 
 // Workbox runtime cache names — must match what sw.js registers
 const PAGES_CACHE_NAME     = 'pages'
@@ -11,7 +11,8 @@ const PAGES_RSC_CACHE_NAME = 'pages-rsc'
 const SHELL_URLS = ['/', '/handbook', '/library', '/search', '/favorites', '/settings', '/catechism', '/girm', '/canon', '/bible', '/paths']
 
 // Persists across app restarts; set on full download, cleared on clear()
-const OFFLINE_READY_KEY = 'icfd-offline-ready'
+// Bump suffix when cache structure changes to force all users to re-download
+const OFFLINE_READY_KEY = 'icfd-offline-ready-v2'
 
 const SUPABASE_URL  = (process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '').replace(/\/$/, '')
 const SUPABASE_KEY  = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ''
@@ -151,6 +152,12 @@ export function useOfflineCache() {
     setStatus('downloading')
     setProgress(0)
     setFailCount(0)
+
+    // Clean up caches from older versions
+    await Promise.all([
+      caches.delete('icfd-content-v1'),
+      caches.delete('icfd-library-v1'),
+    ]).catch(() => { /* non-fatal */ })
 
     let completed = 0
     let failed    = 0
