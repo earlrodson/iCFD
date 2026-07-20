@@ -49,7 +49,9 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   const [copied, setCopied] = useState(false)
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
-  const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>('concise')
+  const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>(
+    initialTopic.answerFull ? 'comprehensive' : 'concise'
+  )
   const [refPopover, setRefPopover] = useState<{ title: string; meta?: string; body: string; loading?: boolean } | null>(null)
   const [cccData, setCccData] = useState<Map<number, { paragraph: number; summary: string | null; text: string | null; section: string | null }>>(new Map())
 
@@ -106,9 +108,10 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
     recordVisit(initialTopic.id)
   }, [initialTopic.id, recordVisit])
 
-  // Sync note text when topic changes
+  // Sync note text when topic changes; reset tab to default
   useEffect(() => {
     setNoteLocal(notes[initialTopic.id] ?? '')
+    setContentTab(initialTopic.answerFull ? 'comprehensive' : 'concise')
   }, [initialTopic.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Fetch CCC paragraph text for all catechism refs on this topic
@@ -237,16 +240,6 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
       <section className="mb-8">
         {/* Tab bar */}
         <div className="flex gap-1 border-b border-border mb-0">
-          <button
-            onClick={() => setContentTab('concise')}
-            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
-              contentTab === 'concise'
-                ? 'border-primary text-primary'
-                : 'border-transparent text-muted-foreground hover:text-foreground'
-            }`}
-          >
-            Concise
-          </button>
           {topic.answerFull && (
             <button
               onClick={() => setContentTab('comprehensive')}
@@ -259,6 +252,16 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
               Comprehensive
             </button>
           )}
+          <button
+            onClick={() => setContentTab('concise')}
+            className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
+              contentTab === 'concise'
+                ? 'border-primary text-primary'
+                : 'border-transparent text-muted-foreground hover:text-foreground'
+            }`}
+          >
+            Concise
+          </button>
           <button
             onClick={() => setContentTab('brief')}
             className={`px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors ${
