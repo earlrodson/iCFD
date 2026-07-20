@@ -158,7 +158,7 @@ export default function PathsAdminPage() {
           <div className="w-full max-w-sm rounded-2xl bg-card border border-border p-6 shadow-xl" onClick={(e) => e.stopPropagation()}>
             <h2 className="text-base font-bold text-foreground mb-1">Delete path?</h2>
             <p className="text-sm text-muted-foreground mb-5">
-              <span className="font-medium text-foreground">"{deleteTarget.title}"</span> and its {deleteTarget.topicCount} topic links will be removed. Topics themselves are not deleted.
+              <span className="font-medium text-foreground">&ldquo;{deleteTarget.title}&rdquo;</span> and its {deleteTarget.topicCount} topic links will be removed. Topics themselves are not deleted.
             </p>
             <div className="flex gap-3 justify-end">
               <button onClick={() => setDeleteTarget(null)} className="rounded-xl border border-border px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">

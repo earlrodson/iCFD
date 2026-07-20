@@ -94,14 +94,6 @@ export function useOfflineCache() {
   const [progress, setProgress] = useState(0)   // 0–100
   const [failCount, setFailCount] = useState(0)
 
-  useEffect(() => {
-    if (typeof window === 'undefined' || !('caches' in window)) {
-      setStatus('unsupported')
-      return
-    }
-    checkStatus()
-  }, [])
-
   async function checkStatus() {
     try {
       const [handbookCache, libraryCache, pagesCache] = await Promise.all([
@@ -144,6 +136,15 @@ export function useOfflineCache() {
       setStatus('idle')
     }
   }
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || !('caches' in window)) {
+      setStatus('unsupported')
+      return
+    }
+    void checkStatus()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const download = useCallback(async () => {
     if (typeof window === 'undefined' || !('caches' in window)) return

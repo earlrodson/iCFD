@@ -39,11 +39,6 @@ export default function AdminUsersPage() {
   const [grantingId, setGrantingId]   = useState<string | null>(null)
   const [resettingId, setResettingId] = useState<string | null>(null)
 
-  useEffect(() => {
-    getSession().then((s) => setCurrentUserId(s?.user.id ?? null))
-    loadUsers()
-  }, [])
-
   async function loadUsers() {
     setLoading(true)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -55,6 +50,12 @@ export default function AdminUsersPage() {
     }
     setLoading(false)
   }
+
+  useEffect(() => {
+    getSession().then((s) => setCurrentUserId(s?.user.id ?? null))
+    loadUsers()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   function flash(text: string, type: 'ok' | 'err' = 'ok') {
     setMsg(text); setMsgType(type)

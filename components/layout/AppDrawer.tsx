@@ -21,6 +21,12 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
   const { favoriteIds } = useFavoritesStore()
   const favCount = favoriteIds.length
 
+  async function checkAdmin(userId: string) {
+    const { data } = await createClient()
+      .from('admins').select('user_id').eq('user_id', userId).maybeSingle()
+    setIsAdmin(!!data)
+  }
+
   useEffect(() => {
     if (!isSupabaseConfigured()) return
     getUser().then(async (u) => { setUser(u); if (u) checkAdmin(u.id) })
@@ -30,12 +36,6 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
       else setIsAdmin(false)
     })
   }, [])
-
-  async function checkAdmin(userId: string) {
-    const { data } = await createClient()
-      .from('admins').select('user_id').eq('user_id', userId).maybeSingle()
-    setIsAdmin(!!data)
-  }
 
   useEffect(() => {
     if (!open) return

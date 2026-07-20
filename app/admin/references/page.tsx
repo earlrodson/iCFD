@@ -52,12 +52,12 @@ function ScriptureTab() {
   const [form, setForm] = useState({ reference: '', version: 'NABRE', text: '' })
   const [saving, setSaving] = useState(false)
 
-  useEffect(() => { load() }, [])
-
   async function load() {
     const { data } = await supabase.from('scripture_verses').select('*').order('reference')
     setVerses(data ?? [])
   }
+
+  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function save() {
     if (!form.reference.trim() || !form.text.trim()) return
@@ -271,12 +271,12 @@ function FathersTab() {
   const [form, setForm] = useState({ author: '', quote: '', source: '', year_approx: '' })
   const [saving, setSaving] = useState(false)
 
-  useEffect(() => { load() }, [])
-
   async function load() {
     const { data } = await supabase.from('church_father_quotes').select('*').order('author')
     setQuotes(data ?? [])
   }
+
+  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   async function save() {
     if (!form.author.trim() || !form.quote.trim() || !form.source.trim()) return

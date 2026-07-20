@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import { Sun, Moon, CloudArrowUp, CloudArrowDown } from '@phosphor-icons/react'
 import { SectionLabel, SyncButton, type SyncStatus } from './components'
 import { OfflineCacheSection } from './OfflineCacheSection'
@@ -212,7 +213,7 @@ export default function SettingsPage() {
               </div>
             ) : (
               <p className="rounded-2xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground">
-                <a href="/account" className="text-primary hover:underline">Sign in</a> to enable cloud sync.
+                <Link href="/account" className="text-primary hover:underline">Sign in</Link> to enable cloud sync.
               </p>
             )}
           </section>

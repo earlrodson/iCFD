@@ -333,7 +333,7 @@ export default function PathEditor({ slug }: { slug: string }) {
             )}
             {showSearch && search.trim() && searchResults.length === 0 && (
               <div className="absolute z-20 mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 shadow-lg">
-                <p className="text-sm text-muted-foreground">No topics match "{search}"</p>
+                <p className="text-sm text-muted-foreground">No topics match &ldquo;{search}&rdquo;</p>
               </div>
             )}
           </div>
