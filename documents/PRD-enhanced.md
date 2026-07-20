@@ -2,7 +2,7 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.6  
+**Version:** 2.7  
 **Date:** 2026-07-20  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
@@ -513,10 +513,18 @@ See §4.14 below.
 - ✅ Supabase modern key pattern — Publishable key (browser) + Secret key (server/seed)
 - ✅ `lib/supabase/client.ts` — factory `createBrowserClient`, `isSupabaseConfigured` guard
 - ✅ `lib/supabase/auth.ts` — signIn, signUp, signOut, getUser (JWT-verified), onAuthStateChange
-- ✅ `lib/supabase/sync.ts` — upload/download favorites, notes, read progress
+- ✅ `lib/supabase/sync.ts` — push/pull functions for favorites, notes, read progress
 - ✅ Google OAuth + Apple OAuth + Magic Link + Email/Password auth on `/account`
 - ✅ Supabase MCP server wired to project — migrations and SQL run directly from Claude Code
 - ✅ Graceful fallback — all cloud features no-op when keys missing
+- ✅ **Auto-sync** — `SyncManager` component (mounted in root layout) triggers push + pull automatically:
+  - On `window.online` event (device reconnects)
+  - On `SIGNED_IN` / `TOKEN_REFRESHED` auth state change
+  - On initial app mount when already logged in and online
+- ✅ **Dirty tracking** in all three user data stores:
+  - `useNotesStore` — `dirtyIds[]` + `mergeFromCloud` + `markSynced`; cloud fills gaps, local always wins
+  - `useFavoritesStore` — `dirtyIds[]` + `mergeFromCloud` (union); local deletions preserved
+  - `useReadingStore` — `dirtyIds[]` + `mergeFromCloud` (cloud read state fills gaps); `markSynced`
 
 ### Phase 3B — Content Expansion ✅ Delivered
 - ✅ 30 new topics across all 8 categories (20 → 50 total in English)
@@ -898,7 +906,7 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 | Search across all documents | Global search bar on `/library` querying all tables | ✅ Delivered |
 | Cross-link Library ↔ Topics | CCC citation on topic detail → opens CCC browser at paragraph | ✅ Delivered |
 | Guest access to Bible + Catechism | Free resources visible without sign-in | ✅ Delivered |
-| Additional documents | Papal encyclicals, Council documents (Vatican II), Compendium of CCC | ⬜ Planned |
+| Additional documents | 12 council + encyclical documents seeded — see Phase 9 | ✅ Partial |
 | TL / CEB translations | `lang` column exists on all tables; content not yet seeded | ⬜ Planned |
 | Bible offline download | Chapter-level pre-caching from the Bible browser | ⬜ Planned |
 
@@ -906,13 +914,145 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 
 ---
 
-## 9. Priority Backlog — Ordered by Value and Impact
+### Phase 9 — Church Documents, Cross-linking & Auto-Sync ✅ Delivered
+
+**Goal:** Extend the Library with primary source council and encyclical documents; cross-link those documents to apologetics topics; and make offline data sync automatically without requiring the user to tap "Sync" in Settings.
+
+#### 9A — Church Documents Storage ✅
+
+Two new tables in Supabase (generic enough to hold any document type):
+
+```sql
+CREATE TABLE church_document_meta (
+  slug          TEXT PRIMARY KEY,
+  title         TEXT NOT NULL,
+  year          INTEGER,
+  doc_type      TEXT,   -- 'council' | 'encyclical' | 'apostolic-constitution' | etc.
+  source_url    TEXT
+);
+
+CREATE TABLE church_document_meta_sections (
+  slug          TEXT REFERENCES church_document_meta(slug),
+  section_num   INTEGER NOT NULL,
+  section_label TEXT,
+  body          TEXT NOT NULL,
+  PRIMARY KEY (slug, section_num)
+);
+```
+
+RLS: public SELECT, service_role-only writes (anon INSERT/UPDATE temporarily opened per seed run then dropped).
+
+**12 documents seeded** (approx. 710 total sections):
+
+| Slug | Title | Sections | Source |
+|------|-------|----------|--------|
+| `council-nicaea-i` | First Council of Nicaea (AD 325) | 20 | newadvent.org |
+| `council-constantinople-i` | First Council of Constantinople (AD 381) | 5 | newadvent.org |
+| `council-ephesus` | Council of Ephesus (AD 431) | 23 | newadvent.org |
+| `council-chalcedon` | Council of Chalcedon (AD 451) | 30 | newadvent.org |
+| `council-constantinople-ii` | Second Council of Constantinople (AD 553) | 38 | newadvent.org |
+| `council-laodicea` | Council of Laodicea (c. AD 360) | 60 | newadvent.org |
+| `council-of-trent` | Council of Trent (1545–1563) | 202 | papalencyclicals.net |
+| `lumen-gentium` | Lumen Gentium (Vatican II, 1964) | 302 | vatican.va |
+| `dei-verbum` | Dei Verbum (Vatican II, 1965) | 26 | vatican.va |
+| `gaudium-et-spes` | Gaudium et Spes (Vatican II, 1965) | 93 | vatican.va |
+| `humanae-vitae` | Humanae Vitae (Paul VI, 1968) | 30 | vatican.va |
+
+**Scripts:**
+- `scripts/fetch-council-doc.mjs` — scrapes newadvent.org (h2/h3/p structure) and papalencyclicals.net (25 Trent sessions, CANON detection via plain paragraph text)
+- `scripts/fetch-vatican-doc.mjs` — scrapes vatican.va with title cleanup (pope-name and year regex only applied when pope appears in URL; US date format stripped)
+- `scripts/seed-church-doc.mjs` — upserts via Supabase REST (legacy anon JWT from `.env.local`) in batches of 50; `?on_conflict=` for idempotent reruns
+- `scripts/output/*.json` — scraped JSON committed to repo as a seeding source of truth
+
+#### 9B — Document Viewer (`/documents/[slug]`) ✅
+
+Generic infinite-scroll reader for any document in `church_document_meta`.
+
+**Key behaviors:**
+- Fetches `church_document_meta` on mount → displays title and doc type
+- Loads sections in pages of 20 via Supabase REST range queries
+- `IntersectionObserver` sentinel triggers `loadMore` near the bottom of the list
+- Concurrency guard: `fetchingRef.current` (synchronous) prevents duplicate fetches from racing React state updates
+- `sectionsRef` mirrors `sections` state for synchronous reads inside callbacks
+- Resets all state (sections, cursor, total, fetchingRef) on slug change
+- **Deep-link:** `?s=N` query param auto-expands + smooth-scrolls to `id="section-N"` after initial batch loads
+
+#### 9C — Library Page: Church Documents Section ✅
+
+`/library` extended with a "Church Documents" section listing the 12 documents as cards (FilePdf icon). Library search extended to include `church_documents` as a 4th search target — results link to `/documents/${slug}?s=${section_num}`.
+
+#### 9D — Document ↔ Topic Cross-linking ✅
+
+**Join table:**
+```sql
+CREATE TABLE topic_document_refs (
+  id           SERIAL PRIMARY KEY,
+  topic_id     TEXT NOT NULL,        -- FK → topics.id
+  doc_slug     TEXT NOT NULL,        -- FK → church_document_meta.slug
+  section_num  INTEGER NOT NULL,
+  section_label TEXT,
+  UNIQUE (topic_id, doc_slug, section_num)
+);
+```
+
+**Schema extension** (`data/schema/topic.schema.ts`):
+```typescript
+DocumentRefSchema = z.object({
+  docSlug: z.string(), docTitle: z.string(),
+  sectionNum: z.number(), sectionLabel: z.string().nullable()
+})
+// Added to TopicSchema:
+documentRefs: z.array(DocumentRefSchema).optional()
+```
+
+**Data layer** (`lib/content/database.ts`):
+- `fetchDocumentRefs(topicId)` — REST query with embedded `church_document_meta(title)`
+- `loadTopicFromDatabase` runs it in parallel with existing reference resolution
+
+**Topic detail UI** (`components/topic/TopicContent.tsx`):
+- "Church Documents" section in the Apologetics Brief tab (after objections)
+- Each ref links to `/documents/${docSlug}?s=${sectionNum}` with BookBookmark icon
+
+**Admin editor** (`app/admin/topics/[id]/TopicEditor.tsx`):
+- `DocumentRefSection` component: search `church_documents`, click to attach, trash to remove
+- API: `app/api/admin/topic-doc-refs/route.ts` — GET / POST / DELETE, admin-verified
+
+#### 9E — Auto-Sync ✅
+
+**Problem:** Notes, favorites, and reading progress only synced when the user manually tapped "Sync" in Settings. Data written offline was silently lost if the user forgot.
+
+**Solution:** Dirty tracking + `SyncManager` root component.
+
+**Dirty tracking pattern** (all three stores):
+```typescript
+dirtyIds: string[]          // IDs changed since last sync
+mergeFromCloud(cloud)       // cloud fills gaps; local always wins (notes); union merge (favorites); read-state union (reading)
+markSynced(ids: string[])   // remove from dirtyIds after confirmed push
+```
+
+**`components/SyncManager.tsx`** — `'use client'` component mounted in `app/layout.tsx`:
+- Mount: pushes dirty + pulls cloud if already online and authenticated
+- `window.online` event: push dirty → pull cloud
+- `onAuthStateChange(SIGNED_IN | TOKEN_REFRESHED)`: push dirty → pull cloud
+- `pushDirty`: only sends `dirtyIds`-scoped subsets to each sync function, then calls `markSynced`
+- `pullAndMerge`: calls `fetchNotesFromCloud` + `fetchFavoritesFromCloud` + `fetchReadProgressFromCloud` in parallel via `Promise.allSettled`
+
+**Merge strategies:**
+- Notes: local always wins (dirty and non-dirty); cloud fills in topics not present locally
+- Favorites: union — cloud favorites not in local are added; local deletions preserved (unfavorited IDs may reappear from cloud if the user removed them on a different device while offline — acceptable edge case for Phase 9)
+- Reading: union — if cloud says a topic is read and local doesn't, mark as read; local unread state is never overridden by cloud
+
+---
+
+---
+
+## 10. Priority Backlog — Ordered by Value and Impact
 
 All ⬜ items across phases, consolidated and ranked. Ship in this order unless a specific milestone forces a different sequence.
 
 ---
 
-### Recently Delivered (this session)
+### Recently Delivered
 
 | Item | What shipped |
 |------|-------------|
@@ -923,6 +1063,10 @@ All ⬜ items across phases, consolidated and ranked. Ship in this order unless 
 | Admin: User management | Password reset button per user in `/admin/users` |
 | Admin: Duplicate detection | `/admin/dedup` — Claude scans all EN topics, scores quality, auto-hides duplicates |
 | Admin: Topic filter pills | Hidden / Recommended pills with live counts replace status dropdown |
+| Church Documents Library | 12 council + encyclical documents scraped and seeded; `/documents/[slug]` infinite-scroll viewer with deep-link (`?s=N`) |
+| Document ↔ Topic cross-linking | `topic_document_refs` join table; admin editor to attach doc sections to topics; "Church Documents" card in topic Apologetics Brief tab |
+| Library search extended | `/library` global search now covers `church_documents` table (4th search target) |
+| Auto-sync | Dirty tracking in all 3 Zustand stores; `SyncManager` auto-pushes on reconnect and login |
 
 ---
 
@@ -950,7 +1094,7 @@ These directly deliver the app's stated goals (G1–G4). Skipping them leaves th
 
 | # | Item | Why it matters |
 |---|------|----------------|
-| 5 | **Additional Library documents** | Papal encyclicals (Humanae Vitae, Lumen Fidei), Vatican II documents (Lumen Gentium, Dei Verbum), Compendium of CCC. Serious apologists will expect these. |
+| 5 | **Additional Library documents** | 12 council + encyclical docs now live (Phase 9). Next: Lumen Fidei, Compendium of CCC, more Vatican II constitutions (Sacrosanctum Concilium, Ad Gentes). |
 | 6 | **TL/CEB seeding for Library tables** | `lang` column exists on `girm_articles` and `canons`; source documents needed. |
 | 7 | **PDF export for topics and paths** | Catechists printing handouts or preparing lesson notes. |
 
@@ -969,7 +1113,7 @@ Do after Tier 1–3, or skip if resources are constrained.
 
 ---
 
-## 10. Out of Scope for v2
+## 11. Out of Scope for v2
 
 - Payments or subscriptions
 - Video or audio content
