@@ -2,7 +2,10 @@
 
 import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
-import { Plus, MagnifyingGlass, PencilSimple, Trash, ArrowClockwise, Warning } from '@phosphor-icons/react'
+import {
+  Plus, MagnifyingGlass, PencilSimple, Trash, ArrowClockwise,
+  Warning, Eye, EyeSlash, Star, Image,
+} from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
 
@@ -14,6 +17,9 @@ interface TopicRow {
   difficulty: string
   last_updated: string
   tags: string[]
+  published: boolean
+  is_recommended: boolean
+  cover_image: string | null
 }
 
 const CATEGORIES = ['sacraments', 'mary', 'papacy', 'salvation', 'bible', 'saints', 'tradition', 'church-teaching']
@@ -38,15 +44,17 @@ const DIFF_COLORS: Record<string, string> = {
 }
 
 export default function AdminTopicsPage() {
-  const [topics, setTopics]       = useState<TopicRow[]>([])
-  const [loading, setLoading]     = useState(true)
-  const [search, setSearch]       = useState('')
-  const [filterLang, setFilterLang]       = useState('en')
-  const [filterCategory, setFilterCategory] = useState('')
+  const [topics, setTopics]         = useState<TopicRow[]>([])
+  const [loading, setLoading]       = useState(true)
+  const [search, setSearch]         = useState('')
+  const [filterLang, setFilterLang] = useState('en')
+  const [filterCategory, setFilterCategory]   = useState('')
   const [filterDifficulty, setFilterDifficulty] = useState('')
-  const [deleteTarget, setDeleteTarget]   = useState<TopicRow | null>(null)
-  const [deleting, setDeleting]           = useState(false)
-  const [deleteError, setDeleteError]     = useState('')
+  const [filterStatus, setFilterStatus] = useState<'' | 'published' | 'hidden' | 'recommended'>('')
+  const [deleteTarget, setDeleteTarget] = useState<TopicRow | null>(null)
+  const [deleting, setDeleting]     = useState(false)
+  const [deleteError, setDeleteError] = useState('')
+  const [toggling, setToggling]     = useState<string | null>(null)
 
   useEffect(() => { loadTopics() }, [])
 
@@ -54,7 +62,7 @@ export default function AdminTopicsPage() {
     setLoading(true)
     const { data } = await createClient()
       .from('topics')
-      .select('id, lang, category, title, difficulty, last_updated, tags')
+      .select('id, lang, category, title, difficulty, last_updated, tags, published, is_recommended, cover_image')
       .order('title')
     setTopics((data ?? []) as TopicRow[])
     setLoading(false)
@@ -66,10 +74,41 @@ export default function AdminTopicsPage() {
       if (filterLang && t.lang !== filterLang) return false
       if (filterCategory && t.category !== filterCategory) return false
       if (filterDifficulty && t.difficulty !== filterDifficulty) return false
+      if (filterStatus === 'published' && !t.published) return false
+      if (filterStatus === 'hidden' && t.published) return false
+      if (filterStatus === 'recommended' && !t.is_recommended) return false
       if (q && !t.title.toLowerCase().includes(q) && !t.id.toLowerCase().includes(q)) return false
       return true
     })
-  }, [topics, search, filterLang, filterCategory, filterDifficulty])
+  }, [topics, search, filterLang, filterCategory, filterDifficulty, filterStatus])
+
+  async function togglePublished(t: TopicRow) {
+    const key = `${t.id}-${t.lang}-pub`
+    setToggling(key)
+    await createClient()
+      .from('topics')
+      .update({ published: !t.published })
+      .eq('id', t.id)
+      .eq('lang', t.lang)
+    setTopics((prev) =>
+      prev.map((r) => r.id === t.id && r.lang === t.lang ? { ...r, published: !t.published } : r)
+    )
+    setToggling(null)
+  }
+
+  async function toggleRecommended(t: TopicRow) {
+    const key = `${t.id}-${t.lang}-rec`
+    setToggling(key)
+    await createClient()
+      .from('topics')
+      .update({ is_recommended: !t.is_recommended })
+      .eq('id', t.id)
+      .eq('lang', t.lang)
+    setTopics((prev) =>
+      prev.map((r) => r.id === t.id && r.lang === t.lang ? { ...r, is_recommended: !t.is_recommended } : r)
+    )
+    setToggling(null)
+  }
 
   async function confirmDelete() {
     if (!deleteTarget) return
@@ -119,7 +158,6 @@ export default function AdminTopicsPage() {
 
         {/* Filters */}
         <div className="mb-5 flex flex-wrap gap-2">
-          {/* Search */}
           <div className="relative flex-1 min-w-48">
             <MagnifyingGlass weight="light" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
@@ -130,7 +168,6 @@ export default function AdminTopicsPage() {
               className="w-full rounded-xl border border-border bg-card pl-9 pr-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
-          {/* Lang tabs */}
           <div className="flex rounded-xl border border-border bg-card overflow-hidden">
             {LANGS.map((l) => (
               <button
@@ -145,7 +182,6 @@ export default function AdminTopicsPage() {
               </button>
             ))}
           </div>
-          {/* Category */}
           <select
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
@@ -154,7 +190,6 @@ export default function AdminTopicsPage() {
             <option value="">All categories</option>
             {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
-          {/* Difficulty */}
           <select
             value={filterDifficulty}
             onChange={(e) => setFilterDifficulty(e.target.value)}
@@ -162,6 +197,16 @@ export default function AdminTopicsPage() {
           >
             <option value="">All difficulties</option>
             {DIFFICULTIES.map((d) => <option key={d} value={d}>{d}</option>)}
+          </select>
+          <select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value as typeof filterStatus)}
+            className="rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="">All status</option>
+            <option value="published">Published</option>
+            <option value="hidden">Hidden</option>
+            <option value="recommended">Recommended</option>
           </select>
         </div>
 
@@ -182,16 +227,38 @@ export default function AdminTopicsPage() {
                   <th className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wide">Title</th>
                   <th className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wide hidden sm:table-cell">Category</th>
                   <th className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wide hidden md:table-cell">Difficulty</th>
-                  <th className="px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wide hidden lg:table-cell">Updated</th>
+                  <th className="px-4 py-3 text-center text-xs font-semibold text-muted-foreground uppercase tracking-wide">Status</th>
                   <th className="px-4 py-3 text-right text-xs font-semibold text-muted-foreground uppercase tracking-wide">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border">
                 {filtered.map((t) => (
-                  <tr key={`${t.id}-${t.lang}`} className="hover:bg-muted/30 transition-colors">
+                  <tr
+                    key={`${t.id}-${t.lang}`}
+                    className={cn('transition-colors', t.published ? 'hover:bg-muted/30' : 'bg-muted/20 hover:bg-muted/40')}
+                  >
                     <td className="px-4 py-3">
-                      <div className="font-medium text-foreground line-clamp-1">{t.title}</div>
-                      <div className="text-xs text-muted-foreground font-mono">{t.id} <span className="uppercase ml-1">[{t.lang}]</span></div>
+                      <div className="flex items-center gap-2">
+                        {t.cover_image && (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={t.cover_image}
+                            alt=""
+                            className="h-8 w-8 rounded-lg object-cover shrink-0"
+                          />
+                        )}
+                        {!t.cover_image && (
+                          <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center shrink-0">
+                            <Image weight="light" size={14} className="text-muted-foreground" />
+                          </div>
+                        )}
+                        <div>
+                          <div className={cn('font-medium line-clamp-1', t.published ? 'text-foreground' : 'text-muted-foreground')}>
+                            {t.title}
+                          </div>
+                          <div className="text-xs text-muted-foreground font-mono">{t.id} <span className="uppercase ml-1">[{t.lang}]</span></div>
+                        </div>
+                      </div>
                     </td>
                     <td className="px-4 py-3 hidden sm:table-cell">
                       <span className={cn('inline-flex rounded-full px-2 py-0.5 text-[11px] font-semibold capitalize', CATEGORY_COLORS[t.category] ?? 'bg-muted text-muted-foreground')}>
@@ -203,8 +270,40 @@ export default function AdminTopicsPage() {
                         {t.difficulty}
                       </span>
                     </td>
-                    <td className="px-4 py-3 hidden lg:table-cell text-xs text-muted-foreground">
-                      {t.last_updated ? new Date(t.last_updated).toLocaleDateString() : '—'}
+                    <td className="px-4 py-3">
+                      <div className="flex items-center justify-center gap-1.5">
+                        {/* Published toggle */}
+                        <button
+                          onClick={() => togglePublished(t)}
+                          disabled={toggling === `${t.id}-${t.lang}-pub`}
+                          title={t.published ? 'Hide topic' : 'Publish topic'}
+                          className={cn(
+                            'flex h-7 w-7 items-center justify-center rounded-lg transition-colors disabled:opacity-50',
+                            t.published
+                              ? 'text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/20'
+                              : 'text-muted-foreground hover:bg-muted',
+                          )}
+                        >
+                          {t.published
+                            ? <Eye weight="fill" size={15} />
+                            : <EyeSlash weight="light" size={15} />
+                          }
+                        </button>
+                        {/* Recommended toggle */}
+                        <button
+                          onClick={() => toggleRecommended(t)}
+                          disabled={toggling === `${t.id}-${t.lang}-rec`}
+                          title={t.is_recommended ? 'Remove from recommendations' : 'Add to recommendations'}
+                          className={cn(
+                            'flex h-7 w-7 items-center justify-center rounded-lg transition-colors disabled:opacity-50',
+                            t.is_recommended
+                              ? 'text-amber-500 hover:bg-amber-50 dark:hover:bg-amber-900/20'
+                              : 'text-muted-foreground hover:bg-muted',
+                          )}
+                        >
+                          <Star weight={t.is_recommended ? 'fill' : 'light'} size={15} />
+                        </button>
+                      </div>
                     </td>
                     <td className="px-4 py-3 text-right">
                       <div className="flex items-center justify-end gap-1">
@@ -246,9 +345,7 @@ export default function AdminTopicsPage() {
                 </p>
               </div>
             </div>
-            {deleteError && (
-              <p className="mb-3 text-xs text-rose-600">{deleteError}</p>
-            )}
+            {deleteError && <p className="mb-3 text-xs text-rose-600">{deleteError}</p>}
             <div className="flex gap-2 justify-end">
               <button
                 onClick={() => setDeleteTarget(null)}

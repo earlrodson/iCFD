@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { MagnifyingGlass } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useSearchStore } from '@/store/useSearchStore'
@@ -28,13 +29,51 @@ const difficulties: { value: Difficulty | ''; label: string }[] = [
   { value: 'advanced', label: 'Advanced' },
 ]
 
-export default function SearchPage() {
+// Inner component that uses useSearchParams (must be wrapped in Suspense)
+function SearchPageInner() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
   const { availableTopics, initialize } = useAppStore()
-  const { query, filters, setFilter, getFilteredTopics } = useSearchStore()
+  const { query, filters, setQuery, setFilter, getFilteredTopics } = useSearchStore()
+
+  // On mount: hydrate store from URL params so back-button restores state
+  useEffect(() => {
+    const q = searchParams.get('q') ?? ''
+    const cat = (searchParams.get('cat') ?? '') as Category | ''
+    const diff = (searchParams.get('diff') ?? '') as Difficulty | ''
+    if (q !== query) setQuery(q)
+    if (cat !== filters.category) setFilter('category', cat)
+    if (diff !== filters.difficulty) setFilter('difficulty', diff)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   useEffect(() => {
     if (availableTopics.length === 0) initialize()
   }, [availableTopics.length, initialize])
+
+  // Push filter/query state into URL so back button restores it
+  function updateUrl(q: string, cat: string, diff: string) {
+    const p = new URLSearchParams()
+    if (q) p.set('q', q)
+    if (cat) p.set('cat', cat)
+    if (diff) p.set('diff', diff)
+    const qs = p.toString()
+    router.replace(`/search${qs ? `?${qs}` : ''}`, { scroll: false })
+  }
+
+  function handleSetQuery(q: string) {
+    setQuery(q)
+    updateUrl(q, filters.category, filters.difficulty)
+  }
+
+  function handleSetFilter<K extends 'category' | 'difficulty'>(key: K, value: string) {
+    setFilter(key, value as never)
+    updateUrl(
+      query,
+      key === 'category' ? value : filters.category,
+      key === 'difficulty' ? value : filters.difficulty,
+    )
+  }
 
   const results = getFilteredTopics(availableTopics)
   const hasQuery = query.trim().length > 0
@@ -82,12 +121,12 @@ export default function SearchPage() {
 
       {/* ── Fixed bottom: filters + search bar ───────────────── */}
       <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card/95 backdrop-blur-md px-4 pt-2.5 pb-[calc(env(safe-area-inset-bottom,0px)+4.25rem)] md:pb-3">
-        {/* Compact filter chips — single scrollable row */}
+        {/* Compact filter chips */}
         <div className="flex items-center gap-1 overflow-x-auto no-scrollbar mb-2">
           {categories.map(({ value, label }) => (
             <button
               key={value || 'all'}
-              onClick={() => setFilter('category', value as Category | '')}
+              onClick={() => handleSetFilter('category', filters.category === value ? '' : value)}
               className={cn(
                 'shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-medium transition-colors',
                 filters.category === value
@@ -102,7 +141,7 @@ export default function SearchPage() {
           {difficulties.map(({ value, label }) => (
             <button
               key={value || 'any'}
-              onClick={() => setFilter('difficulty', value as Difficulty | '')}
+              onClick={() => handleSetFilter('difficulty', filters.difficulty === value ? '' : value)}
               className={cn(
                 'shrink-0 rounded-full px-2.5 py-0.5 text-[10px] font-medium transition-colors',
                 filters.difficulty === value
@@ -119,8 +158,17 @@ export default function SearchPage() {
         <SearchBar
           placeholder="Search topics, scripture, catechism…"
           autoFocus
+          onQueryChange={handleSetQuery}
         />
       </div>
     </div>
+  )
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense>
+      <SearchPageInner />
+    </Suspense>
   )
 }

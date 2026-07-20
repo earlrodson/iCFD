@@ -19,37 +19,76 @@ export type Database = {
           created_at: string
           email: string
           granted_by: string | null
+          role: string
           user_id: string
         }
         Insert: {
           created_at?: string
           email: string
           granted_by?: string | null
+          role?: string
           user_id: string
         }
         Update: {
           created_at?: string
           email?: string
           granted_by?: string | null
+          role?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      canons: {
+        Row: {
+          book: string | null
+          canon: number
+          lang: string
+          summary: string | null
+          text: string
+        }
+        Insert: {
+          book?: string | null
+          canon: number
+          lang?: string
+          summary?: string | null
+          text: string
+        }
+        Update: {
+          book?: string | null
+          canon?: number
+          lang?: string
+          summary?: string | null
+          text?: string
         }
         Relationships: []
       }
       ccc_paragraphs: {
         Row: {
+          article: string | null
+          chapter_title: string | null
+          lang: string
           paragraph: number
+          part: string | null
           section: string | null
           summary: string | null
           text: string | null
         }
         Insert: {
+          article?: string | null
+          chapter_title?: string | null
+          lang?: string
           paragraph: number
+          part?: string | null
           section?: string | null
           summary?: string | null
           text?: string | null
         }
         Update: {
+          article?: string | null
+          chapter_title?: string | null
+          lang?: string
           paragraph?: number
+          part?: string | null
           section?: string | null
           summary?: string | null
           text?: string | null
@@ -98,6 +137,30 @@ export type Database = {
           id?: string
           topic_id?: string
           user_id?: string
+        }
+        Relationships: []
+      }
+      girm_articles: {
+        Row: {
+          article: number
+          lang: string
+          section: string | null
+          summary: string | null
+          text: string
+        }
+        Insert: {
+          article: number
+          lang?: string
+          section?: string | null
+          summary?: string | null
+          text: string
+        }
+        Update: {
+          article?: number
+          lang?: string
+          section?: string | null
+          summary?: string | null
+          text?: string
         }
         Relationships: []
       }
@@ -235,6 +298,7 @@ export type Database = {
       scripture_verses: {
         Row: {
           book: string | null
+          book_code: string | null
           chapter: number | null
           id: number
           reference: string
@@ -245,6 +309,7 @@ export type Database = {
         }
         Insert: {
           book?: string | null
+          book_code?: string | null
           chapter?: number | null
           id?: number
           reference: string
@@ -255,6 +320,7 @@ export type Database = {
         }
         Update: {
           book?: string | null
+          book_code?: string | null
           chapter?: number | null
           id?: number
           reference?: string
@@ -336,9 +402,11 @@ export type Database = {
           category: string
           church_fathers: Json | null
           citations: Json | null
+          cover_image: string | null
           created_at: string
           difficulty: string
           id: string
+          is_recommended: boolean
           lang: string
           last_reviewed: string | null
           last_updated: string
@@ -359,9 +427,11 @@ export type Database = {
           category: string
           church_fathers?: Json | null
           citations?: Json | null
+          cover_image?: string | null
           created_at?: string
           difficulty: string
           id: string
+          is_recommended?: boolean
           lang: string
           last_reviewed?: string | null
           last_updated: string
@@ -382,9 +452,11 @@ export type Database = {
           category?: string
           church_fathers?: Json | null
           citations?: Json | null
+          cover_image?: string | null
           created_at?: string
           difficulty?: string
           id?: string
+          is_recommended?: boolean
           lang?: string
           last_reviewed?: string | null
           last_updated?: string
@@ -402,6 +474,7 @@ export type Database = {
       }
       user_settings: {
         Row: {
+          bible_version: string
           font_size: string
           language: string
           theme: string
@@ -409,6 +482,7 @@ export type Database = {
           user_id: string
         }
         Insert: {
+          bible_version?: string
           font_size?: string
           language?: string
           theme?: string
@@ -416,6 +490,7 @@ export type Database = {
           user_id: string
         }
         Update: {
+          bible_version?: string
           font_size?: string
           language?: string
           theme?: string

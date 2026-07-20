@@ -3,8 +3,8 @@ import { LIBRARY_CACHE_NAME } from './libraryCache'
 
 const HANDBOOK_CACHE_NAME = 'icfd-content-v1'
 
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+const SUPABASE_URL  = (process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '').replace(/\/$/, '')
+const SUPABASE_KEY  = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ''
 
 const HANDBOOK_URLS = [
   '/data/content/en/handbook.json',
@@ -12,8 +12,9 @@ const HANDBOOK_URLS = [
   '/data/content/ceb/handbook.json',
 ]
 
-// Build all Supabase REST API URLs that the Library pages fetch
+// Matches the exact URL format used by catechism/girm/canon pages
 function buildLibraryApiUrls(): string[] {
+  if (!SUPABASE_URL) return []
   const urls: string[] = []
 
   // Catechism — 4 parts
@@ -70,14 +71,18 @@ function buildLibraryApiUrls(): string[] {
   return urls
 }
 
-export type OfflineCacheStatus = 'checking' | 'idle' | 'downloading' | 'done' | 'error' | 'unsupported'
+export type OfflineCacheStatus = 'checking' | 'idle' | 'downloading' | 'done' | 'partial' | 'error' | 'unsupported'
 
 export function useOfflineCache() {
-  const [status, setStatus] = useState<OfflineCacheStatus>('checking')
-  const [progress, setProgress] = useState(0) // 0–100
+  const [status, setStatus]   = useState<OfflineCacheStatus>('checking')
+  const [progress, setProgress] = useState(0)   // 0–100
+  const [failCount, setFailCount] = useState(0)
 
   useEffect(() => {
-    if (!('caches' in window)) { setStatus('unsupported'); return }
+    if (typeof window === 'undefined' || !('caches' in window)) {
+      setStatus('unsupported')
+      return
+    }
     checkStatus()
   }, [])
 
@@ -92,54 +97,93 @@ export function useOfflineCache() {
         libraryCache.keys(),
       ])
       const cachedHandbook = new Set(handbookKeys.map((r) => new URL(r.url).pathname))
-      const cachedLibrary = new Set(libraryKeys.map((r) => r.url))
-      const libraryUrls = buildLibraryApiUrls()
-      const allDone =
-        HANDBOOK_URLS.every((u) => cachedHandbook.has(u)) &&
-        libraryUrls.every((u) => cachedLibrary.has(u))
-      setStatus(allDone ? 'done' : 'idle')
-      if (allDone) setProgress(100)
+      const cachedLibrary  = new Set(libraryKeys.map((r) => r.url))
+      const libraryUrls    = buildLibraryApiUrls()
+
+      const handbookDone = HANDBOOK_URLS.every((u) => cachedHandbook.has(u))
+      const libraryDone  = libraryUrls.length > 0 && libraryUrls.every((u) => cachedLibrary.has(u))
+
+      if (handbookDone && libraryDone) {
+        setStatus('done')
+        setProgress(100)
+      } else if (handbookDone || libraryKeys.length > 0) {
+        setStatus('partial')
+        const done = handbookKeys.length + libraryKeys.length
+        const total = HANDBOOK_URLS.length + libraryUrls.length
+        setProgress(Math.round((done / total) * 100))
+      } else {
+        setStatus('idle')
+        setProgress(0)
+      }
     } catch {
       setStatus('idle')
     }
   }
 
   const download = useCallback(async () => {
-    if (!('caches' in window)) return
+    if (typeof window === 'undefined' || !('caches' in window)) return
     setStatus('downloading')
     setProgress(0)
+    setFailCount(0)
 
     const libraryUrls = buildLibraryApiUrls()
     const total = HANDBOOK_URLS.length + libraryUrls.length
     let completed = 0
+    let failed = 0
 
     const advance = () => {
       completed++
       setProgress(Math.round((completed / total) * 100))
     }
 
-    try {
-      // 1. Handbook JSON files
-      const handbookCache = await caches.open(HANDBOOK_CACHE_NAME)
-      for (const url of HANDBOOK_URLS) {
-        await handbookCache.add(url)
-        advance()
-      }
-
-      // 2. Library API responses (Supabase REST)
-      const libraryCache = await caches.open(LIBRARY_CACHE_NAME)
-      const apiHeaders = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
-      for (const url of libraryUrls) {
-        const cached = await libraryCache.match(url)
-        if (!cached) {
-          const res = await fetch(url, { headers: apiHeaders })
-          if (res.ok) await libraryCache.put(url, res)
+    // 1. Handbook JSON — static files, no auth needed
+    const handbookCache = await caches.open(HANDBOOK_CACHE_NAME)
+    for (const url of HANDBOOK_URLS) {
+      try {
+        const existing = await handbookCache.match(url)
+        if (!existing) {
+          const res = await fetch(url)
+          if (res.ok) await handbookCache.put(url, res)
+          else failed++
         }
-        advance()
+      } catch {
+        failed++
       }
+      advance()
+    }
 
+    // 2. Library API — Supabase REST, needs auth headers
+    if (!SUPABASE_KEY) {
+      setStatus('error')
+      return
+    }
+    const apiHeaders = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+    const libraryCache = await caches.open(LIBRARY_CACHE_NAME)
+
+    for (const url of libraryUrls) {
+      try {
+        const existing = await libraryCache.match(url)
+        if (!existing) {
+          const res = await fetch(url, { headers: apiHeaders })
+          if (res.ok) {
+            // Store a clone so the original can still be read
+            await libraryCache.put(url, res.clone())
+          } else {
+            failed++
+          }
+        }
+      } catch {
+        failed++
+      }
+      advance()
+    }
+
+    setFailCount(failed)
+    if (failed === 0) {
       setStatus('done')
-    } catch {
+    } else if (completed - failed > 0) {
+      setStatus('partial')
+    } else {
       setStatus('error')
     }
   }, [])
@@ -152,10 +196,11 @@ export function useOfflineCache() {
       ])
       setStatus('idle')
       setProgress(0)
+      setFailCount(0)
     } catch {
       setStatus('error')
     }
   }, [])
 
-  return { status, progress, download, clear }
+  return { status, progress, failCount, download, clear }
 }
