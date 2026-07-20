@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { UserPlus, Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise } from '@phosphor-icons/react'
+import { UserPlus, Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise, EnvelopeSimple } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
 import { useAdminRole } from '@/app/admin/role-context'
@@ -36,7 +36,8 @@ export default function AdminUsersPage() {
   const [msgType, setMsgType]   = useState<'ok' | 'err'>('ok')
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editRole, setEditRole] = useState<'admin' | 'editor'>('editor')
-  const [grantingId, setGrantingId] = useState<string | null>(null)
+  const [grantingId, setGrantingId]   = useState<string | null>(null)
+  const [resettingId, setResettingId] = useState<string | null>(null)
 
   useEffect(() => {
     getSession().then((s) => setCurrentUserId(s?.user.id ?? null))
@@ -83,6 +84,19 @@ export default function AdminUsersPage() {
     setEditingId(null)
     flash('Role updated.')
     await loadUsers()
+  }
+
+  async function sendPasswordReset(user: UserRow) {
+    setResettingId(user.id)
+    const { error } = await createClient().auth.resetPasswordForEmail(user.email, {
+      redirectTo: `${window.location.origin}/auth/reset-password`,
+    })
+    if (error) {
+      flash('Could not send reset email: ' + error.message, 'err')
+    } else {
+      flash(`Password reset email sent to ${user.email}.`)
+    }
+    setResettingId(null)
   }
 
   async function revokeRole(user: UserRow) {
@@ -216,6 +230,19 @@ export default function AdminUsersPage() {
                     )}
                   </p>
                 </div>
+
+                {/* Reset password */}
+                <button
+                  onClick={() => sendPasswordReset(u)}
+                  disabled={resettingId === u.id}
+                  className="shrink-0 flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors disabled:opacity-40"
+                  title="Send password reset email"
+                >
+                  {resettingId === u.id
+                    ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    : <EnvelopeSimple weight="light" size={14} />
+                  }
+                </button>
 
                 {/* Role — view / edit inline */}
                 {u.role && editingId === u.id ? (
