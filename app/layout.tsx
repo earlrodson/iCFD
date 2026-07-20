@@ -3,6 +3,7 @@ import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { MobileNav } from '@/components/layout/MobileNav'
 import { OfflineBanner } from '@/components/ui/OfflineBanner'
+import { SyncManager } from '@/components/SyncManager'
 
 export const metadata: Metadata = {
   title: 'Codex Defensoris',
@@ -58,6 +59,7 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: darkModeScript }} />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
+        <SyncManager />
         <OfflineBanner />
         <Header />
         <main className="flex-1">{children}</main>
