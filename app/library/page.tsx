@@ -33,6 +33,12 @@ const CHURCH_DOCS = [
     badge:       'Encyclical',
   },
   {
+    href:        '/documents/sacrosanctum-concilium',
+    title:       'Sacrosanctum Concilium',
+    description: 'Constitution on the Sacred Liturgy — Vatican II · 1963',
+    badge:       'Vatican II',
+  },
+  {
     href:        '/documents/lumen-gentium',
     title:       'Lumen Gentium',
     description: 'Dogmatic Constitution on the Church — Vatican II · 1964',
@@ -49,6 +55,18 @@ const CHURCH_DOCS = [
     title:       'Gaudium et Spes',
     description: 'Pastoral Constitution on the Church in the Modern World — Vatican II · 1965',
     badge:       'Vatican II',
+  },
+  {
+    href:        '/documents/ad-gentes',
+    title:       'Ad Gentes',
+    description: 'Decree on the Mission Activity of the Church — Vatican II · 1965',
+    badge:       'Vatican II',
+  },
+  {
+    href:        '/documents/lumen-fidei',
+    title:       'Lumen Fidei',
+    description: 'On Faith — Pope Francis · 2013',
+    badge:       'Encyclical',
   },
   {
     href:        '/documents/humanae-vitae',
