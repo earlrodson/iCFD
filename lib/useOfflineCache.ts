@@ -152,8 +152,10 @@ export function useOfflineCache() {
     let completed = 0
     let failed    = 0
 
-    // We don't know topic count yet, so we'll update total dynamically
-    let total = HANDBOOK_URLS.length + buildLibraryApiUrls().length
+    // Resolve all counts upfront so progress never regresses
+    const libraryUrls = buildLibraryApiUrls()
+    const topicIds    = await getHandbookTopicIds()
+    const total       = HANDBOOK_URLS.length + libraryUrls.length + topicIds.length
 
     function advance() {
       completed++
@@ -179,7 +181,6 @@ export function useOfflineCache() {
     if (!SUPABASE_KEY) { setStatus('error'); return }
     const apiHeaders = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
     const libraryCache = await caches.open(LIBRARY_CACHE_NAME)
-    const libraryUrls = buildLibraryApiUrls()
 
     for (const url of libraryUrls) {
       try {
@@ -194,9 +195,6 @@ export function useOfflineCache() {
     }
 
     // ── Step 3: Pre-cache topic pages in Workbox's `pages` + `pages-rsc` ──
-    // This is what makes topics openable offline without prior visits.
-    const topicIds = await getHandbookTopicIds()
-    total += topicIds.length   // expand total now that we know it
 
     const [pagesCache, rscCache] = await Promise.all([
       caches.open(PAGES_CACHE_NAME),
