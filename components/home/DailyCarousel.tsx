@@ -6,6 +6,25 @@ import { CaretLeft, CaretRight, CalendarStar } from '@phosphor-icons/react'
 import type { Topic, Category } from '@/data/schema/topic.schema'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { isSupabaseConfigured } from '@/lib/supabase/client'
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
+const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ''
+
+async function fetchRecommendedIds(): Promise<string[]> {
+  if (!isSupabaseConfigured()) return []
+  try {
+    const res = await fetch(
+      `${SUPABASE_URL}/rest/v1/topics?is_recommended=eq.true&published=eq.true&select=id`,
+      { headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` } },
+    )
+    if (!res.ok) return []
+    const rows = await res.json() as { id: string }[]
+    return rows.map((r) => r.id)
+  } catch {
+    return []
+  }
+}
 
 // ── Category config ───────────────────────────────────────────────────────────
 
@@ -137,10 +156,29 @@ interface DailyCarouselProps {
 }
 
 export function DailyCarousel({ topics }: DailyCarouselProps) {
-  const picks = getDailyPicks(topics)
+  const [picks, setPicks] = useState<Topic[]>(() => getDailyPicks(topics))
   const [activeIdx, setActiveIdx] = useState(0)
   const [paused, setPaused] = useState(false)
   const touchStartX = useRef(0)
+
+  // Fetch admin-curated picks; fall back to deterministic hash if none set
+  useEffect(() => {
+    if (topics.length === 0) return
+    fetchRecommendedIds().then((ids) => {
+      if (ids.length === 0) {
+        setPicks(getDailyPicks(topics))
+        return
+      }
+      const recommended = ids
+        .map((id) => topics.find((t) => t.id === id))
+        .filter((t): t is Topic => t !== undefined)
+      // Rotate daily through the curated pool (up to 5 slides)
+      const day = getDayOfYear()
+      const start = day % recommended.length
+      const rotated = [...recommended.slice(start), ...recommended.slice(0, start)]
+      setPicks(rotated.slice(0, 5))
+    })
+  }, [topics])
 
   // Auto-advance — setTimeout so manual navigation resets the 5s countdown
   useEffect(() => {
