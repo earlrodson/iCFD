@@ -8,7 +8,7 @@ import type { User } from '@/lib/supabase/auth'
 
 // ── Resource catalogue ────────────────────────────────────────────────────────
 
-const RESOURCES = [
+const FREE_RESOURCES = [
   {
     href:        '/bible',
     icon:        BookOpen,
@@ -23,6 +23,9 @@ const RESOURCES = [
     description: 'Second Edition · 2,865 paragraphs across four parts',
     badge:       'Magisterium',
   },
+]
+
+const LOCKED_RESOURCES = [
   {
     href:        '/girm',
     icon:        BookBookmark,
@@ -54,13 +57,17 @@ interface SearchResults {
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 
-async function searchLibrary(q: string): Promise<SearchResults> {
+async function searchLibrary(q: string, signedIn: boolean): Promise<SearchResults> {
   const h = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
   const enc = encodeURIComponent(q)
   const [ccc, girm, canon] = await Promise.all([
     fetch(`${SUPABASE_URL}/rest/v1/ccc_paragraphs?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=paragraph,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : []),
-    fetch(`${SUPABASE_URL}/rest/v1/girm_articles?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=article,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : []),
-    fetch(`${SUPABASE_URL}/rest/v1/canons?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=canon,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : []),
+    signedIn
+      ? fetch(`${SUPABASE_URL}/rest/v1/girm_articles?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=article,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : [])
+      : Promise.resolve([]),
+    signedIn
+      ? fetch(`${SUPABASE_URL}/rest/v1/canons?or=(text.ilike.*${enc}*,summary.ilike.*${enc}*)&select=canon,summary,text&limit=4`, { headers: h }).then(r => r.ok ? r.json() : [])
+      : Promise.resolve([]),
   ])
   return { ccc: ccc ?? [], girm: girm ?? [], canon: canon ?? [] }
 }
@@ -68,55 +75,30 @@ async function searchLibrary(q: string): Promise<SearchResults> {
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function LibraryPage() {
-  const [status, setStatus] = useState<'loading' | 'denied' | 'ok'>('loading')
+  // undefined = resolving, null = guest, User = signed in
+  const [user, setUser] = useState<User | null | undefined>(undefined)
   const [query, setQuery] = useState('')
   const [results, setResults] = useState<SearchResults | null>(null)
   const [searching, setSearching] = useState(false)
   const debounce = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
   useEffect(() => {
-    getUser().then(u => setStatus(u ? 'ok' : 'denied'))
-    return onAuthStateChange(u => setStatus(u ? 'ok' : 'denied'))
+    getUser().then(u => setUser(u ?? null))
+    return onAuthStateChange(u => setUser(u ?? null))
   }, [])
+
+  const signedIn = user !== undefined && user !== null
 
   useEffect(() => {
     clearTimeout(debounce.current)
     if (query.trim().length < 3) { setResults(null); return }
     setSearching(true)
     debounce.current = setTimeout(async () => {
-      const r = await searchLibrary(query.trim())
+      const r = await searchLibrary(query.trim(), signedIn)
       setResults(r)
       setSearching(false)
     }, 350)
-  }, [query])
-
-  if (status === 'loading') {
-    return (
-      <div className="flex min-h-[60vh] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-      </div>
-    )
-  }
-
-  if (status === 'denied') {
-    return (
-      <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4 text-center">
-        <Lock weight="light" size={40} className="text-muted-foreground" />
-        <div>
-          <p className="font-medium text-foreground">Sign in to access the Library</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            The Library is available to registered members.
-          </p>
-        </div>
-        <Link
-          href="/account"
-          className="mt-2 rounded-lg bg-primary px-5 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
-        >
-          Sign in
-        </Link>
-      </div>
-    )
-  }
+  }, [query, signedIn])
 
   const hasResults = results && (results.ccc.length + results.girm.length + results.canon.length) > 0
   const noResults  = results && !hasResults
@@ -138,7 +120,7 @@ export default function LibraryPage() {
           type="search"
           value={query}
           onChange={e => setQuery(e.target.value)}
-          placeholder="Search across Bible, Catechism, GIRM, and Canon Law…"
+          placeholder={signedIn ? 'Search across Bible, Catechism, GIRM, and Canon Law…' : 'Search the Bible and Catechism…'}
           className="w-full pl-9 pr-4 py-2.5 text-sm rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
         />
         {searching && (
@@ -199,7 +181,8 @@ export default function LibraryPage() {
       {/* Resource cards */}
       {!query && (
         <div className="space-y-3">
-          {RESOURCES.map(({ href, icon: Icon, title, description, badge }) => (
+          {/* Free resources — always accessible */}
+          {FREE_RESOURCES.map(({ href, icon: Icon, title, description, badge }) => (
             <Link
               key={href}
               href={href}
@@ -220,6 +203,61 @@ export default function LibraryPage() {
               <span className="text-muted-foreground text-lg shrink-0">›</span>
             </Link>
           ))}
+
+          {/* Disclaimer / sign-in CTA */}
+          {!signedIn && user !== undefined && (
+            <div className="rounded-xl border border-dashed border-border bg-muted/30 px-4 py-3 text-center">
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                <Link href="/account" className="font-medium text-primary hover:underline">Sign in</Link>
+                {' '}to access more documents of the Catholic Church — including Canon Law, the Roman Missal, and additional resources.
+              </p>
+            </div>
+          )}
+
+          {/* Locked resources — members only */}
+          {LOCKED_RESOURCES.map(({ href, icon: Icon, title, description, badge }) =>
+            signedIn ? (
+              <Link
+                key={href}
+                href={href}
+                className="flex items-start gap-4 rounded-xl border border-border p-4 hover:border-primary/40 hover:bg-muted/40 transition-colors"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                  <Icon weight="light" size={22} className="text-primary" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-medium text-foreground text-sm">{title}</span>
+                    <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                      {badge}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
+                </div>
+                <span className="text-muted-foreground text-lg shrink-0">›</span>
+              </Link>
+            ) : (
+              <Link
+                key={href}
+                href="/account"
+                className="flex items-start gap-4 rounded-xl border border-border p-4 opacity-50 cursor-pointer hover:opacity-60 transition-opacity"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-muted">
+                  <Icon weight="light" size={22} className="text-muted-foreground" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="font-medium text-foreground text-sm">{title}</span>
+                    <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                      {badge}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
+                </div>
+                <Lock weight="light" size={16} className="text-muted-foreground shrink-0 mt-1" />
+              </Link>
+            )
+          )}
         </div>
       )}
 
