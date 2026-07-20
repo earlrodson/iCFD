@@ -11,6 +11,11 @@ if (process.env.NODE_ENV === 'production') {
     register: true,
     skipWaiting: true,
     customWorkerSrc: 'worker',
+    // Serve the cached root shell for any navigation that fails offline.
+    // The client component then boots and reads from the cached handbook.json.
+    fallbacks: {
+      document: '/',
+    },
     runtimeCaching: [
       {
         urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|ico)$/i,
