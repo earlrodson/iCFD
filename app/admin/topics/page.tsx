@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import {
   Plus, MagnifyingGlass, PencilSimple, Trash, ArrowClockwise,
-  Warning, Eye, EyeSlash, Star, Image,
+  Warning, Eye, EyeSlash, Star, Image, CheckCircle,
 } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
@@ -67,6 +67,21 @@ export default function AdminTopicsPage() {
     setTopics((data ?? []) as TopicRow[])
     setLoading(false)
   }
+
+  const counts = useMemo(() => {
+    const base = topics.filter((t) => {
+      if (filterLang && t.lang !== filterLang) return false
+      if (filterCategory && t.category !== filterCategory) return false
+      if (filterDifficulty && t.difficulty !== filterDifficulty) return false
+      return true
+    })
+    return {
+      all:         base.length,
+      published:   base.filter((t) => t.published).length,
+      hidden:      base.filter((t) => !t.published).length,
+      recommended: base.filter((t) => t.is_recommended).length,
+    }
+  }, [topics, filterLang, filterCategory, filterDifficulty])
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
@@ -198,16 +213,59 @@ export default function AdminTopicsPage() {
             <option value="">All difficulties</option>
             {DIFFICULTIES.map((d) => <option key={d} value={d}>{d}</option>)}
           </select>
-          <select
-            value={filterStatus}
-            onChange={(e) => setFilterStatus(e.target.value as typeof filterStatus)}
-            className="rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <option value="">All status</option>
-            <option value="published">Published</option>
-            <option value="hidden">Hidden</option>
-            <option value="recommended">Recommended</option>
-          </select>
+          <div className="flex items-center gap-1.5 flex-wrap">
+            <button
+              onClick={() => setFilterStatus('')}
+              className={cn(
+                'flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition-colors',
+                filterStatus === ''
+                  ? 'border-primary bg-primary/10 text-primary'
+                  : 'border-border bg-card text-muted-foreground hover:text-foreground',
+              )}
+            >
+              All
+              <span className="text-xs opacity-70">{counts.all}</span>
+            </button>
+            <button
+              onClick={() => setFilterStatus(filterStatus === 'published' ? '' : 'published')}
+              className={cn(
+                'flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition-colors',
+                filterStatus === 'published'
+                  ? 'border-emerald-500 bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-300'
+                  : 'border-border bg-card text-muted-foreground hover:text-foreground',
+              )}
+            >
+              <CheckCircle weight={filterStatus === 'published' ? 'fill' : 'light'} size={14} />
+              Published
+              <span className="text-xs opacity-70">{counts.published}</span>
+            </button>
+            <button
+              onClick={() => setFilterStatus(filterStatus === 'hidden' ? '' : 'hidden')}
+              className={cn(
+                'flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition-colors',
+                filterStatus === 'hidden'
+                  ? 'border-rose-400 bg-rose-50 text-rose-700 dark:bg-rose-900/20 dark:text-rose-300'
+                  : 'border-border bg-card text-muted-foreground hover:text-foreground',
+              )}
+            >
+              <EyeSlash weight={filterStatus === 'hidden' ? 'fill' : 'light'} size={14} />
+              Hidden
+              <span className="text-xs opacity-70">{counts.hidden}</span>
+            </button>
+            <button
+              onClick={() => setFilterStatus(filterStatus === 'recommended' ? '' : 'recommended')}
+              className={cn(
+                'flex items-center gap-1.5 rounded-xl border px-3 py-2 text-sm font-medium transition-colors',
+                filterStatus === 'recommended'
+                  ? 'border-amber-400 bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-300'
+                  : 'border-border bg-card text-muted-foreground hover:text-foreground',
+              )}
+            >
+              <Star weight={filterStatus === 'recommended' ? 'fill' : 'light'} size={14} />
+              Recommended
+              <span className="text-xs opacity-70">{counts.recommended}</span>
+            </button>
+          </div>
         </div>
 
         {/* Table */}
