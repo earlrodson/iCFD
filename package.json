@@ -15,7 +15,9 @@
     "test:e2e": "playwright test",
     "test:all": "vitest run && playwright test",
     "db:seed": "node scripts/seed.mjs",
-    "db:translate": "node scripts/translate.mjs"
+    "db:translate": "node scripts/translate.mjs",
+    "doc:fetch": "node scripts/fetch-vatican-doc.mjs",
+    "doc:seed": "node scripts/seed-church-doc.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.111.0",
