@@ -7,6 +7,9 @@ const HANDBOOK_CACHE_NAME = 'icfd-content-v1'
 const PAGES_CACHE_NAME     = 'pages'
 const PAGES_RSC_CACHE_NAME = 'pages-rsc'
 
+// Persists across app restarts; set on full download, cleared on clear()
+const OFFLINE_READY_KEY = 'icfd-offline-ready'
+
 const SUPABASE_URL  = (process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '').replace(/\/$/, '')
 const SUPABASE_KEY  = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ''
 
@@ -96,37 +99,31 @@ export function useOfflineCache() {
 
   async function checkStatus() {
     try {
-      const [handbookCache, libraryCache, pagesCache] = await Promise.all([
+      const offlineReady = localStorage.getItem(OFFLINE_READY_KEY) === 'true'
+
+      const [handbookCache, libraryCache] = await Promise.all([
         caches.open(HANDBOOK_CACHE_NAME),
         caches.open(LIBRARY_CACHE_NAME),
-        caches.open(PAGES_CACHE_NAME),
       ])
-      const [handbookKeys, libraryKeys, pagesKeys] = await Promise.all([
+      const [handbookKeys, libraryKeys] = await Promise.all([
         handbookCache.keys(),
         libraryCache.keys(),
-        pagesCache.keys(),
       ])
 
       const cachedHandbook = new Set(handbookKeys.map((r) => new URL(r.url).pathname))
       const cachedLibrary  = new Set(libraryKeys.map((r) => r.url))
-      const cachedPages    = new Set(pagesKeys.map((r) => new URL(r.url).pathname))
       const libraryUrls    = buildLibraryApiUrls()
 
       const handbookDone = HANDBOOK_URLS.every((u) => cachedHandbook.has(u))
       const libraryDone  = libraryUrls.length > 0 && libraryUrls.every((u) => cachedLibrary.has(u))
 
-      // Check if at least some topic pages were pre-cached
-      const topicPagesCached = [...cachedPages].filter(
-        (p) => p !== '/' && !p.startsWith('/_next') && !p.startsWith('/data') && !p.startsWith('/api'),
-      ).length
-
-      if (handbookDone && libraryDone && topicPagesCached > 0) {
+      if (offlineReady && handbookDone && libraryDone) {
         setStatus('done')
         setProgress(100)
-      } else if (handbookDone || libraryKeys.length > 0 || topicPagesCached > 0) {
+      } else if (handbookDone || libraryKeys.length > 0) {
         setStatus('partial')
-        const done  = handbookKeys.length + libraryKeys.length + topicPagesCached
-        const total = HANDBOOK_URLS.length + libraryUrls.length + Math.max(topicPagesCached, 10)
+        const done  = handbookKeys.length + libraryKeys.length
+        const total = HANDBOOK_URLS.length + libraryUrls.length
         setProgress(Math.round((done / total) * 100))
       } else {
         setStatus('idle')
@@ -234,11 +231,12 @@ export function useOfflineCache() {
     }
 
     setFailCount(failed)
-    setStatus(
+    const finalStatus =
       failed === 0             ? 'done'
       : completed - failed > 0 ? 'partial'
-      :                          'error',
-    )
+      :                          'error'
+    if (finalStatus === 'done') localStorage.setItem(OFFLINE_READY_KEY, 'true')
+    setStatus(finalStatus)
   }, [])
 
   const clear = useCallback(async () => {
@@ -258,6 +256,7 @@ export function useOfflineCache() {
         caches.delete(HANDBOOK_CACHE_NAME),
         caches.delete(LIBRARY_CACHE_NAME),
       ])
+      localStorage.removeItem(OFFLINE_READY_KEY)
       setStatus('idle')
       setProgress(0)
       setFailCount(0)
