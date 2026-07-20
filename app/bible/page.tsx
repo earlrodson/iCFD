@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
+import { ArrowLineDown, CheckCircle } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 
 // ── Bible book catalogue ──────────────────────────────────────────────────────
@@ -100,6 +101,15 @@ const TRANSLATIONS = [
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
+const BIBLE_CACHE  = 'icfd-bible-v1'
+
+function chapterCacheKey(book: string, chapter: number, version: string) {
+  return `${SUPABASE_URL}/rest/v1/scripture_verses?book=eq.${encodeURIComponent(book)}&chapter=eq.${chapter}&version=eq.${version}&order=verse_start.asc&select=reference%2Cverse_start%2Ctext%2Cversion&limit=200`
+}
+
+function savedLocalKey(book: string, chapter: number, version: string) {
+  return `bible-saved:${book}:${chapter}:${version}`
+}
 
 interface Verse {
   reference: string
@@ -109,19 +119,42 @@ interface Verse {
 }
 
 async function fetchChapter(book: string, chapter: number, version: string): Promise<Verse[]> {
-  const params = new URLSearchParams({
-    book: `eq.${book}`,
-    chapter: `eq.${chapter}`,
-    version: `eq.${version}`,
-    order: 'verse_start.asc',
-    select: 'reference,verse_start,text,version',
-    limit: '200',
-  })
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/scripture_verses?${params}`, {
-    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` },
-  })
+  const url = chapterCacheKey(book, chapter, version)
+  const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+
+  // Try cache first (works offline too)
+  if ('caches' in window) {
+    try {
+      const cache = await caches.open(BIBLE_CACHE)
+      const cached = await cache.match(url)
+      if (cached) return cached.json()
+    } catch { /* cache unavailable */ }
+  }
+
+  const res = await fetch(url, { headers })
   if (!res.ok) return []
+
+  // Store in cache for future offline use
+  if ('caches' in window) {
+    try {
+      const cache = await caches.open(BIBLE_CACHE)
+      await cache.put(url, res.clone())
+    } catch { /* storage full or private mode */ }
+  }
+
   return res.json()
+}
+
+async function saveChapterOffline(book: string, chapter: number, version: string): Promise<void> {
+  const url = chapterCacheKey(book, chapter, version)
+  const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+  const res = await fetch(url, { headers })
+  if (!res.ok) return
+  if ('caches' in window) {
+    const cache = await caches.open(BIBLE_CACHE)
+    await cache.put(url, res)
+  }
+  localStorage.setItem(savedLocalKey(book, chapter, version), '1')
 }
 
 // ── Page ──────────────────────────────────────────────────────────────────────
@@ -137,6 +170,8 @@ export default function BiblePage() {
   const [verses, setVerses]         = useState<Verse[]>([])
   const [loading, setLoading]       = useState(false)
   const [bookSearch, setBookSearch] = useState('')
+  const [saving, setSaving]         = useState(false)
+  const [savedChapter, setSavedChapter] = useState(false)
 
   const loadChapter = useCallback(async (book: BookMeta, chapter: number, ver: string) => {
     setLoading(true)
@@ -156,7 +191,16 @@ export default function BiblePage() {
     if (!selectedBook) return
     setChapter(chapter)
     setView('reading')
+    setSavedChapter(!!localStorage.getItem(savedLocalKey(selectedBook.name, chapter, version)))
     loadChapter(selectedBook, chapter, version)
+  }
+
+  const handleSaveOffline = async () => {
+    if (!selectedBook || saving) return
+    setSaving(true)
+    await saveChapterOffline(selectedBook.name, selectedChapter, version)
+    setSavedChapter(true)
+    setSaving(false)
   }
 
   const filteredBooks = (testament === 'OT' ? OT_BOOKS : NT_BOOKS).filter(b =>
@@ -277,6 +321,27 @@ export default function BiblePage() {
       {/* ── Reading view ──────────────────────────────────────────────────── */}
       {view === 'reading' && (
         <>
+          {/* Save for offline */}
+          <div className="flex justify-end mb-3">
+            <button
+              onClick={handleSaveOffline}
+              disabled={saving || savedChapter}
+              className={cn(
+                'flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium transition-colors',
+                savedChapter
+                  ? 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/20'
+                  : 'text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 disabled:opacity-50'
+              )}
+            >
+              {savedChapter
+                ? <><CheckCircle weight="fill" size={14} /> Saved offline</>
+                : saving
+                  ? <><div className="h-3 w-3 animate-spin rounded-full border border-muted-foreground border-t-transparent" /> Saving…</>
+                  : <><ArrowLineDown weight="bold" size={14} /> Save chapter offline</>
+              }
+            </button>
+          </div>
+
           {loading && (
             <div className="space-y-3">
               {Array.from({ length: 10 }).map((_, i) => (

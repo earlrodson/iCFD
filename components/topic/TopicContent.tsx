@@ -132,6 +132,49 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
       .catch(() => {/* silent — chips still show without text */})
   }, [initialTopic.catechism])
 
+  // Resolve {{ccc:N}}, {{verse:ref}}, {{father:id}} shortcodes in answerFull
+  const [resolvedFull, setResolvedFull] = useState(displayTopic.answerFull ?? '')
+  useEffect(() => {
+    const raw = displayTopic.answerFull
+    if (!raw) { setResolvedFull(''); return }
+
+    const url  = process.env.NEXT_PUBLIC_SUPABASE_URL
+    const key  = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+    if (!url || !key) { setResolvedFull(raw); return }
+
+    const cccNums   = [...new Set([...raw.matchAll(/\{\{ccc:(\d+)\}\}/gi)].map(m => m[1]))]
+    const verseRefs = [...new Set([...raw.matchAll(/\{\{verse:([^}]+)\}\}/gi)].map(m => m[1].trim()))]
+    const fatherIds = [...new Set([...raw.matchAll(/\{\{father:(\d+)\}\}/gi)].map(m => m[1]))]
+
+    if (!cccNums.length && !verseRefs.length && !fatherIds.length) { setResolvedFull(raw); return }
+
+    const h = { apikey: key, Authorization: `Bearer ${key}` }
+    Promise.all([
+      cccNums.length
+        ? fetch(`${url}/rest/v1/ccc_paragraphs?paragraph=in.(${cccNums.join(',')})&select=paragraph,text`, { headers: h }).then(r => r.json())
+        : Promise.resolve([]),
+      verseRefs.length
+        ? fetch(`${url}/rest/v1/scripture_verses?reference=in.(${verseRefs.map(r => `"${r}"`).join(',')})&version=eq.NABRE&select=reference,text`, { headers: h }).then(r => r.json())
+        : Promise.resolve([]),
+      fatherIds.length
+        ? fetch(`${url}/rest/v1/church_father_quotes?id=in.(${fatherIds.join(',')})&select=id,author,quote,source`, { headers: h }).then(r => r.json())
+        : Promise.resolve([]),
+    ]).then(([cccRows, verseRows, fatherRows]) => {
+      const cccMap    = new Map((cccRows  as {paragraph:number;text:string}[]).map(r => [String(r.paragraph), r.text]))
+      const verseMap  = new Map((verseRows as {reference:string;text:string}[]).map(r => [r.reference, r.text]))
+      const fatherMap = new Map((fatherRows as {id:number;author:string;quote:string;source:string}[]).map(r => [String(r.id), r]))
+
+      let out = raw
+      out = out.replace(/\{\{ccc:(\d+)\}\}/gi,    (_, n) => cccMap.has(n)    ? `> **CCC ${n}:** ${cccMap.get(n)}` : `*(CCC ${n})*`)
+      out = out.replace(/\{\{verse:([^}]+)\}\}/gi, (_, r) => verseMap.has(r.trim()) ? `> *"${verseMap.get(r.trim())}"* — **${r.trim()}**` : `*(${r.trim()})*`)
+      out = out.replace(/\{\{father:(\d+)\}\}/gi,  (_, id) => {
+        const f = fatherMap.get(id)
+        return f ? `> *"${f.quote}"*\n>\n> — **${f.author}**, *${f.source}*` : `*(quote #${id})*`
+      })
+      setResolvedFull(out)
+    }).catch(() => setResolvedFull(raw))
+  }, [displayTopic.answerFull]) // eslint-disable-line react-hooks/exhaustive-deps
+
   async function handleShare() {
     const url = window.location.href
     if (navigator.share) {
@@ -289,7 +332,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
             className={contentTab === 'comprehensive' ? 'rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none overflow-x-auto' : 'hidden'}
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {topic.answerFull}
+              {resolvedFull}
             </ReactMarkdown>
           </div>
         )}
