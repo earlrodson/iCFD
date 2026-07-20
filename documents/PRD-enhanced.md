@@ -2,7 +2,7 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.7  
+**Version:** 2.8  
 **Date:** 2026-07-20  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
@@ -1076,7 +1076,8 @@ These directly deliver the app's stated goals (G1–G4). Skipping them leaves th
 
 | # | Item | Why it matters |
 |---|------|----------------|
-| 1 | **TL/CEB translations** | Primary audience is Filipino Catholics. Tagalog and Cebuano stubs are placeholder text. Admin translation page + Claude API are ready — content just needs to be run. |
+| 1 | **Theological Etymology & Key Terms** (Phase 10) | Knowing the Greek/Latin root of a term immediately reframes a debate. This is the single highest-leverage feature for the lay defender use case — no other apologetics app does this at topic level. |
+| 2 | **TL/CEB translations** | Primary audience is Filipino Catholics. Tagalog and Cebuano stubs are placeholder text. Admin translation page + Claude API are ready — content just needs to be run. |
 
 ---
 
@@ -1110,6 +1111,130 @@ Do after Tier 1–3, or skip if resources are constrained.
 | 9 | **Content shortcodes in `answer_full`** (`{{ccc:464}}`, `{{verse:jn-1-1}}`) | Author ergonomics only; no user-visible change. Useful when content volume justifies it. |
 | 10 | **Bible chapter-level offline download** | SW's NetworkFirst already covers recently-visited chapters. Marginal unless users plan to go offline mid-session. |
 | 11 | **Native mobile apps via Capacitor** | PWA covers ~90% of the native use case. App Store presence adds discoverability, but high build/maintenance cost. |
+
+---
+
+---
+
+### Phase 10 — Theological Etymology & Key Terms ⬜ Planned
+
+**Goal:** Surface word-level etymology and debate notes for key theological terms directly inside topic pages, so users can immediately weaponize the original Greek, Latin, Hebrew, or Aramaic meaning in a dialogue.
+
+**User story:** *As a lay defender in a debate, I want to know that "Catholic" comes from καθολικός (katholikos — universal) and "Church" from ἐκκλησία (ekklesia — assembly of the called-out), so I can correct misconceptions at their root before defending doctrine.*
+
+#### 10A — Data Model
+
+**`theological_terms` table** — global glossary, defined once, reused across topics:
+
+```sql
+CREATE TABLE theological_terms (
+  slug          TEXT PRIMARY KEY,    -- 'ekklesia', 'kecharitomene', 'latria'
+  term          TEXT NOT NULL,       -- display form: "Ekklesia"
+  pronunciation TEXT,                -- phonetic: "ek-klee-SEE-ah"
+  language      TEXT NOT NULL,       -- 'Greek' | 'Latin' | 'Hebrew' | 'Aramaic'
+  root_text     TEXT,                -- original script: ἐκκλησία
+  root_meaning  TEXT NOT NULL,       -- literal root: "assembly of the called-out"
+  definition    TEXT NOT NULL,       -- 1–2 sentence theological definition
+  debate_note   TEXT                 -- why this matters in dialogue/debate
+);
+
+-- join table: which terms are relevant to each topic
+CREATE TABLE topic_terms (
+  topic_id  TEXT NOT NULL,   -- FK → topics.id
+  term_slug TEXT NOT NULL,   -- FK → theological_terms.slug
+  PRIMARY KEY (topic_id, term_slug)
+);
+```
+
+RLS: public SELECT on both tables; admin INSERT/UPDATE/DELETE.
+
+**Schema extension** (`data/schema/topic.schema.ts`):
+```typescript
+TermSchema = z.object({
+  slug: z.string(), term: z.string(), pronunciation: z.string().nullable(),
+  language: z.string(), rootText: z.string().nullable(),
+  rootMeaning: z.string(), definition: z.string(), debateNote: z.string().nullable()
+})
+// Added to TopicSchema:
+keyTerms: z.array(TermSchema).optional()
+```
+
+#### 10B — Topic Detail: Key Terms Section (Brief Tab)
+
+A **"Key Terms & Etymology"** card added to the Brief (Apologetics Brief) tab — same level as Scripture, CCC, Church Fathers, and Church Documents. Each term renders as an expandable card:
+
+```
+┌─────────────────────────────────────────────────────┐
+│ EKKLESIA                          Greek              │
+│ ἐκκλησία  /ek-klee-SEE-ah/                          │
+│ "assembly of the called-out"                         │
+│                                                      │
+│ The NT word for Church — not a building but a        │
+│ people summoned by God. [expand ▼]                   │
+│                                                      │
+│ ▸ Debate note: Opponents who say "I don't need a    │
+│   church" are arguing against the NT community       │
+│   concept itself.                                    │
+└─────────────────────────────────────────────────────┘
+```
+
+- Collapsed: term name, language badge, root text, root meaning, first sentence of definition
+- Expanded: full definition + debate note
+- Language badge color: Greek = blue, Latin = amber, Hebrew = green, Aramaic = purple
+
+#### 10C — Comprehensive Tab: Inline Term Tooltips
+
+Terms that appear in `answer_full` markdown and have a glossary entry are auto-detected and wrapped with a tooltip trigger. On desktop hover / mobile tap: a small popover shows root text, root meaning, and debate note — without leaving the reading flow.
+
+**Implementation:** Post-processing step on `resolvedFull` after shortcode expansion — scan for exact term matches (case-insensitive, word-boundary), wrap with a `<TermTooltip>` React component.
+
+#### 10D — Admin: Term Picker in Topic Editor
+
+Same UX pattern as Scripture/CCC/Church Fathers pickers:
+- Search existing terms by name or root
+- Click to attach to the current topic
+- Trash to detach
+- "Add new term to glossary" inline form (term, pronunciation, language, root text, root meaning, definition, debate note)
+
+Mounted as "Key Terms" section in the Topic Editor between Church Documents and Church Fathers.
+
+#### 10E — Seed: Initial Glossary
+
+Seed the most debate-critical terms across all apologetics categories:
+
+| Term | Language | Root |
+|------|----------|------|
+| Ekklesia | Greek | ἐκκλησία — assembly of the called-out |
+| Katholikos | Greek | καθολικός — according to the whole |
+| Kecharitomene | Greek | κεχαριτωμένη — perfect passive: having been and remaining graced |
+| Theotokos | Greek | Θεοτόκος — God-bearer |
+| Latria | Greek | λατρεία — worship due to God alone |
+| Dulia | Greek | δουλεία — veneration/honor given to servants of God |
+| Hyperdulia | Greek | ὑπερδουλεία — above-dulia honor given to Mary |
+| Transubstantiation | Latin | trans + substantia — change of substance |
+| Ex Cathedra | Latin | from the chair — with full papal authority |
+| Filioque | Latin | and from the Son — procession of the Holy Spirit |
+| Eucharistia | Greek | εὐχαριστία — thanksgiving |
+| Baptizein | Greek | βαπτίζειν — to immerse/plunge |
+| Charis | Greek | χάρις — gift, grace, divine favor |
+| Paradosis | Greek | παράδοσις — that which is handed down (Tradition) |
+| Apostolos | Greek | ἀπόστολος — one who is sent |
+| Presbyteros | Greek | πρεσβύτερος — elder (origin of "priest") |
+| Episcopos | Greek | ἐπίσκοπος — overseer (bishop) |
+| Diakonos | Greek | διάκονος — servant (deacon) |
+| Petros / Petra | Greek | πέτρος/πέτρα — stone/bedrock (Matt 16:18) |
+| Purgare | Latin | to cleanse — root of Purgatory |
+
+#### Acceptance Criteria
+
+- [ ] `theological_terms` and `topic_terms` tables created with RLS
+- [ ] "Key Terms" section visible in Brief tab when a topic has terms attached
+- [ ] Each term card collapses to root meaning and expands to full definition + debate note
+- [ ] Language badge color-coded (Greek/Latin/Hebrew/Aramaic)
+- [ ] Inline tooltips on Comprehensive tab for matched terms
+- [ ] Admin term picker attached to Topic Editor
+- [ ] Seed: all 20 terms from the initial glossary table above
+- [ ] Admin can attach/detach terms from any topic without redeploy
 
 ---
 
