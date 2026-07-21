@@ -208,6 +208,7 @@ interface TermRow {
     root_meaning: string
     definition: string
     debate_note: string | null
+    keywords: string | null
   }
 }
 
@@ -218,7 +219,7 @@ async function fetchKeyTerms(topicId: string): Promise<Term[]> {
     const res = await fetch(
       `${config.base}/rest/v1/topic_terms` +
         `?topic_id=eq.${encodeURIComponent(topicId)}` +
-        `&select=theological_terms(slug,term,pronunciation,language,root_text,root_meaning,definition,debate_note)`,
+        `&select=theological_terms(slug,term,pronunciation,language,root_text,root_meaning,definition,debate_note,keywords)`,
       {
         headers: { apikey: config.key, Authorization: `Bearer ${config.key}` },
         next: { revalidate: 60 },
@@ -238,6 +239,7 @@ async function fetchKeyTerms(topicId: string): Promise<Term[]> {
         rootMeaning:   t.root_meaning,
         definition:    t.definition,
         debateNote:    t.debate_note,
+        keywords:      t.keywords,
       }))
   } catch {
     return []

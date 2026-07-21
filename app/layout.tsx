@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { MobileNav } from '@/components/layout/MobileNav'
@@ -55,8 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script dangerouslySetInnerHTML={{ __html: darkModeScript }} />
+        <Script id="dark-mode" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: darkModeScript }} />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
         <SyncManager />

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -21,10 +22,9 @@ import {
   X,
   BookBookmark,
   TextAa,
-  CaretDown,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
-import type { Topic } from '@/data/schema/topic.schema'
+import type { Topic, Term } from '@/data/schema/topic.schema'
 import { Badge } from '@/components/ui/badge'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useReadingStore } from '@/store/useReadingStore'
@@ -34,6 +34,115 @@ import { formatDate, cn } from '@/lib/utils'
 import pathsData from '@/public/data/content/paths.json'
 
 const LANGUAGE_NAMES: Record<string, string> = { en: 'English', tl: 'Tagalog', ceb: 'Cebuano' }
+
+// ── Term highlighting helpers ─────────────────────────────────────────────────
+
+type TermPart = { type: 'text'; content: string } | { type: 'term'; term: Term; matched: string }
+
+/**
+ * Compile ONE regex from all terms (and their "/" variants) so the JS engine
+ * builds a single DFA — one O(n) pass over the text regardless of term count.
+ * Call this once per unique terms array (via useMemo), not per text node.
+ */
+function buildTermRegex(terms: Term[]): { re: RegExp; slugMap: Map<string, Term> } | null {
+  if (!terms.length) return null
+  const slugMap = new Map<string, Term>()
+  const patterns: string[] = []
+
+  for (const t of terms) {
+    // Use keywords if defined, otherwise fall back to term name parts
+    const matchWords = t.keywords
+      ? t.keywords.split(',').map((k) => k.trim()).filter(Boolean)
+      : t.term.split(' / ').map((p) => p.trim()).filter(Boolean)
+
+    for (const word of matchWords) {
+      const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+      patterns.push(escaped)
+      slugMap.set(word.toLowerCase(), t)
+    }
+  }
+
+  if (!patterns.length) return null
+  // Longest-first so "ex cathedra" matches before "ex", "mother of god" before "mother"
+  patterns.sort((a, b) => b.length - a.length)
+  const re = new RegExp(
+    `(?<![\\w\\u0080-\\uFFFF])(${patterns.join('|')})(?![\\w\\u0080-\\uFFFF])`,
+    'gi',
+  )
+  return { re, slugMap }
+}
+
+function splitText(text: string, compiled: ReturnType<typeof buildTermRegex>): TermPart[] {
+  if (!compiled) return [{ type: 'text', content: text }]
+  compiled.re.lastIndex = 0
+  const parts: TermPart[] = []
+  let last = 0
+  let m: RegExpExecArray | null
+  while ((m = compiled.re.exec(text)) !== null) {
+    if (m.index > last) parts.push({ type: 'text', content: text.slice(last, m.index) })
+    const term = compiled.slugMap.get(m[1].toLowerCase())
+    if (term) parts.push({ type: 'term', term, matched: m[1] })
+    else parts.push({ type: 'text', content: m[1] })
+    last = compiled.re.lastIndex
+  }
+  if (last < text.length) parts.push({ type: 'text', content: text.slice(last) })
+  return parts
+}
+
+function injectTerms(
+  node: React.ReactNode,
+  compiled: ReturnType<typeof buildTermRegex>,
+  onClick: (t: Term) => void,
+): React.ReactNode {
+  if (!compiled) return node
+  if (typeof node === 'string') {
+    const parts = splitText(node, compiled)
+    if (parts.length === 1 && parts[0].type === 'text') return node
+    return (
+      <>
+        {parts.map((p, i) =>
+          p.type === 'text' ? p.content : (
+            <button
+              key={i}
+              type="button"
+              onClick={() => onClick(p.term)}
+              className="underline underline-offset-2 decoration-dotted decoration-primary/70 hover:decoration-solid hover:text-primary transition-colors cursor-pointer font-[inherit]"
+            >
+              {p.matched}
+            </button>
+          ),
+        )}
+      </>
+    )
+  }
+  if (Array.isArray(node)) {
+    return node.map((child, i) => (
+      <React.Fragment key={i}>{injectTerms(child, compiled, onClick)}</React.Fragment>
+    ))
+  }
+  if (React.isValidElement(node)) {
+    const el = node as React.ReactElement<{ children?: React.ReactNode }>
+    if (el.props.children) {
+      return React.cloneElement(el, {}, injectTerms(el.props.children, compiled, onClick))
+    }
+  }
+  return node
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function makeTermComponents(compiled: ReturnType<typeof buildTermRegex>, onClick: (t: Term) => void): any {
+  const wrap = (Tag: string) =>
+    ({ children, ...rest }: { children?: React.ReactNode; [k: string]: unknown }) =>
+      React.createElement(Tag, rest, injectTerms(children, compiled, onClick))
+  return {
+    p: wrap('p'),
+    li: wrap('li'),
+    blockquote: wrap('blockquote'),
+    td: wrap('td'),
+    h2: wrap('h2'),
+    h3: wrap('h3'),
+  }
+}
 
 interface TopicContentProps {
   topic: Topic
@@ -54,7 +163,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>(
     initialTopic.answerFull ? 'comprehensive' : 'concise'
   )
-  const [refPopover, setRefPopover] = useState<{ title: string; meta?: string; body: string; loading?: boolean } | null>(null)
+  const [refPopover, setRefPopover] = useState<{ title: string; meta?: string; body: string; loading?: boolean; debateNote?: string } | null>(null)
   const [cccData, setCccData] = useState<Map<number, { paragraph: number; summary: string | null; text: string | null; section: string | null }>>(new Map())
 
   async function openCccPopover(cccRef: string) {
@@ -79,6 +188,25 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
     }
   }
 
+  function openTermPopover(t: Term) {
+    setRefPopover({
+      title: `${t.term}${t.rootText ? ` · ${t.rootText}` : ''}`,
+      meta: `${t.language}${t.pronunciation ? ` · /${t.pronunciation}/` : ''} · "${t.rootMeaning}"`,
+      body: t.definition,
+      debateNote: t.debateNote ?? undefined,
+    })
+  }
+
+  // Compile once when keyTerms change — single DFA regex for all terms
+  const compiledTerms = useMemo(
+    () => buildTermRegex(displayTopic.keyTerms ?? []),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [displayTopic.keyTerms?.map((t) => t.slug).join(',')],
+  )
+  // Stable component objects — only recreated when compiled regex changes
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const termComponents = useMemo(() => makeTermComponents(compiledTerms, openTermPopover), [compiledTerms])
+
   const favorited = isFavorite(displayTopic.id)
   const read = isRead(displayTopic.id)
   const { status: offlineStatus, supported: offlineSupported, download: downloadOffline, remove: removeOffline } = useTopicOfflineCache(initialTopic.id)
@@ -96,7 +224,8 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
     } else {
       const found = availableTopics.find((t) => t.id === initialTopic.id)
       if (found) {
-        setDisplayTopic(found)
+        // keyTerms and documentRefs are fetched server-side and not in the static store — preserve them
+        setDisplayTopic({ ...found, keyTerms: initialTopic.keyTerms, documentRefs: initialTopic.documentRefs })
         setNotAvailable(false)
       } else {
         setDisplayTopic(initialTopic)
@@ -135,7 +264,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   }, [initialTopic.catechism])
 
   // Resolve {{ccc:N}}, {{verse:ref}}, {{father:id}} shortcodes in answerFull
-  const [expandedTerms, setExpandedTerms] = useState<Set<string>>(new Set())
+  const [selectedTerm, setSelectedTerm] = useState<string | null>(null)
   const [resolvedFull, setResolvedFull] = useState(displayTopic.answerFull ?? '')
   useEffect(() => {
     const raw = displayTopic.answerFull
@@ -320,12 +449,56 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
           </button>
         </div>
 
+        {/* Key Terms bar — pinned between tab bar and content */}
+        {topic.keyTerms && topic.keyTerms.length > 0 && (
+          <div className="border-x border-border bg-muted/30">
+            <div className="flex flex-wrap items-center gap-1.5 px-4 py-2.5">
+              <TextAa weight="light" size={14} className="shrink-0 text-muted-foreground" />
+              {topic.keyTerms.map((t) => (
+                <button
+                  key={t.slug}
+                  onClick={() => setSelectedTerm(selectedTerm === t.slug ? null : t.slug)}
+                  className={`rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
+                    selectedTerm === t.slug
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-primary/10 text-primary hover:bg-primary/20'
+                  }`}
+                >
+                  {t.term}
+                </button>
+              ))}
+            </div>
+            {selectedTerm && (() => {
+              const t = topic.keyTerms!.find((x) => x.slug === selectedTerm)
+              if (!t) return null
+              return (
+                <div className="border-t border-border px-4 py-3 space-y-2">
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+                    <span className="font-semibold text-sm text-foreground">{t.term}</span>
+                    {t.rootText && <span className="text-sm font-medium text-primary">{t.rootText}</span>}
+                    {t.pronunciation && <span className="text-xs text-muted-foreground">/{t.pronunciation}/</span>}
+                    <span className="text-xs text-muted-foreground">({t.language})</span>
+                    <span className="text-xs text-muted-foreground">&middot; &ldquo;{t.rootMeaning}&rdquo;</span>
+                  </div>
+                  <p className="text-sm text-foreground leading-relaxed">{t.definition}</p>
+                  {t.debateNote && (
+                    <div className="rounded-xl border-l-4 border-primary bg-primary/8 px-4 py-3">
+                      <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">Apologetics Note</p>
+                      <p className="text-sm text-foreground leading-relaxed">{t.debateNote}</p>
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
+          </div>
+        )}
+
         {/* Concise */}
         <div
           data-tab="concise"
           className={contentTab === 'concise' ? 'rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none' : 'hidden'}
         >
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{topic.answer}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={termComponents}>{topic.answer}</ReactMarkdown>
         </div>
 
         {/* Comprehensive */}
@@ -334,58 +507,9 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
             data-tab="comprehensive"
             className={contentTab === 'comprehensive' ? 'rounded-b-2xl rounded-tr-2xl bg-card px-5 py-6 shadow-sm border border-t-0 border-border prose prose-base dark:prose-invert max-w-none overflow-x-auto' : 'hidden'}
           >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={termComponents}>
               {resolvedFull}
             </ReactMarkdown>
-            {topic.keyTerms && topic.keyTerms.length > 0 && (
-              <div className="not-prose mt-6 pt-5 border-t border-border">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3 flex items-center gap-1.5">
-                  <TextAa weight="light" size={13} /> Key Terms &amp; Etymology
-                </p>
-                <div className="space-y-2">
-                  {topic.keyTerms.map((t) => (
-                    <div key={t.slug} className="rounded-xl border border-border bg-muted/30 overflow-hidden">
-                      <button
-                        onClick={() => setExpandedTerms((s) => {
-                          const next = new Set(s)
-                          next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
-                          return next
-                        })}
-                        className="w-full text-left px-4 py-2.5 flex items-center justify-between gap-3"
-                      >
-                        <span className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                          <span className="font-semibold text-sm text-foreground">{t.term}</span>
-                          {t.rootText && (
-                            <span className="font-medium text-primary text-sm">{t.rootText}</span>
-                          )}
-                          {t.pronunciation && (
-                            <span className="text-xs text-muted-foreground">/{t.pronunciation}/</span>
-                          )}
-                          <span className="text-xs text-muted-foreground">({t.language})</span>
-                          <span className="text-xs text-muted-foreground">· &ldquo;{t.rootMeaning}&rdquo;</span>
-                        </span>
-                        <CaretDown
-                          weight="light"
-                          size={14}
-                          className={`shrink-0 transition-transform text-muted-foreground ${expandedTerms.has(t.slug) ? 'rotate-180' : ''}`}
-                        />
-                      </button>
-                      {expandedTerms.has(t.slug) && (
-                        <div className="px-4 pb-3 border-t border-border space-y-2 pt-2.5">
-                          <p className="text-sm text-foreground leading-relaxed">{t.definition}</p>
-                          {t.debateNote && (
-                            <div className="rounded-lg bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/40 px-3 py-2">
-                              <p className="text-xs font-semibold text-amber-700 dark:text-amber-400 mb-1">Debate Note</p>
-                              <p className="text-xs text-amber-800 dark:text-amber-300 leading-relaxed">{t.debateNote}</p>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
         )}
 
@@ -505,44 +629,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 </div>
               </div>
             )}
-            {topic.keyTerms && topic.keyTerms.length > 0 && (
-              <div className="border-t border-border p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
-                  <TextAa weight="light" size={13} /> Key Terms
-                </p>
-                <div className="space-y-1.5">
-                  {topic.keyTerms.map((t) => (
-                    <button
-                      key={t.slug}
-                      onClick={() => setExpandedTerms((s) => {
-                        const next = new Set(s)
-                        next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
-                        return next
-                      })}
-                      className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1.5 -mx-1.5 transition-colors"
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span>
-                          <span className="font-semibold text-primary">{t.term}</span>
-                          {t.pronunciation && <span className="text-muted-foreground ml-1">/{t.pronunciation}/</span>}
-                          <span className="text-muted-foreground ml-1.5">({t.language})</span>
-                          <span className="text-muted-foreground ml-1">· &ldquo;{t.rootMeaning}&rdquo;</span>
-                        </span>
-                        <CaretDown
-                          weight="light"
-                          size={12}
-                          className={`shrink-0 transition-transform text-muted-foreground ${expandedTerms.has(t.slug) ? 'rotate-180' : ''}`}
-                        />
-                      </div>
-                      {expandedTerms.has(t.slug) && (
-                        <p className="mt-1 text-foreground leading-relaxed pl-0.5">{t.definition}</p>
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && !topic.keyTerms?.length && (
+            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && (
               <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
             )}
           </div>
@@ -550,34 +637,47 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
         {/* Reference popover */}
         {refPopover && (
           <div
-            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-4 bg-black/40 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm"
             onClick={() => setRefPopover(null)}
           >
             <div
-              className="w-full max-w-sm rounded-2xl bg-card border border-border shadow-2xl p-5 space-y-3"
+              className="w-full max-w-sm rounded-2xl bg-card border border-border shadow-2xl overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-start justify-between gap-3">
+              {/* Header */}
+              <div className="flex items-start justify-between gap-3 px-5 pt-5 pb-3">
                 <div>
-                  <p className="font-semibold text-sm text-foreground leading-snug">{refPopover.title}</p>
+                  <p className="font-bold text-base text-foreground leading-snug">{refPopover.title}</p>
                   {refPopover.meta && (
-                    <p className="text-xs text-muted-foreground mt-0.5">{refPopover.meta}</p>
+                    <p className="text-xs text-muted-foreground mt-1">{refPopover.meta}</p>
                   )}
                 </div>
                 <button
                   onClick={() => setRefPopover(null)}
-                  className="shrink-0 p-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  className="shrink-0 p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
                 >
                   <X weight="light" size={18} />
                 </button>
               </div>
-              {refPopover.loading ? (
-                <div className="flex justify-center py-3">
-                  <Spinner weight="light" size={22} className="animate-spin text-muted-foreground" />
-                </div>
-              ) : (
-                <p className="text-sm text-foreground leading-relaxed italic">&ldquo;{refPopover.body}&rdquo;</p>
-              )}
+
+              {/* Body */}
+              <div className="px-5 pb-5 space-y-3 max-h-[60vh] overflow-y-auto">
+                {refPopover.loading ? (
+                  <div className="flex justify-center py-4">
+                    <Spinner weight="light" size={22} className="animate-spin text-muted-foreground" />
+                  </div>
+                ) : (
+                  <>
+                    <p className="text-sm text-foreground leading-relaxed">{refPopover.body}</p>
+                    {refPopover.debateNote && (
+                      <div className="rounded-xl border-l-4 border-primary bg-primary/8 px-4 py-3">
+                        <p className="text-xs font-bold uppercase tracking-wider text-primary mb-1.5">Apologetics Note</p>
+                        <p className="text-sm text-foreground leading-relaxed">{refPopover.debateNote}</p>
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
             </div>
           </div>
         )}
@@ -744,63 +844,6 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
                 <div className="px-4 py-3">
                   <p className="text-sm text-foreground leading-relaxed">{item.response}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Key Terms & Etymology */}
-      {topic.keyTerms && topic.keyTerms.length > 0 && (
-        <section className="mb-8">
-          <h2 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-            <TextAa weight="light" size={16} />
-            Key Terms &amp; Etymology
-          </h2>
-          <div className="space-y-3">
-            {topic.keyTerms.map((t) => (
-              <div key={t.slug} className="rounded-2xl border border-border bg-card shadow-sm overflow-hidden">
-                <button
-                  onClick={() => setExpandedTerms((s) => {
-                    const next = new Set(s)
-                    next.has(t.slug) ? next.delete(t.slug) : next.add(t.slug)
-                    return next
-                  })}
-                  className="w-full text-left px-4 py-3 flex items-start justify-between gap-3"
-                >
-                  <div>
-                    <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-                      <span className="font-semibold text-sm text-foreground">{t.term}</span>
-                      {t.rootText && (
-                        <span className="font-medium text-primary text-sm">{t.rootText}</span>
-                      )}
-                      {t.pronunciation && (
-                        <span className="text-xs text-muted-foreground">/{t.pronunciation}/</span>
-                      )}
-                    </div>
-                    <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0.5 text-xs text-muted-foreground">
-                      <span>{t.language}</span>
-                      <span>·</span>
-                      <span>&ldquo;{t.rootMeaning}&rdquo;</span>
-                    </div>
-                  </div>
-                  <CaretDown
-                    weight="light"
-                    size={16}
-                    className={`shrink-0 mt-1 transition-transform text-muted-foreground ${expandedTerms.has(t.slug) ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                {expandedTerms.has(t.slug) && (
-                  <div className="px-4 pb-4 border-t border-border space-y-2.5 pt-3">
-                    <p className="text-sm text-foreground leading-relaxed">{t.definition}</p>
-                    {t.debateNote && (
-                      <div className="rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800/40 px-3.5 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 dark:text-amber-400 mb-1.5">In Debate</p>
-                        <p className="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">{t.debateNote}</p>
-                      </div>
-                    )}
-                  </div>
-                )}
               </div>
             ))}
           </div>

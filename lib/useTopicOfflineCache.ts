@@ -34,7 +34,11 @@ export type TopicCacheStatus = 'idle' | 'downloading' | 'done' | 'error'
 
 export function useTopicOfflineCache(topicId: string) {
   const [status, setStatus] = useState<TopicCacheStatus>('idle')
-  const supported = typeof window !== 'undefined' && 'caches' in window
+  const [supported, setSupported] = useState(false)
+
+  useEffect(() => {
+    setSupported(typeof window !== 'undefined' && 'caches' in window)
+  }, [])
 
   useEffect(() => {
     if (!supported) return

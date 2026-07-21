@@ -48,6 +48,7 @@ export const TermSchema = z.object({
   rootMeaning: z.string(),
   definition:  z.string(),
   debateNote:  z.string().nullable().optional(),
+  keywords:    z.string().nullable().optional(), // comma-separated match words
 })
 
 export const TopicSchema = z.object({
