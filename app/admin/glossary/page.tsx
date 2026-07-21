@@ -48,9 +48,22 @@ export default function GlossaryPage() {
 
   async function load() {
     setLoading(true)
-    const res = await fetch('/api/admin/glossary')
-    const data = await res.json()
-    setTerms(Array.isArray(data) ? data : [])
+    setError('')
+    try {
+      const res = await fetch('/api/admin/glossary')
+      if (!res.ok) {
+        const text = await res.text()
+        let msg = `Failed to load (${res.status})`
+        try { msg = JSON.parse(text).error ?? msg } catch { /* non-JSON body */ }
+        setError(msg)
+        setLoading(false)
+        return
+      }
+      const data = await res.json()
+      setTerms(Array.isArray(data) ? data : [])
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Network error')
+    }
     setLoading(false)
   }
 

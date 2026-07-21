@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
-import { getUser } from '@/lib/supabase/auth'
+import { createServerClient } from '@/lib/supabase/server'
 
 function adminSupabase() {
   return createClient(
@@ -11,10 +11,15 @@ function adminSupabase() {
 }
 
 async function verifyAdmin(): Promise<boolean> {
-  const user = await getUser()
-  if (!user) return false
-  const { data } = await adminSupabase().from('admins').select('user_id').eq('user_id', user.id).maybeSingle()
-  return !!data
+  try {
+    const client = await createServerClient()
+    const { data: { user } } = await client.auth.getUser()
+    if (!user) return false
+    const { data } = await adminSupabase().from('admins').select('user_id').eq('user_id', user.id).maybeSingle()
+    return !!data
+  } catch {
+    return false
+  }
 }
 
 // GET /api/admin/glossary — list all terms
