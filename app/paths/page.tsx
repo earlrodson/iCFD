@@ -2,38 +2,29 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Cross, Shield, Star, ArrowRight, Clock, User } from '@phosphor-icons/react'
+import { Cross, Shield, Star, GraduationCap, ArrowRight, Clock, User } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
-import pathsData from '@/public/data/content/paths.json'
-
-interface LearningPath {
-  slug: string
-  title: string
-  description: string
-  icon: string
-  audience?: string
-  estimatedMinutes?: number
-  topicIds: string[]
-}
+import { fetchPaths, type LearningPath } from '@/lib/content/paths'
 
 const iconMap: Record<string, React.ElementType> = {
   cross: Cross,
   shield: Shield,
   star: Star,
+  'graduation-cap': GraduationCap,
 }
 
 export default function PathsPage() {
   const { availableTopics, initialize } = useAppStore()
   const { readProgress } = useReadingStore()
   const [mounted, setMounted] = useState(false)
+  const [paths, setPaths] = useState<LearningPath[]>([])
 
   useEffect(() => {
     setMounted(true)
     if (availableTopics.length === 0) initialize()
+    fetchPaths().then(setPaths)
   }, [availableTopics.length, initialize])
-
-  const paths = pathsData.paths as LearningPath[]
 
   function getProgress(topicIds: string[]) {
     if (!mounted) return { read: 0, total: topicIds.length }

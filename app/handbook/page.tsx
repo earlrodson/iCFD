@@ -17,6 +17,7 @@ import { useReadingStore } from '@/store/useReadingStore'
 import { TopicCard } from '@/components/topic/TopicCard'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { useCourseTopicOrder, sortWithCourseFirst } from '@/lib/content/courseOrder'
 import type { Category, Difficulty, Topic } from '@/data/schema/topic.schema'
 
 const categoryItems: { value: Category | 'all'; label: string; Icon: React.ElementType }[] = [
@@ -56,6 +57,7 @@ export default function HandbookPage() {
   const [sort, setSort] = useState<SortOption>('title')
   const [visibleCount, setVisibleCount] = useState(BATCH_SIZE)
   const sentinelRef = useRef<HTMLDivElement>(null)
+  const courseOrder = useCourseTopicOrder()
 
   useEffect(() => {
     if (availableTopics.length === 0) initialize()
@@ -69,7 +71,7 @@ export default function HandbookPage() {
     filtered = filtered.filter((t) => t.difficulty === selectedDifficulty)
   }
 
-  filtered = sortTopics(filtered, sort)
+  filtered = sortWithCourseFirst(sortTopics(filtered, sort), courseOrder)
 
   // Reset visible count when filters/sort change
   useEffect(() => {

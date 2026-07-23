@@ -24,7 +24,7 @@ import {
   TextAa,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
-import type { Topic, Term } from '@/data/schema/topic.schema'
+import type { Topic, Term, Language } from '@/data/schema/topic.schema'
 import { Badge } from '@/components/ui/badge'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useReadingStore } from '@/store/useReadingStore'
@@ -146,9 +146,13 @@ function makeTermComponents(compiled: ReturnType<typeof buildTermRegex>, onClick
 
 interface TopicContentProps {
   topic: Topic
+  /** Set by the server when the cookie-preferred language had no real
+   *  translation for this topic (missing or stub) and English was served
+   *  instead — lets the banner render on first paint, before hydration. */
+  requestedLang?: Language
 }
 
-export function TopicContent({ topic: initialTopic }: TopicContentProps) {
+export function TopicContent({ topic: initialTopic, requestedLang }: TopicContentProps) {
   const { availableTopics, currentLanguage, initialize } = useAppStore()
   const { toggleFavorite, isFavorite } = useFavoritesStore()
   const { markAsRead, markAsUnread, isRead, recordVisit } = useReadingStore()
@@ -156,7 +160,8 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
   const { setNote } = useNotesStore()
 
   const [displayTopic, setDisplayTopic] = useState(initialTopic)
-  const [notAvailable, setNotAvailable] = useState(false)
+  const [notAvailable, setNotAvailable] = useState(!!requestedLang)
+  const [unavailableLang, setUnavailableLang] = useState(requestedLang ?? null)
   const [copied, setCopied] = useState(false)
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
@@ -227,9 +232,14 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
         // keyTerms and documentRefs are fetched server-side and not in the static store — preserve them
         setDisplayTopic({ ...found, keyTerms: initialTopic.keyTerms, documentRefs: initialTopic.documentRefs })
         setNotAvailable(false)
+        setUnavailableLang(null)
       } else {
+        // availableTopics for a non-English language already excludes stub
+        // rows (lib/content/database.ts loadTopicsFromDatabase), so "not
+        // found here" means genuinely missing or stub — same fallback case.
         setDisplayTopic(initialTopic)
         setNotAvailable(currentLanguage !== 'en')
+        setUnavailableLang(currentLanguage !== 'en' ? currentLanguage : null)
       }
     }
   }, [availableTopics, initialTopic, currentLanguage, initialize])
@@ -343,7 +353,7 @@ export function TopicContent({ topic: initialTopic }: TopicContentProps) {
       {notAvailable && (
         <div className="mb-5 flex items-center gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-2.5 text-sm text-amber-700 dark:border-amber-800/60 dark:bg-amber-900/20 dark:text-amber-400">
           <Warning weight="fill" size={16} className="shrink-0" />
-          Not available in {LANGUAGE_NAMES[currentLanguage] ?? currentLanguage} — showing English
+          No {LANGUAGE_NAMES[unavailableLang ?? currentLanguage] ?? unavailableLang} translation available — showing English
         </div>
       )}
 

@@ -33,6 +33,10 @@ export const useAppStore = create<AppState>()(
 
       setLanguage: (lang) => {
         set({ currentLanguage: lang })
+        // Mirrored into a cookie (not just localStorage) so the server can
+        // render the topic page in the right language on first paint instead
+        // of always shipping English and swapping after hydration.
+        document.cookie = `lang=${lang}; path=/; max-age=31536000; SameSite=Lax`
         get().initialize(lang)
       },
 

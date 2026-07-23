@@ -27,6 +27,7 @@ interface TopicRow {
   difficulty: Topic['difficulty']
   related_topics: Json | null
   last_updated: string
+  translation_source: string | null
 }
 
 interface ScriptureVerseRow {
@@ -157,6 +158,9 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     lastUpdated: row.last_updated,
     documentRefs: undefined, // populated separately via fetchDocumentRefs
     keyTerms: undefined,     // populated separately via fetchKeyTerms
+    translationSource: row.translation_source === 'manual' || row.translation_source === 'machine' || row.translation_source === 'stub'
+      ? row.translation_source
+      : undefined,
   }
 }
 
@@ -251,7 +255,7 @@ async function fetchKeyTerms(topicId: string): Promise<Term[]> {
 const TOPIC_SELECT = [
   'id','lang','category','title','question','answer','answer_full','cover_image',
   'scripture','catechism','church_fathers','objections',
-  'tags','difficulty','related_topics','last_updated',
+  'tags','difficulty','related_topics','last_updated','translation_source',
 ].join(',')
 
 async function fetchTopicRows(params: URLSearchParams): Promise<TopicRow[] | null> {
@@ -267,7 +271,11 @@ async function fetchTopicRows(params: URLSearchParams): Promise<TopicRow[] | nul
 }
 
 export async function loadTopicsFromDatabase(lang: Language): Promise<HandbookContent | null> {
-  const rows = await fetchTopicRows(new URLSearchParams({ lang: `eq.${lang}`, published: 'eq.true', order: 'title.asc' }))
+  const params = new URLSearchParams({ lang: `eq.${lang}`, published: 'eq.true', order: 'title.asc' })
+  // Untranslated stub rows shouldn't appear as if they were real content when
+  // browsing a non-English language — only the topic detail page falls back.
+  if (lang !== 'en') params.set('translation_source', 'neq.stub')
+  const rows = await fetchTopicRows(params)
   if (!rows?.length) return null
   const refs = await resolveRefs(rows)
   return HandbookContentSchema.parse({ topics: rows.map(r => topicRowToTopic(r, refs)) })
@@ -278,8 +286,16 @@ export async function loadTopicFromDatabase(
   lang: Language = 'en',
 ): Promise<Topic | null> {
   const rows = await fetchTopicRows(new URLSearchParams({ id: `eq.${id}`, lang: `eq.${lang}`, limit: '1' }))
-  const row = rows?.[0]
+  let row = rows?.[0]
+
+  // A 'stub' row is untranslated placeholder text — treat it the same as a
+  // missing row and fall back to English rather than showing it as real content.
+  if (lang !== 'en' && (!row || row.translation_source === 'stub')) {
+    const enRows = await fetchTopicRows(new URLSearchParams({ id: `eq.${id}`, lang: 'eq.en', limit: '1' }))
+    row = enRows?.[0]
+  }
   if (!row) return null
+
   const [refs, documentRefs, keyTerms] = await Promise.all([
     resolveRefs([row]),
     fetchDocumentRefs(id),
@@ -288,5 +304,6 @@ export async function loadTopicFromDatabase(
   const topic = topicRowToTopic(row, refs)
   topic.documentRefs = documentRefs.length ? documentRefs : undefined
   topic.keyTerms = keyTerms.length ? keyTerms : undefined
+  // topic.lang !== requested lang tells the caller a fallback occurred
   return topic
 }

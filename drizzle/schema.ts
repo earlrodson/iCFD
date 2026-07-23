@@ -8,8 +8,14 @@ import {
   primaryKey,
   unique,
   index,
+  bigserial,
+  boolean,
+  numeric,
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
+
+export const TIERS = ['beginner', 'intermediate', 'advanced'] as const
+export type Tier = typeof TIERS[number]
 
 // ── Enums ──────────────────────────────────────────────────────────────────────
 
@@ -74,6 +80,14 @@ export const paths = pgTable('paths', {
   estimated_minutes: integer('estimated_minutes').notNull(),
   difficulty: text('difficulty').notNull().$type<typeof DIFFICULTIES[number]>(),
   icon: text('icon').notNull(),
+  // Admin can pin a path above the rest on /paths regardless of created_at.
+  pinned: boolean('pinned').default(false).notNull(),
+  // 'sequential': a topic's quiz locks until the previous topic in the path
+  // has been passed at the same tier. 'agnostic': any order.
+  quiz_mode: text('quiz_mode').default('sequential').notNull().$type<'sequential' | 'agnostic'>(),
+  // Soft delete — set instead of removing the row, so /admin/paths can list
+  // and restore deleted paths. Public read excludes non-null rows.
+  deleted_at: timestamp('deleted_at', { withTimezone: true }),
   created_at: timestamp('created_at', { withTimezone: true })
     .default(sql`now()`)
     .notNull(),
@@ -97,7 +111,117 @@ export const pathTopics = pgTable(
   ]
 )
 
+// ── Course quizzes & certificates (Phase 11) ────────────────────────────────
+
+/**
+ * Per-tier quiz configuration (item count, bank size, pass threshold).
+ * Admin-editable via /admin/quiz-settings. Public read.
+ */
+export const quizSettings = pgTable('quiz_settings', {
+  tier: text('tier').primaryKey().$type<Tier>(),
+  item_count: integer('item_count').notNull(),
+  bank_size: integer('bank_size').notNull(),
+  pass_percent: integer('pass_percent').notNull(),
+  updated_at: timestamp('updated_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/**
+ * Authored question bank per (topic_id, tier). An attempt samples a random
+ * item_count subset — correct_index must never be selected out to a client
+ * taking the quiz.
+ */
+export const quizQuestions = pgTable(
+  'quiz_questions',
+  {
+    id: bigserial('id', { mode: 'number' }).primaryKey(),
+    topic_id: text('topic_id').notNull(),
+    tier: text('tier').notNull().$type<Tier>(),
+    question: text('question').notNull(),
+    choices: jsonb('choices').notNull(),
+    correct_index: integer('correct_index').notNull(),
+    active: boolean('active').default(true).notNull(),
+    created_at: timestamp('created_at', { withTimezone: true })
+      .default(sql`now()`)
+      .notNull(),
+  },
+  (t) => [index('quiz_questions_topic_tier_idx').on(t.topic_id, t.tier)]
+)
+
+/**
+ * Admin-uploaded certificate background image per tier + drag-placed field
+ * coordinates ({ field, x, y, font_size, font_family, color, align }[]).
+ */
+export const certificateTemplates = pgTable('certificate_templates', {
+  tier: text('tier').primaryKey().$type<Tier>(),
+  base_image_url: text('base_image_url').notNull(),
+  placeholders: jsonb('placeholders').notNull(),
+  updated_at: timestamp('updated_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
 // ── User data tables (RLS-protected) ──────────────────────────────────────────
+
+/**
+ * One row per submitted quiz attempt. question_ids records exactly which
+ * rotated subset was served, so rotation is auditable, not just
+ * random-at-render. Never client-writable — scoring happens server-side.
+ */
+export const quizAttempts = pgTable(
+  'quiz_attempts',
+  {
+    id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+    user_id: uuid('user_id').notNull(),
+    topic_id: text('topic_id').notNull(),
+    tier: text('tier').notNull().$type<Tier>(),
+    question_ids: jsonb('question_ids').notNull(),
+    answers: jsonb('answers').notNull(),
+    score_percent: numeric('score_percent').notNull(),
+    passed: boolean('passed').notNull(),
+    attempted_at: timestamp('attempted_at', { withTimezone: true })
+      .default(sql`now()`)
+      .notNull(),
+  },
+  (t) => [
+    index('quiz_attempts_user_topic_tier_idx').on(t.user_id, t.topic_id, t.tier, t.attempted_at),
+  ]
+)
+
+/**
+ * The "done" ledger: one row per (user, topic, tier) the user has passed.
+ */
+export const courseProgress = pgTable(
+  'course_progress',
+  {
+    user_id: uuid('user_id').notNull(),
+    topic_id: text('topic_id').notNull(),
+    tier: text('tier').notNull().$type<Tier>(),
+    passed_at: timestamp('passed_at', { withTimezone: true }).notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.user_id, t.topic_id, t.tier] })]
+)
+
+/**
+ * Issued once course_progress covers all course topics for a tier.
+ * Permanent once issued — later quiz re-attempts never revoke it.
+ */
+export const certificates = pgTable(
+  'certificates',
+  {
+    id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+    user_id: uuid('user_id').notNull(),
+    tier: text('tier').notNull().$type<Tier>(),
+    serial_code: text('serial_code').notNull().unique(),
+    issued_at: timestamp('issued_at', { withTimezone: true })
+      .default(sql`now()`)
+      .notNull(),
+    pdf_url: text('pdf_url').notNull(),
+    image_url: text('image_url').notNull(),
+  },
+  (t) => [unique('certificates_user_tier_key').on(t.user_id, t.tier)]
+)
 
 /**
  * Saved topics per user. Synced from IndexedDB on sign-in.

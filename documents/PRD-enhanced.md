@@ -2,8 +2,8 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.8  
-**Date:** 2026-07-20  
+**Version:** 2.9  
+**Date:** 2026-07-23  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
 
@@ -32,6 +32,7 @@ Transform iCFD from a static reference handbook into a living, personalized apol
 | G4 | Give users a personal space (favorites, reading history, notes) | 30-day retention ≥ 40% |
 | G5 | Enable guided learning paths for different user types | 3+ curated paths published |
 | G6 | Support community-driven content (Phase 3 prerequisite) | Content submission form live |
+| G7 | Offer a structured, certificate-earning course over the primary 20-topic curriculum | ≥ 500 course starts; ≥ 20% Beginner-certificate completion rate |
 
 ---
 
@@ -1078,6 +1079,7 @@ These directly deliver the app's stated goals (G1–G4). Skipping them leaves th
 |---|------|----------------|
 | 1 | **Theological Etymology & Key Terms** (Phase 10) | Knowing the Greek/Latin root of a term immediately reframes a debate. This is the single highest-leverage feature for the lay defender use case — no other apologetics app does this at topic level. |
 | 2 | **TL/CEB translations** | Primary audience is Filipino Catholics. Tagalog and Cebuano stubs are placeholder text. Admin translation page + Claude API are ready — content just needs to be run. |
+| 3 | **Guided Course, Quizzes & Certificates** (Phase 11) | Converts the 20-topic basic apologetics curriculum from passive reading into a completable, credentialed course — a strong retention and word-of-mouth driver, and the first monetizable-adjacent feature (certificates) even though payments remain out of scope. |
 
 ---
 
@@ -1235,6 +1237,131 @@ Seed the most debate-critical terms across all apologetics categories:
 - [ ] Admin term picker attached to Topic Editor
 - [ ] Seed: all 20 terms from the initial glossary table above
 - [ ] Admin can attach/detach terms from any topic without redeploy
+
+---
+
+### Phase 11 — Guided Course, Quizzes & Certificates 🔄 Partial
+
+**Goal:** Turn the 20-topic "Layman's Biblical Theology and Apologetics Course" (Cebuano source, being translated to Tagalog, with an existing English counterpart per topic) into a structured, self-paced course with tiered quizzes and a downloadable/shareable completion certificate per tier.
+
+**User story:** *As a lay Catholic working through the basic apologetics curriculum, I want to read all 20 topics, test myself at increasing difficulty, and receive a certificate with my name on it once I've proven I know the material — without being forced to sign up just to try a quiz.*
+
+#### 11A — Course Definition & Highlighting
+
+The `paths` / `path_topics` tables (`drizzle/schema.ts`) already model exactly this shape (ordered topic list, difficulty, estimated time) — **reuse them rather than adding new schema**:
+
+- Seed one `paths` row (`slug: 'basic-apologetics-course'`) with the 20 topic ids in lesson order via `path_topics.position`.
+- **Fix the existing Paths gap first:** today `/paths` and `/paths/[slug]` read a static `public/data/content/paths.json` (§4.6/§5.5) instead of the DB, while the admin `PathEditor` writes to the DB — the two are disconnected. Wire the public path pages to query Supabase directly so this course (and any future path) reflects admin edits immediately.
+- Homepage and Library highlighting of "the 20 topics" is served by querying `path_topics` for `basic-apologetics-course` ordered by `position` — no new `sort_order`/`featured` column needed on `topics`.
+
+#### 11B — Data Model
+
+```sql
+CREATE TABLE quiz_settings (
+  tier          TEXT PRIMARY KEY,   -- 'beginner' | 'intermediate' | 'advanced'
+  item_count    INTEGER NOT NULL,   -- questions served per attempt
+  bank_size     INTEGER NOT NULL,   -- questions authored per topic+tier (300% of item_count)
+  pass_percent  INTEGER NOT NULL,   -- minimum score to pass
+  updated_at    TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+-- Seed defaults:
+-- beginner     | 10 | 30 | 70
+-- intermediate | 20 | 60 | 80
+-- advanced     | 30 | 90 | 85
+-- All three columns admin-editable in /admin/quiz-settings.
+
+CREATE TABLE quiz_questions (
+  id             BIGSERIAL PRIMARY KEY,
+  topic_id       TEXT NOT NULL,     -- FK -> topics.id
+  tier           TEXT NOT NULL REFERENCES quiz_settings(tier),
+  question       TEXT NOT NULL,
+  choices        JSONB NOT NULL,    -- ["...", "...", "...", "..."]
+  correct_index  INTEGER NOT NULL,
+  active         BOOLEAN NOT NULL DEFAULT true
+);
+
+CREATE TABLE quiz_attempts (
+  id             UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id        UUID NOT NULL,     -- no FK to auth.users (existing convention, §7 favorites)
+  topic_id       TEXT NOT NULL,
+  tier           TEXT NOT NULL REFERENCES quiz_settings(tier),
+  question_ids   JSONB NOT NULL,    -- the rotated subset served this attempt
+  answers        JSONB NOT NULL,
+  score_percent  NUMERIC NOT NULL,
+  passed         BOOLEAN NOT NULL,
+  attempted_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE TABLE course_progress (
+  user_id    UUID NOT NULL,
+  topic_id   TEXT NOT NULL,
+  tier       TEXT NOT NULL REFERENCES quiz_settings(tier),
+  passed_at  TIMESTAMPTZ NOT NULL,
+  PRIMARY KEY (user_id, topic_id, tier)
+);
+
+CREATE TABLE certificate_templates (
+  tier            TEXT PRIMARY KEY REFERENCES quiz_settings(tier),
+  base_image_url  TEXT NOT NULL,
+  placeholders    JSONB NOT NULL,   -- [{ field, x, y, font_size, font_family, color, align }]
+  updated_at      TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+-- placeholder fields: 'name' | 'serial_code' | 'date' | 'tier'
+
+CREATE TABLE certificates (
+  id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id      UUID NOT NULL,
+  tier         TEXT NOT NULL REFERENCES quiz_settings(tier),
+  serial_code  TEXT NOT NULL UNIQUE,  -- format: {ADMIN_PREFIX}-{TIER_LETTER}-{YEAR}-{SEQUENCE}
+  issued_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+  pdf_url      TEXT NOT NULL,
+  image_url    TEXT NOT NULL,
+  UNIQUE (user_id, tier)
+);
+```
+
+RLS: `quiz_questions` (minus `correct_index`) and `quiz_settings` are public SELECT; `quiz_attempts`/`course_progress`/`certificates` are per-`user_id` SELECT, insert via server-side function only (never trust a client-submitted score).
+
+#### 11C — Quiz-Taking Flow (open access, auth-gated only at submit)
+
+- Quiz is reachable and fully playable by anonymous visitors — no sign-in wall to browse or attempt.
+- Per attempt: server randomly samples `item_count` questions from that topic+tier's active bank (`bank_size` pool), records the exact `question_ids` served.
+- **Weekly retake gate:** a topic+tier can be re-attempted only if `now() - max(attempted_at)` for that `(user_id, topic_id, tier)` is ≥ 7 days, or if there is no prior attempt.
+- **Auth gate on submission only:** the in-progress quiz (selected answers) lives in local component/Zustand state with no network writes. On submit, call `getUser()` (never `getSession()` — matches the existing security discipline in `lib/supabase/auth.ts`); if unauthenticated, hold the answers and present a sign-in/sign-up modal; only after successful auth is the attempt scored and written to `quiz_attempts`. This is a new pattern (no existing `AuthGate` component to extend), closest in spirit to the local-first-then-sync approach already used by `useFavoritesStore`.
+- A passing attempt (`score_percent >= quiz_settings.pass_percent`) upserts `course_progress (user_id, topic_id, tier, passed_at)`.
+
+#### 11D — Certificate Generation & Admin Template Designer
+
+- **Admin (`/admin/certificates`):** upload a background image per tier, then place `name` / `serial_code` / `date` / `tier` fields by dragging markers on a canvas overlay of the uploaded image — writes `x, y, font_size, font_family, color, align` per field to `certificate_templates.placeholders`.
+- **Issuance trigger:** after each passing `quiz_attempts` insert, check whether `course_progress` now covers all 20 course topics for that `tier`. If so and no `certificates` row exists yet for `(user_id, tier)`, generate one.
+- **Serial code:** `{ADMIN_PREFIX}-{TIER_LETTER}-{YEAR}-{SEQUENCE}`, e.g. `CFD-B-2026-000123` — prefix admin-configurable, tier/year automatic, sequence auto-incrementing.
+- **Rendering:** composite text onto the template image server-side with `node-canvas` → PNG (for on-screen view/share), then wrap that PNG into a single-page PDF with `pdf-lib` (avoids a headless-browser/Puppeteer dependency in a serverless deploy). Both artifacts saved to Supabase Storage; URLs stored on the `certificates` row.
+- **Durability:** once issued, a certificate is permanent — later quiz re-attempts (e.g. weekly practice) never revoke it.
+
+#### 11E — Navigation & Placement
+
+- The course does **not** get a separate nav entry — it's the first, visually distinct card on the existing `/paths` page (bigger card, progress ring, certificate badge) above the other 3 paths, rather than a competing bottom-tab item (decided over a dedicated "Course" tab to avoid maintaining two "browse a topic list" UIs).
+- Homepage and Library both surface the course's 20 topics as a distinct, ordered highlight block (via `path_topics.position`, §11A) rather than folding them into the general alphabetical grid.
+
+#### Delivered so far
+
+- ✅ `basic-apologetics-course` path seeded (20 topics, correct lesson order) — `/paths` and `/paths/[slug]` now read live from Supabase (`lib/content/paths.ts`) instead of the static `paths.json`, closing the admin/public drift gap; stale `path_topics` rows are now cleaned up on every `db:seed` run
+- ✅ All 20 course topics seeded in `ceb`, cross-linked to existing `en` topic ids where a counterpart exists
+- ✅ `quiz_settings`, `quiz_questions`, `quiz_attempts`, `course_progress`, `certificate_templates`, `certificates` tables created with RLS (`drizzle/migrations/005_quiz_certificates.sql`); `quiz_settings` seeded with defaults
+- ⬜ Not yet started: question bank authoring, quiz-taking UI, admin quiz-settings page, certificate designer/generation, homepage/library highlight block
+
+#### Acceptance Criteria
+
+- [x] `basic-apologetics-course` path seeded with 20 topics in lesson order; `/paths/[slug]` reads live from Supabase, not `paths.json`
+- [ ] Homepage and Library each show a highlighted, ordered "Basic Apologetics Course" section
+- [x] `quiz_settings` seeded with defaults (10/30/70, 20/60/80, 30/90/85); admin edit UI (`/admin/quiz-settings`) not yet built
+- [ ] Question bank authored per topic+tier at 300% of `item_count` (3,600 questions total across 20 topics × 3 tiers)
+- [ ] Quiz fully playable anonymously; sign-in modal appears only on submit, prior answers preserved through the auth flow
+- [ ] Weekly retake cooldown enforced per `(user_id, topic_id, tier)`
+- [ ] Passing all 20 topics at a tier auto-issues a certificate with correct serial code, name, date
+- [ ] Admin can upload a certificate background image and drag-place name/serial/date/tier fields per tier
+- [ ] Certificate available as both a PNG/image and a PDF download
+- [ ] Certificates are immutable once issued regardless of later attempt outcomes
 
 ---
 

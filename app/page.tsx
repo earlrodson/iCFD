@@ -11,6 +11,7 @@ import { CategoryFilter } from '@/components/home/CategoryFilter'
 import { TopicGrid } from '@/components/home/TopicGrid'
 import { TopicCard } from '@/components/topic/TopicCard'
 import { DailyCarousel } from '@/components/home/DailyCarousel'
+import { useCourseTopicOrder, sortWithCourseFirst } from '@/lib/content/courseOrder'
 import type { Category, Topic } from '@/data/schema/topic.schema'
 
 // Compact category colour dot for Continue Reading chips
@@ -62,6 +63,7 @@ export default function HomePage() {
   const { getRecentlyViewed, readProgress } = useReadingStore()
   const { favoriteIds } = useFavoritesStore()
   const [selectedCategory, setSelectedCategory] = useState<Category | ''>('')
+  const courseOrder = useCourseTopicOrder()
 
   const topicsReadCount = Object.values(readProgress).filter((p) => p.isRead).length
   const favoritesCount = favoriteIds.length
@@ -75,7 +77,7 @@ export default function HomePage() {
     ? availableTopics.filter((t) => t.category === selectedCategory)
     : availableTopics
 
-  const displayTopics = getFilteredTopics(categoryFiltered)
+  const displayTopics = sortWithCourseFirst(getFilteredTopics(categoryFiltered), courseOrder)
 
   const recentIds = getRecentlyViewed(5)
   const recentTopics = recentIds

@@ -218,30 +218,39 @@ export type Database = {
         Row: {
           audience: string
           created_at: string
+          deleted_at: string | null
           description: string
           difficulty: string
           estimated_minutes: number
           icon: string
+          pinned: boolean
+          quiz_mode: string
           slug: string
           title: string
         }
         Insert: {
           audience: string
           created_at?: string
+          deleted_at?: string | null
           description: string
           difficulty: string
           estimated_minutes: number
           icon: string
+          pinned?: boolean
+          quiz_mode?: string
           slug: string
           title: string
         }
         Update: {
           audience?: string
           created_at?: string
+          deleted_at?: string | null
           description?: string
           difficulty?: string
           estimated_minutes?: number
           icon?: string
+          pinned?: boolean
+          quiz_mode?: string
           slug?: string
           title?: string
         }
@@ -271,6 +280,171 @@ export type Database = {
           id?: string
           p256dh?: string
           user_id?: string | null
+        }
+        Relationships: []
+      }
+      quiz_settings: {
+        Row: {
+          tier: string
+          item_count: number
+          bank_size: number
+          pass_percent: number
+          updated_at: string
+        }
+        Insert: {
+          tier: string
+          item_count: number
+          bank_size: number
+          pass_percent: number
+          updated_at?: string
+        }
+        Update: {
+          tier?: string
+          item_count?: number
+          bank_size?: number
+          pass_percent?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      quiz_questions: {
+        Row: {
+          id: number
+          topic_id: string
+          tier: string
+          question: string
+          choices: Json
+          correct_index: number
+          active: boolean
+          created_at: string
+        }
+        Insert: {
+          id?: number
+          topic_id: string
+          tier: string
+          question: string
+          choices: Json
+          correct_index: number
+          active?: boolean
+          created_at?: string
+        }
+        Update: {
+          id?: number
+          topic_id?: string
+          tier?: string
+          question?: string
+          choices?: Json
+          correct_index?: number
+          active?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
+      quiz_attempts: {
+        Row: {
+          id: string
+          user_id: string
+          topic_id: string
+          tier: string
+          question_ids: Json
+          answers: Json
+          score_percent: number
+          passed: boolean
+          attempted_at: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          topic_id: string
+          tier: string
+          question_ids: Json
+          answers: Json
+          score_percent: number
+          passed: boolean
+          attempted_at?: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          topic_id?: string
+          tier?: string
+          question_ids?: Json
+          answers?: Json
+          score_percent?: number
+          passed?: boolean
+          attempted_at?: string
+        }
+        Relationships: []
+      }
+      course_progress: {
+        Row: {
+          user_id: string
+          topic_id: string
+          tier: string
+          passed_at: string
+        }
+        Insert: {
+          user_id: string
+          topic_id: string
+          tier: string
+          passed_at: string
+        }
+        Update: {
+          user_id?: string
+          topic_id?: string
+          tier?: string
+          passed_at?: string
+        }
+        Relationships: []
+      }
+      certificate_templates: {
+        Row: {
+          tier: string
+          base_image_url: string
+          placeholders: Json
+          updated_at: string
+        }
+        Insert: {
+          tier: string
+          base_image_url: string
+          placeholders: Json
+          updated_at?: string
+        }
+        Update: {
+          tier?: string
+          base_image_url?: string
+          placeholders?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      certificates: {
+        Row: {
+          id: string
+          user_id: string
+          tier: string
+          serial_code: string
+          issued_at: string
+          pdf_url: string
+          image_url: string
+        }
+        Insert: {
+          id?: string
+          user_id: string
+          tier: string
+          serial_code: string
+          issued_at?: string
+          pdf_url: string
+          image_url: string
+        }
+        Update: {
+          id?: string
+          user_id?: string
+          tier?: string
+          serial_code?: string
+          issued_at?: string
+          pdf_url?: string
+          image_url?: string
         }
         Relationships: []
       }

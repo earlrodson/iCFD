@@ -2,35 +2,48 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle, Clock, User } from '@phosphor-icons/react'
+import { ArrowLeft, CheckCircle, Clock, User, Lock } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { Badge } from '@/components/ui/badge'
+import { getUser } from '@/lib/supabase/auth'
+import { createClient } from '@/lib/supabase/client'
 import type { Topic } from '@/data/schema/topic.schema'
-
-interface LearningPath {
-  slug: string
-  title: string
-  description: string
-  icon: string
-  audience?: string
-  estimatedMinutes?: number
-  topicIds: string[]
-}
+import type { LearningPath } from '@/lib/content/paths'
 
 interface PathDetailClientProps {
   path: LearningPath
 }
 
+const TIERS = [
+  { key: 'beginner', label: 'B' },
+  { key: 'intermediate', label: 'I' },
+  { key: 'advanced', label: 'A' },
+] as const
+
 export function PathDetailClient({ path }: PathDetailClientProps) {
   const { availableTopics, initialize } = useAppStore()
   const { readProgress, markAsRead, markAsUnread } = useReadingStore()
   const [mounted, setMounted] = useState(false)
+  // "topicId:tier" keys the user has already passed — drives sequential locking.
+  const [passed, setPassed] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     setMounted(true)
     if (availableTopics.length === 0) initialize()
   }, [availableTopics.length, initialize])
+
+  useEffect(() => {
+    getUser().then(async (user) => {
+      if (!user) return
+      const { data } = await createClient()
+        .from('course_progress')
+        .select('topic_id,tier')
+        .eq('user_id', user.id)
+        .in('topic_id', path.topicIds)
+      setPassed(new Set((data ?? []).map((r) => `${r.topic_id}:${r.tier}`)))
+    })
+  }, [path.topicIds])
 
   const pathTopics = path.topicIds
     .map((id) => availableTopics.find((t) => t.id === id))
@@ -139,6 +152,41 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                       {id.replace(/-/g, ' ')}
                     </p>
                   )}
+
+                  {/* Quiz tier buttons */}
+                  <div className="mt-2.5 flex items-center gap-1.5">
+                    {TIERS.map(({ key, label }) => {
+                      const prevId = index > 0 ? path.topicIds[index - 1] : null
+                      const locked =
+                        path.quizMode === 'sequential' &&
+                        prevId !== null &&
+                        !passed.has(`${prevId}:${key}`)
+
+                      if (locked) {
+                        return (
+                          <span
+                            key={key}
+                            title={`Complete the previous topic's ${key} quiz first`}
+                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted text-muted-foreground/50 cursor-not-allowed"
+                          >
+                            <Lock weight="light" size={12} />
+                          </span>
+                        )
+                      }
+
+                      const donePrefix = passed.has(`${id}:${key}`) ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' : 'bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary'
+                      return (
+                        <Link
+                          key={key}
+                          href={`/quiz/${id}/${key}?path=${path.slug}`}
+                          title={`${key} quiz`}
+                          className={`flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold transition-colors ${donePrefix}`}
+                        >
+                          {label}
+                        </Link>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             )

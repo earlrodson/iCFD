@@ -88,6 +88,36 @@ async function seedTopics() {
       continue
     }
 
+    // Library tables first: topics.scripture stores reference STRINGS
+    // (resolved against scripture_verses at render time) and
+    // topics.church_fathers stores numeric IDs (resolved against
+    // church_father_quotes) — handbook.json embeds the full objects, so
+    // those need to land in the library tables before the topic rows
+    // reference them, mirroring documents/content-generation-prompt.md.
+    const allVerses = handbook.topics.flatMap((t) => t.scripture ?? [])
+    const allQuotes  = handbook.topics.flatMap((t) => t.churchFathers ?? [])
+
+    if (allVerses.length) {
+      const verseRows = allVerses.map((v) => ({ reference: v.reference, version: v.version ?? 'NABRE', text: v.text }))
+      const { error } = await supabase.from('scripture_verses').upsert(verseRows, { onConflict: 'reference,version', ignoreDuplicates: true })
+      if (error) console.error(`  ✗ ${lang} scripture_verses: ${error.message}`)
+    }
+    if (allQuotes.length) {
+      const quoteRows = allQuotes.map((q) => ({ author: q.author, quote: q.quote, source: q.source }))
+      const { error } = await supabase.from('church_father_quotes').upsert(quoteRows, { onConflict: 'author,quote', ignoreDuplicates: true })
+      if (error) console.error(`  ✗ ${lang} church_father_quotes: ${error.message}`)
+    }
+
+    // Look up quote ids by (author, quote) to resolve topics.church_fathers
+    const quoteIdMap = new Map()
+    if (allQuotes.length) {
+      const { data: quoteIdRows } = await supabase
+        .from('church_father_quotes')
+        .select('id,author,quote')
+        .in('author', [...new Set(allQuotes.map((q) => q.author))])
+      for (const r of quoteIdRows ?? []) quoteIdMap.set(`${r.author}::${r.quote}`, r.id)
+    }
+
     const rows = handbook.topics.map((t) => ({
       id:             t.id,
       lang,
@@ -96,9 +126,13 @@ async function seedTopics() {
       question:       t.question,
       answer:         t.answer,
       citations:      t.citations      ?? [],
-      scripture:      t.scripture      ?? [],
-      catechism:      t.catechism      ?? [],
-      church_fathers: t.churchFathers  ?? [],
+      scripture:      (t.scripture ?? []).map((v) => v.reference),
+      catechism:      (t.catechism ?? [])
+        .map((c) => parseInt(String(c).replace(/^CCC\s*/i, ''), 10))
+        .filter((n) => !Number.isNaN(n)),
+      church_fathers: (t.churchFathers ?? [])
+        .map((q) => quoteIdMap.get(`${q.author}::${q.quote}`))
+        .filter((id) => id !== undefined),
       tags:           t.tags           ?? [],
       difficulty:     t.difficulty,
       related_topics: t.relatedTopics  ?? [],
@@ -154,6 +188,18 @@ async function seedPaths() {
       position:  idx,
     }))
   )
+
+  // Delete rows for topic ids no longer in paths.json — upsert alone never
+  // removes stale entries, so a path edited to drop a topic would otherwise
+  // keep showing it forever.
+  for (const p of paths) {
+    const { error: delErr } = await supabase
+      .from('path_topics')
+      .delete()
+      .eq('path_slug', p.slug)
+      .not('topic_id', 'in', `(${p.topicIds.map((id) => `"${id}"`).join(',')})`)
+    if (delErr) console.error(`  ✗ path_topics cleanup (${p.slug}):`, delErr.message)
+  }
 
   const { error: ptErr } = await supabase
     .from('path_topics')

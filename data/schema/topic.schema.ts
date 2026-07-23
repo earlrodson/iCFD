@@ -70,6 +70,7 @@ export const TopicSchema = z.object({
   documentRefs: z.array(DocumentRefSchema).optional(),
   keyTerms: z.array(TermSchema).optional(),
   lastUpdated: z.string(),
+  translationSource: z.enum(['manual', 'machine', 'stub']).optional(),
 })
 
 export const HandbookContentSchema = z.object({

@@ -48,6 +48,36 @@
         "perpetual-virginity",
         "prayer-to-saints"
       ]
+    },
+    {
+      "slug": "basic-apologetics-course",
+      "title": "Basic Apologetics Course",
+      "description": "The complete 20-topic Layman's Biblical Theology and Apologetics Course — read every lesson, then take tiered quizzes to earn a certificate.",
+      "icon": "graduation-cap",
+      "audience": "Lay Catholics completing the full guided course, in English, Tagalog, or Cebuano.",
+      "estimatedMinutes": 300,
+      "topicIds": [
+        "bible-tradition-authority",
+        "true-church",
+        "holy-trinity",
+        "divinity-of-christ",
+        "immaculate-conception",
+        "perpetual-virginity",
+        "sacred-images",
+        "prayer-to-saints",
+        "purgatory",
+        "primacy-of-peter",
+        "indulgences",
+        "infant-baptism",
+        "confession-to-priest",
+        "holy-eucharist",
+        "holy-orders",
+        "holy-mass",
+        "sunday-observance",
+        "dietary-abstinence",
+        "cross-sign-of-cross",
+        "salvation"
+      ]
     }
   ]
 }

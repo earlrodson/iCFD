@@ -19,14 +19,18 @@ interface PathFormState {
   estimated_minutes: number
   icon: string
   topicIds: string[]
+  pinned: boolean
+  quiz_mode: 'sequential' | 'agnostic'
 }
 
 const ICON_OPTIONS = ['cross', 'shield', 'star', 'ladder', 'book', 'heart']
 const DIFFICULTIES = ['beginner', 'intermediate', 'advanced']
+const QUIZ_MODES = ['sequential', 'agnostic'] as const
 
 const EMPTY: PathFormState = {
   slug: '', title: '', description: '', audience: '',
   difficulty: 'beginner', estimated_minutes: 30, icon: 'cross', topicIds: [],
+  pinned: false, quiz_mode: 'sequential',
 }
 
 function slugify(s: string) {
@@ -88,6 +92,8 @@ export default function PathEditor({ slug }: { slug: string }) {
           estimated_minutes: path.estimated_minutes,
           icon: path.icon,
           topicIds: (pts ?? []).map((r) => r.topic_id),
+          pinned: path.pinned ?? false,
+          quiz_mode: path.quiz_mode === 'agnostic' ? 'agnostic' : 'sequential',
         })
       }
       setLoading(false)
@@ -123,6 +129,8 @@ export default function PathEditor({ slug }: { slug: string }) {
       difficulty: form.difficulty,
       estimated_minutes: form.estimated_minutes,
       icon: form.icon,
+      pinned: form.pinned,
+      quiz_mode: form.quiz_mode,
     }, { onConflict: 'slug' })
 
     if (pathErr) { setError(pathErr.message); setStatus('error'); return }
@@ -259,6 +267,32 @@ export default function PathEditor({ slug }: { slug: string }) {
                 <select value={form.icon} onChange={(e) => set('icon', e.target.value)} className="field">
                   {ICON_OPTIONS.map((i) => <option key={i} value={i}>{i}</option>)}
                 </select>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <p className="mb-1 text-xs font-medium text-muted-foreground">Quiz completion order</p>
+                <select
+                  value={form.quiz_mode}
+                  onChange={(e) => set('quiz_mode', e.target.value as PathFormState['quiz_mode'])}
+                  className="field"
+                >
+                  {QUIZ_MODES.map((m) => <option key={m} value={m}>{m}</option>)}
+                </select>
+                <p className="mt-1 text-[11px] text-muted-foreground">
+                  Sequential locks each topic&apos;s quiz until the previous one is passed. Agnostic allows any order.
+                </p>
+              </div>
+              <div className="flex items-end pb-1">
+                <label className="flex items-center gap-2 text-sm text-foreground">
+                  <input
+                    type="checkbox"
+                    checked={form.pinned}
+                    onChange={(e) => set('pinned', e.target.checked)}
+                    className="h-4 w-4 rounded border-border"
+                  />
+                  Pin to top of Learning Paths
+                </label>
               </div>
             </div>
           </div>

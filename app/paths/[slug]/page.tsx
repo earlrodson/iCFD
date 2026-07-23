@@ -1,28 +1,14 @@
 import { notFound } from 'next/navigation'
-import pathsData from '@/public/data/content/paths.json'
+import { fetchPathBySlug } from '@/lib/content/paths'
 import { PathDetailClient } from './PathDetailClient'
-
-interface LearningPath {
-  slug: string
-  title: string
-  description: string
-  icon: string
-  audience?: string
-  estimatedMinutes?: number
-  topicIds: string[]
-}
 
 interface PathDetailPageProps {
   params: Promise<{ slug: string }>
 }
 
-export async function generateStaticParams() {
-  return (pathsData.paths as LearningPath[]).map((p) => ({ slug: p.slug }))
-}
-
 export default async function PathDetailPage({ params }: PathDetailPageProps) {
   const { slug } = await params
-  const path = (pathsData.paths as LearningPath[]).find((p) => p.slug === slug)
+  const path = await fetchPathBySlug(slug)
   if (!path) notFound()
   return <PathDetailClient path={path} />
 }
