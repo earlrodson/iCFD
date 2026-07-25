@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
+import { Suspense } from 'react'
 import './globals.css'
 import { Header } from '@/components/layout/Header'
 import { MobileNav } from '@/components/layout/MobileNav'
 import { OfflineBanner } from '@/components/ui/OfflineBanner'
+import { NavigationProgress } from '@/components/ui/NavigationProgress'
 import { SyncManager } from '@/components/SyncManager'
 
 export const metadata: Metadata = {
@@ -59,6 +61,9 @@ export default function RootLayout({
         <Script id="dark-mode" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: darkModeScript }} />
       </head>
       <body className="min-h-screen bg-background text-foreground antialiased">
+        <Suspense fallback={null}>
+          <NavigationProgress />
+        </Suspense>
         <SyncManager />
         <OfflineBanner />
         <Header />
