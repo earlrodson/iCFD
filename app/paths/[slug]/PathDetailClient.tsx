@@ -27,6 +27,9 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
   const [mounted, setMounted] = useState(false)
   // "topicId:tier" keys the user has already passed — drives sequential locking.
   const [passed, setPassed] = useState<Set<string>>(new Set())
+  // Topics in this path that have an authored quiz bank (any tier) — for these,
+  // "complete" means "passed a quiz," not "clicked mark-as-read."
+  const [quizTopics, setQuizTopics] = useState<Set<string>>(new Set())
 
   useEffect(() => {
     setMounted(true)
@@ -45,12 +48,28 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
     })
   }, [path.topicIds])
 
+  useEffect(() => {
+    createClient()
+      .from('quiz_questions')
+      .select('topic_id')
+      .eq('active', true)
+      .in('topic_id', path.topicIds)
+      .then(({ data }) => setQuizTopics(new Set((data ?? []).map((r) => r.topic_id))))
+  }, [path.topicIds])
+
   const pathTopics = path.topicIds
     .map((id) => availableTopics.find((t) => t.id === id))
     .filter((t): t is Topic => t !== undefined)
 
+  // A quizzed topic is "complete" once any tier is passed; a non-quizzed topic
+  // falls back to the manual read toggle.
+  const isComplete = (id: string) =>
+    quizTopics.has(id)
+      ? ['beginner', 'intermediate', 'advanced'].some((tier) => passed.has(`${id}:${tier}`))
+      : (readProgress[id]?.isRead ?? false)
+
   const readCount = mounted
-    ? path.topicIds.filter((id) => readProgress[id]?.isRead).length
+    ? path.topicIds.filter((id) => isComplete(id)).length
     : 0
   const pct = path.topicIds.length > 0
     ? Math.round((readCount / path.topicIds.length) * 100)
@@ -110,27 +129,45 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
         <div className="mt-6 space-y-3">
           {path.topicIds.map((id, index) => {
             const topic = pathTopics.find((t) => t.id === id)
-            const isRead = mounted ? (readProgress[id]?.isRead ?? false) : false
+            const hasQuiz = quizTopics.has(id)
+            const complete = mounted ? isComplete(id) : false
 
             return (
               <div
                 key={id}
                 className="flex items-start gap-3 rounded-2xl bg-card border border-border p-4 shadow-sm"
               >
-                {/* Step indicator / read toggle */}
-                <button
-                  onClick={() => (isRead ? markAsUnread(id) : markAsRead(id))}
-                  className="mt-0.5 shrink-0 transition-colors"
-                  aria-label={isRead ? 'Mark as unread' : 'Mark as read'}
-                >
-                  {isRead ? (
-                    <CheckCircle weight="fill" size={22} className="text-green-500" />
-                  ) : (
-                    <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-muted-foreground/40 text-[11px] font-bold text-muted-foreground">
-                      {index + 1}
-                    </span>
-                  )}
-                </button>
+                {/* Step indicator — quizzed topics show quiz-pass status (not
+                    clickable, since only a passed quiz can complete them);
+                    non-quizzed topics keep the manual read toggle. */}
+                {hasQuiz ? (
+                  <span
+                    className="mt-0.5 shrink-0"
+                    title={complete ? 'Quiz passed' : 'Not yet passed — complete a quiz below'}
+                  >
+                    {complete ? (
+                      <CheckCircle weight="fill" size={22} className="text-green-500" />
+                    ) : (
+                      <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-muted-foreground/40 text-[11px] font-bold text-muted-foreground">
+                        {index + 1}
+                      </span>
+                    )}
+                  </span>
+                ) : (
+                  <button
+                    onClick={() => (complete ? markAsUnread(id) : markAsRead(id))}
+                    className="mt-0.5 shrink-0 transition-colors"
+                    aria-label={complete ? 'Mark as unread' : 'Mark as read'}
+                  >
+                    {complete ? (
+                      <CheckCircle weight="fill" size={22} className="text-green-500" />
+                    ) : (
+                      <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-muted-foreground/40 text-[11px] font-bold text-muted-foreground">
+                        {index + 1}
+                      </span>
+                    )}
+                  </button>
+                )}
 
                 {/* Topic info */}
                 <div className="min-w-0 flex-1">
