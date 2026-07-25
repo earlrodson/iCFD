@@ -1,13 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
-
-type Tier = 'beginner' | 'intermediate' | 'advanced'
-const TIERS: Tier[] = ['beginner', 'intermediate', 'advanced']
-
-function isTier(v: unknown): v is Tier {
-  return typeof v === 'string' && (TIERS as string[]).includes(v)
-}
+import { isQuizTier as isTier, previousTier } from '@/lib/content/quizTiers'
 
 /**
  * Shuffles then trims to `n` — good enough for quiz rotation (not
@@ -75,6 +69,27 @@ export async function POST(req: NextRequest) {
   }
 
   const db = createAdminClient()
+
+  // Tier gating — intermediate/advanced require the previous tier passed for
+  // this same topic first, regardless of any path's sequential-topic gating
+  // below. Enforced here (submit time), not on GET, since browsing a quiz
+  // never requires progress — only a scored attempt does.
+  const prevTier = previousTier(tier)
+  if (prevTier) {
+    const { data: prevTierProgress } = await db
+      .from('course_progress')
+      .select('topic_id')
+      .eq('user_id', user.id)
+      .eq('topic_id', topicId)
+      .eq('tier', prevTier)
+      .maybeSingle()
+    if (!prevTierProgress) {
+      return NextResponse.json(
+        { error: `Complete the ${prevTier} quiz for this topic first` },
+        { status: 403 },
+      )
+    }
+  }
 
   // Weekly retake cooldown
   const { data: lastAttempt } = await db

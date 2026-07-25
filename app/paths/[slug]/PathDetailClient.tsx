@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { getUser } from '@/lib/supabase/auth'
 import { createClient } from '@/lib/supabase/client'
 import { isTopicComplete } from '@/lib/content/pathProgress'
+import { previousTier } from '@/lib/content/quizTiers'
 import type { Topic } from '@/data/schema/topic.schema'
 import type { LearningPath } from '@/lib/content/paths'
 
@@ -191,16 +192,25 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                   <div className="mt-2.5 flex items-center gap-1.5">
                     {TIERS.map(({ key, label }) => {
                       const prevId = index > 0 ? path.topicIds[index - 1] : null
-                      const locked =
+                      const pathLocked =
                         path.quizMode === 'sequential' &&
                         prevId !== null &&
                         !passed.has(`${prevId}:${key}`)
 
-                      if (locked) {
+                      // Tier gating — intermediate/advanced require the previous
+                      // tier passed for THIS topic, independent of path mode.
+                      const prevTier = previousTier(key)
+                      const tierLocked = prevTier !== null && !passed.has(`${id}:${prevTier}`)
+
+                      if (pathLocked || tierLocked) {
                         return (
                           <span
                             key={key}
-                            title={`Complete the previous topic's ${key} quiz first`}
+                            title={
+                              tierLocked
+                                ? `Complete the ${prevTier} quiz first`
+                                : `Complete the previous topic's ${key} quiz first`
+                            }
                             className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted text-muted-foreground/50 cursor-not-allowed"
                           >
                             <Lock weight="light" size={12} />
