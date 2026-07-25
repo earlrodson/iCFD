@@ -5,7 +5,26 @@ vi.mock('@/lib/libraryCache', () => ({
 }))
 
 import { cachedLibraryFetch } from '@/lib/libraryCache'
-import { fetchParagraphs, PAGE_SIZE } from '@/lib/content/catechismFetch'
+import { fetchParagraphs, getCachedParagraphs, PAGE_SIZE } from '@/lib/content/catechismFetch'
+
+// Mirrors a real behavior of the browser Cache API that our hand-rolled
+// mock would otherwise silently allow: Cache.put() throws for any key whose
+// scheme isn't http/https (e.g. a custom "swr://" key), which bit the real
+// implementation once already (jsdom's own Request ctor doesn't enforce this).
+function fakeCaches() {
+  const store = new Map<string, Response>()
+  return {
+    open: async () => ({
+      match: async (key: string) => store.get(key),
+      put: async (key: string, res: Response) => {
+        if (!/^https?:\/\//.test(key)) {
+          throw new TypeError(`Failed to execute 'put' on 'Cache': Request scheme is unsupported`)
+        }
+        store.set(key, res)
+      },
+    }),
+  }
+}
 
 function paragraphs(count: number, startAt = 1): { paragraph: number; text: string; summary: string; section: string }[] {
   return Array.from({ length: count }, (_, i) => ({
@@ -85,5 +104,54 @@ describe('fetchParagraphs', () => {
     const result = await fetchParagraphs(1, 1065)
 
     expect(result).toEqual([])
+  })
+})
+
+describe('stale-while-revalidate cache', () => {
+  beforeEach(() => {
+    vi.stubGlobal('caches', fakeCaches())
+  })
+
+  it('getCachedParagraphs returns null when nothing has been cached yet', async () => {
+    const result = await getCachedParagraphs(1, 1065)
+    expect(result).toBeNull()
+  })
+
+  it('a successful fetchParagraphs populates the cache for that exact range', async () => {
+    vi.mocked(cachedLibraryFetch).mockResolvedValueOnce(jsonResponse(paragraphs(308, 2558)))
+
+    await fetchParagraphs(2558, 2865)
+    const cached = await getCachedParagraphs(2558, 2865)
+
+    expect(cached).toHaveLength(308)
+  })
+
+  it('does not leak a cache hit into an unrelated range', async () => {
+    vi.mocked(cachedLibraryFetch).mockResolvedValueOnce(jsonResponse(paragraphs(308, 2558)))
+
+    await fetchParagraphs(2558, 2865)
+    const cached = await getCachedParagraphs(1066, 1690)
+
+    expect(cached).toBeNull()
+  })
+
+  it('does not cache a partial result from a failed page', async () => {
+    vi.mocked(cachedLibraryFetch)
+      .mockResolvedValueOnce(jsonResponse(paragraphs(PAGE_SIZE, 1)))
+      .mockResolvedValueOnce(jsonResponse(null, false))
+
+    await fetchParagraphs(1, 1065)
+    const cached = await getCachedParagraphs(1, 1065)
+
+    expect(cached).toBeNull()
+  })
+
+  it('does not cache anything when the request throws', async () => {
+    vi.mocked(cachedLibraryFetch).mockRejectedValueOnce(new Error('offline'))
+
+    await fetchParagraphs(1, 1065)
+    const cached = await getCachedParagraphs(1, 1065)
+
+    expect(cached).toBeNull()
   })
 })

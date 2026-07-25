@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
-import { fetchParagraphs, type CccParagraph } from '@/lib/content/catechismFetch'
+import { fetchParagraphs, getCachedParagraphs, type CccParagraph } from '@/lib/content/catechismFetch'
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -45,6 +45,18 @@ function ParagraphCard({ para, expanded, onToggle }: {
   )
 }
 
+function ParagraphCardSkeleton() {
+  return (
+    <div className="border border-border rounded-lg p-4 flex items-start gap-3">
+      <span className="h-5 w-8 rounded bg-muted animate-pulse shrink-0 mt-0.5" />
+      <div className="flex-1 min-w-0 space-y-2 py-0.5">
+        <div className="h-3.5 w-full rounded bg-muted animate-pulse" />
+        <div className="h-3.5 w-4/5 rounded bg-muted animate-pulse" />
+      </div>
+    </div>
+  )
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function CatechismPage() {
@@ -57,6 +69,9 @@ export default function CatechismPage() {
   const [targetPara, setTargetPara] = useState<number | null>(null)
   const [deepLink, setDeepLink] = useState<CccParagraph | null>(null)
   const scrolled = useRef(false)
+  // Guards against a slow background revalidation (or slow first fetch) for
+  // a part the user has since navigated away from clobbering current state.
+  const latestPartRef = useRef(0)
 
   useEffect(() => {
     setIsOffline(!navigator.onLine)
@@ -91,13 +106,29 @@ export default function CatechismPage() {
   }, [targetPara, loading, paragraphs])
 
   const load = useCallback(async (partIdx: number) => {
-    setLoading(true)
-    setParagraphs([])
+    latestPartRef.current = partIdx
     setExpandedId(null)
     const [from, to] = PARTS[partIdx].range
+
+    // Stale-while-revalidate: a cache hit renders instantly with no skeleton
+    // at all, then quietly refreshes in the background in case content changed.
+    const cached = await getCachedParagraphs(from, to)
+    if (latestPartRef.current !== partIdx) return
+    if (cached) {
+      setParagraphs(cached)
+      setLoading(false)
+      const fresh = await fetchParagraphs(from, to)
+      if (fresh.length > 0 && latestPartRef.current === partIdx) setParagraphs(fresh)
+      return
+    }
+
+    setLoading(true)
+    setParagraphs([])
     const data = await fetchParagraphs(from, to)
-    setParagraphs(data)
-    setLoading(false)
+    if (latestPartRef.current === partIdx) {
+      setParagraphs(data)
+      setLoading(false)
+    }
   }, [])
 
   useEffect(() => { load(activePart) }, [activePart, load])
@@ -176,11 +207,12 @@ export default function CatechismPage() {
         </p>
       )}
 
-      {/* Loading */}
+      {/* Loading — only shown on a true cache miss; a stale-while-revalidate
+          hit renders the previous result instantly instead. */}
       {loading && (
-        <div className="space-y-3">
+        <div className="space-y-2">
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={i} className="h-16 rounded-lg bg-muted animate-pulse" />
+            <ParagraphCardSkeleton key={i} />
           ))}
         </div>
       )}
