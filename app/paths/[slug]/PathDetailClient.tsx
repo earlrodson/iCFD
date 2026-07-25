@@ -8,6 +8,7 @@ import { useReadingStore } from '@/store/useReadingStore'
 import { Badge } from '@/components/ui/badge'
 import { getUser } from '@/lib/supabase/auth'
 import { createClient } from '@/lib/supabase/client'
+import { isTopicComplete } from '@/lib/content/pathProgress'
 import type { Topic } from '@/data/schema/topic.schema'
 import type { LearningPath } from '@/lib/content/paths'
 
@@ -61,12 +62,8 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
     .map((id) => availableTopics.find((t) => t.id === id))
     .filter((t): t is Topic => t !== undefined)
 
-  // A quizzed topic is "complete" once any tier is passed; a non-quizzed topic
-  // falls back to the manual read toggle.
   const isComplete = (id: string) =>
-    quizTopics.has(id)
-      ? ['beginner', 'intermediate', 'advanced'].some((tier) => passed.has(`${id}:${tier}`))
-      : (readProgress[id]?.isRead ?? false)
+    isTopicComplete(id, quizTopics.has(id), passed, readProgress[id]?.isRead ?? false)
 
   const readCount = mounted
     ? path.topicIds.filter((id) => isComplete(id)).length
