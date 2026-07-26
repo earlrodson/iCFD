@@ -2,9 +2,18 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
-import { BookOpen, Cross, Lock, BookBookmark, Scales, MagnifyingGlass, Spinner, FilePdf } from '@phosphor-icons/react'
+import { BookOpen, Cross, Lock, BookBookmark, Scales, MagnifyingGlass, Spinner, FilePdf, DownloadSimple, CheckCircle, Warning } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange } from '@/lib/supabase/auth'
 import type { User } from '@/lib/supabase/auth'
+import {
+  exportChurchDocument,
+  exportCatechism,
+  exportGirm,
+  exportCanon,
+  exportBible,
+  triggerTextDownload,
+  type ExportProgress,
+} from '@/lib/download/libraryExport'
 
 // ── Resource catalogue ────────────────────────────────────────────────────────
 
@@ -149,6 +158,11 @@ interface SearchResults {
   docs:  DocResult[]
 }
 
+interface DownloadState {
+  status: 'idle' | 'busy' | 'done' | 'error'
+  pct: number
+}
+
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 
@@ -184,6 +198,24 @@ export default function LibraryPage() {
   }, [])
 
   const signedIn = user !== undefined && user !== null
+
+  const [downloads, setDownloads] = useState<Record<string, DownloadState>>({})
+
+  async function runDownload(key: string, filename: string, task: (onProgress: ExportProgress) => Promise<string>) {
+    if (downloads[key]?.status === 'busy') return
+    setDownloads(prev => ({ ...prev, [key]: { status: 'busy', pct: 0 } }))
+    try {
+      const content = await task((done, total) => {
+        setDownloads(prev => ({ ...prev, [key]: { status: 'busy', pct: total > 0 ? Math.round((done / total) * 100) : 0 } }))
+      })
+      triggerTextDownload(filename, content)
+      setDownloads(prev => ({ ...prev, [key]: { status: 'done', pct: 100 } }))
+      setTimeout(() => setDownloads(prev => ({ ...prev, [key]: { status: 'idle', pct: 0 } })), 1500)
+    } catch {
+      setDownloads(prev => ({ ...prev, [key]: { status: 'error', pct: 0 } }))
+      setTimeout(() => setDownloads(prev => ({ ...prev, [key]: { status: 'idle', pct: 0 } })), 2000)
+    }
+  }
 
   useEffect(() => {
     clearTimeout(debounce.current)
@@ -309,6 +341,18 @@ export default function LibraryPage() {
                 </div>
                 <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
               </div>
+              <DownloadButton
+                title={title}
+                state={downloads[href]}
+                showPct
+                onClick={() => {
+                  if (href === '/bible') {
+                    runDownload(href, 'bible-nabre.txt', (p) => exportBible('NABRE', p))
+                  } else if (href === '/catechism') {
+                    runDownload(href, 'catechism-of-the-catholic-church.txt', (p) => exportCatechism(p))
+                  }
+                }}
+              />
               <span className="text-muted-foreground text-lg shrink-0">›</span>
             </Link>
           ))}
@@ -319,27 +363,35 @@ export default function LibraryPage() {
               Church Documents
             </p>
             <div className="space-y-2">
-              {CHURCH_DOCS.map(({ href, title, description, badge }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className="flex items-start gap-4 rounded-xl border border-border p-4 hover:border-primary/40 hover:bg-muted/40 transition-colors"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-                    <FilePdf weight="light" size={22} className="text-primary" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-medium text-foreground text-sm">{title}</span>
-                      <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
-                        {badge}
-                      </span>
+              {CHURCH_DOCS.map(({ href, title, description, badge }) => {
+                const slug = href.replace('/documents/', '')
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    className="flex items-start gap-4 rounded-xl border border-border p-4 hover:border-primary/40 hover:bg-muted/40 transition-colors"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+                      <FilePdf weight="light" size={22} className="text-primary" />
                     </div>
-                    <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
-                  </div>
-                  <span className="text-muted-foreground text-lg shrink-0">›</span>
-                </Link>
-              ))}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap">
+                        <span className="font-medium text-foreground text-sm">{title}</span>
+                        <span className="text-[10px] font-medium px-1.5 py-0.5 rounded-full bg-muted text-muted-foreground">
+                          {badge}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
+                    </div>
+                    <DownloadButton
+                      title={title}
+                      state={downloads[href]}
+                      onClick={() => runDownload(href, `${slug}.txt`, (p) => exportChurchDocument(slug, p))}
+                    />
+                    <span className="text-muted-foreground text-lg shrink-0">›</span>
+                  </Link>
+                )
+              })}
             </div>
           </div>
 
@@ -373,6 +425,18 @@ export default function LibraryPage() {
                   </div>
                   <p className="text-xs text-muted-foreground mt-0.5 leading-relaxed">{description}</p>
                 </div>
+                <DownloadButton
+                  title={title}
+                  state={downloads[href]}
+                  showPct
+                  onClick={() => {
+                    if (href === '/girm') {
+                      runDownload(href, 'girm.txt', (p) => exportGirm(p))
+                    } else if (href === '/canon') {
+                      runDownload(href, 'code-of-canon-law.txt', (p) => exportCanon(p))
+                    }
+                  }}
+                />
                 <span className="text-muted-foreground text-lg shrink-0">›</span>
               </Link>
             ) : (
@@ -433,5 +497,32 @@ function ResultItem({ ref_, text, href }: { ref_: string; text: string; href: st
       <p className="text-xs text-foreground leading-relaxed line-clamp-2">{text}</p>
       <span className="shrink-0 text-muted-foreground text-sm">›</span>
     </Link>
+  )
+}
+
+function DownloadButton({ title, state, onClick, showPct }: {
+  title: string
+  state: DownloadState | undefined
+  onClick: () => void
+  showPct?: boolean
+}) {
+  const status = state?.status ?? 'idle'
+  return (
+    <button
+      type="button"
+      onClick={(e) => { e.preventDefault(); e.stopPropagation(); onClick() }}
+      disabled={status === 'busy'}
+      aria-label={`Download ${title}`}
+      title={`Download ${title}`}
+      className="shrink-0 flex items-center gap-1 p-1.5 -m-1.5 rounded-lg hover:bg-muted transition-colors"
+    >
+      {status === 'busy' && showPct && (
+        <span className="text-[10px] font-medium text-muted-foreground tabular-nums">{state?.pct ?? 0}%</span>
+      )}
+      {status === 'busy' && <Spinner weight="bold" size={16} className="animate-spin text-muted-foreground" />}
+      {status === 'done' && <CheckCircle weight="fill" size={16} className="text-emerald-500" />}
+      {status === 'error' && <Warning weight="fill" size={16} className="text-rose-500" />}
+      {status === 'idle' && <DownloadSimple weight="light" size={16} className="text-muted-foreground" />}
+    </button>
   )
 }
