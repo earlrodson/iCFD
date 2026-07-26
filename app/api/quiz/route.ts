@@ -4,31 +4,26 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { isQuizTier as isTier, previousTier } from '@/lib/content/quizTiers'
 
 /**
- * Issues a certificate for (user, tier) once every topic in the active
- * course path has been passed at that tier — a no-op if one already exists
- * or the path isn't fully complete yet. The certificates schema is one row
- * per (user_id, tier), which assumes a single active course path defines
- * what "completing a tier" means; revisit if a second path is ever added.
- * Returns true only when a new certificate was issued by this call.
+ * Issues a certificate for (user, path, tier) once every topic in a path
+ * has been passed at that tier — a path/tier combo the just-passed topic
+ * could plausibly have completed. A topic can appear in more than one
+ * path, so more than one certificate may be issued from a single passing
+ * attempt. No-op for any path that isn't fully complete yet, or that
+ * already has a certificate for this user/tier. Returns the slugs of
+ * paths a certificate was newly issued for.
  */
-async function maybeIssueCertificate(
+async function issueCertificatesForCompletedPaths(
   db: ReturnType<typeof createAdminClient>,
   userId: string,
   tier: string,
-): Promise<boolean> {
-  const { data: existing } = await db
-    .from('certificates')
-    .select('id')
-    .eq('user_id', userId)
-    .eq('tier', tier)
-    .maybeSingle()
-  if (existing) return false
+  topicId: string,
+): Promise<string[]> {
+  const { data: containingPaths } = await db.from('path_topics').select('path_slug').eq('topic_id', topicId)
+  const candidateSlugs = [...new Set((containingPaths ?? []).map((p) => p.path_slug))]
+  if (candidateSlugs.length === 0) return []
 
-  const { data: coursePath } = await db.from('paths').select('slug').is('deleted_at', null).limit(1).maybeSingle()
-  if (!coursePath) return false
-
-  const { data: pathTopics } = await db.from('path_topics').select('topic_id').eq('path_slug', coursePath.slug)
-  if (!pathTopics || pathTopics.length === 0) return false
+  const { data: activePaths } = await db.from('paths').select('slug').in('slug', candidateSlugs).is('deleted_at', null)
+  if (!activePaths || activePaths.length === 0) return []
 
   const { data: progress } = await db
     .from('course_progress')
@@ -36,12 +31,27 @@ async function maybeIssueCertificate(
     .eq('user_id', userId)
     .eq('tier', tier)
   const doneTopics = new Set((progress ?? []).map((p) => p.topic_id))
-  const allDone = pathTopics.every((pt) => doneTopics.has(pt.topic_id))
-  if (!allDone) return false
 
-  const serialCode = `CFD-${tier.slice(0, 3).toUpperCase()}-${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 5).toUpperCase()}`
-  const { error } = await db.from('certificates').insert({ user_id: userId, tier, serial_code: serialCode })
-  return !error
+  const issued: string[] = []
+  for (const path of activePaths) {
+    const { data: existing } = await db
+      .from('certificates')
+      .select('id')
+      .eq('user_id', userId)
+      .eq('path_slug', path.slug)
+      .eq('tier', tier)
+      .maybeSingle()
+    if (existing) continue
+
+    const { data: pathTopics } = await db.from('path_topics').select('topic_id').eq('path_slug', path.slug)
+    if (!pathTopics || pathTopics.length === 0) continue
+    if (!pathTopics.every((pt) => doneTopics.has(pt.topic_id))) continue
+
+    const serialCode = `CFD-${tier.slice(0, 3).toUpperCase()}-${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 5).toUpperCase()}`
+    const { error } = await db.from('certificates').insert({ user_id: userId, path_slug: path.slug, tier, serial_code: serialCode })
+    if (!error) issued.push(path.slug)
+  }
+  return issued
 }
 
 /**
@@ -227,7 +237,8 @@ export async function POST(req: NextRequest) {
       { user_id: user.id, topic_id: topicId, tier, passed_at: new Date().toISOString() },
       { onConflict: 'user_id,topic_id,tier' },
     )
-    certificateIssued = await maybeIssueCertificate(db, user.id, tier)
+    const issuedPaths = await issueCertificatesForCompletedPaths(db, user.id, tier, topicId)
+    certificateIssued = issuedPaths.length > 0
   }
 
   return NextResponse.json({ scorePercent, passed, correctCount, total: questionIds.length, certificateIssued, tier })

@@ -98,27 +98,37 @@ export type Database = {
       certificate_templates: {
         Row: {
           base_image_url: string
+          path_slug: string
           placeholders: Json
           tier: string
           updated_at: string
         }
         Insert: {
           base_image_url: string
+          path_slug: string
           placeholders: Json
           tier: string
           updated_at?: string
         }
         Update: {
           base_image_url?: string
+          path_slug?: string
           placeholders?: Json
           tier?: string
           updated_at?: string
         }
         Relationships: [
           {
+            foreignKeyName: "certificate_templates_path_slug_fkey"
+            columns: ["path_slug"]
+            isOneToOne: false
+            referencedRelation: "paths"
+            referencedColumns: ["slug"]
+          },
+          {
             foreignKeyName: "certificate_templates_tier_fkey"
             columns: ["tier"]
-            isOneToOne: true
+            isOneToOne: false
             referencedRelation: "quiz_settings"
             referencedColumns: ["tier"]
           },
@@ -129,6 +139,7 @@ export type Database = {
           id: string
           image_url: string | null
           issued_at: string
+          path_slug: string
           pdf_url: string | null
           serial_code: string
           tier: string
@@ -138,6 +149,7 @@ export type Database = {
           id?: string
           image_url?: string | null
           issued_at?: string
+          path_slug: string
           pdf_url?: string | null
           serial_code: string
           tier: string
@@ -147,12 +159,20 @@ export type Database = {
           id?: string
           image_url?: string | null
           issued_at?: string
+          path_slug?: string
           pdf_url?: string | null
           serial_code?: string
           tier?: string
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "certificates_path_slug_fkey"
+            columns: ["path_slug"]
+            isOneToOne: false
+            referencedRelation: "paths"
+            referencedColumns: ["slug"]
+          },
           {
             foreignKeyName: "certificates_tier_fkey"
             columns: ["tier"]

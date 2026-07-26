@@ -17,7 +17,14 @@ interface Template {
   placeholders: CertificatePlaceholder[]
 }
 
+interface PathOption {
+  slug: string
+  title: string
+}
+
 export default function AdminCertificatesPage() {
+  const [paths, setPaths] = useState<PathOption[]>([])
+  const [pathSlug, setPathSlug] = useState<string | null>(null)
   const [tier, setTier] = useState<QuizTier>('beginner')
   const [template, setTemplate] = useState<Template | null>(null)
   const [loading, setLoading] = useState(true)
@@ -26,11 +33,24 @@ export default function AdminCertificatesPage() {
   const [uploadError, setUploadError] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  async function loadTemplate(t: QuizTier) {
+  useEffect(() => {
+    createClient()
+      .from('paths')
+      .select('slug, title')
+      .is('deleted_at', null)
+      .order('created_at')
+      .then(({ data }) => {
+        setPaths(data ?? [])
+        setPathSlug((current) => current ?? data?.[0]?.slug ?? null)
+      })
+  }, [])
+
+  async function loadTemplate(p: string, t: QuizTier) {
     setLoading(true)
     const { data } = await createClient()
       .from('certificate_templates')
       .select('base_image_url, placeholders')
+      .eq('path_slug', p)
       .eq('tier', t)
       .maybeSingle()
     setTemplate(data ? { base_image_url: data.base_image_url, placeholders: (data.placeholders as unknown as CertificatePlaceholder[]) ?? [] } : null)
@@ -38,20 +58,22 @@ export default function AdminCertificatesPage() {
   }
 
   useEffect(() => {
-    loadTemplate(tier)
+    if (!pathSlug) return
+    loadTemplate(pathSlug, tier)
     setUploadError('')
-  }, [tier])
+  }, [pathSlug, tier])
 
   async function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
     e.target.value = ''
-    if (!file) return
+    if (!file || !pathSlug) return
 
     setUploadError('')
     setUploading(true)
     try {
       const formData = new FormData()
       formData.append('file', file)
+      formData.append('path_slug', pathSlug)
       formData.append('tier', tier)
       const res = await fetch('/api/admin/certificates/upload', { method: 'POST', body: formData })
       const data = await res.json()
@@ -67,6 +89,7 @@ export default function AdminCertificatesPage() {
   const imageUrl = template?.base_image_url || DEFAULT_BASE_IMAGE_URL
   const isDefaultTemplate = !template?.base_image_url
   const namePlaceholder = resolveNamePlaceholder(template?.placeholders)
+  const pathTitle = paths.find((p) => p.slug === pathSlug)?.title ?? ''
 
   return (
     <div className="pb-24">
@@ -80,17 +103,33 @@ export default function AdminCertificatesPage() {
               Certificate Preview
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Sample view of how an account&apos;s name appears on the tier&apos;s certificate template.
+              Sample view of how an account&apos;s name appears on a path&apos;s tier certificate template.
             </p>
           </div>
           <button
-            onClick={() => loadTemplate(tier)}
+            onClick={() => pathSlug && loadTemplate(pathSlug, tier)}
             className="flex h-9 w-9 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
             aria-label="Refresh"
           >
             <ArrowClockwise weight="light" size={18} className={loading ? 'animate-spin' : ''} />
           </button>
         </div>
+
+        {/* Path selector */}
+        {paths.length > 1 && (
+          <div>
+            <label className="mb-1 block text-xs font-medium text-muted-foreground">Path</label>
+            <select
+              value={pathSlug ?? ''}
+              onChange={(e) => setPathSlug(e.target.value)}
+              className="field w-full"
+            >
+              {paths.map((p) => (
+                <option key={p.slug} value={p.slug}>{p.title}</option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {/* Tier selector */}
         <div className="flex gap-2">
@@ -142,13 +181,13 @@ export default function AdminCertificatesPage() {
               imageUrl={imageUrl}
               namePlaceholder={namePlaceholder}
               name={accountName.trim() || 'Full Name'}
-              alt={`${TIER_LABELS[tier]} certificate template`}
+              alt={`${pathTitle} — ${TIER_LABELS[tier]} certificate template`}
               className="mx-auto"
             />
             <div className="flex items-center justify-between gap-3">
               <button
                 onClick={() => fileInputRef.current?.click()}
-                disabled={uploading}
+                disabled={uploading || !pathSlug}
                 className="flex items-center gap-1.5 text-xs font-medium text-primary hover:underline disabled:opacity-50"
               >
                 <UploadSimple weight="light" size={14} />
@@ -157,7 +196,7 @@ export default function AdminCertificatesPage() {
               {isDefaultTemplate && (
                 <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
                   <ImageIcon weight="light" size={13} />
-                  Using default template — not yet saved for this tier
+                  Using default template — not yet saved for this path/tier
                 </p>
               )}
             </div>

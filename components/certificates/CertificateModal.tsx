@@ -12,6 +12,8 @@ import {
 import { TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
 
 interface CertificateModalProps {
+  pathSlug: string
+  pathTitle: string
   tier: QuizTier
   serialCode: string
   issuedAt: string
@@ -19,7 +21,7 @@ interface CertificateModalProps {
   onClose: () => void
 }
 
-export function CertificateModal({ tier, serialCode, issuedAt, recipientName, onClose }: CertificateModalProps) {
+export function CertificateModal({ pathSlug, pathTitle, tier, serialCode, issuedAt, recipientName, onClose }: CertificateModalProps) {
   const [template, setTemplate] = useState<{ base_image_url: string; placeholders: CertificatePlaceholder[] } | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -27,6 +29,7 @@ export function CertificateModal({ tier, serialCode, issuedAt, recipientName, on
     createClient()
       .from('certificate_templates')
       .select('base_image_url, placeholders')
+      .eq('path_slug', pathSlug)
       .eq('tier', tier)
       .maybeSingle()
       .then(({ data }) => {
@@ -37,7 +40,7 @@ export function CertificateModal({ tier, serialCode, issuedAt, recipientName, on
         )
         setLoading(false)
       })
-  }, [tier])
+  }, [pathSlug, tier])
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -47,6 +50,7 @@ export function CertificateModal({ tier, serialCode, issuedAt, recipientName, on
 
   const imageUrl = template?.base_image_url || DEFAULT_BASE_IMAGE_URL
   const namePlaceholder = resolveNamePlaceholder(template?.placeholders)
+  const label = `${pathTitle} — ${TIER_LABELS[tier]} Certificate`
 
   return (
     <>
@@ -54,11 +58,11 @@ export function CertificateModal({ tier, serialCode, issuedAt, recipientName, on
       <div
         role="dialog"
         aria-modal="true"
-        aria-label={`${TIER_LABELS[tier]} certificate`}
+        aria-label={label}
         className="fixed inset-x-4 top-1/2 z-50 mx-auto max-w-lg -translate-y-1/2 rounded-2xl border border-border bg-card p-4 shadow-2xl"
       >
         <div className="mb-3 flex items-center justify-between">
-          <p className="text-sm font-semibold text-foreground">{TIER_LABELS[tier]} Certificate</p>
+          <p className="text-sm font-semibold text-foreground">{label}</p>
           <button
             onClick={onClose}
             className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
@@ -76,7 +80,7 @@ export function CertificateModal({ tier, serialCode, issuedAt, recipientName, on
             imageUrl={imageUrl}
             namePlaceholder={namePlaceholder}
             name={recipientName}
-            alt={`${TIER_LABELS[tier]} certificate`}
+            alt={label}
           />
         )}
         <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">

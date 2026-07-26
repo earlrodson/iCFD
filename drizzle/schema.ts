@@ -150,17 +150,24 @@ export const quizQuestions = pgTable(
 )
 
 /**
- * Admin-uploaded certificate background image per tier + drag-placed field
- * coordinates ({ field, x, y, font_size, font_family, color, align }[]).
+ * Admin-uploaded certificate background image per (path, tier) + drag-placed
+ * field coordinates ({ field, x, y, font_size, font_family, color, align }[]).
  */
-export const certificateTemplates = pgTable('certificate_templates', {
-  tier: text('tier').primaryKey().$type<Tier>(),
-  base_image_url: text('base_image_url').notNull(),
-  placeholders: jsonb('placeholders').notNull(),
-  updated_at: timestamp('updated_at', { withTimezone: true })
-    .default(sql`now()`)
-    .notNull(),
-})
+export const certificateTemplates = pgTable(
+  'certificate_templates',
+  {
+    path_slug: text('path_slug')
+      .notNull()
+      .references(() => paths.slug),
+    tier: text('tier').notNull().$type<Tier>(),
+    base_image_url: text('base_image_url').notNull(),
+    placeholders: jsonb('placeholders').notNull(),
+    updated_at: timestamp('updated_at', { withTimezone: true })
+      .default(sql`now()`)
+      .notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.path_slug, t.tier] })]
+)
 
 // ── User data tables (RLS-protected) ──────────────────────────────────────────
 
@@ -204,14 +211,19 @@ export const courseProgress = pgTable(
 )
 
 /**
- * Issued once course_progress covers all course topics for a tier.
- * Permanent once issued — later quiz re-attempts never revoke it.
+ * Issued once course_progress covers every topic in a path at a tier.
+ * One certificate per (user, path, tier) — a user can earn the same tier
+ * separately on each path they complete. Permanent once issued — later
+ * quiz re-attempts never revoke it.
  */
 export const certificates = pgTable(
   'certificates',
   {
     id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
     user_id: uuid('user_id').notNull(),
+    path_slug: text('path_slug')
+      .notNull()
+      .references(() => paths.slug),
     tier: text('tier').notNull().$type<Tier>(),
     serial_code: text('serial_code').notNull().unique(),
     issued_at: timestamp('issued_at', { withTimezone: true })
@@ -222,7 +234,7 @@ export const certificates = pgTable(
     pdf_url: text('pdf_url'),
     image_url: text('image_url'),
   },
-  (t) => [unique('certificates_user_tier_key').on(t.user_id, t.tier)]
+  (t) => [unique('certificates_user_path_tier_key').on(t.user_id, t.path_slug, t.tier)]
 )
 
 /**

@@ -26,15 +26,17 @@ const DEFAULT_PLACEHOLDERS = [DEFAULT_NAME_PLACEHOLDER] as unknown as Json
 const MAX_BYTES = 5 * 1024 * 1024
 const ALLOWED_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp'])
 
-// POST /api/admin/certificates/upload — replace a tier's certificate background image
+// POST /api/admin/certificates/upload — replace a (path, tier) certificate background image
 export async function POST(req: NextRequest) {
   if (!(await verifyAdmin())) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const formData = await req.formData()
   const file = formData.get('file')
+  const pathSlug = formData.get('path_slug')
   const tier = formData.get('tier')
 
   if (!(file instanceof File)) return NextResponse.json({ error: 'file required' }, { status: 400 })
+  if (typeof pathSlug !== 'string' || !pathSlug) return NextResponse.json({ error: 'path_slug required' }, { status: 400 })
   if (!isQuizTier(tier)) return NextResponse.json({ error: 'Invalid tier' }, { status: 400 })
   if (!ALLOWED_TYPES.has(file.type)) {
     return NextResponse.json({ error: 'Image must be PNG, JPEG, or WebP' }, { status: 400 })
@@ -44,19 +46,24 @@ export async function POST(req: NextRequest) {
   }
 
   const db = adminSupabase()
+
+  const { data: path } = await db.from('paths').select('slug').eq('slug', pathSlug).maybeSingle()
+  if (!path) return NextResponse.json({ error: 'Unknown path' }, { status: 400 })
+
   const ext = file.type === 'image/png' ? 'png' : file.type === 'image/webp' ? 'webp' : 'jpg'
-  const path = `${tier}/${Date.now()}.${ext}`
+  const storagePath = `${pathSlug}/${tier}/${Date.now()}.${ext}`
 
   const { error: uploadError } = await db.storage
     .from('certificate-templates')
-    .upload(path, file, { contentType: file.type, upsert: true })
+    .upload(storagePath, file, { contentType: file.type, upsert: true })
   if (uploadError) return NextResponse.json({ error: uploadError.message }, { status: 500 })
 
-  const { data: publicUrlData } = db.storage.from('certificate-templates').getPublicUrl(path)
+  const { data: publicUrlData } = db.storage.from('certificate-templates').getPublicUrl(storagePath)
 
   const { data: existing } = await db
     .from('certificate_templates')
     .select('placeholders')
+    .eq('path_slug', pathSlug)
     .eq('tier', tier)
     .maybeSingle()
 
@@ -64,11 +71,12 @@ export async function POST(req: NextRequest) {
     .from('certificate_templates')
     .upsert(
       {
+        path_slug: pathSlug,
         tier,
         base_image_url: publicUrlData.publicUrl,
         placeholders: existing?.placeholders ?? DEFAULT_PLACEHOLDERS,
       },
-      { onConflict: 'tier' },
+      { onConflict: 'path_slug,tier' },
     )
     .select('base_image_url, placeholders')
     .single()

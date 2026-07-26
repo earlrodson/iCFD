@@ -34,6 +34,8 @@ import type { User as SupabaseUser } from '@/lib/supabase/auth'
 type AuthMode = 'signin' | 'signup' | 'magic'
 
 interface EarnedCertificate {
+  path_slug: string
+  path_title: string
   tier: QuizTier
   serial_code: string
   issued_at: string
@@ -49,7 +51,7 @@ export default function AccountPage() {
   const [magicSent, setMagicSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [certificates, setCertificates] = useState<EarnedCertificate[]>([])
-  const [viewingCertTier, setViewingCertTier] = useState<QuizTier | null>(null)
+  const [viewingCertKey, setViewingCertKey] = useState<string | null>(null)
 
   const { favoriteIds } = useFavoritesStore()
   const { notes } = useNotesStore()
@@ -77,11 +79,21 @@ export default function AccountPage() {
     if (!user) { setCertificates([]); return }
     createClient()
       .from('certificates')
-      .select('tier, serial_code, issued_at')
+      .select('path_slug, tier, serial_code, issued_at, paths(title)')
       .eq('user_id', user.id)
       .order('issued_at', { ascending: false })
       .then(({ data }) => {
-        setCertificates((data ?? []).filter((c): c is EarnedCertificate => isQuizTier(c.tier)))
+        setCertificates(
+          (data ?? [])
+            .filter((c): c is typeof c & { tier: QuizTier } => isQuizTier(c.tier))
+            .map((c) => ({
+              path_slug: c.path_slug,
+              path_title: c.paths?.title ?? c.path_slug,
+              tier: c.tier,
+              serial_code: c.serial_code,
+              issued_at: c.issued_at,
+            })),
+        )
       })
   }, [user])
 
@@ -182,15 +194,17 @@ export default function AccountPage() {
               <div className="space-y-2">
                 {certificates.map((cert) => (
                   <button
-                    key={cert.tier}
-                    onClick={() => setViewingCertTier(cert.tier)}
+                    key={`${cert.path_slug}-${cert.tier}`}
+                    onClick={() => setViewingCertKey(`${cert.path_slug}:${cert.tier}`)}
                     className="flex w-full items-center gap-3 rounded-xl bg-card border border-border p-3 text-left shadow-sm hover:bg-muted transition-colors"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
                       <Certificate weight="fill" size={20} className="text-amber-600 dark:text-amber-400" />
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-foreground">{TIER_LABELS[cert.tier]} Certificate</p>
+                      <p className="text-sm font-medium text-foreground">
+                        {cert.path_title} — {TIER_LABELS[cert.tier]} Certificate
+                      </p>
                       <p className="text-xs text-muted-foreground">
                         Issued {new Date(cert.issued_at).toLocaleDateString()}
                       </p>
@@ -213,16 +227,18 @@ export default function AccountPage() {
           </div>
         </div>
 
-        {viewingCertTier && (() => {
-          const cert = certificates.find((c) => c.tier === viewingCertTier)
+        {viewingCertKey && (() => {
+          const cert = certificates.find((c) => `${c.path_slug}:${c.tier}` === viewingCertKey)
           if (!cert) return null
           return (
             <CertificateModal
+              pathSlug={cert.path_slug}
+              pathTitle={cert.path_title}
               tier={cert.tier}
               serialCode={cert.serial_code}
               issuedAt={cert.issued_at}
               recipientName={name}
-              onClose={() => setViewingCertTier(null)}
+              onClose={() => setViewingCertKey(null)}
             />
           )
         })()}
