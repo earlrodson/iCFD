@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Certificate, ArrowClockwise, Image as ImageIcon } from '@phosphor-icons/react'
+import { Certificate, ArrowClockwise, Image as ImageIcon, UploadSimple } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { QUIZ_TIERS, type QuizTier } from '@/lib/content/quizTiers'
 import { cn } from '@/lib/utils'
@@ -45,10 +45,12 @@ export default function AdminCertificatesPage() {
   const [tier, setTier] = useState<QuizTier>('beginner')
   const [template, setTemplate] = useState<Template | null>(null)
   const [loading, setLoading] = useState(true)
-  const [previewUrl, setPreviewUrl] = useState('')
   const [accountName, setAccountName] = useState('')
   const [scale, setScale] = useState(1)
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
   const imgRef = useRef<HTMLImageElement>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   async function loadTemplate(t: QuizTier) {
     setLoading(true)
@@ -63,10 +65,32 @@ export default function AdminCertificatesPage() {
 
   useEffect(() => {
     loadTemplate(tier)
-    setPreviewUrl('')
+    setUploadError('')
   }, [tier])
 
-  const imageUrl = template?.base_image_url || previewUrl
+  async function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+
+    setUploadError('')
+    setUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('tier', tier)
+      const res = await fetch('/api/admin/certificates/upload', { method: 'POST', body: formData })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error ?? 'Upload failed')
+      setTemplate({ base_image_url: data.base_image_url, placeholders: data.placeholders ?? [] })
+    } catch (err) {
+      setUploadError(err instanceof Error ? err.message : 'Upload failed')
+    } finally {
+      setUploading(false)
+    }
+  }
+
+  const imageUrl = template?.base_image_url
   const namePlaceholder =
     template?.placeholders.find((p) => p.field === 'name' || p.field === 'full_name' || p.field === 'account_name') ??
     DEFAULT_NAME_PLACEHOLDER
@@ -139,34 +163,53 @@ export default function AdminCertificatesPage() {
           />
         </div>
 
+        {/* Hidden file input shared by both upload triggers below */}
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/png,image/jpeg,image/webp"
+          className="hidden"
+          onChange={handleFileSelected}
+        />
+
         {/* Preview */}
         {loading ? (
           <div className="flex justify-center py-12">
             <div className="h-7 w-7 animate-spin rounded-full border-2 border-primary border-t-transparent" />
           </div>
         ) : imageUrl ? (
-          <div className="relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-muted">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              ref={imgRef}
-              src={imageUrl}
-              alt={`${TIER_LABELS[tier]} certificate template`}
-              className="block w-full h-auto select-none"
-              onLoad={handleImageLoad}
-            />
-            <div
-              className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-2"
-              style={{
-                left: `${namePlaceholder.x}%`,
-                top: `${namePlaceholder.y}%`,
-                fontSize: `${(namePlaceholder.font_size ?? 34) * scale}px`,
-                fontFamily: namePlaceholder.font_family ?? 'Georgia, serif',
-                color: namePlaceholder.color ?? '#1a1a1a',
-                textAlign: namePlaceholder.align ?? 'center',
-              }}
-            >
-              {accountName.trim() || 'Full Name'}
+          <div className="space-y-2">
+            <div className="relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-muted">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                ref={imgRef}
+                src={imageUrl}
+                alt={`${TIER_LABELS[tier]} certificate template`}
+                className="block w-full h-auto select-none"
+                onLoad={handleImageLoad}
+              />
+              <div
+                className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-2"
+                style={{
+                  left: `${namePlaceholder.x}%`,
+                  top: `${namePlaceholder.y}%`,
+                  fontSize: `${(namePlaceholder.font_size ?? 34) * scale}px`,
+                  fontFamily: namePlaceholder.font_family ?? 'Georgia, serif',
+                  color: namePlaceholder.color ?? '#1a1a1a',
+                  textAlign: namePlaceholder.align ?? 'center',
+                }}
+              >
+                {accountName.trim() || 'Full Name'}
+              </div>
             </div>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              className="flex items-center gap-1.5 text-xs font-medium text-primary hover:underline disabled:opacity-50"
+            >
+              <UploadSimple weight="light" size={14} />
+              {uploading ? 'Uploading…' : 'Replace image'}
+            </button>
           </div>
         ) : (
           <div className="rounded-2xl border border-dashed border-border bg-card p-6 text-center space-y-3">
@@ -174,17 +217,21 @@ export default function AdminCertificatesPage() {
             <p className="text-sm text-muted-foreground">
               No certificate template uploaded for the {TIER_LABELS[tier].toLowerCase()} tier yet.
             </p>
-            <div className="mx-auto max-w-sm">
-              <input
-                type="text"
-                value={previewUrl}
-                onChange={(e) => setPreviewUrl(e.target.value)}
-                placeholder="Paste an image URL to preview…"
-                className="field w-full text-center"
-              />
-              <p className="mt-1 text-[11px] text-muted-foreground">Preview only — not saved.</p>
-            </div>
+            <button
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              className="mx-auto flex items-center gap-1.5 rounded-xl bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground disabled:opacity-50"
+            >
+              <UploadSimple weight="light" size={16} />
+              {uploading ? 'Uploading…' : 'Upload image'}
+            </button>
+            <p className="text-[11px] text-muted-foreground">PNG, JPEG, or WebP — up to 5 MB.</p>
           </div>
+        )}
+        {uploadError && (
+          <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400">
+            {uploadError}
+          </p>
         )}
       </div>
     </div>
