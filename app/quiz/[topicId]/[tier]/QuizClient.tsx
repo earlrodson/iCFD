@@ -42,14 +42,15 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
     setQuestions(null)
     setResult(null)
     setAnswers({})
-    fetch(`/api/quiz?topicId=${encodeURIComponent(topicId)}&tier=${encodeURIComponent(tier)}`)
+    const pathParam = pathSlug ? `&path=${encodeURIComponent(pathSlug)}` : ''
+    fetch(`/api/quiz?topicId=${encodeURIComponent(topicId)}&tier=${encodeURIComponent(tier)}${pathParam}`)
       .then(async (res) => {
         const body = await res.json()
         if (!res.ok) throw new Error(body.error ?? 'Failed to load quiz')
         setQuestions(body.questions)
       })
       .catch((err) => setLoadError(err.message))
-  }, [topicId, tier])
+  }, [topicId, tier, pathSlug])
 
   useEffect(() => { loadQuestions() }, [loadQuestions])
 

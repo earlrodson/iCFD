@@ -51,13 +51,19 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
   }, [path.topicIds])
 
   useEffect(() => {
-    createClient()
-      .from('quiz_questions')
-      .select('topic_id')
-      .eq('active', true)
-      .in('topic_id', path.topicIds)
-      .then(({ data }) => setQuizTopics(new Set((data ?? []).map((r) => r.topic_id))))
-  }, [path.topicIds])
+    // Two queries instead of one .or() filter — a topic only counts as
+    // "has a quiz" for this path if it has generic (reusable) questions or
+    // questions authored specifically for this path.
+    const supabase = createClient()
+    const base = () => supabase.from('quiz_questions').select('topic_id').eq('active', true).in('topic_id', path.topicIds)
+    Promise.all([
+      base().is('path_slug', null),
+      base().eq('path_slug', path.slug),
+    ]).then(([generic, pathSpecific]) => {
+      const ids = [...(generic.data ?? []), ...(pathSpecific.data ?? [])].map((r) => r.topic_id)
+      setQuizTopics(new Set(ids))
+    })
+  }, [path.topicIds, path.slug])
 
   const pathTopics = path.topicIds
     .map((id) => availableTopics.find((t) => t.id === id))

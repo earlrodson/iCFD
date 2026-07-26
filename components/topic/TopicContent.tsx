@@ -22,6 +22,7 @@ import {
   X,
   BookBookmark,
   TextAa,
+  ListChecks,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic, Term, Language } from '@/data/schema/topic.schema'
@@ -30,6 +31,7 @@ import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { useNotesStore, NOTE_MAX_LENGTH } from '@/store/useNotesStore'
 import { useAppStore } from '@/store/useAppStore'
+import { createClient } from '@/lib/supabase/client'
 import { formatDate, cn } from '@/lib/utils'
 import pathsData from '@/public/data/content/paths.json'
 
@@ -168,6 +170,10 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   const [copied, setCopied] = useState(false)
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
+  // Whether this topic has any active quiz questions visible to the current
+  // path (generic + this-path-only) — drives the post-read quiz prompt.
+  const [hasPathQuiz, setHasPathQuiz] = useState(false)
+  const [showQuizPrompt, setShowQuizPrompt] = useState(false)
   const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>(
     initialTopic.answerFull ? 'comprehensive' : 'concise'
   )
@@ -229,6 +235,19 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
     const params = new URLSearchParams(window.location.search)
     setPathSlug(params.get('path'))
   }, [])
+
+  // Does this topic have a quiz available in the current path's context?
+  // Two queries instead of one .or() filter — a question counts if it's
+  // generic (path_slug NULL, reusable by any path) or scoped to this path.
+  useEffect(() => {
+    if (!pathSlug) { setHasPathQuiz(false); return }
+    const supabase = createClient()
+    const base = () =>
+      supabase.from('quiz_questions').select('id').eq('topic_id', displayTopic.id).eq('active', true).limit(1)
+    Promise.all([base().is('path_slug', null), base().eq('path_slug', pathSlug)]).then(
+      ([generic, pathSpecific]) => setHasPathQuiz((generic.data?.length ?? 0) > 0 || (pathSpecific.data?.length ?? 0) > 0),
+    )
+  }, [pathSlug, displayTopic.id])
 
   // Language switching: look up topic in current-language store
   useEffect(() => {
@@ -704,7 +723,14 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
       {/* Mark as Read + Notes */}
       <section className="mb-8 rounded-2xl bg-card p-5 shadow-sm border border-border space-y-4">
         <button
-          onClick={() => (read ? markAsUnread(topic.id) : markAsRead(topic.id))}
+          onClick={() => {
+            if (read) {
+              markAsUnread(topic.id)
+            } else {
+              markAsRead(topic.id)
+              if (pathSlug && hasPathQuiz) setShowQuizPrompt(true)
+            }
+          }}
           className={cn(
             'flex items-center gap-2 text-sm font-medium transition-colors',
             read ? 'text-green-600 dark:text-green-400' : 'text-muted-foreground hover:text-foreground',
@@ -717,6 +743,18 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
           )}
           {read ? 'Marked as read' : 'Mark as read'}
         </button>
+
+        {/* Persistent quiz CTA — stays visible even after the popup below is
+            dismissed, so the quiz is never lost once read. */}
+        {pathSlug && hasPathQuiz && (
+          <Link
+            href={`/quiz/${topic.id}/beginner?path=${pathSlug}`}
+            className="flex items-center gap-2 rounded-xl bg-primary/8 px-3.5 py-2.5 text-sm font-medium text-primary hover:bg-primary/15 transition-colors w-fit"
+          >
+            <ListChecks weight="bold" size={17} />
+            Take the quiz for this topic
+          </Link>
+        )}
 
         <div>
           <label
@@ -739,6 +777,54 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
           </p>
         </div>
       </section>
+
+      {/* Post-read quiz prompt — only fires once, right after marking read
+          from within a learning path that has a quiz for this topic. */}
+      {showQuizPrompt && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/50 backdrop-blur-sm"
+          onClick={() => setShowQuizPrompt(false)}
+        >
+          <div
+            className="w-full max-w-sm rounded-2xl bg-card border border-border shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-start justify-between gap-3 px-5 pt-5 pb-3">
+              <div className="flex items-center gap-2.5">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <ListChecks weight="bold" size={18} />
+                </span>
+                <p className="font-bold text-base text-foreground leading-snug">Ready for the quiz?</p>
+              </div>
+              <button
+                onClick={() => setShowQuizPrompt(false)}
+                className="shrink-0 p-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+              >
+                <X weight="light" size={18} />
+              </button>
+            </div>
+            <div className="px-5 pb-5 space-y-4">
+              <p className="text-sm text-foreground leading-relaxed">
+                Test what you just read with a short quiz for this topic.
+              </p>
+              <div className="flex gap-2">
+                <Link
+                  href={`/quiz/${topic.id}/beginner?path=${pathSlug}`}
+                  className="flex-1 text-center rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-colors"
+                >
+                  Take the Quiz
+                </Link>
+                <button
+                  onClick={() => setShowQuizPrompt(false)}
+                  className="rounded-xl border border-border px-4 py-2.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Later
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Scripture */}
       {topic.scripture.length > 0 && (

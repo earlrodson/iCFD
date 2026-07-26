@@ -15,6 +15,11 @@ interface TopicOption {
   category: string
 }
 
+interface PathOption {
+  slug: string
+  title: string
+}
+
 interface QuizQuestion {
   id: number
   topic_id: string
@@ -23,6 +28,7 @@ interface QuizQuestion {
   choices: string[]
   correct_index: number
   active: boolean
+  path_slug: string | null
   created_at: string
 }
 
@@ -33,9 +39,9 @@ interface QuizSetting {
   pass_percent: number
 }
 
-type QuestionDraft = Pick<QuizQuestion, 'question' | 'choices' | 'correct_index' | 'active'>
+type QuestionDraft = Pick<QuizQuestion, 'question' | 'choices' | 'correct_index' | 'active' | 'path_slug'>
 
-const EMPTY_DRAFT: QuestionDraft = { question: '', choices: ['', ''], correct_index: 0, active: true }
+const EMPTY_DRAFT: QuestionDraft = { question: '', choices: ['', ''], correct_index: 0, active: true, path_slug: null }
 
 const TIER_LABELS: Record<QuizTier, string> = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' }
 const TIER_COLORS: Record<QuizTier, string> = {
@@ -48,6 +54,7 @@ export default function QuizAdminPage() {
   const [topics, setTopics] = useState<TopicOption[]>([])
   const [topicQuery, setTopicQuery] = useState('')
   const [selectedTopic, setSelectedTopic] = useState<TopicOption | null>(null)
+  const [paths, setPaths] = useState<PathOption[]>([])
 
   const [settings, setSettings] = useState<Record<string, QuizSetting>>({})
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
@@ -77,7 +84,11 @@ export default function QuizAdminPage() {
         for (const row of (data ?? []) as QuizSetting[]) map[row.tier] = row
         setSettings(map)
       })
+    supabase.from('paths').select('slug, title').is('deleted_at', null).order('title')
+      .then(({ data }) => setPaths((data ?? []) as PathOption[]))
   }, [])
+
+  const pathTitle = (slug: string | null) => (slug ? paths.find((p) => p.slug === slug)?.title ?? slug : null)
 
   async function loadQuestions(topicId: string) {
     setLoadingQuestions(true)
@@ -117,7 +128,7 @@ export default function QuizAdminPage() {
 
   function startEdit(q: QuizQuestion) {
     setEditingId(q.id)
-    setEditDraft({ question: q.question, choices: [...q.choices], correct_index: q.correct_index, active: q.active })
+    setEditDraft({ question: q.question, choices: [...q.choices], correct_index: q.correct_index, active: q.active, path_slug: q.path_slug })
     setExpandedId(q.id)
   }
 
@@ -147,6 +158,7 @@ export default function QuizAdminPage() {
         choices: editDraft.choices.map((c) => c.trim()),
         correct_index: editDraft.correct_index,
         active: editDraft.active,
+        path_slug: editDraft.path_slug,
       }),
     })
     const data = await res.json()
@@ -186,6 +198,7 @@ export default function QuizAdminPage() {
         choices: newDraft.choices.map((c) => c.trim()),
         correct_index: newDraft.correct_index,
         active: newDraft.active,
+        path_slug: newDraft.path_slug,
       }),
     })
     const data = await res.json()
@@ -296,7 +309,7 @@ export default function QuizAdminPage() {
                     <X weight="light" size={16} />
                   </button>
                 </div>
-                <QuestionForm draft={newDraft} onChange={setNewDraft} />
+                <QuestionForm draft={newDraft} onChange={setNewDraft} paths={paths} />
                 <div className="flex gap-2 pt-1">
                   <button
                     onClick={createQuestion}
@@ -339,6 +352,12 @@ export default function QuizAdminPage() {
                           {!q.active && (
                             <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">inactive</span>
                           )}
+                          <span
+                            className="shrink-0 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary"
+                            title={q.path_slug ? `Only used by the "${pathTitle(q.path_slug)}" path` : 'Reusable by any path that includes this topic'}
+                          >
+                            {q.path_slug ? pathTitle(q.path_slug) : 'Shared'}
+                          </span>
                           {isExpanded
                             ? <CaretUp weight="light" size={14} className="shrink-0 text-muted-foreground ml-auto" />
                             : <CaretDown weight="light" size={14} className="shrink-0 text-muted-foreground ml-auto" />}
@@ -391,7 +410,7 @@ export default function QuizAdminPage() {
                         <div className="border-t border-border px-4 pb-5 pt-4">
                           {isEditing && editDraft ? (
                             <>
-                              <QuestionForm draft={editDraft} onChange={(d) => setEditDraft({ ...editDraft, ...d })} />
+                              <QuestionForm draft={editDraft} onChange={(d) => setEditDraft({ ...editDraft, ...d })} paths={paths} />
                               <div className="flex gap-2 mt-4">
                                 <button
                                   onClick={saveEdit}
@@ -438,7 +457,7 @@ export default function QuizAdminPage() {
 
 // ── Shared question form ──────────────────────────────────────────────────────
 
-function QuestionForm({ draft, onChange }: { draft: QuestionDraft; onChange: (d: QuestionDraft) => void }) {
+function QuestionForm({ draft, onChange, paths }: { draft: QuestionDraft; onChange: (d: QuestionDraft) => void; paths: PathOption[] }) {
   function setChoice(i: number, val: string) {
     const choices = [...draft.choices]
     choices[i] = val
@@ -512,6 +531,22 @@ function QuestionForm({ draft, onChange }: { draft: QuestionDraft; onChange: (d:
         >
           <Plus weight="bold" size={12} /> Add choice
         </button>
+      </div>
+
+      <div>
+        <label className="mb-1 block text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          Assign to
+        </label>
+        <select
+          value={draft.path_slug ?? ''}
+          onChange={(e) => onChange({ ...draft, path_slug: e.target.value || null })}
+          className="field"
+        >
+          <option value="">All paths (reusable)</option>
+          {paths.map((p) => (
+            <option key={p.slug} value={p.slug}>{p.title} (this path only)</option>
+          ))}
+        </select>
       </div>
 
       <label className="flex items-center gap-2 text-sm text-foreground">

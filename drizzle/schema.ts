@@ -142,11 +142,15 @@ export const quizQuestions = pgTable(
     choices: jsonb('choices').notNull(),
     correct_index: integer('correct_index').notNull(),
     active: boolean('active').default(true).notNull(),
+    // NULL = generic/reusable by any path that includes this topic (the
+    // default for every question authored so far). Set = scoped to just
+    // that path's quiz, alongside the generic pool.
+    path_slug: text('path_slug').references(() => paths.slug, { onDelete: 'set null' }),
     created_at: timestamp('created_at', { withTimezone: true })
       .default(sql`now()`)
       .notNull(),
   },
-  (t) => [index('quiz_questions_topic_tier_idx').on(t.topic_id, t.tier)]
+  (t) => [index('quiz_questions_topic_tier_path_idx').on(t.topic_id, t.tier, t.path_slug)]
 )
 
 /**

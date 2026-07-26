@@ -73,6 +73,7 @@ function sample<T>(pool: T[], n: number): T[] {
 export async function GET(req: NextRequest) {
   const topicId = req.nextUrl.searchParams.get('topicId')
   const tier = req.nextUrl.searchParams.get('tier')
+  const pathSlug = req.nextUrl.searchParams.get('path')
   if (!topicId || !isTier(tier)) {
     return NextResponse.json({ error: 'topicId and a valid tier are required' }, { status: 400 })
   }
@@ -83,14 +84,21 @@ export async function GET(req: NextRequest) {
   if (settingsError) return NextResponse.json({ error: settingsError.message }, { status: 500 })
   if (!settings) return NextResponse.json({ error: 'Unknown tier' }, { status: 400 })
 
-  const { data: bank, error } = await db
-    .from('quiz_questions')
-    .select('id,question,choices')
-    .eq('topic_id', topicId)
-    .eq('tier', tier)
-    .eq('active', true)
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
-  if (!bank || bank.length === 0) {
+  // The bank pools two sets: generic questions (path_slug IS NULL, reusable by
+  // any path) plus, when a path context is given, that path's own questions.
+  // Two queries instead of a single .or() filter — keeps the path slug out of
+  // a hand-built PostgREST filter string entirely.
+  const baseQuery = () =>
+    db.from('quiz_questions').select('id,question,choices').eq('topic_id', topicId).eq('tier', tier).eq('active', true)
+  const [{ data: generic, error: genericError }, { data: pathSpecific, error: pathError }] = await Promise.all([
+    baseQuery().is('path_slug', null),
+    pathSlug ? baseQuery().eq('path_slug', pathSlug) : Promise.resolve({ data: [], error: null }),
+  ])
+  if (genericError) return NextResponse.json({ error: genericError.message }, { status: 500 })
+  if (pathError) return NextResponse.json({ error: pathError.message }, { status: 500 })
+
+  const bank = [...(generic ?? []), ...(pathSpecific ?? [])]
+  if (bank.length === 0) {
     return NextResponse.json({ error: 'No questions available for this topic/tier yet' }, { status: 404 })
   }
 

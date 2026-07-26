@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   if (topicId) {
     const { data, error } = await db
       .from('quiz_questions')
-      .select('id,topic_id,tier,question,choices,correct_index,active,created_at')
+      .select('id,topic_id,tier,question,choices,correct_index,active,path_slug,created_at')
       .eq('topic_id', topicId)
       .order('tier')
       .order('id')
@@ -45,13 +45,14 @@ export async function POST(req: NextRequest) {
   if (!db) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()
-  const { topic_id, tier, question, choices, correct_index, active } = body as {
+  const { topic_id, tier, question, choices, correct_index, active, path_slug } = body as {
     topic_id?: string
     tier?: string
     question?: string
     choices?: unknown
     correct_index?: number
     active?: boolean
+    path_slug?: string | null
   }
 
   if (!topic_id || !isQuizTier(tier) || !question?.trim()) {
@@ -66,6 +67,7 @@ export async function POST(req: NextRequest) {
 
   const { error } = await db.from('quiz_questions').insert({
     topic_id, tier, question: question.trim(), choices, correct_index, active: active ?? true,
+    path_slug: path_slug || null,
   })
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
   return NextResponse.json({ ok: true })

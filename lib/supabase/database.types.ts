@@ -521,6 +521,7 @@ export type Database = {
           correct_index: number
           created_at: string
           id: number
+          path_slug: string | null
           question: string
           tier: string
           topic_id: string
@@ -531,6 +532,7 @@ export type Database = {
           correct_index: number
           created_at?: string
           id?: number
+          path_slug?: string | null
           question: string
           tier: string
           topic_id: string
@@ -541,6 +543,7 @@ export type Database = {
           correct_index?: number
           created_at?: string
           id?: number
+          path_slug?: string | null
           question?: string
           tier?: string
           topic_id?: string
@@ -552,6 +555,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "quiz_settings"
             referencedColumns: ["tier"]
+          },
+          {
+            foreignKeyName: "quiz_questions_path_slug_fkey"
+            columns: ["path_slug"]
+            isOneToOne: false
+            referencedRelation: "paths"
+            referencedColumns: ["slug"]
           },
         ]
       }
