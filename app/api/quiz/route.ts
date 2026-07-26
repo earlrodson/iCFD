@@ -28,7 +28,8 @@ export async function GET(req: NextRequest) {
 
   const db = createAdminClient()
 
-  const { data: settings } = await db.from('quiz_settings').select('item_count').eq('tier', tier).maybeSingle()
+  const { data: settings, error: settingsError } = await db.from('quiz_settings').select('item_count').eq('tier', tier).maybeSingle()
+  if (settingsError) return NextResponse.json({ error: settingsError.message }, { status: 500 })
   if (!settings) return NextResponse.json({ error: 'Unknown tier' }, { status: 400 })
 
   const { data: bank, error } = await db
