@@ -68,18 +68,6 @@ const LESSONS = [
 
 // ── Slice the raw text into one block per lesson ────────────────────────────
 
-function findAll(haystack, needle) {
-  const idxs = []
-  let from = 0
-  while (true) {
-    const i = haystack.indexOf(needle, from)
-    if (i === -1) break
-    idxs.push(i)
-    from = i + needle.length
-  }
-  return idxs
-}
-
 // The body copy is the FIRST occurrence of each header; a duplicate "outline"
 // appendix later in the doc reuses the same titles, so anchor on lesson 1's
 // first occurrence and lesson 2's first occurrence *after* it, etc.

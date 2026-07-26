@@ -202,7 +202,10 @@ export function DailyCarousel({ topics }: DailyCarouselProps) {
 
   function handleTouchEnd(e: React.TouchEvent) {
     const delta = touchStartX.current - e.changedTouches[0].clientX
-    if (Math.abs(delta) > 50) delta > 0 ? next() : prev()
+    if (Math.abs(delta) > 50) {
+      if (delta > 0) next()
+      else prev()
+    }
     setPaused(false)
   }
 

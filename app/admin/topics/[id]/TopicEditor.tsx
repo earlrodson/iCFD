@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { FloppyDisk, ArrowLeft, Plus, Trash, Spinner, MagnifyingGlass, X, TextAa } from '@phosphor-icons/react'
@@ -84,6 +84,8 @@ function ScripturePicker({
       setResults((data ?? []).filter(v => !selected.includes(v.id)))
       setSearching(false)
     }, 250)
+    // `supabase` is a fresh client instance each render (factory, not a singleton) — intentionally omitted
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, selected])
 
   async function addNew() {
@@ -193,6 +195,8 @@ function CatechismPicker({
       setPreview(data ?? null)
       setNotFound(!data)
     }, 300)
+    // `supabase` is a fresh client instance each render (factory, not a singleton) — intentionally omitted
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input])
 
   async function add() {
@@ -287,6 +291,8 @@ function FatherPicker({
       setResults((data ?? []).filter(q => !selected.includes(q.id)))
       setSearching(false)
     }, 250)
+    // `supabase` is a fresh client instance each render (factory, not a singleton) — intentionally omitted
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, selected])
 
   async function addNew() {

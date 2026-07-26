@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { ArrowLineDown, CheckCircle } from '@phosphor-icons/react'
 import { cn } from '@/lib/utils'
 

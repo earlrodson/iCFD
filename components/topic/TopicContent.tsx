@@ -131,9 +131,12 @@ function injectTerms(
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function makeTermComponents(compiled: ReturnType<typeof buildTermRegex>, onClick: (t: Term) => void): any {
-  const wrap = (Tag: string) =>
-    ({ children, ...rest }: { children?: React.ReactNode; [k: string]: unknown }) =>
+  const wrap = (Tag: string) => {
+    const Wrapped = ({ children, ...rest }: { children?: React.ReactNode; [k: string]: unknown }) =>
       React.createElement(Tag, rest, injectTerms(children, compiled, onClick))
+    Wrapped.displayName = `Wrapped(${Tag})`
+    return Wrapped
+  }
   return {
     p: wrap('p'),
     li: wrap('li'),
@@ -203,13 +206,18 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   }
 
   // Compile once when keyTerms change — single DFA regex for all terms
+  const keyTermsKey = useMemo(
+    () => displayTopic.keyTerms?.map((t) => t.slug).join(',') ?? '',
+    [displayTopic.keyTerms],
+  )
   const compiledTerms = useMemo(
     () => buildTermRegex(displayTopic.keyTerms ?? []),
+    // keyTermsKey is a stable proxy for displayTopic.keyTerms (slug list joined) — avoids
+    // recompiling the regex when the array reference changes but its contents don't
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [displayTopic.keyTerms?.map((t) => t.slug).join(',')],
+    [keyTermsKey],
   )
   // Stable component objects — only recreated when compiled regex changes
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const termComponents = useMemo(() => makeTermComponents(compiledTerms, openTermPopover), [compiledTerms])
 
   const favorited = isFavorite(displayTopic.id)
@@ -315,7 +323,7 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
       })
       setResolvedFull(out)
     }).catch(() => setResolvedFull(raw))
-  }, [displayTopic.answerFull]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [displayTopic.answerFull])
 
   async function handleShare() {
     const url = window.location.href

@@ -1,9 +1,7 @@
 'use client'
 
 import { useEffect, useState, useCallback, useRef } from 'react'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import { Button } from '@/components/ui/button'
 import { OfflineFallback } from '@/components/ui/OfflineFallback'
 import { fetchParagraphs, getCachedParagraphs, type CccParagraph } from '@/lib/content/catechismFetch'
 

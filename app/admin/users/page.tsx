@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { UserPlus, Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise, EnvelopeSimple } from '@phosphor-icons/react'
+import { Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise, EnvelopeSimple } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
 import { useAdminRole } from '@/app/admin/role-context'

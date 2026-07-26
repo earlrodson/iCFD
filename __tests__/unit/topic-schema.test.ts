@@ -21,7 +21,7 @@ describe('TopicSchema', () => {
   })
 
   it('accepts optional fields missing', () => {
-    const { catechism, churchFathers, relatedTopics, ...bare } = { ...validTopic, catechism: [], churchFathers: [], relatedTopics: [] }
+    const { catechism: _catechism, churchFathers: _churchFathers, relatedTopics: _relatedTopics, ...bare } = { ...validTopic, catechism: [], churchFathers: [], relatedTopics: [] }
     const result = TopicSchema.parse(bare)
     expect(result.catechism).toBeUndefined()
   })
@@ -39,7 +39,7 @@ describe('TopicSchema', () => {
   })
 
   it('rejects missing required field', () => {
-    const { title, ...noTitle } = validTopic
+    const { title: _title, ...noTitle } = validTopic
     expect(() => TopicSchema.parse(noTitle)).toThrow()
   })
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { MagnifyingGlass, Plus, Trash, BookOpen, Quotes, Scroll } from '@phosphor-icons/react'
 
@@ -57,7 +57,9 @@ function ScriptureTab() {
     setVerses(data ?? [])
   }
 
-  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  // Load once on mount; `load` is redefined each render so it's intentionally omitted
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { load() }, [])
 
   async function save() {
     if (!form.reference.trim() || !form.text.trim()) return
@@ -160,6 +162,8 @@ function CCCTab() {
   const [form, setForm] = useState({ paragraph: '', summary: '', text: '', section: '' })
   const [saving, setSaving] = useState(false)
 
+  // Load once on mount; `load` is redefined each render so it's intentionally omitted
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { load() }, [])
 
   async function load() {
@@ -276,7 +280,9 @@ function FathersTab() {
     setQuotes(data ?? [])
   }
 
-  useEffect(() => { load() }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  // Load once on mount; `load` is redefined each render so it's intentionally omitted
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => { load() }, [])
 
   async function save() {
     if (!form.author.trim() || !form.quote.trim() || !form.source.trim()) return

@@ -144,7 +144,6 @@ export function useOfflineCache() {
       return
     }
     void checkStatus()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const download = useCallback(async () => {

@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from 'react'
 import Link from 'next/link'
 import {
   Plus, MagnifyingGlass, PencilSimple, Trash, ArrowClockwise,
-  Warning, Eye, EyeSlash, Star, Image, CheckCircle,
+  Warning, Eye, EyeSlash, Star, Image as ImageIcon, CheckCircle,
 } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
@@ -307,7 +307,7 @@ export default function AdminTopicsPage() {
                         )}
                         {!t.cover_image && (
                           <div className="h-8 w-8 rounded-lg bg-muted flex items-center justify-center shrink-0">
-                            <Image weight="light" size={14} className="text-muted-foreground" />
+                            <ImageIcon weight="light" size={14} className="text-muted-foreground" />
                           </div>
                         )}
                         <div>

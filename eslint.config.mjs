@@ -12,6 +12,14 @@ const eslintConfig = defineConfig([
       // Calling setState inside useEffect is a valid pattern here (reading URL
       // params on mount, deriving display state from props, etc.).
       'react-hooks/set-state-in-effect': 'off',
+      // Underscore-prefixed names mark an intentionally-discarded binding
+      // (e.g. `const { [id]: _, ...rest } = obj` to omit a key).
+      '@typescript-eslint/no-unused-vars': ['warn', {
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        destructuredArrayIgnorePattern: '^_',
+      }],
     },
   },
   // Override default ignores of eslint-config-next.

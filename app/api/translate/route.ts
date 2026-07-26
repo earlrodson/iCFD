@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { getUser } from '@/lib/supabase/auth'
-import { createClient as createBrowserClient } from '@/lib/supabase/client'
 
 const LANG_NAMES: Record<string, string> = {
   tl: 'Filipino (Tagalog)',
