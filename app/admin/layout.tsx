@@ -16,6 +16,7 @@ const ADMIN_TABS = [
   { label: 'Translations', href: '/admin/translations',  roles: ['admin', 'editor'] },
   { label: 'Submissions',  href: '/admin/submissions',   roles: ['admin', 'editor'] },
   { label: 'Paths',        href: '/admin/paths',         roles: ['admin'] },
+  { label: 'Quiz',         href: '/admin/quiz',          roles: ['admin', 'editor'] },
   { label: 'References',   href: '/admin/references',    roles: ['admin'] },
   { label: 'Glossary',      href: '/admin/glossary',       roles: ['admin'] },
   { label: 'Dedup',          href: '/admin/dedup',          roles: ['admin'] },
