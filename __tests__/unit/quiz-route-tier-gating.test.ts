@@ -23,6 +23,7 @@ function mockDb(responses: TableResponses) {
         select: () => chain,
         eq: () => chain,
         in: () => chain,
+        is: () => chain,
         order: () => chain,
         limit: () => chain,
         maybeSingle: () => Promise.resolve(r.maybeSingle ?? { data: null, error: null }),

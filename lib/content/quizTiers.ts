@@ -1,6 +1,12 @@
 export const QUIZ_TIERS = ['beginner', 'intermediate', 'advanced'] as const
 export type QuizTier = (typeof QUIZ_TIERS)[number]
 
+export const TIER_LABELS: Record<QuizTier, string> = {
+  beginner: 'Beginner',
+  intermediate: 'Intermediate',
+  advanced: 'Advanced',
+}
+
 export function isQuizTier(v: unknown): v is QuizTier {
   return typeof v === 'string' && (QUIZ_TIERS as readonly string[]).includes(v)
 }

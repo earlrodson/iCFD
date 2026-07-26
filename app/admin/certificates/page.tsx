@@ -3,45 +3,18 @@
 import { useEffect, useRef, useState } from 'react'
 import { Certificate, ArrowClockwise, Image as ImageIcon, UploadSimple } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
-import { QUIZ_TIERS, type QuizTier } from '@/lib/content/quizTiers'
+import { QUIZ_TIERS, TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
+import {
+  DEFAULT_BASE_IMAGE_URL,
+  resolveNamePlaceholder,
+  type CertificatePlaceholder,
+} from '@/lib/content/certificateTemplate'
+import { CertificatePreview } from '@/components/certificates/CertificatePreview'
 import { cn } from '@/lib/utils'
-
-interface Placeholder {
-  field: string
-  x: number
-  y: number
-  font_size?: number
-  font_family?: string
-  color?: string
-  align?: 'left' | 'center' | 'right'
-}
 
 interface Template {
   base_image_url: string
-  placeholders: Placeholder[]
-}
-
-const DEFAULT_NAME_PLACEHOLDER: Placeholder = {
-  field: 'name',
-  x: 50,
-  y: 53.8,
-  font_size: 34,
-  font_family: 'Georgia, serif',
-  color: '#1a1a1a',
-  align: 'center',
-}
-
-// Placeholders are authored assuming an image roughly this wide; font size
-// scales with the actual rendered width so text stays proportional.
-const REFERENCE_IMAGE_WIDTH = 1000
-
-// Shown for any tier that has no admin-uploaded template yet.
-const DEFAULT_BASE_IMAGE_URL = '/certificates/default-template.png'
-
-const TIER_LABELS: Record<QuizTier, string> = {
-  beginner: 'Beginner',
-  intermediate: 'Intermediate',
-  advanced: 'Advanced',
+  placeholders: CertificatePlaceholder[]
 }
 
 export default function AdminCertificatesPage() {
@@ -49,10 +22,8 @@ export default function AdminCertificatesPage() {
   const [template, setTemplate] = useState<Template | null>(null)
   const [loading, setLoading] = useState(true)
   const [accountName, setAccountName] = useState('')
-  const [scale, setScale] = useState(1)
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
-  const imgRef = useRef<HTMLImageElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   async function loadTemplate(t: QuizTier) {
@@ -62,7 +33,7 @@ export default function AdminCertificatesPage() {
       .select('base_image_url, placeholders')
       .eq('tier', t)
       .maybeSingle()
-    setTemplate(data ? { base_image_url: data.base_image_url, placeholders: (data.placeholders as unknown as Placeholder[]) ?? [] } : null)
+    setTemplate(data ? { base_image_url: data.base_image_url, placeholders: (data.placeholders as unknown as CertificatePlaceholder[]) ?? [] } : null)
     setLoading(false)
   }
 
@@ -94,23 +65,8 @@ export default function AdminCertificatesPage() {
   }
 
   const imageUrl = template?.base_image_url || DEFAULT_BASE_IMAGE_URL
-  const namePlaceholder =
-    template?.placeholders.find((p) => p.field === 'name' || p.field === 'full_name' || p.field === 'account_name') ??
-    DEFAULT_NAME_PLACEHOLDER
-
-  function handleImageLoad() {
-    if (imgRef.current) {
-      setScale(imgRef.current.clientWidth / REFERENCE_IMAGE_WIDTH)
-    }
-  }
-
-  useEffect(() => {
-    function onResize() {
-      if (imgRef.current) setScale(imgRef.current.clientWidth / REFERENCE_IMAGE_WIDTH)
-    }
-    window.addEventListener('resize', onResize)
-    return () => window.removeEventListener('resize', onResize)
-  }, [])
+  const isDefaultTemplate = !template?.base_image_url
+  const namePlaceholder = resolveNamePlaceholder(template?.placeholders)
 
   return (
     <div className="pb-24">
@@ -180,55 +136,31 @@ export default function AdminCertificatesPage() {
           <div className="flex justify-center py-12">
             <div className="h-7 w-7 animate-spin rounded-full border-2 border-primary border-t-transparent" />
           </div>
-        ) : imageUrl ? (
-          <div className="space-y-2">
-            <div className="relative mx-auto w-full overflow-hidden rounded-2xl border border-border bg-muted">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                ref={imgRef}
-                src={imageUrl}
-                alt={`${TIER_LABELS[tier]} certificate template`}
-                className="block w-full h-auto select-none"
-                onLoad={handleImageLoad}
-              />
-              <div
-                className="absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap px-2"
-                style={{
-                  left: `${namePlaceholder.x}%`,
-                  top: `${namePlaceholder.y}%`,
-                  fontSize: `${(namePlaceholder.font_size ?? 34) * scale}px`,
-                  fontFamily: namePlaceholder.font_family ?? 'Georgia, serif',
-                  color: namePlaceholder.color ?? '#1a1a1a',
-                  textAlign: namePlaceholder.align ?? 'center',
-                }}
-              >
-                {accountName.trim() || 'Full Name'}
-              </div>
-            </div>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              disabled={uploading}
-              className="flex items-center gap-1.5 text-xs font-medium text-primary hover:underline disabled:opacity-50"
-            >
-              <UploadSimple weight="light" size={14} />
-              {uploading ? 'Uploading…' : 'Replace image'}
-            </button>
-          </div>
         ) : (
-          <div className="rounded-2xl border border-dashed border-border bg-card p-6 text-center space-y-3">
-            <ImageIcon weight="light" size={28} className="mx-auto text-muted-foreground" />
-            <p className="text-sm text-muted-foreground">
-              No certificate template uploaded for the {TIER_LABELS[tier].toLowerCase()} tier yet.
-            </p>
-            <button
-              onClick={() => fileInputRef.current?.click()}
-              disabled={uploading}
-              className="mx-auto flex items-center gap-1.5 rounded-xl bg-primary px-3 py-1.5 text-sm font-medium text-primary-foreground disabled:opacity-50"
-            >
-              <UploadSimple weight="light" size={16} />
-              {uploading ? 'Uploading…' : 'Upload image'}
-            </button>
-            <p className="text-[11px] text-muted-foreground">PNG, JPEG, or WebP — up to 5 MB.</p>
+          <div className="space-y-2">
+            <CertificatePreview
+              imageUrl={imageUrl}
+              namePlaceholder={namePlaceholder}
+              name={accountName.trim() || 'Full Name'}
+              alt={`${TIER_LABELS[tier]} certificate template`}
+              className="mx-auto"
+            />
+            <div className="flex items-center justify-between gap-3">
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                disabled={uploading}
+                className="flex items-center gap-1.5 text-xs font-medium text-primary hover:underline disabled:opacity-50"
+              >
+                <UploadSimple weight="light" size={14} />
+                {uploading ? 'Uploading…' : isDefaultTemplate ? 'Upload image' : 'Replace image'}
+              </button>
+              {isDefaultTemplate && (
+                <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                  <ImageIcon weight="light" size={13} />
+                  Using default template — not yet saved for this tier
+                </p>
+              )}
+            </div>
           </div>
         )}
         {uploadError && (

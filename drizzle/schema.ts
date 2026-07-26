@@ -217,8 +217,10 @@ export const certificates = pgTable(
     issued_at: timestamp('issued_at', { withTimezone: true })
       .default(sql`now()`)
       .notNull(),
-    pdf_url: text('pdf_url').notNull(),
-    image_url: text('image_url').notNull(),
+    // Rendered on demand (base template + overlaid name), not pre-generated —
+    // kept for a possible future static export/download feature.
+    pdf_url: text('pdf_url'),
+    image_url: text('image_url'),
   },
   (t) => [unique('certificates_user_tier_key').on(t.user_id, t.tier)]
 )

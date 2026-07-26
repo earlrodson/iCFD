@@ -3,8 +3,9 @@
 import { useEffect, useState, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle, XCircle, Warning } from '@phosphor-icons/react'
+import { ArrowLeft, CheckCircle, XCircle, Warning, Certificate } from '@phosphor-icons/react'
 import { getUser } from '@/lib/supabase/auth'
+import { TIER_LABELS } from '@/lib/content/quizTiers'
 
 interface QuizQuestion {
   id: number
@@ -33,7 +34,7 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [loadError, setLoadError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
-  const [result, setResult] = useState<{ scorePercent: number; passed: boolean; correctCount: number; total: number } | null>(null)
+  const [result, setResult] = useState<{ scorePercent: number; passed: boolean; correctCount: number; total: number; certificateIssued?: boolean } | null>(null)
   const [submitError, setSubmitError] = useState<string | null>(null)
 
   const loadQuestions = useCallback(() => {
@@ -133,6 +134,26 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
             <p className="mt-1 text-sm text-muted-foreground">
               {result.correctCount} / {result.total} correct ({result.scorePercent}%)
             </p>
+          </div>
+        )}
+
+        {result?.certificateIssued && (
+          <div className="mt-3 rounded-2xl border border-amber-200 bg-amber-50 p-5 dark:border-amber-800/60 dark:bg-amber-900/20">
+            <div className="flex items-center gap-2">
+              <Certificate weight="fill" size={22} className="text-amber-600 dark:text-amber-400" />
+              <p className="text-base font-semibold text-foreground">
+                You&apos;ve earned your {TIER_LABELS[tier as keyof typeof TIER_LABELS] ?? tier} certificate!
+              </p>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">
+              You&apos;ve completed every topic in this course at this tier.
+            </p>
+            <Link
+              href="/account"
+              className="mt-3 inline-block rounded-xl bg-amber-600 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-700 transition-colors"
+            >
+              View your certificate
+            </Link>
           </div>
         )}
 

@@ -9,6 +9,7 @@ import {
   EnvelopeSimple,
   GoogleLogo,
   AppleLogo,
+  Certificate,
 } from '@phosphor-icons/react'
 import {
   signInWithEmail,
@@ -25,10 +26,18 @@ import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useNotesStore } from '@/store/useNotesStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { useAppStore } from '@/store/useAppStore'
-import { isSupabaseConfigured } from '@/lib/supabase/client'
+import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
+import { isQuizTier, TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
+import { CertificateModal } from '@/components/certificates/CertificateModal'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
 type AuthMode = 'signin' | 'signup' | 'magic'
+
+interface EarnedCertificate {
+  tier: QuizTier
+  serial_code: string
+  issued_at: string
+}
 
 export default function AccountPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null)
@@ -39,6 +48,8 @@ export default function AccountPage() {
   const [authError, setAuthError] = useState('')
   const [magicSent, setMagicSent] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [certificates, setCertificates] = useState<EarnedCertificate[]>([])
+  const [viewingCertTier, setViewingCertTier] = useState<QuizTier | null>(null)
 
   const { favoriteIds } = useFavoritesStore()
   const { notes } = useNotesStore()
@@ -60,6 +71,19 @@ export default function AccountPage() {
       if (s.font_size) setFontSize(s.font_size as 'small' | 'medium' | 'large')
     })
   }, [user, setLanguage, setFontSize])
+
+  // Earned certificates — RLS scopes this to the signed-in user's own rows.
+  useEffect(() => {
+    if (!user) { setCertificates([]); return }
+    createClient()
+      .from('certificates')
+      .select('tier, serial_code, issued_at')
+      .eq('user_id', user.id)
+      .order('issued_at', { ascending: false })
+      .then(({ data }) => {
+        setCertificates((data ?? []).filter((c): c is EarnedCertificate => isQuizTier(c.tier)))
+      })
+  }, [user])
 
   async function handleEmailAuth(e: React.FormEvent) {
     e.preventDefault()
@@ -151,6 +175,32 @@ export default function AccountPage() {
             ))}
           </div>
 
+          {/* Certificates */}
+          {certificates.length > 0 && (
+            <div className="mt-4">
+              <h2 className="mb-2 text-sm font-semibold text-foreground">Certificates</h2>
+              <div className="space-y-2">
+                {certificates.map((cert) => (
+                  <button
+                    key={cert.tier}
+                    onClick={() => setViewingCertTier(cert.tier)}
+                    className="flex w-full items-center gap-3 rounded-xl bg-card border border-border p-3 text-left shadow-sm hover:bg-muted transition-colors"
+                  >
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
+                      <Certificate weight="fill" size={20} className="text-amber-600 dark:text-amber-400" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="text-sm font-medium text-foreground">{TIER_LABELS[cert.tier]} Certificate</p>
+                      <p className="text-xs text-muted-foreground">
+                        Issued {new Date(cert.issued_at).toLocaleDateString()}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Sign out */}
           <div className="mt-6">
             <button
@@ -162,6 +212,20 @@ export default function AccountPage() {
             </button>
           </div>
         </div>
+
+        {viewingCertTier && (() => {
+          const cert = certificates.find((c) => c.tier === viewingCertTier)
+          if (!cert) return null
+          return (
+            <CertificateModal
+              tier={cert.tier}
+              serialCode={cert.serial_code}
+              issuedAt={cert.issued_at}
+              recipientName={name}
+              onClose={() => setViewingCertTier(null)}
+            />
+          )
+        })()}
       </div>
     )
   }

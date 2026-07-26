@@ -4,6 +4,47 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { isQuizTier as isTier, previousTier } from '@/lib/content/quizTiers'
 
 /**
+ * Issues a certificate for (user, tier) once every topic in the active
+ * course path has been passed at that tier — a no-op if one already exists
+ * or the path isn't fully complete yet. The certificates schema is one row
+ * per (user_id, tier), which assumes a single active course path defines
+ * what "completing a tier" means; revisit if a second path is ever added.
+ * Returns true only when a new certificate was issued by this call.
+ */
+async function maybeIssueCertificate(
+  db: ReturnType<typeof createAdminClient>,
+  userId: string,
+  tier: string,
+): Promise<boolean> {
+  const { data: existing } = await db
+    .from('certificates')
+    .select('id')
+    .eq('user_id', userId)
+    .eq('tier', tier)
+    .maybeSingle()
+  if (existing) return false
+
+  const { data: coursePath } = await db.from('paths').select('slug').is('deleted_at', null).limit(1).maybeSingle()
+  if (!coursePath) return false
+
+  const { data: pathTopics } = await db.from('path_topics').select('topic_id').eq('path_slug', coursePath.slug)
+  if (!pathTopics || pathTopics.length === 0) return false
+
+  const { data: progress } = await db
+    .from('course_progress')
+    .select('topic_id')
+    .eq('user_id', userId)
+    .eq('tier', tier)
+  const doneTopics = new Set((progress ?? []).map((p) => p.topic_id))
+  const allDone = pathTopics.every((pt) => doneTopics.has(pt.topic_id))
+  if (!allDone) return false
+
+  const serialCode = `CFD-${tier.slice(0, 3).toUpperCase()}-${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 5).toUpperCase()}`
+  const { error } = await db.from('certificates').insert({ user_id: userId, tier, serial_code: serialCode })
+  return !error
+}
+
+/**
  * Shuffles then trims to `n` — good enough for quiz rotation (not
  * cryptographically sensitive, just needs to vary across attempts).
  */
@@ -180,15 +221,14 @@ export async function POST(req: NextRequest) {
   })
   if (insertErr) return NextResponse.json({ error: insertErr.message }, { status: 500 })
 
+  let certificateIssued = false
   if (passed) {
     await db.from('course_progress').upsert(
       { user_id: user.id, topic_id: topicId, tier, passed_at: new Date().toISOString() },
       { onConflict: 'user_id,topic_id,tier' },
     )
-    // Certificate issuance (image/PDF generation) is a separate, not-yet-built
-    // piece — course_progress alone is enough to know a certificate is owed;
-    // the generator will pick this up once the admin template designer exists.
+    certificateIssued = await maybeIssueCertificate(db, user.id, tier)
   }
 
-  return NextResponse.json({ scorePercent, passed, correctCount, total: questionIds.length })
+  return NextResponse.json({ scorePercent, passed, correctCount, total: questionIds.length, certificateIssued, tier })
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createClient } from '@supabase/supabase-js'
 import { createServerClient } from '@/lib/supabase/server'
 import { isQuizTier } from '@/lib/content/quizTiers'
+import { DEFAULT_NAME_PLACEHOLDER } from '@/lib/content/certificateTemplate'
 import type { Json } from '@/lib/supabase/database.types'
 
 function adminSupabase() {
@@ -20,9 +21,7 @@ async function verifyAdmin(): Promise<boolean> {
   return !!data
 }
 
-const DEFAULT_PLACEHOLDERS: Json = [
-  { field: 'name', x: 50, y: 58, font_size: 34, font_family: 'Georgia, serif', color: '#1a1a1a', align: 'center' },
-] as unknown as Json
+const DEFAULT_PLACEHOLDERS = [DEFAULT_NAME_PLACEHOLDER] as unknown as Json
 
 const MAX_BYTES = 5 * 1024 * 1024
 const ALLOWED_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp'])

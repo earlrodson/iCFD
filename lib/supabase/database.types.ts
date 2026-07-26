@@ -95,6 +95,144 @@ export type Database = {
         }
         Relationships: []
       }
+      certificate_templates: {
+        Row: {
+          base_image_url: string
+          placeholders: Json
+          tier: string
+          updated_at: string
+        }
+        Insert: {
+          base_image_url: string
+          placeholders: Json
+          tier: string
+          updated_at?: string
+        }
+        Update: {
+          base_image_url?: string
+          placeholders?: Json
+          tier?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "certificate_templates_tier_fkey"
+            columns: ["tier"]
+            isOneToOne: true
+            referencedRelation: "quiz_settings"
+            referencedColumns: ["tier"]
+          },
+        ]
+      }
+      certificates: {
+        Row: {
+          id: string
+          image_url: string | null
+          issued_at: string
+          pdf_url: string | null
+          serial_code: string
+          tier: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          image_url?: string | null
+          issued_at?: string
+          pdf_url?: string | null
+          serial_code: string
+          tier: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          image_url?: string | null
+          issued_at?: string
+          pdf_url?: string | null
+          serial_code?: string
+          tier?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "certificates_tier_fkey"
+            columns: ["tier"]
+            isOneToOne: false
+            referencedRelation: "quiz_settings"
+            referencedColumns: ["tier"]
+          },
+        ]
+      }
+      church_document_meta: {
+        Row: {
+          author: string | null
+          description: string | null
+          free_access: boolean | null
+          slug: string
+          sort_order: number | null
+          subtitle: string | null
+          title: string
+          year: number | null
+        }
+        Insert: {
+          author?: string | null
+          description?: string | null
+          free_access?: boolean | null
+          slug: string
+          sort_order?: number | null
+          subtitle?: string | null
+          title: string
+          year?: number | null
+        }
+        Update: {
+          author?: string | null
+          description?: string | null
+          free_access?: boolean | null
+          slug?: string
+          sort_order?: number | null
+          subtitle?: string | null
+          title?: string
+          year?: number | null
+        }
+        Relationships: []
+      }
+      church_documents: {
+        Row: {
+          created_at: string | null
+          id: number
+          section_label: string | null
+          section_num: number
+          slug: string
+          summary: string | null
+          text: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: number
+          section_label?: string | null
+          section_num: number
+          slug: string
+          summary?: string | null
+          text?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: number
+          section_label?: string | null
+          section_num?: number
+          slug?: string
+          summary?: string | null
+          text?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_church_documents_meta"
+            columns: ["slug"]
+            isOneToOne: false
+            referencedRelation: "church_document_meta"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
       church_father_quotes: {
         Row: {
           author: string
@@ -118,6 +256,35 @@ export type Database = {
           year_approx?: number | null
         }
         Relationships: []
+      }
+      course_progress: {
+        Row: {
+          passed_at: string
+          tier: string
+          topic_id: string
+          user_id: string
+        }
+        Insert: {
+          passed_at: string
+          tier: string
+          topic_id: string
+          user_id: string
+        }
+        Update: {
+          passed_at?: string
+          tier?: string
+          topic_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "course_progress_tier_fkey"
+            columns: ["tier"]
+            isOneToOne: false
+            referencedRelation: "quiz_settings"
+            referencedColumns: ["tier"]
+          },
+        ]
       }
       favorites: {
         Row: {
@@ -283,168 +450,112 @@ export type Database = {
         }
         Relationships: []
       }
-      quiz_settings: {
+      quiz_attempts: {
         Row: {
+          answers: Json
+          attempted_at: string
+          id: string
+          passed: boolean
+          question_ids: Json
+          score_percent: number
           tier: string
-          item_count: number
-          bank_size: number
-          pass_percent: number
-          updated_at: string
+          topic_id: string
+          user_id: string
         }
         Insert: {
+          answers: Json
+          attempted_at?: string
+          id?: string
+          passed: boolean
+          question_ids: Json
+          score_percent: number
           tier: string
-          item_count: number
-          bank_size: number
-          pass_percent: number
-          updated_at?: string
+          topic_id: string
+          user_id: string
         }
         Update: {
+          answers?: Json
+          attempted_at?: string
+          id?: string
+          passed?: boolean
+          question_ids?: Json
+          score_percent?: number
           tier?: string
-          item_count?: number
-          bank_size?: number
-          pass_percent?: number
-          updated_at?: string
+          topic_id?: string
+          user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "quiz_attempts_tier_fkey"
+            columns: ["tier"]
+            isOneToOne: false
+            referencedRelation: "quiz_settings"
+            referencedColumns: ["tier"]
+          },
+        ]
       }
       quiz_questions: {
         Row: {
-          id: number
-          topic_id: string
-          tier: string
-          question: string
+          active: boolean
           choices: Json
           correct_index: number
-          active: boolean
           created_at: string
+          id: number
+          question: string
+          tier: string
+          topic_id: string
         }
         Insert: {
-          id?: number
-          topic_id: string
-          tier: string
-          question: string
+          active?: boolean
           choices: Json
           correct_index: number
-          active?: boolean
           created_at?: string
+          id?: number
+          question: string
+          tier: string
+          topic_id: string
         }
         Update: {
-          id?: number
-          topic_id?: string
-          tier?: string
-          question?: string
+          active?: boolean
           choices?: Json
           correct_index?: number
-          active?: boolean
           created_at?: string
-        }
-        Relationships: []
-      }
-      quiz_attempts: {
-        Row: {
-          id: string
-          user_id: string
-          topic_id: string
-          tier: string
-          question_ids: Json
-          answers: Json
-          score_percent: number
-          passed: boolean
-          attempted_at: string
-        }
-        Insert: {
-          id?: string
-          user_id: string
-          topic_id: string
-          tier: string
-          question_ids: Json
-          answers: Json
-          score_percent: number
-          passed: boolean
-          attempted_at?: string
-        }
-        Update: {
-          id?: string
-          user_id?: string
-          topic_id?: string
+          id?: number
+          question?: string
           tier?: string
-          question_ids?: Json
-          answers?: Json
-          score_percent?: number
-          passed?: boolean
-          attempted_at?: string
-        }
-        Relationships: []
-      }
-      course_progress: {
-        Row: {
-          user_id: string
-          topic_id: string
-          tier: string
-          passed_at: string
-        }
-        Insert: {
-          user_id: string
-          topic_id: string
-          tier: string
-          passed_at: string
-        }
-        Update: {
-          user_id?: string
           topic_id?: string
-          tier?: string
-          passed_at?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "quiz_questions_tier_fkey"
+            columns: ["tier"]
+            isOneToOne: false
+            referencedRelation: "quiz_settings"
+            referencedColumns: ["tier"]
+          },
+        ]
       }
-      certificate_templates: {
+      quiz_settings: {
         Row: {
+          bank_size: number
+          item_count: number
+          pass_percent: number
           tier: string
-          base_image_url: string
-          placeholders: Json
           updated_at: string
         }
         Insert: {
+          bank_size: number
+          item_count: number
+          pass_percent: number
           tier: string
-          base_image_url: string
-          placeholders: Json
           updated_at?: string
         }
         Update: {
+          bank_size?: number
+          item_count?: number
+          pass_percent?: number
           tier?: string
-          base_image_url?: string
-          placeholders?: Json
           updated_at?: string
-        }
-        Relationships: []
-      }
-      certificates: {
-        Row: {
-          id: string
-          user_id: string
-          tier: string
-          serial_code: string
-          issued_at: string
-          pdf_url: string
-          image_url: string
-        }
-        Insert: {
-          id?: string
-          user_id: string
-          tier: string
-          serial_code: string
-          issued_at?: string
-          pdf_url: string
-          image_url: string
-        }
-        Update: {
-          id?: string
-          user_id?: string
-          tier?: string
-          serial_code?: string
-          issued_at?: string
-          pdf_url?: string
-          image_url?: string
         }
         Relationships: []
       }
@@ -567,6 +678,103 @@ export type Database = {
           title?: string
         }
         Relationships: []
+      }
+      theological_terms: {
+        Row: {
+          created_at: string | null
+          debate_note: string | null
+          definition: string
+          keywords: string | null
+          language: string
+          pronunciation: string | null
+          root_meaning: string
+          root_text: string | null
+          slug: string
+          term: string
+        }
+        Insert: {
+          created_at?: string | null
+          debate_note?: string | null
+          definition: string
+          keywords?: string | null
+          language?: string
+          pronunciation?: string | null
+          root_meaning: string
+          root_text?: string | null
+          slug: string
+          term: string
+        }
+        Update: {
+          created_at?: string | null
+          debate_note?: string | null
+          definition?: string
+          keywords?: string | null
+          language?: string
+          pronunciation?: string | null
+          root_meaning?: string
+          root_text?: string | null
+          slug?: string
+          term?: string
+        }
+        Relationships: []
+      }
+      topic_document_refs: {
+        Row: {
+          created_at: string | null
+          doc_slug: string
+          id: number
+          section_label: string | null
+          section_num: number
+          topic_id: string
+        }
+        Insert: {
+          created_at?: string | null
+          doc_slug: string
+          id?: number
+          section_label?: string | null
+          section_num: number
+          topic_id: string
+        }
+        Update: {
+          created_at?: string | null
+          doc_slug?: string
+          id?: number
+          section_label?: string | null
+          section_num?: number
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "topic_document_refs_doc_slug_fkey"
+            columns: ["doc_slug"]
+            isOneToOne: false
+            referencedRelation: "church_document_meta"
+            referencedColumns: ["slug"]
+          },
+        ]
+      }
+      topic_terms: {
+        Row: {
+          term_slug: string
+          topic_id: string
+        }
+        Insert: {
+          term_slug: string
+          topic_id: string
+        }
+        Update: {
+          term_slug?: string
+          topic_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "topic_terms_term_slug_fkey"
+            columns: ["term_slug"]
+            isOneToOne: false
+            referencedRelation: "theological_terms"
+            referencedColumns: ["slug"]
+          },
+        ]
       }
       topics: {
         Row: {
@@ -699,7 +907,37 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_all_users: {
+        Args: never
+        Returns: {
+          created_at: string
+          email: string
+          id: string
+          last_sign_in_at: string
+          role: string
+        }[]
+      }
+      get_topic_analytics: {
+        Args: { filter_user_id?: string }
+        Returns: {
+          category: string
+          lang: string
+          reader_count: number
+          title: string
+          topic_id: string
+          view_count: number
+        }[]
+      }
+      get_user_activity_summary: {
+        Args: never
+        Returns: {
+          email: string
+          last_active: string
+          topic_views: number
+          topics_read: number
+          user_id: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
