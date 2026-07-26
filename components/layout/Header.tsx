@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { List, ShareNetwork, DownloadSimple } from '@phosphor-icons/react'
 import { useState } from 'react'
 import { AppDrawer } from './AppDrawer'
@@ -28,9 +29,14 @@ export function Header() {
         <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold">
-              {appShortName}
-            </div>
+            <Image
+              src="/logo.png"
+              alt={appShortName}
+              width={32}
+              height={32}
+              className="h-8 w-8 shrink-0"
+              priority
+            />
             <span className="font-semibold text-foreground">
               {appName}
             </span>
