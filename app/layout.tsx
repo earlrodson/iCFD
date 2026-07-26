@@ -7,6 +7,7 @@ import { MobileNav } from '@/components/layout/MobileNav'
 import { OfflineBanner } from '@/components/ui/OfflineBanner'
 import { NavigationProgress } from '@/components/ui/NavigationProgress'
 import { SyncManager } from '@/components/SyncManager'
+import { PageTracker } from '@/components/analytics/PageTracker'
 
 export const metadata: Metadata = {
   title: 'Codex Defensoris',
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Suspense fallback={null}>
           <NavigationProgress />
         </Suspense>
+        <PageTracker />
         <SyncManager />
         <OfflineBanner />
         <Header />

@@ -322,6 +322,39 @@ export const viewHistory = pgTable(
 )
 
 /**
+ * One row per pageview, keyed by a client-generated `visitor_id` (persisted
+ * in localStorage) that stays stable whether or not the visitor is signed
+ * in. Powers /admin/analytics: per-page (micro) stats, path→path navigation
+ * flow, coarse geo (country/region resolved server-side, never raw IP), and
+ * guest-vs-account visitor counts. No client-side access — RLS enabled with
+ * zero policies; written via /api/analytics/* routes (service role) and read
+ * via SECURITY DEFINER RPCs (admin-only).
+ */
+export const pageViews = pgTable(
+  'page_views',
+  {
+    id: bigserial('id', { mode: 'number' }).primaryKey(),
+    visitor_id: uuid('visitor_id').notNull(),
+    user_id: uuid('user_id'),
+    path: text('path').notNull(),
+    referrer_path: text('referrer_path'),
+    country: text('country'),
+    region: text('region'),
+    device_type: text('device_type').$type<'mobile' | 'tablet' | 'desktop'>(),
+    duration_ms: integer('duration_ms'),
+    created_at: timestamp('created_at', { withTimezone: true })
+      .default(sql`now()`)
+      .notNull(),
+  },
+  (t) => [
+    index('page_views_path_idx').on(t.path),
+    index('page_views_created_at_idx').on(t.created_at),
+    index('page_views_visitor_created_idx').on(t.visitor_id, t.created_at),
+    index('page_views_country_idx').on(t.country),
+  ]
+)
+
+/**
  * Per-user settings (language, theme, font size).
  * Synced from localStorage on sign-in.
  */
@@ -376,3 +409,5 @@ export type NoteRow = typeof notes.$inferSelect
 export type ReadProgressRow = typeof readProgress.$inferSelect
 export type ViewHistoryRow = typeof viewHistory.$inferSelect
 export type UserSettingsRow = typeof userSettings.$inferSelect
+export type PageViewRow = typeof pageViews.$inferSelect
+export type PageViewInsert = typeof pageViews.$inferInsert
