@@ -24,7 +24,7 @@ interface Template {
 const DEFAULT_NAME_PLACEHOLDER: Placeholder = {
   field: 'name',
   x: 50,
-  y: 58,
+  y: 53.8,
   font_size: 34,
   font_family: 'Georgia, serif',
   color: '#1a1a1a',
@@ -34,6 +34,9 @@ const DEFAULT_NAME_PLACEHOLDER: Placeholder = {
 // Placeholders are authored assuming an image roughly this wide; font size
 // scales with the actual rendered width so text stays proportional.
 const REFERENCE_IMAGE_WIDTH = 1000
+
+// Shown for any tier that has no admin-uploaded template yet.
+const DEFAULT_BASE_IMAGE_URL = '/certificates/default-template.png'
 
 const TIER_LABELS: Record<QuizTier, string> = {
   beginner: 'Beginner',
@@ -90,7 +93,7 @@ export default function AdminCertificatesPage() {
     }
   }
 
-  const imageUrl = template?.base_image_url
+  const imageUrl = template?.base_image_url || DEFAULT_BASE_IMAGE_URL
   const namePlaceholder =
     template?.placeholders.find((p) => p.field === 'name' || p.field === 'full_name' || p.field === 'account_name') ??
     DEFAULT_NAME_PLACEHOLDER
