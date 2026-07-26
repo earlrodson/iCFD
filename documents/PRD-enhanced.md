@@ -2,8 +2,8 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.9  
-**Date:** 2026-07-23  
+**Version:** 2.10  
+**Date:** 2026-07-26  
 **Status:** In Progress  
 **Baseline:** PRD-current.md (Phase 1)
 
@@ -1242,9 +1242,11 @@ Seed the most debate-critical terms across all apologetics categories:
 
 ### Phase 11 — Guided Course, Quizzes & Certificates 🔄 Partial
 
-**Goal:** Turn the 20-topic "Layman's Biblical Theology and Apologetics Course" (Cebuano source, being translated to Tagalog, with an existing English counterpart per topic) into a structured, self-paced course with tiered quizzes and a downloadable/shareable completion certificate per tier.
+**Goal:** Turn the 20-topic "Layman's Biblical Theology and Apologetics Course" (Cebuano source, being translated to Tagalog, with an existing English counterpart per topic) into a structured, self-paced course with tiered quizzes and a completion certificate per tier, viewable from the learner's profile.
 
 **User story:** *As a lay Catholic working through the basic apologetics curriculum, I want to read all 20 topics, test myself at increasing difficulty, and receive a certificate with my name on it once I've proven I know the material — without being forced to sign up just to try a quiz.*
+
+> **Note (2026-07-26):** the design below has been updated from the original single-course spec to reflect what's actually built. The biggest change: certificates and their templates are keyed by **path + tier**, not tier alone, so the schema (and the underlying idea of "the course") now generalizes to any number of learning paths, not just `basic-apologetics-course`. Several other details (certificate rendering, serial code format, sign-in UX) also shipped differently than originally spec'd — called out inline below.
 
 #### 11A — Course Definition & Highlighting
 
@@ -1254,7 +1256,7 @@ The `paths` / `path_topics` tables (`drizzle/schema.ts`) already model exactly t
 - **Fix the existing Paths gap first:** today `/paths` and `/paths/[slug]` read a static `public/data/content/paths.json` (§4.6/§5.5) instead of the DB, while the admin `PathEditor` writes to the DB — the two are disconnected. Wire the public path pages to query Supabase directly so this course (and any future path) reflects admin edits immediately.
 - Homepage and Library highlighting of "the 20 topics" is served by querying `path_topics` for `basic-apologetics-course` ordered by `position` — no new `sort_order`/`featured` column needed on `topics`.
 
-#### 11B — Data Model
+#### 11B — Data Model (as built)
 
 ```sql
 CREATE TABLE quiz_settings (
@@ -1268,7 +1270,7 @@ CREATE TABLE quiz_settings (
 -- beginner     | 10 | 30 | 70
 -- intermediate | 20 | 60 | 80
 -- advanced     | 30 | 90 | 85
--- All three columns admin-editable in /admin/quiz-settings.
+-- No admin edit UI for these three columns exists yet — still seed-only (see ACs).
 
 CREATE TABLE quiz_questions (
   id             BIGSERIAL PRIMARY KEY,
@@ -1277,7 +1279,11 @@ CREATE TABLE quiz_questions (
   question       TEXT NOT NULL,
   choices        JSONB NOT NULL,    -- ["...", "...", "...", "..."]
   correct_index  INTEGER NOT NULL,
-  active         BOOLEAN NOT NULL DEFAULT true
+  active         BOOLEAN NOT NULL DEFAULT true,
+  -- Added in migration 013 (not in the original spec): NULL = generic,
+  -- reusable by any path that includes the topic; a set value scopes the
+  -- question to just that path's quiz. GET /api/quiz pools both sets.
+  path_slug      TEXT REFERENCES paths(slug) ON DELETE SET NULL
 );
 
 CREATE TABLE quiz_attempts (
@@ -1300,23 +1306,34 @@ CREATE TABLE course_progress (
   PRIMARY KEY (user_id, topic_id, tier)
 );
 
+-- Keyed by (path_slug, tier), not tier alone (migration 012) — every path can
+-- have its own certificate artwork per tier instead of sharing one global set.
 CREATE TABLE certificate_templates (
-  tier            TEXT PRIMARY KEY REFERENCES quiz_settings(tier),
+  path_slug       TEXT NOT NULL REFERENCES paths(slug),
+  tier            TEXT NOT NULL REFERENCES quiz_settings(tier),
   base_image_url  TEXT NOT NULL,
   placeholders    JSONB NOT NULL,   -- [{ field, x, y, font_size, font_family, color, align }]
-  updated_at      TIMESTAMPTZ NOT NULL DEFAULT now()
+  updated_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (path_slug, tier)
 );
--- placeholder fields: 'name' | 'serial_code' | 'date' | 'tier'
+-- Only the 'name' placeholder is ever populated/rendered today — no
+-- serial_code/date/tier placeholders exist in the UI (see §11D).
+-- Falls back to public/certificates/default-template.png when a (path,
+-- tier) has no admin-uploaded row yet; that default is itself replaceable
+-- per (path, tier) via /admin/certificates.
 
+-- Keyed by (user_id, path_slug, tier) (migration 012) — a user earns a
+-- separate certificate per path they complete, not one per tier globally.
 CREATE TABLE certificates (
   id           UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id      UUID NOT NULL,
+  path_slug    TEXT NOT NULL REFERENCES paths(slug),
   tier         TEXT NOT NULL REFERENCES quiz_settings(tier),
-  serial_code  TEXT NOT NULL UNIQUE,  -- format: {ADMIN_PREFIX}-{TIER_LETTER}-{YEAR}-{SEQUENCE}
+  serial_code  TEXT NOT NULL UNIQUE,  -- format as built: CFD-{TIER3}-{timestamp36}{random3}, e.g. CFD-BEG-MS1T1G7FCLX
   issued_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
-  pdf_url      TEXT NOT NULL,
-  image_url    TEXT NOT NULL,
-  UNIQUE (user_id, tier)
+  pdf_url      TEXT,  -- nullable, never populated — no file is generated (see §11D)
+  image_url    TEXT,  -- nullable, never populated — no file is generated (see §11D)
+  UNIQUE (user_id, path_slug, tier)
 );
 ```
 
@@ -1325,43 +1342,48 @@ RLS: `quiz_questions` (minus `correct_index`) and `quiz_settings` are public SEL
 #### 11C — Quiz-Taking Flow (open access, auth-gated only at submit)
 
 - Quiz is reachable and fully playable by anonymous visitors — no sign-in wall to browse or attempt.
-- Per attempt: server randomly samples `item_count` questions from that topic+tier's active bank (`bank_size` pool), records the exact `question_ids` served.
+- Per attempt: server randomly samples `item_count` questions from that topic+tier's active bank (`bank_size` pool), pooling generic questions (`path_slug IS NULL`) with any questions scoped to the current path context, records the exact `question_ids` served.
 - **Weekly retake gate:** a topic+tier can be re-attempted only if `now() - max(attempted_at)` for that `(user_id, topic_id, tier)` is ≥ 7 days, or if there is no prior attempt.
-- **Auth gate on submission only:** the in-progress quiz (selected answers) lives in local component/Zustand state with no network writes. On submit, call `getUser()` (never `getSession()` — matches the existing security discipline in `lib/supabase/auth.ts`); if unauthenticated, hold the answers and present a sign-in/sign-up modal; only after successful auth is the attempt scored and written to `quiz_attempts`. This is a new pattern (no existing `AuthGate` component to extend), closest in spirit to the local-first-then-sync approach already used by `useFavoritesStore`.
+- **Auth gate on submission only, via redirect rather than a modal:** the in-progress quiz (selected answers) lives in local component state with no network writes. On submit, call `getUser()` (never `getSession()` — matches the existing security discipline in `lib/supabase/auth.ts`); if unauthenticated, the answers are stashed in `sessionStorage` and the user is redirected to `/account?return=...`, then the submission auto-resumes on return. (Originally spec'd as an in-place sign-in modal; shipped as a redirect instead — simpler to build on the existing `/account` page, at the cost of a full navigation instead of staying on the quiz screen.)
 - A passing attempt (`score_percent >= quiz_settings.pass_percent`) upserts `course_progress (user_id, topic_id, tier, passed_at)`.
+- **Not spec'd originally, delivered anyway:** after marking a topic read from within a learning path that has quiz questions for it, a one-time popup plus a persistent inline "Take the quiz for this topic" button surface the quiz — otherwise it was undiscoverable outside the path page (`components/topic/TopicContent.tsx`).
 
-#### 11D — Certificate Generation & Admin Template Designer
+#### 11D — Certificate Issuance & Viewing (delivered differently than spec'd)
 
-- **Admin (`/admin/certificates`):** upload a background image per tier, then place `name` / `serial_code` / `date` / `tier` fields by dragging markers on a canvas overlay of the uploaded image — writes `x, y, font_size, font_family, color, align` per field to `certificate_templates.placeholders`.
-- **Issuance trigger:** after each passing `quiz_attempts` insert, check whether `course_progress` now covers all 20 course topics for that `tier`. If so and no `certificates` row exists yet for `(user_id, tier)`, generate one.
-- **Serial code:** `{ADMIN_PREFIX}-{TIER_LETTER}-{YEAR}-{SEQUENCE}`, e.g. `CFD-B-2026-000123` — prefix admin-configurable, tier/year automatic, sequence auto-incrementing.
-- **Rendering:** composite text onto the template image server-side with `node-canvas` → PNG (for on-screen view/share), then wrap that PNG into a single-page PDF with `pdf-lib` (avoids a headless-browser/Puppeteer dependency in a serverless deploy). Both artifacts saved to Supabase Storage; URLs stored on the `certificates` row.
+- **Admin (`/admin/certificates`):** pick a path, then a tier, then upload a background image for that (path, tier) pair. **No drag-and-drop field placement exists** — the `name` placeholder's position is a hardcoded default in `lib/content/certificateTemplate.ts`, not admin-editable, and `serial_code`/`date`/`tier` placeholders were never built (only `name` is ever rendered).
+- **Issuance trigger:** after each passing `quiz_attempts` insert, the server checks every path the just-passed topic belongs to; for each one, if `course_progress` now covers every topic in that path at that tier and no `certificates` row exists yet for `(user_id, path_slug, tier)`, it inserts one. A single passing attempt can therefore issue certificates for more than one path at once, if that topic happens to complete more than one.
+- **Serial code:** built as `CFD-{TIER3}-{timestamp-base36}{random3}` (e.g. `CFD-BEG-MS1T1G7FCLX`) — not the originally spec'd `{ADMIN_PREFIX}-{TIER_LETTER}-{YEAR}-{SEQUENCE}` format; the prefix is hardcoded, there's no admin-configurable prefix, and the suffix isn't a true auto-incrementing sequence.
+- **Rendering — no server-side generation, no downloadable files:** the spec called for `node-canvas` → PNG plus `pdf-lib` → PDF, both stored to Supabase Storage. **None of that was built** — no `node-canvas`/`pdf-lib` dependency exists in the project. Instead, the certificate is rendered live in the browser (the template image with the recipient's name CSS-positioned on top, via the shared `CertificatePreview` component) wherever it's viewed. `certificates.pdf_url`/`image_url` are nullable and always empty; there is no download button anywhere.
+- **Viewing:** certificates are shown on the signed-in user's `/account` page as a "Certificates" list (one entry per earned path+tier, labeled "{Path title} — {Tier} Certificate"); clicking one opens a modal that live-renders it. There's also an in-app celebratory banner on the quiz results screen the moment a certificate is issued ("You've earned your {tier} certificate!" with a link to the profile) — not in the original spec, added so the moment of earning a certificate isn't silent.
 - **Durability:** once issued, a certificate is permanent — later quiz re-attempts (e.g. weekly practice) never revoke it.
 
 #### 11E — Navigation & Placement
 
-- The course does **not** get a separate nav entry — it's the first, visually distinct card on the existing `/paths` page (bigger card, progress ring, certificate badge) above the other 3 paths, rather than a competing bottom-tab item (decided over a dedicated "Course" tab to avoid maintaining two "browse a topic list" UIs).
-- Homepage and Library both surface the course's 20 topics as a distinct, ordered highlight block (via `path_topics.position`, §11A) rather than folding them into the general alphabetical grid.
+- The course does **not** get a separate nav entry — it's the first, visually distinct card on the existing `/paths` page (bigger card, progress ring, certificate badge) above the other 3 paths, rather than a competing bottom-tab item (decided over a dedicated "Course" tab to avoid maintaining two "browse a topic list" UIs). *(Not yet built — see ACs.)*
+- Homepage and Library both surface the course's 20 topics as a distinct, ordered highlight block (via `path_topics.position`, §11A) rather than folding them into the general alphabetical grid. *(Not yet built — see ACs.)*
 
 #### Delivered so far
 
 - ✅ `basic-apologetics-course` path seeded (20 topics, correct lesson order) — `/paths` and `/paths/[slug]` now read live from Supabase (`lib/content/paths.ts`) instead of the static `paths.json`, closing the admin/public drift gap; stale `path_topics` rows are now cleaned up on every `db:seed` run
 - ✅ All 20 course topics seeded in `ceb`, cross-linked to existing `en` topic ids where a counterpart exists
-- ✅ `quiz_settings`, `quiz_questions`, `quiz_attempts`, `course_progress`, `certificate_templates`, `certificates` tables created with RLS (`drizzle/migrations/005_quiz_certificates.sql`); `quiz_settings` seeded with defaults
-- ⬜ Not yet started: question bank authoring, quiz-taking UI, admin quiz-settings page, certificate designer/generation, homepage/library highlight block
+- ✅ `quiz_settings`, `quiz_questions`, `quiz_attempts`, `course_progress`, `certificate_templates`, `certificates` tables created with RLS (`drizzle/migrations/005_quiz_certificates.sql`, since generalized to per-path by `012_certificates_per_path.sql` and `013_quiz_questions_path_slug.sql`); `quiz_settings` seeded with defaults
+- ✅ Question bank authoring UI (`/admin/quiz`) and quiz-taking UI (`/quiz/[topicId]/[tier]`) both built and working end-to-end, including weekly retake cooldown and tier-progression gating
+- ✅ Certificate issuance, per-path admin template upload (with a bundled default template, replaceable per path+tier), profile-page viewing, and an in-app earned-certificate notification — all delivered, but via live client-side rendering rather than the spec'd server-generated PNG/PDF (see §11D)
+- ✅ Post-read quiz discoverability (popup + persistent CTA) on the topic page when reached from a path
+- ⬜ Not yet started: question bank content (only 3 of 20 topics have any authored questions — 270 questions total, all in one topic each per tier, far short of the 3,600 target), `/admin/quiz-settings` editor, homepage/library highlight block, downloadable PNG/PDF certificate artifacts, admin drag-and-drop field placement
 
 #### Acceptance Criteria
 
 - [x] `basic-apologetics-course` path seeded with 20 topics in lesson order; `/paths/[slug]` reads live from Supabase, not `paths.json`
 - [ ] Homepage and Library each show a highlighted, ordered "Basic Apologetics Course" section
 - [x] `quiz_settings` seeded with defaults (10/30/70, 20/60/80, 30/90/85); admin edit UI (`/admin/quiz-settings`) not yet built
-- [ ] Question bank authored per topic+tier at 300% of `item_count` (3,600 questions total across 20 topics × 3 tiers)
-- [ ] Quiz fully playable anonymously; sign-in modal appears only on submit, prior answers preserved through the auth flow
-- [ ] Weekly retake cooldown enforced per `(user_id, topic_id, tier)`
-- [ ] Passing all 20 topics at a tier auto-issues a certificate with correct serial code, name, date
-- [ ] Admin can upload a certificate background image and drag-place name/serial/date/tier fields per tier
-- [ ] Certificate available as both a PNG/image and a PDF download
-- [ ] Certificates are immutable once issued regardless of later attempt outcomes
+- [ ] Question bank authored per topic+tier at 300% of `item_count` (3,600 questions total across 20 topics × 3 tiers) — currently 270 questions covering 3 of 20 topics
+- [x] Quiz fully playable anonymously; auth gate on submit preserves answers through a sign-in redirect (shipped as a redirect to `/account`, not an in-place modal)
+- [x] Weekly retake cooldown enforced per `(user_id, topic_id, tier)`
+- [x] Passing every topic in a path at a tier auto-issues a certificate with a unique serial code, name, and date — scoped per `(user_id, path_slug, tier)`, not just tier
+- [ ] Admin can upload a certificate background image and drag-place name/serial/date/tier fields per path+tier — upload works; drag-placement UI and the serial/date/tier placeholders were never built
+- [ ] Certificate available as both a PNG/image and a PDF download — not built; certificates are viewed live in-browser only, no downloadable file exists
+- [x] Certificates are immutable once issued regardless of later attempt outcomes
 
 ---
 
