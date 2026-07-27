@@ -364,7 +364,7 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   const topic = displayTopic
 
   return (
-    <article className="mx-auto max-w-3xl px-4 pb-24 pt-4">
+    <article className="mx-auto max-w-3xl px-4 pt-4">
       {/* Back nav */}
       <div className="mb-4 flex items-center gap-3">
         <Link

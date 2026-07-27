@@ -81,7 +81,7 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-3xl px-4 pb-24 pt-4">
+      <div className="mx-auto max-w-3xl px-4 pt-4">
         {/* Back */}
         <div className="mb-6">
           <Link

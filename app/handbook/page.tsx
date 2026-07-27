@@ -127,7 +127,7 @@ export default function HandbookPage() {
 
         <div className="flex flex-col md:flex-row gap-0">
           {/* Sidebar — desktop */}
-          <aside className="hidden md:block w-52 shrink-0 px-4 pb-24">
+          <aside className="hidden md:block w-52 shrink-0 px-4">
             <nav className="space-y-1 sticky top-20">
               {readCount > 0 && (
                 <div className="mb-3 rounded-xl border border-border bg-card px-3 py-2.5">
@@ -196,7 +196,7 @@ export default function HandbookPage() {
           </div>
 
           {/* Main content */}
-          <main className="flex-1 px-4 pb-24 min-w-0">
+          <main className="flex-1 px-4 min-w-0">
             {/* Filters row */}
             <div className="mb-4 flex items-center gap-2 flex-wrap">
               {/* Difficulty pills */}

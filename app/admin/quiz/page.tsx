@@ -210,7 +210,7 @@ export default function QuizAdminPage() {
   const setting = settings[selectedTier]
 
   return (
-    <div className="pb-32">
+    <div>
       {/* Header */}
       <div className="sticky top-[57px] z-30 border-b border-border bg-card/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-3xl items-center gap-2 px-4 py-3">

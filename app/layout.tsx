@@ -67,7 +67,11 @@ export default function RootLayout({
         <SyncManager />
         <OfflineBanner />
         <Header />
-        <main className="flex-1">{children}</main>
+        {/* pb-24 reserves space for MobileNav's fixed bar (md:hidden) so
+            page content never renders underneath it; centralized here so
+            individual pages don't each need to remember it. Matches the
+            unconditional pb-24 convention every page already used. */}
+        <main className="flex-1 pb-24">{children}</main>
         <MobileNav />
       </body>
     </html>

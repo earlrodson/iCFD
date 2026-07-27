@@ -144,7 +144,7 @@ export default function AdminTopicsPage() {
   }
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-5xl px-4 pt-8">
 
         {/* Header */}

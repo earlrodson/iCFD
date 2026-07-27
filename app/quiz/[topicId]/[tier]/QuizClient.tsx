@@ -104,7 +104,7 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-2xl px-4 pb-24 pt-8">
+      <div className="mx-auto max-w-2xl px-4 pt-8">
         <Link
           href={pathSlug ? `/paths/${pathSlug}` : `/${topicId}`}
           className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"

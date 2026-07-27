@@ -94,7 +94,7 @@ export default function SubmitPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background pb-24">
+    <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-2xl px-4 pt-6">
         {/* Header */}
         <div className="mb-6">

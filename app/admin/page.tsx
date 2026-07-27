@@ -98,7 +98,7 @@ export default function AdminPage() {
   const isDirty = rows.some((r) => edits[r.key] !== r.value)
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-2xl px-4 pt-8 space-y-10">
 
         {/* ── App Config ── */}

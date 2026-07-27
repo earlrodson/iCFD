@@ -79,7 +79,7 @@ export default function DedupPage() {
   const totalDuplicates = result?.groups.reduce((n, g) => n + g.topics.length - 1, 0) ?? 0
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-3xl px-4 pt-8 space-y-6">
 
         {/* Header */}

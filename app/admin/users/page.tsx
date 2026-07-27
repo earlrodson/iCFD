@@ -131,7 +131,7 @@ export default function AdminUsersPage() {
   }
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-3xl px-4 pt-8 space-y-6">
 
         {/* Header */}

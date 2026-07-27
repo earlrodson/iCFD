@@ -154,7 +154,7 @@ export default function SubmissionsPage() {
   const filtered = tab === 'all' ? submissions : submissions.filter((s) => s.status === tab)
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-3xl px-4 pt-8 space-y-6">
 
         {/* Header */}

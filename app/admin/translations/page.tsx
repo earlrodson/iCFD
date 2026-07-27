@@ -153,7 +153,7 @@ export default function TranslationsPage() {
     n + (NEEDS_TRANSLATION.includes(t.tl) ? 1 : 0) + (NEEDS_TRANSLATION.includes(t.ceb) ? 1 : 0), 0)
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-4xl px-4 pt-8 space-y-6">
 
         {/* Header */}

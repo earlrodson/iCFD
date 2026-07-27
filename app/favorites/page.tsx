@@ -101,7 +101,7 @@ export default function FavoritesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-3xl px-4 pb-24">
+      <div className="mx-auto max-w-3xl px-4">
         {/* Header */}
         <div className="flex items-center justify-between pt-6 pb-4">
           <div>

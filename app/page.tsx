@@ -189,7 +189,7 @@ export default function HomePage() {
         {/* Category filter + topic grid */}
         <CategoryFilter selected={selectedCategory} onChange={setSelectedCategory} />
 
-        <div className="mt-4 pb-24">
+        <div className="mt-4">
           {loading && (
             <div className="flex items-center justify-center py-16">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />

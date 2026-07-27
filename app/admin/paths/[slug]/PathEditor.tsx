@@ -189,7 +189,7 @@ export default function PathEditor({ slug }: { slug: string }) {
   }
 
   return (
-    <div className="pb-24">
+    <div>
       {/* Sticky header */}
       <div className="sticky top-0 z-10 border-b border-border bg-card/95 backdrop-blur">
         <div className="mx-auto flex max-w-2xl items-center gap-3 px-4 py-3">

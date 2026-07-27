@@ -92,7 +92,7 @@ export default function AdminCertificatesPage() {
   const pathTitle = paths.find((p) => p.slug === pathSlug)?.title ?? ''
 
   return (
-    <div className="pb-24">
+    <div>
       <div className="mx-auto max-w-3xl px-4 pt-8 space-y-6">
 
         {/* Header */}

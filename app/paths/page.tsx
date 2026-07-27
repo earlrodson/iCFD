@@ -34,7 +34,7 @@ export default function PathsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-3xl px-4 pb-24 pt-8">
+      <div className="mx-auto max-w-3xl px-4 pt-8">
         <h1 className="text-2xl font-bold text-foreground">Learning Paths</h1>
         <p className="mt-1 text-sm text-muted-foreground">
           Curated sequences of topics to guide your study.

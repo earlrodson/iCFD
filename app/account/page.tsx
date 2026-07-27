@@ -135,7 +135,7 @@ export default function AccountPage() {
   if (!isSupabaseConfigured()) {
     return (
       <div className="min-h-screen bg-background">
-        <div className="mx-auto max-w-md px-4 pb-24 pt-10 text-center">
+        <div className="mx-auto max-w-md px-4 pt-10 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
             <Warning weight="light" size={32} className="text-amber-500" />
           </div>
@@ -163,7 +163,7 @@ export default function AccountPage() {
 
     return (
       <div className="min-h-screen bg-background">
-        <div className="mx-auto max-w-md px-4 pb-24 pt-10">
+        <div className="mx-auto max-w-md px-4 pt-10">
           {/* Profile */}
           <div className="rounded-2xl bg-card border border-border p-5 shadow-sm text-center">
             <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
@@ -250,7 +250,7 @@ export default function AccountPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-md px-4 pb-24 pt-10">
+      <div className="mx-auto max-w-md px-4 pt-10">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
             <SignIn weight="light" size={32} className="text-primary" />
