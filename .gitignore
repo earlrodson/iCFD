@@ -45,3 +45,7 @@ public/workbox-*.js
 public/worker-*.js
 documents/Catechism of the Catholic Church.pdf
 documents/*.pdf
+
+# claude project tooling
+.claude/vectors.db*
+.claude/snapshot.json

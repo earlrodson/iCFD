@@ -1,3 +1,41 @@
+<!-- session-warm-start -->
+<!--
+  READ THIS FIRST at the start of every session.
+  Then read .claude/snapshot.json (if present) for schema, edge functions, env map, and commands.
+  Regenerate: pnpm run snapshot | pnpm run index
+-->
+
+## Session context
+
+```yaml
+project:  catholic-faith-defender (iCFD)
+stack:    pnpm · Next.js (App Router) · TypeScript · Supabase (Postgres) + Drizzle · Tailwind · Zustand · Vitest + Playwright
+snapshot: .claude/snapshot.json
+```
+
+## Commands (do not re-derive)
+
+```bash
+dev:       pnpm dev
+lint:      pnpm lint
+typecheck: pnpm type-check
+test:      pnpm test
+index:     pnpm run index      # runs `bun tools/vector-index.ts` — bun used only as the SQLite-capable script runner here, not as this project's package manager
+search:    bun tools/vector-search.ts "<query>"
+snapshot:  pnpm run snapshot
+```
+
+## Semantic search (use before grep)
+
+```bash
+bun tools/vector-search.ts "<query>"          # top 5 results
+bun tools/vector-search.ts "<query>" --json   # machine-readable
+```
+
+**Rule:** use this before any grep, find, or Explore agent call.
+
+<!-- /session-warm-start -->
+
 # Project: catholic-faith-defender (iCFD)
 
 ## Stack
