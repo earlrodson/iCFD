@@ -277,7 +277,7 @@ function BiblePageInner() {
   )
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
+    <div className="max-w-2xl mx-auto px-4 pt-6 pb-24">
       {/* Header + translation picker */}
       <div className="flex items-center justify-between mb-6">
         <div>
