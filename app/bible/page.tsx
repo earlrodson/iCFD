@@ -98,9 +98,38 @@ async function fetchPassage(passage: ParsedPassage, version: string): Promise<Ve
   return data.filter(v => passage.ranges!.some(r => v.verse_start >= r.start && v.verse_start <= r.end))
 }
 
+const KEYWORD_LIMIT = 50
+
+async function fetchKeywordMatches(keyword: string, version: string): Promise<{ results: Verse[]; truncated: boolean }> {
+  const headers = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+  const pattern = encodeURIComponent(`*${keyword}*`)
+  const url = `${SUPABASE_URL}/rest/v1/scripture_verses?text=ilike.${pattern}&version=eq.${version}&order=id.asc&select=reference,verse_start,text,version&limit=${KEYWORD_LIMIT + 1}`
+
+  const res = await fetch(url, { headers })
+  if (!res.ok) return { results: [], truncated: false }
+  const data: Verse[] = await res.json()
+  return { results: data.slice(0, KEYWORD_LIMIT), truncated: data.length > KEYWORD_LIMIT }
+}
+
+function escapeRegExp(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function highlightMatches(text: string, keyword: string) {
+  const trimmed = keyword.trim()
+  if (!trimmed) return text
+  const parts = text.split(new RegExp(`(${escapeRegExp(trimmed)})`, 'gi'))
+  return parts.map((part, i) =>
+    i % 2 === 1
+      ? <mark key={i} className="bg-yellow-200 dark:bg-yellow-500/30 text-inherit rounded px-0.5">{part}</mark>
+      : part
+  )
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 type View = 'books' | 'chapters' | 'reading' | 'search'
+type SearchMode = 'reference' | 'keyword'
 
 export default function BiblePage() {
   return (
@@ -125,56 +154,85 @@ function BiblePageInner() {
   const [saving, setSaving]         = useState(false)
   const [savedChapter, setSavedChapter] = useState(false)
 
-  const [referenceInput, setReferenceInput] = useState('')
+  const [searchInput, setSearchInput]       = useState('')
+  const [searchMode, setSearchMode]         = useState<SearchMode>('reference')
   const [searchErrors, setSearchErrors]     = useState<ReferenceParseError[]>([])
   const [searchResults, setSearchResults]   = useState<PassageResult[]>([])
+  const [keywordResults, setKeywordResults] = useState<Verse[]>([])
+  const [keywordTruncated, setKeywordTruncated] = useState(false)
   const [searchLoading, setSearchLoading]   = useState(false)
   const [copied, setCopied]                 = useState(false)
 
+  // A query with a digit is treated as a reference attempt (e.g. "John 3:16");
+  // pure text falls back to a keyword search over verse content.
   const runSearch = useCallback(async (raw: string, ver: string, syncUrl: boolean) => {
     const trimmed = raw.trim()
     if (!trimmed) return
-    const { passages, errors } = parseReference(trimmed)
-    setSearchErrors(errors)
-    setSearchResults([])
-    if (passages.length === 0) {
-      setView('search')
-      return
-    }
-    setSearchLoading(true)
     setView('search')
-    const results = await Promise.all(
-      passages.map(async passage => ({ passage, verses: await fetchPassage(passage, ver) }))
-    )
-    setSearchResults(results)
-    setSearchLoading(false)
+    setSearchErrors([])
+    setSearchResults([])
+    setKeywordResults([])
+    setKeywordTruncated(false)
+
+    const looksLikeReference = /\d/.test(trimmed)
+    const { passages, errors } = looksLikeReference ? parseReference(trimmed) : { passages: [], errors: [] }
+
+    if (passages.length > 0) {
+      setSearchMode('reference')
+      setSearchErrors(errors)
+      setSearchLoading(true)
+      const results = await Promise.all(
+        passages.map(async passage => ({ passage, verses: await fetchPassage(passage, ver) }))
+      )
+      setSearchResults(results)
+      setSearchLoading(false)
+    } else if (looksLikeReference) {
+      // Digits present but nothing parsed — surface as a reference error
+      // rather than silently keyword-searching a mistyped book name.
+      setSearchMode('reference')
+      setSearchErrors(errors)
+    } else {
+      setSearchMode('keyword')
+      setSearchLoading(true)
+      const { results, truncated } = await fetchKeywordMatches(trimmed, ver)
+      setKeywordResults(results)
+      setKeywordTruncated(truncated)
+      setSearchLoading(false)
+    }
+
     if (syncUrl) {
       const params = new URLSearchParams(searchParams.toString())
-      params.set('ref', trimmed)
+      params.delete('ref')
+      params.delete('q')
+      params.set(passages.length > 0 || looksLikeReference ? 'ref' : 'q', trimmed)
       params.set('version', ver)
       router.replace(`/bible?${params.toString()}`, { scroll: false })
     }
   }, [router, searchParams])
 
-  // Auto-run a shared search link (?ref=...) on load.
+  // Auto-run a shared search link (?ref=... or ?q=...) on load.
   useEffect(() => {
     const ref = searchParams.get('ref')
-    if (!ref) return
+    const q = searchParams.get('q')
+    const query = ref ?? q
+    if (!query) return
     const ver = searchParams.get('version') ?? version
-    setReferenceInput(ref)
+    setSearchInput(query)
     if (TRANSLATIONS.some(t => t.value === ver)) setVersion(ver)
-    runSearch(ref, ver, false)
+    runSearch(query, ver, false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    runSearch(referenceInput, version, true)
+    runSearch(searchInput, version, true)
   }
 
   const handleShareSearch = async () => {
     const url = window.location.href
-    const title = searchResults.map(r => r.passage.label).join('; ') || 'Bible passage'
+    const title = searchMode === 'reference'
+      ? searchResults.map(r => r.passage.label).join('; ') || 'Bible passage'
+      : `"${searchInput.trim()}" — Bible search`
     if (navigator.share) {
       await navigator.share({ title, url })
     } else {
@@ -237,8 +295,8 @@ function BiblePageInner() {
             if (view === 'reading' && selectedBook) {
               loadChapter(selectedBook, selectedChapter, e.target.value)
             }
-            if (view === 'search' && referenceInput.trim()) {
-              runSearch(referenceInput, e.target.value, true)
+            if (view === 'search' && searchInput.trim()) {
+              runSearch(searchInput, e.target.value, true)
             }
           }}
           className="text-sm border border-border rounded-lg px-2 py-1.5 bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary"
@@ -250,23 +308,29 @@ function BiblePageInner() {
       </div>
 
       {/* Reference search — supports "John 3:16-18", "John 1:1-14,16", and
-          multi-passage "John 1:1-14,16;Exodus 20:1-5;Exodus 30" */}
-      <form onSubmit={handleSearchSubmit} className="flex gap-2 mb-4">
-        <input
-          type="text"
-          value={referenceInput}
-          onChange={e => setReferenceInput(e.target.value)}
-          placeholder="Search e.g. John 3:16-18 or John 1:1-14,16;Exodus 20:1-5"
-          className="flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-        />
-        <button
-          type="submit"
-          className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-        >
-          <MagnifyingGlass weight="bold" size={16} />
-          Search
-        </button>
+          multi-passage "John 1:1-14,16;Exodus 20:1-5;Exodus 30" — plus a
+          keyword fallback that searches verse text (e.g. "mercy"). */}
+      <form onSubmit={handleSearchSubmit} className="mb-1">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={searchInput}
+            onChange={e => setSearchInput(e.target.value)}
+            placeholder="Search a reference (John 3:16-18) or a keyword (mercy)"
+            className="flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+          />
+          <button
+            type="submit"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity shrink-0"
+          >
+            <MagnifyingGlass weight="bold" size={16} />
+            <span className="hidden sm:inline">Search</span>
+          </button>
+        </div>
       </form>
+      <p className="text-xs text-muted-foreground mb-4">
+        Reference: <span className="font-mono">John 3:16-18</span> · Multi-passage: <span className="font-mono">John 1:1-14,16;Exodus 20:1-5</span> · Or search by keyword
+      </p>
 
       {/* Breadcrumb nav */}
       {view !== 'books' && (
@@ -319,7 +383,7 @@ function BiblePageInner() {
           </div>
           <input
             type="search"
-            placeholder="Search books…"
+            placeholder="Filter book list…"
             value={bookSearch}
             onChange={e => setBookSearch(e.target.value)}
             className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary mb-3"
@@ -450,13 +514,19 @@ function BiblePageInner() {
             </div>
           )}
 
-          {!searchLoading && searchResults.length === 0 && searchErrors.length === 0 && (
+          {!searchLoading && searchMode === 'reference' && searchResults.length === 0 && searchErrors.length === 0 && (
             <p className="text-sm text-muted-foreground py-8 text-center">
-              Enter a reference like &quot;John 3:16-18&quot; to search.
+              Enter a reference like &quot;John 3:16-18&quot; or a keyword like &quot;mercy&quot; to search.
             </p>
           )}
 
-          {!searchLoading && searchResults.length > 0 && (
+          {!searchLoading && searchMode === 'keyword' && keywordResults.length === 0 && (
+            <p className="text-sm text-muted-foreground py-8 text-center">
+              No verses matched &quot;{searchInput.trim()}&quot; in {version}.
+            </p>
+          )}
+
+          {!searchLoading && ((searchMode === 'reference' && searchResults.length > 0) || (searchMode === 'keyword' && keywordResults.length > 0)) && (
             <>
               <div className="flex justify-end mb-3">
                 <button
@@ -470,27 +540,49 @@ function BiblePageInner() {
                 </button>
               </div>
 
-              <div className="space-y-6">
-                {searchResults.map(({ passage, verses: passageVerses }) => (
-                  <div key={passage.label}>
-                    <h2 className="text-sm font-semibold text-foreground mb-2">{passage.label}</h2>
-                    {passageVerses.length === 0 ? (
-                      <p className="text-sm text-muted-foreground">No verses found for this passage in {version}.</p>
-                    ) : (
-                      <div className="space-y-3">
-                        {passageVerses.map(v => (
-                          <div key={v.reference} className="flex gap-3">
-                            <span className="text-xs font-mono text-primary/60 w-6 shrink-0 pt-0.5 text-right">
-                              {v.verse_start}
-                            </span>
-                            <p className="text-sm text-foreground leading-relaxed flex-1">{v.text}</p>
-                          </div>
-                        ))}
+              {searchMode === 'reference' && (
+                <div className="space-y-6">
+                  {searchResults.map(({ passage, verses: passageVerses }) => (
+                    <div key={passage.label}>
+                      <h2 className="text-sm font-semibold text-foreground mb-2">{passage.label}</h2>
+                      {passageVerses.length === 0 ? (
+                        <p className="text-sm text-muted-foreground">No verses found for this passage in {version}.</p>
+                      ) : (
+                        <div className="space-y-3">
+                          {passageVerses.map(v => (
+                            <div key={v.reference} className="flex gap-3">
+                              <span className="text-xs font-mono text-primary/60 w-6 shrink-0 pt-0.5 text-right">
+                                {v.verse_start}
+                              </span>
+                              <p className="text-sm text-foreground leading-relaxed flex-1">{v.text}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {searchMode === 'keyword' && (
+                <>
+                  {keywordTruncated && (
+                    <p className="text-xs text-muted-foreground mb-3">
+                      Showing the first {KEYWORD_LIMIT} matches — refine your search for more precise results.
+                    </p>
+                  )}
+                  <div className="space-y-4">
+                    {keywordResults.map(v => (
+                      <div key={v.reference}>
+                        <span className="text-xs font-mono text-primary/70">{v.reference}</span>
+                        <p className="text-sm text-foreground leading-relaxed mt-0.5">
+                          {highlightMatches(v.text, searchInput.trim())}
+                        </p>
                       </div>
-                    )}
+                    ))}
                   </div>
-                ))}
-              </div>
+                </>
+              )}
             </>
           )}
         </>

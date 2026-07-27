@@ -840,9 +840,12 @@ The three JSONB arrays on `topics` change from embedded content to ID references
 
 #### 8B — Bible Browser (`/bible`) ✅
 
-- 73-book NABRE + Douay-Rheims, served from `bible_verses` table
+- 73-book NABRE + Douay-Rheims, served from `scripture_verses` table
 - Book selector → chapter selector → verse list
 - Multi-translation toggle
+- **Reference search** — single search box accepts `Book Chapter:Verse` (`John 3:16`), verse ranges (`John 3:16-18`), comma-separated verses/ranges within a chapter (`John 1:1-14,16`), and semicolon-separated multi-passage queries spanning different books (`John 1:1-14,16;Exodus 20:1-5;Exodus 30`). Accepts both `Book Chapter:Verse` and `Book:Chapter:Verse` separators. Unrecognized books/chapters surface inline parse errors per segment.
+- **Keyword search** — same search box; input without digits falls back to a case-insensitive full-text search over verse content (`ilike` on `text`), capped at 50 results with matches highlighted inline and a "showing first 50" note when truncated.
+- **Shareable links** — every search (reference or keyword) syncs to the URL (`?ref=` or `?q=`, plus `version=`), so a link reproduces the exact result for anyone who opens it — no auth or extra backend required. A Share button uses the Web Share API where available, falling back to copy-to-clipboard.
 
 #### 8C — Catechism Browser (`/catechism`) ✅
 
