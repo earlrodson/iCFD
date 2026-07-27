@@ -140,6 +140,11 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
             </NavItem>
           )}
           {user && (
+            <NavItem href="/paths" icon={<Ladder weight="light" size={20} />} onClick={onClose}>
+              Learning Paths
+            </NavItem>
+          )}
+          {user && (
             <NavItem
               href="/favorites"
               icon={<Heart weight="light" size={20} />}
@@ -149,14 +154,12 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
               Favorites
             </NavItem>
           )}
+
+          {user && <hr className="my-2 border-border" />}
+
           <NavItem href="/settings" icon={<Gear weight="light" size={20} />} onClick={onClose}>
             General Settings
           </NavItem>
-          {user && (
-            <NavItem href="/paths" icon={<Ladder weight="light" size={20} />} onClick={onClose}>
-              Learning Paths
-            </NavItem>
-          )}
           <NavItem href="/submit" icon={<PaperPlaneTilt weight="light" size={20} />} onClick={onClose}>
             Contribute a Topic
           </NavItem>
@@ -164,9 +167,12 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
             Dedication &amp; Acknowledgments
           </NavItem>
           {isAdmin && (
-            <NavItem href="/admin" icon={<ShieldCheck weight="light" size={20} />} onClick={onClose}>
-              Admin Panel
-            </NavItem>
+            <>
+              <hr className="my-2 border-border" />
+              <NavItem href="/admin" icon={<ShieldCheck weight="light" size={20} />} onClick={onClose}>
+                Admin Panel
+              </NavItem>
+            </>
           )}
         </nav>
       </div>
