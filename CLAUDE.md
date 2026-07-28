@@ -43,7 +43,7 @@ bun tools/vector-search.ts "<query>" --json   # machine-readable
 - Next.js (App Router) + TypeScript — `tsconfig.json`
 - Package manager: **pnpm** (`pnpm-lock.yaml`, `pnpm-workspace.yaml`) — never use npm/yarn/bun here
 - Styling: Tailwind
-- DB: Supabase (Postgres) — schema tracked in `drizzle/schema.ts`, migrations in `drizzle/migrations/*.sql`
+- DB: Supabase (Postgres) — schema tracked in `drizzle/schema.ts`. Migrations live in `supabase/migrations/*.sql` (canonical, CLI-managed) — `drizzle/migrations/*.sql` is legacy/historical only, see `drizzle/migrations/README.md`
 - State: Zustand (`store/`)
 - Tests: Vitest (unit) + Playwright (e2e)
 
@@ -65,6 +65,14 @@ Quality gate before considering work done: `pnpm lint && pnpm type-check && pnpm
 - Server-side admin access: `lib/supabase/admin.ts` (`createAdminClient`, service-role key, bypasses RLS) — API routes only, never client code.
 - Client/session-aware access: `lib/supabase/server.ts` / `lib/supabase/client.ts`.
 
+### Migrations (set up 2026-07-28)
+
+- Canonical migration files: `supabase/migrations/*.sql`, reconstructed to exactly match the live project's `supabase_migrations.schema_migrations` history (verified via `supabase db push --dry-run` → "Remote database is up to date"). `drizzle/migrations/` is legacy/unused — never matched what was actually applied.
+- New migration: add a `<timestamp>_<name>.sql` file to `supabase/migrations/` (or `pnpm exec supabase migration new <name>`). No local DB link/`supabase link` needed — pushes go straight via `--db-url`.
+- Deploy: `pnpm run vercel-build` (`package.json`'s `vercel-build` script, auto-run by Vercel instead of `build`) does `supabase db push --db-url "$DATABASE_URL" --yes && next build --webpack` — migrations apply automatically on every deploy. **Requires `DATABASE_URL`** (same value as `.env.local`) to be set as a Vercel project env var.
+- No GitHub Actions — deliberately kept migration-on-deploy inside the Vercel build step per user preference (2026-07-28), not a separate CI pipeline.
+- Known risk (accepted, not fixed): `DATABASE_URL` points at the port-6543 PgBouncer transaction pooler. Supabase's own docs put migrations in the "use the direct connection" category (not transaction pooler) — `supabase db push` uses advisory locks that transaction-mode pooling can occasionally break (`prepared statement already exists` / lock errors). Tried adding a `DIRECT_DATABASE_URL` fallback (port 5432) as an escape hatch on 2026-07-28, but both the raw direct-connection host (IPv6-only, no route from this network) and the session-pooler host on port 5432 (TLS handshake hangs indefinitely, confirmed with a plain `psql` test independent of the Supabase CLI) failed to connect from this dev machine/network — inconclusive whether it's project-side (session pooler not provisioned) or local-network-side. Reverted; `vercel-build` uses plain `DATABASE_URL` only. If a real deploy ever fails with a lock/prepared-statement error, that's the known cause — revisit the direct/session-pooler connection from Vercel's network (not this one) before assuming it's broken the same way.
+
 ### Key tables (public schema, as of 2026-07-25)
 
 | Table | Rows | Notes |
@@ -79,7 +87,7 @@ Quality gate before considering work done: `pnpm lint && pnpm type-check && pnpm
 | `church_father_quotes` | 93 | |
 | `theological_terms` | 90 | |
 | `paths` / `path_topics` | 1 / 20 | Learning paths; `quiz_mode` (`sequential`/`agnostic`) gates quiz progression. |
-| `quiz_settings` | 3 | One row per tier (`beginner`/`intermediate`/`advanced`) — `item_count`, `bank_size`, `pass_percent`. Seeded by migration `005_quiz_certificates.sql`. |
+| `quiz_settings` | 3 | One row per tier (`beginner`/`intermediate`/`advanced`) — `item_count`, `bank_size`, `pass_percent`. Seeded by migration `supabase/migrations/20260723092615_quiz_certificates.sql`. |
 | `quiz_questions` | grows over time | `(topic_id, tier)` question bank. **Empty except where explicitly authored** — no seed script exists for this table by design (out of scope per user). |
 | `quiz_attempts`, `course_progress`, `certificates`, `certificate_templates` | 0 | Quiz/certificate feature added 2026-07-23, largely unexercised so far. |
 | `site_config` | 8 | RLS is disabled on this table (anon key can read/write every row) — **intentional, confirmed with user 2026-07-25**. Do not re-flag or "fix" this. |
