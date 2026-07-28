@@ -18,10 +18,28 @@ interface PathDetailClientProps {
 }
 
 const TIERS = [
-  { key: 'beginner', label: 'B' },
-  { key: 'intermediate', label: 'I' },
-  { key: 'advanced', label: 'A' },
+  { key: 'beginner', label: 'Beg' },
+  { key: 'intermediate', label: 'Int' },
+  { key: 'advanced', label: 'Adv' },
 ] as const
+
+// Same colors as the difficulty Badge dots above each card, so the tier
+// buttons reinforce a color association the user has already seen rather
+// than introducing a second one.
+const TIER_COLORS: Record<(typeof TIERS)[number]['key'], { available: string; passed: string }> = {
+  beginner: {
+    available: 'bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 dark:bg-emerald-900/20 dark:text-emerald-300 dark:border-emerald-800/40 dark:hover:bg-emerald-900/30',
+    passed: 'bg-emerald-600 text-white border border-emerald-600 dark:bg-emerald-500 dark:border-emerald-500',
+  },
+  intermediate: {
+    available: 'bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 dark:bg-amber-900/20 dark:text-amber-300 dark:border-amber-800/40 dark:hover:bg-amber-900/30',
+    passed: 'bg-amber-600 text-white border border-amber-600 dark:bg-amber-500 dark:border-amber-500',
+  },
+  advanced: {
+    available: 'bg-rose-50 text-rose-700 border border-rose-200 hover:bg-rose-100 dark:bg-rose-900/20 dark:text-rose-300 dark:border-rose-800/40 dark:hover:bg-rose-900/30',
+    passed: 'bg-rose-600 text-white border border-rose-600 dark:bg-rose-500 dark:border-rose-500',
+  },
+}
 
 export function PathDetailClient({ path }: PathDetailClientProps) {
   const { availableTopics, initialize } = useAppStore()
@@ -195,7 +213,7 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                   )}
 
                   {/* Quiz tier buttons */}
-                  <div className="mt-2.5 flex items-center gap-1.5">
+                  <div className="mt-2.5 flex items-center gap-2">
                     {TIERS.map(({ key, label }) => {
                       const prevId = index > 0 ? path.topicIds[index - 1] : null
                       const pathLocked =
@@ -217,20 +235,22 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                                 ? `Complete the ${prevTier} quiz first`
                                 : `Complete the previous topic's ${key} quiz first`
                             }
-                            className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted text-muted-foreground/50 cursor-not-allowed"
+                            className="flex h-11 min-w-11 items-center justify-center gap-1 rounded-lg bg-muted px-2.5 text-xs font-semibold text-muted-foreground/50 cursor-not-allowed"
                           >
-                            <Lock weight="light" size={12} />
+                            <Lock weight="light" size={14} />
+                            {label}
                           </span>
                         )
                       }
 
-                      const donePrefix = passed.has(`${id}:${key}`) ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' : 'bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary'
+                      const isPassed = passed.has(`${id}:${key}`)
+                      const colorClasses = isPassed ? TIER_COLORS[key].passed : TIER_COLORS[key].available
                       return (
                         <Link
                           key={key}
                           href={`/quiz/${id}/${key}?path=${path.slug}`}
                           title={`${key} quiz`}
-                          className={`flex h-7 w-7 items-center justify-center rounded-lg text-xs font-bold transition-colors ${donePrefix}`}
+                          className={`flex h-11 min-w-11 items-center justify-center rounded-lg px-2.5 text-xs font-bold transition-colors ${colorClasses}`}
                         >
                           {label}
                         </Link>
