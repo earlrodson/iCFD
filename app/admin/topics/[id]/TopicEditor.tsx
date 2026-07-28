@@ -401,6 +401,18 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
   const formRef = useRef<FormState>(form)
   useEffect(() => { formRef.current = form }, [form])
 
+  // Warn on tab close / reload with unsaved edits — in-editor language-tab
+  // switches auto-save via isDirty above, but a browser-level unload doesn't.
+  useEffect(() => {
+    function handler(e: BeforeUnloadEvent) {
+      if (!isDirty.current) return
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [])
+
   async function loadFormForLang(targetLang: Lang, fallback?: FormState) {
     if (isNew) {
       setForm(f => ({ ...f, lang: targetLang, title: '', question: '', answer: '', answerFull: '', translationNotes: '' }))

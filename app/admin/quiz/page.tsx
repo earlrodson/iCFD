@@ -73,6 +73,19 @@ export default function QuizAdminPage() {
   const [newDraft, setNewDraft] = useState<QuestionDraft>(EMPTY_DRAFT)
   const [creating, setCreating] = useState(false)
 
+  // Warn on tab close / reload while a question edit or the new-question
+  // form is open — both hold typed content (question text, 4 choices) that
+  // a stray back-button or tab close would silently discard.
+  useEffect(() => {
+    function handler(e: BeforeUnloadEvent) {
+      if (editingId === null && !showNew) return
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [editingId, showNew])
+
   // Topics for the picker + quiz_settings for target bank sizes — both public reads.
   useEffect(() => {
     const supabase = createClient()

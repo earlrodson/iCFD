@@ -35,7 +35,6 @@ import { useAppStore } from '@/store/useAppStore'
 import { createClient } from '@/lib/supabase/client'
 import { getUser } from '@/lib/supabase/auth'
 import { formatDate, cn } from '@/lib/utils'
-import pathsData from '@/public/data/content/paths.json'
 
 const LANGUAGE_NAMES: Record<string, string> = { en: 'English', tl: 'Tagalog', ceb: 'Cebuano' }
 
@@ -180,6 +179,10 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   // quiz is passed — 'agnostic' paths and topics without a quiz never gate.
   const [pathQuizMode, setPathQuizMode] = useState<'sequential' | 'agnostic' | null>(null)
   const [quizPassed, setQuizPassed] = useState(false)
+  // Live path title + topic order for the Next Topic CTA — fetched from the
+  // DB instead of public/data/content/paths.json, a static build-time
+  // snapshot that goes stale the moment an admin edits a path's topic list.
+  const [pathLive, setPathLive] = useState<{ title: string; topicIds: string[] } | null>(null)
   const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>(
     initialTopic.answerFull ? 'comprehensive' : 'concise'
   )
@@ -255,16 +258,22 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
     )
   }, [pathSlug, displayTopic.id])
 
-  // Live quiz_mode for the current path — the static pathsData.json used for
-  // the Next Topic CTA below predates DB-backed paths and has no quiz_mode.
+  // Live path title, topic order, and quiz_mode for the current path — the
+  // Next Topic CTA below used to read public/data/content/paths.json, a
+  // static build-time snapshot that goes stale the moment an admin edits a
+  // path's topic list or order in the live Path Editor.
   useEffect(() => {
-    if (!pathSlug) { setPathQuizMode(null); return }
-    createClient()
-      .from('paths')
-      .select('quiz_mode')
-      .eq('slug', pathSlug)
-      .maybeSingle()
-      .then(({ data }) => setPathQuizMode((data?.quiz_mode as 'sequential' | 'agnostic' | undefined) ?? null))
+    if (!pathSlug) { setPathQuizMode(null); setPathLive(null); return }
+    const supabase = createClient()
+    Promise.all([
+      supabase.from('paths').select('title, quiz_mode').eq('slug', pathSlug).maybeSingle(),
+      supabase.from('path_topics').select('topic_id').eq('path_slug', pathSlug).order('position'),
+    ]).then(([pathRes, topicsRes]) => {
+      setPathQuizMode((pathRes.data?.quiz_mode as 'sequential' | 'agnostic' | undefined) ?? null)
+      setPathLive(
+        pathRes.data ? { title: pathRes.data.title, topicIds: (topicsRes.data ?? []).map((r) => r.topic_id) } : null,
+      )
+    })
   }, [pathSlug])
 
   // Has the signed-in user passed any tier of this topic's quiz?
@@ -1027,10 +1036,8 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
       )}
 
       {/* Next Topic CTA — only when navigating from a learning path */}
-      {pathSlug && (() => {
-        const path = (pathsData.paths as { slug: string; title: string; topicIds: string[] }[])
-          .find((p) => p.slug === pathSlug)
-        if (!path) return null
+      {pathSlug && pathLive && (() => {
+        const path = pathLive
         const idx = path.topicIds.indexOf(initialTopic.id)
         const nextId = idx !== -1 && idx < path.topicIds.length - 1 ? path.topicIds[idx + 1] : null
         if (!nextId) {

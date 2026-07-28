@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { BookOpen, Clock, Heart, Sparkle } from '@phosphor-icons/react/dist/ssr'
 import { useAppStore } from '@/store/useAppStore'
@@ -25,6 +25,8 @@ const CHIP_COLOR: Record<string, string> = {
   sacraments:       'bg-sky-500',
   salvation:        'bg-red-600',
 }
+
+const BATCH_SIZE = 20
 
 const DIFFICULTY_UP: Record<string, string> = {
   beginner: 'intermediate',
@@ -63,6 +65,8 @@ export default function HomePage() {
   const { getRecentlyViewed, readProgress } = useReadingStore()
   const { favoriteIds } = useFavoritesStore()
   const [selectedCategory, setSelectedCategory] = useState<Category | ''>('')
+  const [visibleCount, setVisibleCount] = useState(BATCH_SIZE)
+  const sentinelRef = useRef<HTMLDivElement>(null)
   const courseOrder = useCourseTopicOrder()
 
   const topicsReadCount = Object.values(readProgress).filter((p) => p.isRead).length
@@ -78,6 +82,29 @@ export default function HomePage() {
     : availableTopics
 
   const displayTopics = sortWithCourseFirst(getFilteredTopics(categoryFiltered), courseOrder)
+
+  // Reset visible count when the category filter changes
+  useEffect(() => {
+    setVisibleCount(BATCH_SIZE)
+  }, [selectedCategory])
+
+  const loadMore = useCallback(() => {
+    setVisibleCount((n) => Math.min(n + BATCH_SIZE, displayTopics.length))
+  }, [displayTopics.length])
+
+  useEffect(() => {
+    const el = sentinelRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      (entries) => { if (entries[0].isIntersecting) loadMore() },
+      { rootMargin: '200px' },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [loadMore])
+
+  const visibleTopics = displayTopics.slice(0, visibleCount)
+  const hasMore = visibleCount < displayTopics.length
 
   const recentIds = getRecentlyViewed(5)
   const recentTopics = recentIds
@@ -203,10 +230,17 @@ export default function HomePage() {
           )}
 
           {!loading && !error && (
-            <TopicGrid
-              topics={displayTopics}
-              emptyMessage="No topics match your search. Try a different term or category."
-            />
+            <>
+              <TopicGrid
+                topics={visibleTopics}
+                emptyMessage="No topics match your search. Try a different term or category."
+              />
+              {hasMore && (
+                <div ref={sentinelRef} className="flex justify-center py-6">
+                  <div className="h-6 w-6 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                </div>
+              )}
+            </>
           )}
         </div>
       </div>

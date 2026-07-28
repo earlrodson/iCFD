@@ -344,7 +344,9 @@ export default function AccountPage() {
             </div>
           ) : (
             <form onSubmit={handleMagicLink} className="space-y-3">
+              <label htmlFor="magic-email" className="sr-only">Email</label>
               <input
+                id="magic-email"
                 type="email"
                 required
                 value={email}
@@ -377,15 +379,21 @@ export default function AccountPage() {
           /* Email + password */
           <form onSubmit={handleEmailAuth} className="space-y-3">
             {mode === 'signup' && (
-              <input
-                type="text"
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                placeholder="Display name (optional)"
-                className="w-full rounded-xl bg-card border border-border px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary"
-              />
+              <>
+                <label htmlFor="signup-name" className="sr-only">Display name</label>
+                <input
+                  id="signup-name"
+                  type="text"
+                  value={displayName}
+                  onChange={(e) => setDisplayName(e.target.value)}
+                  placeholder="Display name (optional)"
+                  className="w-full rounded-xl bg-card border border-border px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary"
+                />
+              </>
             )}
+            <label htmlFor="auth-email" className="sr-only">Email</label>
             <input
+              id="auth-email"
               type="email"
               required
               value={email}
@@ -393,7 +401,9 @@ export default function AccountPage() {
               placeholder="Email"
               className="w-full rounded-xl bg-card border border-border px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary"
             />
+            <label htmlFor="auth-password" className="sr-only">Password</label>
             <input
+              id="auth-password"
               type="password"
               required
               minLength={6}

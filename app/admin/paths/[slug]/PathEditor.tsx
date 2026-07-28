@@ -51,10 +51,23 @@ export default function PathEditor({ slug }: { slug: string }) {
   const [search, setSearch] = useState('')
   const [showSearch, setShowSearch] = useState(false)
   const searchRef = useRef<HTMLDivElement>(null)
+  const isDirty = useRef(false)
 
   function set<K extends keyof PathFormState>(key: K, val: PathFormState[K]) {
+    isDirty.current = true
     setForm((p) => ({ ...p, [key]: val }))
   }
+
+  // Warn on tab close / reload with unsaved topic/field edits.
+  useEffect(() => {
+    function handler(e: BeforeUnloadEvent) {
+      if (!isDirty.current) return
+      e.preventDefault()
+      e.returnValue = ''
+    }
+    window.addEventListener('beforeunload', handler)
+    return () => window.removeEventListener('beforeunload', handler)
+  }, [])
 
   // Load EN topics for the picker
   useEffect(() => {
@@ -95,6 +108,7 @@ export default function PathEditor({ slug }: { slug: string }) {
           pinned: path.pinned ?? false,
           quiz_mode: path.quiz_mode === 'agnostic' ? 'agnostic' : 'sequential',
         })
+        isDirty.current = false
       }
       setLoading(false)
     }
@@ -145,6 +159,7 @@ export default function PathEditor({ slug }: { slug: string }) {
       if (ptErr) { setError(ptErr.message); setStatus('error'); return }
     }
 
+    isDirty.current = false
     setStatus('saved')
     setTimeout(() => {
       if (isNew) router.replace(`/admin/paths/${finalSlug}`)

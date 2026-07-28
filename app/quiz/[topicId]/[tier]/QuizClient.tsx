@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, CheckCircle, XCircle, Warning, Certificate } from '@phosphor-icons/react'
@@ -36,6 +36,8 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
   const [submitting, setSubmitting] = useState(false)
   const [result, setResult] = useState<{ scorePercent: number; passed: boolean; correctCount: number; total: number; certificateIssued?: boolean } | null>(null)
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const [firstUnanswered, setFirstUnanswered] = useState<number | null>(null)
+  const questionRefs = useRef<Record<number, HTMLDivElement | null>>({})
 
   const loadQuestions = useCallback(() => {
     setLoadError(null)
@@ -95,12 +97,20 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
 
   function handleSubmit() {
     if (!questions) return
+    const unanswered = questions.find((q) => answers[q.id] === undefined)
+    if (unanswered) {
+      setFirstUnanswered(unanswered.id)
+      questionRefs.current[unanswered.id]?.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      return
+    }
+    setFirstUnanswered(null)
     const questionIds = questions.map((q) => q.id)
     const answerList = questions.map((q) => answers[q.id] ?? -1)
     submit(questionIds, answerList)
   }
 
-  const allAnswered = questions ? questions.every((q) => answers[q.id] !== undefined) : false
+  const answeredCount = questions ? questions.filter((q) => answers[q.id] !== undefined).length : 0
+  const allAnswered = questions ? answeredCount === questions.length : false
 
   return (
     <div className="min-h-screen bg-background">
@@ -160,8 +170,27 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
 
         {!result && questions && (
           <div className="mt-6 space-y-6">
+            <div className="sticky top-0 z-10 -mx-4 bg-background/90 backdrop-blur px-4 py-2.5 border-b border-border">
+              <div className="flex items-center justify-between mb-1.5 text-xs">
+                <span className="text-muted-foreground">{answeredCount} of {questions.length} answered</span>
+                {allAnswered && <span className="font-medium text-emerald-600 dark:text-emerald-400">Ready to submit</span>}
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
+                <div
+                  className="h-full rounded-full bg-primary transition-all duration-300"
+                  style={{ width: `${(answeredCount / questions.length) * 100}%` }}
+                />
+              </div>
+            </div>
+
             {questions.map((q, i) => (
-              <div key={q.id} className="rounded-2xl border border-border bg-card p-4">
+              <div
+                key={q.id}
+                ref={(el) => { questionRefs.current[q.id] = el }}
+                className={`rounded-2xl border bg-card p-4 transition-colors ${
+                  firstUnanswered === q.id ? 'border-rose-400 dark:border-rose-700' : 'border-border'
+                }`}
+              >
                 <p className="mb-3 text-sm font-medium text-foreground">{i + 1}. {q.question}</p>
                 <div className="space-y-2">
                   {q.choices.map((choice, choiceIdx) => (
@@ -173,13 +202,19 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
                         type="radio"
                         name={`q-${q.id}`}
                         checked={answers[q.id] === choiceIdx}
-                        onChange={() => setAnswers((prev) => ({ ...prev, [q.id]: choiceIdx }))}
+                        onChange={() => {
+                          setAnswers((prev) => ({ ...prev, [q.id]: choiceIdx }))
+                          if (firstUnanswered === q.id) setFirstUnanswered(null)
+                        }}
                         className="h-4 w-4"
                       />
                       <span className="text-foreground">{choice}</span>
                     </label>
                   ))}
                 </div>
+                {firstUnanswered === q.id && (
+                  <p className="mt-2 text-xs text-rose-600 dark:text-rose-400">Answer this question to continue.</p>
+                )}
               </div>
             ))}
 
@@ -187,10 +222,10 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
 
             <button
               onClick={handleSubmit}
-              disabled={!allAnswered || submitting}
+              disabled={submitting}
               className="w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white hover:bg-primary/90 disabled:opacity-50 transition-colors"
             >
-              {submitting ? 'Submitting…' : 'Submit Quiz'}
+              {submitting ? 'Submitting…' : allAnswered ? 'Submit Quiz' : `Submit Quiz (${questions.length - answeredCount} left)`}
             </button>
           </div>
         )}
