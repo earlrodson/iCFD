@@ -23,7 +23,10 @@ async function verifyAdmin(): Promise<boolean> {
 
 const DEFAULT_PLACEHOLDERS = [DEFAULT_NAME_PLACEHOLDER] as unknown as Json
 
-const MAX_BYTES = 5 * 1024 * 1024
+// Kept below Vercel's ~4.5MB serverless function request body limit — above
+// that, the platform itself rejects the request with a plain-text 413 before
+// this handler (and its own size check) ever runs.
+const MAX_BYTES = 4 * 1024 * 1024
 const ALLOWED_TYPES = new Set(['image/png', 'image/jpeg', 'image/webp'])
 
 // POST /api/admin/certificates/upload — replace a (path, tier) certificate background image
@@ -42,7 +45,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Image must be PNG, JPEG, or WebP' }, { status: 400 })
   }
   if (file.size > MAX_BYTES) {
-    return NextResponse.json({ error: 'Image must be under 5 MB' }, { status: 400 })
+    return NextResponse.json({ error: 'Image must be under 4 MB' }, { status: 400 })
   }
 
   const db = adminSupabase()

@@ -10,7 +10,7 @@ import {
   type CertificatePlaceholder,
 } from '@/lib/content/certificateTemplate'
 import { CertificatePreview } from '@/components/certificates/CertificatePreview'
-import { cn } from '@/lib/utils'
+import { cn, parseJsonResponse } from '@/lib/utils'
 
 interface Template {
   base_image_url: string
@@ -76,8 +76,7 @@ export default function AdminCertificatesPage() {
       formData.append('path_slug', pathSlug)
       formData.append('tier', tier)
       const res = await fetch('/api/admin/certificates/upload', { method: 'POST', body: formData })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error ?? 'Upload failed')
+      const data = await parseJsonResponse<{ base_image_url: string; placeholders: CertificatePlaceholder[] }>(res, 'Upload failed')
       setTemplate({ base_image_url: data.base_image_url, placeholders: data.placeholders ?? [] })
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : 'Upload failed')

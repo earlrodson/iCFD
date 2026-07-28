@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { User, PencilSimple, Check, X, Camera, IdentificationCard, ShieldStar } from '@phosphor-icons/react'
 import { saveProfileToCloud, type UserProfile } from '@/lib/supabase/sync'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
+import { parseJsonResponse } from '@/lib/utils'
 
 interface ProfileEditorProps {
   user: SupabaseUser
@@ -113,8 +114,7 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
       const body = new FormData()
       body.append('file', file)
       const res = await fetch('/api/profile/avatar', { method: 'POST', body })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error ?? 'Upload failed')
+      const data = await parseJsonResponse<{ avatar_url: string }>(res, 'Upload failed')
       onProfileChange({ ...(profile as UserProfile), avatar_url: data.avatar_url })
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not upload profile picture.')
@@ -133,8 +133,7 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
       const body = new FormData()
       body.append('file', file)
       const res = await fetch('/api/profile/cfd-id', { method: 'POST', body })
-      const data = await res.json()
-      if (!res.ok) throw new Error(data.error ?? 'Upload failed')
+      const data = await parseJsonResponse<{ signed_url: string | null }>(res, 'Upload failed')
       setCfdIdSignedUrl(data.signed_url ?? null)
       onProfileChange({ ...(profile as UserProfile), cfd_id_image_path: 'uploaded' })
     } catch (e) {
