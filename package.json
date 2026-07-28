@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "vercel-build": "supabase db push --db-url \"$DATABASE_URL\" --yes && next build --webpack",
+    "vercel-build": "node scripts/db-push.mjs && next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
