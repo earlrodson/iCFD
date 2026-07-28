@@ -375,6 +375,45 @@ export type Database = {
         }
         Relationships: []
       }
+      page_views: {
+        Row: {
+          country: string | null
+          created_at: string
+          device_type: string | null
+          duration_ms: number | null
+          id: number
+          path: string
+          referrer_path: string | null
+          region: string | null
+          user_id: string | null
+          visitor_id: string
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          duration_ms?: number | null
+          id?: number
+          path: string
+          referrer_path?: string | null
+          region?: string | null
+          user_id?: string | null
+          visitor_id: string
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          device_type?: string | null
+          duration_ms?: number | null
+          id?: number
+          path?: string
+          referrer_path?: string | null
+          region?: string | null
+          user_id?: string | null
+          visitor_id?: string
+        }
+        Relationships: []
+      }
       path_topics: {
         Row: {
           path_slug: string
@@ -1011,6 +1050,43 @@ export type Database = {
           topic_views: number
           topics_read: number
           user_id: string
+        }[]
+      }
+      get_page_analytics: {
+        Args: { days_back?: number }
+        Returns: {
+          avg_duration_seconds: number
+          path: string
+          unique_visitors: number
+          view_count: number
+        }[]
+      }
+      get_navigation_flow: {
+        Args: { days_back?: number }
+        Returns: {
+          from_path: string
+          to_path: string
+          transition_count: number
+        }[]
+      }
+      get_geo_analytics: {
+        Args: { days_back?: number }
+        Returns: {
+          country: string
+          region: string
+          unique_visitors: number
+          view_count: number
+        }[]
+      }
+      get_visitor_summary: {
+        Args: { days_back?: number }
+        Returns: {
+          avg_visit_duration_seconds: number
+          guest_views: number
+          guest_visitors: number
+          registered_views: number
+          registered_visitors: number
+          total_views: number
         }[]
       }
     }
