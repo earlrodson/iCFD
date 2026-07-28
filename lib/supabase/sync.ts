@@ -123,7 +123,7 @@ export async function fetchReadProgressFromCloud(
 
 export async function syncUserSettingsToCloud(
   userId: string,
-  settings: { language: 'en' | 'tl' | 'ceb'; theme: 'light' | 'dark' | 'system'; font_size: 'small' | 'medium' | 'large' },
+  settings: Partial<{ language: 'en' | 'tl' | 'ceb'; theme: 'light' | 'dark' | 'system'; font_size: 'small' | 'medium' | 'large' }>,
 ) {
   const { error } = await createClient()
     .from('user_settings')

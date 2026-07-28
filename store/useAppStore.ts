@@ -4,9 +4,26 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { contentLoader } from '@/lib/content/loader'
 import { searchEngine } from '@/lib/search/engine'
+import { isSupabaseConfigured } from '@/lib/supabase/client'
+import { getSession } from '@/lib/supabase/auth'
+import { syncUserSettingsToCloud } from '@/lib/supabase/sync'
 import type { Topic, Language } from '@/data/schema/topic.schema'
 
 type FontSize = 'small' | 'medium' | 'large'
+
+// Best-effort background sync so a signed-in user's language/font-size choice
+// survives local storage being evicted (e.g. iOS clears an installed PWA's
+// localStorage on close) — read back on sign-in via fetchUserSettingsFromCloud.
+async function syncSettingToCloud(settings: Partial<{ language: Language; font_size: FontSize }>) {
+  if (!isSupabaseConfigured()) return
+  try {
+    const session = await getSession()
+    if (!session?.user) return
+    await syncUserSettingsToCloud(session.user.id, settings)
+  } catch {
+    // Local state already updated; cloud sync is a best-effort fallback.
+  }
+}
 
 interface AppState {
   currentLanguage: Language
@@ -38,9 +55,13 @@ export const useAppStore = create<AppState>()(
         // of always shipping English and swapping after hydration.
         document.cookie = `lang=${lang}; path=/; max-age=31536000; SameSite=Lax`
         get().initialize(lang)
+        void syncSettingToCloud({ language: lang })
       },
 
-      setFontSize: (size) => set({ fontSize: size }),
+      setFontSize: (size) => {
+        set({ fontSize: size })
+        void syncSettingToCloud({ font_size: size })
+      },
 
       initialize: async (lang?: Language) => {
         const language = lang ?? get().currentLanguage
