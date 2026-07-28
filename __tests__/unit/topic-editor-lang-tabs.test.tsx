@@ -1,6 +1,6 @@
 import { render, screen, waitFor, fireEvent } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 
 // ── Module mocks (hoisted) ────────────────────────────────────────────────────
 
@@ -87,6 +87,15 @@ beforeEach(() => {
   mockMaybySingle = vi.fn()
   mockUpsert = vi.fn().mockResolvedValue({ data: null, error: null })
   setupClient()
+
+  // DocumentRefSection fetches relative URLs on mount (/api/admin/topic-doc-refs);
+  // Node's undici fetch (used by jsdom's global fetch here) rejects relative URLs
+  // with ERR_INVALID_URL, so it must be stubbed rather than left to hit the network.
+  vi.stubGlobal('fetch', vi.fn().mockResolvedValue({ ok: true, json: async () => [] }))
+})
+
+afterEach(() => {
+  vi.unstubAllGlobals()
 })
 
 // ── Tab bar rendering ─────────────────────────────────────────────────────────
