@@ -168,9 +168,9 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                     title={complete ? 'Quiz passed' : 'Not yet passed — complete a quiz below'}
                   >
                     {complete ? (
-                      <CheckCircle weight="fill" size={22} className="text-green-500" />
+                      <CheckCircle weight="fill" size={28} className="text-green-500" />
                     ) : (
-                      <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-muted-foreground/40 text-[11px] font-bold text-muted-foreground">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-muted-foreground/40 text-base font-bold text-muted-foreground">
                         {index + 1}
                       </span>
                     )}
@@ -182,9 +182,9 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
                     aria-label={complete ? 'Mark as unread' : 'Mark as read'}
                   >
                     {complete ? (
-                      <CheckCircle weight="fill" size={22} className="text-green-500" />
+                      <CheckCircle weight="fill" size={28} className="text-green-500" />
                     ) : (
-                      <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-muted-foreground/40 text-[11px] font-bold text-muted-foreground">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-muted-foreground/40 text-base font-bold text-muted-foreground">
                         {index + 1}
                       </span>
                     )}
