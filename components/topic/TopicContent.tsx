@@ -23,6 +23,7 @@ import {
   BookBookmark,
   TextAa,
   ListChecks,
+  Lock,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic, Term, Language } from '@/data/schema/topic.schema'
@@ -32,6 +33,7 @@ import { useReadingStore } from '@/store/useReadingStore'
 import { useNotesStore, NOTE_MAX_LENGTH } from '@/store/useNotesStore'
 import { useAppStore } from '@/store/useAppStore'
 import { createClient } from '@/lib/supabase/client'
+import { getUser } from '@/lib/supabase/auth'
 import { formatDate, cn } from '@/lib/utils'
 import pathsData from '@/public/data/content/paths.json'
 
@@ -174,6 +176,10 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   // path (generic + this-path-only) — drives the post-read quiz prompt.
   const [hasPathQuiz, setHasPathQuiz] = useState(false)
   const [showQuizPrompt, setShowQuizPrompt] = useState(false)
+  // Sequential paths block advancing to the next topic until this topic's
+  // quiz is passed — 'agnostic' paths and topics without a quiz never gate.
+  const [pathQuizMode, setPathQuizMode] = useState<'sequential' | 'agnostic' | null>(null)
+  const [quizPassed, setQuizPassed] = useState(false)
   const [contentTab, setContentTab] = useState<'concise' | 'comprehensive' | 'brief'>(
     initialTopic.answerFull ? 'comprehensive' : 'concise'
   )
@@ -247,6 +253,33 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
     Promise.all([base().is('path_slug', null), base().eq('path_slug', pathSlug)]).then(
       ([generic, pathSpecific]) => setHasPathQuiz((generic.data?.length ?? 0) > 0 || (pathSpecific.data?.length ?? 0) > 0),
     )
+  }, [pathSlug, displayTopic.id])
+
+  // Live quiz_mode for the current path — the static pathsData.json used for
+  // the Next Topic CTA below predates DB-backed paths and has no quiz_mode.
+  useEffect(() => {
+    if (!pathSlug) { setPathQuizMode(null); return }
+    createClient()
+      .from('paths')
+      .select('quiz_mode')
+      .eq('slug', pathSlug)
+      .maybeSingle()
+      .then(({ data }) => setPathQuizMode((data?.quiz_mode as 'sequential' | 'agnostic' | undefined) ?? null))
+  }, [pathSlug])
+
+  // Has the signed-in user passed any tier of this topic's quiz?
+  useEffect(() => {
+    if (!pathSlug) { setQuizPassed(false); return }
+    getUser().then(async (user) => {
+      if (!user) { setQuizPassed(false); return }
+      const { data } = await createClient()
+        .from('course_progress')
+        .select('tier')
+        .eq('user_id', user.id)
+        .eq('topic_id', displayTopic.id)
+        .limit(1)
+      setQuizPassed((data?.length ?? 0) > 0)
+    })
   }, [pathSlug, displayTopic.id])
 
   // Language switching: look up topic in current-language store
@@ -1013,6 +1046,31 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
                 Back to path overview
                 <ArrowRight weight="light" size={15} />
               </Link>
+            </div>
+          )
+        }
+        // Sequential paths require passing this topic's quiz before advancing —
+        // browsing/re-reading the current topic (this page) is never blocked,
+        // only the shortcut to the next one.
+        const quizLocked = pathQuizMode === 'sequential' && hasPathQuiz && !quizPassed
+        if (quizLocked) {
+          return (
+            <div className="mb-8">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                Next in {path.title}
+              </p>
+              <div className="flex items-center justify-between gap-4 rounded-2xl bg-muted/50 border border-border p-4">
+                <span className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <Lock weight="light" size={16} />
+                  Pass this topic&rsquo;s quiz to unlock the next topic
+                </span>
+                <Link
+                  href={`/quiz/${initialTopic.id}/beginner?path=${pathSlug}`}
+                  className="shrink-0 text-sm font-semibold text-primary hover:underline"
+                >
+                  Take quiz
+                </Link>
+              </div>
             </div>
           )
         }
