@@ -18,7 +18,7 @@ export interface CertificatePlaceholder {
 export const DEFAULT_NAME_PLACEHOLDER: CertificatePlaceholder = {
   field: 'name',
   x: 50,
-  y: 53.8,
+  y: 48.8,
   font_size: 34,
   font_family: 'Georgia, serif',
   color: '#1a1a1a',

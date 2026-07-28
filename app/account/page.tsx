@@ -8,7 +8,6 @@ import {
   EnvelopeSimple,
   GoogleLogo,
   AppleLogo,
-  Certificate,
 } from '@phosphor-icons/react'
 import {
   signInWithEmail,
@@ -28,6 +27,12 @@ import { useAppStore } from '@/store/useAppStore'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
 import { isQuizTier, TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
 import { CertificateModal } from '@/components/certificates/CertificateModal'
+import { CertificatePreview } from '@/components/certificates/CertificatePreview'
+import {
+  DEFAULT_BASE_IMAGE_URL,
+  resolveNamePlaceholder,
+  type CertificatePlaceholder,
+} from '@/lib/content/certificateTemplate'
 import { ProfileEditor } from '@/components/account/ProfileEditor'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
@@ -41,6 +46,11 @@ interface EarnedCertificate {
   issued_at: string
 }
 
+interface CertificateTemplate {
+  base_image_url: string
+  placeholders: CertificatePlaceholder[]
+}
+
 export default function AccountPage() {
   const [user, setUser] = useState<SupabaseUser | null>(null)
   const [mode, setMode] = useState<AuthMode>('signin')
@@ -51,6 +61,7 @@ export default function AccountPage() {
   const [magicSent, setMagicSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [certificates, setCertificates] = useState<EarnedCertificate[]>([])
+  const [certTemplates, setCertTemplates] = useState<Record<string, CertificateTemplate>>({})
   const [viewingCertKey, setViewingCertKey] = useState<string | null>(null)
   const [profile, setProfile] = useState<UserProfile | null>(null)
 
@@ -83,24 +94,39 @@ export default function AccountPage() {
 
   // Earned certificates — RLS scopes this to the signed-in user's own rows.
   useEffect(() => {
-    if (!user) { setCertificates([]); return }
+    if (!user) { setCertificates([]); setCertTemplates({}); return }
     createClient()
       .from('certificates')
       .select('path_slug, tier, serial_code, issued_at, paths(title)')
       .eq('user_id', user.id)
       .order('issued_at', { ascending: false })
       .then(({ data }) => {
-        setCertificates(
-          (data ?? [])
-            .filter((c): c is typeof c & { tier: QuizTier } => isQuizTier(c.tier))
-            .map((c) => ({
-              path_slug: c.path_slug,
-              path_title: c.paths?.title ?? c.path_slug,
-              tier: c.tier,
-              serial_code: c.serial_code,
-              issued_at: c.issued_at,
-            })),
-        )
+        const earned = (data ?? [])
+          .filter((c): c is typeof c & { tier: QuizTier } => isQuizTier(c.tier))
+          .map((c) => ({
+            path_slug: c.path_slug,
+            path_title: c.paths?.title ?? c.path_slug,
+            tier: c.tier,
+            serial_code: c.serial_code,
+            issued_at: c.issued_at,
+          }))
+        setCertificates(earned)
+        if (earned.length === 0) return
+
+        createClient()
+          .from('certificate_templates')
+          .select('path_slug, tier, base_image_url, placeholders')
+          .in('path_slug', [...new Set(earned.map((c) => c.path_slug))])
+          .then(({ data: templates }) => {
+            setCertTemplates(
+              Object.fromEntries(
+                (templates ?? []).map((t) => [
+                  `${t.path_slug}:${t.tier}`,
+                  { base_image_url: t.base_image_url, placeholders: (t.placeholders as unknown as CertificatePlaceholder[]) ?? [] },
+                ]),
+              ),
+            )
+          })
       })
   }, [user])
 
@@ -191,30 +217,35 @@ export default function AccountPage() {
             ))}
           </div>
 
-          {/* Certificates */}
+          {/* Certificates album */}
           {certificates.length > 0 && (
             <div className="mt-4">
               <h2 className="mb-2 text-sm font-semibold text-foreground">Certificates</h2>
-              <div className="space-y-2">
-                {certificates.map((cert) => (
-                  <button
-                    key={`${cert.path_slug}-${cert.tier}`}
-                    onClick={() => setViewingCertKey(`${cert.path_slug}:${cert.tier}`)}
-                    className="flex w-full items-center gap-3 rounded-xl bg-card border border-border p-3 text-left shadow-sm hover:bg-muted transition-colors"
-                  >
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
-                      <Certificate weight="fill" size={20} className="text-amber-600 dark:text-amber-400" />
-                    </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium text-foreground">
-                        {cert.path_title} — {TIER_LABELS[cert.tier]} Certificate
+              <div className="grid grid-cols-2 gap-3">
+                {certificates.map((cert) => {
+                  const template = certTemplates[`${cert.path_slug}:${cert.tier}`]
+                  return (
+                    <button
+                      key={`${cert.path_slug}-${cert.tier}`}
+                      onClick={() => setViewingCertKey(`${cert.path_slug}:${cert.tier}`)}
+                      className="text-left"
+                    >
+                      <CertificatePreview
+                        imageUrl={template?.base_image_url || DEFAULT_BASE_IMAGE_URL}
+                        namePlaceholder={resolveNamePlaceholder(template?.placeholders)}
+                        name={name}
+                        alt={`${cert.path_title} — ${TIER_LABELS[cert.tier]} Certificate`}
+                        className="shadow-sm hover:opacity-90 transition-opacity"
+                      />
+                      <p className="mt-1.5 truncate text-xs font-medium text-foreground">
+                        {cert.path_title} — {TIER_LABELS[cert.tier]}
                       </p>
-                      <p className="text-xs text-muted-foreground">
-                        Issued {new Date(cert.issued_at).toLocaleDateString()}
+                      <p className="text-[11px] text-muted-foreground">
+                        {new Date(cert.issued_at).toLocaleDateString()}
                       </p>
-                    </div>
-                  </button>
-                ))}
+                    </button>
+                  )
+                })}
               </div>
             </div>
           )}
