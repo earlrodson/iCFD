@@ -11,6 +11,7 @@ import {
   bigserial,
   boolean,
   numeric,
+  date,
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
 
@@ -342,6 +343,20 @@ export const userSettings = pgTable('user_settings', {
     .default('medium')
     .notNull()
     .$type<typeof FONT_SIZES[number]>(),
+  // ── Profile — every user ──
+  first_name: text('first_name'),
+  last_name: text('last_name'),
+  age: integer('age'),
+  location: text('location'),
+  certifications: text('certifications').array().default(sql`'{}'::text[]`),
+  mobile_number: text('mobile_number'),
+  // ── CFD membership — only shown in the UI when is_cfd_member is true ──
+  is_cfd_member: boolean('is_cfd_member').default(false).notNull(),
+  chapter: text('chapter'),
+  diocese: text('diocese'),
+  cfd_id_image_path: text('cfd_id_image_path'),
+  membership_date: date('membership_date'),
+  membership_expiration: date('membership_expiration'),
   updated_at: timestamp('updated_at', { withTimezone: true })
     .default(sql`now()`)
     .notNull(),

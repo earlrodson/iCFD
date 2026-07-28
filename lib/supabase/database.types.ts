@@ -886,25 +886,70 @@ export type Database = {
       }
       user_settings: {
         Row: {
+          age: number | null
+          avatar_url: string | null
           bible_version: string
+          certifications: string[] | null
+          cfd_id_image_path: string | null
+          chapter: string | null
+          diocese: string | null
+          display_name: string | null
+          first_name: string | null
           font_size: string
+          is_cfd_member: boolean
           language: string
+          last_name: string | null
+          location: string | null
+          membership_date: string | null
+          membership_expiration: string | null
+          mobile_number: string | null
+          role: string
           theme: string
           updated_at: string
           user_id: string
         }
         Insert: {
+          age?: number | null
+          avatar_url?: string | null
           bible_version?: string
+          certifications?: string[] | null
+          cfd_id_image_path?: string | null
+          chapter?: string | null
+          diocese?: string | null
+          display_name?: string | null
+          first_name?: string | null
           font_size?: string
+          is_cfd_member?: boolean
           language?: string
+          last_name?: string | null
+          location?: string | null
+          membership_date?: string | null
+          membership_expiration?: string | null
+          mobile_number?: string | null
+          role?: string
           theme?: string
           updated_at?: string
           user_id: string
         }
         Update: {
+          age?: number | null
+          avatar_url?: string | null
           bible_version?: string
+          certifications?: string[] | null
+          cfd_id_image_path?: string | null
+          chapter?: string | null
+          diocese?: string | null
+          display_name?: string | null
+          first_name?: string | null
           font_size?: string
+          is_cfd_member?: boolean
           language?: string
+          last_name?: string | null
+          location?: string | null
+          membership_date?: string | null
+          membership_expiration?: string | null
+          mobile_number?: string | null
+          role?: string
           theme?: string
           updated_at?: string
           user_id?: string

@@ -142,3 +142,52 @@ export async function fetchUserSettingsFromCloud(userId: string) {
   if (error) return null
   return data
 }
+
+// ── Profile ───────────────────────────────────────────────────────────────────
+
+export interface UserProfile {
+  first_name: string | null
+  last_name: string | null
+  age: number | null
+  location: string | null
+  certifications: string[] | null
+  mobile_number: string | null
+  avatar_url: string | null
+  is_cfd_member: boolean
+  chapter: string | null
+  diocese: string | null
+  cfd_id_image_path: string | null
+  membership_date: string | null
+  membership_expiration: string | null
+}
+
+export async function fetchProfileFromCloud(userId: string): Promise<UserProfile | null> {
+  const { data, error } = await createClient()
+    .from('user_settings')
+    .select('first_name, last_name, age, location, certifications, mobile_number, avatar_url, is_cfd_member, chapter, diocese, cfd_id_image_path, membership_date, membership_expiration')
+    .eq('user_id', userId)
+    .single()
+
+  if (error) return null
+  return data
+}
+
+export async function saveProfileToCloud(
+  userId: string,
+  fields: Partial<{
+    first_name: string | null
+    last_name: string | null
+    age: number | null
+    location: string | null
+    certifications: string[]
+    mobile_number: string | null
+    chapter: string | null
+    diocese: string | null
+  }>,
+) {
+  const { error } = await createClient()
+    .from('user_settings')
+    .upsert({ user_id: userId, ...fields })
+
+  if (error) throw error
+}

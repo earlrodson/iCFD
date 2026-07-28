@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react'
 import {
-  User,
   SignIn,
   SignOut,
   Warning,
@@ -21,7 +20,7 @@ import {
   getUser,
   onAuthStateChange,
 } from '@/lib/supabase/auth'
-import { fetchUserSettingsFromCloud } from '@/lib/supabase/sync'
+import { fetchUserSettingsFromCloud, fetchProfileFromCloud, type UserProfile } from '@/lib/supabase/sync'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
 import { useNotesStore } from '@/store/useNotesStore'
 import { useReadingStore } from '@/store/useReadingStore'
@@ -29,6 +28,7 @@ import { useAppStore } from '@/store/useAppStore'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
 import { isQuizTier, TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
 import { CertificateModal } from '@/components/certificates/CertificateModal'
+import { ProfileEditor } from '@/components/account/ProfileEditor'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
 type AuthMode = 'signin' | 'signup' | 'magic'
@@ -52,6 +52,7 @@ export default function AccountPage() {
   const [loading, setLoading] = useState(false)
   const [certificates, setCertificates] = useState<EarnedCertificate[]>([])
   const [viewingCertKey, setViewingCertKey] = useState<string | null>(null)
+  const [profile, setProfile] = useState<UserProfile | null>(null)
 
   const { favoriteIds } = useFavoritesStore()
   const { notes } = useNotesStore()
@@ -73,6 +74,12 @@ export default function AccountPage() {
       if (s.font_size) setFontSize(s.font_size as 'small' | 'medium' | 'large')
     })
   }, [user, setLanguage, setFontSize])
+
+  // Profile fields (name, location, CFD membership, etc.)
+  useEffect(() => {
+    if (!user) { setProfile(null); return }
+    fetchProfileFromCloud(user.id).then(setProfile)
+  }, [user])
 
   // Earned certificates — RLS scopes this to the signed-in user's own rows.
   useEffect(() => {
@@ -158,20 +165,17 @@ export default function AccountPage() {
   // ── Signed in ──────────────────────────────────────────────────────────────
 
   if (user) {
-    const name = (user.user_metadata?.display_name as string | undefined) ?? user.email ?? 'User'
+    const name = [profile?.first_name, profile?.last_name].filter(Boolean).join(' ')
+      || (user.user_metadata?.display_name as string | undefined)
+      || user.email
+      || 'User'
     const readCount = Object.values(readProgress).filter((p) => p.isRead).length
 
     return (
       <div className="min-h-screen bg-background">
         <div className="mx-auto max-w-md px-4 pt-10">
           {/* Profile */}
-          <div className="rounded-2xl bg-card border border-border p-5 shadow-sm text-center">
-            <div className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
-              <User weight="light" size={32} className="text-primary" />
-            </div>
-            <p className="font-semibold text-foreground">{name}</p>
-            <p className="mt-0.5 text-sm text-muted-foreground">{user.email}</p>
-          </div>
+          <ProfileEditor user={user} profile={profile} onProfileChange={setProfile} />
 
           {/* Stats */}
           <div className="mt-4 grid grid-cols-3 gap-3">
