@@ -30,9 +30,16 @@ export async function generateMetadata({ params }: TopicPageProps) {
 
   if (!topic) return { title: 'Topic Not Found' }
 
+  const title = `${topic.title} — Catholic Faith Defender`
+  const description = topic.question
+
   return {
-    title: `${topic.title} — Catholic Faith Defender`,
-    description: topic.question,
+    title,
+    description,
+    // Next.js does not auto-derive og:*/twitter:* tags from title/description
+    // alone — without this, shared topic links show no preview card at all.
+    openGraph: { title, description },
+    twitter: { card: 'summary', title, description },
   }
 }
 

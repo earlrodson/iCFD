@@ -1,241 +1,53 @@
-'use client'
+import type { Metadata } from 'next'
+import { Suspense } from 'react'
+import { CatechismClient } from '@/components/catechism/CatechismClient'
+import { fetchParagraphs } from '@/lib/content/catechismFetch'
+import { parseNumericRanges, formatNumericRanges } from '@/lib/numericRange'
 
-import { useEffect, useState, useCallback, useRef } from 'react'
-import { cn } from '@/lib/utils'
-import { OfflineFallback } from '@/components/ui/OfflineFallback'
-import { fetchParagraphs, getCachedParagraphs, type CccParagraph } from '@/lib/content/catechismFetch'
-
-// ── Types ─────────────────────────────────────────────────────────────────────
-
-const PARTS = [
-  { label: 'Part One: The Profession of Faith',               range: [1,   1065] },
-  { label: 'Part Two: The Celebration of the Christian Mystery', range: [1066, 1690] },
-  { label: 'Part Three: Life in Christ',                      range: [1691, 2557] },
-  { label: 'Part Four: Christian Prayer',                     range: [2558, 2865] },
-] as const
-
-// ── Components ────────────────────────────────────────────────────────────────
-
-function ParagraphCard({ para, expanded, onToggle }: {
-  para: CccParagraph
-  expanded: boolean
-  onToggle: () => void
-}) {
-  return (
-    <div
-      className="border border-border rounded-lg overflow-hidden cursor-pointer hover:border-primary/40 transition-colors"
-      onClick={onToggle}
-    >
-      <div className="flex items-start gap-3 p-4">
-        <span className="text-xs font-mono font-bold text-primary/70 bg-primary/8 rounded px-1.5 py-0.5 shrink-0 mt-0.5">
-          {para.paragraph}
-        </span>
-        <div className="flex-1 min-w-0">
-          <p className={cn('text-sm text-foreground leading-relaxed', !expanded && 'line-clamp-2')}>
-            {expanded ? para.text : (para.summary ?? para.text)}
-          </p>
-          {!expanded && para.text.length > 180 && (
-            <span className="text-xs text-muted-foreground mt-1 block">tap to expand</span>
-          )}
-        </div>
-      </div>
-    </div>
-  )
+interface CatechismPageProps {
+  searchParams: Promise<{ p?: string }>
 }
 
-function ParagraphCardSkeleton() {
-  return (
-    <div className="border border-border rounded-lg p-4 flex items-start gap-3">
-      <span className="h-5 w-8 rounded bg-muted animate-pulse shrink-0 mt-0.5" />
-      <div className="flex-1 min-w-0 space-y-2 py-0.5">
-        <div className="h-3.5 w-full rounded bg-muted animate-pulse" />
-        <div className="h-3.5 w-4/5 rounded bg-muted animate-pulse" />
-      </div>
-    </div>
-  )
+function truncate(text: string, max: number): string {
+  return text.length > max ? `${text.slice(0, max - 1).trimEnd()}…` : text
 }
 
-// ── Page ──────────────────────────────────────────────────────────────────────
+export async function generateMetadata({ searchParams }: CatechismPageProps): Promise<Metadata> {
+  const { p } = await searchParams
+  const ranges = p ? parseNumericRanges(p) : null
+
+  if (!ranges) {
+    const title = 'Catechism of the Catholic Church — Catholic Faith Defender'
+    const description = 'Browse all 2,865 paragraphs of the Catechism of the Catholic Church, organized by part.'
+    return {
+      title,
+      description,
+      openGraph: { title, description },
+      twitter: { card: 'summary', title, description },
+    }
+  }
+
+  const label = formatNumericRanges(ranges)
+  const first = (await fetchParagraphs(ranges[0].start, ranges[0].start))[0]
+  const plural = ranges.length > 1 || ranges[0].start !== ranges[0].end
+
+  const title = `CCC ${label} — Catechism of the Catholic Church`
+  const description = first?.text
+    ? truncate(first.text, 160)
+    : `Catechism of the Catholic Church, paragraph${plural ? 's' : ''} ${label}.`
+
+  return {
+    title,
+    description,
+    openGraph: { title, description },
+    twitter: { card: 'summary', title, description },
+  }
+}
 
 export default function CatechismPage() {
-  const [activePart, setActivePart] = useState(0)
-  const [paragraphs, setParagraphs] = useState<CccParagraph[]>([])
-  const [loading, setLoading] = useState(false)
-  const [expandedId, setExpandedId] = useState<number | null>(null)
-  const [search, setSearch] = useState('')
-  const [isOffline, setIsOffline] = useState(false)
-  const [targetPara, setTargetPara] = useState<number | null>(null)
-  const [deepLink, setDeepLink] = useState<CccParagraph | null>(null)
-  const scrolled = useRef(false)
-  // Guards against a slow background revalidation (or slow first fetch) for
-  // a part the user has since navigated away from clobbering current state.
-  const latestPartRef = useRef(0)
-
-  useEffect(() => {
-    setIsOffline(!navigator.onLine)
-    const on = () => setIsOffline(false)
-    const off = () => setIsOffline(true)
-    window.addEventListener('online', on)
-    window.addEventListener('offline', off)
-    return () => { window.removeEventListener('online', on); window.removeEventListener('offline', off) }
-  }, [])
-
-  // Read ?p= deep link param on mount
-  useEffect(() => {
-    const p = new URLSearchParams(window.location.search).get('p')
-    const num = p ? parseInt(p) : null
-    if (!num) return
-    setTargetPara(num)
-    // Auto-switch to the correct part
-    const partIdx = PARTS.findIndex(({ range }) => num >= range[0] && num <= range[1])
-    if (partIdx !== -1) setActivePart(partIdx)
-    // Fetch that specific paragraph for the featured card
-    fetchParagraphs(num, num).then(rows => { if (rows[0]) setDeepLink(rows[0]) })
-  }, [])
-
-  // Scroll to deep-linked paragraph once it appears in the list
-  useEffect(() => {
-    if (!targetPara || loading || scrolled.current) return
-    const el = document.getElementById(`p-${targetPara}`)
-    if (!el) return
-    scrolled.current = true
-    el.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    el.classList.add('highlight-flash')
-  }, [targetPara, loading, paragraphs])
-
-  const load = useCallback(async (partIdx: number) => {
-    latestPartRef.current = partIdx
-    setExpandedId(null)
-    const [from, to] = PARTS[partIdx].range
-
-    // Stale-while-revalidate: a cache hit renders instantly with no skeleton
-    // at all, then quietly refreshes in the background in case content changed.
-    const cached = await getCachedParagraphs(from, to)
-    if (latestPartRef.current !== partIdx) return
-    if (cached) {
-      setParagraphs(cached)
-      setLoading(false)
-      const fresh = await fetchParagraphs(from, to)
-      if (fresh.length > 0 && latestPartRef.current === partIdx) setParagraphs(fresh)
-      return
-    }
-
-    setLoading(true)
-    setParagraphs([])
-    const data = await fetchParagraphs(from, to)
-    if (latestPartRef.current === partIdx) {
-      setParagraphs(data)
-      setLoading(false)
-    }
-  }, [])
-
-  useEffect(() => { load(activePart) }, [activePart, load])
-
-  const filtered = search.trim()
-    ? paragraphs.filter(p =>
-        p.text?.toLowerCase().includes(search.toLowerCase()) ||
-        String(p.paragraph).includes(search)
-      )
-    : paragraphs
-
   return (
-    <div className="max-w-2xl mx-auto px-4 py-6">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-foreground mb-1">Catechism of the Catholic Church</h1>
-        <p className="text-sm text-muted-foreground">Second Edition</p>
-      </div>
-
-      {/* Part tabs */}
-      <div className="flex gap-1.5 flex-wrap mb-4">
-        {PARTS.map((part, i) => (
-          <button
-            key={i}
-            onClick={() => setActivePart(i)}
-            className={cn(
-              'px-3 py-1.5 rounded-full text-xs font-medium transition-colors',
-              activePart === i
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-muted text-muted-foreground hover:text-foreground'
-            )}
-          >
-            Part {i + 1}
-          </button>
-        ))}
-      </div>
-
-      {/* Deep-link featured card */}
-      {deepLink && (
-        <div className="mb-5 rounded-xl border-2 border-primary/40 bg-primary/5 p-4">
-          <div className="flex items-center justify-between gap-2 mb-2">
-            <span className="text-xs font-mono font-bold text-primary bg-primary/10 rounded px-1.5 py-0.5">
-              CCC {deepLink.paragraph}
-            </span>
-            <button
-              onClick={() => setDeepLink(null)}
-              className="text-xs text-muted-foreground hover:text-foreground"
-            >
-              ✕
-            </button>
-          </div>
-          <p className="text-sm text-foreground leading-relaxed">{deepLink.text ?? deepLink.summary}</p>
-          {deepLink.section && <p className="text-xs text-muted-foreground mt-2">{deepLink.section}</p>}
-        </div>
-      )}
-
-      {/* Part title */}
-      <p className="text-sm font-medium text-foreground mb-3">{PARTS[activePart].label}</p>
-
-      {/* Search */}
-      <div className="mb-4">
-        <input
-          type="search"
-          placeholder="Search paragraphs or enter a number…"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          className="w-full px-3 py-2 text-sm rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
-        />
-      </div>
-
-      {/* Count */}
-      {!loading && (
-        <p className="text-xs text-muted-foreground mb-3">
-          {filtered.length} paragraph{filtered.length !== 1 ? 's' : ''}
-          {search && ` matching "${search}"`}
-        </p>
-      )}
-
-      {/* Loading — only shown on a true cache miss; a stale-while-revalidate
-          hit renders the previous result instantly instead. */}
-      {loading && (
-        <div className="space-y-2">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <ParagraphCardSkeleton key={i} />
-          ))}
-        </div>
-      )}
-
-      {/* Paragraphs */}
-      {!loading && (
-        <div className="space-y-2">
-          {filtered.map(para => (
-            <div key={para.paragraph} id={`p-${para.paragraph}`}>
-              <ParagraphCard
-                para={para}
-                expanded={expandedId === para.paragraph}
-                onToggle={() => setExpandedId(expandedId === para.paragraph ? null : para.paragraph)}
-              />
-            </div>
-          ))}
-          {filtered.length === 0 && (
-            isOffline && !search
-              ? <OfflineFallback contentLabel="paragraphs" />
-              : <p className="text-sm text-muted-foreground text-center py-8">
-                  No paragraphs found{search ? ` for "${search}"` : ''}.
-                </p>
-          )}
-        </div>
-      )}
-    </div>
+    <Suspense>
+      <CatechismClient />
+    </Suspense>
   )
 }

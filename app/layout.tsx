@@ -8,11 +8,30 @@ import { OfflineBanner } from '@/components/ui/OfflineBanner'
 import { NavigationProgress } from '@/components/ui/NavigationProgress'
 import { SyncManager } from '@/components/SyncManager'
 import { PageTracker } from '@/components/analytics/PageTracker'
+import { APP_CONFIG } from '@/lib/config'
+
+const SITE_TITLE = 'Codex Defensoris'
+const SITE_DESCRIPTION =
+  'Offline-first Catholic apologetics app with Scripture, Tradition, and Catechism references in English, Tagalog, and Cebuano.'
 
 export const metadata: Metadata = {
-  title: 'Codex Defensoris',
-  description:
-    'Offline-first Catholic apologetics app with Scripture, Tradition, and Catechism references in English, Tagalog, and Cebuano.',
+  metadataBase: new URL(APP_CONFIG.siteUrl),
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
+  // Next.js does not auto-derive og:*/twitter:* tags from title/description —
+  // without this block, links shared to iMessage/WhatsApp/Slack/etc. render
+  // as a bare URL with no preview card at all.
+  openGraph: {
+    siteName: SITE_TITLE,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary',
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
   manifest: '/manifest.json',
   icons: {
     icon: [
