@@ -105,6 +105,24 @@ export async function syncReadProgressToCloud(
   if (error) throw error
 }
 
+// ── View History (powers /admin/analytics "Topics" tab) ────────────────────────
+
+export async function syncViewHistoryToCloud(userId: string, topicIds: string[]) {
+  if (!topicIds.length) return
+
+  const rows: TablesInsert<'view_history'>[] = topicIds.map((topicId) => ({
+    user_id: userId,
+    topic_id: topicId,
+    viewed_at: new Date().toISOString(),
+  }))
+
+  const { error } = await createClient()
+    .from('view_history')
+    .upsert(rows, { onConflict: 'user_id,topic_id' })
+
+  if (error) throw error
+}
+
 export async function fetchReadProgressFromCloud(
   userId: string,
 ): Promise<Record<string, { isRead: boolean; readAt: string }> | null> {

@@ -12,12 +12,20 @@ import {
   fetchFavoritesFromCloud,
   syncReadProgressToCloud,
   fetchReadProgressFromCloud,
+  syncViewHistoryToCloud,
+  fetchUserSettingsFromCloud,
 } from '@/lib/supabase/sync'
 
 async function pushDirty(userId: string) {
   const { notes, dirtyIds: notesDirty, markSynced: notesSynced } = useNotesStore.getState()
   const { favoriteIds, addedAt, dirtyIds: favDirty, markSynced: favsSynced } = useFavoritesStore.getState()
-  const { readProgress, dirtyIds: readDirty, markSynced: readSynced } = useReadingStore.getState()
+  const {
+    readProgress,
+    dirtyIds: readDirty,
+    markSynced: readSynced,
+    viewDirtyIds,
+    markViewsSynced,
+  } = useReadingStore.getState()
 
   const ps: Promise<void>[] = []
 
@@ -49,6 +57,12 @@ async function pushDirty(userId: string) {
     )
     ps.push(
       syncReadProgressToCloud(userId, dirtyRead).then(() => readSynced(readDirty))
+    )
+  }
+
+  if (viewDirtyIds.length) {
+    ps.push(
+      syncViewHistoryToCloud(userId, viewDirtyIds).then(() => markViewsSynced(viewDirtyIds))
     )
   }
 
@@ -100,7 +114,7 @@ export function SyncManager() {
     // Sync on mount if already online and logged in
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user && navigator.onLine) {
-        syncAll(session.user.id).catch(() => {})
+        syncAll(session.user.id).catch(() => { })
       }
     })
 

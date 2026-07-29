@@ -17,6 +17,7 @@ interface ReadingState {
   readProgress: Record<string, ReadProgress>
   readingHistory: Record<string, VisitRecord>
   dirtyIds: string[]
+  viewDirtyIds: string[]
 
   markAsRead: (id: string) => void
   markAsUnread: (id: string) => void
@@ -25,6 +26,7 @@ interface ReadingState {
   getRecentlyViewed: (limit?: number) => string[]
   mergeFromCloud: (cloud: Record<string, { isRead: boolean; readAt: string }>) => void
   markSynced: (ids: string[]) => void
+  markViewsSynced: (ids: string[]) => void
 }
 
 export const useReadingStore = create<ReadingState>()(
@@ -33,6 +35,7 @@ export const useReadingStore = create<ReadingState>()(
       readProgress: {},
       readingHistory: {},
       dirtyIds: [],
+      viewDirtyIds: [],
 
       markAsRead: (id) =>
         set((s) => ({
@@ -63,6 +66,7 @@ export const useReadingStore = create<ReadingState>()(
                 readCount: (prev?.readCount ?? 0) + 1,
               },
             },
+            viewDirtyIds: s.viewDirtyIds.includes(id) ? s.viewDirtyIds : [...s.viewDirtyIds, id],
           }
         }),
 
@@ -82,6 +86,9 @@ export const useReadingStore = create<ReadingState>()(
 
       markSynced: (ids) =>
         set((s) => ({ dirtyIds: s.dirtyIds.filter((id) => !ids.includes(id)) })),
+
+      markViewsSynced: (ids) =>
+        set((s) => ({ viewDirtyIds: s.viewDirtyIds.filter((id) => !ids.includes(id)) })),
 
       getRecentlyViewed: (limit = 3) => {
         const history = get().readingHistory
