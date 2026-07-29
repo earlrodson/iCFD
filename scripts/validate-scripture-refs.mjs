@@ -16,36 +16,10 @@
  *   node scripts/validate-scripture-refs.mjs --fix        # write corrected refs back
  */
 
-import { createClient } from '@supabase/supabase-js'
-import { readFileSync } from 'fs'
-import { resolve } from 'path'
+import { getSupabaseAdmin } from './lib/supabase-admin.mjs'
 
 const APPLY_FIX = process.argv.includes('--fix')
-
-// ── Load .env.local ───────────────────────────────────────────────────────────
-
-const envLines = readFileSync(resolve(process.cwd(), '.env.local'), 'utf8').split('\n')
-for (const line of envLines) {
-  const trimmed = line.trim()
-  if (!trimmed || trimmed.startsWith('#')) continue
-  const eq = trimmed.indexOf('=')
-  if (eq === -1) continue
-  const key = trimmed.slice(0, eq).trim()
-  const val = trimmed.slice(eq + 1).trim()
-  process.env[key] = val
-}
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
-const SECRET_KEY = process.env.SUPABASE_SECRET_KEY
-
-if (!SUPABASE_URL || !SECRET_KEY || SECRET_KEY.startsWith('your-')) {
-  console.error('SUPABASE_SECRET_KEY not set in .env.local')
-  process.exit(1)
-}
-
-const supabase = createClient(SUPABASE_URL, SECRET_KEY, {
-  auth: { autoRefreshToken: false, persistSession: false },
-})
+const supabase = getSupabaseAdmin()
 
 // ── Ref expansion helpers ──────────────────────────────────────────────────────
 

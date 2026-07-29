@@ -10,52 +10,22 @@
  *   node scripts/audit-topics-content.mjs             # report only
  */
 
-import { createClient } from '@supabase/supabase-js'
-import { readFileSync } from 'fs'
-import { resolve } from 'path'
+import { getSupabaseAdmin, fetchAll } from './lib/supabase-admin.mjs'
 
-const envLines = readFileSync(resolve(process.cwd(), '.env.local'), 'utf8').split('\n')
-for (const line of envLines) {
-  const trimmed = line.trim()
-  if (!trimmed || trimmed.startsWith('#')) continue
-  const eq = trimmed.indexOf('=')
-  if (eq === -1) continue
-  process.env[trimmed.slice(0, eq).trim()] = trimmed.slice(eq + 1).trim()
-}
-
-const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
-const SECRET_KEY = process.env.SUPABASE_SECRET_KEY
-if (!SUPABASE_URL || !SECRET_KEY || SECRET_KEY.startsWith('your-')) {
-  console.error('SUPABASE_SECRET_KEY not set in .env.local')
-  process.exit(1)
-}
-const supabase = createClient(SUPABASE_URL, SECRET_KEY, {
-  auth: { autoRefreshToken: false, persistSession: false },
-})
-
-async function fetchAll(table, select) {
-  const PAGE = 1000
-  let all = []
-  for (let from = 0; ; from += PAGE) {
-    const { data, error } = await supabase.from(table).select(select).range(from, from + PAGE - 1)
-    if (error) throw error
-    all = all.concat(data)
-    if (data.length < PAGE) break
-  }
-  return all
-}
+const supabase = getSupabaseAdmin()
 
 async function main() {
   const topics = await fetchAll(
+    supabase,
     'topics',
     'id,lang,title,scripture,catechism,church_fathers,objections,related_topics,translation_source,published',
   )
   const topicIdSet = new Set(topics.map(t => t.id))
 
-  const cccRows = await fetchAll('ccc_paragraphs', 'paragraph')
+  const cccRows = await fetchAll(supabase, 'ccc_paragraphs', 'paragraph')
   const cccSet = new Set(cccRows.map(r => r.paragraph))
 
-  const fatherRows = await fetchAll('church_father_quotes', 'id')
+  const fatherRows = await fetchAll(supabase, 'church_father_quotes', 'id')
   const fatherIdSet = new Set(fatherRows.map(r => r.id))
 
   console.log(`Loaded ${topics.length} topics, ${cccSet.size} CCC paragraphs, ${fatherIdSet.size} father quotes.\n`)
