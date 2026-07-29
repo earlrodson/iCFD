@@ -331,16 +331,26 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
     const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
     if (!url || !key) return
+    const topicLang = initialTopic.lang
+    // ccc_paragraphs is English-only today, so this always falls back to 'en'.
+    // Filtering + preferring topicLang here keeps that fallback explicit and
+    // avoids a same-paragraph-number collision once other languages are added.
     fetch(
-      `${url}/rest/v1/ccc_paragraphs?paragraph=in.(${nums.join(',')})&select=paragraph,summary,text,section`,
+      `${url}/rest/v1/ccc_paragraphs?paragraph=in.(${nums.join(',')})` +
+        `&lang=in.(${topicLang},en)&select=paragraph,lang,summary,text,section`,
       { headers: { apikey: key, Authorization: `Bearer ${key}` } },
     )
       .then((r) => r.json())
-      .then((rows: { paragraph: number; summary: string | null; text: string | null; section: string | null }[]) => {
-        setCccData(new Map(rows.map((r) => [r.paragraph, r])))
+      .then((rows: { paragraph: number; lang: string; summary: string | null; text: string | null; section: string | null }[]) => {
+        const map = new Map<number, { paragraph: number; summary: string | null; text: string | null; section: string | null }>()
+        for (const r of rows) {
+          const existing = map.get(r.paragraph)
+          if (!existing || r.lang === topicLang) map.set(r.paragraph, r)
+        }
+        setCccData(map)
       })
       .catch(() => {/* silent — chips still show without text */})
-  }, [initialTopic.catechism])
+  }, [initialTopic.catechism, initialTopic.lang])
 
   // Resolve {{ccc:N}}, {{verse:ref}}, {{father:id}} shortcodes in answerFull
   const [selectedTerm, setSelectedTerm] = useState<string | null>(null)
