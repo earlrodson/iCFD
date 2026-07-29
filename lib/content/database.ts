@@ -87,9 +87,18 @@ async function restFetch<T>(path: string, params: URLSearchParams): Promise<T[]>
 
 // ── Reference resolvers ───────────────────────────────────────────────────────
 
+// Preferred Bible version per topic language — falls back to whatever's in DB
+// (usually NABRE/Douay-Rheims) when no native-language row exists under a
+// given reference key.
+const LANG_VERSION: Record<Language, string> = {
+  en: 'NABRE',
+  tl: 'Ang Biblia',
+  ceb: 'CEB',
+}
+
 async function resolveRefs(
   rows: TopicRow[],
-  preferredVersion = 'NABRE',
+  preferredVersion = LANG_VERSION[rows[0]?.lang ?? 'en'],
 ): Promise<ResolvedRefs> {
   const verseRefs = [...new Set(rows.flatMap(r => jsonArray<string>(r.scripture)))]
   const quoteIds  = [...new Set(rows.flatMap(r => jsonArray<number>(r.church_fathers)))]

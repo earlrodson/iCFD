@@ -54,7 +54,12 @@ RULES FOR BOTH FIELDS:
 
 SCRIPTURE REFERENCE FORMAT RULES (critical for database linking):
 - Always use full book name, never abbreviations: "John 1:14" not "Jn 1:14"
-- Chapter:verse with colon separator: "Romans 3:23", "1 Corinthians 11:24–25"
+- Chapter:verse with colon separator: "Romans 3:23"
+- One verse per entry — NEVER cite a range like "1 Corinthians 11:24–25" or "John 6:53-56".
+  The database stores one row per single verse and matches references by exact string, so a
+  range silently fails to resolve and the verse disappears from the page. If a point needs
+  several consecutive verses, list each verse as its own entry in the `scripture` array
+  (e.g. "1 Corinthians 11:24", "1 Corinthians 11:25" — not "1 Corinthians 11:24-25").
 - Version must be one of: NABRE, RSV-CE, DR (Douay-Rheims), or NAB
 - Default to NABRE unless another version is more precise for the topic
 - Text must be the exact verse text from that translation — do not paraphrase
