@@ -25,6 +25,23 @@ search:    bun tools/vector-search.ts "<query>"
 snapshot:  pnpm run snapshot
 ```
 
+## Theology RAG (content-generation retrieval, added 2026-07-30)
+
+Separate local vector index over the theology corpus (`ccc_paragraphs`, `canons`, `girm_articles`,
+`church_documents`, `church_father_quotes`) — used to ground AI-assisted topic generation in real
+source text instead of relying on model memory. Not related to the codebase search index above.
+See `documents/VerifyArchitecture/content-generation-architecture-proposal.md` for the full pipeline.
+
+```bash
+index:theology:  pnpm run index:theology   # bun tools/vector-index-theology.ts — pulls from Supabase, embeds via local Ollama nomic-embed-text
+search:theology: bun tools/vector-search-theology.ts "<query>" [--top N] [--json]
+```
+
+Known data-quality issue in the source corpus: `church_father_quotes` has near-duplicate rows for
+the same quote under inconsistent author names (e.g. "St. John Damascene" vs "St. John of
+Damascus") — violates the canonical-name-form rule in `documents/content-generation-prompt.md`
+that `ON CONFLICT` dedup depends on. Not yet cleaned up.
+
 ## Semantic search (use before grep)
 
 ```bash

@@ -13,6 +13,8 @@
     "index": "bun tools/vector-index.ts",
     "index:hook": "bun tools/vector-index.ts --install-hook",
     "search": "bun tools/vector-search.ts",
+    "index:theology": "bun tools/vector-index-theology.ts",
+    "search:theology": "bun tools/vector-search-theology.ts",
     "snapshot": "bun tools/snapshot.ts",
     "test": "vitest run",
     "test:watch": "vitest",

@@ -48,4 +48,5 @@ documents/*.pdf
 
 # claude project tooling
 .claude/vectors.db*
+.claude/vectors-theology.db*
 .claude/snapshot.json
