@@ -2,6 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { isQuizTier as isTier, previousTier } from '@/lib/content/quizTiers'
+import { LanguageSchema } from '@/data/schema/topic.schema'
+
+function parseLang(v: string | null): 'en' | 'tl' | 'ceb' {
+  const parsed = LanguageSchema.safeParse(v)
+  return parsed.success ? parsed.data : 'en'
+}
 
 /**
  * Issues a certificate for (user, path, tier) once every topic in a path
@@ -74,6 +80,7 @@ export async function GET(req: NextRequest) {
   const topicId = req.nextUrl.searchParams.get('topicId')
   const tier = req.nextUrl.searchParams.get('tier')
   const pathSlug = req.nextUrl.searchParams.get('path')
+  const lang = parseLang(req.nextUrl.searchParams.get('lang'))
   if (!topicId || !isTier(tier)) {
     return NextResponse.json({ error: 'topicId and a valid tier are required' }, { status: 400 })
   }
@@ -88,16 +95,27 @@ export async function GET(req: NextRequest) {
   // any path) plus, when a path context is given, that path's own questions.
   // Two queries instead of a single .or() filter — keeps the path slug out of
   // a hand-built PostgREST filter string entirely.
-  const baseQuery = () =>
-    db.from('quiz_questions').select('id,question,choices').eq('topic_id', topicId).eq('tier', tier).eq('active', true)
-  const [{ data: generic, error: genericError }, { data: pathSpecific, error: pathError }] = await Promise.all([
-    baseQuery().is('path_slug', null),
-    pathSlug ? baseQuery().eq('path_slug', pathSlug) : Promise.resolve({ data: [], error: null }),
-  ])
-  if (genericError) return NextResponse.json({ error: genericError.message }, { status: 500 })
-  if (pathError) return NextResponse.json({ error: pathError.message }, { status: 500 })
+  const baseQuery = (queryLang: string) =>
+    db.from('quiz_questions').select('id,question,choices').eq('topic_id', topicId).eq('tier', tier).eq('lang', queryLang).eq('active', true)
+  const fetchBank = async (queryLang: string) => {
+    const [{ data: generic, error: genericError }, { data: pathSpecific, error: pathError }] = await Promise.all([
+      baseQuery(queryLang).is('path_slug', null),
+      pathSlug ? baseQuery(queryLang).eq('path_slug', pathSlug) : Promise.resolve({ data: [], error: null }),
+    ])
+    if (genericError) throw new Error(genericError.message)
+    if (pathError) throw new Error(pathError.message)
+    return [...(generic ?? []), ...(pathSpecific ?? [])]
+  }
 
-  const bank = [...(generic ?? []), ...(pathSpecific ?? [])]
+  let bank
+  try {
+    bank = await fetchBank(lang)
+    // Untranslated topics fall back to the English bank rather than showing
+    // no quiz at all — matches loadTopicFromDatabase's own lang fallback.
+    if (bank.length === 0 && lang !== 'en') bank = await fetchBank('en')
+  } catch (err) {
+    return NextResponse.json({ error: err instanceof Error ? err.message : 'Failed to load questions' }, { status: 500 })
+  }
   if (bank.length === 0) {
     return NextResponse.json({ error: 'No questions available for this topic/tier yet' }, { status: 404 })
   }
@@ -122,6 +140,7 @@ export async function POST(req: NextRequest) {
     answers?: number[]
     pathSlug?: string
   }
+  // No lang param needed here — questionIds already pin the exact rows GET served.
 
   if (!topicId || !isTier(tier) || !Array.isArray(questionIds) || !Array.isArray(answers)
     || questionIds.length === 0 || questionIds.length !== answers.length) {

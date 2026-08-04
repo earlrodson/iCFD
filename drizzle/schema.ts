@@ -139,6 +139,7 @@ export const quizQuestions = pgTable(
     id: bigserial('id', { mode: 'number' }).primaryKey(),
     topic_id: text('topic_id').notNull(),
     tier: text('tier').notNull().$type<Tier>(),
+    lang: text('lang').default('en').notNull().$type<typeof LANGUAGES[number]>(),
     question: text('question').notNull(),
     choices: jsonb('choices').notNull(),
     correct_index: integer('correct_index').notNull(),
@@ -151,7 +152,7 @@ export const quizQuestions = pgTable(
       .default(sql`now()`)
       .notNull(),
   },
-  (t) => [index('quiz_questions_topic_tier_path_idx').on(t.topic_id, t.tier, t.path_slug)]
+  (t) => [index('quiz_questions_topic_tier_lang_path_idx').on(t.topic_id, t.tier, t.lang, t.path_slug)]
 )
 
 /**

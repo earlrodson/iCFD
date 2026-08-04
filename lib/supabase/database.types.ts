@@ -560,6 +560,7 @@ export type Database = {
           correct_index: number
           created_at: string
           id: number
+          lang: string
           path_slug: string | null
           question: string
           tier: string
@@ -571,6 +572,7 @@ export type Database = {
           correct_index: number
           created_at?: string
           id?: number
+          lang?: string
           path_slug?: string | null
           question: string
           tier: string
@@ -582,6 +584,7 @@ export type Database = {
           correct_index?: number
           created_at?: string
           id?: number
+          lang?: string
           path_slug?: string | null
           question?: string
           tier?: string

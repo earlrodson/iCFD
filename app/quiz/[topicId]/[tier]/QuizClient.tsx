@@ -17,6 +17,7 @@ interface QuizClientProps {
   topicId: string
   tier: string
   topicTitle: string
+  lang: string
 }
 
 // sessionStorage key used to resume a submission after a sign-in redirect —
@@ -25,7 +26,7 @@ function pendingKey(topicId: string, tier: string) {
   return `pending-quiz-submit:${topicId}:${tier}`
 }
 
-export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
+export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const pathSlug = searchParams.get('path') ?? undefined
@@ -45,14 +46,14 @@ export function QuizClient({ topicId, tier, topicTitle }: QuizClientProps) {
     setResult(null)
     setAnswers({})
     const pathParam = pathSlug ? `&path=${encodeURIComponent(pathSlug)}` : ''
-    fetch(`/api/quiz?topicId=${encodeURIComponent(topicId)}&tier=${encodeURIComponent(tier)}${pathParam}`)
+    fetch(`/api/quiz?topicId=${encodeURIComponent(topicId)}&tier=${encodeURIComponent(tier)}&lang=${encodeURIComponent(lang)}${pathParam}`)
       .then(async (res) => {
         const body = await res.json()
         if (!res.ok) throw new Error(body.error ?? 'Failed to load quiz')
         setQuestions(body.questions)
       })
       .catch((err) => setLoadError(err.message))
-  }, [topicId, tier, pathSlug])
+  }, [topicId, tier, lang, pathSlug])
 
   useEffect(() => { loadQuestions() }, [loadQuestions])
 

@@ -10,6 +10,7 @@ interface Row {
   id: number
   topic_id: string
   tier: string
+  lang: string
   active: boolean
   path_slug: string | null
 }
@@ -43,8 +44,8 @@ describe('GET /api/quiz — path-aware question pooling', () => {
   it('serves only generic (path_slug NULL) questions when no path is given', async () => {
     vi.mocked(createAdminClient).mockReturnValue(
       mockDb([
-        { id: 1, topic_id: 't', tier: 'beginner', active: true, path_slug: null },
-        { id: 2, topic_id: 't', tier: 'beginner', active: true, path_slug: 'path-a' },
+        { id: 1, topic_id: 't', tier: 'beginner', lang: 'en', active: true, path_slug: null },
+        { id: 2, topic_id: 't', tier: 'beginner', lang: 'en', active: true, path_slug: 'path-a' },
       ]) as unknown as ReturnType<typeof createAdminClient>,
     )
 
@@ -58,9 +59,9 @@ describe('GET /api/quiz — path-aware question pooling', () => {
   it('pools generic questions with the given path\'s own questions, excluding other paths\'', async () => {
     vi.mocked(createAdminClient).mockReturnValue(
       mockDb([
-        { id: 1, topic_id: 't', tier: 'beginner', active: true, path_slug: null },
-        { id: 2, topic_id: 't', tier: 'beginner', active: true, path_slug: 'path-a' },
-        { id: 3, topic_id: 't', tier: 'beginner', active: true, path_slug: 'path-b' },
+        { id: 1, topic_id: 't', tier: 'beginner', lang: 'en', active: true, path_slug: null },
+        { id: 2, topic_id: 't', tier: 'beginner', lang: 'en', active: true, path_slug: 'path-a' },
+        { id: 3, topic_id: 't', tier: 'beginner', lang: 'en', active: true, path_slug: 'path-b' },
       ]) as unknown as ReturnType<typeof createAdminClient>,
     )
 
@@ -74,7 +75,7 @@ describe('GET /api/quiz — path-aware question pooling', () => {
   it('404s when neither generic nor this path\'s questions exist', async () => {
     vi.mocked(createAdminClient).mockReturnValue(
       mockDb([
-        { id: 2, topic_id: 't', tier: 'beginner', active: true, path_slug: 'path-b' },
+        { id: 2, topic_id: 't', tier: 'beginner', lang: 'en', active: true, path_slug: 'path-b' },
       ]) as unknown as ReturnType<typeof createAdminClient>,
     )
 
