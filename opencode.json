@@ -1,0 +1,48 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "ollama/qwen3:14b",
+  "small_model": "ollama/qwen3.5:9b",
+  "instructions": [
+    "CLAUDE.md",
+    "documents/VerifyArchitecture/content-generation-architecture-proposal.md",
+    "documents/content-generation-prompt.md"
+  ],
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3:14b": { "name": "Qwen3 14B (planning/review)" },
+        "qwen3.5:9b": { "name": "Qwen3.5 9B (implementation)" },
+        "deepseek-coder:6.7B": { "name": "DeepSeek Coder 6.7B (code fallback)" }
+      }
+    }
+  },
+  "agent": {
+    "build": {
+      "model": "ollama/qwen3:14b",
+      "prompt": "You are the primary agent for the iCFD project (pnpm/Next.js/TypeScript/Supabase). Follow CLAUDE.md exactly: use pnpm only, never npm/yarn/bun for package management. Delegate read-only lookups to the search subagent and small well-specified edits to the code-editor subagent. Run `pnpm lint && pnpm type-check && pnpm test` before considering any change done."
+    },
+    "search": {
+      "mode": "subagent",
+      "model": "ollama/qwen3.5:9b",
+      "permission": { "edit": "deny", "bash": "ask" },
+      "prompt": "Fast read-only lookup agent: grep, find, file reads, \"where is X\", \"does Y exist\". No edits. Report file paths and line numbers, not full file contents, to keep the primary agent's context small."
+    },
+    "code-editor": {
+      "mode": "subagent",
+      "model": "ollama/qwen3.5:9b",
+      "prompt": "Targeted code-edit agent for small, well-specified changes: single-file edits, clear-spec bug fixes, targeted refactors (≤3 files). Follow the stack conventions in CLAUDE.md exactly (pnpm, Next.js App Router, Drizzle, Tailwind). Do not expand scope beyond the given spec. Write or update a Vitest/Playwright test for the change."
+    }
+  },
+  "mcp": {
+    "supabase": {
+      "type": "local",
+      "command": ["npx", "-y", "@supabase/mcp-server-supabase", "--access-token", "{env:SUPABASE_ACCESS_TOKEN}"],
+      "enabled": true
+    }
+  }
+}

@@ -37,6 +37,23 @@ index:theology:  pnpm run index:theology   # bun tools/vector-index-theology.ts 
 search:theology: bun tools/vector-search-theology.ts "<query>" [--top N] [--json]
 ```
 
+### Local LLM use in this project (qwen3:14b + qwen3.5:9b, confirmed 2026-08-03)
+
+`tools/generate-topic.ts` is the real, working reference for the split — **generate vs. extract**, not short vs. long:
+- **`qwen3:14b`** — Phase 2 only: the 1500-2500 word retrieval-grounded comprehensive answer. Any task that composes new prose belongs here, regardless of length (quiz-item drafting tested 2026-08-03, worked well — see below).
+- **`qwen3.5:9b`** — Phases 1, 3-6: metadata, summary condensation, scripture reference extraction, CCC selection, Church Father quote selection. All pure extraction/selection from text already in the prompt, no new composition.
+- **Phase 7 (objections) is currently on 9b but drafts new response text** — "Extract or draft 2-4 objections... with the Catholic response to each" is generation, not extraction. Flagged as a mismatch against the confirmed split; not yet moved — would need a real test before touching the live pipeline.
+
+**Quiz generation — `tools/generate-quiz.ts` (built 2026-08-03):** `bun tools/generate-quiz.ts <topic_id> [tier] [count]`. Fetches a topic's `answer_full`/`answer.summary`/`scripture`/`catechism` from Supabase, generates N questions via `qwen3:14b`, then shuffles each question's choices in-script (the model returns `correct_index: 0` for every question regardless of prompting — verified twice — so position is fixed post-generation, not left to the model). Writes to `content/quiz/generated/<topic_id>-<tier>.json`, matching the `content/topics/generated/` convention; no DB import step yet (mirrors `import-topic.ts` not existing for quiz — would be `import-quiz.ts` if built). Verified against a live topic (`creation-and-evolution`): content accurate, well-grounded, shuffle confirmed working.
+
+Also note: `format: "json"` in the Ollama chat call constrains output to a single JSON *object*, not an array — wrap multi-item output in `{"items": [...]}` rather than asking for a bare array.
+
+**Review stage (added 2026-08-03):** `content/quiz/{generated,needs-review,validated,published}` now mirrors `content/topics/`'s existing staged-review convention. Checklist at `documents/content-review-checklist.md` — Claude reads generated content in-session against its source material (citation grounding, theological accuracy, answer correctness, clarity) and moves it to `validated/` or `needs-review/`. Deliberately not scripted as an automated API call: review is input-token-dominated (cheap) precisely because it only reads and writes a short verdict, never regenerates the content — scripting it would just move the same judgment into a paid API call for no benefit. First real run (2026-08-03): reviewed the `creation-and-evolution` quiz batch, all 5 questions passed, moved to `validated/`.
+
+**Import + promotion (added 2026-08-03):** `tools/import-quiz.ts <path>.json [--dry-run]` inserts `quiz_questions` rows with `active:false` (safety gate). `tools/promote-quiz.ts <path>.json [--dry-run]` flips matched rows to `active:true` and moves the file `validated/ → published/` — only after import (fails loudly if rows aren't found first). Matches rows by exact `topic_id`+`tier`+`question` text, so promoting one batch never touches a different batch for the same topic/tier. Verified live 2026-08-03: `creation-and-evolution` batch (5 questions, ids 840-844) imported inactive, promoted to active, file moved to `content/quiz/published/`.
+
+`tools/promote-topic.ts <path>.json [--dry-run]` is the equivalent for topics — flips `published:true` (was previously never flipped by anything) and moves `content/topics/validated/ → published/` (was previously an empty, unused folder). Fails loudly if the topic isn't in the DB yet (run `import-topic.ts` first); short-circuits cleanly if already published. Verified 2026-08-03 (dry-run only, both branches): not-found path against an untouched test file, already-published path against the live `creation-and-evolution` row.
+
 Known data-quality issue in the source corpus: `church_father_quotes` has near-duplicate rows for
 the same quote under inconsistent author names (e.g. "St. John Damascene" vs "St. John of
 Damascus") — violates the canonical-name-form rule in `documents/content-generation-prompt.md`
@@ -88,7 +105,7 @@ Quality gate before considering work done: `pnpm lint && pnpm type-check && pnpm
 - New migration: add a `<timestamp>_<name>.sql` file to `supabase/migrations/` (or `pnpm exec supabase migration new <name>`). No local DB link/`supabase link` needed — pushes go straight via `--db-url`.
 - Deploy: `pnpm run vercel-build` (`package.json`'s `vercel-build` script, auto-run by Vercel instead of `build`) runs `node scripts/db-push.mjs && next build --webpack` — migrations apply automatically on every deploy. **Requires `DATABASE_URL`** (same value as `.env.local`) to be set as a Vercel project env var.
 - No GitHub Actions — deliberately kept migration-on-deploy inside the Vercel build step per user preference (2026-07-28), not a separate CI pipeline.
-- Fixed 2026-07-28: `DATABASE_URL` is the port-6543 PgBouncer transaction pooler, which broke `supabase db push` with `prepared statement "..." already exists` (transaction-mode pooling doesn't support prepared statements/advisory locks) — this took down every Vercel deploy. `scripts/db-push.mjs` derives a session-pooler URL by swapping the port to 5432 (same pooler host, different mode) and runs the push against that instead; `next build` and the app runtime keep using the transaction pooler (`DATABASE_URL`) unchanged. Verified working both locally (`psql` connect test + full `pnpm run vercel-build`) and is what unblocked the broken master build. (A same-day earlier attempt at this exact fix was reverted after the port-5432 host appeared to hang from the local dev network — that no longer reproduces; either it was transient or Supabase-side, not worth re-litigating.)
+- `DATABASE_URL` is the port-6543 PgBouncer transaction pooler — transaction-mode pooling doesn't support prepared statements/advisory locks, so `supabase db push` cannot run against it directly. `scripts/db-push.mjs` derives a session-pooler URL (same host, port 5432) and pushes against that instead; `next build` and the app runtime keep using the transaction pooler (`DATABASE_URL`) unchanged.
 
 ### Key tables (public schema, as of 2026-07-25)
 

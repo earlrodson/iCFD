@@ -1,0 +1,62 @@
+[
+  {
+    "topic_id": "creation-and-evolution",
+    "tier": "intermediate",
+    "question": "According to Catholic teaching, which of the following is a theological conviction regarding creation?",
+    "choices": [
+      "The universe is the product of chance.",
+      "The Church requires literal six-day creationism.",
+      "Evolution is the only possible explanation for the origin of the human body.",
+      "The human soul is directly created by God."
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "creation-and-evolution",
+    "tier": "intermediate",
+    "question": "Which document from Pius XII explicitly allows research on evolution in relation to the origin of the human body?",
+    "choices": [
+      "*Laudato Si'*",
+      "*Fides et Ratio*",
+      "*Humani Generis*",
+      "*Gaudium et Spes*"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "creation-and-evolution",
+    "tier": "intermediate",
+    "question": "What does the Catholic Church teach about the origin of the human soul?",
+    "choices": [
+      "It evolves alongside the human body.",
+      "It is not addressed by theological teachings.",
+      "It is the result of material processes.",
+      "It is directly created by God."
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "creation-and-evolution",
+    "tier": "intermediate",
+    "question": "How has the Church historically interpreted the 'days' of Genesis 1?",
+    "choices": [
+      "As allegorical or symbolic representations.",
+      "As scientific explanations of the Big Bang.",
+      "As philosophical concepts unrelated to creation.",
+      "As literal 24-hour periods."
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "creation-and-evolution",
+    "tier": "intermediate",
+    "question": "What does the Catholic Church resist in relation to evolution?",
+    "choices": [
+      "The scientific study of evolution.",
+      "The acceptance of evolutionary timescales.",
+      "Philosophical materialism that denies divine creation.",
+      "The idea that evolution explains the origin of the human soul."
+    ],
+    "correct_index": 2
+  }
+]

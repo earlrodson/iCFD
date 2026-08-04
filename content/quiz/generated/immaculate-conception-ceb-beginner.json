@@ -1,0 +1,132 @@
+[
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gipahibaro han Maria nga inahan ni Jesus ha iyang kinabuhi?",
+    "choices": [
+      "Nag-ubos siya ha sala",
+      "Nagpabilin siya ha grasya",
+      "Nag-ubos siya ha kadaot",
+      "Nagpabilin siya ha sala"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gihimo han Dios ha kalag ni Maria?",
+    "choices": [
+      "Gipuno ini han grasya",
+      "Gipuno ini han kadaot ug sala",
+      "Gipuno ini han kadaot",
+      "Gipuno ini han sala"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay nagsulti han Maria nga “maghimaya ka puno han grasya, ang Ginoo uban kanimo, bulahan ka diha ha kababayen-an”?",
+    "choices": [
+      "Si Juan Bautista",
+      "Si Moises",
+      "Si Anghel nga si Gabriel",
+      "Si Jeremias"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gihimo han Espiritu Santo ha Maria?",
+    "choices": [
+      "Gipadala ini ha iyang lawas",
+      "Gipabilin ini ha iyang kalag",
+      "Gipadala ini ha iyang hunahuna",
+      "Gipadala ini ha iyang kalag ug lawas"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay nahitabo han Maria nga nakahimo niya nga bulahan?",
+    "choices": [
+      "Nag-ubos siya ha sala",
+      "Nag-ubos siya ha kadaot",
+      "Nagpabilin siya ha kadaot",
+      "Nagpabilin siya ha grasya"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gihimo han Dios han iyang plano nga magpili han usa nga tawo?",
+    "choices": [
+      "Gihatag han Dios an igong sala",
+      "Gihatag han Dios an igong kadaot ug sala",
+      "Gihatag han Dios an igong grasya",
+      "Gihatag han Dios an igong kadaot"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gihimo han Dios ha iyang mga propeta ug mga apostoles?",
+    "choices": [
+      "Gipuno ini han sala",
+      "Gipuno ini han kadaot",
+      "Gipuno ini han grasya",
+      "Gipuno ini han kadaot ug sala"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gihimo han Maria ha iyang papel sa pagluwas han tawo?",
+    "choices": [
+      "Nag-ubos siya ha sala",
+      "Nagpabilin siya ha grasya",
+      "Nagpabilin siya ha kadaot",
+      "Nag-ubos siya ha kadaot"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay gihimo han Maria ha iyang kalag sumala han Kasulatan?",
+    "choices": [
+      "Nagpabilin ini ha kadaot ug sala",
+      "Nagpabilin ini ha sala",
+      "Nagpabilin ini ha grasya",
+      "Nagpabilin ini ha kadaot"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Unsay nagsulti nga “Ang akong hinigugmang asawa maoy usa ka tinagoang tanaman nga pinarilan, ug usa ka tubod nga ako ray tag-iya”?",
+    "choices": [
+      "Si Jesus",
+      "Si San Ildephonsus",
+      "Si Anghel nga si Gabriel",
+      "Si Maria"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  }
+]

@@ -1,0 +1,184 @@
+[
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Sugad sa Bibliya ug Tradisyon, kinsa ang naghimo sa mga tawo nga makakab-ot sa kaluwasan?",
+    "choices": [
+      "Ang mga tawo nga magbasa sa Bibliya lamang",
+      "Ang mga tawo nga naghimo og pribadong panudlo",
+      "Ang mga tawo nga nagsunod sa Tradisyon lamang",
+      "Ang buhi nga autoridad sa Sta. Iglesya"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Sugad sa Bibliya, kinsa ang gihatagan ni Cristo sa bugtong katungod sa pagtudlo ug paghubad sa diosnong gipadayag?",
+    "choices": [
+      "Ang mga apostoles lamang",
+      "Ang mga tawo nga may kahibaro",
+      "Ang mga tawo nga nakabasa sa Bibliya",
+      "Ang Sta. Iglesya"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Kinsa ang gitawag og 'magisterium' nga gilangkoban sa Sto Papa ug sa tanang kaobispohan?",
+    "choices": [
+      "Ang mga tawo nga magbasa sa Bibliya",
+      "Ang mga apostoles",
+      "Ang buhi nga autoridad sa Sta. Iglesya",
+      "Ang mga tawo nga nagtuo sa Bibliya"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsay gihimo sa mga pari sa Daang Tugon kon anaa ang mga tawo nga lisod maminaw sa pulong sa Dios?",
+    "choices": [
+      "Ginpaningkamot nila nga maghimo og mga libro nga magdala sa mga tawo ngadto sa kaluwasan.",
+      "Ginbuhat nila ang ilang kaugalingon nga interpretasyon sa Kasulatan.",
+      "Ginhatag nila ang binaba nga hubad sa Balaod sa Dios ug gipasabot kini aron ang mga tawo makasabot niini.",
+      "Ginbansay nila ang mga tawo nga mobasa sa Kasulatan pinaagi sa internet."
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Kon duna may katawhan nga naghatag og dako nga pagtamod sa Kasulatan, unsa ang ilang paglaom panahon sa kalisdanan?",
+    "choices": [
+      "Ang ilang paglaom sa Dios",
+      "Ang ilang paglaom sa mga apostoles",
+      "Ang ilang paglaom sa mga pari",
+      "Ang ilang paglaom sa Bibliya"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsa ang gihimo ni Jesus sa iyang mga tinun-an kon diay sila mosalikway kaniya?",
+    "choices": [
+      "Siya mipasidaan sa pagbansay",
+      "Siya mipasidaan sa labing bug-at nga silot",
+      "Siya mipasidaan sa pagkabuhi",
+      "Siya mipasidaan sa pagpanginabuhi"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsa ang gihimo sa mga apostoles kon adunay tawo nga magwali og ebanghelyo nga lahi sa among giwali?",
+    "choices": [
+      "Ipatinglo siya",
+      "Ipahibaro siya",
+      "Ipahibaro ang tibuok kalibotan",
+      "Ipakatag ang Bibliya"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsa ang gihimo sa unang kristohanon kon anaa ang dili masayop nga autoridad sa mga apostoles?",
+    "choices": [
+      "Nagtuo sila nga ang mga apostoles dili masayop ug gipahibaro kini nga gikan sa tawo.",
+      "Nagtuo sila nga ang mga apostoles dili masayop ug gipahibaro kini nga gikan sa tawo ug sa Dios.",
+      "Nagtuo sila nga ang mga apostoles dili masayop.",
+      "Nagtuo sila nga ang mga apostoles dili masayop ug gipahibaro kini nga gikan sa Dios."
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsa ang gihimo ni San Pedro kon ang mga tawo lisod sabton ang mga butang nga gisulat niya?",
+    "choices": [
+      "Nagpanginabuhi sila sa mga tawo nga lisod sabton.",
+      "Nagdakpan sila sa mga tawo nga lisod sabton.",
+      "Nagpahimulos sila sa ilang kaugalingon nga kahibaro.",
+      "Nagpahibaro sila nga ang mga butang nga gisulat lisod sabton ug nagpanginahanglan og pagsabot nga gikan sa Sta. Iglesya."
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsay gihimo sa unang mga kristohanon kon wala sila makabasa bisag usa ka kudlit sa mga basahon sa Bag-ong Tugon?",
+    "choices": [
+      "Nagtuo sila nga ang mga basahon dili importante.",
+      "Nagtuo sila nga ang Bibliya dili importante.",
+      "Nagtuo sila nga ang mga basahon importante ug nagpanginahanglan og pagsabot nga gikan sa Sta. Iglesya.",
+      "Nagtuo sila nga ang mga basahon importante apan wala sila makabasa."
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsay gihimo ni San Juan kon gisulat pa ang tanan mahitungod sa kinabuhi ni Jesus?",
+    "choices": [
+      "Nagpahibaro siya nga ang tibuok kalibotan paigo nga kasudlan sa mga sinulat ug nagpanginahanglan og pagsabot nga gikan sa tawo.",
+      "Nagpahibaro siya nga ang tibuok kalibotan dili paigo nga kasudlan sa mga sinulat ug nagpanginahanglan og pagsabot nga gikan sa Sta. Iglesya.",
+      "Nagpahibaro siya nga ang tibuok kalibotan paigo nga kasudlan sa mga sinulat.",
+      "Nagpahibaro siya nga ang tibuok kalibotan dili paigo nga kasudlan sa mga sinulat."
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsa ang gihimo sa mga Ebanghelista sa paghimo sa mga sinulat?",
+    "choices": [
+      "Nagpanginabuhi sila sa mga tawo nga lisod sabton.",
+      "Nagpahimulos sila sa ilang kaugalingon nga kahibaro.",
+      "Nagpahimo sila og mga sinulat aron pagtubag sa mga panginahanglan sa matag iglesia kalabot sa panudlo, pagdumala, ritwal o disciplina.",
+      "Nagpahimulos sila sa ilang kaugalingon nga kahibaro ug nagpanginahanglan og pagsabot nga gikan sa Sta. Iglesya."
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsa ang gihimo sa mga Balaang Tigsulat kon anaa ang paghimo og kompleto nga sumada sa doctrina kristiana?",
+    "choices": [
+      "Nagpahimo sila og kompleto nga sumada sa doctrina kristiana.",
+      "Nagpahimo sila og kompleto nga sumada sa doctrina kristiana ug nagpanginahanglan og pagsabot nga gikan sa Sta. Iglesya.",
+      "Wala sila maghimo og kompleto nga sumada sa doctrina kristiana.",
+      "Wala sila maghimo og kompleto nga sumada sa doctrina kristiana ug nagpanginahanglan og pagsabot nga gikan sa tawo."
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Unsay gihimo ni Jesus sa iyang mga tinun-an kon diay sila mosalikway kaniya?",
+    "choices": [
+      "Ginhatag niya kanila ang mga konsiderasyon nga maghimo og mga libro.",
+      "Ginhatag niya kanila ang tanang gahom sa langit ug sa yuta.",
+      "Ginbansay niya sila nga mag-uban sa mga tawo nga wala magtuo kaniya.",
+      "Ginhatag niya kanila ang mga konsiderasyon nga maghimo og mga ritwal."
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  }
+]

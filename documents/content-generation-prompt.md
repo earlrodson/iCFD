@@ -197,3 +197,59 @@ ON CONFLICT (id, lang) DO UPDATE SET
 - The `topic_id` must be unique kebab-case; it becomes the URL slug (e.g., `sacred-images` → `/sacred-images`)
 - `translation_source` defaults to `'stub'` on new rows; run `pnpm db:translate` after
   inserting to generate TL/CEB versions
+
+
+# Recommended Local LLM Generation Pipeline (Qwen3:14B)
+
+For local 14B-class models, do **not** generate the complete JSON in one request.
+
+## Stage 1 – Content Plan
+Return only:
+- thesis
+- outline
+- biblical passages
+- CCC references
+- Church Fathers
+- Ecumenical Council
+- anticipated objections
+- tags
+- difficulty
+
+## Stage 2 – Summary
+Generate only the `summary` field.
+
+## Stage 3 – Comprehensive Answer
+Generate **one major section at a time**:
+1. Thesis
+2. Exegetical Analysis
+3. Positive Biblical Evidence
+4. Theological Distinction
+5. Church Fathers
+6. Ecumenical Council
+7. CCC Reference Table
+8. Common Objections
+9. Conclusion
+
+Each request receives only:
+- Topic
+- Question
+- Content Plan
+- Current Section
+
+Never include previously generated sections.
+
+## Stage 4 – References
+Generate independently:
+- scripture
+- catechism
+- church_fathers
+- objections
+
+## Stage 5 – Metadata
+Generate:
+- related_topics
+- tags
+- difficulty
+
+## Stage 6 – Assembly
+The application merges all generated fragments into the final JSON object. This reduces context size, improves consistency, and is recommended for local models such as Qwen3:14B.
