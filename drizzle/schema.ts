@@ -47,15 +47,25 @@ export const topics = pgTable(
     question: text('question').notNull(),
     // Either a plain string or { summary, full, keyPoints? }
     answer: jsonb('answer').notNull(),
+    // Full markdown essay — comprehensive content for the Comprehensive tab
+    answer_full: text('answer_full'),
     // New unified citations (discriminated union array)
     citations: jsonb('citations').default(sql`'[]'::jsonb`),
     // Legacy source fields — kept for backward compatibility
     scripture: jsonb('scripture').default(sql`'[]'::jsonb`),
     catechism: jsonb('catechism').default(sql`'[]'::jsonb`),
     church_fathers: jsonb('church_fathers').default(sql`'[]'::jsonb`),
+    objections: jsonb('objections').default(sql`'[]'::jsonb`),
     tags: jsonb('tags').default(sql`'[]'::jsonb`).notNull(),
     difficulty: text('difficulty').notNull().$type<typeof DIFFICULTIES[number]>(),
     related_topics: jsonb('related_topics').default(sql`'[]'::jsonb`),
+    published: boolean('published').default(true).notNull(),
+    is_recommended: boolean('is_recommended').default(false).notNull(),
+    cover_image: text('cover_image'),
+    // manual | machine | stub — controls auto-translate behaviour
+    translation_source: text('translation_source').default('manual').notNull(),
+    // Per-topic translator instructions injected into the AI prompt
+    translation_notes: text('translation_notes'),
     last_updated: timestamp('last_updated', { withTimezone: true }).notNull(),
     last_reviewed: timestamp('last_reviewed', { withTimezone: true }),
     created_at: timestamp('created_at', { withTimezone: true })
@@ -413,6 +423,206 @@ export const siteConfig = pgTable('site_config', {
 
 export type SiteConfigRow = typeof siteConfig.$inferSelect
 
+// ── Reference & library tables ──────────────────────────────────────────────────
+
+/**
+ * Full Bible text, one row per (reference, version). Linked into topics via
+ * integer IDs resolved at content-authoring time.
+ */
+export const scriptureVerses = pgTable('scripture_verses', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  reference: text('reference').notNull(),
+  version: text('version').default('NABRE').notNull(),
+  text: text('text').notNull(),
+  book: text('book'),
+  chapter: integer('chapter'),
+  verse_start: integer('verse_start'),
+  verse_end: integer('verse_end'),
+  book_code: text('book_code'),
+})
+
+/**
+ * Catechism of the Catholic Church, one row per (paragraph, lang).
+ */
+export const cccParagraphs = pgTable(
+  'ccc_paragraphs',
+  {
+    paragraph: integer('paragraph').notNull(),
+    text: text('text'),
+    summary: text('summary'),
+    section: text('section'),
+    lang: text('lang').default('en').notNull(),
+    part: text('part'),
+    chapter_title: text('chapter_title'),
+    article: text('article'),
+  },
+  (t) => [primaryKey({ columns: [t.paragraph, t.lang] })]
+)
+
+/**
+ * Patristic and conciliar quote library. Linked into topics via integer IDs.
+ */
+export const churchFatherQuotes = pgTable('church_father_quotes', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  author: text('author').notNull(),
+  quote: text('quote').notNull(),
+  source: text('source').notNull(),
+  year_approx: integer('year_approx'),
+})
+
+/**
+ * General Instruction of the Roman Missal, one row per (article, lang).
+ */
+export const girmArticles = pgTable(
+  'girm_articles',
+  {
+    article: integer('article').notNull(),
+    lang: text('lang').default('en').notNull(),
+    text: text('text').notNull(),
+    summary: text('summary'),
+    section: text('section'),
+  },
+  (t) => [primaryKey({ columns: [t.article, t.lang] })]
+)
+
+/**
+ * Code of Canon Law, one row per (canon, lang).
+ */
+export const canons = pgTable(
+  'canons',
+  {
+    canon: integer('canon').notNull(),
+    lang: text('lang').default('en').notNull(),
+    text: text('text').notNull(),
+    summary: text('summary'),
+    book: text('book'),
+  },
+  (t) => [primaryKey({ columns: [t.canon, t.lang] })]
+)
+
+/**
+ * Metadata for each church document (encyclical, council, etc.) shown in the Library.
+ */
+export const churchDocumentMeta = pgTable('church_document_meta', {
+  slug: text('slug').primaryKey(),
+  title: text('title').notNull(),
+  subtitle: text('subtitle'),
+  author: text('author'),
+  year: integer('year'),
+  description: text('description'),
+  free_access: boolean('free_access').default(true),
+  sort_order: integer('sort_order').default(100),
+})
+
+/**
+ * Sectioned full text of each church document, keyed to church_document_meta.
+ */
+export const churchDocuments = pgTable(
+  'church_documents',
+  {
+    id: bigserial('id', { mode: 'number' }).primaryKey(),
+    slug: text('slug')
+      .notNull()
+      .references(() => churchDocumentMeta.slug),
+    section_num: integer('section_num').notNull(),
+    section_label: text('section_label'),
+    text: text('text'),
+    summary: text('summary'),
+    created_at: timestamp('created_at', { withTimezone: true }).default(sql`now()`),
+  },
+)
+
+/**
+ * Cross-references from a topic to a specific church-document section.
+ */
+export const topicDocumentRefs = pgTable('topic_document_refs', {
+  id: bigserial('id', { mode: 'number' }).primaryKey(),
+  topic_id: text('topic_id').notNull(),
+  doc_slug: text('doc_slug')
+    .notNull()
+    .references(() => churchDocumentMeta.slug),
+  section_num: integer('section_num').notNull(),
+  section_label: text('section_label'),
+  created_at: timestamp('created_at', { withTimezone: true }).default(sql`now()`),
+})
+
+/**
+ * Shared theological-term glossary, linked into topics via topic_terms.
+ */
+export const theologicalTerms = pgTable('theological_terms', {
+  slug: text('slug').primaryKey(),
+  term: text('term').notNull(),
+  pronunciation: text('pronunciation'),
+  language: text('language').default('Greek').notNull(),
+  root_text: text('root_text'),
+  root_meaning: text('root_meaning').notNull(),
+  definition: text('definition').notNull(),
+  debate_note: text('debate_note'),
+  keywords: text('keywords'),
+  created_at: timestamp('created_at', { withTimezone: true }).default(sql`now()`),
+})
+
+/**
+ * Join table linking topics to glossary terms they reference.
+ */
+export const topicTerms = pgTable(
+  'topic_terms',
+  {
+    topic_id: text('topic_id').notNull(),
+    term_slug: text('term_slug')
+      .notNull()
+      .references(() => theologicalTerms.slug),
+  },
+  (t) => [primaryKey({ columns: [t.topic_id, t.term_slug] })]
+)
+
+// ── Admin & moderation tables ─────────────────────────────────────────────────
+
+/**
+ * Grants admin/editor access to /admin/*. references auth.users — not a FK
+ * to avoid schema coupling, matching the convention used by other user_id columns.
+ */
+export const admins = pgTable('admins', {
+  user_id: uuid('user_id').primaryKey(),
+  email: text('email').notNull(),
+  granted_by: uuid('granted_by'),
+  role: text('role').default('admin').notNull().$type<'admin' | 'editor'>(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/**
+ * Public "suggest a topic" submissions, reviewed by admins before becoming a topic.
+ */
+export const submissions = pgTable('submissions', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  title: text('title').notNull(),
+  question: text('question').notNull(),
+  answer: text('answer').notNull(),
+  category: text('category').notNull(),
+  difficulty: text('difficulty').notNull(),
+  scripture_refs: text('scripture_refs'),
+  submitter_notes: text('submitter_notes'),
+  submitted_by: uuid('submitted_by'),
+  status: text('status').default('pending').notNull(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/**
+ * Web Push subscriptions for browser notifications.
+ */
+export const pushSubscriptions = pgTable('push_subscriptions', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  user_id: uuid('user_id'),
+  endpoint: text('endpoint').notNull().unique(),
+  p256dh: text('p256dh').notNull(),
+  auth: text('auth').notNull(),
+  created_at: timestamp('created_at', { withTimezone: true }).default(sql`now()`),
+})
+
 // ── Inferred types ─────────────────────────────────────────────────────────────
 
 export type TopicRow = typeof topics.$inferSelect
@@ -427,3 +637,16 @@ export type ViewHistoryRow = typeof viewHistory.$inferSelect
 export type UserSettingsRow = typeof userSettings.$inferSelect
 export type PageViewRow = typeof pageViews.$inferSelect
 export type PageViewInsert = typeof pageViews.$inferInsert
+export type ScriptureVerseRow = typeof scriptureVerses.$inferSelect
+export type CccParagraphRow = typeof cccParagraphs.$inferSelect
+export type ChurchFatherQuoteRow = typeof churchFatherQuotes.$inferSelect
+export type GirmArticleRow = typeof girmArticles.$inferSelect
+export type CanonRow = typeof canons.$inferSelect
+export type ChurchDocumentMetaRow = typeof churchDocumentMeta.$inferSelect
+export type ChurchDocumentRow = typeof churchDocuments.$inferSelect
+export type TopicDocumentRefRow = typeof topicDocumentRefs.$inferSelect
+export type TheologicalTermRow = typeof theologicalTerms.$inferSelect
+export type TopicTermRow = typeof topicTerms.$inferSelect
+export type AdminRow = typeof admins.$inferSelect
+export type SubmissionRow = typeof submissions.$inferSelect
+export type PushSubscriptionRow = typeof pushSubscriptions.$inferSelect
