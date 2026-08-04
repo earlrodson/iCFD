@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong angay gihapon tuohan ang purgaturyo bisan pa nga ang mismong pulong dili makita sa Biblia?",
+    "choices": [
+      "Ang pag-ampo sa mga buhi, ilabina ang Santos nga Sakripisyo sa Misa",
+      "Ang pulong 'purgaturyo' dili mabasa apan ang pagkanaa niini gipasabot sa Kasulatan (2 Mac. 12:43-45, Mat. 12:32)",
+      "Sulayan kini sa kalayo; kon dili hingpit mag-antos siya sa kapildihan apan maluwas gihapon",
+      "Ang sala batok sa Espiritu Santo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Giunsa pagtubag ang pangatarongan nga managsama ra ang tanang sala (Sant. 2:10)?",
+    "choices": [
+      "Dunay grabe ug dunay gamayng sala; ang gamay nga sala dili mosangpot sa kamatayon (1 Juan 5:16-17)",
+      "Sulayan kini sa kalayo; kon dili hingpit mag-antos siya sa kapildihan apan maluwas gihapon",
+      "Dunay tinagsa nga paghukom sa matag kalag sa takna sa kamatayon (Heb. 9:27), lahi sa kinatibuk-ang paghukom",
+      "Tunga-tunga nga dapit o kahimtang sa mga kalag nga namatay diha sa gamayng sala o wala pa hingpit makabayad sa silot temporal"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang mga minatay wala nay kahibalo (Eccl. 9:5-6)?",
+    "choices": [
+      "Ang sala batok sa Espiritu Santo",
+      "Ang halad-Misa dili bayad sa kaluwasan kondili suhol sa kahago sa pari nga nag-alagad (1 Cor. 9:13-14)",
+      "Ang gihisgotan mao ang lawas nga wala nay kaalam, apan ang kalag moatubang gihapon sa hukmanan sa Dios",
+      "Ang hustisiya ug ang kaluoy sa Dios"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga wala pay hukom kay wala pa man mobalik si Cristo?",
+    "choices": [
+      "Bilanggoon ka didto hangtod kabayran mo sa hingpit ang imong multa",
+      "Mag-ampo alang kanila, ilabina magpamisa, ug maglikay bisan sa gagmayng sala",
+      "Sulayan kini sa kalayo; kon dili hingpit mag-antos siya sa kapildihan apan maluwas gihapon",
+      "Dunay tinagsa nga paghukom sa matag kalag sa takna sa kamatayon (Heb. 9:27), lahi sa kinatibuk-ang paghukom"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong duha ra ka dapit ang gihisgotan sa Mat. 25:31-36 (langit ug impyerno)?",
+    "choices": [
+      "Ang sala batok sa Espiritu Santo",
+      "Dunay tinagsa nga paghukom sa matag kalag sa takna sa kamatayon (Heb. 9:27), lahi sa kinatibuk-ang paghukom",
+      "Kay sa panahon sa kataposang hukom mawala na man ang purgaturyo human sa pagbanhaw sa tanan (Jn. 5:28-29)",
+      "Ang pag-ampo sa mga buhi, ilabina ang Santos nga Sakripisyo sa Misa"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang pagpamisa alang sa minatay usa ka bayad sa kaluwasan?",
+    "choices": [
+      "Ang halad-Misa dili bayad sa kaluwasan kondili suhol sa kahago sa pari nga nag-alagad (1 Cor. 9:13-14)",
+      "Kay sa panahon sa kataposang hukom mawala na man ang purgaturyo human sa pagbanhaw sa tanan (Jn. 5:28-29)",
+      "Ang hustisiya ug ang kaluoy sa Dios",
+      "Si Judas Macabeo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsa ang purgaturyo?",
+    "choices": [
+      "Ang hustisiya ug ang kaluoy sa Dios",
+      "Ang pag-ampo sa mga buhi, ilabina ang Santos nga Sakripisyo sa Misa",
+      "Ang halad-Misa dili bayad sa kaluwasan kondili suhol sa kahago sa pari nga nag-alagad (1 Cor. 9:13-14)",
+      "Tunga-tunga nga dapit o kahimtang sa mga kalag nga namatay diha sa gamayng sala o wala pa hingpit makabayad sa silot temporal"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay makatabang sa mga kalag nga anaa sa purgaturyo?",
+    "choices": [
+      "Ang pag-ampo sa mga buhi, ilabina ang Santos nga Sakripisyo sa Misa",
+      "Bilanggoon ka didto hangtod kabayran mo sa hingpit ang imong multa",
+      "Ang pulong 'purgaturyo' dili mabasa apan ang pagkanaa niini gipasabot sa Kasulatan (2 Mac. 12:43-45, Mat. 12:32)",
+      "Ang hustisiya ug ang kaluoy sa Dios"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang naghalad og pag-ampo ug halad-sa-sala alang sa mga sundalong Judio nga nangamatay, sumala sa 2 Mac. 12:43-45?",
+    "choices": [
+      "Walay bisan unsang hugaw makasulod niini",
+      "Ang pulong 'purgaturyo' dili mabasa apan ang pagkanaa niini gipasabot sa Kasulatan (2 Mac. 12:43-45, Mat. 12:32)",
+      "Si Judas Macabeo",
+      "Ang hustisiya ug ang kaluoy sa Dios"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala ni Jesus (Mat. 12:32), unsang sala ang dili mapasaylo bisan sa sunod nga kinabuhi?",
+    "choices": [
+      "Ang pulong 'purgaturyo' dili mabasa apan ang pagkanaa niini gipasabot sa Kasulatan (2 Mac. 12:43-45, Mat. 12:32)",
+      "Ang gihisgotan mao ang lawas nga wala nay kaalam, apan ang kalag moatubang gihapon sa hukmanan sa Dios",
+      "Ang halad-Misa dili bayad sa kaluwasan kondili suhol sa kahago sa pari nga nag-alagad (1 Cor. 9:13-14)",
+      "Ang sala batok sa Espiritu Santo"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala ni San Pablo (1 Cor. 3:13-15), unsay mahitabo sa buhat sa matag tawo?",
+    "choices": [
+      "Sulayan kini sa kalayo; kon dili hingpit mag-antos siya sa kapildihan apan maluwas gihapon",
+      "Kay sa panahon sa kataposang hukom mawala na man ang purgaturyo human sa pagbanhaw sa tanan (Jn. 5:28-29)",
+      "Mag-ampo alang kanila, ilabina magpamisa, ug maglikay bisan sa gagmayng sala",
+      "Si Judas Macabeo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Pin. 21:27, unsay dili gayod makasulod sa langitnong siyudad?",
+    "choices": [
+      "Kay sa panahon sa kataposang hukom mawala na man ang purgaturyo human sa pagbanhaw sa tanan (Jn. 5:28-29)",
+      "Walay bisan unsang hugaw makasulod niini",
+      "Si Judas Macabeo",
+      "Sulayan kini sa kalayo; kon dili hingpit mag-antos siya sa kapildihan apan maluwas gihapon"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon ni Jesus mahitungod sa pagkabilanggo hangtod mabayran ang multa (Mat. 5:26)?",
+    "choices": [
+      "Ang pag-ampo sa mga buhi, ilabina ang Santos nga Sakripisyo sa Misa",
+      "Ang hustisiya ug ang kaluoy sa Dios",
+      "Bilanggoon ka didto hangtod kabayran mo sa hingpit ang imong multa",
+      "Si Judas Macabeo"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa unsang duha ka hiyas sa Dios nagsukad ang pagtulon-an sa purgaturyo?",
+    "choices": [
+      "Walay bisan unsang hugaw makasulod niini",
+      "Ang hustisiya ug ang kaluoy sa Dios",
+      "Si Judas Macabeo",
+      "Dunay tinagsa nga paghukom sa matag kalag sa takna sa kamatayon (Heb. 9:27), lahi sa kinatibuk-ang paghukom"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Pagtulon-an sa maong topiko, unsay angay buhaton alang sa mga kalag sa purgaturyo?",
+    "choices": [
+      "Ang pag-ampo sa mga buhi, ilabina ang Santos nga Sakripisyo sa Misa",
+      "Mag-ampo alang kanila, ilabina magpamisa, ug maglikay bisan sa gagmayng sala",
+      "Dunay tinagsa nga paghukom sa matag kalag sa takna sa kamatayon (Heb. 9:27), lahi sa kinatibuk-ang paghukom",
+      "Ang sala batok sa Espiritu Santo"
+    ],
+    "correct_index": 1
+  }
+]

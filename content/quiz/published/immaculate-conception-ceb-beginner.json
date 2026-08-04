@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 1 nga ubos si Maria sa balaod nga 'ang tanan nakasala'?",
+    "choices": [
+      "Si Isabel",
+      "Ang tanang kaliwatan motawag kaniya nga bulahan",
+      "Si San Athanasius",
+      "Si Maria gipahigawas tungod kay siya gipili nga mahimong inahan sa Anak sa Dios"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 2 nga si Maria giluwas dili kay nataptan na sa sala?",
+    "choices": [
+      "'Pagkatahom mo, hinigugma ko, walay buling diha kanimo'",
+      "'Redemptio preventiva'",
+      "Giluwas siya pinaagi sa pagsagang kaniya nang daan aron dili gyod siya matapt sa sala",
+      "Ang tanang kaliwatan motawag kaniya nga bulahan"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 3 nga si Maria miagi sa kamatayon?",
+    "choices": [
+      "Giluwas siya pinaagi sa pagsagang kaniya nang daan aron dili gyod siya matapt sa sala",
+      "Maghimaya ka puno sa grasya, ang Ginoo uban kanimo",
+      "Si Jeremias ug si Juan Bautista",
+      "Ang iyang kamatayon dili tungod sa sala kondili sakripisyo sa pag-antos uban ni Jesus"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Panudlo sa Sta. Iglesya, nganong gipanamkon si Maria nga walay mansa sa sala?",
+    "choices": [
+      "Ang tanang kaliwatan motawag kaniya nga bulahan",
+      "'Pagkatahom mo, hinigugma ko, walay buling diha kanimo'",
+      "Dili tungod sa iyang kaugalingong merito kondili gasa sa Dios tungod sa merito ni Cristo",
+      "Si St. Alphonsus Liguori"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Genesis 3:15, kinsa ang babaye nga gipasabot nga mobuntog sa yawa?",
+    "choices": [
+      "Si Isabel",
+      "Kay walay sala nga gipasaylo gawas kon giulaan kini og dugo, ug ang dugo ni Cristo gikan man kang Maria",
+      "Si Jeremias ug si Juan Bautista",
+      "Si Maria, kansang binhi nga mao si Cristo"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon sa anghel Gabriel kang Maria sa Lucas 1:28?",
+    "choices": [
+      "Maghimaya ka puno sa grasya, ang Ginoo uban kanimo",
+      "Ang tanang kaliwatan motawag kaniya nga bulahan",
+      "Ang iyang kamatayon dili tungod sa sala kondili sakripisyo sa pag-antos uban ni Jesus",
+      "Si San Athanasius"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa nga mga tawo sa Biblia ang gitandi sa doktrina isip gibalaan na sa Dios bisan sa wala pa sila matawo?",
+    "choices": [
+      "Si Maria gipahigawas tungod kay siya gipili nga mahimong inahan sa Anak sa Dios",
+      "'Pagkatahom mo, hinigugma ko, walay buling diha kanimo'",
+      "Si Jeremias ug si Juan Bautista",
+      "Ang iyang kamatayon dili tungod sa sala kondili sakripisyo sa pag-antos uban ni Jesus"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsang lugar sa Daang Tugon ang gihimong pananglitan sa kabalaan ni Maria isip puloy-anan sa Espiritu Santo?",
+    "choices": [
+      "Si Isabel",
+      "Ang Labing Balaang Dapit diin gibutang ang Sudlanan sa Kasabutan",
+      "Dili tungod sa iyang kaugalingong merito kondili gasa sa Dios tungod sa merito ni Cristo",
+      "Giluwas siya pinaagi sa pagsagang kaniya nang daan aron dili gyod siya matapt sa sala"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang miingon kang Maria, 'Bulahan ka diha sa mga kababayen-an ug bulahan man ang bunga sa imong tiyan'?",
+    "choices": [
+      "Si St. Alphonsus Liguori",
+      "'Pagkatahom mo, hinigugma ko, walay buling diha kanimo'",
+      "'Redemptio preventiva'",
+      "Si Isabel"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitagna ni Maria bahin sa iyang kaugalingon sa Lucas 1:48?",
+    "choices": [
+      "Si St. Alphonsus Liguori",
+      "Dili tungod sa iyang kaugalingong merito kondili gasa sa Dios tungod sa merito ni Cristo",
+      "Maghimaya ka puno sa grasya, ang Ginoo uban kanimo",
+      "Ang tanang kaliwatan motawag kaniya nga bulahan"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitawag nga termino sa pagluwas kang Maria pinaagi sa pagsagang kaniya nang daan gikan sa sala?",
+    "choices": [
+      "Si Jeremias ug si Juan Bautista",
+      "Si San Athanasius",
+      "'Redemptio preventiva'",
+      "Ang tanang kaliwatan motawag kaniya nga bulahan"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Awit sa mga Awit 4:7 nga gipadapat kang Maria, unsay giingon bahin kaniya?",
+    "choices": [
+      "Ang iyang kamatayon dili tungod sa sala kondili sakripisyo sa pag-antos uban ni Jesus",
+      "Giluwas siya pinaagi sa pagsagang kaniya nang daan aron dili gyod siya matapt sa sala",
+      "'Pagkatahom mo, hinigugma ko, walay buling diha kanimo'",
+      "Si San Athanasius"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong kinahanglan ipahigawas si Maria gikan sa sala sumala sa gikinahanglan sa pagpanubos?",
+    "choices": [
+      "Si Jeremias ug si Juan Bautista",
+      "Kay walay sala nga gipasaylo gawas kon giulaan kini og dugo, ug ang dugo ni Cristo gikan man kang Maria",
+      "Si Maria, kansang binhi nga mao si Cristo",
+      "'Redemptio preventiva'"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsay namulong nga 'maingon nga dili nato matugkad ang kabalaan sa Dios, dili usab nato matugkad ang kabalaan sa nahimong inahan sa Dios'?",
+    "choices": [
+      "Si San Athanasius",
+      "Si St. Alphonsus Liguori",
+      "Si Maria gipahigawas tungod kay siya gipili nga mahimong inahan sa Anak sa Dios",
+      "Si Isabel"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsay namulong sa Latin nga 'De Maria numquam satis'?",
+    "choices": [
+      "Kay walay sala nga gipasaylo gawas kon giulaan kini og dugo, ug ang dugo ni Cristo gikan man kang Maria",
+      "Ang tanang kaliwatan motawag kaniya nga bulahan",
+      "Si St. Alphonsus Liguori",
+      "Si Maria, kansang binhi nga mao si Cristo"
+    ],
+    "correct_index": 2
+  }
+]

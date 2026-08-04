@@ -1,0 +1,93 @@
+[
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Saan gipahibaro nga ang Amahan ug ang Anak usa ra diha sa pagka-Dios?",
+    "choices": [
+      "Lucas 1:35",
+      "1 Corinto 8:6",
+      "Hebreo 1:8",
+      "Juan 10:30"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Saan gipahibaro nga ang Espiritu Santo nagbuhat sa tawo ug naghatag kaniya og kinabuhi?",
+    "choices": [
+      "Efeso 4:10",
+      "Jeremias 23:24",
+      "Salmo 139:7-10",
+      "Job 33:4"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Saan gipahibaro nga ang Espiritu Santo apil sa paglalang sa kalibotan?",
+    "choices": [
+      "Salmo 36:9",
+      "Genesis 1:1-2",
+      "Juan 5:19",
+      "Hebreo 3:4"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Unsa ang gihimo sa Espiritu Santo diha sa pagtawag sa Dios ni Propeta Isaias?",
+    "choices": [
+      "Gihimo niya ang pagkabanhaw sa mga patay",
+      "Gihimo niya ang pagmata sa tawo",
+      "Gihimo niya ang pag-ambit sa kinabuhi sa Trinidad",
+      "Gihimo niya ang pagpadala ni Isaias"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Unsa ang gihimo sa Espiritu Santo diha sa pagbunyag kang Jesus?",
+    "choices": [
+      "Nagpadala sa mga apostoles aron magwali sa tibuok kalibotan.",
+      "Nagpakita sa dagway sa usa ka salampati ug dunay tingog nga nabati gikan sa langit.",
+      "Nagpahibaro nga ang Amahan ug ang Anak usa ra diha sa pagka-Dios.",
+      "Nagbuhat sa tanang butang sa kalibotan ug sa kalangitan."
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Unsa ang gihimo sa Espiritu Santo diha sa pagwali ni San Pablo ngadto sa taga-Corinto?",
+    "choices": [
+      "Nagpahibaro nga ang Amahan ug ang Anak usa ra diha sa pagka-Dios.",
+      "Gihatag ang panalangin nga ang grasya sa Ginoong Jesu-Cristo, gugma sa Dios, ug pagpakig-ambit sa Espiritu Santo.",
+      "Nagpabilin sa gugma sa Dios samtang naghulat sa pagkabanhaw ni Jesu-Cristo.",
+      "Nagpadala sa mga tawo nga magwali sa tibuok kalibotan."
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "intermediate",
+    "question": "Unsa ang gihimo sa Amahan diha sa pagbuhat sa tawo?",
+    "choices": [
+      "Nagbuhat sa tawo pinaagi sa iyang kaugalingon",
+      "Nagbuhat sa tawo pinaagi sa Espiritu Santo",
+      "Nagbuhat sa tawo pinaagi sa Anak",
+      "Nagbuhat sa tawo pinaagi sa iyang kaugalingon ug sa Anak"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 1 nga duha na ka Dios kon si Cristo Dios?",
+    "choices": [
+      "Si Cristo dili laing Dios gawas sa Amahan, kay sila usa ra (Jn. 10:30)",
+      "Ang Dios dili tawo apan mahimo siyang magpakatawo; ang Pulong nahimong tawo (Jn. 1:14)",
+      "Si Cristo matarong ug wala gyod biyai; gidala niya ang atong tingog ug sala didto sa krus",
+      "Ang 'panganay' (Prototokus) nagpasabot nga siya ang gigikanan sa tanan, dili unang binuhat"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 2 nga si Cristo tawo busa dili Dios?",
+    "choices": [
+      "Andam siya mag-antos; ang hinungdan sa iyang pag-anhi mao ang pagdawat sa takna sa pag-antos (Jn. 12:27)",
+      "Buot ipasabot nga dili kini ibutyag sa tawo, dili nga wala gyod siya mahibalo",
+      "Si Cristo matarong ug wala gyod biyai; gidala niya ang atong tingog ug sala didto sa krus",
+      "Ang Dios dili tawo apan mahimo siyang magpakatawo; ang Pulong nahimong tawo (Jn. 1:14)"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 3 nga si Cristo mituaw 'Dios ko, nganong gibiyaan mo ako?'",
+    "choices": [
+      "Namatay siya sa iyang pagka-tawo lamang; sa iyang pagka-Dios dili siya mamatay (Jn. 11:25)",
+      "Si Cristo matarong ug wala gyod biyai; gidala niya ang atong tingog ug sala didto sa krus",
+      "Sa iyang pagkatawo dunay lawas si Cristo; sa wala pa magpakatawo siya diha sa kahimtang Espiritu",
+      "Nagpasabot kini sa iyang pagka-Tawo ug pagpaubos, dili sa iyang pagka-Dios"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 4 nga ang Dios dili mamatay apan si Cristo namatay?",
+    "choices": [
+      "Si Cristo matarong ug wala gyod biyai; gidala niya ang atong tingog ug sala didto sa krus",
+      "Namatay siya sa iyang pagka-tawo lamang; sa iyang pagka-Dios dili siya mamatay (Jn. 11:25)",
+      "Ang 'panganay' (Prototokus) nagpasabot nga siya ang gigikanan sa tanan, dili unang binuhat",
+      "Buot ipasabot nga dili kini ibutyag sa tawo, dili nga wala gyod siya mahibalo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 5 nga si Cristo miangkon nga wala siya mahibalo sa adlaw sa kataposan?",
+    "choices": [
+      "Sa iyang pagkatawo dunay lawas si Cristo; sa wala pa magpakatawo siya diha sa kahimtang Espiritu",
+      "Si Cristo matarong ug wala gyod biyai; gidala niya ang atong tingog ug sala didto sa krus",
+      "Nagpasabot kini sa iyang pagka-Tawo ug pagpaubos, dili sa iyang pagka-Dios",
+      "Buot ipasabot nga dili kini ibutyag sa tawo, dili nga wala gyod siya mahibalo"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 6 nga si Jesus miingon 'ang Amahan labaw kay kanako'?",
+    "choices": [
+      "Andam siya mag-antos; ang hinungdan sa iyang pag-anhi mao ang pagdawat sa takna sa pag-antos (Jn. 12:27)",
+      "Nagpasabot kini sa iyang pagka-Tawo ug pagpaubos, dili sa iyang pagka-Dios",
+      "Ang 'panganay' (Prototokus) nagpasabot nga siya ang gigikanan sa tanan, dili unang binuhat",
+      "Sa iyang pagkatawo dunay lawas si Cristo; sa wala pa magpakatawo siya diha sa kahimtang Espiritu"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 7 nga si Jesus nag-ampo sa Getsemane nga luwason siya?",
+    "choices": [
+      "Andam siya mag-antos; ang hinungdan sa iyang pag-anhi mao ang pagdawat sa takna sa pag-antos (Jn. 12:27)",
+      "Sa iyang pagkatawo dunay lawas si Cristo; sa wala pa magpakatawo siya diha sa kahimtang Espiritu",
+      "Buot ipasabot nga dili kini ibutyag sa tawo, dili nga wala gyod siya mahibalo",
+      "Si Cristo dili laing Dios gawas sa Amahan, kay sila usa ra (Jn. 10:30)"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 8 nga si Jesus miingon nga ang Dios espiritu apan siya adunay lawas?",
+    "choices": [
+      "Nagpasabot kini sa iyang pagka-Tawo ug pagpaubos, dili sa iyang pagka-Dios",
+      "Ang 'panganay' (Prototokus) nagpasabot nga siya ang gigikanan sa tanan, dili unang binuhat",
+      "Sa iyang pagkatawo dunay lawas si Cristo; sa wala pa magpakatawo siya diha sa kahimtang Espiritu",
+      "Buot ipasabot nga dili kini ibutyag sa tawo, dili nga wala gyod siya mahibalo"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa Supak 9 nga si Cristo gitawag 'ang panganay sa tanang binuhat' busa binuhat lang siya?",
+    "choices": [
+      "Buot ipasabot nga dili kini ibutyag sa tawo, dili nga wala gyod siya mahibalo",
+      "Si Cristo dili laing Dios gawas sa Amahan, kay sila usa ra (Jn. 10:30)",
+      "Ang 'panganay' (Prototokus) nagpasabot nga siya ang gigikanan sa tanan, dili unang binuhat",
+      "Andam siya mag-antos; ang hinungdan sa iyang pag-anhi mao ang pagdawat sa takna sa pag-antos (Jn. 12:27)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsang Persona sa Santisima Trinidad si Cristo?",
+    "choices": [
+      "Ikatulong Persona",
+      "Ikaduhang Persona",
+      "Unang Persona",
+      "Dili Persona sa Trinidad"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang duha ka kinaiya nga gihuptan ni Cristo sukad sa iyang pagpakatawo?",
+    "choices": [
+      "Usa lamang ka kinaiya nga Dios",
+      "Usa lamang ka kinaiya nga tawo",
+      "Duha ka managlahi nga Dios",
+      "Matuod nga Dios ug matuod nga tawo"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Gikan kang kinsa ang pagkatawo ni Cristo?",
+    "choices": [
+      "Gikan sa Amahan",
+      "Gikan sa mga Apostoles",
+      "Gikan ni Sta. Maria",
+      "Gikan sa langit"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Juan 1:1, unsa ang Pulong sa wala pa mabuhat ang tanan?",
+    "choices": [
+      "Wala pa ang Pulong",
+      "Diha na ang Pulong, ug ang Pulong Dios",
+      "Gihimo ang Pulong sa mga anghel",
+      "Gibuhian ang Pulong human sa paglalang"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang miingon 'Ginoo ko ug Dios ko' human sa pagkabanhaw ni Jesus?",
+    "choices": [
+      "Si Pablo",
+      "Si Pedro",
+      "Si Tomas",
+      "Si Maria"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Isaias 9:6, unsay usa sa mga ngalan nga itawag sa Mesiyas?",
+    "choices": [
+      "Manlalaban taliwala sa Dios ug tawo",
+      "Panganay sa tanang binuhat",
+      "Dios nga Gamhanan",
+      "Ang unang Apostol"
+    ],
+    "correct_index": 2
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sumala sa Sta. Iglesya, pila ka Dios ang naa?",
+    "choices": [
+      "Duha",
+      "Usa",
+      "Tulo",
+      "Walay Dios"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Pila ka managlahi nga personas ang naa diha sa usa ka pagka-Dios?",
+    "choices": [
+      "Usa",
+      "Duha",
+      "Tulo",
+      "Upat"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Kinsa ang tulo ka personas sa Santisima Trinidad?",
+    "choices": [
+      "Ang Amahan, ang Anak ug ang Espiritu Santo",
+      "Si Maria, si Jose ug si Jesus",
+      "Ang Amahan, si Maria ug ang mga Anghel",
+      "Ang Amahan, ang Anak ug si San Pedro"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sumala sa leksyon, ang Amahan Dios nga...",
+    "choices": [
+      "gikan sa Anak",
+      "gikan sa Espiritu Santo",
+      "walay gigikanan",
+      "gikan sa mga Anghel"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Ang Anak Dios nga gikan asa?",
+    "choices": [
+      "Gikan sa Espiritu Santo",
+      "Gikan sa Amahan",
+      "Walay gigikanan",
+      "Gikan sa mga propeta"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Ang Espiritu Santo Dios nga gikan asa?",
+    "choices": [
+      "Gikan sa Amahan ug sa Anak",
+      "Gikan lamang sa Amahan",
+      "Gikan lamang sa Anak",
+      "Walay gigikanan"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Unsa ang gihuptan sa matag usa sa tulo ka personas sa Trinidad?",
+    "choices": [
+      "Bahin lamang sa pagka-Dios",
+      "Ang bug-os nga kahimtang o kinaiya sa pagka-Dios",
+      "Managlahi nga kinaiya sa Dios",
+      "Walay hiyas sa pagka-Dios"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sa Genesis 1:26, unsang pulong ang gigamit sa Dios nga nagpakita nga dunay kauban siya sa pagpamuhat sa tawo?",
+    "choices": [
+      "Ako",
+      "Sila",
+      "Nato",
+      "Kamo"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Kinsa ang mianhi kang Maria ug nag-ingon nga ang balaan nga bata pagatawgon nga Anak sa Dios?",
+    "choices": [
+      "Usa ka propeta",
+      "Usa ka anghel",
+      "Si San Pedro",
+      "Si San Juan Bautista"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Diin nga hitabo sa kinabuhi ni Jesus nagpakita ang Espiritu Santo sa dagway sa usa ka salampati?",
+    "choices": [
+      "Sa iyang pagpakatawo",
+      "Sa iyang pagbunyag",
+      "Sa gabii sa iyang pagpasakit",
+      "Sa iyang pagsaka sa langit"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sa dihang mibunyag si Jesus, unsay tingog nga nabati gikan sa langit?",
+    "choices": [
+      "Manaog kita ug libogon ta ang ilang pinulongan",
+      "Kini ang pinangga kong Anak nga gikahimut-an ko pag-ayo",
+      "Ako ang Dios nga anaa sa tanang dapit",
+      "Ang akong Amahan ug ako usa ra"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sa dayon sa pagsaka ni Jesus ngadto sa langit, unsay iyang gimando sa iyang mga tinun-an mahitungod sa pagbunyag?",
+    "choices": [
+      "Bunyagi sila sa ngalan sa Amahan, sa Anak ug sa Espiritu Santo",
+      "Bunyagi sila sa ngalan lamang sa Anak",
+      "Ayaw sila bunyagi hangtod sa ilang kamatayon",
+      "Bunyagi sila sa ngalan sa mga Apostoles"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Unsay giingon ni Jesus mahitungod sa iyang relasyon sa Amahan sa Juan 10:30?",
+    "choices": [
+      "Ang akong Amahan ug ako usa ra",
+      "Ako ug ang Amahan managlahi",
+      "Ang Amahan mas dako kanako sa tanan",
+      "Wala akoy kalabotan sa Amahan"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Unsay buhaton nato sa dili pa kita mobuhat og bisan unsa, sumala sa naandan nga pag-ampo?",
+    "choices": [
+      "Mobasa sa Biblia",
+      "Manguros samtang moingon 'Sa ngalan sa Amahan, ug sa Anak ug sa Espiritu Santo'",
+      "Moadto sa simbahan",
+      "Mag-ampo lamang sa Amahan"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Nganong dili gyod matugkad sa atong pangisip ang misteryo sa Trinidad?",
+    "choices": [
+      "Tungod kay dili kini tinuod",
+      "Tungod kay wala kini gipadayag diha sa Biblia",
+      "Tungod kay usa kini ka halawom nga misteryo sa atong pagtuo",
+      "Tungod kay dili kini gitudlo sa Sta. Iglesya"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  }
+]

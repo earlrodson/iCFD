@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitudlo sa Sta. Iglesya bahin sa pagka-ulay ni Sta. Maria?",
+    "choices": [
+      "Usa ka ulay ang manamkon ug manganak og lalaki nga ginganlag Emmanuel (Isa. 7:14)",
+      "Si San Juan Apostol (Jn. 19:25-27), timailhan nga wala nay laing anak si Maria",
+      "Nagpabilin siyang ulay sa wala pa, sa iyang, ug human sa iyang pagpanganak kang Jesus",
+      "Asawa ni Cleofas"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitagna ni Propeta Isaias mahitungod sa pagpanganak sa Manluluwas?",
+    "choices": [
+      "Nagpabilin siyang ulay sa wala pa, sa iyang, ug human sa iyang pagpanganak kang Jesus",
+      "Usa ka ulay ang manamkon ug manganak og lalaki nga ginganlag Emmanuel (Isa. 7:14)",
+      "Wala mobalik ang uwak hangtod nga mihubas ang tubig, ug wala gyod na kini mibalik (Gen. 8:7)",
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Griego, unsay lapad nga kahulogan sa pulong 'Adelphos' nga gihubad og 'igsoon'?",
+    "choices": [
+      "Ang bugtong Anak ni Sta. Maria",
+      "Nagpabilin siyang ulay sa wala pa, sa iyang, ug human sa iyang pagpanganak kang Jesus",
+      "Dili lamang igsoon sa unod kondili apil usab ang mga paryenti o ig-agaw",
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa gayod ang mga inahan sa mga gitawag nga 'igsoon ni Jesus' nga si Santiago ug si Jose?",
+    "choices": [
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay",
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Asawa ni Cleofas",
+      "Wala mobalik ang uwak hangtod nga mihubas ang tubig, ug wala gyod na kini mibalik (Gen. 8:7)"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa karaang Historian nga si Hegesippus, unsay relasyon ni Alfeo kang San Jose?",
+    "choices": [
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay",
+      "Si Alfeo igsoon ni San Jose busa ang iyang asawa bayaw lamang ni Sta. Maria",
+      "Duha — anak ni Sebedeo, ug anak ni Alfeo nga gitawag usab og Clopas",
+      "Ang una nga miabli sa tagoangkan sa inahan, dili nagpasabot nga dunay misunod pa"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitagna ni Propeta Ezequiel nga gigamit sa pagpasabot sa pagka-ulay ni Maria?",
+    "choices": [
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Dili kini nagpasabot og sukwahi nga hitabo human niini; nagpabilin ang naandang kahimtang",
+      "Si Alfeo igsoon ni San Jose busa ang iyang asawa bayaw lamang ni Sta. Maria",
+      "Ang pultahan nga giagian sa Dios sa Israel dili na gyod pagaablihan pa (Eze. 44:2)"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala ni St. Jerome, unsay hustong kahulogan sa pulong 'hangtod' sa Kasulatan?",
+    "choices": [
+      "Dili kini nagpasabot og sukwahi nga hitabo human niini; nagpabilin ang naandang kahimtang",
+      "Asawa ni Cleofas",
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay",
+      "Wala siya manganak hangtod sa iyang kamatayon, buhi man o patay na"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsang pananglitan gikan sa Genesis ang gigamit sa pagpasabot sa pulong 'hangtod' nga walay sukwahi nga nahitabo?",
+    "choices": [
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay",
+      "Usa ka ulay ang manamkon ug manganak og lalaki nga ginganlag Emmanuel (Isa. 7:14)",
+      "Wala mobalik ang uwak hangtod nga mihubas ang tubig, ug wala gyod na kini mibalik (Gen. 8:7)",
+      "Ang bugtong Anak ni Sta. Maria"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa asoy ni 2 Samuel 6:23, unsay nahitabo kang Mical sa iyang tibuok kinabuhi?",
+    "choices": [
+      "Dili lamang igsoon sa unod kondili apil usab ang mga paryenti o ig-agaw",
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Wala siya manganak hangtod sa iyang kamatayon, buhi man o patay na",
+      "Si Alfeo igsoon ni San Jose busa ang iyang asawa bayaw lamang ni Sta. Maria"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipasabot sa pulong 'panganay' sumala sa Kasulatan?",
+    "choices": [
+      "Ang una nga miabli sa tagoangkan sa inahan, dili nagpasabot nga dunay misunod pa",
+      "Ang pultahan nga giagian sa Dios sa Israel dili na gyod pagaablihan pa (Eze. 44:2)",
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Nagpabilin siyang ulay sa wala pa, sa iyang, ug human sa iyang pagpanganak kang Jesus"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay pamatuod nga nakit-an sa Ehipto nga nagpakita nga ang 'panganay' dili nagpasabot og daghang anak?",
+    "choices": [
+      "Usa ka lapida nga naghisgot og babaye nga namatay sa pagpanganak sa iyang panganay",
+      "Wala siya manganak hangtod sa iyang kamatayon, buhi man o patay na",
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Dili lamang igsoon sa unod kondili apil usab ang mga paryenti o ig-agaw"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang gitugyanan ni Jesus sa pag-atiman sa iyang inahan didto sa krus?",
+    "choices": [
+      "Dili lamang igsoon sa unod kondili apil usab ang mga paryenti o ig-agaw",
+      "Si San Juan Apostol (Jn. 19:25-27), timailhan nga wala nay laing anak si Maria",
+      "Asawa ni Cleofas",
+      "Duha — anak ni Sebedeo, ug anak ni Alfeo nga gitawag usab og Clopas"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Pila ka Santiago ang gihisgotan diha sa Bag-ong Tugon?",
+    "choices": [
+      "Duha — anak ni Sebedeo, ug anak ni Alfeo nga gitawag usab og Clopas",
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Ang una nga miabli sa tagoangkan sa inahan, dili nagpasabot nga dunay misunod pa",
+      "Dili kini nagpasabot og sukwahi nga hitabo human niini; nagpabilin ang naandang kahimtang"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa Juan 19:25, kang kinsa asawa gitawag si Maria nga nagbarog duol sa krus uban sa inahan ni Jesus?",
+    "choices": [
+      "Ang pultahan nga giagian sa Dios sa Israel dili na gyod pagaablihan pa (Eze. 44:2)",
+      "Duha — anak ni Sebedeo, ug anak ni Alfeo nga gitawag usab og Clopas",
+      "Wala mobalik ang uwak hangtod nga mihubas ang tubig, ug wala gyod na kini mibalik (Gen. 8:7)",
+      "Asawa ni Cleofas"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "mary-ever-virgin",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, si Jesus mao ang unsa nga matang sa anak ni Sta. Maria?",
+    "choices": [
+      "Dili kini nagpasabot og sukwahi nga hitabo human niini; nagpabilin ang naandang kahimtang",
+      "Asawa ni Cleofas",
+      "Si Maria nga asawa ni Cleofas (Alfeo), dili si Sta. Maria nga inahan ni Jesus",
+      "Ang bugtong Anak ni Sta. Maria"
+    ],
+    "correct_index": 3
+  }
+]

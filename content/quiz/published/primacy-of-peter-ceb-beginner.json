@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang gihimong makita nga pangulo sa Iglesya human misaka si Cristo sa langit?",
+    "choices": [
+      "Nag-ampo siya nga dili mabuntog ang pagtuo ni Pedro aron molig-on siya sa iyang mga igsoon",
+      "Siya ang mihusay sa kagubot ug ang iyang mga kauban miuyon kaniya",
+      "Si Josue (Deut. 31:1-8)",
+      "Si Cristo nagpabilin nga dili makita nga pangulo (Col. 1:18) apan gilugway niya kini ngadto ni Pedro isip makita nga pangulo (Mat. 16:19)"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga si Cristo ra ang bato nga sukaranan sa Iglesya (Efeso 2:20)?",
+    "choices": [
+      "Ang Papa 'infallible' (dili masayop) sa iyang opisyal nga pagpanudlo bahin sa tuluhoan ug pamatasan, apan dili siya 'impeccable' (walay sala)",
+      "Tinuod nga si Cristo mao ang fundamento nga bato, apan si Pedro gihimo niyang 'kephas' (bato) nga lugway kaniya (Jn. 1:42) — walay sumpaki",
+      "Ang pagkapadala nagpakita lang sa kahinungdanon sa misyon, dili nga nahunong ang iyang pagkapangulo",
+      "Ang tawhanong pagbati ni Pedro maoy wala mahitukma sa plano ni Jesus, apan wala kini nagpasabot nga gikuhaan siya sa iyang katungod"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa aramaiko nga gisulti mismo ni Jesus (Mat. 16:18), kinsay klarong gipasabot nga 'bato' nga patukoranan sa Iglesya?",
+    "choices": [
+      "Siya ang mihusay sa kagubot ug ang iyang mga kauban miuyon kaniya",
+      "Si Pedro mismo — 'Ikaw si Kepha ug sa ibabaw niining Kepha pagatukoron ko ang akong iglesya'",
+      "Siya ang unang miwali samtang naminaw ang iyang mga kauban (Buh. 2:14-41)",
+      "Si Cristo nagpabilin nga dili makita nga pangulo (Col. 1:18) apan gilugway niya kini ngadto ni Pedro isip makita nga pangulo (Mat. 16:19)"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong dako pa ang gahom ni Pedro kaysa sa ubang mga apostoles bisan sila usab nakadawat sa yawi sa pagdili/pagtugot (Mat. 18:18)?",
+    "choices": [
+      "Tinuod nga si Cristo mao ang fundamento nga bato, apan si Pedro gihimo niyang 'kephas' (bato) nga lugway kaniya (Jn. 1:42) — walay sumpaki",
+      "Nag-ampo siya nga dili mabuntog ang pagtuo ni Pedro aron molig-on siya sa iyang mga igsoon",
+      "Ang ubang apostoles nadawat kini isip kauban ni Pedro; si Pedro nadawat kini alang sa tibuok Iglesya (Mat. 16:18-19, Jn. 21:15-17)",
+      "Ang Papa 'infallible' (dili masayop) sa iyang opisyal nga pagpanudlo bahin sa tuluhoan ug pamatasan, apan dili siya 'impeccable' (walay sala)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga wala gihimo si Pedro nga pangulo tungod kay gitawag siya ni Jesus og 'satanas' (Mat. 16:23)?",
+    "choices": [
+      "Ang Papa 'infallible' (dili masayop) sa iyang opisyal nga pagpanudlo bahin sa tuluhoan ug pamatasan, apan dili siya 'impeccable' (walay sala)",
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio",
+      "Ang tawhanong pagbati ni Pedro maoy wala mahitukma sa plano ni Jesus, apan wala kini nagpasabot nga gikuhaan siya sa iyang katungod",
+      "Si Cristo nagpabilin nga dili makita nga pangulo (Col. 1:18) apan gilugway niya kini ngadto ni Pedro isip makita nga pangulo (Mat. 16:19)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong wala mawala ang pagkapangulo ni Pedro bisan gipadala pa siya sa ubang apostoles ngadto sa Samaria (Buh. 8:14)?",
+    "choices": [
+      "Si Pedro mismo — 'Ikaw si Kepha ug sa ibabaw niining Kepha pagatukoron ko ang akong iglesya'",
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio",
+      "Si Josue (Deut. 31:1-8)",
+      "Ang pagkapadala nagpakita lang sa kahinungdanon sa misyon, dili nga nahunong ang iyang pagkapangulo"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay kalainan sa 'infallible' ug 'impeccable' nga gigamit sa pagtudlo bahin sa Sto. Papa?",
+    "choices": [
+      "Ang ubang apostoles nadawat kini isip kauban ni Pedro; si Pedro nadawat kini alang sa tibuok Iglesya (Mat. 16:18-19, Jn. 21:15-17)",
+      "Ang Papa 'infallible' (dili masayop) sa iyang opisyal nga pagpanudlo bahin sa tuluhoan ug pamatasan, apan dili siya 'impeccable' (walay sala)",
+      "Ang tawhanong pagbati ni Pedro maoy wala mahitukma sa plano ni Jesus, apan wala kini nagpasabot nga gikuhaan siya sa iyang katungod",
+      "Si Pedro, gihatagan sa gahom sa pagdili ug pagtugot alang sa tibuok Iglesya (Mat. 16:19)"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipasabot sa pagsaway ni San Pablo kang Pedro didto sa Antioquia (Gal. 2:11-12)?",
+    "choices": [
+      "Ang Papa 'infallible' (dili masayop) sa iyang opisyal nga pagpanudlo bahin sa tuluhoan ug pamatasan, apan dili siya 'impeccable' (walay sala)",
+      "Si Josue (Deut. 31:1-8)",
+      "Siya ang unang miwali samtang naminaw ang iyang mga kauban (Buh. 2:14-41)",
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang gihatagan ni Cristo sa mga yawi sa gingharian sa langit?",
+    "choices": [
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio",
+      "Si Pedro, gihatagan sa gahom sa pagdili ug pagtugot alang sa tibuok Iglesya (Mat. 16:19)",
+      "Ang ubang apostoles nadawat kini isip kauban ni Pedro; si Pedro nadawat kini alang sa tibuok Iglesya (Mat. 16:18-19, Jn. 21:15-17)",
+      "Nag-ampo siya nga dili mabuntog ang pagtuo ni Pedro aron molig-on siya sa iyang mga igsoon"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay orihinal nga ngalan ni Pedro sa wala pa kini usba ni Jesus?",
+    "choices": [
+      "Ang ubang apostoles nadawat kini isip kauban ni Pedro; si Pedro nadawat kini alang sa tibuok Iglesya (Mat. 16:18-19, Jn. 21:15-17)",
+      "Simon (Jn. 1:42)",
+      "Si Pedro mismo — 'Ikaw si Kepha ug sa ibabaw niining Kepha pagatukoron ko ang akong iglesya'",
+      "Nag-ampo siya nga dili mabuntog ang pagtuo ni Pedro aron molig-on siya sa iyang mga igsoon"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay buhat ni Pedro sa adlaw sa Pentecostes sumala sa Buhat sa mga Apostoles?",
+    "choices": [
+      "Siya ang unang miwali samtang naminaw ang iyang mga kauban (Buh. 2:14-41)",
+      "Ang pagkapadala nagpakita lang sa kahinungdanon sa misyon, dili nga nahunong ang iyang pagkapangulo",
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio",
+      "Ang ubang apostoles nadawat kini isip kauban ni Pedro; si Pedro nadawat kini alang sa tibuok Iglesya (Mat. 16:18-19, Jn. 21:15-17)"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang gitugyanan ni Cristo sa pag-atiman sa iyang mga karnero ug nating karnero (Jn. 21:15-17)?",
+    "choices": [
+      "Ang pagkapadala nagpakita lang sa kahinungdanon sa misyon, dili nga nahunong ang iyang pagkapangulo",
+      "Si Pedro, gitugyanan sa pag-atiman sa tibuok panon ni Cristo",
+      "Simon (Jn. 1:42)",
+      "Tinuod nga si Cristo mao ang fundamento nga bato, apan si Pedro gihimo niyang 'kephas' (bato) nga lugway kaniya (Jn. 1:42) — walay sumpaki"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipangayo ni Cristo alang kang Pedro diha sa gabii sa iyang pagpasakit (Luc. 21:31-32)?",
+    "choices": [
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio",
+      "Ang Papa 'infallible' (dili masayop) sa iyang opisyal nga pagpanudlo bahin sa tuluhoan ug pamatasan, apan dili siya 'impeccable' (walay sala)",
+      "Si Cristo nagpabilin nga dili makita nga pangulo (Col. 1:18) apan gilugway niya kini ngadto ni Pedro isip makita nga pangulo (Mat. 16:19)",
+      "Nag-ampo siya nga dili mabuntog ang pagtuo ni Pedro aron molig-on siya sa iyang mga igsoon"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa konsilyo sa Jerusalem (Buh. 15:7), unsay papel ni Pedro?",
+    "choices": [
+      "Simon (Jn. 1:42)",
+      "Siya ang unang miwali samtang naminaw ang iyang mga kauban (Buh. 2:14-41)",
+      "Ang tawhanong pagbati ni Pedro maoy wala mahitukma sa plano ni Jesus, apan wala kini nagpasabot nga gikuhaan siya sa iyang katungod",
+      "Siya ang mihusay sa kagubot ug ang iyang mga kauban miuyon kaniya"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Daang Tugon, kinsa ang gihimong pangulo sa katawhan sa Israel human ni Moises?",
+    "choices": [
+      "Simon (Jn. 1:42)",
+      "Dili kini bahin sa doktrina o moralidad kondili sa batasan ni Pedro nga milikay pagkig-salo sa mga dili Judio",
+      "Siya ang mihusay sa kagubot ug ang iyang mga kauban miuyon kaniya",
+      "Si Josue (Deut. 31:1-8)"
+    ],
+    "correct_index": 3
+  }
+]

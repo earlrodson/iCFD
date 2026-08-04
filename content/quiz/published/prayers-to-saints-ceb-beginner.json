@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitudlo sa Sta. Iglesya bahin sa pagsangpit sa mga Santos nga tua na sa langit?",
+    "choices": [
+      "Maayo ug mapuslanon kini kay ang mga Santos makaampo alang kanato ug makadungog sa atong pag-ampo",
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)",
+      "Latria, kay siya ang atong Magbubuhat (Sal. 100:2)",
+      "Kay nasayod sila nga ang pag-ampo ni Pedro dakog kahimoan (Buh. 9:36-39)"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa nga bahin ni Cristo ang gipasabot sa iyang pagka-bugtong manlalaban (1 Tim. 2:5)?",
+    "choices": [
+      "Maayo ug mapuslanon kini kay ang mga Santos makaampo alang kanato ug makadungog sa atong pag-ampo",
+      "Ang kalag dili mamatay uban sa lawas; buhi kini diha sa Dios (Kaal. 3:2-4, Mat. 10:28)",
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)",
+      "Ang iyang buhat sa pagpanubos lamang, dili ang pagka-makaampo alang sa uban"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipasabot sa mga santos ingon nga 'dalan' ngadto sa Amahan?",
+    "choices": [
+      "Si Abraham, si Lazaro ug ang dato nakigsulti ug nagbati bisan patay na (Luc. 16:22-25)",
+      "Si Anghel Raphael (Tob. 12:12)",
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)",
+      "Kay ang pag-ampo ni Job alang kanila maoy pamation sa Dios (Job. 42:8)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay pananglitan sa Daang Tugon nga nagpakita nga makatabang ang pag-ampo ni Moises alang sa iyang katawhan?",
+    "choices": [
+      "Samtang nag-ampo si Moises midaog ang Israel batok sa mga Amalekanhon (Exo. 17:11)",
+      "Maayo ug mapuslanon kini kay ang mga Santos makaampo alang kanato ug makadungog sa atong pag-ampo",
+      "Si Abraham, si Lazaro ug ang dato nakigsulti ug nagbati bisan patay na (Luc. 16:22-25)",
+      "Gibuot sa Dios nga dunay grasya nga atong madawat pinaagi sa pag-ampo sa mga santos"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong gisugo sa Dios ang tulo ka higala ni Job sa pagdangop kang Job aron mag-ampo alang kanila?",
+    "choices": [
+      "Samtang nag-ampo si Moises midaog ang Israel batok sa mga Amalekanhon (Exo. 17:11)",
+      "Si Anghel Raphael (Tob. 12:12)",
+      "Kay ang anghel usa lamang ka sulugoon sa Dios, dili angay simbahon",
+      "Kay ang pag-ampo ni Job alang kanila maoy pamation sa Dios (Job. 42:8)"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong gipasangpit pa nila si San Pedro sa pag-ampo sa dihang namatay ang usa ka magtutuo sa Jope?",
+    "choices": [
+      "Si Abraham, si Lazaro ug ang dato nakigsulti ug nagbati bisan patay na (Luc. 16:22-25)",
+      "Kay nasayod sila nga ang pag-ampo ni Pedro dakog kahimoan (Buh. 9:36-39)",
+      "Ang iyang buhat sa pagpanubos lamang, dili ang pagka-makaampo alang sa uban",
+      "Maayo ug mapuslanon kini kay ang mga Santos makaampo alang kanato ug makadungog sa atong pag-ampo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay katarungan nga makaampo pa gihapon kita alang sa usag-usa bisan nag-ampo si Cristo alang kanato (Heb. 7:25)?",
+    "choices": [
+      "Kay ang pag-ampo ni Job alang kanila maoy pamation sa Dios (Job. 42:8)",
+      "Gibuot sa Dios nga dunay grasya nga atong madawat pinaagi sa pag-ampo sa mga santos",
+      "Si Anghel Raphael (Tob. 12:12)",
+      "Ang kalag dili mamatay uban sa lawas; buhi kini diha sa Dios (Kaal. 3:2-4, Mat. 10:28)"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Kasulatan, unsay nahitabo sa kalag sa tawo human sa kamatayon?",
+    "choices": [
+      "Si Abraham, si Lazaro ug ang dato nakigsulti ug nagbati bisan patay na (Luc. 16:22-25)",
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)",
+      "Ang kalag dili mamatay uban sa lawas; buhi kini diha sa Dios (Kaal. 3:2-4, Mat. 10:28)",
+      "Kay ang pag-ampo ni Job alang kanila maoy pamation sa Dios (Job. 42:8)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kang kinsa nakigsulti si Jesus sa Bukid sa Pagbag-o nga nagpamatuod nga buhi pa ang mga santos human mamatay?",
+    "choices": [
+      "Gibuot sa Dios nga dunay grasya nga atong madawat pinaagi sa pag-ampo sa mga santos",
+      "Kang Moises ug kang Elias (Mat. 17:3)",
+      "Latria, kay siya ang atong Magbubuhat (Sal. 100:2)",
+      "Kay nasayod sila nga ang pag-ampo ni Pedro dakog kahimoan (Buh. 9:36-39)"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa sambingay ni Lazaro ug sa dato, unsay gipakita nga ang mga kalag adunay pagkaamgo human sa kamatayon?",
+    "choices": [
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)",
+      "Si Abraham, si Lazaro ug ang dato nakigsulti ug nagbati bisan patay na (Luc. 16:22-25)",
+      "Dulia, nga mao ang pagtahod ug pagpasidungog tungod sa ilang kadugtongan sa Dios",
+      "Gibuot sa Dios nga dunay grasya nga atong madawat pinaagi sa pag-ampo sa mga santos"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong gidumilian ni San Pedro ang pagsimba ni Cornelio kaniya (Buh. 10:25)?",
+    "choices": [
+      "Maayo ug mapuslanon kini kay ang mga Santos makaampo alang kanato ug makadungog sa atong pag-ampo",
+      "Si Abraham, si Lazaro ug ang dato nakigsulti ug nagbati bisan patay na (Luc. 16:22-25)",
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)",
+      "Kay bag-o pa nakabig si Cornelio ug wala pa siya matudlo-i sa hustong pagtahod sa mga santos"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa Pinadayag, nganong midumili ang anghel nga simbahon ni San Juan (Pin. 22:8-9)?",
+    "choices": [
+      "Gibuot sa Dios nga dunay grasya nga atong madawat pinaagi sa pag-ampo sa mga santos",
+      "Samtang nag-ampo si Moises midaog ang Israel batok sa mga Amalekanhon (Exo. 17:11)",
+      "Kay ang anghel usa lamang ka sulugoon sa Dios, dili angay simbahon",
+      "Si Anghel Raphael (Tob. 12:12)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tawag sa labing hataas nga pagsimba nga angay lamang sa Dios?",
+    "choices": [
+      "Samtang nag-ampo si Moises midaog ang Israel batok sa mga Amalekanhon (Exo. 17:11)",
+      "Kay ang pag-ampo ni Job alang kanila maoy pamation sa Dios (Job. 42:8)",
+      "Latria, kay siya ang atong Magbubuhat (Sal. 100:2)",
+      "Dili sila dalan sama ni Cristo kondili panig-ingnan nga atong sundon (1 Cor. 11:1)"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tawag sa pagtahod nga ihatag sa mga santos ug mga anghel?",
+    "choices": [
+      "Dulia, nga mao ang pagtahod ug pagpasidungog tungod sa ilang kadugtongan sa Dios",
+      "Kang Moises ug kang Elias (Mat. 17:3)",
+      "Ang iyang buhat sa pagpanubos lamang, dili ang pagka-makaampo alang sa uban",
+      "Gibuot sa Dios nga dunay grasya nga atong madawat pinaagi sa pag-ampo sa mga santos"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "prayers-to-saints",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang gigamit sa Dios nga anghel sa pagpaila kang Tobit nga siya ang nagdala sa ilang mga pag-ampo ngadto sa Dios?",
+    "choices": [
+      "Latria, kay siya ang atong Magbubuhat (Sal. 100:2)",
+      "Si Anghel Raphael (Tob. 12:12)",
+      "Maayo ug mapuslanon kini kay ang mga Santos makaampo alang kanato ug makadungog sa atong pag-ampo",
+      "Kay ang anghel usa lamang ka sulugoon sa Dios, dili angay simbahon"
+    ],
+    "correct_index": 1
+  }
+]

@@ -1,0 +1,171 @@
+[
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Kinsa ang nagtukod sa matuod nga Iglesya?",
+    "choices": [
+      "Si Constantino",
+      "Si Pedro",
+      "Si Jesu-Cristo",
+      "Ang mga Apostoles"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Pila ka timaan ang gibutang ni Cristo aron mailhan ang iyang Iglesya?",
+    "choices": [
+      "Duha",
+      "Tulo",
+      "Upat",
+      "Lima"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Hain sa mosunod ang DILI usa sa upat ka timaan sa matuod nga Iglesya?",
+    "choices": [
+      "Usa",
+      "Santa",
+      "Apostolika",
+      "Independent"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Unsay unang timaan sa matuod nga Iglesya?",
+    "choices": [
+      "Santa",
+      "Katolika",
+      "Apostolika",
+      "Usa"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Sumala sa Mateo 16:18, kinsa ang giingnan ni Jesus nga pagatukoran Niya sa iyang Iglesya?",
+    "choices": [
+      "Juan",
+      "Pedro",
+      "Pablo",
+      "Andres"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Unsay pasidaan ni Jesus mahitungod sa mga magdala sa iyang ngalan?",
+    "choices": [
+      "Tanan tinuod nga magtutudlo",
+      "Walay mini nga magtutudlo",
+      "Daghang mini nga Mesiyas ug propeta ang motungha",
+      "Walay tawo nga malimbongan"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Unsa ang kahulogan sa timaan nga 'Katolika'?",
+    "choices": [
+      "Para lamang sa Roma",
+      "Makaylapon o alang sa tanang katawhan",
+      "Para lamang sa mga Hudiyo",
+      "Para lamang sa mga pari"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Unsa ang kahulogan sa timaan nga 'Apostolika'?",
+    "choices": [
+      "Gitukod sa emperador",
+      "Gitukod sa mga santo",
+      "Nagpadayon ang pagpangulo gikan sa mga Apostoles",
+      "Walay mga Obispo"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Kinsa ang unang Papa sumala sa leksyon?",
+    "choices": [
+      "Pablo",
+      "Santiago",
+      "Juan",
+      "Pedro"
+    ],
+    "correct_index": 3,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Kinsa ang nagpadayon sa pagpangulo ni Pedro karon?",
+    "choices": [
+      "Mga Diakono",
+      "Ang Santo Papa",
+      "Mga Kardinal lamang",
+      "Mga Misyonaryo"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Unsang timaan sa Iglesya nagpasabot nga nagtudlo ug balaang pagtulon-an ug naghupot sa mga sakramento?",
+    "choices": [
+      "Usa",
+      "Katolika",
+      "Santa",
+      "Apostolika"
+    ],
+    "correct_index": 2,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Igo na ba ang pagdala sa ngalan ni Cristo aron mahimong matuod nga Iglesya?",
+    "choices": [
+      "Oo",
+      "Dili",
+      "Usahay",
+      "Depende sa nasod"
+    ],
+    "correct_index": 1,
+    "lang": "ceb"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Unsa ang upat ka timaan sa matuod nga Iglesya?",
+    "choices": [
+      "Usa, Santa, Katolika, Apostolika",
+      "Usa, Biblikal, Balaan, Evangelical",
+      "Katolika, Protestante, Apostolika, Balaan",
+      "Balaan, Makasaysayanon, Romano, Apostolika"
+    ],
+    "correct_index": 0,
+    "lang": "ceb"
+  }
+]
