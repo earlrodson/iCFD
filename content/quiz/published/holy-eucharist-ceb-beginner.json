@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsa ang Eukaristiya?",
+    "choices": [
+      "Usa lamang ka handumanan sa Kataposang Panihapon",
+      "Ang sacramento ug sakripisyo sa pagconsagrar sa pan ug bino aron mahimong lawas ug dugo ni Cristo",
+      "Usa ka simbolo sa panaghiusa sa mga kristohanon",
+      "Usa ka rituwal nga gikan sa Daang Tugon nga wala mabag-o ni Cristo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala ni Sto. Tomas de Aquino, nganong ang Eukaristiya mao ang kinalabwan sa tanang sacramento?",
+    "choices": [
+      "Tungod kay dili lamang nga madawat ang grasya kondili madawat gyod si Cristo mismo nga tighatag og grasya",
+      "Tungod kay kini ra ang sacramento nga daghang beses madawat",
+      "Tungod kay kini ang labing tigulang sa mga sacramento",
+      "Tungod kay kini ra ang gikinahanglan aron maluwas"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang unang hugna sa pagtukod ni Cristo sa Eukaristiya?",
+    "choices": [
+      "Ang pag-andam sa katawhan pinaagi sa tulo ka dagkong milagro (Jn. 2:1-11, Jn. 6:1-15, Jn. 6:16-21)",
+      "Ang saad diha sa Cafarnaum (Jn. 6:25-69)",
+      "Ang pagtukod niini sa Kataposang Panihapon",
+      "Ang pagsangyaw sa mga apostoles sa Buhat sa mga Apostoles"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang ikaduhang hugna sa pagtukod sa Eukaristiya?",
+    "choices": [
+      "Ang pagtukod niini sa Kataposang Panihapon",
+      "Ang saad sa Eukaristiya diha sa iyang pakigpulong human sa pagpakaon sa lima ka libo (Jn. 6:25-69)",
+      "Ang milagro sa pag-usab sa tubig ngadto sa bino",
+      "Ang paglakaw ni Jesus ibabaw sa tubig"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Jn. 6:52, unsay reaksyon sa mga Judio sa dihang si Jesus miingon nga kaonon nila ang iyang unod?",
+    "choices": [
+      "Dayon nila kini nadawat nga usa ka sambingay",
+      "Nangutana sila nga nakugang, 'Unsaon man niining tawhana sa paghatag kanato sa iyang lawas aron kan-on?'",
+      "Nangayo sila og dugang pagpasabot ug si Jesus mibawi sa iyang pulong",
+      "Wala silay pagtagad sa iyang gisulti"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong wala kini itanyag ni Jesus isip usa lang ka sambingay bisan pa nga daghan sa iyang mga tinun-an mibiya kaniya (Jn. 6:66)?",
+    "choices": [
+      "Kay kon ang mga Judio nasayop lang sa pagsabot, iya unta silang gitul-id sama sa iyang gihimo sa ubang okasyon (Mat. 16:5-12); apan wala niya kini gipanghimakak, hinunoa iyang gisubli ang pagtudlo niini",
+      "Kay si Jesus wala man makabantay nga sila mibiya kaniya",
+      "Kay ang pagbiya sa mga tinun-an nagpamatuod nga sambingay lang gyod ang iyang gisulti",
+      "Kay si Jesus dayon miusab sa iyang pagtulon-an human sila mibiya"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag ni Simon Pedro sa dihang gipangutana ni Jesus kon mobiya ba usab siya (Jn. 6:67-69)?",
+    "choices": [
+      "'Ginoo, kinsa may among kapaingnan? Anaa kanimo ang mga pulong nga naghatag og kinabuhing walay kataposan'",
+      "Miuyon siya sa mga tinun-an nga mibiya",
+      "Nangutana siya kang Jesus kon nganong lisod kaayong dawaton ang pagtulon-an",
+      "Wala siya mitubag ug milakaw usab"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang ikatulo ug katapusang hugna sa pagtukod sa Eukaristiya?",
+    "choices": [
+      "Ang saad diha sa Cafarnaum",
+      "Ang paghimo niini nga tinuod sa Kataposang Panihapon: 'Dawata ninyo kini ug kan-a, kini ang akong lawas' (Mat. 26:26-28)",
+      "Ang unang milagro sa pag-usab sa tubig ngadto sa bino",
+      "Ang pagsangyaw ni San Pablo bahin sa pagkalawat"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang 'Ako ang pan sa kinabuhi' (Jn. 6:35) sambingay lamang sama sa 'Ako ang punoan sa paras' (Jn. 15:1)?",
+    "choices": [
+      "Ang panagtandi dili magamit kay si Jesus mipasabot man nga ang pan nga iyang ihatag mao gyod ang iyang unod (Jn. 6:51) nga kinahanglan atong kan-on aron mabuhi (Jn. 6:53)",
+      "Tinuod, managsama ra kining duha ka pagpanulti",
+      "Ang Jn. 15:1 naghisgot usab sa literal nga pagkaon",
+      "Walay kalainan tali sa duha ka pahayag"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga 'ang unod walay kapuslanan' (Jn. 6:63) nagpamatuod nga dili literal ang pagkaon sa unod ni Cristo?",
+    "choices": [
+      "Ang ordinaryo nga unod sa tawo mao ang way kapuslanan, apan ang unod ug dugo ni Cristo makahatag og kinabuhi tungod kay nahiusa kini sa iyang pagka-Dios (Jn. 6:54-56)",
+      "Tinuod nga ang unod ni Cristo dili makahatag og kinabuhi",
+      "Ang Jn. 6:63 nagpamatuod nga sambingay lamang ang tibuok pakigpulong ni Jesus",
+      "Ang pulong 'unod' dinhi naghisgot sa unod sa isda nga gipakaon sa lima ka libo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang pan ug bino simbolo lamang, sama nga si Jesus miingon nga siya ang pultahan (Jn. 10:9)?",
+    "choices": [
+      "Dili mahitabo nga sa kataposang panihapon si Jesus magsulti ug sambingay, tungod sa kasolemne sa okasyon ug tungod kay giangkon man sa mga apostoles ang matuod nga presensya ni Cristo diha sa Eukaristiya (1 Cor. 10:16)",
+      "Tinuod, ang Kataposang Panihapon puno usab sa mga sambingay",
+      "Ang Jn. 10:9 naghisgot usab literal sa Eukaristiya",
+      "Ang pan ug bino wala gyod gihisgotan sa Kataposang Panihapon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa consagrasyon, unsay nahitabo sumala sa Sta. Iglesya?",
+    "choices": [
+      "Si Cristo mao ang nahimong pan",
+      "Ang substancia sa pan maoy nabalhin ngadto sa buhi nga lawas ni Cristo, samtang ang bayhon sa pan ug bino nagpabilin",
+      "Ang pan ug bino nagpabilin lamang nga simbolo",
+      "Walay tinuod nga kausaban, panghunahuna lamang kini"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon ni San Ignatius sa Antioch mahitungod sa Eukaristiya?",
+    "choices": [
+      "'Ang Eukaristiya mao ang Unod sa atong Manluluwas nga si Jesu-Cristo'",
+      "'Ang pan ug bino simbolo lamang sa lawas ug dugo ni Cristo'",
+      "'Wala kinahanglana ang pagkalawat aron maluwas'",
+      "'Ang Eukaristiya usa lamang ka handumanan'"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang tagsulat sa sayong Simbahan nga miingon nga ang pagtulon-an nga ang mga pulong 'kini ang akong lawas' simbolo lamang nakahaling sa balaanong kasuko sa tibuok Simbahan?",
+    "choices": [
+      "Si San Justin Martyr",
+      "Si Berengarius, kinsang sayop nga panudlo gibakwi ug siya namatay nga mahinulsolon",
+      "Si San Hippolytus sa Roma",
+      "Si San Irenaeus"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Pagtulon-an, unsay upat ka bunga sa pagkalawat sa Eukaristiya?",
+    "choices": [
+      "Mohiusa kang Cristo (Jn. 6:56), mohatag og dugang grasya (Jn. 6:57), mohiusa sa isigkatawo (1 Cor. 10:17), ug naghupot sa saad sa pagkabanhaw (Jn. 6:54)",
+      "Mopapas lamang sa salang panulondon",
+      "Mopasaylo sa tanang sala nga wala pa isugid sa kompisalan",
+      "Moserbe lamang isip usa ka tradisyon sa Iglesya"
+    ],
+    "correct_index": 0
+  }
+]
