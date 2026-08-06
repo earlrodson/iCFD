@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsa ang indulhensya?",
+    "choices": [
+      "Ang pagpasaylo sa sala nga himoon sa kompisalan",
+      "Ang pagkuha sa kastigo temporal gumikan sa sala nga napasaylo na",
+      "Ang gahom sa pagdili ug pagtugot nga gihatag ni Cristo kang Pedro",
+      "Ang panaghiusa sa mga sakop sa Iglesya diha sa usa ka lawas"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong angay bantayan nga ang indulhensya way kalabutan sa pagpasaylo sa sala?",
+    "choices": [
+      "Kay ang pagpasaylo sa sala adto man himoon sa kompisalan; ang indulhensya bahin sa kastigo temporal nga mahibilin",
+      "Kay ang indulhensya alang lamang sa mga kalag sa purgaturyo",
+      "Kay ang sala dili gayod mapasaylo sa Sto. Papa",
+      "Kay ang kastigo temporal walay kalabutan sa hustisiya sa Dios"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang duha ka matang sa silot nga nalambigit sa salang mortal?",
+    "choices": [
+      "Kastigo temporal ug indulhensya plenarya",
+      "Kastigo eterno ug kastigo temporal",
+      "Absolution ug supplication",
+      "Merito ni Cristo ug merito sa mga santos"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga dili na kinahanglan ang indulhensya kay \"ang gugma mopasaylo sa tanang kalapasan\" (Prob. 10:12)?",
+    "choices": [
+      "Ang bersikulo naghisgot sa atong relasyon sa isigkatawo — andam kita sa paghikalimot sa kasaypanan, dili pagwagtang sa kastigo temporal",
+      "Ang bersikulo nagpamatuod nga wala nay kastigo temporal human sa kamatayon ni Cristo",
+      "Ang bersikulo nagtudlo nga ang Sto. Papa ra ang makapasaylo sa sala",
+      "Ang bersikulo naghisgot sa gahom sa mga yawi nga gihatag kang Pedro"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga wala nay pag-antos nga gikinahanglan sa atong bahin kay si Jesus miingon \"Natapos na\" (Jn. 19:30)?",
+    "choices": [
+      "Kini mahitungod sa iyang misyon sa pagpanubos, apan kita gitawag pa gihapon sa pag-ambit sa iyang mga pag-antos (Fil. 1:29)",
+      "Kini nagpasabot nga wala nay silot temporal alang sa bisan kinsa",
+      "Kini naghisgot lang sa mga balaod sa Daang Tugon nga gipahunong na",
+      "Kini nagpamatuod nga ang purgaturyo dili tinuod"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Bisan napasaylo na ang iyang sala, unsay nahitabo kang Miriam sumala sa Num. 12:14?",
+    "choices": [
+      "Gipagawas siya sa kampo sulod sa pito ka adlaw isip kastigo temporal",
+      "Wala siya gitugotan pagsulod sa yutang saad",
+      "Ang bata nga matawo kaniya mamatay",
+      "Dili siya makapangulo sa katawhan ngadto sa yuta"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay kastigo temporal nga nahiagoman ni Moises ug Aaron bisan sa Dios (Num. 20:12)?",
+    "choices": [
+      "Gipagawas sila sa kampo sulod sa pito ka adlaw",
+      "Dili sila mahimong mangulo sa katawhan ngadto sa yuta nga saad",
+      "Ang bata nga matawo kanila mamatay",
+      "Silotan sila sa kastigo nga walay kataposan"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Bisan gipasaylo na siya sa Ginoo, unsay giingon ni Natan ngadto ni David (2 Sam. 12:13-14) isip kastigo temporal?",
+    "choices": [
+      "Dili siya makasulod sa yutang saad",
+      "Silotan siya sa kastigo nga walay kataposan",
+      "Ang bata nga matawo kaniya mamatay",
+      "Pagawason siya sa kampo sulod sa pito ka adlaw"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay una nga patukoranan sa pagtulon-an sa indulhensya (gahom sa mga yawi)?",
+    "choices": [
+      "Ang tigomanan sa grasya gikan sa kamatayon ni Cristo ug sa mga merito sa mga santos",
+      "Ang panaghiusa sa tanang sakop sa Iglesya diha sa usa ka lawas",
+      "Ang gahom sa pagpasaylog sala ug pagkuha sa kastigo temporal nga gihatag ni Cristo sa mga punoan sa Iglesya (Mat. 16:19)",
+      "Ang duha ka matang sa indulhensya, partial ug plenarya"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay ikaduhang patukoranan sa indulhensya (tigomanan sa grasya)?",
+    "choices": [
+      "Ang gahom sa mga yawi nga gihatag ni Cristo kang Pedro",
+      "Ang walay kinutuban nga bahandi sa grasya gikan sa kamatayon ni Cristo, dungan sa mga merito sa mga santos (Rom. 5:15, Col. 1:24)",
+      "Ang duha ka kondisyon sa pagdawat sa indulhensya plenarya",
+      "Ang pagpangaliyupo alang sa mga kalag sa purgaturyo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay ikatulong patukoranan sa indulhensya (panaghiusa sa mga santos)?",
+    "choices": [
+      "Ang mga sakop sa Iglesya nahiusa sa usa ka lawas busa ang lig-on nga bahin makatabang sa huyang nga bahin (Rom. 12:4-5, 1 Cor. 12:25-26)",
+      "Ang gahom sa Sto. Papa sa paghatag og absolution",
+      "Ang pagbasa sa Kasulatan ug pag-rosaryo isip tulomanon",
+      "Ang kastigo eterno ug kastigo temporal nga nalambigit sa salang mortal"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Giunsa sa Sta. Iglesya paghatag og indulhensya alang sa mga buhi ug alang sa mga kalag sa purgaturyo?",
+    "choices": [
+      "Alang sa mga buhi pinaagi og \"absolution\"; alang sa mga kalag sa purgaturyo pinaagi og \"supplication\" o pagpangaliyupo",
+      "Alang sa mga buhi pinaagi og pagpangaliyupo; alang sa mga kalag sa purgaturyo pinaagi og absolution",
+      "Managsama ra ang paagi alang sa mga buhi ug sa mga kalag sa purgaturyo",
+      "Pinaagi lamang sa pagkompisal alang sa duha"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang kalainan sa indulhensya partial ug indulhensya plenarya?",
+    "choices": [
+      "Ang partial alang sa mga buhi, ang plenarya alang sa mga kalag sa purgaturyo",
+      "Ang partial mopapas sa bahin lamang sa kastigo temporal, ang plenarya mopapas sa tibuok bayranan niini",
+      "Ang partial gihatag pinaagi sa kompisalan, ang plenarya pinaagi sa pagkalawat",
+      "Walay kalainan, managsama lang sila og epekto"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang una sa upat ka kondisyon aron makadawat og indulhensya plenarya?",
+    "choices": [
+      "Andam nga mopailalom sa autoridad nga naghatag",
+      "Anaa sa kahimtang sa grasya, makab-ot pinaagi sa pagkompisal ug pagkalawat (Jn. 15:5)",
+      "Adunay tuyo sa pagdawat niini",
+      "Pagbuhat sa tulomanon nga gitudlo sa Sta. Iglesya"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Lakip sa upat ka kondisyon sa indulhensya plenarya, unsay gikinahanglan mahitungod sa autoridad nga naghatag niini?",
+    "choices": [
+      "Kinahanglan andam nga mopailalom sa autoridad, Sto. Papa o Obispo, nga naghatag (Mat. 18:17)",
+      "Kinahanglan mokontra sa mga lagda sa autoridad",
+      "Kinahanglan dili moila sa gahom sa Sto. Papa",
+      "Wala kini kalabutan sa bisan unsang autoridad sa Iglesya"
+    ],
+    "correct_index": 0
+  }
+]
