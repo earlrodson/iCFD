@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsay epekto sa Santos nga Pag-ordenar diha sa kalag sa ordenahan?",
+    "choices": [
+      "Mobadlis kini sa dili mapapas nga timaan diha sa kalag",
+      "Mopapas lamang sa salang panulondon",
+      "Mohatag lamang og bag-ong ngalan",
+      "Mowagtang sa tanang kastigo temporal"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang tulo ka hugna diin mahimong ikahatag ang sacramento sa Pag-ordenar?",
+    "choices": [
+      "Pagka-dyakono, pagka-pari, o pagka-obispo",
+      "Pagka-lektor, pagka-akolito, o pagka-dyakono",
+      "Pagkabunyagan, pagkakumpirmahan, o pagka-pari",
+      "Pagka-obispo lamang, sa lain-laing lebel"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga walay laing pari gawas ni Cristo tungod kay iyaha ra ang iyang pagkapari (Heb. 7:24)?",
+    "choices": [
+      "Ang pagkapari ni Cristo diha sa iyang paghalad sa iyang kaugalingon sa krus iya ra kini; apan diha sa Bag-ong Tugon gihimo niya ang iyang mga apostoles nga mga pari nga maghalad sa iyang lawas ug dugo (Luc. 22:19-20)",
+      "Tinuod nga walay laing pari gawas ni Cristo, busa walay mga pari sa Bag-ong Tugon",
+      "Ang Heb. 7:24 nagsupak sa pagkaobispo",
+      "Ang pagkapari sa mga apostoles managlahi sa katuyoan sa pagkapari ni Cristo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga wala nay pari sa Iglesya kondili apostoles, propeta, ebanghelista, pastor, ug magtutudlo na lang (Efeso 4:11)?",
+    "choices": [
+      "Ang katawhan sa Dios gitawag nga 'harianong pari' (1 Ped. 2:9), ug si San Pablo miangkon nga siya pari (Rom. 15:16) ug nagtudlo kang Tito sa pagtudlog mga pari sa matag lungsod (Tito 1:5)",
+      "Tinuod, walay pari nga gihisgotan sa Bag-ong Tugon",
+      "Ang Efeso 4:11 naghisgot lamang sa mga obispo, dili sa mga pari",
+      "Ang Rom. 15:16 wala magpasabot nga si San Pablo pari"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga dili angay tawgon og 'amahan' ang mga pari tungod sa gidili ni Jesus (Mat. 23:9)?",
+    "choices": [
+      "Ang gidili ni Jesus mao ang pagka-Amahan sa Dios isip Magbubuhat; sa Kasulatan mismo gitawag og amahan si Abraham, si Elias, ug ang mga pangulo sa katawhan (Luc. 16:24, 2 Hari 2:12, Isa. 22:21-22)",
+      "Tinuod, dili gyod angay tawgon og amahan ang mga pari",
+      "Ang Mat. 23:9 nagdili lamang sa pagtawag sa mga propeta og amahan",
+      "Walay laing bersikulo nga naggamit sa pulong 'amahan' alang sa tawo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga sukwahi sa 1 Tim. 3:2 ang mga obispong katoliko tungod kay walay asawa?",
+    "choices": [
+      "Dili absoluto nga gikinahanglan ang obispo dunay asawa; nagpasabot kini nga kausa ra maminyo alang niadtong minyo nang daan; si San Pablo mismo apostol/obispo apan walay asawa (1 Cor. 7:8, 9:2)",
+      "Tinuod, kinahanglan gyod minyo ang mga obispo aron makasunod sa 1 Tim. 3:2",
+      "Ang 1 Tim. 3:2 naghisgot lamang sa mga dyakono",
+      "Ang mga apostoles tanan minyo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang mga pari katumanan sa gitagna nga 'nagpugong sa pagpangasawa' sa doktrina sa yawa (1 Tim. 4:1-3)?",
+    "choices": [
+      "Ang gipasabot ni San Pablo mao ang Gnostisismo/Maniqueanismo nga nagdili sa pagpangasawa kay giisip nga daotan ang kaminyoon; dili dautan ang pagkadili-minyo kon gihalad alang sa Ginoo (Mat. 19:12)",
+      "Tinuod, ang pagkacelibato sa mga pari sukwahi sa pagtulon-an ni Cristo",
+      "Ang 1 Tim. 4:1-3 nagsuporta sa selibasiya sa mga pari",
+      "Si San Pablo minyo, busa dili siya angay motudlo bahin niini"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsang gahom ang gihatag ni Jesus sa napulog-duha ka mga apostoles nga wala niya ihatag sa uban?",
+    "choices": [
+      "Ang gahom sa pagtudlo, pagpasaylog sala, paghukom ug pagdumala, ug ang paghalad sa iyang lawas ug dugo",
+      "Ang gahom lamang sa pagsangyaw",
+      "Ang gahom sa pag-ordenar lamang, dili ang pagpasaylog sala",
+      "Ang gahom sa pagbunyag lamang"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa Buh. 6:3-6, unsang rito ang gigamit sa mga apostoles sa pagpili sa unang mga dyakono?",
+    "choices": [
+      "Ang pag-ampo ug pagpandong sa mga kamot",
+      "Ang pagbunyag lamang",
+      "Ang pagpuasa nga walay pag-ampo",
+      "Ang pagsulti lamang og pagpanalangin"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa Buh. 13:3, unsay gihimo sa mga pangulo sa Iglesya sa Antioquia sa dili pa gipalakaw si Pablo ug Bernabe sa ilang misyon?",
+    "choices": [
+      "Nagpuasa ug nag-ampo ug gipandongan nila sa ilang mga kamot si Bernabe ug si Saulo",
+      "Gipabunyag una sila pag-usab",
+      "Gihatagan lamang sila og salapi",
+      "Wala silay gihimong rito, gipalakaw ra dayon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipahinumdom ni San Pablo kang Timoteo mahitungod sa 2 Tim. 1:6?",
+    "choices": [
+      "Ang paggamit sa gasa sa Dios nga nadawat ni Timoteo sa dihang gipandongan siya ni Pablo sa iyang mga kamot",
+      "Ang pagbiya sa iyang katungdanan isip obispo",
+      "Ang pagminyo aron makasunod sa balaod",
+      "Ang paglikay sa pagkaog karne"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon ni San Ignatius sa Antioquia mahitungod sa katungdanan sa obispo?",
+    "choices": [
+      "Nga ang obispo nakaangkon sa iyang buluhaton dili gikan sa iyang kaugalingon o gumikan sa tawo",
+      "Nga ang pagka-obispo dili gikan sa Dios",
+      "Nga bisan kinsa mahimong obispo nga walay pag-ordenar",
+      "Nga ang pagka-obispo managsama ra sa pagka-dyakono"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala ni San Cypriano, unsay nadawat sa mga obispo pinaagi sa pagpandong sa mga kamot?",
+    "choices": [
+      "Ang pagka-obispo, diin ang Espiritu Santo dinapit sa ilang kasingkasing",
+      "Ang gahom lamang sa pagbunyag",
+      "Ang gahom sa pagsangyaw sa Ebanghelyo lamang",
+      "Ang tulomanon sa pagminyo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa panudlo, kinsay naghupot sa gahom sa pag-confirmar ug pag-ordenar?",
+    "choices": [
+      "Ang Obispo",
+      "Ang Pari",
+      "Ang Dyakono",
+      "Ang mga layko"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Pagtulon-an sa maong topiko, unsay angay buhaton alang sa mga kaparian ug sa mga bokasyon?",
+    "choices": [
+      "Hatagan sila og doble nga pagtahod ug tabang, ug ugmaron ang bokasyon sulod sa matag panimalay pinaagi sa pag-ampo",
+      "Dili na sila kinahanglan tahoron kay tawo ra sila",
+      "Sila lamang ang angay mag-ampo, dili ang mga layko",
+      "Dili na kinahanglan mag-ampo alang sa dugang mga mangangani"
+    ],
+    "correct_index": 0
+  }
+]
