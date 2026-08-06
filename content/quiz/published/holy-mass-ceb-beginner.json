@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsa ang Misa?",
+    "choices": [
+      "Ang dili duguon nga sakripisyo sa lawas ug dugo ni Cristo ubos sa bayhon sa pan ug bino",
+      "Usa lamang ka handumanan nga simbolo, walay tinuod nga sakripisyo",
+      "Usa ka bag-ong halad nga lahi sa halad ni Cristo sa krus",
+      "Usa lamang ka panagtigom sa mga matuohon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay kalainan tali sa halad ni Cristo sa Krus ug sa halad diha sa Misa?",
+    "choices": [
+      "Duha ka lahing halad, lahi ang victima nga gihalad",
+      "Managsama ra nga halad — didto sa Krus gihalad ni Cristo ang iyang kaugalingon sa duguon nga paagi, diha sa Misa iya kining gihalad sa dili duguon o sacramentohanon nga paagi",
+      "Ang Misa mas dako nga halad kay sa Krus",
+      "Ang Krus lamang ang tinuod nga halad; ang Misa handumanan lamang"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga wala na kinahanglana ang Misa kada-adlaw tungod kay gihimo ni Jesus ang halad sa makausa ra ug alang sa tanang panahon (Heb. 7:27)?",
+    "choices": [
+      "Ang makausa ra ug walay pagsubli nga halad mao ang duguon nga halad ni Cristo sa krus tungod kay dili na siya mamatay pag-usab (Rom. 6:9); ang Misa dili pagsubli sa iyang pagkamatay kondili pagsubli sa handumanan niini diin ang iyang lawas ug dugo gihalad sa sacramentohanon nga paagi",
+      "Tinuod nga dili na kinahanglan ang Misa kay makausa ra ang halad ni Cristo",
+      "Ang Heb. 7:27 naghisgot sa halad sa mga hayop lamang",
+      "Ang Misa managsama sa halad sa mga pari nga Judio"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang kada-adlaw nga halad sa mga pari dili makawagtang sa sala (Heb. 10:11)?",
+    "choices": [
+      "Ang gihisgotan diha nga dili makawagtang sa sala mao ang kada-adlaw nga halad sa mananap sa mga paring Judio (Heb. 10:4); ang sakripisyo sa Misa gipahibalo nang daan sa halad ni Melquisedec nga pan ug bino (Gen. 14:18) ug sa tagna ni Malaquias sa hingpit nga halad (Mal. 1:11)",
+      "Tinuod, walay bisan unsang halad ang makawagtang sa sala",
+      "Ang Heb. 10:11 naghisgot mismo sa Misa sa mga Katoliko",
+      "Si Melquisedec walay kalabotan sa sakripisyo sa Misa"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang balaang panagtigom pagwali lamang ug pagpamati sa pulong sa Dios, mga awit ug pag-ampo, dili na ang Misa (Col. 3:16)?",
+    "choices": [
+      "Ang pagsimba sa mga Apostoles naglakip usab sa pagpikaspikas sa pan (Buh. 2:46, Buh. 20:7), ug sa Misa ang mga matuohon gipakaon sa pulong sa Dios ug sa langitnong kalan-on nga mao ang unod ni Jesus (Jn. 6:51)",
+      "Tinuod, ang Misa dili gikinahanglan; ang wali ug awit igo na",
+      "Ang Col. 3:16 nagpamatuod nga wala nay Eukaristiya sa Bag-ong Tugon",
+      "Ang Buh. 2:46 naghisgot lamang sa pagpangaon sa ordinaryo nga pagkaon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga sukwahi ang gihatag sa pari (pan ra) sa gihatag ni Jesus sa Kataposang Panihapon (pan ug bino) (Mat. 26:26-28)?",
+    "choices": [
+      "Human sa consagrasyon ang pan nahimong buhi nga lawas ni Cristo; pinaagi sa 'concomittance' anaa gayod ang tibuok nga Cristo bisan sa pan ra, tungod kay dili mabulag ang iyang lawas, dugo, kalag, ug pagka-Dios",
+      "Tinuod, sayop ang paghatag og pan ra ngadto sa mga tawo",
+      "Ang bino wala gikinahanglan sa consagrasyon",
+      "Ang Mat. 26:26-28 nagsupak sa pagtulon-an sa Sta. Iglesya"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa 1 Cor. 11:23-26, unsay giingon ni Jesus samtang gipikaspikas niya ang pan atol sa Kataposang Panihapon?",
+    "choices": [
+      "'Mao kini ang akong lawas nga gitugyan alang kaninyo. Buhata kini aron sa paghandom kanako'",
+      "'Kini usa lamang ka simbolo sa akong pagpakig-uban kaninyo'",
+      "'Ayaw kini ihatag sa mga tawo human ako mamatay'",
+      "'Kini ang inyong kalan-on, dili ang akong lawas'"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay kahulogan sa pulong 'pagtugyan' nga gigamit ni Jesus sa Kataposang Panihapon sumala sa gipakita sa Rom. 12:1?",
+    "choices": [
+      "Paghalad ingon nga sakripisyo",
+      "Pagsulti lamang sa iyang katuyoan",
+      "Pagbiya sa iyang mga tinun-an",
+      "Paghatag lamang og regalo"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa pag-ingon ni Jesus, 'Buhata kini ninyo sa paghandom kanako,' unsay iyang gihimo sa mga apostoles?",
+    "choices": [
+      "Gihimo sila nga mga pari uban sa gahom sa pag-consagrar ug paghalad sama sa iyang gibuhat",
+      "Gitudlo sila nga magsimba na lang sa balay nga walay pari",
+      "Gisugo sila nga dili na gayod maghimo og kasaulogan",
+      "Gihatagan sila og gahom sa pagbunyag lamang"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Misa, si kinsa ang Labawng Pari, ug unsay katungdanan sa pari nga nag-alagad?",
+    "choices": [
+      "Si Cristo mao ang Labawng Pari; ang pari mao ang iyang representante o embahador nga nagbuhat sa ngalan sa Simbahan",
+      "Ang pari mao ang labawng pari, si Cristo tigpaminaw lamang",
+      "Walay Labawng Pari sa Misa",
+      "Ang matag matuohon mao ang labawng pari sa iyang kaugalingon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kinsa ang halangdong hari ug pari nga naghalad og pan ug bino diha sa Daang Tugon, nga gipahibalo nang daan ang sakripisyo sa Misa?",
+    "choices": [
+      "Si Melquisedec (Gen. 14:18)",
+      "Si Moises",
+      "Si Aaron",
+      "Si David"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitagna ni Propeta Malaquias mahitungod sa hingpit nga halad nga gikahimut-an sa Dios (Mal. 1:11)?",
+    "choices": [
+      "Nga usa ka hingpit nga halad igahalad sa iyang ngalan gikan sa pagsubang sa adlaw hangtod sa pagsalop niini",
+      "Nga wala nay laing halad human sa krus",
+      "Nga ang halad sa mananap padayonon hangtod sa kataposan",
+      "Nga ang mga Hentil dili gayod makaila sa Dios"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Buh. 20:7, unsay gihimo sa mga unang kristohanon sa Dominggo sa gabii?",
+    "choices": [
+      "Nagtigom sila aron pag-ambit sa balaang panihapon",
+      "Nagpuasa sila nga walay pagtigom",
+      "Naglakaw sila ngadto sa templo lamang aron mamati sa wali",
+      "Wala silay bisan unsang gihimong kasaulogan"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Pagtulon-an sa maong topiko, unsa ang lima ka katuyoan sa Santos nga Misa?",
+    "choices": [
+      "Adoration, thanksgiving, petition, propitiation, ug satisfaction",
+      "Pagbunyag, pagkumpirmar, pagkompisal, pagminyo, ug pag-ordenar",
+      "Pagbasa, pag-awit, pagsermon, pagpanalangin, ug paglakaw",
+      "Pagpuasa, paghinulsol, pagpangaliyupo, pagpasalamat, ug pagbalik"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong nagtukod si Cristo og linain nga pagkapari?",
+    "choices": [
+      "Aron adunay magsaulog sa sakripisyo sa Misa alang sa kapasayloan sa sala ug alang sa kapuslanan sa mga buhi ug sa mga patay",
+      "Aron ang mga layko dili na magsimba",
+      "Aron mahunong ang paghalad human sa iyang kamatayon",
+      "Aron mahimong managsama ang tanang katungdanan sa Simbahan"
+    ],
+    "correct_index": 0
+  }
+]
