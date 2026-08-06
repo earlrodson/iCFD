@@ -3,6 +3,8 @@ import { createServerClient } from '@/lib/supabase/server'
 import { isQuizTier } from '@/lib/content/quizTiers'
 import type { SupabaseClient } from '@supabase/supabase-js'
 
+const LANGUAGES = ['en', 'tl', 'ceb'] as const
+
 async function getAdminClient(): Promise<SupabaseClient | null> {
   try {
     const client = await createServerClient()
@@ -26,7 +28,7 @@ export async function GET(req: NextRequest) {
   if (topicId) {
     const { data, error } = await db
       .from('quiz_questions')
-      .select('id,topic_id,tier,question,choices,correct_index,active,path_slug,created_at')
+      .select('id,topic_id,tier,lang,question,choices,correct_index,active,path_slug,created_at')
       .eq('topic_id', topicId)
       .order('tier')
       .order('id')
@@ -45,9 +47,10 @@ export async function POST(req: NextRequest) {
   if (!db) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()
-  const { topic_id, tier, question, choices, correct_index, active, path_slug } = body as {
+  const { topic_id, tier, lang, question, choices, correct_index, active, path_slug } = body as {
     topic_id?: string
     tier?: string
+    lang?: string
     question?: string
     choices?: unknown
     correct_index?: number
@@ -58,6 +61,9 @@ export async function POST(req: NextRequest) {
   if (!topic_id || !isQuizTier(tier) || !question?.trim()) {
     return NextResponse.json({ error: 'topic_id, a valid tier, and question are required' }, { status: 400 })
   }
+  if (lang !== undefined && !LANGUAGES.includes(lang as (typeof LANGUAGES)[number])) {
+    return NextResponse.json({ error: 'invalid lang' }, { status: 400 })
+  }
   if (!Array.isArray(choices) || choices.length < 2 || choices.some((c) => typeof c !== 'string' || !c.trim())) {
     return NextResponse.json({ error: 'choices must be at least 2 non-empty strings' }, { status: 400 })
   }
@@ -66,7 +72,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { error } = await db.from('quiz_questions').insert({
-    topic_id, tier, question: question.trim(), choices, correct_index, active: active ?? true,
+    topic_id, tier, lang: lang ?? 'en', question: question.trim(), choices, correct_index, active: active ?? true,
     path_slug: path_slug || null,
   })
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
@@ -97,6 +103,9 @@ export async function PATCH(req: NextRequest) {
   }
   if ('tier' in fields && !isQuizTier(fields.tier)) {
     return NextResponse.json({ error: 'invalid tier' }, { status: 400 })
+  }
+  if ('lang' in fields && !LANGUAGES.includes(fields.lang as (typeof LANGUAGES)[number])) {
+    return NextResponse.json({ error: 'invalid lang' }, { status: 400 })
   }
 
   const { error } = await db.from('quiz_questions').update(fields).eq('id', id)

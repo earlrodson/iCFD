@@ -20,10 +20,15 @@ interface PathOption {
   title: string
 }
 
+const LANGUAGES = ['en', 'tl', 'ceb'] as const
+type Lang = (typeof LANGUAGES)[number]
+const LANG_LABELS: Record<Lang, string> = { en: 'EN', tl: 'TL', ceb: 'CEB' }
+
 interface QuizQuestion {
   id: number
   topic_id: string
   tier: QuizTier
+  lang: Lang
   question: string
   choices: string[]
   correct_index: number
@@ -39,9 +44,9 @@ interface QuizSetting {
   pass_percent: number
 }
 
-type QuestionDraft = Pick<QuizQuestion, 'question' | 'choices' | 'correct_index' | 'active' | 'path_slug'>
+type QuestionDraft = Pick<QuizQuestion, 'question' | 'choices' | 'correct_index' | 'active' | 'path_slug' | 'lang'>
 
-const EMPTY_DRAFT: QuestionDraft = { question: '', choices: ['', ''], correct_index: 0, active: true, path_slug: null }
+const EMPTY_DRAFT: QuestionDraft = { question: '', choices: ['', ''], correct_index: 0, active: true, path_slug: null, lang: 'en' }
 
 const TIER_LABELS: Record<QuizTier, string> = { beginner: 'Beginner', intermediate: 'Intermediate', advanced: 'Advanced' }
 const TIER_COLORS: Record<QuizTier, string> = {
@@ -60,6 +65,7 @@ export default function QuizAdminPage() {
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [loadingQuestions, setLoadingQuestions] = useState(false)
   const [selectedTier, setSelectedTier] = useState<QuizTier>('beginner')
+  const [selectedLang, setSelectedLang] = useState<Lang | 'all'>('all')
 
   const [expandedId, setExpandedId] = useState<number | null>(null)
   const [editingId, setEditingId] = useState<number | null>(null)
@@ -132,16 +138,22 @@ export default function QuizAdminPage() {
     return topics.filter((t) => t.title.toLowerCase().includes(q) || t.id.includes(q)).slice(0, 20)
   }, [topics, topicQuery])
 
-  const tierQuestions = questions.filter((q) => q.tier === selectedTier)
+  const tierQuestions = questions.filter((q) => q.tier === selectedTier && (selectedLang === 'all' || q.lang === selectedLang))
   const countsByTier = useMemo(() => {
     const counts: Record<string, number> = { beginner: 0, intermediate: 0, advanced: 0 }
-    for (const q of questions) counts[q.tier] = (counts[q.tier] ?? 0) + 1
+    for (const q of questions) {
+      if (selectedLang === 'all' || q.lang === selectedLang) counts[q.tier] = (counts[q.tier] ?? 0) + 1
+    }
     return counts
+  }, [questions, selectedLang])
+  const langsPresent = useMemo(() => {
+    const set = new Set(questions.map((q) => q.lang))
+    return LANGUAGES.filter((l) => set.has(l))
   }, [questions])
 
   function startEdit(q: QuizQuestion) {
     setEditingId(q.id)
-    setEditDraft({ question: q.question, choices: [...q.choices], correct_index: q.correct_index, active: q.active, path_slug: q.path_slug })
+    setEditDraft({ question: q.question, choices: [...q.choices], correct_index: q.correct_index, active: q.active, path_slug: q.path_slug, lang: q.lang })
     setExpandedId(q.id)
   }
 
@@ -172,6 +184,7 @@ export default function QuizAdminPage() {
         correct_index: editDraft.correct_index,
         active: editDraft.active,
         path_slug: editDraft.path_slug,
+        lang: editDraft.lang,
       }),
     })
     const data = await res.json()
@@ -212,6 +225,7 @@ export default function QuizAdminPage() {
         correct_index: newDraft.correct_index,
         active: newDraft.active,
         path_slug: newDraft.path_slug,
+        lang: newDraft.lang,
       }),
     })
     const data = await res.json()
@@ -294,6 +308,37 @@ export default function QuizAdminPage() {
               ))}
             </div>
 
+            {/* Language filter */}
+            {langsPresent.length > 1 && (
+              <div className="flex gap-1.5">
+                <button
+                  onClick={() => { setSelectedLang('all'); setExpandedId(null); setEditingId(null); setShowNew(false) }}
+                  className={cn(
+                    'rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors',
+                    selectedLang === 'all'
+                      ? 'border-primary bg-primary/8 text-primary'
+                      : 'border-border text-muted-foreground hover:text-foreground',
+                  )}
+                >
+                  All languages
+                </button>
+                {langsPresent.map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => { setSelectedLang(l); setExpandedId(null); setEditingId(null); setShowNew(false) }}
+                    className={cn(
+                      'rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors',
+                      selectedLang === l
+                        ? 'border-primary bg-primary/8 text-primary'
+                        : 'border-border text-muted-foreground hover:text-foreground',
+                    )}
+                  >
+                    {LANG_LABELS[l]}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {setting && (
               <p className="text-xs text-muted-foreground">
                 {TIER_LABELS[selectedTier]} quizzes serve {setting.item_count} questions per attempt, rotated from this bank,
@@ -362,6 +407,11 @@ export default function QuizAdminPage() {
                             {i + 1}
                           </span>
                           <span className="truncate text-sm text-foreground">{q.question}</span>
+                          {langsPresent.length > 1 && (
+                            <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">
+                              {LANG_LABELS[q.lang]}
+                            </span>
+                          )}
                           {!q.active && (
                             <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[10px] font-semibold text-muted-foreground">inactive</span>
                           )}
@@ -544,6 +594,21 @@ function QuestionForm({ draft, onChange, paths }: { draft: QuestionDraft; onChan
         >
           <Plus weight="bold" size={12} /> Add choice
         </button>
+      </div>
+
+      <div>
+        <label className="mb-1 block text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          Language
+        </label>
+        <select
+          value={draft.lang}
+          onChange={(e) => onChange({ ...draft, lang: e.target.value as Lang })}
+          className="field"
+        >
+          {LANGUAGES.map((l) => (
+            <option key={l} value={l}>{LANG_LABELS[l]}</option>
+          ))}
+        </select>
       </div>
 
       <div>
