@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong Domingo ang gitudlo sa Sta. Iglesya nga igpapahulay?",
+    "choices": [
+      "Kay mao kini ang adlaw sa pagkabanhaw ni Jesus ug ang adlaw sa pagkunsad sa Espiritu Santo ngadto sa mga Apostoles",
+      "Kay mao kini ang adlaw nga gitawag sa Dios diha sa Gen. 2:3",
+      "Kay mao kini ang ikapitong adlaw sa kalendaryo",
+      "Kay mao kini ang adlaw nga gigamit sa mga Judio kanunay"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang Sabado gayod ang gisugo sa Dios tungod kay ang ikapitong adlaw gibalaan ug gipahulayan sa Dios (Gen. 2:3)?",
+    "choices": [
+      "Ang 'adlaw' sa paglalang wala magpasabot og 24 oras kondili yugto sa panahon (2 Ped. 3:8); ang Dios dili sab kapuyan (Isa. 40:28) — ang pagpahulay nagpasabot nga natapos na ang buhat sa paglalang",
+      "Tinuod, sulod gayod sa 24 oras nga literal nga adlaw ang gitumong sa Gen. 2:3",
+      "Ang Gen. 2:3 wala naghisgot og bisan unsang adlaw",
+      "Ang Dios kapuyan gayod sumala sa Kasulatan"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Jewish Encyclopedia, unsay tinuod nga kahulogan sa 'ikapitong adlaw' nga gisugo pagbalaan sa Exo. 20:8-9?",
+    "choices": [
+      "Usa ka adlaw nga mosunod human sa unom ka nagsunodsunod nga adlaw — walay piho nga adlaw sa semana ang gitumong",
+      "Kanunay Sabado sa tanang kalendaryo sa kalibotan",
+      "Kanunay Domingo sumala sa Judiong kalendaryo",
+      "Bisan unsang adlaw nga gipili sa hari"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga wala giusba ni Jesus ang balaod sa Sabado tungod kay siya miingon nga wala siya moanhi sa pagsalikway sa Balaod (Mat. 5:17)?",
+    "choices": [
+      "Ang Sabado gitagna nga pahunongon (Oseas 2:11) tungod sa mga abuso sa katawhan (Amos 8:5, Neh. 13:18); kini natuman sa pag-abot ni Jesus nga wala magbantay sa Judiong balaod sa Sabado (Jn. 5:9)",
+      "Tinuod, dili gyod giusab ni Jesus ang Sabado",
+      "Ang Mat. 5:17 nagpasabot nga Sabado gihapon ang igpapahulay",
+      "Wala giusab ang bisan unsang balaod sa Daang Tugon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga si Jesus 'Sabadista diay' tungod kay siya misulod sa sinagoga sa Adlawng Igpapahulay (Luc. 4:16)?",
+    "choices": [
+      "Kada adlaw usab si Jesus mosulod sa templo aron pagtudlo (Mat. 26:55), apan dili sabton nga tanang adlaw iyang igpapahulay",
+      "Tinuod, si Jesus nagbantay pag-ayo sa Sabado sa tibuok niyang kinabuhi",
+      "Ang Luc. 4:16 nagpamatuod nga wala pa giusab ang igpapahulay hangtod karon",
+      "Wala gyod mosulod si Jesus sa sinagoga"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang Mat. 24:20 nagpamatuod nga magpadayon gihapon ang Adlawng Sabado bisan sa pagbalik ni Jesus?",
+    "choices": [
+      "Ang Mat. 24:20 naghisgot sa pagkagun-ob sa Jerusalem, ug ang gipahimangnoan ni Jesus mao ang mga Judio nga nagtamod sa Sabado, dili usa ka sugo alang sa tanang panahon",
+      "Tinuod, gikinahanglan gyod ang pagbantay sa Sabado hangtod sa kataposan sa panahon",
+      "Ang Mat. 24:20 naghisgot sa Domingo, dili sa Sabado",
+      "Ang bersikulo walay kalabotan sa Jerusalem"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang Isa. 66:23 nagpamatuod nga magpadayon ang pagbalaan sa Adlawng Sabado bisan sa bag-ong langit ug bag-ong yuta?",
+    "choices": [
+      "Sa bag-ong langit dili sabton nga aduna pay pagkwenta sa mga adlaw (Pin. 22:5); ang pahulay nga gihisgotan didto mao ang kapahulayan gikan sa sala ug sa mga katalagman (Pin. 21:4)",
+      "Tinuod, ang Sabado bantayan hangtod sa walay kataposan didto sa langit",
+      "Ang Isa. 66:23 nagsupak sa pagtulon-an bahin sa Domingo",
+      "Walay adlaw nga gitumong ang Isa. 66:23"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang Sto. Papa mao ang tawo sa kadautan nga gitagna nga mag-usab sa panahon ug sa balaod (Dan. 7:25)?",
+    "choices": [
+      "Ang katumanan niini mao si Hari Antioco Epifanes sa Syria (168 BC) nga mibuntog sa mga Judio ug miusab sa ilang panahon ug kasugoan sa pagsimba (1 Mac. 1:41-43); ang Sto. Papa igo lamang nag-implementar sa kabubut-on sa Ginoo sa pagbalhin sa Sabado ngadto sa Domingo",
+      "Tinuod, ang Sto. Papa mismo ang gitagna nga tawo sa kadautan",
+      "Ang Dan. 7:25 wala magtumong ni bisan kinsa nga tinuod nga tawo",
+      "Si Antioco Epifanes usa ka Kristohanong hari"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong gitagna nga pahunongon ang Sabado sumala sa Oseas 2:11?",
+    "choices": [
+      "Gumikan sa mga abuso sa katawhan — namaligya, nagdaogdaog, ug nanikas sila sa Adlawng Igpapahulay (Amos 8:5)",
+      "Kay ang Dios wala nay gugma sa katawhan",
+      "Kay ang mga Israelitas dili na katawhan sa Dios",
+      "Kay wala nay kalendaryo sa Israel"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gihimo ni Jesus sa Adlawng Sabado nga usa ka buhat gidili sa Judiong balaod (Jn. 5:9)?",
+    "choices": [
+      "Iyang giayo ang usa ka bakol ug gipapas-an kini sa iyang banig",
+      "Nangutlo siya og uhay",
+      "Naglakaw siya og layo",
+      "Nangayam siya og isda"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon ni San Pablo mahitungod sa mga adlawng balaan, apil ang Adlawng Igpapahulay (Col. 2:16-17)?",
+    "choices": [
+      "Ayaw itugot nga adunay magsaway kaninyo bahin niini — kining tanan mga landong lamang sa mga butang umaabot, apan ang katumanan mao si Cristo",
+      "Kinahanglan bantayan gyod pag-ayo ang Sabado sa tanang Kristohanon",
+      "Ang mga adlawng balaan importante gyod aron maluwas",
+      "Wala siya naghisgot bahin sa Adlawng Igpapahulay"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Heb. 4:8-9, unsay pruyba nga wala bungkaga ni Jesus ang kasugoan sa pagpahulay bisan na-ilis na ang Sabado?",
+    "choices": [
+      "Kay kon si Josue nakahatag pa kanilag pahulay, dili na unta ang Dios maghisgot pa ug laing adlaw; busa duna pay adlaw sa pahulay alang sa katawhan sa Dios",
+      "Kay ang Heb. 4:8-9 nagpamatuod nga wala nay igpapahulay",
+      "Kay si Josue mismo nagbaton og bag-ong Sabado",
+      "Ang Heb. 4:8-9 walay kalabotan sa igpapahulay"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsang duha ka dagkong panghitabo ang nagpahinungdanon sa adlawng Domingo alang sa unang mga Kristohanon?",
+    "choices": [
+      "Ang pagkabanhaw ni Jesus ug ang pagkunsad sa Espiritu Santo sa Pentecostes",
+      "Ang pagkatawo ni Jesus ug ang iyang bunyag",
+      "Ang paglalang sa kalibotan ug ang pagpagawas sa mga Israelitas gikan sa Ehipto",
+      "Ang pagtukod sa templo ni Solomon ug ang pagkalaglag niini"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa Buh. 20:7 ug 1 Cor. 16:2, unsay gihimo sa unang mga Kristohanon sa unang adlaw sa semana?",
+    "choices": [
+      "Nagtigom sila aron pag-ambit sa balaang panihapon, ug nagtigom sila og hinabang alang sa mga panginahanglan",
+      "Nagpahulay sila nga walay bisan unsang gihimo",
+      "Nagpuasa lamang sila kada Domingo",
+      "Nagbalik sila sa pagbantay sa Sabado sa Judio"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Church History by Laux, sukad kanus-a gibalaan na ang adlaw nga Domingo?",
+    "choices": [
+      "Sukad sa panahon sa mga Apostoles",
+      "Sukad sa ika-4 nga siglo sa dihang giaprobahan sa emperador",
+      "Sukad sa Edad Medya",
+      "Sukad lamang sa moderno nga panahon"
+    ],
+    "correct_index": 0
+  }
+]
