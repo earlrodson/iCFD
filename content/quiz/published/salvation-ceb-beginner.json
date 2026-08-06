@@ -1,0 +1,210 @@
+[
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, kang kinsa gihimo ang pagtubos kanato?",
+    "choices": [
+      "Ni Cristo sa iyang kaugalingong merito",
+      "Sa tagsatagsa nga tawo pinaagi sa kaugalingong paningkamot",
+      "Sa mga anghel nga gipadala sa Dios",
+      "Sa Iglesya pinaagi sa kanon nga balaod"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gitukod ni Cristo aron ipadangat ang mga bunga sa pagpanubos ngadto sa tagsatagsa?",
+    "choices": [
+      "Usa ka pundok sa mga escriba",
+      "Ang Iglesya, nga gibinlan sa mga sacramento",
+      "Usa ka balaod nga sinulat sa bato",
+      "Usa ka tulumanon sa pag-ayuno"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsay makahimo sa grasya nga mawala kanato bisan nadawat na kini?",
+    "choices": [
+      "Ang pagbasa og Kasulatan",
+      "Ang tinuyoan nga pagbuhat og bug-at nga sala",
+      "Ang pag-ampo sa buntag",
+      "Ang pagtambong sa Simbahan"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gigamit sa Pagsupak gikan sa Roma 3:10 aron ipaila ang kahimtang sa tawo atubangan sa Dios?",
+    "choices": [
+      "Wala gayoy tawo nga matarong",
+      "Ang tanan nakabaton na sa kaluwasan",
+      "Ang balaod maoy nagluwas sa tawo",
+      "Ang tanang tawo nahimong santos"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Efeso 2:8-9 nga gigamit sa Pagsupak, unsay giingon bahin sa kaluwasan?",
+    "choices": [
+      "Naluwas kamo tungod sa grasya sa Dios, dili kini inyong buhat kondili gasa",
+      "Naluwas kamo tungod sa inyong pagbuhat og maayo",
+      "Naluwas kamo tungod sa pagpasakop sa balaod ni Moises",
+      "Naluwas kamo pinaagi lamang sa pagpuasa"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Hebreohanon 11:6 nga gigamit sa Tubag, unsay gikinahanglan aron mahimuot ang Dios?",
+    "choices": [
+      "Ang pagtuo",
+      "Ang bahandi",
+      "Ang kadungganan",
+      "Ang kaalam sa kalibotan"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala kang Santiago 2:14, 24, 26, unsang matang sa pagtuo ang makaluwas?",
+    "choices": [
+      "Bisan unsang pagtuo, gawas man o dili gawas sa buhat",
+      "Buhi nga pagtuo nga ubanan sa mga maayong buhat",
+      "Pagtuo nga wala magkinahanglan og buhat",
+      "Pagtuo nga nakabase lamang sa emosyon"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong gikinahanglan man ang mga maayong buhat alang sa kaluwasan sumala sa Roma 2:6-7?",
+    "choices": [
+      "Tungod kay ang buhat lang ang giisip, dili ang pagtuo",
+      "Tungod kay gantihan sa Dios ang tagsatagsa sumala sa iyang binuhatan",
+      "Tungod kay ang balaod nagsugo niini",
+      "Tungod kay ang mga pari nagtudlo niini"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa 1 Corinto 13:2 ug Galacia 5:6, unsay kinahanglan mag-uban sa maayong buhat aron may bili kini?",
+    "choices": [
+      "Kahibalo lamang",
+      "Gugma",
+      "Katakos sa pagsulti",
+      "Bahandi"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Tubag, unsay dugang gipasabot sa 'pagdawat kang Jesus' gikan sa Juan 1:12?",
+    "choices": [
+      "Ang pagtuo lamang nga si Cristo nagpakamatay alang kanato",
+      "Ang pagdawat usab sa iyang mga panudlo ug pagtuman sa iyang mga sugo",
+      "Ang paglakaw ngadto sa templo sa Herusalem",
+      "Ang paghatag og halad-sinunog"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Marcos 16:16 nga gikutlo sa Tubag, unsay kinahanglan uban sa pagtuo aron maluwas?",
+    "choices": [
+      "Ang pagpanaw ngadto sa Roma",
+      "Ang pagpabunyag",
+      "Ang pagbayad og bulohaton sa Iglesya",
+      "Ang pagpuyo sa desyerto"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Mateo 7:21 ug Lucas 6:46, kinsa ang makasulod sa gingharian sa langit?",
+    "choices": [
+      "Ang tanan nga nagtawag lamang og 'Ginoo, Ginoo'",
+      "Kadto lamang nagtuman sa kabubut-on sa Amahan nga atua sa langit",
+      "Kadto nga daghag katigayonan",
+      "Kadto nga daghag kaalam"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Juan 14:15 ug 1 Juan 5:3, unsay ilhanan nga kita nahigugma sa Dios?",
+    "choices": [
+      "Ang pagtuman sa iyang mga sugo",
+      "Ang pagpuyo nga bulahan",
+      "Ang pagpanaw sa balaang mga dapit",
+      "Ang pagdawat og daghang bunyag"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Tubag, ang pagbutang og grasya (redemptio objectiva) naggikan asa, ug unsa may kinahanglan sa tagsatagsa aron makadangat sa kinabuhing dayon (redemptio subjectiva)?",
+    "choices": [
+      "Naggikan sa pagpanubos ni Jesus; gikinahanglan ang atong pag-abag",
+      "Naggikan sa balaod ni Moises; gikinahanglan ang paghalad og hayop",
+      "Naggikan sa kaalam sa tawo; walay laing gikinahanglan",
+      "Naggikan sa Iglesya; gikinahanglan ang bahandi"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa 1 Corinto 10:12 ug 1 Corinto 9:27, unsay gitudlo sa Kasulatan bahin sa absoluto nga kasegurohan sa kaluwasan human madawat si Cristo?",
+    "choices": [
+      "Nga siguro na gyod ang tawo malangit bisan unsaon niya pagkinabuhi human niini",
+      "Nga bisan si San Pablo wala maniguro sa iyang kaugalingon, busa kinahanglan magbantay kita nga dili mapukan",
+      "Nga ang kasegurohan makab-ot lamang pinaagi sa dakong bahandi",
+      "Nga ang kasegurohan dili gyod matagbaw sa bisan kinsa"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Roma 5:5 ug Filipos 3:12-14, unsang matang sa kasegurohan ang gitudlo sa Kasulatan bahin sa kaluwasan?",
+    "choices": [
+      "Kasegurohan moral nga nagsukad sa birtud sa paglaom, samtang nagpadayon sa pagpaningkamot",
+      "Walay bisan unsang kasegurohan gayod",
+      "Hingpit ug tapos na nga kasegurohan nga wala nay kinahanglan pang paningkamot",
+      "Kasegurohan nga naggikan lamang sa maayong buhat, dili sa grasya"
+    ],
+    "correct_index": 0
+  }
+]
