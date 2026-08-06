@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsa ang bunyag diha sa espirituhanong kinabuhi sa tawo?",
+    "choices": [
+      "Ang katapusan sa mga sacramento nga atong madawat",
+      "Ang una sa mga sacramento, ang ganghaan ngadto sa atong espirituhanong kinabuhi",
+      "Usa lamang ka simbolo nga walay tinuod nga epekto",
+      "Usa ka sacramento nga alang lamang sa mga dagko"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tulo ka epekto sa bunyag sumala sa panudlo sa Sta. Iglesya?",
+    "choices": [
+      "Mopapas sa salang panulondon, mopasaylo sa salang buhatnon, ug mowagtang sa kastigo temporal",
+      "Mopasaylo lamang sa salang buhatnon",
+      "Mowagtang lamang sa kastigo eterno",
+      "Mohatag lamang og pangalan sa bata"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga dili kinahanglan bunyagan ang bata kay 'ang Gingharian sa Dios ila sa sama niining mga bataa' (Mar. 10:14)?",
+    "choices": [
+      "Naghisgot kini sa mga bata nga gipaduol kang Jesus ug gipanalanginan; ang bunyag mismo mao ang paagi sa pagpaduol ngadto kaniya (Gal. 3:27)",
+      "Nagpasabot kini nga dili gayod angay bunyagan ang mga bata",
+      "Nagpamatuod kini nga ang mga bata walay sala",
+      "Wala kini kalabotan sa bunyag"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Ang pagtulon-an nga 'ang motuo ug magpabunyag maluwas' (Mar. 16:15-16) referido kini kang kinsa?",
+    "choices": [
+      "Sa tanang tawo nga wala pa mabunyagi, bata man o dako",
+      "Sa mga dagko nga nakabig, dili sa gagmayng bata (Mat. 18:6 nagpamatuod nga dunay pagtuo ang mga bata)",
+      "Sa mga masuso lamang",
+      "Sa mga pari lamang nga magbunyag"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Buh. 2:38, ang pagpahinulsol sa dili pa bunyagan gitumong kang kinsa, ug unsay pruyba nga apil gihapon ang mga bata sa bunyag?",
+    "choices": [
+      "Sa mga dagkong nakahimog salang buhatnon; ang mga anak apil sa saad (Buh. 2:39) ug daghang panimalay ang nabunyagan sa tibuok banay (Buh. 16:15, 16:33)",
+      "Sa mga masuso lamang nga wala pay pagtuo",
+      "Wala kini gitumong ni bisan kinsa nga bata",
+      "Sa mga Gentil lamang, dili sa mga Judio"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong ang pagpabunyag ni Jesus dako na (Mat. 3:13-16) dili pamatuod nga dagko ra ang angay bunyagan?",
+    "choices": [
+      "Ang bunyag ni Juan dili hingpit nga bunyag; panig-ingnan ni Jesus dinhi mao ang pagpailob ug pagkamapaubsanon, dili ang iyang edad (Luc. 3:16, Fil. 2:5-8)",
+      "Tungod kay wala man gayod mabunyagi si Jesus",
+      "Tungod kay ang bunyag ni Juan managsama ra sa hingpit nga bunyag",
+      "Tungod kay si Jesus wala nay sala nga wagtangon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang mga bata walay sala tungod kay 'wala pa silay nahimo nga kalapasan' (Rom. 9:11)?",
+    "choices": [
+      "Dunay sala nga dili personal nga paglapas sa sugo kondili miresulta sa unang paglapas ni Adan nga mitakod sa tanang tawo (Sal. 51:5, Rom. 5:12)",
+      "Tinuod nga walay sala ang mga bata busa dili sila kinahanglang bunyagan",
+      "Ang mga bata makahimo ra sa personal nga sala human sa bunyag",
+      "Ang sala magsugod ra kon ang bata makaila na sa maayo ug daotan"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Giunsa pagpasabot ang Eze. 18:20 ('Ang anak dili mag-antos sa sala sa iyang amahan') kalabot sa salang panulondon?",
+    "choices": [
+      "Referido kini sa personal nga kadautan sa sala nga ang mismong nagbuhat maoy manubag; apan ang epekto niini motakod ngadto sa mga anak (Lam. 5:7)",
+      "Nagpamatuod kini nga walay salang panulondon",
+      "Nagpasabot kini nga ang bunyag dili na kinahanglan",
+      "Nagpamatuod kini nga ang mga bata walay kalag"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala ni San Augustine, unsaon pagkuha ang salang panulondon nga mitapot sa kalag sa bata?",
+    "choices": [
+      "Pinaagi sa pagtuo sa bata sa dihang siya motungha na sa edad",
+      "Kini mitapot hawa sa kasayuran sa bata, busa mahimo sab kining kuhaon pinaagi sa bunyag hawa sa iyang kasayuran",
+      "Pinaagi lamang sa pagkompisal sa mga ginikanan",
+      "Dili gyod kini mahimong kuhaon"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon ni Jesus mahitungod sa pagkatawo pag-usab nga gikinahanglan aron makasulod sa gingharian sa Dios (Jn. 3:5)?",
+    "choices": [
+      "Kinahanglan matawo pag-usab pinaagi sa tubig ug sa Espiritu",
+      "Kinahanglan matawo pag-usab sa lawas sa iyang inahan",
+      "Kinahanglan magtigom og maayong buhat una",
+      "Kinahanglan makasabot una sa tibuok Balaod"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang formula sa pagbunyag angay lang nga sa ngalan ni Jesus (Buh. 10:48), dili trinitarian?",
+    "choices": [
+      "Ang 'sa ngalan ni Jesu-Cristo' nagkahulogan og pinaagi sa iyang gahom ug mando, gigamit aron ipalahi sa bunyag ni Juan; ang tin-aw nga pulong nga gamiton mao ang gitudlo ni Jesus sa Mat. 28:19",
+      "Tama nga dili gayod trinitarian ang husto nga formula",
+      "Ang Mat. 28:19 dili tinuod nga pulong ni Jesus",
+      "Walay kalainan kon unsang formula ang gamiton"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang paagi sa pagbunyag pagtusmaw (immersion) ra gayod, base sa Rom. 6:4?",
+    "choices": [
+      "Ang Kasulatan naghisgot usab sa pagbisibis (Eze. 36:25) ug pagbubo sa tubig (Isa. 44:3) isip paghinlo sa sala; si Saulo gibunyagan sulod sa balay nga walay sapa o dagat (Buh. 9:16-18)",
+      "Pagtusmaw ra gayod ang matuod nga paagi, walay laing pamaagi",
+      "Ang Kasulatan wala gayod naghisgot og laing paagi gawas sa pagtusmaw",
+      "Ang pagbunyag ni Saulo dili tinuod nga bunyag"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay giingon ni San Irenaeus, tinun-an ni Polycarpio, mahitungod sa pagbunyag sa mga bata?",
+    "choices": [
+      "Nga si Cristo mianhi aron pagluwas sa tanan pinaagi kaniya — ang tanan nga natawo pag-usab (nabunyagan) diha kaniya, apil ang masuso, mga gagmayng bata, batan-on, ug tigulang",
+      "Nga ang bunyag alang lamang sa mga dagko",
+      "Nga dili angay bunyagan ang bata hangtod siya makaila na sa maayo ug daotan",
+      "Nga wala pay nahisgotang bunyag sa iyang panahon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipamatud-an sa protestanteng pastor nga si Dr. John Theodore Mueller mahitungod sa kasaysayan sa pagbunyag sa bata?",
+    "choices": [
+      "Nga sukad sa apostolikanhong panahon hangtod sa ika-16 nga siglo, ang pagbunyag sa bata usa ka tradisyon nga walay nilalis kaniadto",
+      "Nga sayop ang pagbunyag sa bata",
+      "Nga ang mga apostoles wala gayod nagbunyag og bata",
+      "Nga ang pagbunyag sa bata bag-ong tradisyon lamang gikan sa Edad Medya"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Pagtulon-an sa maong topiko, unsay angay buhaton sa mga ginikanan bahin sa pagbunyag sa ilang mga anak?",
+    "choices": [
+      "Dili maglangan sa pagpabunyag kanila sa labing madaling panahon gikan sa pagkahimugso, ug amomahan sila sa kristohanong pagtulon-an",
+      "Maghulat hangtod dako na ang bata aron siya mismo mopili sa pagpabunyag",
+      "Walay kalabotan ang mga ginikanan sa desisyon sa pagpabunyag",
+      "Magpabunyag lamang kon ang bata magpakita og pagtuo"
+    ],
+    "correct_index": 0
+  }
+]
