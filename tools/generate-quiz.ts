@@ -18,12 +18,27 @@
  * Output: content/quiz/generated/<topic_id>-<tier>.json
  */
 import { join } from 'path'
-import { mkdirSync, writeFileSync } from 'fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'fs'
+import Anthropic from '@anthropic-ai/sdk'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
 
 const ROOT = join(import.meta.dir, '..')
-const OLLAMA_CHAT_URL = 'http://localhost:11434/api/chat'
-const MODEL_14B = 'qwen3:14b'
+// qwen3:14b is temporarily unavailable (model deleted locally) — quiz
+// generation runs on Claude until it's restored.
+const CLAUDE_MODEL = 'claude-opus-4-8'
+
+function loadEnvLocal() {
+  const envLines = readFileSync(join(ROOT, '.env.local'), 'utf8').split('\n')
+  for (const line of envLines) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const eq = trimmed.indexOf('=')
+    if (eq === -1) continue
+    process.env[trimmed.slice(0, eq).trim()] = trimmed.slice(eq + 1).trim()
+  }
+}
+loadEnvLocal()
+const anthropic = new Anthropic()
 
 const argv = process.argv.slice(2)
 const langFlagIdx = argv.indexOf('--lang')
@@ -51,41 +66,15 @@ function extractJson(raw: string): any {
   return JSON.parse(noThink.slice(start, end + 1))
 }
 
-// think:false + stream:true — see tools/generate-topic.ts's callModel for why both are
-// required (thinking-mode spirals, and Bun's fetch idle-timeout kills buffered responses).
-async function callModel(model: string, prompt: string, numPredict: number): Promise<any> {
-  const res = await fetch(OLLAMA_CHAT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model,
-      messages: [{ role: 'user', content: prompt }],
-      stream: true,
-      think: false,
-      options: { num_predict: numPredict },
-    }),
-    signal: AbortSignal.timeout(10 * 60 * 1000),
+async function callClaude(prompt: string, maxTokens: number): Promise<any> {
+  const response = await anthropic.messages.create({
+    model: CLAUDE_MODEL,
+    max_tokens: maxTokens,
+    messages: [{ role: 'user', content: prompt }],
   })
-  if (!res.body) throw new Error('Ollama returned no response body')
-  const reader = res.body.getReader()
-  const decoder = new TextDecoder()
-  let buffer = ''
-  let full = ''
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
-    buffer += decoder.decode(value, { stream: true })
-    let idx: number
-    while ((idx = buffer.indexOf('\n')) >= 0) {
-      const line = buffer.slice(0, idx).trim()
-      buffer = buffer.slice(idx + 1)
-      if (!line) continue
-      const chunk = JSON.parse(line) as { message?: { content?: string }; done?: boolean; error?: string }
-      if (chunk.error) throw new Error(`Ollama error: ${chunk.error}`)
-      full += chunk.message?.content ?? ''
-    }
-  }
-  return extractJson(full)
+  const textBlock = response.content.find((b): b is Anthropic.TextBlock => b.type === 'text')
+  if (!textBlock) throw new Error('Claude returned no text block')
+  return extractJson(textBlock.text)
 }
 
 type QuizQuestion = { topic_id: string; tier: string; lang: string; question: string; choices: string[]; correct_index: number }
@@ -167,7 +156,7 @@ const CHUNK_SIZE = 8
 const MAX_ATTEMPTS_PER_CHUNK = 3
 const MAX_CHUNK_ROUNDS = Math.ceil(count / 2) + 10 // safety cap against an infinite loop
 
-console.log(`[Generate] ${count} questions, tier "${tier}", lang "${lang}" (qwen3:14b, chunked ${CHUNK_SIZE} at a time)...`)
+console.log(`[Generate] ${count} questions, tier "${tier}", lang "${lang}" (Claude, chunked ${CHUNK_SIZE} at a time)...`)
 
 const accepted: QuizQuestion[] = []
 const seenNormalized = new Set<string>()
@@ -188,7 +177,7 @@ while (accepted.length < count && chunkRound < MAX_CHUNK_ROUNDS) {
   let extraNote: string | null = null
   for (let attempt = 1; attempt <= MAX_ATTEMPTS_PER_CHUNK; attempt++) {
     try {
-      const result = await callModel(MODEL_14B, buildPrompt(chunkCount, askedQuestions, extraNote), numPredict)
+      const result = await callClaude(buildPrompt(chunkCount, askedQuestions, extraNote), numPredict)
       chunkQuestions = result.questions as QuizQuestion[]
     } catch (err) {
       console.log(`  [round ${chunkRound}, attempt ${attempt}] model output failed to parse (${err instanceof Error ? err.message : err}), retrying`)

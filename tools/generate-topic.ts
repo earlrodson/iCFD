@@ -8,14 +8,30 @@
  * Output: content/topics/generated/<topic_id>.json
  */
 import { join } from 'path'
-import { mkdirSync, writeFileSync } from 'fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'fs'
+import Anthropic from '@anthropic-ai/sdk'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
 
 const ROOT = join(import.meta.dir, '..')
 const OLLAMA_CHAT_URL = 'http://localhost:11434/api/chat'
 
 const MODEL_9B = 'qwen3.5:9b'
-const MODEL_14B = 'qwen3:14b'
+// qwen3:14b is temporarily unavailable (model deleted locally) — Phase 2
+// (comprehensive answer generation) runs on Claude until it's restored.
+const CLAUDE_MODEL = 'claude-opus-4-8'
+
+function loadEnvLocal() {
+  const envLines = readFileSync(join(ROOT, '.env.local'), 'utf8').split('\n')
+  for (const line of envLines) {
+    const trimmed = line.trim()
+    if (!trimmed || trimmed.startsWith('#')) continue
+    const eq = trimmed.indexOf('=')
+    if (eq === -1) continue
+    process.env[trimmed.slice(0, eq).trim()] = trimmed.slice(eq + 1).trim()
+  }
+}
+loadEnvLocal()
+const anthropic = new Anthropic()
 
 const [, , title, question, slugArg] = process.argv
 if (!title || !question) {
@@ -94,6 +110,17 @@ async function callModel(model: string, prompt: string): Promise<any> {
   return extractJson(full)
 }
 
+async function callClaude(prompt: string, maxTokens = 8000): Promise<any> {
+  const response = await anthropic.messages.create({
+    model: CLAUDE_MODEL,
+    max_tokens: maxTokens,
+    messages: [{ role: 'user', content: prompt }],
+  })
+  const textBlock = response.content.find((b): b is Anthropic.TextBlock => b.type === 'text')
+  if (!textBlock) throw new Error('Claude returned no text block')
+  return extractJson(textBlock.text)
+}
+
 console.log(`\nGenerating topic: "${title}"\n`)
 
 // Phase 0 — retrieval
@@ -111,9 +138,9 @@ TOPIC: ${title}
 QUESTION: ${question}`)
 const topicId = slugArg ?? metadata.topic_id
 
-// Phase 2 — comprehensive answer (14b, retrieval-grounded)
-console.log('[Phase 2] Comprehensive answer (qwen3:14b)...')
-const { answer_full: answerFull } = await callModel(MODEL_14B, `You are a Catholic apologetics content writer for the "Codex Defensoris" app. Write the comprehensive answer (1500-2500 words, Markdown, ## sections, --- dividers, blockquotes for Father/Council quotes, Markdown table for CCC refs).
+// Phase 2 — comprehensive answer (Claude, retrieval-grounded)
+console.log('[Phase 2] Comprehensive answer (Claude)...')
+const { answer_full: answerFull } = await callClaude(`You are a Catholic apologetics content writer for the "Codex Defensoris" app. Write the comprehensive answer (1500-2500 words, Markdown, ## sections, --- dividers, blockquotes for Father/Council quotes, Markdown table for CCC refs).
 
 Use ONLY the passages below for CCC references, conciliar text, and Church Father quotes. If a required element has no matching passage below, write "[NEEDS SOURCE: <what's missing>]" instead of inventing one. Cite scripture inline by reference only (e.g. "(John 1:14)") — never write verse text yourself.
 
