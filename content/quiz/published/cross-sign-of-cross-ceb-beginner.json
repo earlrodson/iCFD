@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsay gikahulogan sa krus?",
+    "choices": [
+      "Usa lamang ka dekorasyon nga walay espirituhanong kahulogan",
+      "Nagkahulogan ni Cristo ug sa atong tinuhoan",
+      "Timaan lamang sa Daang Tugon nga wala nay bili karon",
+      "Simbolo sa pagkatinunglo lamang, walay laing kahulogan"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipadayag sa pagpanguros sumala sa Sta. Iglesya?",
+    "choices": [
+      "Ang atong pagtuo sa tulo ka dagkong misteryo: Santisima Trinidad, Incarnation, ug Redemption",
+      "Ang atong pagkabutang sa usa ka partikular nga parokya",
+      "Ang atong pisikal nga kahimsog",
+      "Ang kadaghan sa mga santos nga atong giampoan"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong ang pagpanguros gitawag nga usa ka acto sa pag-ampo?",
+    "choices": [
+      "Tungod kay kini gihimo lamang sulod sa simbahan",
+      "Tungod kay pinaagi niini atong gipangayo gikan sa Dios ang iyang mga panalangin",
+      "Tungod kay kini gikinahanglan sa dili pa mangaon",
+      "Tungod kay kini timaan sa katungod sa pari lamang"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Nganong ang pagpanguros gitawag usab nga acto sa pagsimba?",
+    "choices": [
+      "Tungod kay pinaagi niini atong gihimaya ang Santisima Trinidad: Amahan, Anak, ug Espiritu",
+      "Tungod kay kini gisugo sa balaod sibil",
+      "Tungod kay kini nagpasabot lamang og pagtahod sa pari",
+      "Tungod kay kini timaan sa relihiyon nga walay Dios"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay kahulogan sa Simbahan sa pagpanguros bahin sa kasugoan sa Dios?",
+    "choices": [
+      "Nga wala kini kalabotan sa kasugoan sa Dios",
+      "Nga ang kasugoan sa Dios atong ibutang sa hunahuna, kasingkasing ug ikinabuhi",
+      "Nga kini timaan lamang sa panahon sa Adventong pagpuasa",
+      "Nga kini gisugo lamang sa mga obispo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay ihatag sa Simbahan sa mohimo sa panguros diha sa kahimtang sa grasya?",
+    "choices": [
+      "Indulhensya partial",
+      "Kompirmasyon awtomatiko",
+      "Kapasayloan sa tanang silot nga temporal ug ang kasal-anan",
+      "Titulo isip santos"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gigamit sa pagsupak nga nag-ingon nga ang krus dili angay pasidunggan?",
+    "choices": [
+      "Juan 3:16",
+      "Genesis 1:1",
+      "\"Tinunglo ang gibitay sa kahoy\" (Gal. 3:13)",
+      "Salmo 23"
+    ],
+    "correct_index": 2
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Tubag, ngano nga ang krus kaniadto simbolo sa pagkatinunglo?",
+    "choices": [
+      "Tungod kay kini bitayanan sa mga kriminal",
+      "Tungod kay kini gamit sa mga pagano lamang",
+      "Tungod kay kini gidili sa mga Judio",
+      "Tungod kay kini gigamit sa mga Romano isip dekorasyon"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Pinaagi sa unsa nahimong simbolo sa kaluwasan ang krus, sumala sa 1 Cor. 1:18?",
+    "choices": [
+      "Pinaagi sa kamatayon ni Cristo sa krus, gahom ug kaalam sa Dios alang sa mga linuwas",
+      "Pinaagi sa paggamit niini sa mga hari sa Ehipto",
+      "Pinaagi sa pagdayeg niini sa mga anghel",
+      "Pinaagi sa paghimo niini nga bulawan"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Mateo 16:24, unsay gisugo ni Jesus sa iyang mga sumusunod bahin sa krus?",
+    "choices": [
+      "Nga likayan ang krus kutob sa mahimo",
+      "Nga pas-anon ang ilang krus matag adlaw ug mosunod kaniya",
+      "Nga lansangon lamang ang mga pari sa krus",
+      "Nga simbahon ang krus imbes si Cristo"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Diha sa Daang Tugon (Deut. 6:6-9), unsay gisugo sa Dios bahin sa timaan diha sa kamot ug agtang?",
+    "choices": [
+      "Nga ipabutang kini isip pagpahinumdom sa kasugoan sa Dios",
+      "Nga likayan kini tungod kay pagano kini",
+      "Nga isuwapang lamang sa panahon sa gubat",
+      "Nga ipabutang lamang sa mga sacerdote"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Ezequiel 9:5-6, kinsa ang wala gipapatay sa Dios taliwala sa katalagman?",
+    "choices": [
+      "Ang mga hari ug prinsipe lamang",
+      "Ang mga kabataan lamang",
+      "Ang mga tigulang nga adunay bulawan",
+      "Kadtong adunay timaan (tau/krus) diha sa ilang agtang"
+    ],
+    "correct_index": 3
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sa Pinadayag 14:1 ug 22:4, unsay gipatik diha sa agtang sa mga linuwas?",
+    "choices": [
+      "Ang numero sa mananap",
+      "Ang ngalan sa Amahan ug ang ngalan ni Cristo",
+      "Ang bandila sa Roma",
+      "Ang simbolo sa kalag nga nawala"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Ngano nga wala magtukma ang patik sa Pin. 13:16 (mananap) ug ang pagpanguros, sumala sa dugang tubag?",
+    "choices": [
+      "Tungod kay ang gipatik sa pagpanguros mao ang ngalan sa Amahan, Anak, ug Espiritu Santo (Mat. 28:19), dili ang ngalan sa mananap",
+      "Tungod kay ang mananap wala gyoy timaan",
+      "Tungod kay ang pagpanguros gihimo lamang sa mga santos",
+      "Tungod kay ang duha managsama gayod"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay gipasabot sa \"Simbahon sa makalibo ang santos nga kahoy\" nga pag-ampo, sumala sa Tubag?",
+    "choices": [
+      "Literal nga pagsimba sa kahoy nga materyal",
+      "Usa ka metonymy diin ang krus gigamit sa pagtumong kang Cristo nga gilansang niini",
+      "Sayop nga tulomanon nga kinahanglan wagtangon",
+      "Pagsimba sa mga anghel nga nag-alagad sa krus"
+    ],
+    "correct_index": 1
+  }
+]
