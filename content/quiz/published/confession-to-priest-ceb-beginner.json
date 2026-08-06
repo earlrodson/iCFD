@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Sumala sa Sta. Iglesya, unsay tuyo ni Cristo sa pagtukod sa sacramento sa pagkompisal?",
+    "choices": [
+      "Aron ang sala nga nahimo human sa bunyag mapasaylo pinaagi sa absolusyon nga ihatag sa pari",
+      "Aron papason ang salang panulondon sa tanang tawo",
+      "Aron pulihan ang bunyag isip pangunang sacramento",
+      "Aron ang mga pari mahimong maghuhukom sa katilingban"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsang matang sa sala ang gikinahanglan gyod nga isugid sa kompisalan sumala sa Sta. Iglesya?",
+    "choices": [
+      "Ang gagmayng sala lamang",
+      "Ang dagkong 'mortal' nga sala",
+      "Ang tanang hunahuna nga daotan bisan wala mabuhat",
+      "Walay kinahanglan isugid kay ang tanang sala mapasaylo pinaagi sa paghinulsol lamang"
+    ],
+    "correct_index": 1
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang sala isugid direkta sa Dios (Esd. 10:11) tungod kay wala pa man tukora ni Jesus ang sacramento sa pagkompisal sa Daang Tugon?",
+    "choices": [
+      "Sa Daang Tugon mapasaylo ang sala pinaagi sa paghinulsol (Eze. 18:21-23); apan gitukod ni Jesus ang sacramento sa iyang pag-abot sa Bag-ong Tugon (Jn. 20:22-23)",
+      "Tinuod gyod nga direkta ra kanunay ang pagsugid ngadto sa Dios",
+      "Ang Esd. 10:11 nagpamatuod nga dili gikinahanglan ang bunyag",
+      "Wala kini kalabotan sa sacramento sa pagkompisal"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga napasaylo si David tungod kay midiretso siya sa Dios (Sal. 32:5)?",
+    "choices": [
+      "Ang pag-angkon ni David nga siya nakasala atubangan sa Ginoo wala magpasabot nga dili na kinahanglan itug-an sa iyang piniyalan; tinagsatagsa niya kining gisugid kang Natan (2 Sam. 12:12-14)",
+      "Napasaylo si David tungod kay wala man siyay mortal nga sala",
+      "Ang Sal. 32:5 nagpamatuod nga wala kinahanglana ang pari",
+      "Si David wala gyod maghinulsol"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang 1 Jn. 1:9 nagpasabot nga direkta ngadto sa Dios ra ang pagsugid?",
+    "choices": [
+      "Kon direkta na lang gyod ngadto sa Dios ang pagsugid, mahimong walay kapuslanan ang gahom sa pagpasaylog sala nga gihatag ni Cristo sa iyang mga apostoles (Jn. 20:22-23)",
+      "Husto gyod nga sa Dios ra angay isugid ang sala",
+      "Ang 1 Jn. 1:9 nagpasabot nga wala nay gahom ang mga apostoles",
+      "Ang bersikulo naghisgot sa gahom sa mga yawi nga gihatag kang Pedro"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Giunsa pagtubag ang pangatarongan nga si Jesus miingon 'Umari kamo kanako' (Mat. 11:28) ug wala moingon nga moadto sa pari?",
+    "choices": [
+      "Ang atong pagduol kang Jesus nagpasabot sa atong pagkaandam nga motuman sa iyang paagi, ug ang sugo sa pagduol sa pari nalakip na sa gahom nga iyang gihatag kanila (Jn. 20:22-23)",
+      "Tinuod nga ang Mat. 11:28 nagsupak sa kompisalan",
+      "Si Jesus wala gyod nagtudlo bahin sa pari",
+      "Ang bersikulo naghisgot sa gahom sa mga yawi lamang"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga 'Walay tawo nga makapasaylog sala, kondili ang Dios lamang' (Mar. 2:7), busa dili makapasaylo ang pari?",
+    "choices": [
+      "Tinuod nga ang Dios ang tinubdan sa pasaylo, apan mahimo niyang itugyan kining gahom ngadto sa iyang mga pinadala (Jn. 20:21-23, 2 Cor. 5:18)",
+      "Tinuod gyod, ang pari walay bisan unsang gahom",
+      "Ang Mar. 2:7 nagpamatuod nga walay tawo nga makapasaylo, apil na si Jesus",
+      "Kini nagpasabot nga kinahanglan modiretso na lang sa Dios kanunay"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga makasasala usab ang pari busa dili siya makahinlo (Mat. 7:4)?",
+    "choices": [
+      "Ang gitudlo ni Cristo dinhi mao ang dili paghukom sa isigkatawo; ang gahom sa pagpasaylog sala wala mag-agad sa katakos sa pari kondili sa pulong ni Cristo (Jn. 20:22-23)",
+      "Tinuod nga dili makapasaylo ang pari kay makasasala man usab",
+      "Ang Mat. 7:4 nagpamatuod nga kinahanglan hingpit una ang pari sa dili pa siya makahatag og absolusyon",
+      "Ang bersikulo walay kalabotan sa sacramento sa pagkompisal"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay kalainan sa Jn. 20:22-23 ug sa Mat. 18:35 nga gigamit sa pagsupak sa gahom sa pagpasaylog sala sa pari?",
+    "choices": [
+      "Ang Mat. 18:35 mao ang atong katungdanan sa pagpasaylo sa usag-usa; ang Jn. 20:22-23 mao ang klarong gahom sa pagpasaylo o dili pagpasaylo sa sala nga gihatag ni Jesus sa iyang mga apostoles",
+      "Walay kalainan ang duha ka bersikulo",
+      "Ang Jn. 20:22-23 naghisgot lamang sa pagpasaylo sa isigkatawo",
+      "Ang Mat. 18:35 mao ang paghatag sa gahom sa pagpasaylog sala"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsay tubag sa pangatarongan nga ang mga apostoles gisugo lang sa pagsangyaw sa kapasayloan, dili sa pagpasaylo mismo (Luc. 24:47)?",
+    "choices": [
+      "Ang pagsangyaw sa kapasayloan naglakip sa pagtubos ni Cristo pinaagi sa iyang kamatayon ug sa paghatag niya sa gahom sa pagpasaylog sala human siya mabanhaw",
+      "Tinuod gyod, ang mga apostoles walay gahom sa pagpasaylo",
+      "Ang Luc. 24:47 nagsupak sa Jn. 20:22-23",
+      "Ang pagsangyaw ug ang pagpasaylo managlahi nga sacramento"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Kang kinsa gitugyan ni Jesus ang iyang misyon ug gahom sa pagpasaylog sala human siya mabanhaw?",
+    "choices": [
+      "Sa iyang mga apostoles, nga nahipasa sab ngadto sa ilang mga sumusunod nga mao ang mga kaobispohan ug mga kaparian (Jn. 20:21-23)",
+      "Sa tanang katawhan sa kalibotan sa managsama nga paagi",
+      "Kang Juan Bautista lamang",
+      "Wala kini gitugyan ni bisan kinsa"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Pila ka higayon sa usa ka tuig ang gisugo sa Sta. Iglesya nga labing menos mokompisal ang matuohon?",
+    "choices": [
+      "Kausa, labi na panahon sa kuwaresma",
+      "Kada bulan",
+      "Kada Dominggo",
+      "Sa dihang lamang siya makahimo og dagkong sala"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang una sa lima ka lakang sa paghimo og maayong pagkompisal?",
+    "choices": [
+      "Ang pagsusi sa konsensya (2 Cor. 13:5)",
+      "Ang pagpenitensya",
+      "Ang paghinulsol",
+      "Ang paglikay sa okasyon sa sala"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang ikaduha ug ikatulo nga lakang sa maayong pagkompisal sumala sa Pagtulon-an?",
+    "choices": [
+      "Ang paghinulsol nga mao ang kasubo tungod sa sala (2 Cor. 7:10), ug ang pagsugid sa sala ngadto sa pari (Prob. 28:13)",
+      "Ang paglikay sa okasyon sa sala, ug ang pagpenitensya",
+      "Ang pagsusi sa konsensya, ug ang pagpenitensya",
+      "Ang pagbunyag, ug ang pagkumpirmar"
+    ],
+    "correct_index": 0
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "lang": "ceb",
+    "question": "Unsa ang ikalima ug katapusang lakang sa maayong pagkompisal, isip timaan nga andam na kita mobuhat sa kabubut-on sa Dios?",
+    "choices": [
+      "Ang pagpenitensya (Joel 2:12)",
+      "Ang pagsusi sa konsensya",
+      "Ang pagsugid sa sala",
+      "Ang paglikay sa okasyon sa sala"
+    ],
+    "correct_index": 0
+  }
+]
