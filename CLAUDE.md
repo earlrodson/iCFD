@@ -93,6 +93,13 @@ bun tools/vector-search.ts "<query>" --json   # machine-readable
 
 Quality gate before considering work done: `pnpm lint && pnpm type-check && pnpm test`.
 
+Settled architectural/process decisions (don't re-litigate): `DECISIONS.md`.
+
+**Rule:** before proposing or making a change to migrations/CI, RLS/table
+security, the Ollama model routing split, or quiz generation/review tooling,
+read `DECISIONS.md` first — these are exactly the areas with prior settled
+calls that get mistakenly re-proposed.
+
 ## Supabase
 
 - Live project ref: `gdobgalhdepfpxexssvq` (name "iCFD", region ap-northeast-1) — this is the one `.env.local` points to (`NEXT_PUBLIC_SUPABASE_URL`). There is a second, unrelated Supabase project on the same account (`ztwdlkbnvsgjuzrwplxm`, a loans/investors schema) — not this app, ignore it.
