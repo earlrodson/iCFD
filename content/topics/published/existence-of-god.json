@@ -1,0 +1,60 @@
+{
+  "topic_id": "existence-of-god",
+  "lang": "en",
+  "category": "church-teaching",
+  "title": "Does God Exist? A Philosophical Case",
+  "question": "Why does anything exist at all, and is belief in God rationally defensible on philosophical grounds alone — without first assuming the Bible is true?",
+  "difficulty": "advanced",
+  "summary": "This case runs on philosophy, not Scripture — it has to, or the wider Christian argument becomes circular. Contingency, the Kalam cosmological argument, the intelligibility of reality, fine-tuning, objective morality, and consciousness each raise a question naturalism has to answer; convergent, none is individually decisive, but together they make theism a serious, rationally defensible position rather than a default forced out by science.",
+  "answer_full": "## Why this has to be argued on reason alone\n\nBefore any argument for Jesus' divinity can get off the ground, a prior question has to be settled without appeal to the Bible: does a transcendent cause of reality exist at all? The Church herself teaches that God's existence can be known \"with certainty from the created world by the natural light of human reason\" (CCC 36) — this is not borrowing credibility from revelation, it is the foundation revelation is subsequently built on.\n\n## Six lines of argument\n\n**Contingency.** Nothing in the universe explains its own existence — everything we observe could have failed to exist, and depends on something else for its existence. If everything that exists is contingent in this way, the whole collection still needs an explanation outside itself: a necessary being that grounds contingent reality rather than merely adding to it (CCC 34).\n\n**The Kalam cosmological argument.** Whatever begins to exist has a cause; the universe began to exist; therefore the universe has a cause. This version is more contested among cosmologists than the contingency argument — eternal inflation, cyclic models, and boundary-condition cosmologies are live alternatives to a strict beginning — so it should be treated as supporting, not load-bearing on its own.\n\n**Intelligibility.** Reality is not just orderly but *mathematically knowable* — physics is possible at all only because the universe runs on structure a mind can discover. This regularity is assumed by science, not explained by it.\n\n**Fine-tuning.** The physical constants that allow for a life-permitting universe fall within an extremely narrow range. This doesn't prove design by itself, but it raises a real question a brute-fact universe doesn't obviously answer.\n\n**Objective morality.** Some acts are wrong regardless of culture or opinion — this is the working assumption behind essentially all moral discourse, including from people who deny it in the abstract. If some moral truths are not simply human invention, they need a ground beyond human preference (CCC 33).\n\n**Consciousness.** Subjective experience — what it is *like* to see red or feel pain — is not obviously reducible to physical description the way other natural phenomena are. This has convinced even some non-theistic philosophers that mind may be more fundamental to reality than materialism assumes.\n\nNone of these arguments is presented as individually watertight. The case is cumulative: each raises a real question, and naturalism has to answer all six, not explain away the one that seems weakest.\n\n## What is not being claimed\n\nThis case is often confused with much weaker arguments it does not make:\n\n- Not \"the Big Bang proves Genesis.\"\n- Not \"DNA is complex, therefore God.\"\n- Not \"quantum physics proves God.\"\n- Not \"science can't disprove God, therefore God exists.\"\n\nThese are the kind of god-of-the-gaps moves that get retired the moment science closes the gap. The arguments above are different in kind: they ask what grounds contingent existence, intelligibility, and moral truth *itself* — questions science was never built to answer, not temporary gaps in its coverage.\n\n## The honest limit of this case\n\nEven granted in full, this only establishes a necessary, transcendent, plausibly intelligent ground of reality — not a personal God who reveals himself in history, and not specifically the Christian God. That gap is real and is not closed here. It is addressed separately by the historical case for Jesus' resurrection: if a resurrection actually occurred, that is God acting in history, and the necessary ground argued for here stops being merely philosophical.\n\nThis case also does not answer the problem of evil — why a good, all-powerful God would allow suffering. That is a genuine, longstanding counter-consideration to theism, and a complete case for God eventually has to engage it. It sits outside what contingency, cosmology, and fine-tuning are built to address.",
+  "scripture": [
+    { "reference": "Romans 1:20", "version": "NABRE", "text": "Ever since the creation of the world, his invisible attributes of eternal power and divinity have been able to be understood and perceived in what he has made. As a result, they have no excuse;" },
+    { "reference": "Wisdom 13:1", "version": "NABRE", "text": "Foolish by nature were all who were in ignorance of God, and who from the good things seen did not succeed in knowing the one who is, and from studying the works did not discern the artisan;" },
+    { "reference": "Wisdom 13:5", "version": "NABRE", "text": "For from the greatness and the beauty of created things their original author, by analogy, is seen." },
+    { "reference": "Acts 17:24", "version": "NABRE", "text": "The God who made the world and all that is in it, the Lord of heaven and earth, does not dwell in sanctuaries made by human hands," },
+    { "reference": "Acts 17:28", "version": "NABRE", "text": "For ‘In him we live and move and have our being,’ as even some of your poets have said, ‘For we too are his offspring.’" }
+  ],
+  "catechism": ["CCC 31", "CCC 32", "CCC 33", "CCC 34", "CCC 36", "CCC 46"],
+  "church_fathers": [],
+  "objections": [
+    {
+      "objection": "If everything needs a cause, who made God? Doesn't this just push the question back a step?",
+      "response": "The argument never claims everything needs a cause — only contingent things do. God is proposed as necessary, not contingent, so the question doesn't apply to him in the same way. The fair follow-up is to ask the objector what their candidate for the necessary thing is — a brute-fact universe, a multiverse, the laws of physics — and why that candidate is actually necessary rather than simply unexplained."
+    },
+    {
+      "objection": "A multiverse could explain fine-tuning without needing God — with enough universes, a life-permitting one was bound to happen eventually.",
+      "response": "Maybe — but this doesn't remove the ultimate-explanation question, it relocates it: why does the multiverse exist at all, and why does it run on laws capable of generating universes in the first place? Postulating more universes doesn't explain why there is a reality that generates them."
+    },
+    {
+      "objection": "This is just a God-of-the-gaps argument — assuming God wherever current science hasn't yet explained something.",
+      "response": "That would be a fair criticism of a different argument: \"science can't yet explain X, so God.\" That is genuinely weak. But asking what grounds contingent existence itself is not a temporary gap in scientific knowledge — it's a question outside the domain science was built to answer, since science studies how things behave within existence, not why there is existence to study at all."
+    },
+    {
+      "objection": "Physicists don't agree the universe actually had a beginning, so the cosmological argument fails.",
+      "response": "This is a fair point and worth conceding directly — eternal inflation, cyclic models, and boundary-condition cosmologies are live alternatives, and the Kalam argument's premise that the universe began is more contested among cosmologists than it's often presented. This is exactly why the case leans more heavily on the contingency argument, which doesn't require a beginning — only that the universe's existence, however old or beginningless, doesn't explain itself."
+    },
+    {
+      "objection": "If God exists, why is he silent, and why does he allow suffering?",
+      "response": "This isn't answered by contingency, cosmology, or fine-tuning, and it shouldn't be waved off as if it were. The problem of evil is a genuine, longstanding counter-consideration to theism that deserves its own serious treatment. What this case establishes is narrower: that a necessary transcendent ground of reality is rationally defensible — not that every question about that ground's character or behavior is already settled."
+    }
+  ],
+  "citations": [
+    {
+      "author": "Aristotle",
+      "work": "Metaphysics, Book XII (Lambda)",
+      "date": "4th century BC",
+      "claim": "Argues for an eternal, unmoved first cause of motion and change in the universe — the philosophical ancestor of the cosmological argument, developed centuries before Christianity existed.",
+      "strength": "supporting",
+      "note": "Shows that reasoning from contingency and change to a necessary first cause is a pre-Christian philosophical tradition, not an argument invented to prop up Christian theology."
+    },
+    {
+      "author": "Plato",
+      "work": "Timaeus",
+      "date": "4th century BC",
+      "claim": "Describes the cosmos as ordered by a rational, intelligent craftsman (the Demiurge) rather than existing as pure chance — an early form of the design and intelligibility intuition.",
+      "strength": "supporting"
+    }
+  ],
+  "tags": ["existence of God", "natural theology", "cosmological argument", "fine-tuning", "philosophy", "apologetics"],
+  "related_topics": ["resurrection-of-jesus-evidence", "jesus-historical-existence", "creation-and-evolution"]
+}
