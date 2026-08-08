@@ -719,40 +719,46 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
                 </div>
               </div>
             )}
-            {topic.citations && topic.citations.length > 0 && (
-              <div className="border-t border-border p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
-                  <Books weight="light" size={13} /> References
-                </p>
-                <div className="space-y-1.5">
-                  {topic.citations.map((c, i) => (
-                    <button
-                      key={i}
-                      onClick={() => setRefPopover({
-                        title: `${c.author}${c.work ? `, ${c.work}` : ''}`,
-                        meta: c.date,
-                        body: c.claim + (c.note ? ` ${c.note}` : ''),
-                      })}
-                      className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1 -mx-1.5 transition-colors"
-                    >
-                      <span className="font-semibold text-foreground">{c.author}</span>
-                      {c.work && <span className="text-muted-foreground italic ml-1">{c.work}</span>}
-                      {c.date && <span className="text-muted-foreground ml-1">({c.date})</span>}
-                      {c.strength && (
-                        <span className="ml-2 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary uppercase tracking-wide">
-                          {c.strength.replace('-', ' ')}
-                        </span>
-                      )}
-                      <div className="text-muted-foreground mt-0.5">{c.claim}</div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && !topic.citations?.length && (
+            {!topic.scripture.length && !topic.catechism?.length && !topic.churchFathers?.length && !topic.objections?.length && !topic.documentRefs?.length && (
               <div className="p-6 text-center text-xs text-muted-foreground">No structured references yet.</div>
             )}
           </div>
+
+        {/* References — sourcing for claims in the essay, shown under every
+            tab (Concise/Comprehensive/Brief alike) rather than gated behind
+            the Brief tab like the study-aid reference types above. */}
+        {topic.citations && topic.citations.length > 0 && (
+          <div className="mt-4 rounded-2xl bg-card border border-border overflow-hidden">
+            <div className="p-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 flex items-center gap-1.5">
+                <Books weight="light" size={13} /> References
+              </p>
+              <div className="space-y-1.5">
+                {topic.citations.map((c, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setRefPopover({
+                      title: `${c.author}${c.work ? `, ${c.work}` : ''}`,
+                      meta: c.date,
+                      body: c.claim + (c.note ? ` ${c.note}` : ''),
+                    })}
+                    className="w-full text-left text-xs rounded-lg hover:bg-muted/60 active:bg-muted px-1.5 py-1 -mx-1.5 transition-colors"
+                  >
+                    <span className="font-semibold text-foreground">{c.author}</span>
+                    {c.work && <span className="text-muted-foreground italic ml-1">{c.work}</span>}
+                    {c.date && <span className="text-muted-foreground ml-1">({c.date})</span>}
+                    {c.strength && (
+                      <span className="ml-2 rounded bg-primary/10 px-1.5 py-0.5 text-[10px] font-medium text-primary uppercase tracking-wide">
+                        {c.strength.replace('-', ' ')}
+                      </span>
+                    )}
+                    <div className="text-muted-foreground mt-0.5">{c.claim}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Reference popover */}
         {refPopover && (
