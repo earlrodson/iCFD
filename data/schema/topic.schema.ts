@@ -32,6 +32,15 @@ export const ObjectionSchema = z.object({
   response: z.string(),
 })
 
+export const CitationSchema = z.object({
+  author: z.string(),
+  work: z.string().optional(),
+  date: z.string().optional(),
+  claim: z.string(),
+  strength: z.enum(['very-strong', 'strong', 'moderate', 'supporting']).optional(),
+  note: z.string().optional(),
+})
+
 export const DocumentRefSchema = z.object({
   docSlug:      z.string(),
   docTitle:     z.string(),
@@ -63,6 +72,7 @@ export const TopicSchema = z.object({
   catechism: z.array(z.string()).optional(),
   churchFathers: z.array(ChurchFatherSchema).optional(),
   objections: z.array(ObjectionSchema).optional(),
+  citations: z.array(CitationSchema).optional(),
   tags: z.array(z.string()),
   difficulty: DifficultySchema,
   lang: LanguageSchema,
@@ -80,6 +90,7 @@ export const HandbookContentSchema = z.object({
 export type Scripture = z.infer<typeof ScriptureSchema>
 export type ChurchFather = z.infer<typeof ChurchFatherSchema>
 export type Objection = z.infer<typeof ObjectionSchema>
+export type Citation = z.infer<typeof CitationSchema>
 export type Category = z.infer<typeof CategorySchema>
 export type Difficulty = z.infer<typeof DifficultySchema>
 export type Language = z.infer<typeof LanguageSchema>

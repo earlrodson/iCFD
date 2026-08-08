@@ -5,6 +5,7 @@ import {
   type Topic,
   type DocumentRef,
   type Term,
+  type Citation,
 } from '@/data/schema/topic.schema'
 import type { Json } from '@/lib/supabase/database.types'
 
@@ -23,6 +24,7 @@ interface TopicRow {
   catechism: Json | null       // [number, ...]  — ccc_paragraphs.paragraph
   church_fathers: Json | null  // [number, ...]  — church_father_quotes.id
   objections: Json | null
+  citations: Json | null       // [Citation, ...] — self-contained, no FK resolution
   tags: Json
   difficulty: Topic['difficulty']
   related_topics: Json | null
@@ -160,6 +162,7 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
       .map(id => refs.quotes.get(id))
       .filter((q): q is ChurchFatherQuoteRow => !!q),
     objections: jsonArray(row.objections),
+    citations: jsonArray<Citation>(row.citations).length ? jsonArray<Citation>(row.citations) : undefined,
     tags: jsonArray(row.tags),
     difficulty: row.difficulty,
     lang: row.lang,
@@ -263,7 +266,7 @@ async function fetchKeyTerms(topicId: string): Promise<Term[]> {
 
 const TOPIC_SELECT = [
   'id','lang','category','title','question','answer','answer_full','cover_image',
-  'scripture','catechism','church_fathers','objections',
+  'scripture','catechism','church_fathers','objections','citations',
   'tags','difficulty','related_topics','last_updated','translation_source',
 ].join(',')
 

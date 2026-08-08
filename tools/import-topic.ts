@@ -83,9 +83,11 @@ const row = {
   catechism: catechismNumbers,
   church_fathers: fatherIds,
   objections: topic.objections,
+  citations: topic.citations ?? [],
   tags: topic.tags,
   difficulty: topic.difficulty,
   related_topics: topic.related_topics,
+  last_updated: new Date().toISOString(),
   ...(existingTopic ? {} : { published: false }),
 }
 
