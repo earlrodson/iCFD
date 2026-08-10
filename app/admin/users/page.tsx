@@ -12,17 +12,19 @@ interface UserRow {
   email: string
   created_at: string
   last_sign_in_at: string | null
-  role: 'admin' | 'editor' | null   // null = regular user, no admin access
+  role: 'admin' | 'editor' | 'presenter' | null   // null = regular user, no admin access
 }
 
 const ROLE_LABELS: Record<string, string> = {
-  admin:  'Admin',
-  editor: 'Editor',
+  admin:     'Admin',
+  editor:    'Editor',
+  presenter: 'Presenter',
 }
 
 const ROLE_COLORS: Record<string, string> = {
-  admin:  'bg-primary/10 text-primary',
-  editor: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+  admin:     'bg-primary/10 text-primary',
+  editor:    'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+  presenter: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
 }
 
 export default function AdminUsersPage() {
@@ -31,11 +33,11 @@ export default function AdminUsersPage() {
   const [users, setUsers]       = useState<UserRow[]>([])
   const [loading, setLoading]   = useState(true)
   const [search, setSearch]     = useState('')
-  const [filterRole, setFilterRole] = useState<'' | 'admin' | 'editor' | 'user'>('')
+  const [filterRole, setFilterRole] = useState<'' | 'admin' | 'editor' | 'presenter' | 'user'>('')
   const [msg, setMsg]           = useState('')
   const [msgType, setMsgType]   = useState<'ok' | 'err'>('ok')
   const [editingId, setEditingId] = useState<string | null>(null)
-  const [editRole, setEditRole] = useState<'admin' | 'editor'>('editor')
+  const [editRole, setEditRole] = useState<'admin' | 'editor' | 'presenter'>('editor')
   const [grantingId, setGrantingId]   = useState<string | null>(null)
   const [resettingId, setResettingId] = useState<string | null>(null)
 
@@ -63,7 +65,7 @@ export default function AdminUsersPage() {
   }
 
   // Grant role to an existing auth user (by their UUID)
-  async function grantRole(user: UserRow, role: 'admin' | 'editor') {
+  async function grantRole(user: UserRow, role: 'admin' | 'editor' | 'presenter') {
     setGrantingId(user.id)
     const { error } = await createClient().from('admins').insert({
       user_id: user.id,
@@ -110,17 +112,19 @@ export default function AdminUsersPage() {
   const filtered = useMemo(() => {
     const q = search.toLowerCase()
     return users.filter((u) => {
-      if (filterRole === 'admin'  && u.role !== 'admin')  return false
-      if (filterRole === 'editor' && u.role !== 'editor') return false
-      if (filterRole === 'user'   && u.role !== null)     return false
-      if (q && !u.email.toLowerCase().includes(q))        return false
+      if (filterRole === 'admin'     && u.role !== 'admin')     return false
+      if (filterRole === 'editor'    && u.role !== 'editor')    return false
+      if (filterRole === 'presenter' && u.role !== 'presenter') return false
+      if (filterRole === 'user'      && u.role !== null)        return false
+      if (q && !u.email.toLowerCase().includes(q))              return false
       return true
     })
   }, [users, search, filterRole])
 
-  const adminCount  = users.filter((u) => u.role === 'admin').length
-  const editorCount = users.filter((u) => u.role === 'editor').length
-  const userCount   = users.filter((u) => u.role === null).length
+  const adminCount     = users.filter((u) => u.role === 'admin').length
+  const editorCount    = users.filter((u) => u.role === 'editor').length
+  const presenterCount = users.filter((u) => u.role === 'presenter').length
+  const userCount      = users.filter((u) => u.role === null).length
 
   if (myRole !== 'admin') {
     return (
@@ -139,7 +143,7 @@ export default function AdminUsersPage() {
           <div>
             <h1 className="text-xl font-bold text-foreground">Users</h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {users.length} total · {adminCount} admin · {editorCount} editor · {userCount} regular
+              {users.length} total · {adminCount} admin · {editorCount} editor · {presenterCount} presenter · {userCount} regular
             </p>
           </div>
           <button
@@ -152,11 +156,12 @@ export default function AdminUsersPage() {
         </div>
 
         {/* Role legend */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
           {([
-            { role: 'admin'  as const, label: 'Admin',  desc: 'Full access — config, topics, users, paths' },
-            { role: 'editor' as const, label: 'Editor', desc: 'Topics, translations, and submissions only' },
-            { role: null,              label: 'User',   desc: 'App user — no admin panel access' },
+            { role: 'admin'     as const, label: 'Admin',     desc: 'Full access — config, topics, users, paths' },
+            { role: 'editor'    as const, label: 'Editor',    desc: 'Topics, translations, and submissions only' },
+            { role: 'presenter' as const, label: 'Presenter', desc: 'Generate, edit, and publish presentations only' },
+            { role: null,                 label: 'User',      desc: 'App user — no admin panel access' },
           ]).map(({ role, label, desc }) => (
             <div key={String(role)} className="rounded-2xl border border-border bg-card p-3 flex items-start gap-2.5">
               <ShieldStar weight="light" size={16} className="text-muted-foreground shrink-0 mt-0.5" />
@@ -193,6 +198,7 @@ export default function AdminUsersPage() {
             <option value="">All roles</option>
             <option value="admin">Admin</option>
             <option value="editor">Editor</option>
+            <option value="presenter">Presenter</option>
             <option value="user">Regular users</option>
           </select>
         </div>
@@ -250,10 +256,11 @@ export default function AdminUsersPage() {
                   <div className="flex items-center gap-1.5 shrink-0">
                     <select
                       value={editRole}
-                      onChange={(e) => setEditRole(e.target.value as 'admin' | 'editor')}
+                      onChange={(e) => setEditRole(e.target.value as 'admin' | 'editor' | 'presenter')}
                       className="rounded-lg border border-border bg-muted px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                     >
                       <option value="editor">Editor</option>
+                      <option value="presenter">Presenter</option>
                       <option value="admin">Admin</option>
                     </select>
                     <button
@@ -277,7 +284,7 @@ export default function AdminUsersPage() {
                     {u.id !== currentUserId && (
                       <>
                         <button
-                          onClick={() => { setEditingId(u.id); setEditRole(u.role as 'admin' | 'editor') }}
+                          onClick={() => { setEditingId(u.id); setEditRole(u.role as 'admin' | 'editor' | 'presenter') }}
                           className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                           title="Change role"
                         >
@@ -305,6 +312,12 @@ export default function AdminUsersPage() {
                           className="rounded-lg border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-emerald-400 hover:text-emerald-600 transition-colors"
                         >
                           + Editor
+                        </button>
+                        <button
+                          onClick={() => grantRole(u, 'presenter')}
+                          className="rounded-lg border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-amber-400 hover:text-amber-600 transition-colors"
+                        >
+                          + Presenter
                         </button>
                         <button
                           onClick={() => grantRole(u, 'admin')}

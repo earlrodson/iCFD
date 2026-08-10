@@ -586,8 +586,25 @@ export const admins = pgTable('admins', {
   user_id: uuid('user_id').primaryKey(),
   email: text('email').notNull(),
   granted_by: uuid('granted_by'),
-  role: text('role').default('admin').notNull().$type<'admin' | 'editor'>(),
+  role: text('role').default('admin').notNull().$type<'admin' | 'editor' | 'presenter'>(),
   created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/**
+ * Per-topic slide decks, generated offline and rendered dynamically by a
+ * client-side viewer. Viewing is restricted to CFD members via RLS; writes
+ * are restricted to admins/presenters via the admin API.
+ */
+export const presentations = pgTable('presentations', {
+  topic_id: text('topic_id').primaryKey(),
+  slides: jsonb('slides').notNull(),
+  published: boolean('published').default(false).notNull(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+  last_updated: timestamp('last_updated', { withTimezone: true })
     .default(sql`now()`)
     .notNull(),
 })
@@ -648,5 +665,7 @@ export type TopicDocumentRefRow = typeof topicDocumentRefs.$inferSelect
 export type TheologicalTermRow = typeof theologicalTerms.$inferSelect
 export type TopicTermRow = typeof topicTerms.$inferSelect
 export type AdminRow = typeof admins.$inferSelect
+export type PresentationRow = typeof presentations.$inferSelect
+export type PresentationInsert = typeof presentations.$inferInsert
 export type SubmissionRow = typeof submissions.$inferSelect
 export type PushSubscriptionRow = typeof pushSubscriptions.$inferSelect

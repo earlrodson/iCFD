@@ -482,6 +482,30 @@ export type Database = {
         }
         Relationships: []
       }
+      presentations: {
+        Row: {
+          created_at: string
+          last_updated: string
+          published: boolean
+          slides: Json
+          topic_id: string
+        }
+        Insert: {
+          created_at?: string
+          last_updated?: string
+          published?: boolean
+          slides: Json
+          topic_id: string
+        }
+        Update: {
+          created_at?: string
+          last_updated?: string
+          published?: boolean
+          slides?: Json
+          topic_id?: string
+        }
+        Relationships: []
+      }
       push_subscriptions: {
         Row: {
           auth: string
@@ -592,18 +616,18 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "quiz_questions_tier_fkey"
-            columns: ["tier"]
-            isOneToOne: false
-            referencedRelation: "quiz_settings"
-            referencedColumns: ["tier"]
-          },
-          {
             foreignKeyName: "quiz_questions_path_slug_fkey"
             columns: ["path_slug"]
             isOneToOne: false
             referencedRelation: "paths"
             referencedColumns: ["slug"]
+          },
+          {
+            foreignKeyName: "quiz_questions_tier_fkey"
+            columns: ["tier"]
+            isOneToOne: false
+            referencedRelation: "quiz_settings"
+            referencedColumns: ["tier"]
           },
         ]
       }
@@ -935,7 +959,6 @@ export type Database = {
           cfd_id_image_path: string | null
           chapter: string | null
           diocese: string | null
-          display_name: string | null
           first_name: string | null
           font_size: string
           is_cfd_member: boolean
@@ -945,7 +968,6 @@ export type Database = {
           membership_date: string | null
           membership_expiration: string | null
           mobile_number: string | null
-          role: string
           theme: string
           updated_at: string
           user_id: string
@@ -958,7 +980,6 @@ export type Database = {
           cfd_id_image_path?: string | null
           chapter?: string | null
           diocese?: string | null
-          display_name?: string | null
           first_name?: string | null
           font_size?: string
           is_cfd_member?: boolean
@@ -968,7 +989,6 @@ export type Database = {
           membership_date?: string | null
           membership_expiration?: string | null
           mobile_number?: string | null
-          role?: string
           theme?: string
           updated_at?: string
           user_id: string
@@ -981,7 +1001,6 @@ export type Database = {
           cfd_id_image_path?: string | null
           chapter?: string | null
           diocese?: string | null
-          display_name?: string | null
           first_name?: string | null
           font_size?: string
           is_cfd_member?: boolean
@@ -991,7 +1010,6 @@ export type Database = {
           membership_date?: string | null
           membership_expiration?: string | null
           mobile_number?: string | null
-          role?: string
           theme?: string
           updated_at?: string
           user_id?: string
@@ -1034,6 +1052,32 @@ export type Database = {
           role: string
         }[]
       }
+      get_geo_analytics: {
+        Args: { days_back?: number }
+        Returns: {
+          country: string
+          region: string
+          unique_visitors: number
+          view_count: number
+        }[]
+      }
+      get_navigation_flow: {
+        Args: { days_back?: number }
+        Returns: {
+          from_path: string
+          to_path: string
+          transition_count: number
+        }[]
+      }
+      get_page_analytics: {
+        Args: { days_back?: number }
+        Returns: {
+          avg_duration_seconds: number
+          path: string
+          unique_visitors: number
+          view_count: number
+        }[]
+      }
       get_topic_analytics: {
         Args: { filter_user_id?: string }
         Returns: {
@@ -1053,32 +1097,6 @@ export type Database = {
           topic_views: number
           topics_read: number
           user_id: string
-        }[]
-      }
-      get_page_analytics: {
-        Args: { days_back?: number }
-        Returns: {
-          avg_duration_seconds: number
-          path: string
-          unique_visitors: number
-          view_count: number
-        }[]
-      }
-      get_navigation_flow: {
-        Args: { days_back?: number }
-        Returns: {
-          from_path: string
-          to_path: string
-          transition_count: number
-        }[]
-      }
-      get_geo_analytics: {
-        Args: { days_back?: number }
-        Returns: {
-          country: string
-          region: string
-          unique_visitors: number
-          view_count: number
         }[]
       }
       get_visitor_summary: {

@@ -119,3 +119,35 @@ the user's global `~/.claude/CLAUDE.md`.
 tied to this project's specific local-LLM pipeline don't generalize.
 
 **Consequence:** Don't propose moving these rules to global config.
+
+---
+
+## ADR-009 — Presenter role, dynamic presentation rendering, CFD-member gating
+
+**Decision (2026-08-08):** Three linked calls for the presentations feature:
+1. `presenter` is a third value on the existing `admins.role` CHECK
+   constraint (`admin | editor | presenter`), not a separate table.
+2. Presentations render dynamically — a `presentations` table stores
+   `{topic_id, slides: jsonb, published}`, and `SlideViewer.tsx` renders that
+   JSON client-side at request time. No static HTML/PPTX export per topic.
+   The slide JSON itself is generated offline once per topic (same
+   generate → import → promote staged-review pipeline as topics/quiz).
+3. `user_settings.is_cfd_member` (previously a profile-only flag) now gates
+   real content for the first time, via an RLS SELECT policy requiring
+   `published = true AND is_cfd_member = true`, checked again client-side
+   (`app/presentations/[topicId]/page.tsx`) for UX, following the app's
+   existing client-side-auth convention (`getUser()`/`onAuthStateChange()` +
+   session-aware `createClient()`) rather than introducing the first
+   server-component/SSR auth page.
+4. Presentations are English-only for v1 — no `lang` column — to validate
+   the slide format before adding translation.
+
+**Reason:** Reuses every existing pattern (admins-table roles, staged-review
+content pipeline, client-side auth) instead of inventing parallel
+infrastructure; `is_cfd_member` existed but had never gated anything, so this
+establishes the first precedent for member-only content.
+
+**Consequence:** Any future member-only feature should reuse the
+`is_cfd_member` RLS-policy + client-side-check pattern here, not reinvent it.
+Don't add a `lang` column to `presentations` without re-confirming scope —
+English-only was a deliberate v1 cut, not an oversight.
