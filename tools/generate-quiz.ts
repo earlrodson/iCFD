@@ -1,8 +1,8 @@
 #!/usr/bin/env bun
 /**
- * Quiz-question generator, grounded in an existing topic's content — qwen3:14b, per the
- * generate-vs-extract model split confirmed 2026-08-03 (project CLAUDE.md, "Local LLM use").
- * Drafting new quiz prose is a generation task, so it belongs on 14b, not 9b.
+ * Quiz-question generator, grounded in an existing topic's content — runs on qwen3.6:35b-mlx
+ * (14b is deleted locally), per the generate-vs-extract model split confirmed 2026-08-03
+ * (project CLAUDE.md, "Local LLM use"). Drafting new quiz prose is a generation task.
  *
  * correct_index always comes back as 0 from the model regardless of prompting (tested
  * 2026-08-03) — this script shuffles each question's choices after generation rather than
@@ -19,13 +19,12 @@
  */
 import { join } from 'path'
 import { mkdirSync, readFileSync, writeFileSync } from 'fs'
-import Anthropic from '@anthropic-ai/sdk'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
 
 const ROOT = join(import.meta.dir, '..')
-// qwen3:14b is temporarily unavailable (model deleted locally) — quiz
-// generation runs on Claude until it's restored.
-const CLAUDE_MODEL = 'claude-opus-4-8'
+const OLLAMA_CHAT_URL = 'http://localhost:11434/api/chat'
+// qwen3:14b is deleted locally — quiz generation runs on qwen3.6:35b-mlx instead.
+const MODEL_35B = 'qwen3.6:35b-mlx'
 
 function loadEnvLocal() {
   const envLines = readFileSync(join(ROOT, '.env.local'), 'utf8').split('\n')
@@ -38,7 +37,6 @@ function loadEnvLocal() {
   }
 }
 loadEnvLocal()
-const anthropic = new Anthropic()
 
 const argv = process.argv.slice(2)
 const langFlagIdx = argv.indexOf('--lang')
@@ -66,15 +64,41 @@ function extractJson(raw: string): any {
   return JSON.parse(noThink.slice(start, end + 1))
 }
 
-async function callClaude(prompt: string, maxTokens: number): Promise<any> {
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: maxTokens,
-    messages: [{ role: 'user', content: prompt }],
+// stream MUST be true — see tools/generate-topic.ts callModel for why (Bun fetch idle-timeout
+// on long buffered Ollama responses).
+async function callModel(prompt: string, maxTokens: number): Promise<any> {
+  const res = await fetch(OLLAMA_CHAT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: MODEL_35B,
+      messages: [{ role: 'user', content: prompt }],
+      stream: true,
+      think: false,
+      options: { num_predict: maxTokens },
+    }),
+    signal: AbortSignal.timeout(20 * 60 * 1000),
   })
-  const textBlock = response.content.find((b): b is Anthropic.TextBlock => b.type === 'text')
-  if (!textBlock) throw new Error('Claude returned no text block')
-  return extractJson(textBlock.text)
+  if (!res.body) throw new Error('Ollama returned no response body')
+  const reader = res.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  let full = ''
+  while (true) {
+    const { done, value } = await reader.read()
+    if (done) break
+    buffer += decoder.decode(value, { stream: true })
+    let idx: number
+    while ((idx = buffer.indexOf('\n')) >= 0) {
+      const line = buffer.slice(0, idx).trim()
+      buffer = buffer.slice(idx + 1)
+      if (!line) continue
+      const chunk = JSON.parse(line) as { message?: { content?: string }; done?: boolean; error?: string }
+      if (chunk.error) throw new Error(`Ollama error: ${chunk.error}`)
+      full += chunk.message?.content ?? ''
+    }
+  }
+  return extractJson(full)
 }
 
 type QuizQuestion = { topic_id: string; tier: string; lang: string; question: string; choices: string[]; correct_index: number }
@@ -177,7 +201,7 @@ while (accepted.length < count && chunkRound < MAX_CHUNK_ROUNDS) {
   let extraNote: string | null = null
   for (let attempt = 1; attempt <= MAX_ATTEMPTS_PER_CHUNK; attempt++) {
     try {
-      const result = await callClaude(buildPrompt(chunkCount, askedQuestions, extraNote), numPredict)
+      const result = await callModel(buildPrompt(chunkCount, askedQuestions, extraNote), numPredict)
       chunkQuestions = result.questions as QuizQuestion[]
     } catch (err) {
       console.log(`  [round ${chunkRound}, attempt ${attempt}] model output failed to parse (${err instanceof Error ? err.message : err}), retrying`)

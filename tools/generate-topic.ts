@@ -9,16 +9,14 @@
  */
 import { join } from 'path'
 import { mkdirSync, readFileSync, writeFileSync } from 'fs'
-import Anthropic from '@anthropic-ai/sdk'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
 
 const ROOT = join(import.meta.dir, '..')
 const OLLAMA_CHAT_URL = 'http://localhost:11434/api/chat'
 
-const MODEL_9B = 'qwen3.5:9b'
-// qwen3:14b is temporarily unavailable (model deleted locally) — Phase 2
-// (comprehensive answer generation) runs on Claude until it's restored.
-const CLAUDE_MODEL = 'claude-opus-4-8'
+// qwen3:14b/qwen3.5:9b are deleted locally — both extraction (Phases 1,3-6,7) and
+// generation (Phase 2) run on qwen3.6:35b-mlx for now, replacing the prior 14b/9b split.
+const MODEL_35B = 'qwen3.6:35b-mlx'
 
 function loadEnvLocal() {
   const envLines = readFileSync(join(ROOT, '.env.local'), 'utf8').split('\n')
@@ -31,7 +29,6 @@ function loadEnvLocal() {
   }
 }
 loadEnvLocal()
-const anthropic = new Anthropic()
 
 const [, , title, question, slugArg] = process.argv
 if (!title || !question) {
@@ -110,17 +107,6 @@ async function callModel(model: string, prompt: string): Promise<any> {
   return extractJson(full)
 }
 
-async function callClaude(prompt: string, maxTokens = 8000): Promise<any> {
-  const response = await anthropic.messages.create({
-    model: CLAUDE_MODEL,
-    max_tokens: maxTokens,
-    messages: [{ role: 'user', content: prompt }],
-  })
-  const textBlock = response.content.find((b): b is Anthropic.TextBlock => b.type === 'text')
-  if (!textBlock) throw new Error('Claude returned no text block')
-  return extractJson(textBlock.text)
-}
-
 console.log(`\nGenerating topic: "${title}"\n`)
 
 // Phase 0 — retrieval
@@ -131,16 +117,16 @@ const fatherPassages = retrieved.filter((c) => c.source_table === 'church_father
 console.log(`  ${retrieved.length} chunks retrieved (${cccPassages.length} CCC, ${fatherPassages.length} Father quotes)`)
 
 // Phase 1 — metadata
-console.log('[Phase 1] Metadata (qwen3.5:9b)...')
-const metadata = await callModel(MODEL_9B, `Generate metadata only for this Catholic apologetics topic. Return ONLY JSON with keys: topic_id, title, category (tradition|scripture|sacraments|morality|history|apologetics), difficulty (beginner|intermediate|advanced), tags (3-6 kebab-case), related_topics (2-4 kebab-case slugs).
+console.log('[Phase 1] Metadata (qwen3.6:35b-mlx)...')
+const metadata = await callModel(MODEL_35B, `Generate metadata only for this Catholic apologetics topic. Return ONLY JSON with keys: topic_id, title, category (tradition|scripture|sacraments|morality|history|apologetics), difficulty (beginner|intermediate|advanced), tags (3-6 kebab-case), related_topics (2-4 kebab-case slugs).
 
 TOPIC: ${title}
 QUESTION: ${question}`)
 const topicId = slugArg ?? metadata.topic_id
 
-// Phase 2 — comprehensive answer (Claude, retrieval-grounded)
-console.log('[Phase 2] Comprehensive answer (Claude)...')
-const { answer_full: answerFull } = await callClaude(`You are a Catholic apologetics content writer for the "Codex Defensoris" app. Write the comprehensive answer (1500-2500 words, Markdown, ## sections, --- dividers, blockquotes for Father/Council quotes, Markdown table for CCC refs).
+// Phase 2 — comprehensive answer (retrieval-grounded)
+console.log('[Phase 2] Comprehensive answer (qwen3.6:35b-mlx)...')
+const { answer_full: answerFull } = await callModel(MODEL_35B, `You are a Catholic apologetics content writer for the "Codex Defensoris" app. Write the comprehensive answer (1500-2500 words, Markdown, ## sections, --- dividers, blockquotes for Father/Council quotes, Markdown table for CCC refs).
 
 Use ONLY the passages below for CCC references, conciliar text, and Church Father quotes. If a required element has no matching passage below, write "[NEEDS SOURCE: <what's missing>]" instead of inventing one. Cite scripture inline by reference only (e.g. "(John 1:14)") — never write verse text yourself.
 
@@ -157,8 +143,8 @@ if (answerFull.includes('[NEEDS SOURCE')) {
 }
 
 // Phase 3 — summary (condensation)
-console.log('[Phase 3] Summary (qwen3.5:9b)...')
-const { summary } = await callModel(MODEL_9B, `Condense the article below into a 5-paragraph, 600-900 word summary. Do not introduce claims, distinctions, or emphasis not present in the article. Preserve its doctrinal framing exactly. Open with a Markdown blockquote already present in the article. Flowing prose only, no headers, no bullet lists.
+console.log('[Phase 3] Summary (qwen3.6:35b-mlx)...')
+const { summary } = await callModel(MODEL_35B, `Condense the article below into a 5-paragraph, 600-900 word summary. Do not introduce claims, distinctions, or emphasis not present in the article. Preserve its doctrinal framing exactly. Open with a Markdown blockquote already present in the article. Flowing prose only, no headers, no bullet lists.
 
 ARTICLE:
 ${answerFull}
@@ -166,8 +152,8 @@ ${answerFull}
 Return ONLY JSON: { "summary": "..." }`)
 
 // Phase 4 — scripture (reference selection only)
-console.log('[Phase 4] Scripture references (qwen3.5:9b)...')
-const { scripture: scriptureRefs } = await callModel(MODEL_9B, `Extract every scripture reference cited in the article below. Full book names, one verse per entry (never a range), version must be one of NABRE/RSV-CE/DR/NAB (default NABRE).
+console.log('[Phase 4] Scripture references (qwen3.6:35b-mlx)...')
+const { scripture: scriptureRefs } = await callModel(MODEL_35B, `Extract every scripture reference cited in the article below. Full book names, one verse per entry (never a range), version must be one of NABRE/RSV-CE/DR/NAB (default NABRE).
 
 ARTICLE:
 ${answerFull}
@@ -175,8 +161,8 @@ ${answerFull}
 Return ONLY JSON: { "scripture": [{ "reference": "John 1:14", "version": "NABRE" }] }`)
 
 // Phase 5 — catechism (selection from Phase 0 retrieval)
-console.log('[Phase 5] Catechism references (qwen3.5:9b)...')
-const { catechism } = await callModel(MODEL_9B, `Select the CCC paragraph numbers that support the article below, from the retrieved passages provided. Do not invent a number not present below.
+console.log('[Phase 5] Catechism references (qwen3.6:35b-mlx)...')
+const { catechism } = await callModel(MODEL_35B, `Select the CCC paragraph numbers that support the article below, from the retrieved passages provided. Do not invent a number not present below.
 
 ARTICLE:
 ${answerFull}
@@ -187,8 +173,8 @@ ${formatPassages(cccPassages)}
 Return ONLY JSON: { "catechism": ["CCC 1234"] }`)
 
 // Phase 6 — church fathers (selection from Phase 0 retrieval)
-console.log('[Phase 6] Church Father quotes (qwen3.5:9b)...')
-const { church_fathers: churchFathers } = await callModel(MODEL_9B, `Select the Church Father quotes that support the article below, from the retrieved quotes provided. Copy author/quote/source verbatim. If the article needs a quote not present below, set "library_match": false and still include your best-effort author/quote/source.
+console.log('[Phase 6] Church Father quotes (qwen3.6:35b-mlx)...')
+const { church_fathers: churchFathers } = await callModel(MODEL_35B, `Select the Church Father quotes that support the article below, from the retrieved quotes provided. Copy author/quote/source verbatim. If the article needs a quote not present below, set "library_match": false and still include your best-effort author/quote/source.
 
 ARTICLE:
 ${answerFull}
@@ -199,8 +185,8 @@ ${formatPassages(fatherPassages)}
 Return ONLY JSON: { "church_fathers": [{ "author": "", "quote": "", "source": "", "library_match": true }] }`)
 
 // Phase 7 — objections
-console.log('[Phase 7] Objections (qwen3.5:9b)...')
-const { objections } = await callModel(MODEL_9B, `Extract or draft 2-4 objections a skeptic would raise against the article below, with the Catholic response to each. Ground responses only in points already in the article — no new references.
+console.log('[Phase 7] Objections (qwen3.6:35b-mlx)...')
+const { objections } = await callModel(MODEL_35B, `Extract or draft 2-4 objections a skeptic would raise against the article below, with the Catholic response to each. Ground responses only in points already in the article — no new references.
 
 ARTICLE:
 ${answerFull}
