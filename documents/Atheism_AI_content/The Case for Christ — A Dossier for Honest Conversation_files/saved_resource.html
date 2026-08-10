@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#phase4 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><!-- frame-runtime --><!--<base href="/_f/1786170998-7fc4/">--><base href="."><script>window.__FRAME_PREAMBLE={"capabilities":{"comments":"comments.BaoaqR_K.js","db":"db.CeV_J5G-.js","downloads":"downloads.BXsoAvg9.js","mcp":"mcp.CYSdpjo0.js","permissions":"permissions.DdITF2Mk.js","sample":"sample.DpdXn9di.js","self":"self.BN4be5De.js","user":"user.Cr_h1ETf.js"},"transforms":"_transforms.VaITkagF.js","comments":"_comments.CNSvmFji.js","translate":"_translate.BOzFH2D9.js"}</script><script>(function(){"use strict";var ne=["light","dark","system"];function oe(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_init;return t!==null&&typeof t=="object"}function W(e){return e!==null&&typeof e=="object"&&e.__frame_size_poke===!0}function se(e){if(e===null||typeof e!="object")return!1;const t=e.__frame_theme;if(t===null||typeof t!="object")return!1;const n=t.theme;return typeof n=="string"&&ne.includes(n)}function ie(e){try{typeof reportError=="function"?reportError(e):setTimeout(()=>{throw e},0)}catch{}}var Y=Object.freeze(Object.assign(Object.create(null),{user:Object.freeze(Object.assign(Object.create(null),{id:null,isOwner:!1,canEdit:!1,name:null,avatarUrl:null,email:null}))})),ae={sample:"sample"};function x(){const e=new Uint8Array(20);try{crypto.getRandomValues(e)}catch{for(let n=0;n<e.length;n++)e[n]=Math.floor(Math.random()*256)}let t="";for(const n of e)t+=(n%36).toString(36);return t}function ce(e,t){const n=r=>{const o={path:r},i=r.split("/");return{id:i[i.length-1],path:r,get:()=>t("get",[o]),set:g=>t("set",[o,g]),update:g=>t("update",[o,g]),delete:()=>t("delete",[o]),acquire:g=>t("acquire",[o,g]),onSnapshot:(g,y)=>t("subscribe",[o,g,y]),collection:g=>a(r+"/"+String(g))}},u=r=>({where:(o,i,g)=>u({...r,where:[...r.where??[],{f:String(o),op:String(i),v:g}]}),orderBy:(o,i)=>u({...r,orderBy:{f:String(o),dir:i===void 0?"asc":String(i)}}),limit:o=>u({...r,limit:Number(o)}),get:()=>t("query",[r]),onSnapshot:(o,i)=>t("subscribe",[r,o,i])}),a=r=>({...u({collection:r}),path:r,doc:o=>n(r+"/"+(o===void 0?x():String(o))),add:o=>{const i=n(r+"/"+x());return Promise.resolve(i.set(o)).then(()=>i)}});e.doc=r=>n(String(r)),e.collection=r=>a(String(r))}function J(e){if(window===top||e.type==="auxclick"&&e.button!==1)return;const t=e.composedPath?e.composedPath():[e.target];let n=null;for(let o=0;o<t.length;o++){const i=t[o];if(i&&i.matches&&i.matches("a[href],area[href]")){n=i;break}}if(!n&&e.target&&e.target.closest&&(n=e.target.closest("a[href],area[href]")),!n)return;const u=n.getAttribute("href");if(!u)return;let a,r;try{a=new URL(u,document.baseURI),r=new URL(document.baseURI).origin}catch{return}if((a.protocol==="http:"||a.protocol==="https:")&&a.origin!==r){e.preventDefault();const o=(n.getAttribute("target")??document.querySelector("base[target]")?.getAttribute("target")??"").toLowerCase(),i=e.type==="auxclick"||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||!["","_self","_top","_parent"].includes(o);parent.postMessage({__frame_nav:!0,url:a.href,newTab:i},"*")}}var G={};function I(e){if(window===top)return;const t=Date.now();t-(G[e]||0)<500||(G[e]=t,parent.postMessage({__frame_engaged:!0,kind:e},"*"))}var le=2e3,V=["wheel","touchstart","touchmove","keydown","pointerdown"],X=0;function ue(e){e.isTrusted&&(X=Date.now())}function fe(){addEventListener("click",J,!0),addEventListener("auxclick",J,!0)}function de(){for(let e=0;e<V.length;e++)addEventListener(V[e],ue,{capture:!0,passive:!0});addEventListener("scroll",e=>{e.isTrusted&&Date.now()-X<le&&I("scroll")},{capture:!0,passive:!0}),addEventListener("pointermove",e=>{e.isTrusted&&I("pointer")},{capture:!0,passive:!0}),addEventListener("click",e=>{e.isTrusted&&I("click")},{capture:!0,passive:!0})}var q="__frame_scroll",me=150,pe=310,ge=160,he=3e4;function ve(){let e=0,t=!1,n=!1,u=!1,a=0,r=null;const o=d=>{try{sessionStorage.setItem(q,JSON.stringify({y:d}))}catch{}},i=()=>{if(clearTimeout(e),r===null)return;const d=r;r=null,o(d)},g=()=>{if(t){t=!1;return}n=!0,r=scrollY,clearTimeout(e),e=setTimeout(i,me)};try{addEventListener("scroll",g,{passive:!0}),addEventListener("pagehide",i)}catch{}const y=()=>{let d;try{d=sessionStorage.getItem(q)}catch{return null}if(d===null)return null;let l;try{l=JSON.parse(d)}catch{l=null}const p=l?.y;if(!(typeof p=="number"&&Number.isFinite(p)&&p>=0)){try{sessionStorage.removeItem(q)}catch{}return null}return p};let c=!1;const f=d=>{try{const l=scrollY;scrollTo({top:d,left:0,behavior:"instant"}),a=d,u=!0,clearTimeout(e),r=null,o(d);const p=scrollY;p!==l&&(t=!0),p!==d&&!c&&(c=!0,addEventListener("load",()=>{try{if(scrollY===p){const v=y();f(v!==null?v:a)}}catch{}},{once:!0}))}catch{}},m=()=>{try{return!!location.hash}catch{return!0}};let h=!1;const _=()=>{try{if(h||innerWidth>pe||innerHeight>ge)return;h=!0;const d=Date.now(),l=()=>{try{removeEventListener("resize",l)}catch{}if(Date.now()-d>he||n||m())return;const p=y();f(p!==null?p:a)};addEventListener("resize",l)}catch{}};let w=!1,S=!1;return{restore(){if(w||(w=!0,m()))return;const d=y();d!==null&&(f(d),_())},promoted(){if(S||(S=!0,m()))return;const d=y();d!==null?(f(d),_()):u&&f(a)}}}function _e(e,t,n){const u=[...t.values()].filter(a=>a.targets.some(r=>r.startsWith(e+".")));return{wrap(a,r){const o=`${e}.${a}`,i=u.filter(g=>g.targets.includes(o));return i.length===0?(...g)=>{try{return r(...g)}catch(y){return Promise.reject(y)}}:(...g)=>{let y=g;for(const f of i){const m=f.module.parameters;if(m)try{y=m(y)}catch{return Promise.reject({code:"transform_error",id:f.id,scope:e,message:"parameters transform failed"})}}let c;try{c=r(...y)}catch(f){c=Promise.reject(f)}return c.then(f=>{for(let m=i.length-1;m>=0;m--){const h=i[m],_=h.module.returns;if(_)try{f=_(f)}catch{return n({id:h.id,scope:e,leg:"returns"}),f}}return f},f=>{for(let m=i.length-1;m>=0;m--){const h=i[m],_=h.module.throws;if(_)try{f=_(f)}catch{return n({id:h.id,scope:e,leg:"throws"}),Promise.reject(f)}}return Promise.reject(f)})}}}}function ye(e,t,n,u=()=>{}){const a=new Set(e.changes??[]),r=new Map;for(const o of a){const i=t[o];i&&r.set(o,i)}return{contract:e.contract,changes:a,flags:new Set(e.flags??[]),capabilities:e.capabilities??{},capBudgets:e.capBudgets??{},transforms:r,shellOrigin:n.shellOrigin,mount:n.mount,pipe:o=>_e(o,r,u)}}var Ae="modulepreload",Re=function(e){return"/"+e},je={},be=function(t,n,u){let a=Promise.resolve();function r(o){const i=new Event("vite:preloadError",{cancelable:!0});if(i.payload=o,window.dispatchEvent(i),!i.defaultPrevented)throw o}return a.then(o=>{for(const i of o||[])i.status==="rejected"&&r(i.reason);return t().catch(r)})};(function(){const e=Object.defineProperty,t=globalThis,n=["RTCPeerConnection","webkitRTCPeerConnection","RTCDataChannel","RTCIceCandidate","RTCSessionDescription","RTCRtpSender","RTCRtpReceiver"];let u=0;for(let a=0;a<n.length;a++){const r=n[a];try{e(t,r,{value:void 0,writable:!1,configurable:!1})}catch{try{delete t[r]}catch{}try{e(t,r,{value:void 0,writable:!1,configurable:!0})}catch{}}typeof t[r]=="function"&&u++}if(u&&window!==top)try{parent.postMessage({__frame_rtc_lockdown_failed:u},"*")}catch{}})();var Ee=1e4,we=Object.freeze([...window.__FRAME_PREAMBLE?.origins??["https://claude.ai","https://preview.claude.ai"]]);function Q(e){for(const t of we)if(t.endsWith(":*"))try{const n=new URL(e);if(`${n.protocol}//${n.hostname}:*`===t)return!0}catch{}else if(e===t)return!0;return!1}var k=Object.freeze({...window.__FRAME_PREAMBLE?.capabilities}),D=window.__FRAME_PREAMBLE?.transforms,z=window.__FRAME_PREAMBLE?.comments,B=window.__FRAME_PREAMBLE?.translate,C=/^[\w.-]+\.js$/,Se=/^[a-z][a-z0-9_-]{0,63}$/,Z=null,M=null;function $(e,t,n){try{Object.defineProperty(e,t,{value:n,writable:!1,configurable:!1,enumerable:!0})}catch{try{Object.defineProperty(e,t,{value:n,writable:!1,configurable:!0,enumerable:!0})}catch{}}}var F=!1;function ee(e){const t=document.documentElement;e==="light"||e==="dark"?(t.dataset.theme=e,t.style.colorScheme=e,F=!0):F&&(delete t.dataset.theme,t.style.colorScheme="",F=!1)}var te=256,P=Object.assign(Object.create(null),{mcp:Object.assign(Object.create(null),{watchTool:{handlerArg:3}}),db:Object.assign(Object.create(null),{subscribe:{handlerArg:1,errArg:2}})}),L=new Map;function re(e,t){const n=L.get(e);if(!n)return;const u=Object.assign(Object.create(null),t);Object.assign(n.impl,u),n.impl.__settled=()=>Promise.reject({code:"capability_removed",message:`${e}: method not in this runtime`});const a=n.queue;n.queue=[];for(const r of a){const o=u[r.method];if(o)if(P[e]?.[r.method])try{r.resolve(o(...r.args))}catch{T(r,P[e][r.method],{code:"transform_error",message:`${e}.${r.method} rejected its arguments`})}else o(...r.args).then(r.resolve,r.reject);else{const i={code:"capability_removed",message:`${e}.${r.method} is not in this runtime`},g=P[e]?.[r.method];if(g){T(r,g,i);continue}r.reject(i)}}}function Oe(e,t){const n=L.get(e);if(!n)return;n.impl.__settled=()=>Promise.reject(t);const u=n.queue;n.queue=[];for(const a of u){const r=P[e]?.[a.method];if(r){T(a,r,t);continue}a.reject(t)}}function N(e,t){const n=Y[e];if(!n){Oe(e,t);return}re(e,Object.fromEntries(Object.entries(n).map(([u,a])=>[u,()=>Promise.resolve(a)])))}function T(e,t,n){if(e.syncState?.dead)return;const u=t.errArg===void 0?void 0:e.args[t.errArg],a=t.errArg===void 0?e.args[t.handlerArg]:u;typeof a=="function"&&queueMicrotask(()=>{if(!e.syncState?.dead)try{a(t.errArg===void 0?{type:"error",error:n}:n)}catch(r){ie(r)}})}var H=Object.getOwnPropertyDescriptor(window,"claude");if(window!==top&&!(H&&H.writable===!1)){fe(),de();let e=null;try{e=ve()}catch{}const t=H?.value??{};$(window,"claude",t);const n=c=>{const f={impl:Object.create(null),queue:[]};L.set(c,f);const m=f.impl,h=d=>({code:"queue_overflow",message:`${c}.${d}: pre-init call queue is full`}),_=(d,l)=>{if(f.queue.length>=te){const p=Y[c];return p&&d in p?Promise.resolve(p[d]):Promise.reject(h(d))}return new Promise((p,v)=>{f.queue.push({method:d,args:l,resolve:p,reject:v})})},w=ae[c],S=new Proxy(w===void 0?m:(()=>{}),{apply:(d,l,p)=>{const v=w,E=m[v]??m.__settled;return E?E(...p):_(v,p)},get:(d,l)=>{if(typeof l!="string"||l==="then"||l==="toJSON"||l==="valueOf")return;if(l==="toString")return Object.prototype.toString;if(w!==void 0&&(l==="call"||l==="apply"||l==="bind"))return Function.prototype[l];const p=P[c]?.[l];return p?(...v)=>{if(typeof v[p.handlerArg]!="function")throw new TypeError(`${c}.${l} requires a handler function`);const E=m[l];if(E)return E(...v);if(m.__settled){const b={dead:!1},U={args:[...v],syncState:b};return m.__settled().catch(s=>T(U,p,s)),()=>{b.dead=!0}}if(f.queue.length>=te){const b={dead:!1};return T({args:[...v],syncState:b},p,h(l)),()=>{b.dead=!0}}let A=null;const R={dead:!1};return f.queue.push({method:l,args:v,resolve:b=>{A=typeof b=="function"?b:null,R.dead&&A?.()},reject:()=>{},syncState:R}),()=>{R.dead=!0,A?.()}}:(...v)=>{const E=m[l]??m.__settled;return E?E(...v):_(l,v)}},set:()=>!1});c==="db"&&ce(m,(d,l)=>S[d](...l)),$(t,c,S)};for(const c of Object.keys(k)){if(t[c]!==void 0){$(t,c,t[c]);continue}n(c)}let u=null,a=null,r=0;const o=c=>{c.source!==parent||!Q(c.origin)||oe(c.data)&&(u=c.data.__frame_init,M=c.origin,removeEventListener("message",o),clearTimeout(r),a?.())};addEventListener("message",o),parent.postMessage({__frame_connect:!0},"*");const i=new Promise(c=>{a=c,r=setTimeout(()=>{removeEventListener("message",o),c()},Ee)}),g=document.readyState==="loading"?new Promise(c=>document.addEventListener("DOMContentLoaded",()=>c(),{once:!0})):Promise.resolve();g.then(()=>{try{e?.restore()}catch{}});const y=c=>{if(!(c.source!==parent||!Q(c.origin))&&W(c.data)){removeEventListener("message",y);try{e?.promoted()}catch{}}};addEventListener("message",y),i.then(async()=>{if(!u||!M){for(const s of L.keys())N(s,{code:"not_granted",message:"frame initialization did not arrive - capability unavailable"});return}ee(u.theme);const c=M;let f=!1,m=!1;addEventListener("message",s=>{if(s.source!==parent||s.origin!==c)return;se(s.data)&&ee(s.data.__frame_theme.theme);const O=s.data?.__fc_mode;O&&typeof O=="object"&&!f&&z&&C.test(z)&&(f=!0,h(z).then(K=>K.install?.(c,O.on===!0)).catch(()=>{}));const j=s.data?.__ft_cmd;j&&typeof j=="object"&&!m&&B&&C.test(B)&&(m=!0,h(B).then(K=>K.install?.(c,j)).catch(()=>{}))});const h=s=>be(()=>import("/_runtime/"+s),void 0),_=Object.keys(u.capabilities??{});for(const s of _)Object.hasOwn(k,s)||Se.test(s)&&t[s]===void 0&&(n(s),N(s,{code:"capability_disabled",message:"capability not in this runtime generation"}));const w=_.filter(s=>Object.hasOwn(k,s)).map(s=>[s,k[s]]).filter(s=>typeof s[1]=="string"&&C.test(s[1])),[S,...d]=await Promise.allSettled([D&&C.test(D)?h(D):Promise.resolve({}),...w.map(([,s])=>h(s))]),l=M;Z=ye(u,S.status==="fulfilled"&&S.value?.TRANSFORMS||{},{shellOrigin:l,mount:re},s=>parent.postMessage({__frame_cap_telemetry:s},l));const p=s=>parent.postMessage({__frame_cap_telemetry:{kind:"cap-load-error",cap:s}},l),v=Z;d.forEach((s,O)=>{const j=w[O][0];if(s.status!=="fulfilled"){p(j);return}try{s.value?.install?.(v)}catch{p(j)}});for(const[s,O]of L)if(!(O.queue.length===0&&Object.keys(O.impl).length>0)){if(_.includes(s)){N(s,{code:"capability_disabled",message:"capability not available in this session"});continue}N(s,{code:"not_granted",message:"capability not available in this session"})}await g,parent.postMessage({__frame_ready:!0},M);let E=-1,A=0;const R=()=>{A=0;const s=Math.max(document.documentElement.scrollHeight,document.body?document.body.scrollHeight:0);s!==E&&(E=s,parent.postMessage({__frame_size:!0,h:s},l))},b=()=>{A||(A=setTimeout(R,200))},U=new ResizeObserver(b);U.observe(document.documentElement),document.body&&U.observe(document.body),document.addEventListener("load",b,!0),document.fonts?.ready.then(b,()=>{}),addEventListener("beforeprint",()=>{E=-1,R()}),b(),addEventListener("message",s=>{if(!(s.source!==parent||s.origin!==l)&&W(s.data)){try{e?.promoted()}catch{}E=-1,b()}})})}})();</script><!-- /frame-runtime --><meta name="viewport" content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>The Case for Christ — A Dossier for Honest Conversation</title>
+
+<style>
+  :root{
+    --paper:#e5dfc9;
+    --paper-2:#d9d2b8;
+    --ink:#22261f;
+    --ink-soft:#4b5350;
+    --brass:#8a6a24;
+    --brass-strong:#6e5218;
+    --seal:#7d3b30;
+    --slate:#43514f;
+    --line: rgba(34,38,31,0.18);
+    --bg: var(--paper);
+    --surface: #ffffff55;
+    --text: var(--ink);
+    --text-soft: var(--ink-soft);
+    --accent: var(--brass);
+    --accent-strong: var(--brass-strong);
+    --card-bg: #f4efdea6;
+    --card-border: rgba(34,38,31,0.16);
+    --shadow: 0 1px 2px rgba(34,38,31,0.06);
+    --tag-bg: rgba(138,106,36,0.14);
+    --hairline: rgba(34,38,31,0.28);
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1a1d17;
+      --surface:#23271f;
+      --text:#e9e3cf;
+      --text-soft:#a9a794;
+      --accent:#c9a24a;
+      --accent-strong:#e0b85f;
+      --seal:#c07362;
+      --slate:#8fa19c;
+      --line: rgba(233,227,207,0.14);
+      --card-bg: #24281fcc;
+      --card-border: rgba(233,227,207,0.14);
+      --shadow: 0 1px 3px rgba(0,0,0,0.35);
+      --tag-bg: rgba(201,162,74,0.16);
+      --hairline: rgba(233,227,207,0.22);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#1a1d17;
+    --surface:#23271f;
+    --text:#e9e3cf;
+    --text-soft:#a9a794;
+    --accent:#c9a24a;
+    --accent-strong:#e0b85f;
+    --seal:#c07362;
+    --slate:#8fa19c;
+    --line: rgba(233,227,207,0.14);
+    --card-bg: #24281fcc;
+    --card-border: rgba(233,227,207,0.14);
+    --shadow: 0 1px 3px rgba(0,0,0,0.35);
+    --tag-bg: rgba(201,162,74,0.16);
+    --hairline: rgba(233,227,207,0.22);
+  }
+  :root[data-theme="light"]{
+    --bg: var(--paper);
+    --surface: #ffffff55;
+    --text: var(--ink);
+    --text-soft: var(--ink-soft);
+    --accent: var(--brass);
+    --accent-strong: var(--brass-strong);
+    --seal:#7d3b30;
+    --slate:#43514f;
+    --line: rgba(34,38,31,0.18);
+    --card-bg: #f4efdea6;
+    --card-border: rgba(34,38,31,0.16);
+    --shadow: 0 1px 2px rgba(34,38,31,0.06);
+    --tag-bg: rgba(138,106,36,0.14);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family: Charter, "Bitstream Charter", Georgia, "Iowan Old Style", serif;
+    font-size:17px;
+    line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family: "Iowan Old Style","Palatino Linotype", Palatino, "URW Palladio L", Georgia, serif;
+    color:var(--text);
+    text-wrap:balance;
+    font-weight:600;
+    margin:0;
+  }
+
+  .eyebrow{
+    font-family: "Avenir Next","Century Gothic", Futura, sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    font-weight:600;
+    color:var(--accent);
+  }
+
+  a{color:inherit;}
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns: 260px minmax(0,1fr);
+    max-width:1240px;
+    margin:0 auto;
+  }
+
+  nav.index{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    overflow-y:auto;
+    padding:2.4rem 1.4rem 2rem 2rem;
+    border-right:1px solid var(--line);
+  }
+  nav.index::-webkit-scrollbar{width:6px;}
+  nav.index::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
+
+  .index-mark{
+    font-family:"Iowan Old Style", Palatino, Georgia, serif;
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:0.01em;
+    margin-bottom:0.15rem;
+  }
+  .index-sub{
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.72rem;
+    color:var(--text-soft);
+    letter-spacing:0.04em;
+    margin-bottom:1.8rem;
+  }
+
+  .index-list{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:0.15rem;}
+  .index-list a{
+    display:flex;
+    gap:0.6rem;
+    align-items:baseline;
+    text-decoration:none;
+    padding:0.42rem 0.5rem;
+    border-radius:3px;
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.82rem;
+    color:var(--text-soft);
+    border-left:2px solid transparent;
+  }
+  .index-list a .num{
+    font-variant-numeric: tabular-nums;
+    color:var(--accent);
+    font-weight:700;
+    font-size:0.72rem;
+    min-width:1.1rem;
+  }
+  .index-list a:hover{color:var(--text); background:var(--tag-bg);}
+  .index-list a.active{
+    color:var(--text);
+    border-left-color:var(--accent);
+    background:var(--tag-bg);
+    font-weight:600;
+  }
+
+  main{padding:0 3.2rem;}
+  @media (max-width: 880px){
+    .shell{grid-template-columns:1fr;}
+    nav.index{position:static; height:auto; border-right:none; border-bottom:1px solid var(--line);}
+    main{padding:0 1.4rem;}
+  }
+
+  section{
+    padding:4.4rem 0;
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:1.2rem;
+  }
+  section:last-of-type{border-bottom:none;}
+
+  /* ---------- cover ---------- */
+  .cover{
+    padding:5.5rem 0 4rem;
+    display:flex;
+    flex-direction:column;
+    gap:1.6rem;
+  }
+  .stamp{
+    display:inline-flex;
+    align-items:center;
+    gap:0.55rem;
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.7rem;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--seal);
+    border:1px solid var(--seal);
+    padding:0.35rem 0.7rem;
+    border-radius:2px;
+    width:fit-content;
+  }
+  .cover h1{
+    font-size:clamp(2.3rem, 5vw, 3.4rem);
+    line-height:1.08;
+    max-width:16ch;
+  }
+  .cover .lede{
+    max-width:62ch;
+    font-size:1.12rem;
+    color:var(--text-soft);
+  }
+  .maxim{
+    margin-top:1rem;
+    border-left:3px solid var(--accent);
+    padding:0.3rem 0 0.3rem 1.3rem;
+    font-family:"Iowan Old Style",Palatino,Georgia,serif;
+    font-style:italic;
+    font-size:1.18rem;
+    max-width:52ch;
+    color:var(--text);
+  }
+  .cover-meta{
+    display:flex; gap:2.4rem; flex-wrap:wrap;
+    margin-top:1rem;
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.78rem;
+    color:var(--text-soft);
+  }
+  .cover-meta b{color:var(--text); display:block; font-family:Charter,Georgia,serif; font-size:0.95rem; margin-bottom:0.1rem;}
+
+  /* ---------- generic section header ---------- */
+  .sec-head{margin-bottom:2rem; max-width:70ch;}
+  .sec-head .eyebrow{margin-bottom:0.5rem; display:block;}
+  .sec-head h2{font-size:clamp(1.6rem,3vw,2.15rem); margin-bottom:0.7rem;}
+  .sec-head p{color:var(--text-soft); font-size:1.02rem; max-width:62ch;}
+  .verdict{
+    display:inline-block;
+    margin-top:0.9rem;
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    color:var(--accent-strong);
+    border:1px solid var(--accent);
+    background:var(--tag-bg);
+    padding:0.4rem 0.8rem;
+    border-radius:2px;
+  }
+
+  /* ---------- flow table (phases) ---------- */
+  .flow-wrap{overflow-x:auto; border:1px solid var(--card-border); border-radius:6px;}
+  table.flow{border-collapse:collapse; width:100%; min-width:920px; font-size:0.92rem;}
+  table.flow th{
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    text-transform:uppercase; font-size:0.68rem; letter-spacing:0.08em;
+    text-align:left; padding:0.9rem 1rem; color:var(--text-soft);
+    border-bottom:1px solid var(--hairline);
+    background:var(--card-bg);
+  }
+  table.flow td{
+    padding:1rem 1rem; vertical-align:top; border-bottom:1px solid var(--line);
+  }
+  table.flow tr:last-child td{border-bottom:none;}
+  table.flow td.phase{font-family:"Iowan Old Style",Palatino,Georgia,serif; font-weight:700; white-space:nowrap;}
+  table.flow td.conclusion{color:var(--accent-strong); font-weight:600;}
+
+  /* ---------- evidence card grid ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:1.1rem; margin-top:1.6rem;}
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:6px;
+    padding:1.3rem 1.4rem;
+    box-shadow:var(--shadow);
+  }
+  .card h4{font-size:1.02rem; margin-bottom:0.5rem; display:flex; justify-content:space-between; align-items:baseline; gap:0.6rem;}
+  .card .weight{
+    font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.63rem; letter-spacing:0.05em; text-transform:uppercase;
+    color:var(--accent-strong); white-space:nowrap;
+  }
+  .card p{margin:0; color:var(--text-soft); font-size:0.94rem;}
+  .card .src{
+    margin-top:0.65rem; font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.72rem; color:var(--slate);
+  }
+
+  /* ---------- ranking table ---------- */
+  table.rank{width:100%; border-collapse:collapse; margin-top:1.4rem; font-size:0.92rem;}
+  table.rank th{
+    text-align:left; font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.68rem; text-transform:uppercase; letter-spacing:0.07em;
+    color:var(--text-soft); padding:0.6rem 0.8rem; border-bottom:1px solid var(--hairline);
+  }
+  table.rank td{padding:0.65rem 0.8rem; border-bottom:1px solid var(--line);}
+  table.rank tr:last-child td{border-bottom:none;}
+  .strength{font-family:"Avenir Next","Century Gothic",sans-serif; font-size:0.72rem; padding:0.15rem 0.55rem; border-radius:20px; white-space:nowrap;}
+  .s-vstrong{background:rgba(138,106,36,0.18); color:var(--accent-strong);}
+  .s-strong{background:rgba(67,81,79,0.18); color:var(--slate);}
+  .s-mod{background:transparent; border:1px solid var(--line); color:var(--text-soft);}
+  .s-support{background:transparent; color:var(--text-soft); font-style:italic;}
+
+  /* ---------- two column ---------- */
+  .twocol{display:grid; grid-template-columns:1.1fr 0.9fr; gap:2.4rem; align-items:start;}
+  @media (max-width:760px){.twocol{grid-template-columns:1fr;}}
+
+  .list-plain{margin:0; padding:0; list-style:none; display:flex; flex-direction:column; gap:0.85rem;}
+  .list-plain li{padding-left:1.1rem; position:relative;}
+  .list-plain li::before{content:"—"; position:absolute; left:0; color:var(--accent);}
+  .list-plain b{display:block; font-family:"Iowan Old Style",Palatino,Georgia,serif;}
+
+  blockquote.note{
+    margin:1.6rem 0 0; padding:1rem 1.2rem;
+    background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px;
+    font-size:0.94rem; color:var(--text-soft);
+  }
+  blockquote.note b{color:var(--text);}
+
+  /* ---------- objection / response pairs ---------- */
+  .obj-list{display:flex; flex-direction:column; gap:0; margin-top:1.6rem;}
+  .obj{
+    display:grid; grid-template-columns:1.5rem 1fr; gap:0.8rem;
+    padding:1.1rem 0; border-bottom:1px solid var(--line);
+  }
+  .obj:last-child{border-bottom:none;}
+  .obj .mark{font-size:1.2rem; color:var(--seal); line-height:1.5;}
+  .obj .q{font-family:"Iowan Old Style",Palatino,Georgia,serif; font-style:italic; margin:0 0 0.35rem; font-size:1.02rem;}
+  .obj .a{margin:0; color:var(--text-soft); font-size:0.95rem;}
+  .obj .a b{color:var(--text); font-weight:600; font-style:normal;}
+
+  /* ---------- hypothesis table ---------- */
+  table.hyp{width:100%; border-collapse:collapse; margin-top:1.6rem; font-size:0.9rem;}
+  table.hyp th{
+    text-align:left; font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.66rem; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--text-soft); padding:0.7rem; border-bottom:1px solid var(--hairline);
+  }
+  table.hyp td{padding:0.85rem 0.7rem; border-bottom:1px solid var(--line); vertical-align:top;}
+  table.hyp tr:last-child td{border-bottom:none;}
+  table.hyp td.claim{font-weight:600; white-space:nowrap;}
+  table.hyp td.gap{color:var(--seal);}
+
+  /* ---------- debate script ---------- */
+  .script{counter-reset:stage; margin-top:1.8rem; display:flex; flex-direction:column; gap:1.1rem;}
+  .stage{
+    counter-increment:stage;
+    display:grid; grid-template-columns:2.6rem 1fr; gap:1rem;
+    padding:1rem 1.2rem; background:var(--card-bg); border:1px solid var(--card-border); border-radius:6px;
+  }
+  .stage::before{
+    content:counter(stage);
+    font-family:"Iowan Old Style",Palatino,Georgia,serif; font-weight:700; font-size:1.3rem;
+    color:var(--accent); align-self:center; text-align:center;
+  }
+  .stage q{font-family:"Iowan Old Style",Palatino,Georgia,serif; font-style:italic; font-size:1.03rem; display:block;}
+  .stage span.why{display:block; margin-top:0.3rem; font-family:"Avenir Next","Century Gothic",sans-serif; font-size:0.76rem; color:var(--text-soft); letter-spacing:0.01em;}
+
+  /* ---------- avoid box ---------- */
+  .avoid{
+    margin-top:1.6rem; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0.7rem;
+  }
+  .avoid .item{
+    border:1px dashed var(--seal); border-radius:6px; padding:0.85rem 1rem;
+    font-size:0.88rem; color:var(--text-soft);
+  }
+  .avoid .item b{display:block; color:var(--seal); font-family:"Avenir Next","Century Gothic",sans-serif; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.3rem;}
+
+  /* ---------- pipeline diagram ---------- */
+  .pipeline{
+    display:flex; flex-wrap:wrap; align-items:center; gap:0.5rem; margin-top:1.8rem;
+    font-family:"Avenir Next","Century Gothic",sans-serif; font-size:0.82rem;
+  }
+  .pipeline .step{
+    padding:0.55rem 0.9rem; border:1px solid var(--card-border); border-radius:20px;
+    background:var(--card-bg); white-space:nowrap;
+  }
+  .pipeline .arrow{color:var(--accent); font-size:1rem;}
+
+  /* ---------- closing ---------- */
+  .closing{padding-bottom:6rem;}
+  .closing .maxim{font-size:1.35rem; max-width:60ch; margin-top:1.4rem;}
+  .closing .signoff{
+    margin-top:2.2rem; font-family:"Avenir Next","Century Gothic",sans-serif;
+    font-size:0.8rem; color:var(--text-soft);
+  }
+
+  code, .kbd{
+    font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size:0.85em;
+    background:var(--tag-bg); padding:0.1rem 0.35rem; border-radius:3px;
+  }
+</style>
+
+<div class="shell">
+  <nav class="index" id="indexNav">
+    <div class="index-mark">The Case File</div>
+    <div class="index-sub">Five claims · read at your own pace</div>
+    <ul class="index-list">
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#cover" class=""><span class="num">·</span> Cover</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#method" class=""><span class="num">00</span> The Method</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#phase1" class=""><span class="num">01</span> Did Jesus Exist?</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#phase2" class=""><span class="num">02</span> Can You Trust the Bible?</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#phase3" class=""><span class="num">03</span> Does God Exist?</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#phase4" class="active"><span class="num">04</span> The Resurrection</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#phase5"><span class="num">05</span> Is Jesus God?</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#objections"><span class="num">06</span> Your Objections, Answered</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#playbook"><span class="num">07</span> The Case, Claim by Claim</a></li>
+      <li><a href="https://358c01bf-2bc3-4d88-b325-ffec6d1910c6.frame.claudeusercontent.com/_f/1786170998-7fc4/#closing"><span class="num">08</span> Closing Brief</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+    <section class="cover" id="cover">
+      <span class="stamp">● A Case for You to Test — No Faith Required to Start</span>
+      <h1>You Don't Have to Believe Anything Yet. Just Look at the Evidence.</h1>
+      <p class="lede">This isn't "the Bible says it, so it's true." It's five separate claims, in order — each argued from evidence you can check without first accepting Christianity, and each one only appears once the last has actually earned it.</p>
+      <p class="maxim">"You're not being asked to assume Christianity is true. Establish the historical data first — then judge for yourself which explanation actually fits it."</p>
+      <div class="cover-meta">
+        <div><b>How this works</b>Every conclusion has to be earned by its own evidence — none of them get to borrow credibility from the next.</div>
+        <div><b>The bar it has to clear</b>Not certainty — is the evidence strong enough that denying it becomes unreasonable?</div>
+        <div><b>What you won't find here</b>Circular reasoning. If a claim can't stand without assuming the conclusion, it's flagged as such.</div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="sec-head">
+        <span class="eyebrow">00 — Structure</span>
+        <h2>The Flow: Five Separate Claims, Not One</h2>
+        <p>Each row is its own question with its own evidence. You're free to accept, say, that Jesus existed while rejecting that he rose — that's a coherent position, not a contradiction. If you find yourself rejecting a later row, it's worth checking whether your objection is actually about that row, or is really an objection to an earlier one you already granted.</p>
+      </div>
+      <div class="flow-wrap">
+        <table class="flow">
+          <thead>
+            <tr><th>Phase</th><th>Core Question</th><th>Main Evidence</th><th>Conclusion</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="phase">1 · Jesus Historical</td>
+              <td>Did Jesus actually exist?</td>
+              <td>Paul, Gospels, Josephus, Tacitus, archaeology, historical method</td>
+              <td class="conclusion">Jesus of Nazareth existed</td>
+            </tr>
+            <tr>
+              <td class="phase">2 · Bible as Source</td>
+              <td>Can we trust the Bible as historical evidence?</td>
+              <td>Dating, authorship, eyewitness access, manuscripts, external corroboration</td>
+              <td class="conclusion">A legitimate, substantially reliable source</td>
+            </tr>
+            <tr>
+              <td class="phase">3 · God Exists</td>
+              <td>Why does anything exist, and what explains reality?</td>
+              <td>Contingency, cosmological argument, fine-tuning, morality, consciousness, reason</td>
+              <td class="conclusion">God's existence is rationally justified</td>
+            </tr>
+            <tr>
+              <td class="phase">4 · Resurrection</td>
+              <td>What best explains the Resurrection evidence?</td>
+              <td>Crucifixion, 1&nbsp;Cor&nbsp;15, Peter, James, Paul, empty tomb, alternative explanations</td>
+              <td class="conclusion">Bodily Resurrection is the best explanation</td>
+            </tr>
+            <tr>
+              <td class="phase">5 · Jesus Is God</td>
+              <td>If Jesus rose, who did God vindicate?</td>
+              <td>Jesus' claims, divine prerogatives, Son of Man, worship, Resurrection, Jewish monotheism</td>
+              <td class="conclusion">Jesus' divinity is defensible</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <blockquote class="note"><b>Why order matters:</b> "Jesus existed" is a historical question. "Jesus rose" is historical <i>and</i> philosophical. "Jesus is God" is theological. Each needs its own argument — granting Phase&nbsp;1 commits you to nothing about Phase&nbsp;4. Nobody's tracking whether you agree; this is just where the disagreement should actually live.</blockquote>
+    </section>
+
+    <section id="phase1">
+      <div class="sec-head">
+        <span class="eyebrow">01 — Foundation</span>
+        <h2>Did Jesus Exist?</h2>
+        <p>Start with sources that don't require accepting Christianity: a hostile Roman historian, a Jewish historian with no evangelistic motive, and Paul's own letters connecting him to Jesus' inner circle within two decades of the crucifixion.</p>
+        <span class="verdict">Verdict: extraordinarily well established by ordinary ancient-historical standards</span>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h4>Josephus on James <span class="weight">Very strong</span></h4>
+          <p>Calls James "the brother of Jesus who was called Christ." A Jewish historian with no interest in promoting Christianity treats Jesus as an ordinary historical reference point.</p>
+          <div class="src">Antiquities of the Jews, Bk. 20 · c. AD 93–94</div>
+        </div>
+        <div class="card">
+          <h4>Tacitus <span class="weight">Very strong</span></h4>
+          <p>Explains Nero's persecution by noting Christians derive their name from "Christus," executed under Pontius Pilate during Tiberius' reign. Tacitus was hostile to the movement, not promoting it.</p>
+          <div class="src">Annals 15.44 · c. AD 116</div>
+        </div>
+        <div class="card">
+          <h4>Paul's letters <span class="weight">Very strong</span></h4>
+          <p>Seven undisputed letters, dated to the AD 50s — roughly two decades after the crucifixion. Paul personally met Peter and James in Jerusalem (Gal. 1:18–19).</p>
+          <div class="src">Galatians, 1 Corinthians, Romans…</div>
+        </div>
+        <div class="card">
+          <h4>The Pilate Stone <span class="weight">Context</span></h4>
+          <p>An inscription at Caesarea confirms Pilate's office. It doesn't prove Jesus existed — it confirms the political setting the Gospels describe is real, not invented.</p>
+          <div class="src">Archaeological, Caesarea Maritima</div>
+        </div>
+        <div class="card">
+          <h4>Pliny the Younger <span class="weight">Moderate</span></h4>
+          <p>Writing to Trajan c. AD 111–113, describes an established movement already singing hymns to Christ "as to a god" — evidence of scale, not biography.</p>
+          <div class="src">Letters 10.96</div>
+        </div>
+        <div class="card">
+          <h4>The crucifixion itself <span class="weight">Very strong</span></h4>
+          <p>Not an obvious invention for a Jewish messianic movement — a crucified messiah was a theological embarrassment, which is why it's such strong evidence.</p>
+          <div class="src">Multiple independent traditions + Tacitus</div>
+        </div>
+      </div>
+
+      <table class="rank">
+        <thead><tr><th>Source</th><th>Date</th><th>Contribution</th><th>Strength</th></tr></thead>
+        <tbody>
+          <tr><td>Josephus — James</td><td>AD 93–94</td><td>Jesus existed; James was his brother</td><td><span class="strength s-vstrong">Very strong</span></td></tr>
+          <tr><td>Tacitus</td><td>c. AD 116</td><td>Christus executed under Pilate</td><td><span class="strength s-vstrong">Very strong</span></td></tr>
+          <tr><td>Josephus — Testimonium</td><td>AD 93–94</td><td>Ministry/death; authenticity disputed</td><td><span class="strength s-strong">Strong, disputed</span></td></tr>
+          <tr><td>Pliny the Younger</td><td>AD 111–113</td><td>Early Christ-centred movement</td><td><span class="strength s-mod">Moderate</span></td></tr>
+          <tr><td>Suetonius</td><td>c. AD 120</td><td>Possible "Chrestus" reference</td><td><span class="strength s-support">Limited</span></td></tr>
+          <tr><td>Lucian / Mara bar Serapion</td><td>2nd c.</td><td>Crucified founder referenced</td><td><span class="strength s-support">Supporting</span></td></tr>
+        </tbody>
+      </table>
+
+      <blockquote class="note"><b>The Socrates test.</b> Socrates wrote nothing, appears differently across sources, and has no modern documentary record — yet no historian doubts he existed. The fair question for a skeptic: <i>"What standard are you using to reject Jesus, and would you apply it to Socrates?"</i> If the answer is "Jesus made supernatural claims," that's a reason to scrutinize the <i>resurrection</i> claim later — not a reason to doubt the man existed.</blockquote>
+    </section>
+
+    <section id="phase2">
+      <div class="sec-head">
+        <span class="eyebrow">02 — Sources</span>
+        <h2>Can We Trust the Bible as Evidence?</h2>
+        <p>An atheist doesn't need to believe the Bible is inspired to treat it as a historical document worth examining — the same way historians use Herodotus or Plutarch despite their biases.</p>
+        <span class="verdict">Verdict: a legitimate historical source, examined the same way any ancient text is examined</span>
+      </div>
+
+      <div class="twocol">
+        <div>
+          <h3 style="font-size:1.05rem; margin-bottom:0.9rem;">Ten historical criteria applied to the text</h3>
+          <ul class="list-plain">
+            <li><b>Chronological proximity</b> — how close is the source to the events?</li>
+            <li><b>Eyewitness access</b> — Paul met Peter and James directly (Gal. 1:18–19)</li>
+            <li><b>Earlier traditions preserved in later texts</b> — the 1 Cor. 15 creed predates the letter itself</li>
+            <li><b>Multiple attestation</b> — the same fact appears in independent traditions</li>
+            <li><b>External corroboration</b> — Josephus, Tacitus, Pliny</li>
+            <li><b>Archaeological corroboration</b> — Pilate, Nazareth, Capernaum, crucifixion practice</li>
+            <li><b>Embarrassing details</b> — women as first witnesses; Peter's denial; disciples' confusion</li>
+            <li><b>Enemy attestation</b> — even the "disciples stole the body" polemic confirms the tomb was known and empty</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size:1.05rem; margin-bottom:0.9rem;">What you can grant without becoming a Christian</h3>
+          <p style="color:var(--text-soft); font-size:0.95rem;">You can accept every item below <i>and still reject Christianity</i> — that's a genuinely consistent position, not a trick:</p>
+          <ul class="list-plain">
+            <li>Jesus existed and was crucified</li>
+            <li>Paul existed and knew Peter and James</li>
+            <li>Early Christians sincerely believed Jesus appeared to them</li>
+            <li>Christianity began in the first century, not centuries later</li>
+          </ul>
+          <blockquote class="note" style="margin-top:1.3rem;">If you grant all four, your disagreement isn't over these facts — it's over <b>what best explains</b> them. That's a sharper, more useful place to disagree than "is the text true."</blockquote>
+        </div>
+      </div>
+
+      <div class="pipeline">
+        <div class="step">Ancient documents</div><span class="arrow">→</span>
+        <div class="step">Dated &amp; critically analysed</div><span class="arrow">→</span>
+        <div class="step">Compared to external evidence</div><span class="arrow">→</span>
+        <div class="step">Legitimate historical source</div><span class="arrow">→</span>
+        <div class="step">Historical data on Jesus extracted</div><span class="arrow">→</span>
+        <div class="step">Theological claims evaluated <i>last</i></div>
+      </div>
+    </section>
+
+    <section id="phase3">
+      <div class="sec-head">
+        <span class="eyebrow">03 — Philosophy</span>
+        <h2>Does God Exist?</h2>
+        <p>This phase runs on philosophy, not the Bible — it has to, or the whole case becomes circular. The target isn't "the Catholic God" yet, just a necessary, transcendent ground of contingent reality.</p>
+        <span class="verdict">Verdict: theism is a serious, rationally defensible position — not the default forced by science</span>
+      </div>
+
+      <table class="rank">
+        <thead><tr><th>Argument</th><th>Question it answers</th><th>Theistic implication</th></tr></thead>
+        <tbody>
+          <tr><td>Contingency</td><td>Why does anything contingent exist?</td><td>A necessary ground</td></tr>
+          <tr><td>Kalam cosmological</td><td>Why does the universe exist / begin?</td><td>A transcendent cause</td></tr>
+          <tr><td>Intelligibility</td><td>Why is reality mathematically knowable?</td><td>A rational source</td></tr>
+          <tr><td>Fine-tuning</td><td>Why life-permitting constants?</td><td>Possible design</td></tr>
+          <tr><td>Objective morality</td><td>Why are some acts wrong regardless of opinion?</td><td>A moral foundation</td></tr>
+          <tr><td>Consciousness</td><td>Why does subjective experience exist?</td><td>Mind as fundamental</td></tr>
+        </tbody>
+      </table>
+
+      <div class="obj-list">
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"If God made the universe, who made God?"</p>
+            <p class="a">The argument never claimed everything needs a cause — only <b>contingent</b> things do. God is proposed as necessary, not contingent. Ask back: <i>what's your candidate for the necessary thing — brute-fact universe, multiverse, laws of physics — and why is it necessary rather than just unexplained?</i></p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"A multiverse explains fine-tuning."</p>
+            <p class="a">Maybe — but it doesn't remove the ultimate-explanation question, it relocates it: <b>why does the multiverse exist, and why does it run on laws that generate universes at all?</b></p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"This is a God-of-the-gaps argument."</p>
+            <p class="a">Not the same move. "Science can't yet explain X, so God" is weak. "What grounds contingent existence itself" is a question science was never built to answer — it's not a gap, it's outside the method's domain.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"Physicists don't all agree the universe 'began.'"</p>
+            <p class="a">Correct, and worth saying plainly: eternal inflation, cyclic models, and boundary-condition cosmologies are live alternatives, and Kalam's second premise is genuinely more contested among cosmologists than its first. That's why this case leans harder on the <b>contingency</b> argument above it, which doesn't need the universe to have had a beginning — only that its existence, however old, doesn't explain itself.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"If God exists, why is he so silent — why does he allow suffering?"</p>
+            <p class="a">The problem of evil isn't answered anywhere on this page, and it shouldn't be waved off as if it were. It's a genuine counter-consideration to theism in general, argued about for centuries, and it sits outside what contingency, cosmology, and fine-tuning are built to address. A complete case for God has to engage it eventually — this phase only argues that a necessary transcendent ground is rationally defensible, not that every question about that ground's character is settled.</p>
+          </div>
+        </div>
+      </div>
+
+      <p style="color:var(--text-soft); font-size:0.9rem; margin-top:1.8rem;">If you've heard weaker versions of this argument before, here's what's <i>not</i> being claimed on this page:</p>
+      <div class="avoid">
+        <div class="item"><b>Not claimed</b>"The Big Bang proves Genesis."</div>
+        <div class="item"><b>Not claimed</b>"DNA is complex, therefore God."</div>
+        <div class="item"><b>Not claimed</b>"Quantum physics proves God."</div>
+        <div class="item"><b>Not claimed</b>"Science can't disprove God, therefore God exists."</div>
+      </div>
+    </section>
+
+    <section id="phase4">
+      <div class="sec-head">
+        <span class="eyebrow">04 — The Hinge</span>
+        <h2>The Resurrection: What Best Explains the Evidence?</h2>
+        <p>This is where the case is won or lost. Not "the Bible says he rose" — a set of historical facts that any explanation, naturalistic or not, has to account for in full.</p>
+        <span class="verdict">Verdict: bodily Resurrection is the strongest explanation of the total evidence, especially once Phase 3 makes it non-impossible</span>
+      </div>
+
+      <div class="twocol">
+        <div>
+          <h3 style="font-size:1.05rem; margin-bottom:0.9rem;">Very strongly established</h3>
+          <ul class="list-plain">
+            <li>Jesus existed and was crucified under Pilate</li>
+            <li>The earliest Christians proclaimed he'd been raised — within the first generation</li>
+            <li>Paul converted after opposing the movement, citing a personal encounter</li>
+            <li>James, Jesus' own brother, became a Jerusalem church leader</li>
+            <li>1 Cor. 15:3–8 preserves a creed older than the letter itself</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="font-size:1.05rem; margin-bottom:0.9rem;">Strong but more contested</h3>
+          <ul class="list-plain">
+            <li>Jesus was buried in a known tomb</li>
+            <li>The tomb was found empty</li>
+          </ul>
+          <blockquote class="note">Keeping these two tiers separate is what makes the argument hard to attack — it never claims more certainty than the evidence supports. And the tomb is the weaker of the two for a specific reason: <b>no non-Christian source corroborates it.</b> Josephus and Tacitus confirm the crucifixion; nothing outside the Christian tradition confirms the burial or the empty tomb. It rests on the Gospel account plus the inference that hostile authorities could have simply produced the body and didn't — suggestive, not decisive on its own.</blockquote>
+        </div>
+      </div>
+
+      <h3 style="font-size:1.05rem; margin:2.2rem 0 0.4rem;">Six naturalistic alternatives, and where each falls short</h3>
+      <div class="flow-wrap">
+        <table class="hyp">
+          <thead><tr><th>Hypothesis</th><th>What it explains</th><th>What it leaves unexplained</th></tr></thead>
+          <tbody>
+            <tr><td class="claim">Deliberate fraud</td><td>Why the story appeared</td><td class="gap">No plausible motive; doesn't explain Paul, James, or persecution under which the claim never wavered</td></tr>
+            <tr><td class="claim">Legend, grown over decades</td><td>Belief drifting over time</td><td class="gap">1 Cor. 15 is too early — Paul received it, he didn't invent it, within years of the event</td></tr>
+            <tr><td class="claim">Hallucination / vision</td><td>Individual grief experiences</td><td class="gap">Doesn't explain multiple witnesses, James, Paul, or why visions were interpreted as <i>bodily</i> resurrection — unexpected in Jewish thought</td></tr>
+            <tr><td class="claim">Wrong tomb</td><td>An empty tomb</td><td class="gap">Doesn't explain appearances, Paul, or James — and authorities could have simply produced the real body</td></tr>
+            <tr><td class="claim">Body theft</td><td>An empty tomb</td><td class="gap">Doesn't explain why anyone would then proclaim resurrection instead of just a missing corpse</td></tr>
+            <tr><td class="claim">Jesus survived ("swoon")</td><td>Post-crucifixion appearances</td><td class="gap">Roman crucifixion was built to kill; a barely-surviving Jesus doesn't produce a "gloriously risen Lord" proclamation</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <blockquote class="note"><b>The honest concession:</b> martyrdom proves sincerity, not truth. People die for false beliefs. What it establishes is narrower and still useful — Peter, James, and Paul weren't reporting inherited folklore, they were reporting what they said was personal experience, and they held to it under real cost.</blockquote>
+
+      <h3 style="font-size:1.05rem; margin:2.2rem 0 0.4rem;">Two questions the evidence alone can't settle</h3>
+      <div class="obj-list">
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"Couldn't you just say 'unknown natural cause' at every step instead of resurrection?"</p>
+            <p class="a">Yes — and that's a stable position, not a dodge. Comparing explanations only compels someone who already treats a supernatural cause as a candidate worth weighing against natural ones. Rule that out beforehand and no amount of convergence in the table above will move the conclusion, because the evidence was never what was doing the work. What this table actually shows is narrower: the Resurrection is <b>rationally permissible</b> given the evidence, not that it's forced on anyone who looks at it.</p>
+          </div>
+        </div>
+        <div class="obj">
+          <div class="mark">?</div>
+          <div>
+            <p class="q">"Isn't testimony for a miracle always less probable than the testimony simply being mistaken?" (Hume's argument)</p>
+            <p class="a">This is a real, unresolved philosophical dispute, not something this table settles — it relocates it. Whether that's true depends entirely on how plausible a cause capable of resurrection is in the first place, which is exactly what Phase&nbsp;3 was for. Find Hume's argument persuasive independent of whether God exists, and nothing in this table is likely to change your mind — which is worth admitting rather than talking past.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="phase5">
+      <div class="sec-head">
+        <span class="eyebrow">05 — Implication</span>
+        <h2>If He Rose, Who Was Vindicated?</h2>
+        <p>This phase only opens once Phase 4 is granted — it's a conclusion, not a starting assumption. If the Resurrection is the best explanation of the evidence, the next honest question is what it implies about the man it happened to.</p>
+        <span class="verdict">Status: the logical next step of the case — argued from Jesus' own claims and earliest worship, not asserted</span>
+      </div>
+      <blockquote class="note"><b>Why this phase has to carry real weight:</b> Phase&nbsp;3 only established a necessary, transcendent, plausibly intelligent ground of reality — not a personal God who reveals himself in history, and not specifically the Christian one. That's the largest structural gap in the whole case, and it isn't closed by Phase&nbsp;3 at all. It's closed here, or not at all: if the Resurrection didn't happen, nothing stops that necessary ground from being impersonal, deistic, or claimed by another tradition instead.</blockquote>
+      <div class="grid">
+        <div class="card">
+          <h4>His claims</h4>
+          <p>Forgiving sins, claiming authority over the Sabbath, and using "Son of Man" language drawn from Daniel 7 — claims that made sense as blasphemy to first-century Jewish monotheists precisely because they weren't ordinary.</p>
+        </div>
+        <div class="card">
+          <h4>Earliest worship</h4>
+          <p>Philippians 2 and Colossians 1 — texts scholars date remarkably early — already describe Jesus in language of divine worship, within a community that came from strict Jewish monotheism.</p>
+        </div>
+        <div class="card">
+          <h4>The vindication logic</h4>
+          <p>A resurrection, if real, is God acting in history. The question becomes: <i>if God raised this specific man, making these specific claims, what was God vindicating?</i></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="objections">
+      <div class="sec-head">
+        <span class="eyebrow">06 — Reference</span>
+        <h2>Your Objections, Answered Honestly</h2>
+        <p>These are the strongest pushbacks — the ones worth actually raising, not straw men. Where the honest answer requires conceding a point, it's conceded here rather than argued around.</p>
+      </div>
+      <div class="obj-list">
+        <div class="obj"><div class="mark">?</div><div><p class="q">"The Gospels are biased — they're written by believers."</p><p class="a">Bias isn't the same as fabrication. Tacitus, Josephus, and Herodotus all wrote with agendas, and historians still extract reliable information from them. The question is never "does this source have a worldview" — it's <b>what can be recovered from it despite one</b>.</p></div></div>
+        <div class="obj"><div class="mark">?</div><div><p class="q">"The Bible's been copied and changed too many times to trust."</p><p class="a">Textual criticism exists <i>because</i> manuscripts differ — that's not a scandal, it's the method. Thousands of witnesses let scholars compare readings and flag variants; most are spelling or word order. The claim isn't "we have the originals," it's <b>"we can reconstruct the earliest attainable text with high confidence."</b></p></div></div>
+        <div class="obj"><div class="mark">?</div><div><p class="q">"Extraordinary claims require extraordinary evidence."</p><p class="a">Fair — and worth separating what needs which standard. "Jesus existed" needs ordinary ancient-historical evidence, which it has in abundance. "Jesus rose" is the extraordinary claim, and it's argued on its own, later, against explicit competing hypotheses — not smuggled in on the coattails of the easier claim.</p></div></div>
+        <div class="obj"><div class="mark">?</div><div><p class="q">"Miracles violate the laws of science."</p><p class="a">Science describes regular natural processes; it doesn't rule on whether something outside nature acted once. That's a metaphysical claim about whether nature is all there is — which is exactly what Phase&nbsp;3 exists to test, not something to assume going in.</p></div></div>
+        <div class="obj"><div class="mark">?</div><div><p class="q">"Every apostle died for this, so it must be true."</p><p class="a">Too strong, and worth dropping. Martyrdom shows sincerity, not accuracy — and the manner of death for several apostles is itself under-documented. Use the narrower, defensible version: people claiming <i>personal experience</i>, not inherited belief, held to it under real cost.</p></div></div>
+        <div class="obj"><div class="mark">?</div><div><p class="q">"Other religions have martyrs and miracle claims too — why doesn't this method 'prove' those as well?"</p><p class="a">Fair, and it deserves a real answer rather than a dismissal. What's being claimed as unusual here is a specific combination: a skeptical relative's conversion (James), a former persecutor's conversion (Paul), corroboration from hostile non-Christian historians, and a proclamation appearing within years rather than generations. Whether that combination is actually rarer than comparable claims elsewhere is something you're entitled to test against specific comparisons — it isn't established just by asserting it here.</p></div></div>
+      </div>
+    </section>
+
+    <section id="playbook">
+      <div class="sec-head">
+        <span class="eyebrow">07 — Walk It Through</span>
+        <h2>The Case, Claim by Claim</h2>
+        <p>Same argument as above, broken into single steps. Test each one on its own before moving to the next — most people find they agree with more of this list than they expected, and the real disagreement turns out to live in just one or two places.</p>
+      </div>
+      <div class="script">
+        <div class="stage"><q>Do you agree Jesus existed?</q><span class="why">Ordinary ancient-historical standard — Josephus, Tacitus, Paul.</span></div>
+        <div class="stage"><q>Do you agree he was crucified?</q><span class="why">One of the best-attested facts about him — Christian and non-Christian sources converge.</span></div>
+        <div class="stage"><q>Do you agree his earliest followers believed they encountered him alive afterward?</q><span class="why">Distinct from "he actually rose" — this is just about sincere, very early belief.</span></div>
+        <div class="stage"><q>Do you agree Paul converted after claiming an encounter with Jesus, and knew Peter and James personally?</q><span class="why">Rules out "invented generations later, by strangers to the movement."</span></div>
+        <div class="stage"><q>Do you agree James, Jesus' own brother, became a leader of the movement?</q><span class="why">A skeptical family member becoming a believer needs its own explanation.</span></div>
+        <div class="stage"><q>Given all of that — what explanation accounts for the whole set of facts, not just part of it?</q><span class="why">This is where the real disagreement lives. Everything above it is meant to already be common ground.</span></div>
+      </div>
+
+      <blockquote class="note" style="margin-top:2rem;"><b>If you stop and disagree at any stage, the case doesn't collapse — it just narrows.</b> Disagreeing at stage 3, for instance, still leaves stages 1–2 standing on their own historical merits; it just means the conversation from there on should be about resurrection appearances specifically, not about whether Jesus existed. Locating exactly where you get off is more useful than a blanket "I don't buy it."</blockquote>
+      <blockquote class="note" style="margin-top:1rem;"><b>Two things worth noticing about how this was built:</b> nowhere above does it say "the Bible says it, therefore it's true" — it starts only from what you already have independent reason to accept. And it doesn't inflate certainty to win a point: "the tomb was empty" is flagged as more contested than "Jesus was crucified," rather than being quietly treated the same.</blockquote>
+    </section>
+
+    <section class="closing" id="closing">
+      <div class="sec-head">
+        <span class="eyebrow">08 — Summary</span>
+        <h2>If You Only Read One Paragraph</h2>
+        <p>Here's the whole case compressed to what matters.</p>
+      </div>
+      <p class="maxim">Jesus unquestionably existed and was crucified. His earliest followers, within the first generation, sincerely proclaimed he had risen — a claim Paul and James each attached to a personal encounter, not inherited folklore. Every naturalistic alternative explains part of that picture; none explains all of it without piling on independent, unproven assumptions. If God exists — which Phase 3 argues on its own terms — a resurrection stops being metaphysically impossible and becomes a historical hypothesis worth weighing on the evidence.</p>
+      <div class="signoff">You don't have to walk away agreeing with any of it. The narrower claim being made is that this explanation is intellectually and historically defensible — and that whatever explanation you land on instead has to answer to the same evidence you just read, not to less of it.</div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  (function(){
+    var links = Array.prototype.slice.call(document.querySelectorAll('.index-list a'));
+    var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); }).filter(Boolean);
+    function onScroll(){
+      var pos = window.scrollY + 140;
+      var current = sections[0];
+      sections.forEach(function(sec){ if (sec.offsetTop <= pos) current = sec; });
+      links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + current.id); });
+    }
+    document.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
+  })();
+</script>
+
+</body></html>
