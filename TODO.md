@@ -4,33 +4,15 @@ Pull-up list for future sessions. Update as items are resolved; don't let this d
 
 Last audited: 2026-08-10.
 
-## Uncommitted work (blocking)
-
-- [ ] **Commit the presentations feature.** `presenter` role, `presentations` table/RLS
-      (`supabase/migrations/20260808101110_presentations.sql`), `app/presentations/`,
-      `app/admin/presentations/`, `app/api/admin/presentations/`, `components/presentations/`,
-      `tools/{generate,import,promote}-presentation.ts` are all untracked. See ADR-009 in
-      `DECISIONS.md` for the design. Split into logical commits (schema/RLS migration, admin
-      role plumbing, feature UI/API, content tooling) rather than one giant commit — keeps
-      `git blame` useful later.
-- [ ] **Commit `tools/translate-topic.ts`** and the in-flight translation output
-      (`content/topics/generated/historical-evidence-for-jesus-{ceb,tl}.json`, already promoted
-      to `validated/` — one review step short of `import-topic.ts` + `promote-topic.ts`).
-- [ ] Decide what to do with `documents/Atheism_AI_content/` (4 markdown apologetics drafts +
-      an exported HTML dossier, untracked). Looks like source material for future topic
-      generation, not yet linked into the content pipeline — triage: commit as reference docs,
-      or extract into `content/topics/` and drop the rest.
-- [ ] `CLAUDE.md` and `DECISIONS.md` also have uncommitted edits (ADR-009 + presentations
-      session notes) — will land as part of the presentations commit.
-
 ## Test coverage gaps
 
-- [ ] **No tests exist for the presentations feature** — `pnpm test` is 158/158 green but none
-      of them touch `app/presentations/`, `app/admin/presentations/`,
-      `app/api/admin/presentations/`, or `components/presentations/SlideViewer.tsx`. At minimum
-      needs coverage for the `is_cfd_member` gating logic (client-side check in
-      `app/presentations/[topicId]/page.tsx`) since that's the first feature using that flag —
-      a regression here silently exposes or blocks member content.
+- [ ] **No tests exist for the presentations feature or this session's additions** —
+      `pnpm test` is 158/158 green but none of them touch `app/presentations/`,
+      `app/admin/presentations/`, `app/api/admin/presentations/`, `app/api/admin/users/`, or
+      `components/presentations/SlideViewer.tsx`. At minimum needs coverage for the
+      is_cfd_member-AND-admin viewer gate (`app/presentations/[topicId]/page.tsx`) — a
+      regression here silently exposes or blocks member content, and it's already been
+      tightened once (2026-08-10, from "member OR admin" to "member AND admin").
 - [ ] `tools/import-presentation.ts` / `tools/promote-presentation.ts` have no documented
       "verified against live Supabase" pass, unlike `import-topic.ts`/`promote-topic.ts` and the
       quiz equivalents (both explicitly verified live per `CLAUDE.md`). Run one real
@@ -50,25 +32,38 @@ Plus 4 pre-existing warnings (unused vars in `SyncManager.tsx`, `validate-topic.
 `pnpm type-check` or `pnpm test` (both currently green). Fix opportunistically when touching
 these files — not worth a dedicated pass on its own.
 
-## Flagged-but-not-yet-acted mismatches (from CLAUDE.md / DECISIONS.md)
+## Local LLM routing — temporarily collapsed onto one model
 
-- [ ] **Phase 7 (objections) generation is on `qwen3.5:9b`** but drafts new response text —
-      violates ADR-005 (generate vs. extract split says this belongs on `qwen3:14b`). Not moved
-      yet because it hasn't been tested against the live pipeline — do that before switching.
+`tools/generate-quiz.ts` and `tools/generate-topic.ts` now both run entirely on
+`qwen3.6:35b-mlx` (2026-08-10) because `qwen3:14b` and `qwen3.5:9b` are currently deleted
+locally. This **suspends** the generate-vs-extract split from ADR-005 (project `DECISIONS.md`)
+— Phase 2 generation and Phases 1/3-7 extraction are all on the same model for now, so the
+Phase 7 "generation task running on the extraction-tier model" mismatch flagged earlier is
+moot until the 14b/9b split is restored. When `qwen3:14b`/`qwen3.5:9b` come back locally,
+re-split these scripts back to ADR-005's rule rather than leaving everything on 35b.
+
 - [ ] `church_father_quotes` has near-duplicate rows under inconsistent author name spellings
       (e.g. "St. John Damascene" vs "St. John of Damascus"), which breaks the canonical-name-form
       `ON CONFLICT` dedup rule in `documents/content-generation-prompt.md`. Not cleaned up.
 
-## Deliberate v1 cuts (don't "fix" without re-confirming scope — see ADR-009)
+## Deliberate v1 cuts / scoped decisions (see DECISIONS.md before re-litigating)
 
-- Presentations are English-only (no `lang` column yet).
+- Presentations are English-only (no `lang` column yet) — ADR-009.
 - `presentations` content pipeline has exactly one published item
   (`content/presentations/published/creation-and-evolution.json`) — everything else needs the
   same generate → review → import → promote cycle as topics/quiz.
+- Presentation *viewing* (`/presentations/[topicId]`) is deliberately restricted to accounts
+  that are both `is_cfd_member = true` AND have an `admins` row (2026-08-10) — not rolled out
+  to regular members yet. Both the RLS policy and the client-side check enforce this; don't
+  loosen either without confirming the rollout decision first. The `/admin/presentations`
+  authoring UI is unaffected (gated by admin role only, same as other admin pages).
+- `documents/Atheism_AI_content/` (4 apologetics drafts + an exported HTML dossier) is
+  reference/source material only — not yet linked into the topic-generation pipeline.
+- `content/topics/generated|validated/historical-evidence-for-jesus-{ceb,tl}.json` are sitting
+  in `validated/`, one step short of `import-topic.ts` + `promote-topic.ts`.
 
 ## Housekeeping
 
-- [ ] Once the presentations feature is committed and deployed, confirm the migration actually
-      applied on the live project (`vercel-build` runs `scripts/db-push.mjs` automatically) —
-      check `presenter` shows up as a valid role and the RLS policies exist before granting any
-      real user the `presenter` role.
+- [x] Presentations feature, CFD-member admin toggle, admin+member viewer gate, and the
+      SlideViewer fullscreen toggle are committed, merged to `master`, and pushed
+      (2026-08-10). Migrations for all of it are applied on the live Supabase project.
