@@ -42,9 +42,12 @@ export default function PresentationPage() {
       if (!user) { setStatus('signed-out'); return }
 
       const { data: settings } = await supabase.from('user_settings').select('is_cfd_member').eq('user_id', user.id).maybeSingle()
-      if (!settings?.is_cfd_member) { setStatus('not-member'); return }
+      const { data: adminRow } = await supabase.from('admins').select('user_id').eq('user_id', user.id).maybeSingle()
+      // Presentations aren't rolled out to all members yet — gated to staff (any
+      // admin role) who are also CFD members, not just one or the other.
+      if (!settings?.is_cfd_member || !adminRow) { setStatus('not-member'); return }
 
-      // RLS enforces both the membership gate and published:true a second time here.
+      // RLS enforces the same is_cfd_member-AND-admin gate a second time here.
       const { data: presentation } = await supabase.from('presentations').select('slides').eq('topic_id', topicId).maybeSingle()
       if (!presentation) { setStatus('not-found'); return }
 

@@ -1,9 +1,10 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
 import {
   Plus, Trash, FloppyDisk, X, MagnifyingGlass,
-  Spinner, Presentation, PencilSimple, UploadSimple,
+  Spinner, Presentation, PencilSimple, UploadSimple, Eye,
 } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
@@ -277,6 +278,16 @@ export default function PresentationsAdminPage() {
                     )}
                   </div>
                   <div className="flex gap-2">
+                    {presentation && (
+                      <Link
+                        href={`/presentations/${selectedTopic.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 rounded-xl border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground hover:border-primary hover:text-primary transition-colors"
+                      >
+                        <Eye weight="light" size={13} /> View
+                      </Link>
+                    )}
                     {presentation && (
                       <button
                         onClick={togglePublished}

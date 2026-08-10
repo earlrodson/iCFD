@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo } from 'react'
-import { Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise, EnvelopeSimple } from '@phosphor-icons/react'
+import { Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
 import { useAdminRole } from '@/app/admin/role-context'
@@ -13,6 +13,7 @@ interface UserRow {
   created_at: string
   last_sign_in_at: string | null
   role: 'admin' | 'editor' | 'presenter' | null   // null = regular user, no admin access
+  is_cfd_member: boolean
 }
 
 const ROLE_LABELS: Record<string, string> = {
@@ -40,6 +41,7 @@ export default function AdminUsersPage() {
   const [editRole, setEditRole] = useState<'admin' | 'editor' | 'presenter'>('editor')
   const [grantingId, setGrantingId]   = useState<string | null>(null)
   const [resettingId, setResettingId] = useState<string | null>(null)
+  const [togglingId, setTogglingId]   = useState<string | null>(null)
 
   async function loadUsers() {
     setLoading(true)
@@ -100,6 +102,24 @@ export default function AdminUsersPage() {
       flash(`Password reset email sent to ${user.email}.`)
     }
     setResettingId(null)
+  }
+
+  async function toggleCfdMember(user: UserRow) {
+    setTogglingId(user.id)
+    const next = !user.is_cfd_member
+    const res = await fetch('/api/admin/users', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id, is_cfd_member: next }),
+    })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      flash('Could not update CFD membership: ' + (data.error ?? res.statusText), 'err')
+    } else {
+      flash(`${next ? 'Granted' : 'Revoked'} CFD membership for ${user.email}.`)
+      await loadUsers()
+    }
+    setTogglingId(null)
   }
 
   async function revokeRole(user: UserRow) {
@@ -237,6 +257,24 @@ export default function AdminUsersPage() {
                     )}
                   </p>
                 </div>
+
+                {/* CFD member toggle */}
+                <button
+                  onClick={() => toggleCfdMember(u)}
+                  disabled={togglingId === u.id}
+                  className={cn(
+                    'shrink-0 flex h-7 w-7 items-center justify-center rounded-lg transition-colors disabled:opacity-40',
+                    u.is_cfd_member
+                      ? 'text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20'
+                      : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                  )}
+                  title={u.is_cfd_member ? 'CFD member — click to revoke' : 'Not a CFD member — click to grant'}
+                >
+                  {togglingId === u.id
+                    ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                    : <IdentificationCard weight={u.is_cfd_member ? 'fill' : 'light'} size={14} />
+                  }
+                </button>
 
                 {/* Reset password */}
                 <button
