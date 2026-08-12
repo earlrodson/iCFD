@@ -1,0 +1,544 @@
+{
+  "generated_at_note": "run bun tools/audit-translation-coverage.ts to refresh — timestamps are not embedded",
+  "handbook_seed": {
+    "en_total": 50,
+    "ceb": {
+      "total": 38,
+      "covered": [
+        {
+          "en_id": "holy-eucharist",
+          "en_title": "The Real Presence in the Holy Eucharist",
+          "via": "fuzzy:eucharist-real-presence"
+        },
+        {
+          "en_id": "confession-to-priest",
+          "en_title": "The Sacrament of Confession",
+          "via": "fuzzy:confession-sacrament"
+        },
+        {
+          "en_id": "mary-mother-of-god",
+          "en_title": "Mary, Mother of God (Theotokos)",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "primacy-of-peter",
+          "en_title": "The Primacy of Peter and the Papacy",
+          "via": "fuzzy:papacy-peters-succession"
+        },
+        {
+          "en_id": "salvation",
+          "en_title": "Catholic Teaching on Salvation",
+          "via": "fuzzy:salvation-faith-works"
+        },
+        {
+          "en_id": "prayer-to-saints",
+          "en_title": "Asking Saints to Intercede",
+          "via": "fuzzy:saints-intercession"
+        },
+        {
+          "en_id": "bible-tradition-authority",
+          "en_title": "The Bible, Tradition, and Church Authority",
+          "via": "fuzzy:tradition-authority"
+        },
+        {
+          "en_id": "biblical-canon",
+          "en_title": "How the Bible Was Compiled",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "deuterocanonical-books",
+          "en_title": "The Seven Deuterocanonical Books",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "scripture-interpretation",
+          "en_title": "How the Church Interprets Scripture",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "new-testament-reliability",
+          "en_title": "Is the New Testament Reliable?",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "sola-scriptura-refuted",
+          "en_title": "Sola Scriptura Refutes Itself",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "papal-infallibility",
+          "en_title": "Understanding Papal Infallibility",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "original-sin",
+          "en_title": "The Doctrine of Original Sin",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "heaven-and-hell",
+          "en_title": "Heaven, Hell, and Judgment",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "real-presence",
+          "en_title": "The Real Presence in the Eucharist",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "assumption-of-mary",
+          "en_title": "The Assumption of Mary",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "queenship-of-mary",
+          "en_title": "Mary as Queen of Heaven",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "mediatrix",
+          "en_title": "Mary as Mediatrix",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "hail-mary-biblical",
+          "en_title": "Is the Hail Mary Biblical?",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "fatima-apparitions",
+          "en_title": "The Apparitions at Fatima",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "rosary-biblical",
+          "en_title": "Is the Rosary Biblical?",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "priestly-celibacy",
+          "en_title": "Why Catholic Priests Are Celibate",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "canonization-process",
+          "en_title": "How Canonization Works",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "liturgical-calendar",
+          "en_title": "The Liturgical Seasons",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "intercession-of-saints",
+          "en_title": "The Intercession of the Saints",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "veneration-vs-worship",
+          "en_title": "Veneration Is Not Worship",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "relics-veneration",
+          "en_title": "The Veneration of Relics",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "all-saints-souls",
+          "en_title": "All Saints and All Souls Days",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "papal-succession",
+          "en_title": "Apostolic Succession and the Papacy",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "bad-popes-history",
+          "en_title": "Sinful Popes and the Papacy",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "bishop-of-rome",
+          "en_title": "Why the Bishop of Rome Leads the Church",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "councils-and-popes",
+          "en_title": "Ecumenical Councils and the Pope",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "confirmation-sacrament",
+          "en_title": "The Sacrament of Confirmation",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "anointing-of-sick",
+          "en_title": "The Anointing of the Sick",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "transubstantiation",
+          "en_title": "The Doctrine of Transubstantiation",
+          "via": "exact-id"
+        }
+      ],
+      "missing": [
+        {
+          "id": "true-church",
+          "title": "The True Church of Christ"
+        },
+        {
+          "id": "holy-trinity",
+          "title": "The Holy Trinity"
+        },
+        {
+          "id": "divinity-of-christ",
+          "title": "The Divinity of Jesus Christ"
+        },
+        {
+          "id": "immaculate-conception",
+          "title": "The Immaculate Conception of Mary"
+        },
+        {
+          "id": "perpetual-virginity",
+          "title": "The Perpetual Virginity of Mary"
+        },
+        {
+          "id": "sacred-images",
+          "title": "Sacred Images and Statues"
+        },
+        {
+          "id": "purgatory",
+          "title": "Purgatory"
+        },
+        {
+          "id": "indulgences",
+          "title": "Indulgences"
+        },
+        {
+          "id": "infant-baptism",
+          "title": "Infant Baptism"
+        },
+        {
+          "id": "holy-orders",
+          "title": "The Sacrament of Holy Orders"
+        },
+        {
+          "id": "holy-mass",
+          "title": "The Holy Mass as a Sacrifice"
+        },
+        {
+          "id": "sunday-observance",
+          "title": "Sunday Worship and the Lord's Day"
+        },
+        {
+          "id": "dietary-abstinence",
+          "title": "Catholic Dietary Practices and Abstinence"
+        },
+        {
+          "id": "cross-sign-of-cross",
+          "title": "The Cross and the Sign of the Cross"
+        }
+      ],
+      "orphans": [
+        {
+          "id": "bible-deuterocanonical-books",
+          "title": "Biblia - Mga Libro nga Deuterocanonical",
+          "note": "duplicate of an exact-id match, not real extra coverage"
+        },
+        {
+          "id": "church-teaching-contraception",
+          "title": "Turo sa Simbahan - Kontrasepsyon",
+          "note": "no English source article exists — cannot verify against original"
+        }
+      ]
+    },
+    "tl": {
+      "total": 39,
+      "covered": [
+        {
+          "en_id": "holy-eucharist",
+          "en_title": "The Real Presence in the Holy Eucharist",
+          "via": "fuzzy:eucharist-tunay-na-presensya"
+        },
+        {
+          "en_id": "confession-to-priest",
+          "en_title": "The Sacrament of Confession",
+          "via": "fuzzy:kumpisal-sakramento"
+        },
+        {
+          "en_id": "primacy-of-peter",
+          "en_title": "The Primacy of Peter and the Papacy",
+          "via": "fuzzy:papacy-paghalili-kay-pedro"
+        },
+        {
+          "en_id": "salvation",
+          "en_title": "Catholic Teaching on Salvation",
+          "via": "fuzzy:kaligtasan-pananampalataya-mga-gawa"
+        },
+        {
+          "en_id": "prayer-to-saints",
+          "en_title": "Asking Saints to Intercede",
+          "via": "fuzzy:mga-santo-intercessyon"
+        },
+        {
+          "en_id": "bible-tradition-authority",
+          "en_title": "The Bible, Tradition, and Church Authority",
+          "via": "fuzzy:tradisyon-awtoridad"
+        },
+        {
+          "en_id": "biblical-canon",
+          "en_title": "How the Bible Was Compiled",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "deuterocanonical-books",
+          "en_title": "The Seven Deuterocanonical Books",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "scripture-interpretation",
+          "en_title": "How the Church Interprets Scripture",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "new-testament-reliability",
+          "en_title": "Is the New Testament Reliable?",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "sola-scriptura-refuted",
+          "en_title": "Sola Scriptura Refutes Itself",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "papal-infallibility",
+          "en_title": "Understanding Papal Infallibility",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "original-sin",
+          "en_title": "The Doctrine of Original Sin",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "heaven-and-hell",
+          "en_title": "Heaven, Hell, and Judgment",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "real-presence",
+          "en_title": "The Real Presence in the Eucharist",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "assumption-of-mary",
+          "en_title": "The Assumption of Mary",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "mary-mother-of-god",
+          "en_title": "Mary, Mother of God (Theotokos)",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "queenship-of-mary",
+          "en_title": "Mary as Queen of Heaven",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "mediatrix",
+          "en_title": "Mary as Mediatrix",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "hail-mary-biblical",
+          "en_title": "Is the Hail Mary Biblical?",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "fatima-apparitions",
+          "en_title": "The Apparitions at Fatima",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "rosary-biblical",
+          "en_title": "Is the Rosary Biblical?",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "priestly-celibacy",
+          "en_title": "Why Catholic Priests Are Celibate",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "canonization-process",
+          "en_title": "How Canonization Works",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "liturgical-calendar",
+          "en_title": "The Liturgical Seasons",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "intercession-of-saints",
+          "en_title": "The Intercession of the Saints",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "veneration-vs-worship",
+          "en_title": "Veneration Is Not Worship",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "relics-veneration",
+          "en_title": "The Veneration of Relics",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "all-saints-souls",
+          "en_title": "All Saints and All Souls Days",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "papal-succession",
+          "en_title": "Apostolic Succession and the Papacy",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "bad-popes-history",
+          "en_title": "Sinful Popes and the Papacy",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "bishop-of-rome",
+          "en_title": "Why the Bishop of Rome Leads the Church",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "councils-and-popes",
+          "en_title": "Ecumenical Councils and the Pope",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "confirmation-sacrament",
+          "en_title": "The Sacrament of Confirmation",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "anointing-of-sick",
+          "en_title": "The Anointing of the Sick",
+          "via": "exact-id"
+        },
+        {
+          "en_id": "transubstantiation",
+          "en_title": "The Doctrine of Transubstantiation",
+          "via": "exact-id"
+        }
+      ],
+      "missing": [
+        {
+          "id": "true-church",
+          "title": "The True Church of Christ"
+        },
+        {
+          "id": "holy-trinity",
+          "title": "The Holy Trinity"
+        },
+        {
+          "id": "divinity-of-christ",
+          "title": "The Divinity of Jesus Christ"
+        },
+        {
+          "id": "immaculate-conception",
+          "title": "The Immaculate Conception of Mary"
+        },
+        {
+          "id": "perpetual-virginity",
+          "title": "The Perpetual Virginity of Mary"
+        },
+        {
+          "id": "sacred-images",
+          "title": "Sacred Images and Statues"
+        },
+        {
+          "id": "purgatory",
+          "title": "Purgatory"
+        },
+        {
+          "id": "indulgences",
+          "title": "Indulgences"
+        },
+        {
+          "id": "infant-baptism",
+          "title": "Infant Baptism"
+        },
+        {
+          "id": "holy-orders",
+          "title": "The Sacrament of Holy Orders"
+        },
+        {
+          "id": "holy-mass",
+          "title": "The Holy Mass as a Sacrifice"
+        },
+        {
+          "id": "sunday-observance",
+          "title": "Sunday Worship and the Lord's Day"
+        },
+        {
+          "id": "dietary-abstinence",
+          "title": "Catholic Dietary Practices and Abstinence"
+        },
+        {
+          "id": "cross-sign-of-cross",
+          "title": "The Cross and the Sign of the Cross"
+        }
+      ],
+      "orphans": [
+        {
+          "id": "maria-ina-ng-dios",
+          "title": "Maria bilang Ina ng Dios",
+          "note": "duplicate of an exact-id match, not real extra coverage"
+        },
+        {
+          "id": "biblia-kanon-deuterokanoniko",
+          "title": "Ang mga Deuterokanonikong Aklat",
+          "note": "duplicate of an exact-id match, not real extra coverage"
+        },
+        {
+          "id": "kontrasepsyon-turo",
+          "title": "Kontrasepsyon at Kasal",
+          "note": "no English source article exists — cannot verify against original"
+        }
+      ]
+    }
+  },
+  "translate_topic_pipeline": {
+    "files": {
+      "generated": [
+        "historical-evidence-for-jesus-ceb.json",
+        "historical-evidence-for-jesus-tl.json"
+      ],
+      "needs-review": [],
+      "validated": [
+        "historical-evidence-for-jesus-ceb.json",
+        "historical-evidence-for-jesus-tl.json"
+      ],
+      "published": [
+        "jesus-historical-existence.json",
+        "existence-of-god.json",
+        "resurrection-of-jesus-evidence.json"
+      ]
+    },
+    "untranslated": [
+      "jesus-historical-existence.json",
+      "existence-of-god.json",
+      "resurrection-of-jesus-evidence.json"
+    ]
+  }
+}
