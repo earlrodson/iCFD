@@ -78,7 +78,7 @@ if (pairs.length === 0 && !labelsPath) {
 }
 console.log(`[Parse] found ${pairs.length} Supak/Tubag pairs`)
 
-function extractJson(raw: string): any {
+function extractJson(raw: string) {
   const noThink = raw.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
   const start = noThink.indexOf('{')
   const end = noThink.lastIndexOf('}')
@@ -86,7 +86,7 @@ function extractJson(raw: string): any {
   return JSON.parse(noThink.slice(start, end + 1))
 }
 
-async function callModel(model: string, prompt: string, numPredict: number): Promise<any> {
+async function callModel(model: string, prompt: string, numPredict: number): Promise<ReturnType<typeof extractJson>> {
   const res = await fetch(OLLAMA_CHAT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -121,8 +121,6 @@ async function callModel(model: string, prompt: string, numPredict: number): Pro
   return extractJson(full)
 }
 
-const LANG_NAMES: Record<string, string> = { en: 'English', ceb: 'Cebuano (Bisaya)', tl: 'Tagalog/Filipino' }
-const langName = LANG_NAMES[lang] ?? lang
 
 // One pair per call, not a 9-pair batch — qwen3.5:9b's output degraded into garbled,
 // run-on Cebuano partway through a batched request (verified 2026-08-04); a single small

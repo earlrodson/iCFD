@@ -23,8 +23,8 @@ type SourceRow = { sourceTable: string; sourceId: string; referenceLabel: string
 async function loadCccParagraphs(supabase: ReturnType<typeof getSupabaseAdmin>): Promise<SourceRow[]> {
   const rows = await fetchAll(supabase, 'ccc_paragraphs', 'paragraph,text,summary,lang')
   return rows
-    .filter((r: any) => r.lang === 'en' && (r.text || r.summary))
-    .map((r: any) => ({
+    .filter((r) => r.lang === 'en' && (r.text || r.summary))
+    .map((r) => ({
       sourceTable: 'ccc_paragraphs',
       sourceId: `${r.paragraph}:en`,
       referenceLabel: `CCC ${r.paragraph}`,
@@ -35,8 +35,8 @@ async function loadCccParagraphs(supabase: ReturnType<typeof getSupabaseAdmin>):
 async function loadCanons(supabase: ReturnType<typeof getSupabaseAdmin>): Promise<SourceRow[]> {
   const rows = await fetchAll(supabase, 'canons', 'canon,text,summary,book,lang')
   return rows
-    .filter((r: any) => r.lang === 'en' && (r.text || r.summary))
-    .map((r: any) => ({
+    .filter((r) => r.lang === 'en' && (r.text || r.summary))
+    .map((r) => ({
       sourceTable: 'canons',
       sourceId: `${r.canon}:en`,
       referenceLabel: `Canon ${r.canon}`,
@@ -47,8 +47,8 @@ async function loadCanons(supabase: ReturnType<typeof getSupabaseAdmin>): Promis
 async function loadGirmArticles(supabase: ReturnType<typeof getSupabaseAdmin>): Promise<SourceRow[]> {
   const rows = await fetchAll(supabase, 'girm_articles', 'article,text,summary,section,lang')
   return rows
-    .filter((r: any) => r.lang === 'en' && (r.text || r.summary))
-    .map((r: any) => ({
+    .filter((r) => r.lang === 'en' && (r.text || r.summary))
+    .map((r) => ({
       sourceTable: 'girm_articles',
       sourceId: `${r.article}:en`,
       referenceLabel: `GIRM ${r.article}`,
@@ -59,8 +59,8 @@ async function loadGirmArticles(supabase: ReturnType<typeof getSupabaseAdmin>): 
 async function loadChurchDocuments(supabase: ReturnType<typeof getSupabaseAdmin>): Promise<SourceRow[]> {
   const rows = await fetchAll(supabase, 'church_documents', 'id,slug,section_num,section_label,text,summary')
   return rows
-    .filter((r: any) => r.text || r.summary)
-    .map((r: any) => ({
+    .filter((r) => r.text || r.summary)
+    .map((r) => ({
       sourceTable: 'church_documents',
       sourceId: String(r.id),
       referenceLabel: `${r.slug} §${r.section_num}${r.section_label ? ` (${r.section_label})` : ''}`,
@@ -70,7 +70,7 @@ async function loadChurchDocuments(supabase: ReturnType<typeof getSupabaseAdmin>
 
 async function loadChurchFatherQuotes(supabase: ReturnType<typeof getSupabaseAdmin>): Promise<SourceRow[]> {
   const rows = await fetchAll(supabase, 'church_father_quotes', 'id,author,quote,source')
-  return rows.map((r: any) => ({
+  return rows.map((r) => ({
     sourceTable: 'church_father_quotes',
     sourceId: String(r.id),
     referenceLabel: `${r.author} — ${r.source}`,

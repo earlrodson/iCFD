@@ -87,6 +87,9 @@ export default function AnalyticsPage() {
   const [filterCat, setFilterCat]     = useState<string>('')
   const [search, setSearch]           = useState('')
 
+  // Run once on mount; loadAll is redefined every render, so listing it as a dep
+  // would refetch on every state change it touches.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => { loadAll() }, [])
 
   async function loadTraffic(days: number) {

@@ -54,7 +54,7 @@ function formatPassages(chunks: RetrievedChunk[]): string {
 }
 
 /** Strips <think>...</think> blocks and code fences, then extracts the first balanced {...} object. */
-function extractJson(raw: string): any {
+function extractJson(raw: string) {
   const noThink = raw.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
   const start = noThink.indexOf('{')
   const end = noThink.lastIndexOf('}')
@@ -72,7 +72,7 @@ function extractJson(raw: string): any {
 // failures (across different models, num_predict, and num_ctx settings) all dying at exactly
 // ~4m45-47s server-side with "cancel task" (client disconnected), never a real generation error.
 // Streaming sends bytes continuously as tokens are produced, which keeps the connection alive.
-async function callModel(model: string, prompt: string): Promise<any> {
+async function callModel(model: string, prompt: string): Promise<ReturnType<typeof extractJson>> {
   const res = await fetch(OLLAMA_CHAT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

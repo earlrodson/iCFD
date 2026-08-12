@@ -11,7 +11,7 @@
  */
 import { z } from 'zod'
 import { join, basename } from 'path'
-import { mkdirSync, readFileSync, writeFileSync, renameSync } from 'fs'
+import { mkdirSync, readFileSync, renameSync } from 'fs'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
 
 const ROOT = join(import.meta.dir, '..')

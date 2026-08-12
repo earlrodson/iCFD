@@ -56,7 +56,7 @@ if (!topicId) {
 const count = countArg ? parseInt(countArg) : 5
 
 /** Strips <think>...</think> blocks and code fences, then extracts the first balanced {...} object. */
-function extractJson(raw: string): any {
+function extractJson(raw: string) {
   const noThink = raw.replace(/<think>[\s\S]*?<\/think>/gi, '').trim()
   const start = noThink.indexOf('{')
   const end = noThink.lastIndexOf('}')
@@ -66,7 +66,7 @@ function extractJson(raw: string): any {
 
 // stream MUST be true — see tools/generate-topic.ts callModel for why (Bun fetch idle-timeout
 // on long buffered Ollama responses).
-async function callModel(prompt: string, maxTokens: number): Promise<any> {
+async function callModel(prompt: string, maxTokens: number): Promise<ReturnType<typeof extractJson>> {
   const res = await fetch(OLLAMA_CHAT_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

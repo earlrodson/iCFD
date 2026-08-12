@@ -13,7 +13,6 @@ import {
   syncReadProgressToCloud,
   fetchReadProgressFromCloud,
   syncViewHistoryToCloud,
-  fetchUserSettingsFromCloud,
 } from '@/lib/supabase/sync'
 
 async function pushDirty(userId: string) {
