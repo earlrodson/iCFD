@@ -24,6 +24,7 @@
  */
 import { readFileSync } from 'fs'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
+import { checkTerminology } from './lib/qa-terminology'
 
 const [, , inPath] = process.argv
 if (!inPath) {
@@ -80,31 +81,6 @@ function diffCitations(enList: string[], trList: string[]) {
   return { missing, added, reordered }
 }
 
-// ---- terminology dictionary (seeded from what's actually in this corpus) ----
-
-const TERMINOLOGY: { en: RegExp; expected: Record<'ceb' | 'tl', RegExp> }[] = [
-  { en: /\bHoly Spirit\b/i, expected: { ceb: /\bEspiritu Santo\b/i, tl: /\bEspiritu Santo\b/i } },
-  { en: /\bChurch\b/, expected: { ceb: /\b(Simbahan|Iglesya)\b/i, tl: /\b(Simbahan|Iglesia)\b/i } },
-  { en: /\bTradition\b/, expected: { ceb: /\bTradisyon\b/i, tl: /\bTradisyon\b/i } },
-  { en: /\bCatechism\b/, expected: { ceb: /\bKatesismo\b/i, tl: /\bKatesismo\b/i } },
-  { en: /\bMagisterium\b/, expected: { ceb: /\bMagisterium|Magisteryo\b/i, tl: /\bMagisterium|Magisteryo\b/i } },
-  { en: /\bGospels?\b/i, expected: { ceb: /\bEbanghelyo\b/i, tl: /\bEbanghelyo\b/i } },
-  { en: /\bApostles?\b/i, expected: { ceb: /\bapostoles\b/i, tl: /\bapostol/i } },
-]
-
-function checkTerminology(enText: string, trText: string): { term: string; issue: string }[] {
-  const flagged: { term: string; issue: string }[] = []
-  for (const { en, expected } of TERMINOLOGY) {
-    const enHits = enText.match(en)
-    if (!enHits) continue
-    const re = expected[lang]
-    if (!re.test(trText)) {
-      flagged.push({ term: en.source, issue: `EN term present (${enHits.length}x) but expected translation not found in ${lang} text` })
-    }
-  }
-  return flagged
-}
-
 // ---- fetch English source ----
 
 const supabase = getSupabaseAdmin()
@@ -136,7 +112,7 @@ const citationDiff = diffCitations(enCitations, trCitations)
 
 const enProse = PROSE_FIELDS.map((f) => enTopic[f] ?? '').join('\n')
 const trProse = PROSE_FIELDS.map((f) => translated[f] ?? '').join('\n')
-const terminologyIssues = checkTerminology(enProse, trProse)
+const terminologyIssues = checkTerminology(lang, enProse, trProse)
 
 const critical = citationDiff.missing.length > 0 || citationDiff.added.length > 0
 const verdict = critical ? 'FAIL' : citationDiff.reordered || terminologyIssues.length > 0 ? 'REVIEW' : 'PASS'

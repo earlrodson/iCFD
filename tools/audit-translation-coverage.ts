@@ -28,7 +28,7 @@ function readTopics(lang: string) {
 
 // Hand-verified 2026-08-11 by comparing titles/scripture — ceb/tl id -> matching en id.
 // These exist because ceb/tl were authored independently of en, using their own slugs.
-const FUZZY_MATCH: Record<string, string> = {
+export const FUZZY_MATCH: Record<string, string> = {
   'saints-intercession': 'prayer-to-saints',
   'salvation-faith-works': 'salvation',
   'tradition-authority': 'bible-tradition-authority',
@@ -114,16 +114,21 @@ function auditNewPipeline() {
   return { files, untranslated }
 }
 
-const report = {
-  generated_at_note: 'run bun tools/audit-translation-coverage.ts to refresh — timestamps are not embedded',
-  handbook_seed: auditHandbook(),
-  translate_topic_pipeline: auditNewPipeline(),
+// Guarded so other tools (e.g. validate-translation-legacy.ts) can import
+// FUZZY_MATCH without triggering a full audit run + report overwrite as a
+// side effect of the import.
+if (import.meta.main) {
+  const report = {
+    generated_at_note: 'run bun tools/audit-translation-coverage.ts to refresh — timestamps are not embedded',
+    handbook_seed: auditHandbook(),
+    translate_topic_pipeline: auditNewPipeline(),
+  }
+
+  const outPath = join(ROOT, 'documents/translation-coverage.json')
+  writeFileSync(outPath, JSON.stringify(report, null, 2))
+
+  console.log(`Wrote ${outPath}`)
+  console.log(`\nceb: ${report.handbook_seed.ceb.covered.length} covered, ${report.handbook_seed.ceb.missing.length} missing, ${report.handbook_seed.ceb.orphans.length} orphans`)
+  console.log(`tl:  ${report.handbook_seed.tl.covered.length} covered, ${report.handbook_seed.tl.missing.length} missing, ${report.handbook_seed.tl.orphans.length} orphans`)
+  console.log(`\ntranslate-topic.ts pipeline: ${report.translate_topic_pipeline.untranslated.length} published topic(s) with no ceb/tl file: ${report.translate_topic_pipeline.untranslated.join(', ') || 'none'}`)
 }
-
-const outPath = join(ROOT, 'documents/translation-coverage.json')
-writeFileSync(outPath, JSON.stringify(report, null, 2))
-
-console.log(`Wrote ${outPath}`)
-console.log(`\nceb: ${report.handbook_seed.ceb.covered.length} covered, ${report.handbook_seed.ceb.missing.length} missing, ${report.handbook_seed.ceb.orphans.length} orphans`)
-console.log(`tl:  ${report.handbook_seed.tl.covered.length} covered, ${report.handbook_seed.tl.missing.length} missing, ${report.handbook_seed.tl.orphans.length} orphans`)
-console.log(`\ntranslate-topic.ts pipeline: ${report.translate_topic_pipeline.untranslated.length} published topic(s) with no ceb/tl file: ${report.translate_topic_pipeline.untranslated.join(', ') || 'none'}`)
