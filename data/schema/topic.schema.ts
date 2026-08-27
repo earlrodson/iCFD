@@ -4,6 +4,10 @@ export const ScriptureSchema = z.object({
   reference: z.string(),
   text: z.string(),
   version: z.string().optional(),
+  // Only populated for the 20 Apologetics-ceb/tl essay topics: whether this
+  // verse supports Catholic teaching, or is quoted by an objector against it
+  // (and then answered in the same Q&A block). Absent for all other topics.
+  stance: z.enum(['supporting', 'objection']).optional(),
 })
 
 export const ChurchFatherSchema = z.object({

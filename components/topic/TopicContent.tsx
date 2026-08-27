@@ -626,6 +626,9 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
                     >
                       <span className="font-semibold text-primary">{v.reference}</span>
                       {v.version && <span className="text-muted-foreground ml-1">({v.version})</span>}
+                      {v.stance === 'objection' && (
+                        <span className="ml-1.5 rounded-full bg-muted px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">Objection</span>
+                      )}
                       {v.text && <span className="text-foreground ml-2 italic">&ldquo;{v.text.slice(0, 100)}{v.text.length > 100 ? '…' : ''}&rdquo;</span>}
                     </button>
                   ))}
@@ -933,6 +936,11 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
                   {verse.version && (
                     <span className="ml-2 font-normal text-muted-foreground">
                       ({verse.version})
+                    </span>
+                  )}
+                  {verse.stance === 'objection' && (
+                    <span className="ml-2 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground align-middle">
+                      Objection
                     </span>
                   )}
                 </p>

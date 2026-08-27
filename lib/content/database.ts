@@ -76,6 +76,21 @@ function jsonArray<T>(value: Json | null): T[] {
   return Array.isArray(value) ? (value as T[]) : []
 }
 
+interface ScriptureRefEntry {
+  reference: string
+  stance?: 'supporting' | 'objection'
+}
+
+// `scripture` is a flat array of reference strings for nearly every topic.
+// Only the 20 Apologetics-ceb/tl essay topics use the richer
+// {reference, stance} shape (tools/seed-apologetics-topic.ts) to mark verses
+// an objector cites against Catholic teaching vs. verses that support it.
+function normalizeScriptureRefs(value: Json | null): ScriptureRefEntry[] {
+  return jsonArray<Json>(value).map((entry) =>
+    typeof entry === 'string' ? { reference: entry } : (entry as unknown as ScriptureRefEntry),
+  )
+}
+
 async function restFetch<T>(path: string, params: URLSearchParams): Promise<T[]> {
   const config = getRestConfig()
   if (!config) return []
@@ -102,7 +117,7 @@ async function resolveRefs(
   rows: TopicRow[],
   preferredVersion = LANG_VERSION[rows[0]?.lang ?? 'en'],
 ): Promise<ResolvedRefs> {
-  const verseRefs = [...new Set(rows.flatMap(r => jsonArray<string>(r.scripture)))]
+  const verseRefs = [...new Set(rows.flatMap(r => normalizeScriptureRefs(r.scripture).map(e => e.reference)))]
   const quoteIds  = [...new Set(rows.flatMap(r => jsonArray<number>(r.church_fathers)))]
 
   const [allVerses, quotes] = await Promise.all([
@@ -142,7 +157,7 @@ async function resolveRefs(
 // ── Row → Topic ───────────────────────────────────────────────────────────────
 
 export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
-  const verseRefs     = jsonArray<string>(row.scripture)
+  const verseRefs     = normalizeScriptureRefs(row.scripture)
   const quoteIds      = jsonArray<number>(row.church_fathers)
   const catechismNums = jsonArray<number>(row.catechism)
 
@@ -155,8 +170,10 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     answerFull: row.answer_full ?? undefined,
     coverImage: row.cover_image ?? undefined,
     scripture: verseRefs
-      .map(ref => refs.verses.get(ref))
-      .filter((v): v is ScriptureVerseRow => !!v),
+      .flatMap(({ reference, stance }) => {
+        const verse = refs.verses.get(reference)
+        return verse ? [{ ...verse, stance }] : []
+      }),
     catechism: catechismNums.map(n => `CCC ${n}`),
     churchFathers: quoteIds
       .map(id => refs.quotes.get(id))
