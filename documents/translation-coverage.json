@@ -520,15 +520,9 @@
   },
   "translate_topic_pipeline": {
     "files": {
-      "generated": [
-        "historical-evidence-for-jesus-ceb.json",
-        "historical-evidence-for-jesus-tl.json"
-      ],
+      "generated": [],
       "needs-review": [],
-      "validated": [
-        "historical-evidence-for-jesus-ceb.json",
-        "historical-evidence-for-jesus-tl.json"
-      ],
+      "validated": [],
       "published": [
         "jesus-historical-existence.json",
         "existence-of-god.json",

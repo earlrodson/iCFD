@@ -99,7 +99,14 @@ function auditNewPipeline() {
   const files: Record<string, string[]> = {}
   for (const stage of stages) {
     const dir = join(ROOT, 'content/topics', stage)
-    files[stage] = readdirSync(dir).filter((f) => f.endsWith('.json'))
+    // stage dirs aren't tracked by git when empty (e.g. generated/validated
+    // after their last file was removed), so a missing dir just means "no
+    // files at this stage" rather than an error.
+    try {
+      files[stage] = readdirSync(dir).filter((f) => f.endsWith('.json'))
+    } catch {
+      files[stage] = []
+    }
   }
 
   // published English topics with no ceb/tl file anywhere in the pipeline

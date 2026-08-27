@@ -30,6 +30,14 @@
  * 3. Terminology consistency — same fixed-term dictionary as
  *    validate-translation.ts, run against the `answer` field.
  *
+ * 4. Language identity — title/question/answer must not be byte-identical
+ *    (after trimming) to the English source. Added 2026-08-13 after a full
+ *    run over the "covered" set found 29/30 ceb and 30/30 tl exact-id-match
+ *    topics were raw English text filed under lang: "ceb"/"tl" — never
+ *    translated at all, just duplicated. This is the highest-value check
+ *    in this file: it catches "not translated" as distinct from "translated
+ *    imperfectly."
+ *
  * The English entry's own catechism/scripture citations are still fetched
  * and included in the report for human reference, but purely informational
  * — they do not affect the verdict.
@@ -39,7 +47,11 @@
  * script resolves that the same way tools/audit-translation-coverage.ts
  * does, via its exported FUZZY_MATCH map.
  *
- * Usage: bun tools/validate-translation-legacy.ts <ceb-or-tl-topic-id> <ceb|tl>
+ * Usage: bun tools/validate-translation-legacy.ts <ceb-or-tl-topic-id> <ceb|tl> [path-to-staged-file]
+ *   Without the optional path, checks the entry already in
+ *   public/data/content/<lang>/handbook.json. With it, checks a staged file
+ *   instead (e.g. content/legacy-translations/needs-review/<id>-<lang>.json
+ *   from translate-legacy-topic.ts) — for validating before merge.
  */
 import { readFileSync } from 'fs'
 import { join } from 'path'
@@ -49,10 +61,10 @@ import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
 
 const ROOT = join(import.meta.dir, '..')
 
-const [, , targetId, langArg] = process.argv
+const [, , targetId, langArg, stagedPath] = process.argv
 const lang = langArg as 'ceb' | 'tl'
 if (!targetId || !['ceb', 'tl'].includes(lang)) {
-  console.error('Usage: bun tools/validate-translation-legacy.ts <ceb-or-tl-topic-id> <ceb|tl>')
+  console.error('Usage: bun tools/validate-translation-legacy.ts <ceb-or-tl-topic-id> <ceb|tl> [path-to-staged-file]')
   process.exit(1)
 }
 
@@ -70,11 +82,13 @@ function readTopics(l: string): LegacyTopic[] {
 }
 
 const en = readTopics('en')
-const target = readTopics(lang)
 
-const targetTopic = target.find((t) => t.id === targetId)
+const targetTopic: LegacyTopic | undefined = stagedPath
+  ? JSON.parse(readFileSync(stagedPath, 'utf8'))
+  : readTopics(lang).find((t) => t.id === targetId)
 if (!targetTopic) {
-  console.error(`No topic with id "${targetId}" found in public/data/content/${lang}/handbook.json`)
+  const where = stagedPath ? stagedPath : `public/data/content/${lang}/handbook.json`
+  console.error(`No topic with id "${targetId}" found in ${where}`)
   process.exit(1)
 }
 
@@ -109,13 +123,19 @@ const scriptureMalformed = targetTopic.scripture.filter((s) => verseNumbers(s.re
 
 const terminologyIssues = checkTerminology(lang, enTopic.answer, targetTopic.answer)
 
-const critical = cccInvalid.length > 0
+// ---- language identity (is this actually translated, or raw English?) ----
+
+const IDENTITY_FIELDS = ['title', 'question', 'answer'] as const
+const untranslatedFields = IDENTITY_FIELDS.filter((f) => targetTopic[f].trim() === enTopic[f].trim())
+
+const critical = cccInvalid.length > 0 || untranslatedFields.length > 0
 const verdict = critical ? 'FAIL' : scriptureMalformed.length > 0 || terminologyIssues.length > 0 ? 'REVIEW' : 'PASS'
 
 const report = {
   target_id: targetId,
   en_id: enId,
   lang,
+  language_identity: { untranslated_fields: untranslatedFields },
   catechism: {
     translated: targetTopic.catechism,
     invalid: cccInvalid,

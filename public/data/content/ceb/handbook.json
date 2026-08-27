@@ -505,9 +505,9 @@
     {
       "id": "biblical-canon",
       "category": "bible",
-      "title": "How the Bible Was Compiled",
-      "question": "Who decided which books belong in the Bible? Didn't the Bible just fall from heaven complete?",
-      "answer": "The Bible did not arrive as a single bound volume; it was assembled by the Catholic Church over centuries. In the early Church many writings circulated, and disputes arose over which were truly inspired (for example, some rejected Hebrews, James, Revelation, or 2 Peter). The canon was settled by Catholic councils under the Church's teaching authority: the regional councils of Rome (382), Hippo (393), and Carthage (397) listed the same 73 books Catholics use today. Christ never wrote a book but founded a Church (Mat 16:18) with authority to bind and loose (Mat 16:19), and that Church, guided by the Holy Spirit whom Jesus promised (Jn 16:13), discerned the canon. Thus one cannot appeal to 'the Bible alone' without first accepting the authority of the Church that identified those books. The table of contents is itself an act of Tradition.",
+      "title": "Unsaon sa Pagporma ang Bibliya",
+      "question": "Kinsa ang nagdesisyon kon unsang mga basahon ang sakop sa Bibliya? Dili ba lang kini nahulog gikan sa langit nga kompleto?",
+      "answer": "Ang Bibliya wala umabot ingong usa ka bug-os nga gitapokang bolyum; giporma kini sa Simbahang Katoliko sulod sa daghang siglo. Sa sinugdan, daghan ang nagsirkulasyon nga mga sinulat diha sa simbahan, ug may mga panaglalis kon unsay tinuodng inspirado (pananglitan, gipakyas nila ang Hebreohanong Sulat, Santiago, Pinadayag, o 2 Pedro). Ang kanon napirmahar pinaagi sa Katolikong mga konsilyo ilalom sa awtoridad sa pagtudlo sa simbahan: ang rehiyonal nga konsilyos sa Roma (382), Hippo (393), ug Kartago (397) naglista sama-sama sa 73 ka libro nga gigamit karon sa mga Katoliko. Si Kristo wala magsulat og libro apan nagtukod ug simbahan (Mat 16:18) nga may gahom sa pagbugkos ug pagpalagpot (Mat 16:19), ug kana nga simbahan, gigiyahan niining Balaang Espiritu nga gisaad ni Jesus (Jn 16:13), nakaila sa kanon. Busa dili ka makapamatuod \"Sa Bibliya lamang\" kutob kon wala una modawat sa awtoridad sa simbahan nga nagtino kining mga libro. Ang tabla han-ay mismo maoy buhat sa Tradisyon.",
       "scripture": [
         {
           "reference": "John 16:13",
@@ -521,9 +521,9 @@
         }
       ],
       "catechism": [
-        "CCC 120",
-        "CCC 105",
-        "CCC 138"
+        "120",
+        "105",
+        "138"
       ],
       "churchFathers": [
         {
@@ -552,9 +552,9 @@
     {
       "id": "deuterocanonical-books",
       "category": "bible",
-      "title": "The Seven Deuterocanonical Books",
-      "question": "Why do Catholic Bibles have seven more Old Testament books than Protestant Bibles? Didn't Catholics add them?",
-      "answer": "Catholics did not add books; Protestants removed them. The seven Deuterocanonicals (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Maccabees, plus parts of Esther and Daniel) were part of the Septuagint, the Greek Old Testament used by the Apostles and quoted throughout the New Testament. The early Church received these books, and the councils of Hippo (393) and Carthage (397) listed them as canonical Scripture. They remained in every Christian Bible for over a thousand years until Martin Luther relegated them in the 16th century, partly because 2 Maccabees 12:46 supports prayer for the dead, which conflicted with his rejection of Purgatory. The Jewish rabbis who excluded them did so around 90 AD at Jamnia, after Christianity had already adopted them, so their exclusion cannot bind Christians. The Council of Trent (1546) simply reaffirmed the ancient canon against the novel deletion.",
+      "title": "Pito ka Libro sa Deterokanonikal\n\n---  \n\n(Pahayag nga wala'y dugang)",
+      "question": "Nganong ang Bibliya sa Katoliko adunay pito ka dugang nga mga basahon sa Daang Testamento kay sa Protestante?\n\nWala ba idugang kini sa mga Katoliko?",
+      "answer": "Ang mga Katoliko wala magdugang ug libro; ang Protestante mibulag kanila. Ang pito ka Deuterocanonikal (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Mga Macabeo, plus bahin sa Esther ug Daniel) kabahin sa Septuagint, ang Greek nga Daang Testamento nga gigamit sa mga Apostoles ug gipatokar sulod sa Bag-ong Testamento. Ang sayong Simbahan midawat niining mga basahona, ug ang mga konseho sa Hippo (393) ug Carthage (397) iladlad sila ingong kanonikal nga Kasulatan. Nagpabilin kini diha sa matag Kristohanong Biblia sulod sa kap-atan ka siglo hangtod gibalibaran ni Martin Luther kaniadtong ika-16ng siglo, bahin tungod kay ang 2 Maccabees 12:46 nagsuporta sa pag-ampo alang sa mga patay, nga misupak sa iyang pagsalikway sa Purgatoryo. Ang mga rabbi sa Hudyo kinsa mikunhod kanila mihimo niini kaniadtong 90 AD diha sa Jamnia human ang Kristiyanidad nag-adoptar na kanila, busa ang ilang pagkunhod dili magbugkos sa mga Kristohanon. Ang Konseho sa Trent (1546) miusab lamang sa karaan nga canon batok sa bag-ong pagwagtang.",
       "scripture": [
         {
           "reference": "2 Maccabees 12:46",
@@ -568,7 +568,7 @@
         }
       ],
       "catechism": [
-        "CCC 120"
+        "120"
       ],
       "churchFathers": [
         {
@@ -597,9 +597,9 @@
     {
       "id": "scripture-interpretation",
       "category": "bible",
-      "title": "How the Church Interprets Scripture",
-      "question": "Why can't every believer just read the Bible and interpret it for themselves under the Holy Spirit?",
-      "answer": "Scripture itself warns against purely private interpretation: St. Peter says no prophecy of Scripture is a matter of personal interpretation (2 Pet 1:20), and that the unlearned distort Paul's letters to their own destruction (2 Pet 3:16). When the Ethiopian eunuch was reading Isaiah, Philip asked if he understood, and he replied, 'How can I, unless someone guides me?' (Acts 8:31). The Church interprets Scripture according to its literal, allegorical, moral, and anagogical senses, in harmony with the whole of Tradition and the analogy of faith. The multiplication of contradictory interpretations that followed the principle of private judgment demonstrates its instability. Catholics still read and pray Scripture personally, but final judgment on its authentic meaning belongs to the living Magisterium guided by the Holy Spirit, not to each isolated reader.",
+      "title": "Unsaon sa Simbahan ang Paghubad sa Kasulatan  \n---  \n\n*Preserves Markdown formatting exactly.*",
+      "question": "Nganong dili lamang matag tumutuo makabasa sa Bibliya ug maghubad niini alang sa ilang kaugalingon ubos sa Balaang Espiritu?",
+      "answer": "Ang Biblia mismo nagpasidaan batok sa bug-os nga pribadong interpretasyon: Si San Pedro nag-ingon nga walay profesiya sa Kasulatan ang usa ka butang sa personal nga interpretasyon (2 Pet 1:20), ug nga ang dili-mahibalo maglibog sa mga sulat ni Pablo ngadto sa ilang kaugalingong kapildihan (2 Pet 3:16). Sa dihang nagbasa si Etiopiano nga eunuko sa Isaias, gipangutana siya ni Felipe kon nagsabot ba siya, ug mitubag siya, \"Unsaon ko pagsabot, kon walay maggiya kanako?\" (Acts 8:31). Ang Simbahan nag-interpretar sa Kasulatan sumala sa literal, alamatikong, moral, ug anagogiko nga mga kahulogan, nga nahiuyon sa bug-os nga Tradisyon ug analogiya sa pagtuo. Ang daghang magkasumpaki nga interpretasyon nga misunod sa prinsipyo sa pribadong paghukom nagpakita sa iyang dili-malig-ong kinaiya. Ang mga Katoliko padayong naga-basa ug naningkamot gihapon sa Pulong, apan ang kataposang pagtino sa ilang tinuod nga kahulogan sakop sa nabuhi nga Magisteryo nga gi-giyahan sa Balaang Espiritu, dili ngadto sa tagsatagsa ka magbabasa.",
       "scripture": [
         {
           "reference": "2 Peter 1:20",
@@ -613,10 +613,10 @@
         }
       ],
       "catechism": [
-        "CCC 115",
-        "CCC 116",
-        "CCC 117",
-        "CCC 119"
+        "115",
+        "116",
+        "117",
+        "119"
       ],
       "churchFathers": [
         {
@@ -644,9 +644,9 @@
     {
       "id": "new-testament-reliability",
       "category": "bible",
-      "title": "Is the New Testament Reliable?",
-      "question": "Wasn't the New Testament written long after Jesus, full of legends, and corrupted through copying?",
-      "answer": "The New Testament is the best-attested document of antiquity, surviving in over 5,800 Greek manuscripts, some fragments dating within a century of the originals, far exceeding the handful of late copies we have for authors like Tacitus or Caesar. The Gospels were composed within the lifetime of eyewitnesses; Paul's letters date to the 50s AD, and he appeals to over five hundred living witnesses of the risen Christ (1 Cor 15:6). Luke writes explicitly as a careful historian relying on eyewitness testimony (Lk 1:1-4). The textual variants are overwhelmingly minor spelling or word-order differences and affect no doctrine, so the message has been transmitted with remarkable fidelity. The Church that authored, preserved, and canonized these writings vouches for their apostolic origin, and their internal candor about the disciples' failures argues against legendary invention.",
+      "title": "Tinuod ba ang Bag-ong Testamento?",
+      "question": "Dili ba ang Bag-ong Testamento gisulat sa dugay nga panahon human ni Jesukristo, puno ug mga sugilanon, ug na-corrupt tungod sa pagkopya?",
+      "answer": "Ang Bag-ong Testamento maoy labing gipamatud-an nga dokumento sa karaang panahon, naglungtad diha sa kapin sa 5,800 ka mga manuskrito sa Grego, uban ang pipila ka mga piraso nga gisulat sulod sa usa ka siglo sa orihinal, dako gayong labaw pa kay sa diyutayng ulahi nga mga kopya nga atong may-ada alang sa mga awtor sama kang Tacitus o Caesar. Ang Mga Ebanghelyo gi-compose sulod sa kinabuhi sa mga saksi-sa-katawhan; ang mga sinulat ni Pablo gikan sa dekada 50 AD, ug siya nag-apelar ngadto sa kapin sa lima ka gatos nga buhi pa nga mga saksi sa nabanhawng Kristo (1 Cor 15:6). Si Lucas nagsulat ingong mabinantayon nga historian nga nakabase sa testimonya-sa-katawhan (Lk 1:1-4). Ang tekstwal nga kalainan kasagaran gipasabot lamang sa diyutayng mga sayop sa pagtima o kahikayan, ug wala makaapektar sa doktrina, busa ang mensahe maoy tukma kaayo nga gi-transmit. Ang Simbahan nga nagsulat, nagpreserbar, ug nag-canonicalize niining mga sinulat vouches alang sa apostolikanhong gigikanan niini, ug ang internal nga kagarbo mahitungod sa mga kapakyasan sa mga disipulo nagpakita batok sa legendary invention.",
       "scripture": [
         {
           "reference": "Luke 1:1-4",
@@ -660,8 +660,8 @@
         }
       ],
       "catechism": [
-        "CCC 126",
-        "CCC 76"
+        "126",
+        "76"
       ],
       "churchFathers": [
         {
@@ -690,14 +690,14 @@
     {
       "id": "sola-scriptura-refuted",
       "category": "bible",
-      "title": "Sola Scriptura Refutes Itself",
-      "question": "Where does the Bible teach that Scripture alone is the sole authority for Christians?",
-      "answer": "Nowhere does the Bible teach 'Scripture alone,' which makes the doctrine self-refuting: a rule of faith that demands biblical proof cannot itself be proven from the Bible. The verse most often cited, 2 Tim 3:16-17, says Scripture is inspired and profitable for teaching and makes the believer complete, but 'profitable' and 'useful' are not the same as 'sufficient by itself'; prayer and good works are also called profitable without excluding everything else. Paul commands the Thessalonians to hold fast to traditions delivered both orally and in writing (2 Thes 2:15), placing oral Tradition on par with written word. He calls the Church, not the Bible, the pillar and foundation of truth (1 Tim 3:15). The Bible presupposes a teaching Church that determined its own canon, so Scripture and Tradition together, under the Magisterium, form the rule of faith.",
+      "title": "Ang Sola Scriptura Nagasupak sa Kaugalingon niini",
+      "question": "Asa sa Bibliya ang nagtudlo nga ang Kasulatan lamang maoy bug-osng awtoridad alang sa mga Kristohanon?",
+      "answer": "Dili diin man ang Biblia nagtudlo ug \"Ang Kasulatan Lamang,\" nga naghimo sa doktrina nga kontradiksyon-sa-kalugaringon: usa ka lagda sa pagtuo nga nagsangpit og ebidensiya gikan sa Bibliya dili mismo mapamatud-an gikan niini. Ang bersikulo nga sagad gipasiugda, 2 Timoteo 3:16-17, nag-ingon nga ang Kasulatan inspirado ug makapalipay alang sa pagtudlo ug naghimo sa tigdasig bug-os, apan \"makapalipay\" ug \"kapuslanan\" dili managsama sa \"sagad-sa-kalugaringon\"; ang pag-ampo ug maayong buhat usab gitawag nga makapalipay nga walay pag-isol sa tanang butang. Si Pablo mando sa mga taga-Tesalonica nga magpadapat sa tradisyon, gipasa pinaagi sa baba ug sinulat (2 Thes 2:15), nagpasiugda sa oral nga Tradisyon sama ra sa sinulat nga pulong. Iyang gitawag ang Simbahan, dili ang Biblia, ingon nga ang haligi ug pundasyon sa kamatuoran (1 Tim 3:15). Ang Bibliya nagpasabot og usa ka simbahang magtutudlo nga naghimog iyang kaugalingong canon, busa ang Kasulatan ug Tradisyon, ilalom sa Magisterium, mao ang lagda sa pagtuo.",
       "scripture": [
         {
-          "reference": "2 Thessalonians 2:15",
-          "text": "Hold fast to the traditions taught by word of mouth or by letter.",
-          "version": "NABRE"
+          "reference": "2 Tesalonica 2:15",
+          "version": "Cebuano Ang Dating Biblia",
+          "text": "Mao nga, mga igsoon, pagpuyo ug hinungdon, ug pagkuha sa mga tradisyon nga atong gitudlo, bisan pinaagi sa pulong, o pinaagi sa atong sulat."
         },
         {
           "reference": "1 Timothy 3:15",
@@ -706,9 +706,9 @@
         }
       ],
       "catechism": [
-        "CCC 80",
-        "CCC 81",
-        "CCC 82"
+        "80",
+        "81",
+        "82"
       ],
       "churchFathers": [
         {
@@ -736,9 +736,9 @@
     {
       "id": "papal-infallibility",
       "category": "church-teaching",
-      "title": "Understanding Papal Infallibility",
-      "question": "Does papal infallibility mean the Pope can never sin and is right about everything he says?",
-      "answer": "Papal infallibility is frequently misunderstood; it does not mean the Pope is sinless (impeccable), nor that his every opinion, political view, or casual remark is protected from error. It is the narrow charism, defined at the First Vatican Council (1870), by which the Pope, when he speaks ex cathedra, that is, as universal shepherd defining a doctrine of faith or morals to be held by the whole Church, is preserved by the Holy Spirit from teaching error. This rests on Christ's promise that Peter's faith would not fail and his commission to strengthen the brethren (Lk 22:32), and on the keys given to Peter with the power to bind and loose (Mat 16:18-19). It has been exercised only rarely, as in the definitions of the Immaculate Conception and the Assumption. Popes can and have sinned personally and erred in private opinions; infallibility guards the Church's official teaching, not the man's character.",
+      "title": "Pagtugkad sa Pagkamatarong sa Papa",
+      "question": "Nagpasabot ba ang Infallibilidad sa Papa nga dili gayod makasala ang Papa ug tukma sa tanan iyang ginasulti?",
+      "answer": "Ang Papal nga Infallibility kasagarang masayop sabton; dili kini nagpasabot nga ang Papa walay sala (impeccable), o nga gihuptan siya gikan sa sayop ang tanan niyang opinyon, politikal nga panglantaw, o malinawon nga komento. Kini mao ang makugihan nga biyaya, gidefinir sa Unang Konseho sa Vatican (1870), diin ang Papa, kon siya magtudlo \"ex cathedra\", ingong pangulong pastol nga nagpiho ug doktrina sa pagtuo o moralidad nga ipasundayag sa tibuok Simbahan, gihuptan sa Balaang Espiritu gikan sa pagpanulti og sayop. Kini nagsalig sa pahayag ni Kristo nga ang pagtuo ni Pedro dili mabungkag ug sa iyang komisyon sa pagpalig-on sa igsoong mga linalang (Lk 22:32), ug sa mga susi nga gihatag kang Pedro uban sa gahom sa pagbugkos ug pagpagawas (Mat 16:18-19). Kini gamayng gigamit lamang, sama sa mga depinisyon sa Immaculate Conception ug Assumption. Ang mga Papa makapakasala gayud ug makaingon og sayop nga pribadong opinyon; ang Infallibility nagpanalipod sa opisyal nga pagtulon-an sa Simbahan, dili sa personalidad sa tawo.",
       "scripture": [
         {
           "reference": "Luke 22:32",
@@ -752,9 +752,9 @@
         }
       ],
       "catechism": [
-        "CCC 891",
-        "CCC 890",
-        "CCC 2035"
+        "891",
+        "890",
+        "2035"
       ],
       "churchFathers": [
         {
@@ -783,9 +783,9 @@
     {
       "id": "original-sin",
       "category": "church-teaching",
-      "title": "The Doctrine of Original Sin",
-      "question": "Why should anyone be born guilty because of what Adam did? Isn't that unjust?",
-      "answer": "Original sin is not personal guilt for Adam's act but the loss of the original holiness and grace that Adam was meant to pass on to all humanity, leaving human nature wounded, inclined to sin, and subject to death. St. Paul teaches that through one man sin entered the world and death spread to all because all sinned in him (Rom 5:12), and that in Adam all die (1 Cor 15:22). This explains the universal human experience of moral struggle and the need for a Savior; without it, the redemption wrought by Christ, the New Adam, would be unnecessary. Baptism removes original sin and restores grace, which is why the Church baptizes even infants (Acts 2:38-39). Far from being unjust, the doctrine magnifies God's mercy, for where sin abounded, grace abounded all the more.",
+      "title": "Ang Doktrina sa Orihinal nga Sala\n\n--- \n\nAng mga lagda alang niining apokalipsis han-ay: - Hubara lamang ang palibot nga prosa bug-os ug matinumanon. Dili magsumaryo, mabug-at, o kuhaa bisan unsang hugpong sa pulong o sentensiya. - Tagoi ang Markdown formatting (##, ---, mga linya). \n\n---",
+      "question": "Nganong dunay mahimog masakitan tungod sa sala ni Adan? Dili ba kana dili-matarung?",
+      "answer": "Ang orihinal nga sala dili personal nga pagdumot sa buhat ni Adan kondili ang kawalay-sala ug grasya nga siya unta magpas-an ngadto sa tanang katawhanon, nga naghimo sa kinaiyanhong tawo nga nasamdan, nahigugma sa sala, ug ilalom sa kamatayon. Si San Pablo nagtudlo nga pinaagi sa usa ka tawo misulod ang sala ngadto sa kalibotan ug ang kamatayon mikaylap ngadto sa tanang tawo tungod kay silang tanan nagsala kaniya (Rom 5:12), ug nga diha kang Adan ang tanan namatay (1 Cor 15:22). Kini nagpatin-aw sa unibersal nga kasinatian sa katawhanon sa moral nga pakigbisog ug sa panginahanglan alang sa usa ka Manluluwas; kon wala kana, dili kinahanglan ang pagluwas ni Kristo, ang Bag-ong Adan. Ang Bautismo nagwagtang sa orihinal nga sala ug mibalik sa grasya, maong hinungdan nga ginasalig sa Simbahan bisan ang mga bata (Acts 2:38-39). Dili kini dili matarongan, kondili naghimaya pa gayod sa kaawa ni Jehova, tungod kay diin abundang sala, mas abanteng grasya maoy nag-abante.",
       "scripture": [
         {
           "reference": "Romans 5:12",
@@ -799,10 +799,10 @@
         }
       ],
       "catechism": [
-        "CCC 402",
-        "CCC 403",
-        "CCC 404",
-        "CCC 405"
+        "402",
+        "403",
+        "404",
+        "405"
       ],
       "churchFathers": [
         {
@@ -831,9 +831,9 @@
     {
       "id": "heaven-and-hell",
       "category": "church-teaching",
-      "title": "Heaven, Hell, and Judgment",
-      "question": "Does the Church really teach a literal hell? How can a loving God send anyone there?",
-      "answer": "The Church teaches that heaven and hell are real, eternal states, both grounded in the words of Christ himself, who spoke of hell more than anyone in Scripture. Heaven is the fullness of communion with God, the beatific vision in which we see him face to face (1 Cor 13:12). Hell is definitive self-exclusion from that communion, chosen by those who die in unrepented mortal sin; Jesus warns of the eternal fire prepared for the devil and his angels (Mat 25:41, 46). God does not arbitrarily 'send' people to hell; he desires all to be saved (1 Tim 2:4), but he respects the freedom he gave, and hell is the ratification of a soul's own final refusal of his love. The Church proclaims the reality of hell as a call to responsible use of freedom, never presuming to name any particular person as damned, while entrusting all to God's mercy.",
+      "title": "Langit, Impiyerno, ug Paghukom\n\n--- \n\n(Blank Line Below)",
+      "question": "Nagtudlo ba gayod ang Simbahan ug tinuod nga impiyerno? Unsaon man sa Dios nga mapahitas-on pagpadala bisan kinsa didto?",
+      "answer": "Ang Simbahan nagtudlo nga ang langit ug impyerno tinuod ug walay kataposang mga kahimtang, nga nakabase sa mga pulong mismo ni Kristo, kinsa mas daghan pa'g naghisgot bahin sa impyerno kay kang bisan kinsa diha sa Kasulatan. Ang langit maoy bug-osng panaghigalaay uban sa Diyos, ang makalilipay nga pagtan-aw diin kita nakakita kaniya direkta [(1 Cor 13:12)]. Ang impyerno maoy permanente nga pagbulag gikan niining panaghigalaay, pinili sa mga namatay nga nagsamok ug mortal nga sala; Gipahimangnoan kita ni Jesus bahin sa walay kataposang kalayo nga gitukod alang kang Satanas ug sa iyang mga manulonda [(Mat 25:41, 46)]. Dili mag-usab-usab ang Diyos pagpadala kanila ngadto sa impyerno; gusto Niya nga maluwas ang tanan [(1 Tim 2:4), apan girespetar ang kagawasan nga Iyang gihatag, ug ang impyerno maoy kataposang pagdumili sa usa ka kalag alang sa iyang gugma. Ang Simbahan nagpahibalo bahin sa kamatuoran sa impyerno ingong tawag sa responsableng paggamit sa kagawasan, nga dili magtuo-busaon ang bisan kinsa nga indibiduwal nga nalaglag, samtang gitugyan ngadto sa Diyos ang tanan nga gihigugma.",
       "scripture": [
         {
           "reference": "Matthew 25:46",
@@ -847,10 +847,10 @@
         }
       ],
       "catechism": [
-        "CCC 1023",
-        "CCC 1033",
-        "CCC 1035",
-        "CCC 1037"
+        "1023",
+        "1033",
+        "1035",
+        "1037"
       ],
       "churchFathers": [
         {
@@ -879,9 +879,9 @@
     {
       "id": "real-presence",
       "category": "church-teaching",
-      "title": "The Real Presence in the Eucharist",
-      "question": "Isn't the Eucharist just a symbol of Christ's body? Why insist he is really present?",
-      "answer": "Christ is truly, really, and substantially present, Body, Blood, Soul, and Divinity, in the Eucharist, not merely symbolically. In the Bread of Life discourse Jesus insists his flesh is true food and his blood true drink (Jn 6:55), and when many disciples left because the teaching was too hard, he did not soften it into metaphor but let them go (Jn 6:66). At the Last Supper he said plainly, 'This is my body' and 'This is my blood' (Mat 26:26-28), and Paul warns that whoever eats unworthily sins against the very body and blood of the Lord, which makes no sense if the elements were mere symbols (1 Cor 11:27-29). The earliest Christians universally understood this literally. The change is called transubstantiation: the substance becomes Christ while the appearances of bread and wine remain.",
+      "title": "Ang Tinuod nga Presensiya diha sa Eukaristiya",
+      "question": "Dili ba ang Eukaristiya usa lang ka simbolo sa lawas ni Kristo? Nganong gipasiugda nga Siya tinuod gayoy presente?",
+      "answer": "## Pagtulon-an sa Eukaristiya\n\nSi Kristo tinuod gayud, tinuod, ug substansiyal nga presente ingong Lawas, Dugo, Kalag, ug Diosnay diha sa Eukaristiya, dili lamang simboliko. Sa Diskurso Bahin sa Tinapay nga Nagaayo, si Jesus matig-a nga nag-ingon nga ang iyang unod maoy tinuodng pagkaon ug ang iyang dugo tinuodng ilimnon (Jn 6:55), ug sa dihang daghan kanila misulay tungod kay kini makusog kaayo, wala niya kini himoon nga metapora kondili gitugotan sila sa pagbiya(Jn 6:66). Sa Kataposang Panihapon, si Jesus dayagng miingon, \"Kining tinapay mao ang akong lawas\" ug \"Kining bino mao ang akong dugo\" (Mat 26:26-28). Si Pablo nagpasidaan nga bisan kinsa nga magkaon pag-ayo mobahin-bahin sa lawas ug dugo sa Ginoo, nga walay kahuluganon kon ang mga elemento maoy simbolo lamang(1 Cor 11:27-29). Ang sinagolanayng Kristohanong unibersal nga nasabtan kini tinuod.\n\nKining pag-usab gitawag ug transubstantiasyon: ang substansiya nahimong Kristo samtang nagpabilin ang mga panan-awon sa tinapay ug bino.  \n\n---",
       "scripture": [
         {
           "reference": "John 6:55",
@@ -895,9 +895,9 @@
         }
       ],
       "catechism": [
-        "CCC 1374",
-        "CCC 1376",
-        "CCC 1413"
+        "1374",
+        "1376",
+        "1413"
       ],
       "churchFathers": [
         {
@@ -925,9 +925,9 @@
     {
       "id": "assumption-of-mary",
       "category": "mary",
-      "title": "The Assumption of Mary",
-      "question": "Where does the Bible say Mary was taken bodily into heaven? Isn't this an invented doctrine?",
-      "answer": "The Assumption holds that Mary, at the end of her earthly life, was taken body and soul into heavenly glory, a dogma solemnly defined by Pope Pius XII in 1950 as belonging to the ancient faith. While not stated in explicit words, it is deeply consonant with Scripture: as the Immaculate one, free from sin, Mary was fittingly spared the bodily corruption that is sin's penalty (Gen 3:19). The Ark of the Covenant, which prefigures Mary who bore God incarnate, was made of incorruptible wood, and Revelation 12 shows the woman crowned in heaven, body and soul. Scripture already records bodily assumptions of Enoch (Gen 5:24) and Elijah (2 Kgs 2:11), so a similar grace for the Mother of God is entirely fitting. The belief is attested in the Church's liturgy and the Fathers from antiquity, and no relics of Mary's body have ever been claimed by any church, an eloquent silence.",
+      "title": "Ang Paglukat kang Maria",
+      "question": "Asa sa Bibliya nagtambag nga gidala si Maria ngadto sa langit diha sa lawas? Dili ba kini usa ka ginhimo nga doktrina?",
+      "answer": "Ang Pag-akyat nagtuo nga si Maria, sa kataposan sa iyang kinabuhi dinhi sa Yuta, gidala ang lawas ug kalag ngadto sa langitnong himaya, usa ka dogma nga dayegon gidefinar ni Papa Pius XII kaniadtong 1950 ingong bahin sa karaang pagtuo. Bisan tuod wala kini ipahayag pinaagi ug espesipikong mga pulong, kini dili maihap nga katugma sa Bibliya: isip ang Diri-Masaway, luwas gikan sa sala, si Maria takosng masalbar gikan sa pisikal nga pagkadunot nga silot sa sala (Gen 3:19). Ang Kaarangga sa Pakigsaad, nga naghulagway kang Maria nga nagdala sa Diyos nga Natawo, hinimo gikan sa dili-mamatayng kahoy, ug ang Pahibalo 12 nagpakita sa babaye nga may korona diha sa langit, lawas ug kalag. Ang Kasulatan naandang nagsuporta sa mga pisikal nga pag-akyat ni Enoch (Gen 5:24) ug Elias (2 Kgs 2:11), busa ang susamang grasya alang sa Inahan sa Diyos bug-osng takos. Kini nga panaghapon gipamatud-an diha sa liturhiya sa Simbahan ug sa mga Amahan sukad kaniadto, ug walay relikiya ni Maria's lawas ang gitanyag bisan unsang simbahan, usa ka dayegong katahum.",
       "scripture": [
         {
           "reference": "Revelation 12:1",
@@ -941,8 +941,8 @@
         }
       ],
       "catechism": [
-        "CCC 966",
-        "CCC 974"
+        "966",
+        "974"
       ],
       "churchFathers": [
         {
@@ -971,9 +971,9 @@
     {
       "id": "queenship-of-mary",
       "category": "mary",
-      "title": "Mary as Queen of Heaven",
-      "question": "Isn't calling Mary 'Queen of Heaven' just borrowing a pagan title condemned in Jeremiah?",
-      "answer": "Mary's queenship has nothing to do with the pagan goddess condemned in Jeremiah 44; it flows directly from her Son's kingship. In the Davidic kingdom, the queen was not the king's wife but his mother, the Gebirah or Queen Mother, who sat at the king's right hand and interceded with him, as Bathsheba did before Solomon (1 Kgs 2:19-20). Since Jesus is the eternal King who inherits the throne of David (Lk 1:32), his mother Mary is the Queen Mother of his kingdom. Revelation 12 depicts her crowned with twelve stars in heaven. Her queenship is entirely subordinate and derivative; she reigns not by her own power but as the first redeemed creature, honored by her Son and interceding for his people. The title exalts Christ's kingship, not a rival deity.",
+      "title": "Maria ingong Rayna sa Langit",
+      "question": "Dili ba ang pagtawag kang Maria nga \"Rayna sa Langit\" naggamit lang ug tigaman-paganhon gikan sa Jeremias nga gi-kondena?",
+      "answer": "Ang pagkahari ni Maria walay labot sa paganong diyosa nga gisaway diha sa Jeremias 44; kini direktang naggikan sa paghari sa iyang Anak.\n\nSa Dinastiyang David, ang rayna dili asawa sa hari kondili iyang inahan, ang Gebirah o Rayna-Inahan, nga naglingkod sa tuo ka kamot sa hari ug nag-ampo kaniya, sama kang Batseba ngadto kang Solomon (1 Kgs 2:19-20). Tungod kay si Jesus mao ang walay-hangtudng Hari nga naghupot sa trono ni David (Lk 1:32), ang iyang inahan Maria maoy Rayna-Inahan sa Iyang gingharian.\n\nAng Apokalipsis 12 naghubit kaniya nga gipahimutang ug napulog-duha ka bituon diha sa langit. Ang iyang pagkahari bugtong subordinado ug naagom; siya naghari dili pinaagi sa iyang kaugalingong gahum kondili ingong unang gintubos nga binuhat, gihimaya sa Iyang Anak ug nag-ampo alang sa iyang katawhan. Ang titulo nagdayeg sa paghari ni Kristo, dili usa ka katunggali nga diyos.",
       "scripture": [
         {
           "reference": "1 Kings 2:19",
@@ -987,8 +987,8 @@
         }
       ],
       "catechism": [
-        "CCC 966",
-        "CCC 2679"
+        "966",
+        "2679"
       ],
       "churchFathers": [
         {
@@ -1016,9 +1016,9 @@
     {
       "id": "mediatrix",
       "category": "mary",
-      "title": "Mary as Mediatrix",
-      "question": "Doesn't calling Mary 'Mediatrix' contradict 1 Timothy 2:5, that there is one mediator between God and man?",
-      "answer": "Christ is the one mediator by nature, the sole bridge between God and humanity through his cross, and the Church affirms this without reservation. Yet the very same chapter that declares one mediator (1 Tim 2:5) opens by urging that intercessions be made for all people (1 Tim 2:1), showing that subordinate, participated mediation does not rival Christ's unique mediation but flows from it. Just as Christians are called to intercede for one another, Mary's role as Mediatrix means she cooperates in and distributes the graces won solely by her Son, never as a competing source. Her mediation is like the moon reflecting the sun: it has no light of its own. At Cana she interceded and Jesus acted through her request (Jn 2:3-5), a model of her maternal mediation. All her power is entirely dependent on and directed toward Christ.",
+      "title": "Maria ingong Mediyatria",
+      "question": "Dili ba ang pagtawag kang Maria ug \"Mediatriz\" supak sa 1 Timoteo 2:5 nga nag-ingon nga aduna lamang usa ka mediador tali sa Diyos ug tawo?",
+      "answer": "Si Kristo mao ang usa ka mediatyor sa kinaiyahan, ang bugtong tulay tali sa Diyos ug sa katawhan pinaagi sa iyang krus, ug gi-ila kini nga walay reserbasyon sa Simbahan. Apan, ang maong sama nga kapitulo nga nagdeklarar og usa ka mediatyor (1 Tim 2:5) nagsugod pinaagi sa pagdasig alang sa mga intercesyon ngadto sa tanan nga katawhan (1 Tim 2:1), nga nagpakita nga ang subordinate, gitambongan nga mediation wala magdumili sa talagsaong mediasi ni Kristo apan naggikan kini gikan kanila. Sama sa mga Kristohanon gitawag aron makigsulti alang sa usag usa, ang papel ni Maria isip Mediatrix nagpasabot nga siya nakigbahin ug nag-apod-apod sa grasya nga nabatonan lamang pinaagi sa iyang Anak, dili ingong makompetensiyang tinubdan. Ang iyang mediasi sama sa bulan nga naghayag sa adlaw: walay kahayag niini mismo. Sa Cana siya nakigsulti ug gihimo ni Jesus ang buhat pinaagi sa iyang hangyo (Jn 2:3-5), usa ka modelo sa iyang maternal nga mediasi. Ang tanang gamot ni Maria bug-osng nagdepende ug gi-orientar ngadto kang Kristo.",
       "scripture": [
         {
           "reference": "1 Timothy 2:1",
@@ -1032,8 +1032,8 @@
         }
       ],
       "catechism": [
-        "CCC 969",
-        "CCC 970"
+        "969",
+        "970"
       ],
       "churchFathers": [
         {
@@ -1062,9 +1062,9 @@
     {
       "id": "hail-mary-biblical",
       "category": "mary",
-      "title": "Is the Hail Mary Biblical?",
-      "question": "Where in the Bible is the Hail Mary prayer? Isn't it unbiblical to pray to Mary?",
-      "answer": "The Hail Mary is thoroughly biblical in its core. Its first half is drawn word for word from Scripture: the angel Gabriel's greeting, 'Hail, full of grace, the Lord is with you' (Lk 1:28), and Elizabeth's Spirit-inspired words, 'Blessed are you among women, and blessed is the fruit of your womb' (Lk 1:42). Mary herself prophesied that all generations would call her blessed (Lk 1:48), so honoring her fulfills Scripture rather than violating it. The second half, 'Holy Mary, Mother of God, pray for us sinners,' is simply a request for her intercession, the same thing we ask when we ask a friend to pray for us, addressed to one who is alive in Christ (Mk 12:27). We do not adore Mary; adoration belongs to God alone. We honor her and ask her prayers, exactly as Scripture and the earliest Christians did.",
+      "title": "Tinuod ba ang Ave Maria diha sa Bibliya?",
+      "question": "Asa diha sa Bibliya ang pangamuyo nga Ave Maria? Dili ba unbiblical ang pag-ampo kang Maria?",
+      "answer": "Ang Hail Mary bug-os nga Biblikal ang sentro niini. Ang unang katunga gikuha pulong sa pulong gikan sa Kasulatan: ang pagbati sa anghel nga si Gabriel, \"Magtahod kamo, puno ug grasya, uban ka ang Ginoo\" (Lk 1:28), ug ang mga pulong ni Elisabet nga inspirado sa Espiritu, \"Malipayon ikaw taliwala sa kababayin-an, ug malipayon usab ang bunga sa imong tiyan\" (Lk 1:42). Si Maria mismo nagpahayag nga matawag siya nga bulahan sa tanang henerasyon (Lk 1:48), busa ang pagdayeg kaniya naghupot sa Kasulatan inay supak niini.\n\nAng ikaduhang katunga, \"Maria Santa, Inahan sa Diyos, pangamuyo alang kanamo nga mga makasasala,\" mao lamang usa ka hangyo sa iyang tabang, sama sa atong gihangyo ang usa ka higala nga mag-ampo alang kanato, giduaw ngadto kang kinsa buhi diha kang Kristo (Mk 12:27). Dili kita nagasimba kang Maria; ang pagdayeg iya ra sa Diyos. Gidayeg nato siya ug nangayo og mga panalangin, eksakto sama sa Kasulatan ug sa labing sayong mga Kristohanon.",
       "scripture": [
         {
           "reference": "Luke 1:28",
@@ -1078,8 +1078,8 @@
         }
       ],
       "catechism": [
-        "CCC 2676",
-        "CCC 2677"
+        "2676",
+        "2677"
       ],
       "churchFathers": [
         {
@@ -1108,9 +1108,9 @@
     {
       "id": "fatima-apparitions",
       "category": "mary",
-      "title": "The Apparitions at Fatima",
-      "question": "What happened at Fatima, and are Catholics required to believe in Marian apparitions?",
-      "answer": "At Fatima, Portugal, in 1917, three shepherd children reported six apparitions of the Virgin Mary, who called for prayer of the Rosary, penance, and conversion. The events culminated on October 13 in the 'Miracle of the Sun,' witnessed by an estimated 70,000 people, including skeptics and secular journalists, who reported the sun appearing to spin and plunge toward the earth. After careful investigation the Church approved Fatima as worthy of belief in 1930. However, such approved apparitions are called private revelation, which the Church distinguishes sharply from public Revelation that closed with the death of the last Apostle (CCC 66-67). No private revelation adds to the deposit of faith, and Catholics are not obliged to believe in any apparition. Approved apparitions like Fatima and Lourdes are commended as aids to devotion when they call people back to the Gospel already given.",
+      "title": "Ang mga Aparisyon sa Fatima",
+      "question": "Unsay nahitabo sa Fatima, ug gikinahanglan ba ang mga Katoliko nga motuo sa mga pagpakita ni Maria?",
+      "answer": "Sa Fatima, Portugal, niadtong 1917, tulo ka bata nga magbalantay sa karnero nagreport ug unom ka pagpakita ni Maria, kinsa miduaw alang sa pagsingba sa Rosaryo, penitensya, ug pagkabag-o. Ang mga hitabo miabot sa climax niadtong Oktubre 13 uban ang 'Miraculo sa Adlaw,' nga gitan-aw sa gitino 70,000 ka tawo, lakip na ang mga skeptiko ug sekular nga mga mamahayag, kinsa nagreport nga morag nagsaligid ug nalugsong ngadto sa Yuta ang adlaw. Human sa maampingong imbestigasyon, giaprobahan sa Simbahan ang Fatima ingong takos sa pagtuo niadtong 1930.\n\nApan, kining gipasulod nga mga hitabo gitawag ug \"pribadong kapahayagan,\" nga maampingong gilain sa Iglesya gikan sa Publico nga Kapahayagan nga nahuman uban ang kamatayon sa kataposang apostol (CCC 66-67). Ang pribadong kapahayagan dili nagdugang sa deposito sa pagtuo, ug ang mga Katoliko dili obligado nga motuo niining bisan unsang hitabo. Kadtong giaprobahan sama sa Fatima ug Lourdes gipasidunggan ingong tabang alang sa debosyon kon sila nagatawag sa katawhanon balik ngadto sa naandang Ebanghelyo.",
       "scripture": [
         {
           "reference": "Acts 2:17",
@@ -1124,8 +1124,8 @@
         }
       ],
       "catechism": [
-        "CCC 66",
-        "CCC 67"
+        "66",
+        "67"
       ],
       "churchFathers": [
         {
@@ -1154,9 +1154,9 @@
     {
       "id": "rosary-biblical",
       "category": "tradition",
-      "title": "Is the Rosary Biblical?",
-      "question": "Doesn't the Rosary violate Jesus' warning against vain repetition in prayer?",
-      "answer": "The Rosary does not violate Jesus' words; he condemned 'babbling' like the pagans who think they are heard for their many words (Mat 6:7), that is, mindless attempts to manipulate God, not repetition itself. Scripture is full of holy repetition: the seraphim eternally cry 'Holy, holy, holy' (Isa 6:3), Psalm 136 repeats 'his mercy endures forever' twenty-six times, and Jesus himself in Gethsemane prayed 'saying the same words' three times (Mat 26:44). The Rosary is a scriptural meditation on the mysteries of Christ's life, death, and resurrection, with the repeated Hail Marys (themselves biblical, Lk 1:28, 42) forming a gentle rhythm that focuses the heart on those events, much as background music aids concentration. It is fundamentally Christ-centered, leading the one who prays through the Gospel with Mary as guide. Loving repetition offered with attention is the language of devotion, not vanity.",
+      "title": "Kasagaran ba ang Rosario diha sa Bibliya?",
+      "question": "Wala ba'y paglapas ang Rosario sa pasidaan ni Hesus batok sa walay-kahulogan nga paulit-ulit diha sa pagsimba?",
+      "answer": "Ang Rosaryo dili supak sa mga pulong ni Jesus; gisaway niya ang \"pagbabaybay\" sama sa pagano nga nagtuo sila madungog tungod sa ilang daghang pulong (Mat 6:7), maingon man kadtong walay sulod nga pagsulay sa pagmaniobra kang Diyos, dili mismo ang pag-usab. Puno ug balaang pag-ulit ang Kasulatan: ang serafim kanunayng nag-ingon 'Banal, banal, banal' (Isa 6:3), ang Awit 136 nag-ulit \"Kasakit sa Diyos molungtad hangtod sa kahangtoran\" sulod sa 26 ka beses, ug si Jesus mismo diha sa Gethsemane nanalangin 'nag-ingon sa samang mga pulong' tulo ka beses (Mat 26:44). Ang Rosaryo usa ka eskriptural nga meditasyon bahin sa misteryosong kinabuhi, kamatayon, ug pagkabanhaw ni Kristo, diin ang paulit-ulit nga Ave Maria (nga mismo biblikal, Lk 1:28, 42) nagporma og malumo nga ritmo nga naka-focus sa kasing-kasing ngadto sa maong mga panghitabo, sama sa musika gikan sa luyo makatabang sa pagpunting. Kini kinaraanng Kristo-centered, naggiya ang nanalangin pinaagi sa Ebanghelyo uban kang Maria ingong giya. Ang mapahitas-on nga pag-usab nga gitanyag ug atensyon maoy pinulongan sa debosyon, dili kapasikaran.",
       "scripture": [
         {
           "reference": "Revelation 4:8",
@@ -1170,9 +1170,9 @@
         }
       ],
       "catechism": [
-        "CCC 2678",
-        "CCC 971",
-        "CCC 1674"
+        "2678",
+        "971",
+        "1674"
       ],
       "churchFathers": [
         {
@@ -1201,9 +1201,9 @@
     {
       "id": "priestly-celibacy",
       "category": "tradition",
-      "title": "Why Catholic Priests Are Celibate",
-      "question": "Why don't Catholic priests marry? Doesn't the Bible say a bishop should be the husband of one wife?",
-      "answer": "Priestly celibacy is a discipline of the Latin Church, not an unchangeable doctrine, freely embraced in imitation of Christ, who was himself celibate. Jesus praised those who become 'eunuchs for the sake of the kingdom of heaven' and said whoever can accept it should (Mat 19:12). St. Paul, unmarried, wished all could be as he was and taught that the unmarried person is anxious about the things of the Lord, undivided in devotion (1 Cor 7:32-35). The phrase 'husband of one wife' (1 Tim 3:2) forbade remarriage or polygamy in an era when married men were often ordained; it does not mandate marriage. Celibacy frees the priest to be wholly given to his flock as a spiritual father, a living sign of the world to come where there is no marrying (Mat 22:30). Eastern Catholic Churches ordain married men, showing the rule is a discipline the Church can and does adapt.",
+      "title": "Nganong Gipili ang Pag-inom sa mga Pari nga Katoliko",
+      "question": "Nganong dili magminyo ang mga sacerdote sa Katoliko? Dili ba matod sa Bibliya nga ang usa ka obispo kinahanglan mag-asawa na lang ug usa ka asawa?",
+      "answer": "Ang pagkabulag sa mga saserdote maoy usa ka disiplina sa Latinong Simbahan, dili kini usa ka doktrina nga dili-mausab; kinahanglang ipasundayag ang libreng panulondon ni Kristo, kansang kaugalingon usab celibato. Gidayeg ni Jesus kadtong nahimong \"mga eunuko tungod sa gingharian sa langit\" ug miingon nga bisan kinsa nga makakat-on kinahanglan magbuhat niini (Mat 19:12). Si San Pablo, wala-misawhan, naningkamot nga ang tanan mahimong sama kaniya ug nagtudlo nga ang dili-masawhan malinawon bahin sa mga butang sa Ginoo, walay-panagbingkil sa paghigugma (1 Cor 7:32-35). Ang pulonga \"usa ka asawa lamang\" (1 Tim 3:2) nagdili sa pag-asawoha pag-usab o poligamya niadtong panahon nga ang mga lalaki nga may-asawa kasagarang ginaordinar; kini wala magmando sa kaminyoon. Ang celibato naggawi sa saserdote aron mahimong bug-os nga kauban sa iyang kongregasyon ingong espirituwal nga amahan, usa ka buhi nga tigpasundayag sa umaabot nga kalibutan diin walay kaminyoon (Mat 22:30). Ang mga Simbahan Katoliko Sidlakan naggiya ug ginasawhan, nagpakita nga ang balaod maoy disiplina nga mahimong ipasobra o usbon sa Simbahan.",
       "scripture": [
         {
           "reference": "Matthew 19:12",
@@ -1217,9 +1217,9 @@
         }
       ],
       "catechism": [
-        "CCC 1579",
-        "CCC 1580",
-        "CCC 1618"
+        "1579",
+        "1580",
+        "1618"
       ],
       "churchFathers": [
         {
@@ -1247,9 +1247,9 @@
     {
       "id": "canonization-process",
       "category": "tradition",
-      "title": "How Canonization Works",
-      "question": "How does the Church 'make' saints, and can it be wrong when it declares someone a saint?",
-      "answer": "Canonization does not make a person holy; it is the Church's solemn recognition that a person is already in heaven and may be venerated by the universal Church and invoked as an intercessor. The process is rigorous: after a waiting period, the person's life and writings are examined for heroic virtue, earning the title Venerable, then beatification (title Blessed) normally requires one verified miracle attributed to their intercession, and canonization requires a second, medically inexplicable miracle. These miracles serve as God's own confirmation from heaven. Because Scripture calls all the faithful 'saints' (Rom 1:7) and pictures the martyrs alive before God (Rev 6:9-11), the Church simply identifies specific witnesses for imitation. Many theologians hold that formal canonization engages the Church's infallibility, since it would be gravely misleading to command the universal veneration of someone not truly saved; thus the Church trusts it cannot err in this solemn act.",
+      "title": "Unsaon Pagtrabaho ang Kanonisasyon  \n---  \n*Preserve original formatting and content fully.*",
+      "question": "Unsaon paghimog mga santo ang Simbahan, ug makapasayop ba kini sa dihang magdeklara og usa ka tawo nga santos?",
+      "answer": "Canonización dili maghimo ug usa ka tawo nga balaan; kini mao ang sagradong pag-ila sa Simbahan nga ang maong tawo anaa na gihapon sa langit ug mahimong venerated sa Universal Church, samtang gi-invokar ingon nga intercessor. Ang proseso bug-at: human sa usa ka panahon sa paghulat, ang kinabuhi ug mga sinulat sa tawo giisip alang sa bayanihon nga birtud, nakuha ang titulo nga \"Venerable\", unya ang beatification (titulo nga \"Blessed\") kasagaran nagkinahanglan og usa ka gikumpirma nga milagro nga gitumong sa ilang intercession, ug kanonisasyon nagkinahanglan og ikaduha, medikal nga dili mapatin-aw nga milagro. Kini nga mga milagro nagsilbi ingon nga pagkompirma mismo ni Ginoo gikan sa langit.\n\nTungod kay ang Kasulatan nagtumong kanatang tanan nga manimbahay isip \"mga santo\" (Rom 1:7) ug naglarawan sa mga martir nga buhi tupad sa Diyos (Rev 6:9-11), ang Simbahan mao lamang ang pag-ila sa espesyal nga mga saksi alang sa pagsundog. Daghang teologo nagtuo nga ang opisyal nga kanonisasyon nalakip sa infallibility sa Simbahan, tungod kay dili kini mahinungdanong makapasamok sa pagmando sa universal veneration ngadto sa usa ka tawo nga wala gayud giluwas; busa, ang Simbahan nagtuo nga dili kini makasayop niining sagradong buhat.",
       "scripture": [
         {
           "reference": "Revelation 6:9-10",
@@ -1263,9 +1263,9 @@
         }
       ],
       "catechism": [
-        "CCC 828",
-        "CCC 956",
-        "CCC 2683"
+        "828",
+        "956",
+        "2683"
       ],
       "churchFathers": [
         {
@@ -1294,9 +1294,9 @@
     {
       "id": "liturgical-calendar",
       "category": "tradition",
-      "title": "The Liturgical Seasons",
-      "question": "Why do Catholics observe Lent, Advent, and feast days? Isn't every day the same to God?",
-      "answer": "The liturgical calendar sanctifies time by walking the Church annually through the mysteries of Christ's life, from his awaited coming in Advent, to his birth at Christmas, his passion and resurrection through Lent and Easter, and his reign in Ordinary Time. This has deep biblical roots: God himself established a calendar of sacred seasons and feasts for Israel (Lev 23), and there is 'a time for everything' under heaven (Eccl 3:1). Jesus and the Apostles observed the appointed feasts, and Paul spoke of keeping the feast with sincerity and truth (1 Cor 5:8). Seasons like Lent's forty days mirror Christ's fast in the desert (Mat 4:2) and dispose us to conversion through prayer, fasting, and almsgiving. Far from making days identical, the rhythm of fast and feast forms disciples over a lifetime, teaching the whole Gospel through repetition and helping the faithful enter each mystery ever more deeply.",
+      "title": "Ang mga Panahon sa Pagtulon-an\n\n---  \n\n**Easter Season**: The Great 50 Days  \n**Advent Season**: Preparing for Christ's Coming  \n**Ordinary Time**: Daily Life with God  \n\n---",
+      "question": "Nganong nagbantay ang mga Katoliko sa Kuwaresma, Pag-abot (Advent), ug mga Adlawng Pista? Dili ba managsama ang matag adlaw kang Diyos?",
+      "answer": "Ang liturhikal nga kalendaryo nag-sanctify sa panahon pinaagi sa pagdala sa Simbahan matag tuig pinaagi sa mga misteryo sa kinabuhi ni Kristo, gikan sa iyang ginapaabot nga pag-abut sa Adbiyento, ngadto sa iyang natawhan sa Pasko, ang iyang pasyon ug pagkabanhaw panahon sa Kuwaresma ug Easter, ug ang Iyang gingharian sulod sa Ordinaryong Panahon. Kini may lalom nga mga gamot haiguran: Ang Diyos mismo nagtukod og usa ka kalendaryo sa sagrado nga mga panahon ug kapistahan alang sa Israel (Lev 23), ug adunay \"panahon para sa tanan\" ilalom han himaya (Eccl 3:1). Gisagop ni Jesus ug ang mga Apostoles ang gitudlo nga mga kapistahan, ug si Pablo naghisgot bahin sa pagpabiling tukma ug tinuod diha sa kapistahan (1 Cor 5:8). Ang mga panahon sama sa Kuwaresma's 40 ka adlaw nagsalamin sa pasundayag ni Kristo didto sa kamingawan (Mat 4:2), nga nag-andam kanato alang sa pag-usab pinaagi sa pag-ampo, pagpuasa, ug pagkalooy. Dili gayud kini nakapahimutang sa mga adlaw nga managsama; ang ritmo sa pasundayag ug kapistahan naghulma sa mga disipulo sulod sa tibuok kinabuhi, nagtudlo sa bug-os nga Ebanghelyo pinaagi sa pag-uswag ug makatabang sa mga matinumanon nga mas duol pa sa matag misteryo.",
       "scripture": [
         {
           "reference": "Ecclesiastes 3:1",
@@ -1310,10 +1310,10 @@
         }
       ],
       "catechism": [
-        "CCC 1163",
-        "CCC 1168",
-        "CCC 1171",
-        "CCC 1438"
+        "1163",
+        "1168",
+        "1171",
+        "1438"
       ],
       "churchFathers": [
         {
@@ -1342,26 +1342,26 @@
     {
       "id": "intercession-of-saints",
       "category": "saints",
-      "title": "The Intercession of the Saints",
-      "question": "Can the dead in heaven really hear us and pray for us? Isn't contacting the dead forbidden?",
-      "answer": "The saints in heaven are not dead but supremely alive in Christ, for God is God of the living, not of the dead (Mk 12:27), and death cannot separate us from the love of Christ or from one another in him (Rom 8:38-39). Asking their intercession is not the forbidden necromancy of Deuteronomy 18, which sought secret knowledge from spirits apart from God; it is asking fellow members of Christ's Body, more alive and closer to God than we are, to pray for us. Scripture shows the saints in heaven aware of earthly events and offering the prayers of God's people before his throne as incense in golden bowls (Rev 5:8, 8:3-4). If the prayer of a righteous person on earth is powerful (Jas 5:16), how much more that of the righteous made perfect in heaven. The whole Church, in heaven and on earth, forms one communion of saints who pray for one another.",
+      "title": "Ang Pagpangamuyo sa mga Santos\n\n---  \nMga Lagda:  \n- Isalin LANG ang palibot nga prosa, bug-os ug matinud-anon - ayaw pagsummarize, pagsagol, o pagtugot og bisan unsang pulong.  \n- Panalipdi ang Markdown formatting (##, ---, blangko nga linya) eksakto.",
+      "question": "Mahimo ba gayod nga makadungog kanato ug mangamuyo alang kanato ang patay didto sa langit? Dili ba bawal ang pagkontak sa mga patay?",
+      "answer": "Ang mga santos didto sa langit dili patay kondili labing buhi diha kang Kristo, kay ang Diyos Diyos sa nagkinabuhi, dili sa namatay (Mk 12:27), ug ang kamatayon dili makapahilayo kanato gikan sa gugma ni Kristo o gikan sa usag usa Kaniya (Rom 8:38-39). Ang paghangyo sa ilang tabang dili ang gidili nga pangkamponan sama sa Deuteronomio 18, diin nangita kini ug sekretong kahibalo gikan sa mga espiritu nga lahi kang Diyos; kondili naghangyo kita sa ubang membro sa lawas ni Kristo, mas buhi ug mas duol kang Diyos kay kanato, aron mag-ampo alang kanamo. Ang Kasulatan nagsaysay nga ang mga santos diha sa langit maamgoan sa kalibotanon nga mga hitabo ug nagahalad sa mga pag-ampo sa katawhan ni Jehova atubangan sa iyang trono ingon og insenso sa bulawanong mga panaksan (Pahinumdom 5:8, 8:3-4). Kon ang pangamuyo sa usa ka matarung nga tawo dinhi sa Yuta gamhanan (Jas 5:16), unsa pay labi pa kana sa ilang gihimo nga hingpit diha sa langit. Ang bug-osng Simbahan, didto ug dinhi, nagporma ug usa ka komunidad sa mga santos nga nagaampo alang sa usag usa.",
       "scripture": [
         {
-          "reference": "Revelation 5:8",
-          "text": "The elders hold golden bowls full of incense, which are the prayers of the holy ones.",
-          "version": "NABRE"
+          "reference": "Apocalipsis 5:8",
+          "version": "Cebuano Ang Dating Biblia",
+          "text": "Ug sa diha, sa pagkuha sa libro, ang upat ka mga binuhat nga buhi ug ang upat ka mga apo-apo napahigayon sa apat ka kaupat sa mga kalalakin-an; ug sila adunay mga gold harp, ug mga bulawan nga bowles puno sa mga incense, nga mao ang mga pag-ampo sa mga santo."
         },
         {
-          "reference": "James 5:16",
-          "text": "The fervent prayer of a righteous person is very powerful.",
-          "version": "NABRE"
+          "reference": "Santiago 5:16",
+          "version": "Cebuano Ang Dating Biblia",
+          "text": "Tungod kay Usa kang lain, pag-ayo ang inyong mga sala; pag-ampo alang sa usa ka lain, aron maluwas. Tungod kay daghan ang pag-ampo sa tawo nga matarong ug makapahimo sa daghan."
         }
       ],
       "catechism": [
-        "CCC 956",
-        "CCC 957",
-        "CCC 2683",
-        "CCC 962"
+        "956",
+        "957",
+        "2683",
+        "962"
       ],
       "churchFathers": [
         {
@@ -1389,9 +1389,9 @@
     {
       "id": "veneration-vs-worship",
       "category": "saints",
-      "title": "Veneration Is Not Worship",
-      "question": "Isn't honoring saints and their images the same idolatry the Bible condemns?",
-      "answer": "The Church draws a sharp and ancient distinction between the adoration owed to God alone (Latin latria) and the honor given to saints (dulia), which differ not merely in degree but in kind. Worship in the strict sense, sacrifice and supreme adoration, belongs only to the Triune God; venerating a saint is honoring God's own handiwork of grace, much as Scripture honors heroes of faith (Heb 11) and Paul urges imitation of holy people (1 Cor 11:1). Honoring the righteous is commanded, not condemned: the king bowed before the prophet, and the sons of the prophets bowed to Elisha (2 Kgs 2:15) without idolatry. Idolatry means treating a creature as if it were God, offering it the adoration due to him alone, which Catholics never do toward any saint. Images serve as reminders, like family photographs, directing love to the person portrayed, not to wood or paint. To honor the saints is ultimately to praise the God whose grace made them holy.",
+      "title": "Pagtahod Dili Pagdayeg",
+      "question": "Dili ba ang pagtahud sa mga santos ug sa ilang mga hulagway sama na lang sa idolo nga gisaway sa Bibliya?",
+      "answer": "Ang Simbahan nag-ila sa lapad ug karaang kaibog tali sa pagpasidungog nga alang lamang kang Diyos (Latin: latria) ug ang dungog ngadto sa mga santos (dulia), nga wala magkalainlain dili lang sa sukod apan usab sa matang. Ang pagsimba diha sa mahinungdanong kahulogan, handumanan, ug labing taas nga pagpasidungog, iya lamang sa Trinidadg Dios; ang pagtahud sa usa ka santos maoy pagdayeg sa buhat-sa-grasya niining Diyos mismo, sama nga gipasidunggan sa Kasulatan ang mga bayani sa pagsalig (Heb 11) ug giduso ni Pablo ang pag-imitar sa balaang katawhan (1 Cor 11:1). Ang pagtahud sa matadong gimandoan, dili kondenado: gisimba sa hari ang propeta, ug ang mga anak nga lalaki sa mga propeta misimba kang Elisha (2 Kgs 2:15) nianang walay idolatriya. Ang Idolatriya nagpasabot sa pagtratar sa binuhat sama niadtong Diyos, pagsaulog kaniya sa adorasyon nga iyang ikapahalipayan lamang, nga ang mga Katoliko wala gayod buhata ngadto kang bisan kinsa ka santos. Ang mga hulagway nag-alagad ingong mga paagi aron mahinumdoman, sama sa pamilyar nga mga litrato, nga nagpunting sa gugma ngadto sa tawo nga gipakita, dili ngadto sa kahoy o pintura. Ang pagtahud sa mga santos maoy kataposang pagdayeg sa Dios kansang grasya naghimo kanila nga balaan.",
       "scripture": [
         {
           "reference": "1 Corinthians 11:1",
@@ -1405,9 +1405,9 @@
         }
       ],
       "catechism": [
-        "CCC 2132",
-        "CCC 971",
-        "CCC 1674"
+        "2132",
+        "971",
+        "1674"
       ],
       "churchFathers": [
         {
@@ -1436,9 +1436,9 @@
     {
       "id": "relics-veneration",
       "category": "saints",
-      "title": "The Veneration of Relics",
-      "question": "Why does the Church keep and honor the bones of saints? Isn't that superstition?",
-      "answer": "Veneration of relics is rooted in Scripture, where God works miracles through the physical remains and objects of holy people. The bones of the prophet Elisha raised a dead man to life when a corpse touched them (2 Kgs 13:21), and God worked extraordinary miracles through cloths that had merely touched St. Paul's skin, healing the sick and driving out spirits (Acts 19:11-12). Even the woman healed by touching the hem of Jesus' garment shows God's power flowing through physical means (Mat 9:20-22). The Church honors relics not as magic but because the bodies of the saints were temples of the Holy Spirit (1 Cor 6:19) and are destined for glorious resurrection. The honor passes to God, who is wonderful in his saints; relics are tangible reminders of holy lives and occasions through which God still chooses to bless. This is why early Christians celebrated the Eucharist over the tombs of the martyrs.",
+      "title": "Ang Pagtahud sa mga Rekliyo\n\n---\n\nPinaagi sa debotadong pagdapit kanila,\nNagpadayag kita ug debosyon ngadto kang Kristo,\nKinsa gipasundayag diha sa ilang kasaysayan.",
+      "question": "Nganong ang Simbahan nagtipig ug naghimaya sa mga tul-an sa mga santo? Dili ba kana pagtuo?",
+      "answer": "Veneration sa mga relikya naggikan sa Bibliya, diin ang Diyos nagbuhat ug mga milagro pinaagi sa pisikal nga nahabilin ug mga butang gikan sa mga balaanong tawo. Ang mga tul-an ni Propeta Elisha mitindog og patayng lalaki ngadto sa kinabuhi kon ang usa ka lawas nakontak kanila (2 Kgs 13:21), ug ang Diyos nagbuhat og dagkong milagro pinaagi sa mga panapton nga may-uyon lang misangpot kang San Pablo, pagpasig-uli sa masakit ug pagpahilayo sa espiritu (Acts 19:11-12). Bisan pa niana, ang babaye nga nakalma tungod kay nagkontak sa hem ni Jesus' sinina nagpakita sa gahum sa Diyos nga milabaw pinaagi sa pisikal nga mga paagi (Mat 9:20-22). Gihigugma sa Simbahan ang mga relikya dili ingong mahika kondili tungod kay ang lawas sa mga santos maoy templo sa Balaang Espiritu (1 Cor 6:19) ug gitakda alang sa himaya nga pagkabanhaw. Kini nga pasidungog miadto ngadto sa Diyos, kinsa makapahingangha diha sa iyang mga santos; ang mga relikya maoy tinuod nga pahinumdom sa balaanong kinabuhi ug mga higayon diin ang Diyos nagpili gihapon pagpanalangin. Mao kini nga hinungdan ngano nga sayo pang Kristohanon misaulog og Eukaristiya ibabaw sa mga lubnganan sa mga martir.",
       "scripture": [
         {
           "reference": "2 Kings 13:21",
@@ -1452,7 +1452,7 @@
         }
       ],
       "catechism": [
-        "CCC 1674"
+        "1674"
       ],
       "churchFathers": [
         {
@@ -1481,9 +1481,9 @@
     {
       "id": "all-saints-souls",
       "category": "saints",
-      "title": "All Saints and All Souls Days",
-      "question": "What are All Saints Day and All Souls Day, and why do Catholics have them?",
-      "answer": "All Saints Day (November 1) honors all the holy men and women in heaven, both the canonized and the countless unknown saints, celebrating the whole triumphant Church that stands before God's throne, the great multitude no one can number from every nation (Rev 7:9). All Souls Day (November 2) prays for the faithful departed who are being purified before entering heaven, expressing the Church's ancient conviction that it is a holy thing to pray for the dead that they may be released from their sins (2 Mac 12:46). Together these feasts express the three states of the one Church: the Church Triumphant in heaven, the Church Suffering in purgatory, and the Church Militant on earth, all united in the communion of saints. They remind the living of their destiny in Christ, encourage imitation of the saints, and fulfill the works of mercy by praying for those who have died. Nothing unclean can enter heaven (Rev 21:27), so this purification and prayer make sense.",
+      "title": "Adlawng Tanang Santos ug Adlawng Tanang Kalag",
+      "question": "Unsa ang Adbiyento ug Todos los Santos, ug nganong aduna niini ang mga Katoliko?",
+      "answer": "## Adlaw sa Tanang Santos (Nobyembre 1) \nMamulongon ang tanan nga balaang mga lalaki ug kababayen-an diha sa langit, maoy gikan kanunayng binisaya o dili-masabtan nga mga santos, nga nagselebrar sa bug-os kaayo nga nagdaog nga Simbahan nga anaa atubangan sa trono ni Ginoong Diyos, ang dakung kadam-an nga walay makabilang gikan sa matag nasod (Rev 7:9). \n\n## Adlaw sa Tanang Kalag (Nobyembre 2) \nMag-ampo kita alang sa mga namatayng masaligon nga nagpasarang paingon sa langit, kini nagsugilon sa karaan nga pagsabot sa Simbahan nga maoy usa ka balaang butang ang pag-ampo para sa mga patay aron sila maluwas gikan sa ilang mga sala (2 Mac 12:46). \n\nTungod niining duha ka piyesta, ipakita ang tulo ka kahimtang sa nag-usa ka Simbahan: Ang Nagdaog nga Simbahan diha sa langit, Ang Nasakit nga Simbahan diha sa purgatoryo, ug Ang Nakig-away nga Simbahan dinhi sa yuta, tanan sama-sama diha sa panaghigalaay sa mga Santos. Nagsusi kini sa kinabuhi bahin sa ilang tumong kang Kristo, nagdasig sa pagpangita ngadto sa mga santos, ug natuman ang buhat sa kaayo pinaagi sa pag-ampo alang niadtong namatay na. Wala'y maraot nga makasulod sa langit (Rev 21:27), busa kini nga paglimpyo ug pag-ampo may sentido. \n\n---",
       "scripture": [
         {
           "reference": "Revelation 7:9",
@@ -1497,9 +1497,9 @@
         }
       ],
       "catechism": [
-        "CCC 954",
-        "CCC 955",
-        "CCC 1032"
+        "954",
+        "955",
+        "1032"
       ],
       "churchFathers": [
         {
@@ -1527,9 +1527,9 @@
     {
       "id": "papal-succession",
       "category": "papacy",
-      "title": "Apostolic Succession and the Papacy",
-      "question": "How can a bishop today claim the authority Jesus gave to Peter two thousand years ago?",
-      "answer": "Apostolic succession is the unbroken transmission of the office and authority Christ gave the Apostles, handed on through the laying on of hands from generation to generation. The Apostles clearly intended their office to continue: when Judas fell, the Eleven chose Matthias to take his 'office' (Acts 1:20-26, quoting Ps 109:8), showing that apostolic ministry is an office that passes to a successor, not a personal privilege that dies with the man. Paul instructs Timothy to entrust what he received to reliable men who will teach others in turn (2 Tim 2:2), a fourfold chain of succession. Just as Peter held a unique primacy among the Apostles, that primacy passes to his successor, the Bishop of Rome, where Peter established his see and was martyred. The early Fathers listed the Roman bishops in unbroken order precisely to prove the authenticity of their teaching against innovators. This visible, historical continuity guarantees that the Church today teaches with the very authority Christ conferred.",
+      "title": "Sunod-sunod nga Apostoliko ug ang Papaato",
+      "question": "Unsaon man pag-angkon sa usa ka obispo karon ang awtoridad nga gihatag ni Hesus kang Pedro duha ka libo na ka tuig kanhi?",
+      "answer": "Apostolic succession mao ang padayong pagpanalangin sa katungdanan ug awtoridad nga gihatag ni Kristo ngadto sa mga Apostoles, nga gipasa pinaagi sa pagbutok sa kamot gikan sa kaliwatan ngadto sa laing kaliwatan. Ang mga Apostoles tin-awng nagtumong nga ang ilang katungdanan magpadayon: sa dihang si Judas nahulog, ang Napulo ug Usa misagop kang Matias aron sa pag-abli sa iyang 'katungdanan' (Mga Buhat 1:20-26, nagkutlo gikan sa Ps. 109:8), nga nagpakita nga ang apostolikong ministro maoy usa ka katungdanan nga mapasa ngadto sa sunod-sunod, dili personal nga pribilehiyo nga mamatay uban sa tawo. Si Pablo miguide kang Timoteo aron ipasalig kadtong iyang nadawat ngadto sa mga lalaki nga kasaligan, nga motudlo usab sa lain diha-diha (2 Tim 2:2), usa ka upat-ka-lebel nga kadena sa pagpanalangin. Sama kang Pedro nga may talagsaong primacy taliwala sa mga Apostoles, ang maong primacy mibiyahe ngadto sa iyang suod-sunod, ang Obispo sa Roma, diin si Pedro nagtukod sa iyang luklukan ug gipatay. Ang sayo nga mga Amahan nagsulat sa walay-pagputol nga han-ay sa mga obispo sa Roma aron ipamatuod ang pagka-authentic sa ilang pagtudlo batok sa kausaban. Kini makita, historikal nga padayon nag-garantiya nga ang Simbahan karong adlawa naggiya uban sa eksaktong awtoridad ni Kristo.\n\n---  \n**Translation complete.**",
       "scripture": [
         {
           "reference": "Acts 1:20",
@@ -1543,10 +1543,10 @@
         }
       ],
       "catechism": [
-        "CCC 861",
-        "CCC 862",
-        "CCC 880",
-        "CCC 882"
+        "861",
+        "862",
+        "880",
+        "882"
       ],
       "churchFathers": [
         {
@@ -1575,9 +1575,9 @@
     {
       "id": "bad-popes-history",
       "category": "papacy",
-      "title": "Sinful Popes and the Papacy",
-      "question": "If some popes were corrupt or immoral, doesn't that prove the papacy is not from God?",
-      "answer": "The existence of sinful popes actually confirms rather than refutes the Catholic claim, because the Church's guarantee was never the personal holiness of the officeholder but Christ's promise that his Church would endure. Jesus chose Peter, who denied him three times (Lk 22:61-62), and Judas, a betrayer, was among the Twelve, showing from the start that God works through flawed men. Christ promised that the gates of hell would not prevail against his Church (Mat 16:18), not that every pope would be a saint. Papal infallibility protects official teaching on faith and morals, not the pope's private conduct; strikingly, even the worst popes never used their office to define heresy as binding doctrine, an eloquent testimony to that protection. That the Church survived scandalous popes, the Renaissance corruption, and every human failure for two thousand years is itself a mark of divine sustenance, for no merely human institution led by such men could have endured. God writes straight with crooked lines.",
+      "title": "Mga Makasasala nga Papa ug ang Pagkapapa",
+      "question": "Kon aduna bay mga Papa nga korap o diri-moral, dili ba kana nagpamatuod nga ang pagkapapa dili gikan sa Dios?",
+      "answer": "Ang paglungtad sa mabdos nga mga papa tinuod nga nagpamatuod dili nagsupak sa tanyag sa Katoliko, tungod kay ang garantiya sa Simbahan wala kini mahimong personal nga ka-banalon sa opisyal kondili sa pasalig ni Kristo nga magapadayon ang iyang Iglesia. Gipili ni Jesus si Pedro, kinsa nagdumili Kaniya ug tulo ka beses (Lk 22:61-62), ug si Judas, usa ka traidor, nabilang sa Napulog-Duha, nga nagpakita sukad pa gikan nga ang Diyos magtrabaho pinaagi sa mga linalang nga may depekto. Si Kristo mitagna nga dili matukod pag-usab sa mga ganghaan sa impyerno batok sa iyang Iglesia (Mat 16:18), dili nga ang tanang Papa mahimong usa ka santo. Ang papal infallibility nagpanalipod sa opisyal nga pagtudlo bahin sa panaghigala ug moral, dili ang pribadong pamatasan sa Papa; dayag, bisan pa niana, ang labing daotang mga Papa wala mogamit sa ilang katungdanan aron ipahamtang ingong doktrina ang heresya, usa ka tin-awng testamento niining panalipod. Ang pagpabiling buhi sa Iglesia bisan pa sa makapasubo nga mga papa, korapsiyon sa Renacimiento, ug matag tawhanong kapakyasan sulod sa duha ka milenyo maoy mismo usa ka timailhan sa Diyosnong suporta, kay walay organisasyon lamang sa katawhan nga gi-una niining mga lalaki ang makapadayon. Ang Diyos nagsulat ug tuwid pinaagi sa kiling-kiling nga mga paagi.",
       "scripture": [
         {
           "reference": "Matthew 16:18",
@@ -1591,9 +1591,9 @@
         }
       ],
       "catechism": [
-        "CCC 869",
-        "CCC 890",
-        "CCC 827"
+        "869",
+        "890",
+        "827"
       ],
       "churchFathers": [
         {
@@ -1622,9 +1622,9 @@
     {
       "id": "bishop-of-rome",
       "category": "papacy",
-      "title": "Why the Bishop of Rome Leads the Church",
-      "question": "Why should the Bishop of Rome, of all the bishops, be the head of the whole Church?",
-      "answer": "The Bishop of Rome heads the universal Church because he is the successor of St. Peter, whom Christ singled out as the rock on which he would build his Church and to whom he alone gave the keys of the kingdom (Mat 16:18-19). Peter exercised a unique leadership among the Apostles: his name always heads the lists, Christ commanded him to strengthen his brethren (Lk 22:32) and to feed the whole flock (Jn 21:15-17), and he spoke first at Pentecost and at the Council of Jerusalem. Peter went to Rome, led the Church there, and was martyred and buried in that city, so his authority naturally passed to the Bishop of Rome as his successor. From the earliest centuries the Roman church was recognized as holding a special preeminence, and disputes were appealed to Rome for settlement. The keys symbolize the office of royal steward (Isa 22:22), a single delegated authority that continues in an ongoing succession, so the Roman see is the visible center of unity for the whole Church.",
+      "title": "Nganong Ang Obispo sa Roma Nagpangulo sa Simbahan",
+      "question": "Nganong ang Obispo sa Roma, sa tanang obispo, mao ang pangulong opisyal sa tibuok Simbahan?",
+      "answer": "Ang Obispo sa Roma nagpangulo sa unibersal nga Iglesya tungod kay siya ang kahulogan ni Santo Pedro, kansang gipili ni Kristo ingong bato diin iyang pagatukoron ang iyang Iglesia ug kang kinsa lamang gihatag ang mga yawe sa gingharian (Mat 16:18-19). Si Pedro nagpadayon og talagsaong pagpangulo taliwala sa mga Apostoles: kanunayng siya maoy una diha sa lista, gi-utana ni Kristo nga pabugnawon ang iyang kasaliganan (Lk 22:32) ug mabusog ang bug-os nga panon (Jn 21:15-17), ug siya nagtambong sa unang gikan sa Pentekoste hangtod sa Konsilyo sa Jerusalem. Si Pedro miadto ngadto sa Roma, nagpangulo sa Iglesia didto, ug namatay ingong martir ug gi-ukab diha nianang siyudad, busa ang iyang awtoridad natural nga gipasa ngadto sa Obispo sa Roma ingong kahulogan. Sukwahi ka adlawnon pa lang mga siglo, ilhon na sa Iglesya sa Roma nga nagtag-iya og espesyal nga labaw, ug mga panagbangi gi-apelar ngadto sa Roma alang sa resolusyon. Ang mga yawe simbolo sa katungdanan sa royal steward (Isa 22:22), usa ka gihuptan nga awtoridad diha sa nagpadayon nga sunodsunod, busa ang Romanhonong episko ayohon mao ang tin-awng sentro sa pagka-usa alang sa tibuok Iglesia.",
       "scripture": [
         {
           "reference": "John 21:17",
@@ -1638,9 +1638,9 @@
         }
       ],
       "catechism": [
-        "CCC 881",
-        "CCC 882",
-        "CCC 834"
+        "881",
+        "882",
+        "834"
       ],
       "churchFathers": [
         {
@@ -1669,9 +1669,9 @@
     {
       "id": "councils-and-popes",
       "category": "papacy",
-      "title": "Ecumenical Councils and the Pope",
-      "question": "Do ecumenical councils have authority over the Pope, or does the Pope override the councils?",
-      "answer": "An ecumenical council and the Pope are not rival authorities but form one teaching body: a council is only ecumenical, that is, universally binding, when it acts in union with and is confirmed by the Successor of Peter, the head of the college of bishops. The bishops of the whole world are the successors of the Apostles and, together with the Pope as their head, exercise supreme authority, exactly as the Apostles gathered with Peter at the Council of Jerusalem, where Peter spoke decisively and the assembly wrote, 'It is the decision of the holy Spirit and of us' (Acts 15:28). The Pope cannot be simply overruled by the bishops apart from him, for the college has no authority without its head, just as the body has none without Peter. Neither does the Pope govern in isolation from the bishops; ordinarily he teaches with and through them. This is why the doctrine of conciliarism, that a council stands above the Pope, was rejected. The Church's authority is always Peter-with-the-bishops, never one against the other.",
+      "title": "Mga Ekumenikal nga Konsilyo ug ang Papa",
+      "question": "Aduna bay awtoridad ang mga kumbensiyong ekumenikal sa Papa, o mas labaw ba ang Papa kay sa mga kumbensiya?",
+      "answer": "Usa ka sinakpan-ekumenikal nga konsilyo ug ang Papa dili magkaawayng awtoridad kondili usa silang lawas sa pagtudlo: anaa lamang sa konsilyong eklehiastiko, nagkahulogan nga unibersal nga bug-os-kagawasan, kon buhaton nila kini uban ug gipamatud-an sa Kanselar ni Pedro, ang pangulo sa kolehiyo sa mga obispo. Ang mga Obispo sa tibuok kalibotan maoy mga suhito sa mga Apostoles ug, upod kang Papa ingong ilang pangulo, nag-eksekita og kinatas-ang awtoridad, eksakto sama nga ang mga Apostoles mitambong uban kang Pedro sa Konsilyo sa Jerusalem diin si Pedro misulti pagmatuod ngadto sa asambleya ug sila nagsulat: \"Kini maoy desisyon sa balaang Espiritu ug atong gihimo\" (Acts 15:28). Dili ang Papa mahimong simpleng isumpo sa mga obispo nga walay kaniya, kay ang kolehiyo walay awtoridad kon wala ang iyang ulo, sama sa lawas nga walay Pedro. Ang Papa dili usab magmando nga independente gikan sa mga obispo; kasagaran siya nagtudlo uban kanila ug pinaagi kanila. Kini mao kung ngano nga gi-reject ang doktrina sa conciliarismo, nga nagsugyot nga ang usa ka konsilyo anaa ibabaw kang Papa. Ang awtoridad sa Simbahan kanunayng \"Pedro-uban-sa-mga-obispo\", dili usa batok sa lain.",
       "scripture": [
         {
           "reference": "Acts 15:28",
@@ -1685,9 +1685,9 @@
         }
       ],
       "catechism": [
-        "CCC 883",
-        "CCC 884",
-        "CCC 885"
+        "883",
+        "884",
+        "885"
       ],
       "churchFathers": [
         {
@@ -1716,9 +1716,9 @@
     {
       "id": "confirmation-sacrament",
       "category": "sacraments",
-      "title": "The Sacrament of Confirmation",
-      "question": "What is Confirmation, and why is it a separate sacrament if we already received the Spirit at Baptism?",
-      "answer": "Confirmation is the sacrament that completes baptismal grace by a special outpouring of the Holy Spirit, sealing and strengthening the baptized for witness and mature discipleship. Its biblical basis is clear: in Samaria, though the people had already been baptized, the Apostles Peter and John came, laid hands on them, and they received the Holy Spirit in a distinct action (Acts 8:14-17), and Paul likewise laid hands on the disciples at Ephesus so the Spirit came upon them (Acts 19:5-6). Scripture speaks of being sealed with the promised Holy Spirit (Eph 1:13). This shows the early Church distinguished the gift of the Spirit in Confirmation from Baptism itself, ordinarily conferred through the laying on of hands and anointing by a bishop or his delegate. Just as the Apostles were baptized in a sense by following Christ yet needed Pentecost to be strengthened for mission, so Confirmation deepens and perfects what Baptism began, equipping the Christian to profess and defend the faith.",
+      "title": "Ang Sakramento sa Kumpirmasyon",
+      "question": "Unsa ang Kumpirmasyon, ug nganong kini maoy lahi nga sakramento kon naa nay Espiritu sa Binyag?",
+      "answer": "**Kumpirmasyon**\n\nAng kumpirmasyon maoy sakramento nga nagkumpleto sa grasya sa binyag pinaagi sa espesyal nga pag-abot sa Balaang Espiritu, nga nagselyo ug naggiya sa nabinyagan alang sa saksihon ug hamtong nga disipiliko. Ang iyang basihan Biblikal tin-aw: didto sa Samaria, bisan tuod ang katawhanon naunahan og binyag, si apostol Pedro ug Juan miabot, milabay ug mga kamot kanila, ug sila nakadawat sa Balaang Espiritu pinaagi sa laing buhat (Acts 8:14-17). Si Pablo usab misulay sa mga disipulo didto sa Efeso aron matabangan ang pag-abot sa Espiritu kanila (Acts 19:5-6). Ang Kasulatan naghisgot bahin sa pag- seal uban sa gisaad nga Balaang Espiritu (Eph 1:13).\n\nKini nagpakita nga sayo pa kaayo, ang simbahan nakabahinbahin sa gasa sa Balaang Espiritu diha sa kumpirmasyon gikan mismo sa binyag, kasagarang ginhatag pinaagi sa paglata ug mga kamot ug pagpahid uban sa obispo o sa iyang representante. Samtang ang mga apostoles nabinyagan sa usa ka paagi pinaagi sa pagsunod kang Kristo apan nagkinahanglan gihapon og Pentekostes aron masiguro alang sa misyon, ang kumpirmasyon nagpalalom ug naghimo nga hingpit kon unsay sinugdanan sa binyag, nga maghatag sa Kristohanong katawhanon og kahanas sa pagpahibalo ug pagpanalipod sa pagsarig.",
       "scripture": [
         {
           "reference": "Acts 8:17",
@@ -1732,10 +1732,10 @@
         }
       ],
       "catechism": [
-        "CCC 1285",
-        "CCC 1288",
-        "CCC 1302",
-        "CCC 1316"
+        "1285",
+        "1288",
+        "1302",
+        "1316"
       ],
       "churchFathers": [
         {
@@ -1764,9 +1764,9 @@
     {
       "id": "anointing-of-sick",
       "category": "sacraments",
-      "title": "The Anointing of the Sick",
-      "question": "What is the Anointing of the Sick? Is it just 'Last Rites' for people who are dying?",
-      "answer": "The Anointing of the Sick is a sacrament of healing given to those who are seriously ill or facing the frailty of old age, not merely a ritual for the dying. Its direct biblical mandate is found in James, who instructs the sick to call the presbyters (priests) of the Church to pray over them and anoint them with oil in the name of the Lord, promising that the prayer of faith will save the sick person, the Lord will raise them up, and their sins will be forgiven (Jas 5:14-15). Jesus' own apostles anointed the sick with oil and healed them (Mk 6:13). The sacrament confers grace, spiritual strength, peace, courage, union with Christ's passion, and forgiveness of sins, and when God wills, physical healing. It can be received more than once, whenever a person falls gravely ill again. 'Last Rites' more properly refers to the final sacraments given to the dying, which include this Anointing along with Confession and Viaticum (final Communion), but the Anointing itself is for anyone seriously sick, meant to heal and console, not only to prepare for death.",
+      "title": "Ang Pagpahid sa Dukha",
+      "question": "Unsa ang Pagpahid sa mga Masakiton? Kini ba lamang ang \"Kataposan nga mga Rituwal\" alang sa mga tawo nga mamatay?",
+      "answer": "Ang Pagpahid sa mga Masakiton usa ka sakramento sa pag-ayo nga gihatag ngadto niadtong seryosong masakiton o nagsaulog sa kahuyang sa tigulang, dili lamang usa ka rituwal alang sa namatay. Ang direktang balaod Biblikal niini makita diha kang Santiago, nga nagtudlo sa mga masakiton sa pagtawag sa presbyteros (mga saserdote) gikan sa Simbahan aron mag-ampo kanila ug pahid kanila sa lana sa ngalan sa Ginoo, nga nagsaad nga ang pangamuyo sa pagtoo makaluwas sa masakitong tawo, ibangon sila sa Gino-o, ug pasayloon ang ilang mga sala (Jas 5:14-15). Ang kaugalingong mga apostoles ni Jesus nagpahid sa mga masakiton pinaagi sa lana ug naghinlo kanila (Mk 6:13). Kini nga sakramento naghatag og grasya, espirituwal nga kusog, kamurayawan, kaisug, unyon uban sa pasion ni Kristo, ug pagpasaylo sa mga sala, ug kon gitinguha sa Diyos, pisikal nga pag-ayo. Mahimo'g tanggapon kini usab sa labaw pa kay sa usa ka higayon, matag beses nga ang tawo masakiton na usab hinungdanon. 'Kataposang Mga Ritual,' nga mas hustong nagtumong sa katapusang mga sakramento alang sa namatay, lakip niini nga Pagpahid uban ang Pakigsobat (Penance) ug Viaticum (katapusang Komunyon), apan ang pagpahid mismo alang sa bisan kinsa nga seryosong masakiton, nga nagtuyo aron maulian ug makapalig-on, dili lamang mag-andam alang sa kamatayon.",
       "scripture": [
         {
           "reference": "James 5:14-15",
@@ -1780,10 +1780,10 @@
         }
       ],
       "catechism": [
-        "CCC 1499",
-        "CCC 1511",
-        "CCC 1514",
-        "CCC 1520"
+        "1499",
+        "1511",
+        "1514",
+        "1520"
       ],
       "churchFathers": [
         {
@@ -1812,9 +1812,9 @@
     {
       "id": "transubstantiation",
       "category": "sacraments",
-      "title": "The Doctrine of Transubstantiation",
-      "question": "What does transubstantiation actually mean, and what is its basis in the Bible?",
-      "answer": "Transubstantiation is the Church's precise term for what happens at the consecration of the Mass: the whole substance of the bread and wine is changed into the substance of the Body and Blood of Christ, while the appearances (accidents) of bread and wine, taste, texture, and shape, remain. It affirms that Christ is truly present, not merely symbolically or spiritually alongside the bread. The biblical foundation lies in Christ's own words, which he stated in the plainest terms: 'This is my body' and 'This is my blood' (Lk 22:19-20), and in his insistence in the Bread of Life discourse that his flesh is real food, using increasingly literal language even as disciples left in disbelief (Jn 6:53-55). St. Paul confirms that the bread we break is a participation in the Body of Christ (1 Cor 10:16) and warns that receiving unworthily makes one guilty of the Lord's Body and Blood (1 Cor 11:27), which requires a real presence. The term describes the reality; the how is a mystery accomplished by God's power and received in faith, just as the early Fathers taught from the beginning.",
+      "title": "Ang Doktrina sa Pagbalhin-sa-Tinuod (Transubstantiation)",
+      "question": "Unsay tinuod nga kahulogan sa Transubstantasyon ug unsa ang pundasyon niini diha sa Bibliya?",
+      "answer": "Transubstantiation mao ang tukmang termino sa Simbahan alang sa nahitabo panahon sa konsagrasyon sa Misa: Ang bug-os nga substansiya sa tinapay ug bino mausab ngadto sa substansiya sa Lawas ug Dugo ni Kristo, samtang ang mga hitsura (mga aksidente) sama sa lami, tekstura, ug porma nagpabilin. Kini nag-ila nga si Kristo tinuod nga presente, dili lamang simboliko o espirituwal uban sa tinapay. Ang bibliya pundasyon anaa diha sa kaugalingong mga pulong ni Kristo, nga iyang gipahayag hinay-hinay: \"Kini mao ang akong lawas\" ug \"Kini mao ang akong dugo\" (Lk 22:19-20), ug sa iyang pag-insister diha sa diskurso bahin sa Tinapay sa Kinabuhi nga ang iyang unod tinuod nga pagkaon, bisan pa nianang mga sumusunod nga midumili tungod sa dili motuo (Jn 6:53-55). Si San Pablo nagpamatuod nga ang tinapay nga atong gipakigbahin mao ang pakigbahin diha sa Lawas ni Kristo (1 Cor 10:16) ug nagsugyot nga pagdawat nga walay-pagtuo hinungdan sa sala batok sa lawas ug dugo sa Ginoo (1 Cor 11:27), nga nagkinahanglan og tinuodng presensiya. Kini nga termino naghubit sa kamatuoran; kon unsaon kini pagkahimugso maoy misteryong ginabuhat pinaagi sa gahum sa Diyos ug gituman diha sa panaghigalaay, sumala niana ang sinugdanang mga Amahan mitudlo sukad pa.",
       "scripture": [
         {
           "reference": "Luke 22:19",
@@ -1828,9 +1828,9 @@
         }
       ],
       "catechism": [
-        "CCC 1376",
-        "CCC 1377",
-        "CCC 1413"
+        "1376",
+        "1377",
+        "1413"
       ],
       "churchFathers": [
         {

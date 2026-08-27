@@ -5,13 +5,13 @@
  * validate-translation-legacy.ts (handbook.json seed).
  */
 export const TERMINOLOGY: { en: RegExp; expected: Record<'ceb' | 'tl', RegExp> }[] = [
-  { en: /\bHoly Spirit\b/i, expected: { ceb: /\bEspiritu Santo\b/i, tl: /\bEspiritu Santo\b/i } },
+  { en: /\bHoly Spirit\b/i, expected: { ceb: /\b(Espiritu Santo|Balaang Espiritu)\b/i, tl: /\b(Espiritu Santo|Banal na Espiritu)\b/i } },
   { en: /\bChurch\b/, expected: { ceb: /\b(Simbahan|Iglesya)\b/i, tl: /\b(Simbahan|Iglesia)\b/i } },
   { en: /\bTradition\b/, expected: { ceb: /\bTradisyon\b/i, tl: /\bTradisyon\b/i } },
   { en: /\bCatechism\b/, expected: { ceb: /\bKatesismo\b/i, tl: /\bKatesismo\b/i } },
   { en: /\bMagisterium\b/, expected: { ceb: /\bMagisterium|Magisteryo\b/i, tl: /\bMagisterium|Magisteryo\b/i } },
   { en: /\bGospels?\b/i, expected: { ceb: /\bEbanghelyo\b/i, tl: /\bEbanghelyo\b/i } },
-  { en: /\bApostles?\b/i, expected: { ceb: /\bapostoles\b/i, tl: /\bapostol/i } },
+  { en: /\bApostles?\b/i, expected: { ceb: /\bapostol(es)?\b/i, tl: /\bapostol/i } },
 ]
 
 export function checkTerminology(lang: 'ceb' | 'tl', enText: string, trText: string): { term: string; issue: string }[] {
