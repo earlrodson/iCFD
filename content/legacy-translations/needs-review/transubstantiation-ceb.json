@@ -1,0 +1,47 @@
+{
+  "id": "transubstantiation",
+  "category": "sacraments",
+  "title": "Ang Doktrina sa Pagbalhin-sa-Tinuod (Transubstantiation)",
+  "question": "Unsay tinuod nga kahulogan sa Transubstantasyon ug unsa ang pundasyon niini diha sa Bibliya?",
+  "answer": "Transubstantiation mao ang tukmang termino sa Simbahan alang sa nahitabo panahon sa konsagrasyon sa Misa: Ang bug-os nga substansiya sa tinapay ug bino mausab ngadto sa substansiya sa Lawas ug Dugo ni Kristo, samtang ang mga hitsura (mga aksidente) sama sa lami, tekstura, ug porma nagpabilin. Kini nag-ila nga si Kristo tinuod nga presente, dili lamang simboliko o espirituwal uban sa tinapay. Ang bibliya pundasyon anaa diha sa kaugalingong mga pulong ni Kristo, nga iyang gipahayag hinay-hinay: \"Kini mao ang akong lawas\" ug \"Kini mao ang akong dugo\" (Lk 22:19-20), ug sa iyang pag-insister diha sa diskurso bahin sa Tinapay sa Kinabuhi nga ang iyang unod tinuod nga pagkaon, bisan pa nianang mga sumusunod nga midumili tungod sa dili motuo (Jn 6:53-55). Si San Pablo nagpamatuod nga ang tinapay nga atong gipakigbahin mao ang pakigbahin diha sa Lawas ni Kristo (1 Cor 10:16) ug nagsugyot nga pagdawat nga walay-pagtuo hinungdan sa sala batok sa lawas ug dugo sa Ginoo (1 Cor 11:27), nga nagkinahanglan og tinuodng presensiya. Kini nga termino naghubit sa kamatuoran; kon unsaon kini pagkahimugso maoy misteryong ginabuhat pinaagi sa gahum sa Diyos ug gituman diha sa panaghigalaay, sumala niana ang sinugdanang mga Amahan mitudlo sukad pa.",
+  "scripture": [
+    {
+      "reference": "Luke 22:19",
+      "text": "This is my body, which will be given for you; do this in memory of me.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "1 Corinthians 10:16",
+      "text": "The bread that we break, is it not a participation in the body of Christ?",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "1376",
+    "1377",
+    "1413"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Cyril of Jerusalem",
+      "quote": "Since He Himself has declared, 'This is My Body,' who shall dare to doubt? Do not think of it as mere bread and wine, for it is the Body and Blood of Christ.",
+      "source": "Catechetical Lectures, 350 AD"
+    }
+  ],
+  "tags": [
+    "transubstantiation",
+    "eucharist",
+    "real presence",
+    "consecration",
+    "mass",
+    "substance"
+  ],
+  "difficulty": "advanced",
+  "lang": "ceb",
+  "relatedTopics": [
+    "real-presence",
+    "holy-eucharist",
+    "holy-mass"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

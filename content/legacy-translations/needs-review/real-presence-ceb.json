@@ -1,0 +1,46 @@
+{
+  "id": "real-presence",
+  "category": "church-teaching",
+  "title": "Ang Tinuod nga Presensiya diha sa Eukaristiya",
+  "question": "Dili ba ang Eukaristiya usa lang ka simbolo sa lawas ni Kristo? Nganong gipasiugda nga Siya tinuod gayoy presente?",
+  "answer": "## Pagtulon-an sa Eukaristiya\n\nSi Kristo tinuod gayud, tinuod, ug substansiyal nga presente ingong Lawas, Dugo, Kalag, ug Diosnay diha sa Eukaristiya, dili lamang simboliko. Sa Diskurso Bahin sa Tinapay nga Nagaayo, si Jesus matig-a nga nag-ingon nga ang iyang unod maoy tinuodng pagkaon ug ang iyang dugo tinuodng ilimnon (Jn 6:55), ug sa dihang daghan kanila misulay tungod kay kini makusog kaayo, wala niya kini himoon nga metapora kondili gitugotan sila sa pagbiya(Jn 6:66). Sa Kataposang Panihapon, si Jesus dayagng miingon, \"Kining tinapay mao ang akong lawas\" ug \"Kining bino mao ang akong dugo\" (Mat 26:26-28). Si Pablo nagpasidaan nga bisan kinsa nga magkaon pag-ayo mobahin-bahin sa lawas ug dugo sa Ginoo, nga walay kahuluganon kon ang mga elemento maoy simbolo lamang(1 Cor 11:27-29). Ang sinagolanayng Kristohanong unibersal nga nasabtan kini tinuod.\n\nKining pag-usab gitawag ug transubstantiasyon: ang substansiya nahimong Kristo samtang nagpabilin ang mga panan-awon sa tinapay ug bino.  \n\n---",
+  "scripture": [
+    {
+      "reference": "John 6:55",
+      "text": "My flesh is true food, and my blood is true drink.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "1 Corinthians 11:27",
+      "text": "Whoever eats the bread or drinks the cup unworthily sins against the body and blood of the Lord.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "1374",
+    "1376",
+    "1413"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Ignatius of Antioch",
+      "quote": "The Eucharist is the flesh of our Savior Jesus Christ, which suffered for our sins.",
+      "source": "Letter to the Smyrnaeans, 110 AD"
+    }
+  ],
+  "tags": [
+    "eucharist",
+    "real presence",
+    "transubstantiation",
+    "mass",
+    "bread of life"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "holy-eucharist",
+    "transubstantiation",
+    "holy-mass"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

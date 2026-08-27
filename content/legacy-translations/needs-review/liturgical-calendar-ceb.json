@@ -1,0 +1,48 @@
+{
+  "id": "liturgical-calendar",
+  "category": "tradition",
+  "title": "Ang mga Panahon sa Pagtulon-an\n\n---  \n\n**Easter Season**: The Great 50 Days  \n**Advent Season**: Preparing for Christ's Coming  \n**Ordinary Time**: Daily Life with God  \n\n---",
+  "question": "Nganong nagbantay ang mga Katoliko sa Kuwaresma, Pag-abot (Advent), ug mga Adlawng Pista? Dili ba managsama ang matag adlaw kang Diyos?",
+  "answer": "Ang liturhikal nga kalendaryo nag-sanctify sa panahon pinaagi sa pagdala sa Simbahan matag tuig pinaagi sa mga misteryo sa kinabuhi ni Kristo, gikan sa iyang ginapaabot nga pag-abut sa Adbiyento, ngadto sa iyang natawhan sa Pasko, ang iyang pasyon ug pagkabanhaw panahon sa Kuwaresma ug Easter, ug ang Iyang gingharian sulod sa Ordinaryong Panahon. Kini may lalom nga mga gamot haiguran: Ang Diyos mismo nagtukod og usa ka kalendaryo sa sagrado nga mga panahon ug kapistahan alang sa Israel (Lev 23), ug adunay \"panahon para sa tanan\" ilalom han himaya (Eccl 3:1). Gisagop ni Jesus ug ang mga Apostoles ang gitudlo nga mga kapistahan, ug si Pablo naghisgot bahin sa pagpabiling tukma ug tinuod diha sa kapistahan (1 Cor 5:8). Ang mga panahon sama sa Kuwaresma's 40 ka adlaw nagsalamin sa pasundayag ni Kristo didto sa kamingawan (Mat 4:2), nga nag-andam kanato alang sa pag-usab pinaagi sa pag-ampo, pagpuasa, ug pagkalooy. Dili gayud kini nakapahimutang sa mga adlaw nga managsama; ang ritmo sa pasundayag ug kapistahan naghulma sa mga disipulo sulod sa tibuok kinabuhi, nagtudlo sa bug-os nga Ebanghelyo pinaagi sa pag-uswag ug makatabang sa mga matinumanon nga mas duol pa sa matag misteryo.",
+  "scripture": [
+    {
+      "reference": "Ecclesiastes 3:1",
+      "text": "There is an appointed time for everything, a time for every affair under the heavens.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Leviticus 23:2",
+      "text": "These are the festivals of the Lord which you shall declare holy days.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "1163",
+    "1168",
+    "1171",
+    "1438"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Athanasius of Alexandria",
+      "quote": "Let us keep the feast, brethren, observing the days of the Paschal fast which lead us to the great Sunday.",
+      "source": "Festal Letters, 4th century AD"
+    }
+  ],
+  "tags": [
+    "liturgical calendar",
+    "lent",
+    "advent",
+    "seasons",
+    "feasts",
+    "fasting"
+  ],
+  "difficulty": "beginner",
+  "lang": "ceb",
+  "relatedTopics": [
+    "sunday-observance",
+    "dietary-abstinence",
+    "holy-mass"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

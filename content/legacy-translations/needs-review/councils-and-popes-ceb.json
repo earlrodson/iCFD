@@ -1,0 +1,47 @@
+{
+  "id": "councils-and-popes",
+  "category": "papacy",
+  "title": "Mga Ekumenikal nga Konsilyo ug ang Papa",
+  "question": "Aduna bay awtoridad ang mga kumbensiyong ekumenikal sa Papa, o mas labaw ba ang Papa kay sa mga kumbensiya?",
+  "answer": "Usa ka sinakpan-ekumenikal nga konsilyo ug ang Papa dili magkaawayng awtoridad kondili usa silang lawas sa pagtudlo: anaa lamang sa konsilyong eklehiastiko, nagkahulogan nga unibersal nga bug-os-kagawasan, kon buhaton nila kini uban ug gipamatud-an sa Kanselar ni Pedro, ang pangulo sa kolehiyo sa mga obispo. Ang mga Obispo sa tibuok kalibotan maoy mga suhito sa mga Apostoles ug, upod kang Papa ingong ilang pangulo, nag-eksekita og kinatas-ang awtoridad, eksakto sama nga ang mga Apostoles mitambong uban kang Pedro sa Konsilyo sa Jerusalem diin si Pedro misulti pagmatuod ngadto sa asambleya ug sila nagsulat: \"Kini maoy desisyon sa balaang Espiritu ug atong gihimo\" (Acts 15:28). Dili ang Papa mahimong simpleng isumpo sa mga obispo nga walay kaniya, kay ang kolehiyo walay awtoridad kon wala ang iyang ulo, sama sa lawas nga walay Pedro. Ang Papa dili usab magmando nga independente gikan sa mga obispo; kasagaran siya nagtudlo uban kanila ug pinaagi kanila. Kini mao kung ngano nga gi-reject ang doktrina sa conciliarismo, nga nagsugyot nga ang usa ka konsilyo anaa ibabaw kang Papa. Ang awtoridad sa Simbahan kanunayng \"Pedro-uban-sa-mga-obispo\", dili usa batok sa lain.",
+  "scripture": [
+    {
+      "reference": "Acts 15:28",
+      "text": "It is the decision of the holy Spirit and of us not to place on you any burden beyond these necessities.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Matthew 18:18",
+      "text": "Whatever you bind on earth shall be bound in heaven.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "883",
+    "884",
+    "885"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Gregory the Great",
+      "quote": "I confess that I receive and venerate the four councils as I do the four books of the holy Gospel.",
+      "source": "Letter to John of Constantinople, 590 AD"
+    }
+  ],
+  "tags": [
+    "councils",
+    "papacy",
+    "collegiality",
+    "conciliarism",
+    "jerusalem council",
+    "bishops"
+  ],
+  "difficulty": "advanced",
+  "lang": "ceb",
+  "relatedTopics": [
+    "papal-infallibility",
+    "bishop-of-rome",
+    "papal-succession"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "papal-succession",
+  "category": "papacy",
+  "title": "Sunod-sunod nga Apostoliko ug ang Papaato",
+  "question": "Unsaon man pag-angkon sa usa ka obispo karon ang awtoridad nga gihatag ni Hesus kang Pedro duha ka libo na ka tuig kanhi?",
+  "answer": "Apostolic succession mao ang padayong pagpanalangin sa katungdanan ug awtoridad nga gihatag ni Kristo ngadto sa mga Apostoles, nga gipasa pinaagi sa pagbutok sa kamot gikan sa kaliwatan ngadto sa laing kaliwatan. Ang mga Apostoles tin-awng nagtumong nga ang ilang katungdanan magpadayon: sa dihang si Judas nahulog, ang Napulo ug Usa misagop kang Matias aron sa pag-abli sa iyang 'katungdanan' (Mga Buhat 1:20-26, nagkutlo gikan sa Ps. 109:8), nga nagpakita nga ang apostolikong ministro maoy usa ka katungdanan nga mapasa ngadto sa sunod-sunod, dili personal nga pribilehiyo nga mamatay uban sa tawo. Si Pablo miguide kang Timoteo aron ipasalig kadtong iyang nadawat ngadto sa mga lalaki nga kasaligan, nga motudlo usab sa lain diha-diha (2 Tim 2:2), usa ka upat-ka-lebel nga kadena sa pagpanalangin. Sama kang Pedro nga may talagsaong primacy taliwala sa mga Apostoles, ang maong primacy mibiyahe ngadto sa iyang suod-sunod, ang Obispo sa Roma, diin si Pedro nagtukod sa iyang luklukan ug gipatay. Ang sayo nga mga Amahan nagsulat sa walay-pagputol nga han-ay sa mga obispo sa Roma aron ipamatuod ang pagka-authentic sa ilang pagtudlo batok sa kausaban. Kini makita, historikal nga padayon nag-garantiya nga ang Simbahan karong adlawa naggiya uban sa eksaktong awtoridad ni Kristo.\n\n---  \n**Translation complete.**",
+  "scripture": [
+    {
+      "reference": "Acts 1:20",
+      "text": "Let another take his office, Scripture says of the vacancy left by Judas.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "2 Timothy 2:2",
+      "text": "Entrust what you heard from me to faithful people who will teach others as well.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "861",
+    "862",
+    "880",
+    "882"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Irenaeus of Lyon",
+      "quote": "We can enumerate those who were instituted bishops by the Apostles, and their successors down to our own times.",
+      "source": "Against Heresies, Book III, 189 AD"
+    }
+  ],
+  "tags": [
+    "apostolic succession",
+    "papacy",
+    "peter",
+    "matthias",
+    "bishops",
+    "ordination"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "primacy-of-peter",
+    "bishop-of-rome",
+    "papal-succession"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

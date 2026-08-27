@@ -1,0 +1,45 @@
+{
+  "id": "deuterocanonical-books",
+  "category": "bible",
+  "title": "Pito ka Libro sa Deterokanonikal\n\n---  \n\n(Pahayag nga wala'y dugang)",
+  "question": "Nganong ang Bibliya sa Katoliko adunay pito ka dugang nga mga basahon sa Daang Testamento kay sa Protestante?\n\nWala ba idugang kini sa mga Katoliko?",
+  "answer": "Ang mga Katoliko wala magdugang ug libro; ang Protestante mibulag kanila. Ang pito ka Deuterocanonikal (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Mga Macabeo, plus bahin sa Esther ug Daniel) kabahin sa Septuagint, ang Greek nga Daang Testamento nga gigamit sa mga Apostoles ug gipatokar sulod sa Bag-ong Testamento. Ang sayong Simbahan midawat niining mga basahona, ug ang mga konseho sa Hippo (393) ug Carthage (397) iladlad sila ingong kanonikal nga Kasulatan. Nagpabilin kini diha sa matag Kristohanong Biblia sulod sa kap-atan ka siglo hangtod gibalibaran ni Martin Luther kaniadtong ika-16ng siglo, bahin tungod kay ang 2 Maccabees 12:46 nagsuporta sa pag-ampo alang sa mga patay, nga misupak sa iyang pagsalikway sa Purgatoryo. Ang mga rabbi sa Hudyo kinsa mikunhod kanila mihimo niini kaniadtong 90 AD diha sa Jamnia human ang Kristiyanidad nag-adoptar na kanila, busa ang ilang pagkunhod dili magbugkos sa mga Kristohanon. Ang Konseho sa Trent (1546) miusab lamang sa karaan nga canon batok sa bag-ong pagwagtang.",
+  "scripture": [
+    {
+      "reference": "2 Maccabees 12:46",
+      "text": "It is a holy and pious thought to pray for the dead that they may be freed from sin.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Wisdom 2:12-20",
+      "text": "The wicked plot against the righteous one, a passage the Gospels echo in Christ's Passion.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "120"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Augustine of Hippo",
+      "quote": "The whole canon of Scripture is comprised in these books... Tobias, Judith, and the two books of Maccabees.",
+      "source": "On Christian Doctrine, Book II, 397 AD"
+    }
+  ],
+  "tags": [
+    "deuterocanon",
+    "apocrypha",
+    "septuagint",
+    "maccabees",
+    "canon",
+    "trent"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "biblical-canon",
+    "purgatory",
+    "bible-tradition-authority"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

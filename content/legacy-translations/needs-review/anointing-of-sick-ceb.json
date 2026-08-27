@@ -1,0 +1,48 @@
+{
+  "id": "anointing-of-sick",
+  "category": "sacraments",
+  "title": "Ang Pagpahid sa Dukha",
+  "question": "Unsa ang Pagpahid sa mga Masakiton? Kini ba lamang ang \"Kataposan nga mga Rituwal\" alang sa mga tawo nga mamatay?",
+  "answer": "Ang Pagpahid sa mga Masakiton usa ka sakramento sa pag-ayo nga gihatag ngadto niadtong seryosong masakiton o nagsaulog sa kahuyang sa tigulang, dili lamang usa ka rituwal alang sa namatay. Ang direktang balaod Biblikal niini makita diha kang Santiago, nga nagtudlo sa mga masakiton sa pagtawag sa presbyteros (mga saserdote) gikan sa Simbahan aron mag-ampo kanila ug pahid kanila sa lana sa ngalan sa Ginoo, nga nagsaad nga ang pangamuyo sa pagtoo makaluwas sa masakitong tawo, ibangon sila sa Gino-o, ug pasayloon ang ilang mga sala (Jas 5:14-15). Ang kaugalingong mga apostoles ni Jesus nagpahid sa mga masakiton pinaagi sa lana ug naghinlo kanila (Mk 6:13). Kini nga sakramento naghatag og grasya, espirituwal nga kusog, kamurayawan, kaisug, unyon uban sa pasion ni Kristo, ug pagpasaylo sa mga sala, ug kon gitinguha sa Diyos, pisikal nga pag-ayo. Mahimo'g tanggapon kini usab sa labaw pa kay sa usa ka higayon, matag beses nga ang tawo masakiton na usab hinungdanon. 'Kataposang Mga Ritual,' nga mas hustong nagtumong sa katapusang mga sakramento alang sa namatay, lakip niini nga Pagpahid uban ang Pakigsobat (Penance) ug Viaticum (katapusang Komunyon), apan ang pagpahid mismo alang sa bisan kinsa nga seryosong masakiton, nga nagtuyo aron maulian ug makapalig-on, dili lamang mag-andam alang sa kamatayon.",
+  "scripture": [
+    {
+      "reference": "James 5:14-15",
+      "text": "Are any among you sick? Let them call the presbyters, who will pray over them and anoint them with oil.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Mark 6:13",
+      "text": "The apostles anointed many sick people with oil and cured them.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "1499",
+    "1511",
+    "1514",
+    "1520"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. John Chrysostom",
+      "quote": "The priests of the Church can forgive sins... for they anoint the sick and pray for their recovery.",
+      "source": "On the Priesthood, 387 AD"
+    }
+  ],
+  "tags": [
+    "anointing of the sick",
+    "last rites",
+    "healing",
+    "sacrament",
+    "oil",
+    "james"
+  ],
+  "difficulty": "beginner",
+  "lang": "ceb",
+  "relatedTopics": [
+    "confession-to-priest",
+    "holy-orders",
+    "holy-eucharist"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

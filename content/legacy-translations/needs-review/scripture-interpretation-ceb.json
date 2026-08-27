@@ -1,0 +1,47 @@
+{
+  "id": "scripture-interpretation",
+  "category": "bible",
+  "title": "Unsaon sa Simbahan ang Paghubad sa Kasulatan  \n---  \n\n*Preserves Markdown formatting exactly.*",
+  "question": "Nganong dili lamang matag tumutuo makabasa sa Bibliya ug maghubad niini alang sa ilang kaugalingon ubos sa Balaang Espiritu?",
+  "answer": "Ang Biblia mismo nagpasidaan batok sa bug-os nga pribadong interpretasyon: Si San Pedro nag-ingon nga walay profesiya sa Kasulatan ang usa ka butang sa personal nga interpretasyon (2 Pet 1:20), ug nga ang dili-mahibalo maglibog sa mga sulat ni Pablo ngadto sa ilang kaugalingong kapildihan (2 Pet 3:16). Sa dihang nagbasa si Etiopiano nga eunuko sa Isaias, gipangutana siya ni Felipe kon nagsabot ba siya, ug mitubag siya, \"Unsaon ko pagsabot, kon walay maggiya kanako?\" (Acts 8:31). Ang Simbahan nag-interpretar sa Kasulatan sumala sa literal, alamatikong, moral, ug anagogiko nga mga kahulogan, nga nahiuyon sa bug-os nga Tradisyon ug analogiya sa pagtuo. Ang daghang magkasumpaki nga interpretasyon nga misunod sa prinsipyo sa pribadong paghukom nagpakita sa iyang dili-malig-ong kinaiya. Ang mga Katoliko padayong naga-basa ug naningkamot gihapon sa Pulong, apan ang kataposang pagtino sa ilang tinuod nga kahulogan sakop sa nabuhi nga Magisteryo nga gi-giyahan sa Balaang Espiritu, dili ngadto sa tagsatagsa ka magbabasa.",
+  "scripture": [
+    {
+      "reference": "2 Peter 1:20",
+      "text": "No prophecy of scripture is a matter of one's own private interpretation.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Acts 8:30-31",
+      "text": "The Ethiopian confesses he cannot understand Isaiah unless someone guides him.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "115",
+    "116",
+    "117",
+    "119"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Vincent of Lerins",
+      "quote": "In the Catholic Church itself all possible care must be taken, that we hold that faith which has been believed everywhere, always, by all.",
+      "source": "Commonitory, 434 AD"
+    }
+  ],
+  "tags": [
+    "interpretation",
+    "private judgment",
+    "magisterium",
+    "senses of scripture",
+    "bible"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "sola-scriptura-refuted",
+    "bible-tradition-authority",
+    "true-church"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

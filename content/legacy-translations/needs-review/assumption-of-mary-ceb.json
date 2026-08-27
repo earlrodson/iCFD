@@ -1,0 +1,46 @@
+{
+  "id": "assumption-of-mary",
+  "category": "mary",
+  "title": "Ang Paglukat kang Maria",
+  "question": "Asa sa Bibliya nagtambag nga gidala si Maria ngadto sa langit diha sa lawas? Dili ba kini usa ka ginhimo nga doktrina?",
+  "answer": "Ang Pag-akyat nagtuo nga si Maria, sa kataposan sa iyang kinabuhi dinhi sa Yuta, gidala ang lawas ug kalag ngadto sa langitnong himaya, usa ka dogma nga dayegon gidefinar ni Papa Pius XII kaniadtong 1950 ingong bahin sa karaang pagtuo. Bisan tuod wala kini ipahayag pinaagi ug espesipikong mga pulong, kini dili maihap nga katugma sa Bibliya: isip ang Diri-Masaway, luwas gikan sa sala, si Maria takosng masalbar gikan sa pisikal nga pagkadunot nga silot sa sala (Gen 3:19). Ang Kaarangga sa Pakigsaad, nga naghulagway kang Maria nga nagdala sa Diyos nga Natawo, hinimo gikan sa dili-mamatayng kahoy, ug ang Pahibalo 12 nagpakita sa babaye nga may korona diha sa langit, lawas ug kalag. Ang Kasulatan naandang nagsuporta sa mga pisikal nga pag-akyat ni Enoch (Gen 5:24) ug Elias (2 Kgs 2:11), busa ang susamang grasya alang sa Inahan sa Diyos bug-osng takos. Kini nga panaghapon gipamatud-an diha sa liturhiya sa Simbahan ug sa mga Amahan sukad kaniadto, ug walay relikiya ni Maria's lawas ang gitanyag bisan unsang simbahan, usa ka dayegong katahum.",
+  "scripture": [
+    {
+      "reference": "Revelation 12:1",
+      "text": "A great sign appeared in heaven, a woman clothed with the sun, with the moon under her feet and a crown of twelve stars.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "2 Kings 2:11",
+      "text": "Elijah was taken up to heaven in a whirlwind.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "966",
+    "974"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. John Damascene",
+      "quote": "It was fitting that she who had kept her virginity undamaged in childbirth should keep her body without corruption after death.",
+      "source": "Homily on the Dormition, 730 AD"
+    }
+  ],
+  "tags": [
+    "assumption",
+    "mary",
+    "dormition",
+    "immaculate",
+    "revelation 12",
+    "dogma"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "immaculate-conception",
+    "queenship-of-mary",
+    "mary-mother-of-god"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

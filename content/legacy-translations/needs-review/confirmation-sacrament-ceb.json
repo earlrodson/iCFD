@@ -1,0 +1,48 @@
+{
+  "id": "confirmation-sacrament",
+  "category": "sacraments",
+  "title": "Ang Sakramento sa Kumpirmasyon",
+  "question": "Unsa ang Kumpirmasyon, ug nganong kini maoy lahi nga sakramento kon naa nay Espiritu sa Binyag?",
+  "answer": "**Kumpirmasyon**\n\nAng kumpirmasyon maoy sakramento nga nagkumpleto sa grasya sa binyag pinaagi sa espesyal nga pag-abot sa Balaang Espiritu, nga nagselyo ug naggiya sa nabinyagan alang sa saksihon ug hamtong nga disipiliko. Ang iyang basihan Biblikal tin-aw: didto sa Samaria, bisan tuod ang katawhanon naunahan og binyag, si apostol Pedro ug Juan miabot, milabay ug mga kamot kanila, ug sila nakadawat sa Balaang Espiritu pinaagi sa laing buhat (Acts 8:14-17). Si Pablo usab misulay sa mga disipulo didto sa Efeso aron matabangan ang pag-abot sa Espiritu kanila (Acts 19:5-6). Ang Kasulatan naghisgot bahin sa pag- seal uban sa gisaad nga Balaang Espiritu (Eph 1:13).\n\nKini nagpakita nga sayo pa kaayo, ang simbahan nakabahinbahin sa gasa sa Balaang Espiritu diha sa kumpirmasyon gikan mismo sa binyag, kasagarang ginhatag pinaagi sa paglata ug mga kamot ug pagpahid uban sa obispo o sa iyang representante. Samtang ang mga apostoles nabinyagan sa usa ka paagi pinaagi sa pagsunod kang Kristo apan nagkinahanglan gihapon og Pentekostes aron masiguro alang sa misyon, ang kumpirmasyon nagpalalom ug naghimo nga hingpit kon unsay sinugdanan sa binyag, nga maghatag sa Kristohanong katawhanon og kahanas sa pagpahibalo ug pagpanalipod sa pagsarig.",
+  "scripture": [
+    {
+      "reference": "Acts 8:17",
+      "text": "The Apostles laid hands on them, and they received the holy Spirit.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Ephesians 1:13",
+      "text": "You were sealed with the promised holy Spirit.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "1285",
+    "1288",
+    "1302",
+    "1316"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Cyprian of Carthage",
+      "quote": "They who are baptized in the Church are brought to the bishops, and by our prayer and the imposition of hands receive the Holy Spirit.",
+      "source": "Epistle 73, 255 AD"
+    }
+  ],
+  "tags": [
+    "confirmation",
+    "sacrament",
+    "holy spirit",
+    "sealing",
+    "chrism",
+    "laying on of hands"
+  ],
+  "difficulty": "beginner",
+  "lang": "ceb",
+  "relatedTopics": [
+    "infant-baptism",
+    "holy-orders",
+    "holy-eucharist"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

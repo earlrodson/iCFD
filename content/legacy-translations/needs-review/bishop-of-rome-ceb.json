@@ -1,0 +1,47 @@
+{
+  "id": "bishop-of-rome",
+  "category": "papacy",
+  "title": "Nganong Ang Obispo sa Roma Nagpangulo sa Simbahan",
+  "question": "Nganong ang Obispo sa Roma, sa tanang obispo, mao ang pangulong opisyal sa tibuok Simbahan?",
+  "answer": "Ang Obispo sa Roma nagpangulo sa unibersal nga Iglesya tungod kay siya ang kahulogan ni Santo Pedro, kansang gipili ni Kristo ingong bato diin iyang pagatukoron ang iyang Iglesia ug kang kinsa lamang gihatag ang mga yawe sa gingharian (Mat 16:18-19). Si Pedro nagpadayon og talagsaong pagpangulo taliwala sa mga Apostoles: kanunayng siya maoy una diha sa lista, gi-utana ni Kristo nga pabugnawon ang iyang kasaliganan (Lk 22:32) ug mabusog ang bug-os nga panon (Jn 21:15-17), ug siya nagtambong sa unang gikan sa Pentekoste hangtod sa Konsilyo sa Jerusalem. Si Pedro miadto ngadto sa Roma, nagpangulo sa Iglesia didto, ug namatay ingong martir ug gi-ukab diha nianang siyudad, busa ang iyang awtoridad natural nga gipasa ngadto sa Obispo sa Roma ingong kahulogan. Sukwahi ka adlawnon pa lang mga siglo, ilhon na sa Iglesya sa Roma nga nagtag-iya og espesyal nga labaw, ug mga panagbangi gi-apelar ngadto sa Roma alang sa resolusyon. Ang mga yawe simbolo sa katungdanan sa royal steward (Isa 22:22), usa ka gihuptan nga awtoridad diha sa nagpadayon nga sunodsunod, busa ang Romanhonong episko ayohon mao ang tin-awng sentro sa pagka-usa alang sa tibuok Iglesia.",
+  "scripture": [
+    {
+      "reference": "John 21:17",
+      "text": "Jesus tells Peter three times, Feed my sheep.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Isaiah 22:22",
+      "text": "I will place the key of the House of David on his shoulder; what he opens, no one will shut.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "881",
+    "882",
+    "834"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Irenaeus of Lyon",
+      "quote": "With this Church, because of its superior origin, all the churches must agree... it is here that the tradition of the Apostles has been preserved.",
+      "source": "Against Heresies, Book III, 189 AD"
+    }
+  ],
+  "tags": [
+    "bishop of rome",
+    "pope",
+    "peter",
+    "keys",
+    "primacy",
+    "rome"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "primacy-of-peter",
+    "papal-succession",
+    "councils-and-popes"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

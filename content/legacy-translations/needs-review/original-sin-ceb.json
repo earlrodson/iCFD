@@ -1,0 +1,48 @@
+{
+  "id": "original-sin",
+  "category": "church-teaching",
+  "title": "Ang Doktrina sa Orihinal nga Sala\n\n--- \n\nAng mga lagda alang niining apokalipsis han-ay: - Hubara lamang ang palibot nga prosa bug-os ug matinumanon. Dili magsumaryo, mabug-at, o kuhaa bisan unsang hugpong sa pulong o sentensiya. - Tagoi ang Markdown formatting (##, ---, mga linya). \n\n---",
+  "question": "Nganong dunay mahimog masakitan tungod sa sala ni Adan? Dili ba kana dili-matarung?",
+  "answer": "Ang orihinal nga sala dili personal nga pagdumot sa buhat ni Adan kondili ang kawalay-sala ug grasya nga siya unta magpas-an ngadto sa tanang katawhanon, nga naghimo sa kinaiyanhong tawo nga nasamdan, nahigugma sa sala, ug ilalom sa kamatayon. Si San Pablo nagtudlo nga pinaagi sa usa ka tawo misulod ang sala ngadto sa kalibotan ug ang kamatayon mikaylap ngadto sa tanang tawo tungod kay silang tanan nagsala kaniya (Rom 5:12), ug nga diha kang Adan ang tanan namatay (1 Cor 15:22). Kini nagpatin-aw sa unibersal nga kasinatian sa katawhanon sa moral nga pakigbisog ug sa panginahanglan alang sa usa ka Manluluwas; kon wala kana, dili kinahanglan ang pagluwas ni Kristo, ang Bag-ong Adan. Ang Bautismo nagwagtang sa orihinal nga sala ug mibalik sa grasya, maong hinungdan nga ginasalig sa Simbahan bisan ang mga bata (Acts 2:38-39). Dili kini dili matarongan, kondili naghimaya pa gayod sa kaawa ni Jehova, tungod kay diin abundang sala, mas abanteng grasya maoy nag-abante.",
+  "scripture": [
+    {
+      "reference": "Romans 5:12",
+      "text": "Through one man sin entered the world, and death through sin, and so death spread to all.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "1 Corinthians 15:22",
+      "text": "As in Adam all die, so too in Christ shall all be brought to life.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "402",
+    "403",
+    "404",
+    "405"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Augustine of Hippo",
+      "quote": "By the greatness of the first sin, we have all lost the ability not to sin, unless grace liberates us.",
+      "source": "On Rebuke and Grace, 427 AD"
+    }
+  ],
+  "tags": [
+    "original sin",
+    "adam",
+    "grace",
+    "baptism",
+    "concupiscence",
+    "salvation"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "infant-baptism",
+    "immaculate-conception",
+    "salvation"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

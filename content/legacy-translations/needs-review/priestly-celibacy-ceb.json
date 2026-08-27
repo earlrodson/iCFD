@@ -1,0 +1,46 @@
+{
+  "id": "priestly-celibacy",
+  "category": "tradition",
+  "title": "Nganong Gipili ang Pag-inom sa mga Pari nga Katoliko",
+  "question": "Nganong dili magminyo ang mga sacerdote sa Katoliko? Dili ba matod sa Bibliya nga ang usa ka obispo kinahanglan mag-asawa na lang ug usa ka asawa?",
+  "answer": "Ang pagkabulag sa mga saserdote maoy usa ka disiplina sa Latinong Simbahan, dili kini usa ka doktrina nga dili-mausab; kinahanglang ipasundayag ang libreng panulondon ni Kristo, kansang kaugalingon usab celibato. Gidayeg ni Jesus kadtong nahimong \"mga eunuko tungod sa gingharian sa langit\" ug miingon nga bisan kinsa nga makakat-on kinahanglan magbuhat niini (Mat 19:12). Si San Pablo, wala-misawhan, naningkamot nga ang tanan mahimong sama kaniya ug nagtudlo nga ang dili-masawhan malinawon bahin sa mga butang sa Ginoo, walay-panagbingkil sa paghigugma (1 Cor 7:32-35). Ang pulonga \"usa ka asawa lamang\" (1 Tim 3:2) nagdili sa pag-asawoha pag-usab o poligamya niadtong panahon nga ang mga lalaki nga may-asawa kasagarang ginaordinar; kini wala magmando sa kaminyoon. Ang celibato naggawi sa saserdote aron mahimong bug-os nga kauban sa iyang kongregasyon ingong espirituwal nga amahan, usa ka buhi nga tigpasundayag sa umaabot nga kalibutan diin walay kaminyoon (Mat 22:30). Ang mga Simbahan Katoliko Sidlakan naggiya ug ginasawhan, nagpakita nga ang balaod maoy disiplina nga mahimong ipasobra o usbon sa Simbahan.",
+  "scripture": [
+    {
+      "reference": "Matthew 19:12",
+      "text": "Some have renounced marriage for the sake of the kingdom of heaven; whoever can accept this ought to accept it.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "1 Corinthians 7:32",
+      "text": "An unmarried man is anxious about the things of the Lord, how he may please the Lord.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "1579",
+    "1580",
+    "1618"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Jerome",
+      "quote": "Christ loves virgins more than others, because they willingly give what was not commanded of them.",
+      "source": "Against Jovinianus, 393 AD"
+    }
+  ],
+  "tags": [
+    "celibacy",
+    "priesthood",
+    "discipline",
+    "chastity",
+    "holy orders"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "holy-orders",
+    "confirmation-sacrament",
+    "canonization-process"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

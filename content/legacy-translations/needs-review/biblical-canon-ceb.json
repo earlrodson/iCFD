@@ -1,0 +1,47 @@
+{
+  "id": "biblical-canon",
+  "category": "bible",
+  "title": "Unsaon sa Pagporma ang Bibliya",
+  "question": "Kinsa ang nagdesisyon kon unsang mga basahon ang sakop sa Bibliya? Dili ba lang kini nahulog gikan sa langit nga kompleto?",
+  "answer": "Ang Bibliya wala umabot ingong usa ka bug-os nga gitapokang bolyum; giporma kini sa Simbahang Katoliko sulod sa daghang siglo. Sa sinugdan, daghan ang nagsirkulasyon nga mga sinulat diha sa simbahan, ug may mga panaglalis kon unsay tinuodng inspirado (pananglitan, gipakyas nila ang Hebreohanong Sulat, Santiago, Pinadayag, o 2 Pedro). Ang kanon napirmahar pinaagi sa Katolikong mga konsilyo ilalom sa awtoridad sa pagtudlo sa simbahan: ang rehiyonal nga konsilyos sa Roma (382), Hippo (393), ug Kartago (397) naglista sama-sama sa 73 ka libro nga gigamit karon sa mga Katoliko. Si Kristo wala magsulat og libro apan nagtukod ug simbahan (Mat 16:18) nga may gahom sa pagbugkos ug pagpalagpot (Mat 16:19), ug kana nga simbahan, gigiyahan niining Balaang Espiritu nga gisaad ni Jesus (Jn 16:13), nakaila sa kanon. Busa dili ka makapamatuod \"Sa Bibliya lamang\" kutob kon wala una modawat sa awtoridad sa simbahan nga nagtino kining mga libro. Ang tabla han-ay mismo maoy buhat sa Tradisyon.",
+  "scripture": [
+    {
+      "reference": "John 16:13",
+      "text": "Jesus promises the Spirit of truth will guide the Church into all truth.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Matthew 16:18-19",
+      "text": "Christ builds his Church on Peter and grants the keys with authority to bind and loose.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "120",
+    "105",
+    "138"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Augustine of Hippo",
+      "quote": "I would not believe in the Gospel, had not the authority of the Catholic Church already moved me.",
+      "source": "Against the Epistle of Manichaeus, 397 AD"
+    }
+  ],
+  "tags": [
+    "canon",
+    "bible",
+    "councils",
+    "carthage",
+    "inspiration",
+    "tradition"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "deuterocanonical-books",
+    "bible-tradition-authority",
+    "sola-scriptura-refuted"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

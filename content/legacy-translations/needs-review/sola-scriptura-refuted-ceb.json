@@ -1,0 +1,46 @@
+{
+  "id": "sola-scriptura-refuted",
+  "category": "bible",
+  "title": "Ang Sola Scriptura Nagasupak sa Kaugalingon niini",
+  "question": "Asa sa Bibliya ang nagtudlo nga ang Kasulatan lamang maoy bug-osng awtoridad alang sa mga Kristohanon?",
+  "answer": "Dili diin man ang Biblia nagtudlo ug \"Ang Kasulatan Lamang,\" nga naghimo sa doktrina nga kontradiksyon-sa-kalugaringon: usa ka lagda sa pagtuo nga nagsangpit og ebidensiya gikan sa Bibliya dili mismo mapamatud-an gikan niini. Ang bersikulo nga sagad gipasiugda, 2 Timoteo 3:16-17, nag-ingon nga ang Kasulatan inspirado ug makapalipay alang sa pagtudlo ug naghimo sa tigdasig bug-os, apan \"makapalipay\" ug \"kapuslanan\" dili managsama sa \"sagad-sa-kalugaringon\"; ang pag-ampo ug maayong buhat usab gitawag nga makapalipay nga walay pag-isol sa tanang butang. Si Pablo mando sa mga taga-Tesalonica nga magpadapat sa tradisyon, gipasa pinaagi sa baba ug sinulat (2 Thes 2:15), nagpasiugda sa oral nga Tradisyon sama ra sa sinulat nga pulong. Iyang gitawag ang Simbahan, dili ang Biblia, ingon nga ang haligi ug pundasyon sa kamatuoran (1 Tim 3:15). Ang Bibliya nagpasabot og usa ka simbahang magtutudlo nga naghimog iyang kaugalingong canon, busa ang Kasulatan ug Tradisyon, ilalom sa Magisterium, mao ang lagda sa pagtuo.",
+  "scripture": [
+    {
+      "reference": "2 Tesalonica 2:15",
+      "version": "Cebuano Ang Dating Biblia",
+      "text": "Mao nga, mga igsoon, pagpuyo ug hinungdon, ug pagkuha sa mga tradisyon nga atong gitudlo, bisan pinaagi sa pulong, o pinaagi sa atong sulat."
+    },
+    {
+      "reference": "1 Timothy 3:15",
+      "text": "The Church of the living God is the pillar and foundation of truth.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "80",
+    "81",
+    "82"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Basil the Great",
+      "quote": "Of the dogmas and messages preserved in the Church, some we possess from written teaching and others we receive from the tradition of the Apostles.",
+      "source": "On the Holy Spirit, 375 AD"
+    }
+  ],
+  "tags": [
+    "sola scriptura",
+    "tradition",
+    "authority",
+    "rule of faith",
+    "bible"
+  ],
+  "difficulty": "advanced",
+  "lang": "ceb",
+  "relatedTopics": [
+    "bible-tradition-authority",
+    "scripture-interpretation",
+    "true-church"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

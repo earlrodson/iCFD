@@ -1,0 +1,47 @@
+{
+  "id": "papal-infallibility",
+  "category": "church-teaching",
+  "title": "Pagtugkad sa Pagkamatarong sa Papa",
+  "question": "Nagpasabot ba ang Infallibilidad sa Papa nga dili gayod makasala ang Papa ug tukma sa tanan iyang ginasulti?",
+  "answer": "Ang Papal nga Infallibility kasagarang masayop sabton; dili kini nagpasabot nga ang Papa walay sala (impeccable), o nga gihuptan siya gikan sa sayop ang tanan niyang opinyon, politikal nga panglantaw, o malinawon nga komento. Kini mao ang makugihan nga biyaya, gidefinir sa Unang Konseho sa Vatican (1870), diin ang Papa, kon siya magtudlo \"ex cathedra\", ingong pangulong pastol nga nagpiho ug doktrina sa pagtuo o moralidad nga ipasundayag sa tibuok Simbahan, gihuptan sa Balaang Espiritu gikan sa pagpanulti og sayop. Kini nagsalig sa pahayag ni Kristo nga ang pagtuo ni Pedro dili mabungkag ug sa iyang komisyon sa pagpalig-on sa igsoong mga linalang (Lk 22:32), ug sa mga susi nga gihatag kang Pedro uban sa gahom sa pagbugkos ug pagpagawas (Mat 16:18-19). Kini gamayng gigamit lamang, sama sa mga depinisyon sa Immaculate Conception ug Assumption. Ang mga Papa makapakasala gayud ug makaingon og sayop nga pribadong opinyon; ang Infallibility nagpanalipod sa opisyal nga pagtulon-an sa Simbahan, dili sa personalidad sa tawo.",
+  "scripture": [
+    {
+      "reference": "Luke 22:32",
+      "text": "Jesus tells Peter he has prayed that his faith may not fail, and charges him to strengthen his brethren.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Matthew 16:18-19",
+      "text": "Christ gives Peter the keys with authority to bind and loose.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "891",
+    "890",
+    "2035"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Cyprian of Carthage",
+      "quote": "The Lord speaks to Peter... that He might set forth unity. He builds His Church upon one.",
+      "source": "On the Unity of the Church, 251 AD"
+    }
+  ],
+  "tags": [
+    "infallibility",
+    "papacy",
+    "ex cathedra",
+    "vatican i",
+    "pope",
+    "magisterium"
+  ],
+  "difficulty": "advanced",
+  "lang": "ceb",
+  "relatedTopics": [
+    "primacy-of-peter",
+    "bishop-of-rome",
+    "bad-popes-history"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

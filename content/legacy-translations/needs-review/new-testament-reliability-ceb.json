@@ -1,0 +1,46 @@
+{
+  "id": "new-testament-reliability",
+  "category": "bible",
+  "title": "Tinuod ba ang Bag-ong Testamento?",
+  "question": "Dili ba ang Bag-ong Testamento gisulat sa dugay nga panahon human ni Jesukristo, puno ug mga sugilanon, ug na-corrupt tungod sa pagkopya?",
+  "answer": "Ang Bag-ong Testamento maoy labing gipamatud-an nga dokumento sa karaang panahon, naglungtad diha sa kapin sa 5,800 ka mga manuskrito sa Grego, uban ang pipila ka mga piraso nga gisulat sulod sa usa ka siglo sa orihinal, dako gayong labaw pa kay sa diyutayng ulahi nga mga kopya nga atong may-ada alang sa mga awtor sama kang Tacitus o Caesar. Ang Mga Ebanghelyo gi-compose sulod sa kinabuhi sa mga saksi-sa-katawhan; ang mga sinulat ni Pablo gikan sa dekada 50 AD, ug siya nag-apelar ngadto sa kapin sa lima ka gatos nga buhi pa nga mga saksi sa nabanhawng Kristo (1 Cor 15:6). Si Lucas nagsulat ingong mabinantayon nga historian nga nakabase sa testimonya-sa-katawhan (Lk 1:1-4). Ang tekstwal nga kalainan kasagaran gipasabot lamang sa diyutayng mga sayop sa pagtima o kahikayan, ug wala makaapektar sa doktrina, busa ang mensahe maoy tukma kaayo nga gi-transmit. Ang Simbahan nga nagsulat, nagpreserbar, ug nag-canonicalize niining mga sinulat vouches alang sa apostolikanhong gigikanan niini, ug ang internal nga kagarbo mahitungod sa mga kapakyasan sa mga disipulo nagpakita batok sa legendary invention.",
+  "scripture": [
+    {
+      "reference": "Luke 1:1-4",
+      "text": "Luke writes an orderly account based on eyewitnesses so Theophilus may know the certainty of the teaching.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "1 Corinthians 15:6",
+      "text": "The risen Christ appeared to more than five hundred at once, most still living.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "126",
+    "76"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Irenaeus of Lyon",
+      "quote": "The Gospels could not possibly be either more or fewer in number than they are.",
+      "source": "Against Heresies, Book III, 189 AD"
+    }
+  ],
+  "tags": [
+    "reliability",
+    "manuscripts",
+    "gospels",
+    "history",
+    "resurrection",
+    "eyewitness"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "biblical-canon",
+    "divinity-of-christ",
+    "new-testament-reliability"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

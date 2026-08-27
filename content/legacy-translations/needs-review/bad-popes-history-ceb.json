@@ -1,0 +1,47 @@
+{
+  "id": "bad-popes-history",
+  "category": "papacy",
+  "title": "Mga Makasasala nga Papa ug ang Pagkapapa",
+  "question": "Kon aduna bay mga Papa nga korap o diri-moral, dili ba kana nagpamatuod nga ang pagkapapa dili gikan sa Dios?",
+  "answer": "Ang paglungtad sa mabdos nga mga papa tinuod nga nagpamatuod dili nagsupak sa tanyag sa Katoliko, tungod kay ang garantiya sa Simbahan wala kini mahimong personal nga ka-banalon sa opisyal kondili sa pasalig ni Kristo nga magapadayon ang iyang Iglesia. Gipili ni Jesus si Pedro, kinsa nagdumili Kaniya ug tulo ka beses (Lk 22:61-62), ug si Judas, usa ka traidor, nabilang sa Napulog-Duha, nga nagpakita sukad pa gikan nga ang Diyos magtrabaho pinaagi sa mga linalang nga may depekto. Si Kristo mitagna nga dili matukod pag-usab sa mga ganghaan sa impyerno batok sa iyang Iglesia (Mat 16:18), dili nga ang tanang Papa mahimong usa ka santo. Ang papal infallibility nagpanalipod sa opisyal nga pagtudlo bahin sa panaghigala ug moral, dili ang pribadong pamatasan sa Papa; dayag, bisan pa niana, ang labing daotang mga Papa wala mogamit sa ilang katungdanan aron ipahamtang ingong doktrina ang heresya, usa ka tin-awng testamento niining panalipod. Ang pagpabiling buhi sa Iglesia bisan pa sa makapasubo nga mga papa, korapsiyon sa Renacimiento, ug matag tawhanong kapakyasan sulod sa duha ka milenyo maoy mismo usa ka timailhan sa Diyosnong suporta, kay walay organisasyon lamang sa katawhan nga gi-una niining mga lalaki ang makapadayon. Ang Diyos nagsulat ug tuwid pinaagi sa kiling-kiling nga mga paagi.",
+  "scripture": [
+    {
+      "reference": "Matthew 16:18",
+      "text": "Upon this rock I will build my Church, and the gates of the netherworld shall not prevail against it.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Luke 22:61-62",
+      "text": "Peter, having denied the Lord, went out and wept bitterly.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "869",
+    "890",
+    "827"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Augustine of Hippo",
+      "quote": "The good shepherd sought even in bad ministers the sheep that belong to Christ, for the water flows pure even through stone channels.",
+      "source": "Tractates on the Gospel of John, 416 AD"
+    }
+  ],
+  "tags": [
+    "bad popes",
+    "papacy",
+    "corruption",
+    "holiness",
+    "indefectibility",
+    "infallibility"
+  ],
+  "difficulty": "intermediate",
+  "lang": "ceb",
+  "relatedTopics": [
+    "papal-infallibility",
+    "primacy-of-peter",
+    "bishop-of-rome"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

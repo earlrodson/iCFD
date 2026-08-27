@@ -1,0 +1,47 @@
+{
+  "id": "rosary-biblical",
+  "category": "tradition",
+  "title": "Kasagaran ba ang Rosario diha sa Bibliya?",
+  "question": "Wala ba'y paglapas ang Rosario sa pasidaan ni Hesus batok sa walay-kahulogan nga paulit-ulit diha sa pagsimba?",
+  "answer": "Ang Rosaryo dili supak sa mga pulong ni Jesus; gisaway niya ang \"pagbabaybay\" sama sa pagano nga nagtuo sila madungog tungod sa ilang daghang pulong (Mat 6:7), maingon man kadtong walay sulod nga pagsulay sa pagmaniobra kang Diyos, dili mismo ang pag-usab. Puno ug balaang pag-ulit ang Kasulatan: ang serafim kanunayng nag-ingon 'Banal, banal, banal' (Isa 6:3), ang Awit 136 nag-ulit \"Kasakit sa Diyos molungtad hangtod sa kahangtoran\" sulod sa 26 ka beses, ug si Jesus mismo diha sa Gethsemane nanalangin 'nag-ingon sa samang mga pulong' tulo ka beses (Mat 26:44). Ang Rosaryo usa ka eskriptural nga meditasyon bahin sa misteryosong kinabuhi, kamatayon, ug pagkabanhaw ni Kristo, diin ang paulit-ulit nga Ave Maria (nga mismo biblikal, Lk 1:28, 42) nagporma og malumo nga ritmo nga naka-focus sa kasing-kasing ngadto sa maong mga panghitabo, sama sa musika gikan sa luyo makatabang sa pagpunting. Kini kinaraanng Kristo-centered, naggiya ang nanalangin pinaagi sa Ebanghelyo uban kang Maria ingong giya. Ang mapahitas-on nga pag-usab nga gitanyag ug atensyon maoy pinulongan sa debosyon, dili kapasikaran.",
+  "scripture": [
+    {
+      "reference": "Revelation 4:8",
+      "text": "Day and night the living creatures never cease to cry, Holy, holy, holy.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Matthew 26:44",
+      "text": "Jesus prayed a third time, saying the same words.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "2678",
+    "971",
+    "1674"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. John Chrysostom",
+      "quote": "Continue knocking; ask again and again; be not ashamed, for God delights in persevering prayer.",
+      "source": "Homilies on Prayer, 4th century AD"
+    }
+  ],
+  "tags": [
+    "rosary",
+    "repetition",
+    "prayer",
+    "meditation",
+    "mary",
+    "mysteries"
+  ],
+  "difficulty": "beginner",
+  "lang": "ceb",
+  "relatedTopics": [
+    "hail-mary-biblical",
+    "fatima-apparitions",
+    "prayer-to-saints"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}

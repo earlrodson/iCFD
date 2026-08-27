@@ -1,0 +1,46 @@
+{
+  "id": "hail-mary-biblical",
+  "category": "mary",
+  "title": "Tinuod ba ang Ave Maria diha sa Bibliya?",
+  "question": "Asa diha sa Bibliya ang pangamuyo nga Ave Maria? Dili ba unbiblical ang pag-ampo kang Maria?",
+  "answer": "Ang Hail Mary bug-os nga Biblikal ang sentro niini. Ang unang katunga gikuha pulong sa pulong gikan sa Kasulatan: ang pagbati sa anghel nga si Gabriel, \"Magtahod kamo, puno ug grasya, uban ka ang Ginoo\" (Lk 1:28), ug ang mga pulong ni Elisabet nga inspirado sa Espiritu, \"Malipayon ikaw taliwala sa kababayin-an, ug malipayon usab ang bunga sa imong tiyan\" (Lk 1:42). Si Maria mismo nagpahayag nga matawag siya nga bulahan sa tanang henerasyon (Lk 1:48), busa ang pagdayeg kaniya naghupot sa Kasulatan inay supak niini.\n\nAng ikaduhang katunga, \"Maria Santa, Inahan sa Diyos, pangamuyo alang kanamo nga mga makasasala,\" mao lamang usa ka hangyo sa iyang tabang, sama sa atong gihangyo ang usa ka higala nga mag-ampo alang kanato, giduaw ngadto kang kinsa buhi diha kang Kristo (Mk 12:27). Dili kita nagasimba kang Maria; ang pagdayeg iya ra sa Diyos. Gidayeg nato siya ug nangayo og mga panalangin, eksakto sama sa Kasulatan ug sa labing sayong mga Kristohanon.",
+  "scripture": [
+    {
+      "reference": "Luke 1:28",
+      "text": "The angel greets Mary: Hail, full of grace, the Lord is with you.",
+      "version": "NABRE"
+    },
+    {
+      "reference": "Luke 1:48",
+      "text": "Mary declares that from now on all ages will call her blessed.",
+      "version": "NABRE"
+    }
+  ],
+  "catechism": [
+    "2676",
+    "2677"
+  ],
+  "churchFathers": [
+    {
+      "author": "St. Athanasius of Alexandria",
+      "quote": "It is right for us to remember and honor the most holy Mother of God, ever-Virgin Mary.",
+      "source": "Homily on the Deipara, 4th century AD"
+    }
+  ],
+  "tags": [
+    "hail mary",
+    "prayer",
+    "mary",
+    "intercession",
+    "luke",
+    "rosary"
+  ],
+  "difficulty": "beginner",
+  "lang": "ceb",
+  "relatedTopics": [
+    "rosary-biblical",
+    "prayer-to-saints",
+    "mediatrix"
+  ],
+  "lastUpdated": "2026-07-15T00:00:00Z"
+}
