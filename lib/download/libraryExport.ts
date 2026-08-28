@@ -7,16 +7,19 @@ const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!
 const API_HEADERS = { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
 
-// ── Trigger a client-side text file download ──────────────────────────────────
+// ── Trigger a client-side file download ────────────────────────────────────────
 
-export function triggerTextDownload(filename: string, content: string): void {
-  const blob = new Blob([content], { type: 'text/plain' })
+export function triggerBlobDownload(filename: string, blob: Blob): void {
   const url = URL.createObjectURL(blob)
   const a = document.createElement('a')
   a.href = url
   a.download = filename
   a.click()
   URL.revokeObjectURL(url)
+}
+
+export function triggerTextDownload(filename: string, content: string): void {
+  triggerBlobDownload(filename, new Blob([content], { type: 'text/plain' }))
 }
 
 // ── Church documents (encyclicals, councils, Vatican II documents) ───────────
