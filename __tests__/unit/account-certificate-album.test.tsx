@@ -69,6 +69,11 @@ function setupSupabase(certificates: CertRow[], templates: TemplateRow[]) {
           }),
         }
       }
+      if (table === 'site_config') {
+        return {
+          select: () => Promise.resolve({ data: [], error: null }),
+        }
+      }
       throw new Error(`unexpected table in test: ${table}`)
     },
   } as unknown as ReturnType<typeof createClient>)
@@ -127,7 +132,7 @@ describe('AccountPage — certificate album', () => {
     render(<AccountPage />)
 
     const img = await screen.findByAltText('Apologetics 101 — Advanced Certificate')
-    expect(img).toHaveAttribute('src', '/certificates/default-template.png')
+    expect(img).toHaveAttribute('src', '/certificates/default-template.jpeg')
   })
 
   it('renders no album when the user has no certificates', async () => {

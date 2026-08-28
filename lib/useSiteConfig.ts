@@ -31,5 +31,7 @@ export function useSiteConfig() {
     appShortName: config['appShortName'] ?? APP_CONFIG.appShortName,
     description: config['description'] ?? APP_CONFIG.description,
     version: config['version'] ?? APP_CONFIG.version,
+    certificateNationalPresident: config['certificate_national_president'] ?? '',
+    certificateNationalSpiritualAdviser: config['certificate_national_spiritual_adviser'] ?? '',
   }
 }

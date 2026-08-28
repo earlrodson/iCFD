@@ -1,14 +1,17 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Certificate, ArrowClockwise, Image as ImageIcon, UploadSimple } from '@phosphor-icons/react'
+import Link from 'next/link'
+import { Certificate, ArrowClockwise, Image as ImageIcon, UploadSimple, FloppyDisk } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { QUIZ_TIERS, TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
 import {
   DEFAULT_BASE_IMAGE_URL,
-  resolveNamePlaceholder,
+  resolvePlaceholders,
+  CERTIFICATE_FIELDS,
   type CertificatePlaceholder,
 } from '@/lib/content/certificateTemplate'
+import { useSiteConfig } from '@/lib/useSiteConfig'
 import { CertificatePreview } from '@/components/certificates/CertificatePreview'
 import { cn, parseJsonResponse } from '@/lib/utils'
 
@@ -22,16 +25,23 @@ interface PathOption {
   title: string
 }
 
+type SaveStatus = 'idle' | 'saving' | 'saved' | 'error'
+
 export default function AdminCertificatesPage() {
   const [paths, setPaths] = useState<PathOption[]>([])
   const [pathSlug, setPathSlug] = useState<string | null>(null)
   const [tier, setTier] = useState<QuizTier>('beginner')
   const [template, setTemplate] = useState<Template | null>(null)
+  const [placeholders, setPlaceholders] = useState<CertificatePlaceholder[]>([])
+  const [dirty, setDirty] = useState(false)
   const [loading, setLoading] = useState(true)
   const [accountName, setAccountName] = useState('')
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
+  const [saveStatus, setSaveStatus] = useState<SaveStatus>('idle')
+  const [saveError, setSaveError] = useState('')
   const fileInputRef = useRef<HTMLInputElement>(null)
+  const { certificateNationalPresident, certificateNationalSpiritualAdviser } = useSiteConfig()
 
   useEffect(() => {
     createClient()
@@ -53,7 +63,10 @@ export default function AdminCertificatesPage() {
       .eq('path_slug', p)
       .eq('tier', t)
       .maybeSingle()
-    setTemplate(data ? { base_image_url: data.base_image_url, placeholders: (data.placeholders as unknown as CertificatePlaceholder[]) ?? [] } : null)
+    const loaded = data ? { base_image_url: data.base_image_url, placeholders: (data.placeholders as unknown as CertificatePlaceholder[]) ?? [] } : null
+    setTemplate(loaded)
+    setPlaceholders(resolvePlaceholders(loaded?.placeholders))
+    setDirty(false)
     setLoading(false)
   }
 
@@ -61,6 +74,7 @@ export default function AdminCertificatesPage() {
     if (!pathSlug) return
     loadTemplate(pathSlug, tier)
     setUploadError('')
+    setSaveStatus('idle')
   }, [pathSlug, tier])
 
   async function handleFileSelected(e: React.ChangeEvent<HTMLInputElement>) {
@@ -78,6 +92,8 @@ export default function AdminCertificatesPage() {
       const res = await fetch('/api/admin/certificates/upload', { method: 'POST', body: formData })
       const data = await parseJsonResponse<{ base_image_url: string; placeholders: CertificatePlaceholder[] }>(res, 'Upload failed')
       setTemplate({ base_image_url: data.base_image_url, placeholders: data.placeholders ?? [] })
+      setPlaceholders(resolvePlaceholders(data.placeholders))
+      setDirty(false)
     } catch (err) {
       setUploadError(err instanceof Error ? err.message : 'Upload failed')
     } finally {
@@ -85,10 +101,42 @@ export default function AdminCertificatesPage() {
     }
   }
 
+  function handleDrag(field: string, x: number, y: number) {
+    setPlaceholders((prev) => prev.map((p) => (p.field === field ? { ...p, x, y } : p)))
+    setDirty(true)
+  }
+
+  async function savePositions() {
+    if (!pathSlug) return
+    setSaveStatus('saving')
+    setSaveError('')
+    try {
+      const res = await fetch('/api/admin/certificates/placeholders', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ path_slug: pathSlug, tier, placeholders }),
+      })
+      const data = await parseJsonResponse<{ base_image_url: string; placeholders: CertificatePlaceholder[] }>(res, 'Save failed')
+      setTemplate({ base_image_url: data.base_image_url, placeholders: data.placeholders ?? [] })
+      setDirty(false)
+      setSaveStatus('saved')
+      setTimeout(() => setSaveStatus('idle'), 2000)
+    } catch (err) {
+      setSaveStatus('error')
+      setSaveError(err instanceof Error ? err.message : 'Save failed')
+    }
+  }
+
   const imageUrl = template?.base_image_url || DEFAULT_BASE_IMAGE_URL
   const isDefaultTemplate = !template?.base_image_url
-  const namePlaceholder = resolveNamePlaceholder(template?.placeholders)
   const pathTitle = paths.find((p) => p.slug === pathSlug)?.title ?? ''
+  const sampleValues: Record<string, string> = {
+    name: accountName.trim() || 'Full Name',
+    issue_date: new Date().toISOString().slice(0, 10),
+    serial_code: 'CFD-0000000-SAMPLE',
+    national_president: certificateNationalPresident || 'National President',
+    national_spiritual_adviser: certificateNationalSpiritualAdviser || 'National Spiritual Adviser',
+  }
 
   return (
     <div>
@@ -102,7 +150,7 @@ export default function AdminCertificatesPage() {
               Certificate Preview
             </h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              Sample view of how an account&apos;s name appears on a path&apos;s tier certificate template.
+              Drag any field onto the certificate to reposition it, then save.
             </p>
           </div>
           <button
@@ -150,7 +198,7 @@ export default function AdminCertificatesPage() {
 
         {/* Name input */}
         <div>
-          <label className="mb-1 block text-xs font-medium text-muted-foreground">Account name</label>
+          <label className="mb-1 block text-xs font-medium text-muted-foreground">Sample account name</label>
           <input
             type="text"
             value={accountName}
@@ -159,6 +207,13 @@ export default function AdminCertificatesPage() {
             className="field w-full"
           />
         </div>
+
+        {certificateNationalPresident === '' || certificateNationalSpiritualAdviser === '' ? (
+          <p className="rounded-xl bg-amber-50 px-4 py-2 text-xs text-amber-700 dark:bg-amber-900/20 dark:text-amber-400">
+            National President / National Spiritual Adviser names aren&apos;t set yet — configure them in{' '}
+            <Link href="/admin" className="underline">App Config</Link> so they print on issued certificates.
+          </p>
+        ) : null}
 
         {/* Hidden file input shared by both upload triggers below */}
         <input
@@ -178,11 +233,16 @@ export default function AdminCertificatesPage() {
           <div className="space-y-2">
             <CertificatePreview
               imageUrl={imageUrl}
-              namePlaceholder={namePlaceholder}
-              name={accountName.trim() || 'Full Name'}
+              placeholders={placeholders}
+              values={sampleValues}
               alt={`${pathTitle} — ${TIER_LABELS[tier]} certificate template`}
               className="mx-auto"
+              draggable
+              onDrag={handleDrag}
             />
+            <p className="text-[11px] text-muted-foreground">
+              Fields shown: {CERTIFICATE_FIELDS.map((f) => f.label).join(', ')}
+            </p>
             <div className="flex items-center justify-between gap-3">
               <button
                 onClick={() => fileInputRef.current?.click()}
@@ -199,11 +259,24 @@ export default function AdminCertificatesPage() {
                 </p>
               )}
             </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={savePositions}
+                disabled={!dirty || saveStatus === 'saving' || !pathSlug}
+                className="flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 disabled:opacity-50 transition-colors"
+              >
+                <FloppyDisk weight="fill" size={16} />
+                {saveStatus === 'saving' ? 'Saving…' : saveStatus === 'saved' ? 'Saved!' : 'Save positions'}
+              </button>
+              {dirty && saveStatus === 'idle' && (
+                <span className="text-xs text-muted-foreground">Unsaved position changes</span>
+              )}
+            </div>
           </div>
         )}
-        {uploadError && (
+        {(uploadError || saveError) && (
           <p className="rounded-xl bg-red-50 px-4 py-2 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400">
-            {uploadError}
+            {uploadError || saveError}
           </p>
         )}
       </div>

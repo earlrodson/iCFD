@@ -6,10 +6,12 @@ import { createClient } from '@/lib/supabase/client'
 import { CertificatePreview } from './CertificatePreview'
 import {
   DEFAULT_BASE_IMAGE_URL,
-  resolveNamePlaceholder,
+  resolvePlaceholders,
+  formatIssueDate,
   type CertificatePlaceholder,
 } from '@/lib/content/certificateTemplate'
 import { TIER_LABELS, type QuizTier } from '@/lib/content/quizTiers'
+import { useSiteConfig } from '@/lib/useSiteConfig'
 
 interface CertificateModalProps {
   pathSlug: string
@@ -24,6 +26,7 @@ interface CertificateModalProps {
 export function CertificateModal({ pathSlug, pathTitle, tier, serialCode, issuedAt, recipientName, onClose }: CertificateModalProps) {
   const [template, setTemplate] = useState<{ base_image_url: string; placeholders: CertificatePlaceholder[] } | null>(null)
   const [loading, setLoading] = useState(true)
+  const { certificateNationalPresident, certificateNationalSpiritualAdviser } = useSiteConfig()
 
   useEffect(() => {
     createClient()
@@ -49,7 +52,14 @@ export function CertificateModal({ pathSlug, pathTitle, tier, serialCode, issued
   }, [onClose])
 
   const imageUrl = template?.base_image_url || DEFAULT_BASE_IMAGE_URL
-  const namePlaceholder = resolveNamePlaceholder(template?.placeholders)
+  const placeholders = resolvePlaceholders(template?.placeholders)
+  const values = {
+    name: recipientName,
+    issue_date: formatIssueDate(issuedAt),
+    serial_code: serialCode,
+    national_president: certificateNationalPresident,
+    national_spiritual_adviser: certificateNationalSpiritualAdviser,
+  }
   const label = `${pathTitle} — ${TIER_LABELS[tier]} Certificate`
 
   return (
@@ -78,8 +88,8 @@ export function CertificateModal({ pathSlug, pathTitle, tier, serialCode, issued
         ) : (
           <CertificatePreview
             imageUrl={imageUrl}
-            namePlaceholder={namePlaceholder}
-            name={recipientName}
+            placeholders={placeholders}
+            values={values}
             alt={label}
           />
         )}

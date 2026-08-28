@@ -30,9 +30,11 @@ import { CertificateModal } from '@/components/certificates/CertificateModal'
 import { CertificatePreview } from '@/components/certificates/CertificatePreview'
 import {
   DEFAULT_BASE_IMAGE_URL,
-  resolveNamePlaceholder,
+  resolvePlaceholders,
+  formatIssueDate,
   type CertificatePlaceholder,
 } from '@/lib/content/certificateTemplate'
+import { useSiteConfig } from '@/lib/useSiteConfig'
 import { ProfileEditor } from '@/components/account/ProfileEditor'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
@@ -64,6 +66,7 @@ export default function AccountPage() {
   const [certTemplates, setCertTemplates] = useState<Record<string, CertificateTemplate>>({})
   const [viewingCertKey, setViewingCertKey] = useState<string | null>(null)
   const [profile, setProfile] = useState<UserProfile | null>(null)
+  const { certificateNationalPresident, certificateNationalSpiritualAdviser } = useSiteConfig()
 
   const { favoriteIds } = useFavoritesStore()
   const { notes } = useNotesStore()
@@ -232,8 +235,14 @@ export default function AccountPage() {
                     >
                       <CertificatePreview
                         imageUrl={template?.base_image_url || DEFAULT_BASE_IMAGE_URL}
-                        namePlaceholder={resolveNamePlaceholder(template?.placeholders)}
-                        name={name}
+                        placeholders={resolvePlaceholders(template?.placeholders)}
+                        values={{
+                          name,
+                          issue_date: formatIssueDate(cert.issued_at),
+                          serial_code: cert.serial_code,
+                          national_president: certificateNationalPresident,
+                          national_spiritual_adviser: certificateNationalSpiritualAdviser,
+                        }}
                         alt={`${cert.path_title} — ${TIER_LABELS[cert.tier]} Certificate`}
                         className="shadow-sm hover:opacity-90 transition-opacity"
                       />
