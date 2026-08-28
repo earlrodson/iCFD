@@ -203,6 +203,7 @@ export const quizAttempts = pgTable(
     answers: jsonb('answers').notNull(),
     score_percent: numeric('score_percent').notNull(),
     passed: boolean('passed').notNull(),
+    duration_ms: integer('duration_ms'),
     attempted_at: timestamp('attempted_at', { withTimezone: true })
       .default(sql`now()`)
       .notNull(),

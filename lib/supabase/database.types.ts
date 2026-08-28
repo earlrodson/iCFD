@@ -537,6 +537,7 @@ export type Database = {
         Row: {
           answers: Json
           attempted_at: string
+          duration_ms: number | null
           id: string
           passed: boolean
           question_ids: Json
@@ -548,6 +549,7 @@ export type Database = {
         Insert: {
           answers: Json
           attempted_at?: string
+          duration_ms?: number | null
           id?: string
           passed: boolean
           question_ids: Json
@@ -559,6 +561,7 @@ export type Database = {
         Update: {
           answers?: Json
           attempted_at?: string
+          duration_ms?: number | null
           id?: string
           passed?: boolean
           question_ids?: Json

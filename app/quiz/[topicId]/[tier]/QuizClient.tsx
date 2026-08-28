@@ -39,6 +39,7 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [firstUnanswered, setFirstUnanswered] = useState<number | null>(null)
   const questionRefs = useRef<Record<number, HTMLDivElement | null>>({})
+  const startedAtRef = useRef<number | null>(null)
 
   const loadQuestions = useCallback(() => {
     setLoadError(null)
@@ -51,26 +52,30 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
         const body = await res.json()
         if (!res.ok) throw new Error(body.error ?? 'Failed to load quiz')
         setQuestions(body.questions)
+        startedAtRef.current = Date.now()
       })
       .catch((err) => setLoadError(err.message))
   }, [topicId, tier, lang, pathSlug])
 
   useEffect(() => { loadQuestions() }, [loadQuestions])
 
-  const submit = useCallback(async (questionIds: number[], answerList: number[]) => {
+  const submit = useCallback(async (questionIds: number[], answerList: number[], durationMs?: number) => {
     setSubmitting(true)
     setSubmitError(null)
+    const resolvedDuration = durationMs ?? (startedAtRef.current ? Date.now() - startedAtRef.current : undefined)
     try {
       const res = await fetch('/api/quiz', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ topicId, tier, questionIds, answers: answerList, pathSlug }),
+        body: JSON.stringify({ topicId, tier, questionIds, answers: answerList, pathSlug, durationMs: resolvedDuration }),
       })
       const body = await res.json()
       if (res.status === 401) {
         // Hold the pending submission, prompt sign-in, resume on return —
-        // the quiz itself was never gated, only this final step is.
-        sessionStorage.setItem(pendingKey(topicId, tier), JSON.stringify({ questionIds, answers: answerList, pathSlug }))
+        // the quiz itself was never gated, only this final step is. The
+        // duration is snapshotted now so the sign-in redirect's own delay
+        // never gets counted as quiz-taking time.
+        sessionStorage.setItem(pendingKey(topicId, tier), JSON.stringify({ questionIds, answers: answerList, pathSlug, durationMs: resolvedDuration }))
         router.push(`/account?return=${encodeURIComponent(window.location.pathname + window.location.search)}`)
         return
       }
@@ -90,8 +95,8 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
     if (!pending) return
     getUser().then((user) => {
       if (!user) return
-      const { questionIds, answers: answerList } = JSON.parse(pending)
-      submit(questionIds, answerList)
+      const { questionIds, answers: answerList, durationMs } = JSON.parse(pending)
+      submit(questionIds, answerList, durationMs)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topicId, tier])

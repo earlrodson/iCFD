@@ -9,6 +9,10 @@ function parseLang(v: string | null): 'en' | 'tl' | 'ceb' {
   return parsed.success ? parsed.data : 'en'
 }
 
+// A quiz left open for longer than this is almost certainly an idle/
+// backgrounded tab, not genuine time-on-task.
+const MAX_QUIZ_DURATION_MS = 60 * 60 * 1000
+
 /**
  * Issues a certificate for (user, path, tier) once every topic in a path
  * has been passed at that tier — a path/tier combo the just-passed topic
@@ -133,12 +137,13 @@ export async function POST(req: NextRequest) {
   if (!user) return NextResponse.json({ error: 'Sign in required to submit a quiz' }, { status: 401 })
 
   const body = await req.json()
-  const { topicId, tier, questionIds, answers, pathSlug } = body as {
+  const { topicId, tier, questionIds, answers, pathSlug, durationMs } = body as {
     topicId?: string
     tier?: string
     questionIds?: number[]
     answers?: number[]
     pathSlug?: string
+    durationMs?: number
   }
   // No lang param needed here — questionIds already pin the exact rows GET served.
 
@@ -246,6 +251,9 @@ export async function POST(req: NextRequest) {
   const passPercent = settings?.pass_percent ?? 100
   const passed = scorePercent >= passPercent
 
+  const validDuration = typeof durationMs === 'number' && Number.isFinite(durationMs) && durationMs >= 0
+  const clampedDuration = validDuration ? Math.round(Math.min(durationMs, MAX_QUIZ_DURATION_MS)) : null
+
   const { error: insertErr } = await db.from('quiz_attempts').insert({
     user_id: user.id,
     topic_id: topicId,
@@ -254,6 +262,7 @@ export async function POST(req: NextRequest) {
     answers,
     score_percent: scorePercent,
     passed,
+    duration_ms: clampedDuration,
     attempted_at: new Date().toISOString(),
   })
   if (insertErr) return NextResponse.json({ error: insertErr.message }, { status: 500 })
