@@ -1,0 +1,30 @@
+name: isidore-worker
+on:
+  push:
+    branches: [develop, staging, master]
+  workflow_dispatch: {}
+
+jobs:
+  push-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Download isidore-worker
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download --repo earlrodson/isidore --pattern 'isidore-worker-*.tgz' --dir .
+
+      - name: Push snapshot or environment ping
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ISIDORE_INGEST_ENDPOINT: https://isidore-web-swart.vercel.app/api/ingest
+          ISIDORE_HMAC_SECRET: ${{ secrets.ISIDORE_HMAC_SECRET }}
+          ISIDORE_FEATURES_DIR: docs/specifications
+        run: |
+          TARBALL=$(ls isidore-worker-*.tgz)
+          npx --yes --package="$TARBALL" isidore-worker-ci
