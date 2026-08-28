@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon sa 1 Timoteo 4:4-5, paano dapat tanggapin ang lahat ng nilikha ng Diyos?",
+    "choices": [
+      "May takot at kaba",
+      "Batas ay dapat pagsunodin",
+      "Walang dapat tanggapin",
+      "May pasasalamat"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Anong tatlong layunin ng Diyos sa pagbibigay ng alituntungin tungkol sa bawal na pagkain sa Lumang Tipan?",
+    "choices": [
+      "Pagbuhay ng ekonomiya, magbigay ng biyahe, at turuang lumipat",
+      "Iwasan ang sibikang pagkain, makipagpalitan, at itayo ang kapalaran",
+      "Ituro ang kaligtasan, baguhin ang kultura, at bigyang-lakas ang militar",
+      "Ihiwalay ang kanyang bayan, subukin ang pagsunod, at turuan ang paglilinis"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Bakit ipinagbabawal na kumain ng dugo sa Genesis 9:3-4?",
+    "choices": [
+      "Sapagkat ang buhay ay nasa dugo",
+      "Dahil walang halaga ang dugo",
+      "Sapagkat madaling malunod sa tubig",
+      "Dahil ito ay matigas na pagkain"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Anong hayop ang binanggit sa Levitico 11 na itinuturing na marumi dahil hindi ngumunguya kahit hati ang kuko nito?",
+    "choices": [
+      "Ang liyebre",
+      "Ang baboy",
+      "Ang kamelyo",
+      "Ang aso"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Bakit hindi dapat kumain ng anumang hayop na walang palikpik at kaliskis sa mga tubig (Lev. 11:1-31)?",
+    "choices": [
+      "Sapagkat may sakit itong dala sa tao",
+      "Sapagkat itinuturing na marumi at hindi banal",
+      "Dahil masyadong mahirap itong huliin",
+      "Dahil mahalaga ang pagkain ng isdang malinis"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Sino ang nagsabi na 'Huwag mong ituring na marumi ang itinuturing ng Diyos na malinis' kay Pedro?",
+    "choices": [
+      "Si San Pablo",
+      "Si Jonas",
+      "Si Santiago",
+      "Ang Panginoon"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo sa Roma 14:17, ano ang batayan ng Kaharian ng Diyos?",
+    "choices": [
+      "Katuiran, kapayapaan, at kagalakang kaloob ng Espiritu Santo",
+      "Maraming alituntunin tungkol sa pagkain",
+      "Pagpapalaki ng katawan sa pamamagitan ng pagkain",
+      "Pagkain at inumin na may halagang espesyal"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ano ang maituturing na anino lamang ayon sa Kolose 2:16-17, kumpara kay Cristo?",
+    "choices": [
+      "Mga aral na nanggaling sa mga apostol",
+      "Ang lahat ng mga gawaing mabuti",
+      "Ang pagkain o inumin at alituntunin",
+      "Ang pagsamba sa Diyos nang totoo"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon sa Lumang Tipan (Lev. 10:10), ano ang dapat kilalanin ng mga Israelita tungkol sa mga hayop?",
+    "choices": [
+      "Ang kaibahan ng banal at ng hindi banal, at ang kaibahan ng marumi at ng malinis",
+      "Ang kaibahan ng mga hayop sa lupa at sa dagat",
+      "Ang kaibahan ng baka at tupa",
+      "Ang kaibahan ng mga hayop na may pakpak at walang pakpak"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Bakit ang dugo ay hindi dapat kanin base sa Levitico 17:11?",
+    "choices": [
+      "Sepakay ito mayroong mga bakterya na nakakasama sa kalusugan",
+      "Sepakay ito nagdudusa ang hayop",
+      "Sepakay ang dugo ay ituturing na marumi at hindi banal",
+      "Sapagkat ginagamit ito sa paghahandog para sa mga kasalanan upang gamitin sa pagpapawi ng kasalanan"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Sa Bagong Tipan (Gawa 15:29), anong ilang bawal ang itinuro na dapat iwasan sa simula ng paglipat mula sa Judaismo?",
+    "choices": [
+      "Dugo, hayop na binigti, at tanging pagkaing inihandog sa mga diyus-diyusan",
+      "Tanging pagkaing inihandog sa mga diyus-diyusan lamang",
+      "Lahat ng uri ng karne",
+      "Tanging dugo lamang"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo sa Roma 14:3, paano dapat magpatuloy ang mga nagkakaibang pananaw tungkol sa pagkain?",
+    "choices": [
+      "Dapat huwag humatol ang isa sa isa",
+      "Dapat ipilit ang sariling kaisipan sa iba",
+      "Dapat isara ang palengke para sa karne",
+      "Dapat tanggapin lamang ng mga mayayaman"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon sa Roma 14:17, ano ang hindi bahagi ng Kaharian ng Diyos?",
+    "choices": [
+      "Kagalakang kaloob ng Espiritu Santo",
+      "Katuiran",
+      "Kapayapaan",
+      "Pagkain at inumin"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon sa 1 Corintio 8:8, paano nakakaapekto ang pagkain sa ating ugnayan sa Diyos?",
+    "choices": [
+      "Nagpapalapit tayo sa Diyos kung kinakain natin ang lahat",
+      "Walang epekto ang pagkain sa ating espiritwal na buhay",
+      "Nakapinsala man sa atin kung hindi tayo kakain, ni nakabubuti man sa atin kung kakain tayo nito",
+      "Nagpapalapit tayo sa Diyos kung hindi tayo kakain"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "dietary-abstinence",
+    "tier": "beginner",
+    "question": "Ayon sa Hebreo 13:9, paano dapat patagin ang ating kaluluwa?",
+    "choices": [
+      "Sa pamamagitan ng grasya ng Diyos",
+      "Sa pamamagitan ng mga alituntunin tungkol sa pagkain",
+      "Sa pamamagitan ng paghihilom sa sarili",
+      "Sa pamamagitan ng pagsunod sa lahat ng bawal na pagkain"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  }
+]

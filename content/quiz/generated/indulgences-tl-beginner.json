@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ang tumpak na kahulugan ng indulhensiya ayon sa Turo ng Simbahan Katolika?",
+    "choices": [
+      "Ay ang pag-aalis ng temporal na parusa dahil sa mga kasalanan na napatawad na.",
+      "Ay ang pagpapatawad ng kasalanan mismo sa pamamagitan ng Sakramento ng Pagsisisi.",
+      "Ay ang makapagpatawad at hindi makakasama sa kapwa.",
+      "Ay ang paghihiganti ng Diyos sa ating mga paglabag sa Kanyang mga utos."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Saan matatamasa ang indulhensiya kung hindi natin ganap na binabayaran ang temporal na parusa sa buhay na ito?",
+    "choices": [
+      "Ay sa Langit.",
+      "Ay sa Daigdig.",
+      "Ay sa Purgatoryo.",
+      "Ay sa Simbahan."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Paano nagbibigay ng indulhensiya ang Banal na Iglesya para sa mga kaluluwa sa Purgatoryo?",
+    "choices": [
+      "Ay sa pamamagitan ng pagpapasa ng krus.",
+      "Ay sa pamamagitan ng \"supplicación\" o pagpapala.",
+      "Ay sa pamamagitan ng \"absolución\".",
+      "Ay sa pamamagitan ng pagbabasa ng Kasulatan."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang pinakamahalagang aral na nakabatay sa doktrina ng indulhensiya ukol sa kapangyarihan?",
+    "choices": [
+      "Ay ang pagsunod sa awtoridad.",
+      "Ay ang pagkakaisa ng mga Banal.",
+      "Ay ang talaan ng biyaya mula sa mga santo.",
+      "Ay ang kapangyarihan ng mga susi upang alisin ang temporal na parusa."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ang hindi kasama sa mga kundisyon para matanggap ang plenaryong indulhensiya?",
+    "choices": [
+      "Ay Kailangan ang intensyong tumanggap.",
+      "Ay Dapat na nasa kalagayan ng biyaya.",
+      "Ay Dapat walang kasalanan sa buhay.",
+      "Ay Dapat sundin ang itinakdang gawain ng Santa Iglesia."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Sino ang sinabi kay Pedro, \"Ibibigay ko sa iyo ang mga susi ng kaharian ng langit\"?",
+    "choices": [
+      "Ay Si David.",
+      "Ay Si San Pablo.",
+      "Ay Si Moises.",
+      "Ay Si Jesus."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang kahulugan ng salitang \"naganap na\" na sinabi ni Jesus sa krus?",
+    "choices": [
+      "Ay Tungkol sa misyon Niya ng pagtubos.",
+      "Ay Tungkol sa parusang eternal.",
+      "Ay Tungkol sa kapwa.",
+      "Ay Tungkol sa pagsisisi ng makasalanan."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang katuturang dulot ng pagsisisi at pagdurusa, ayon kay San Pablo sa Hebreo 12:11?",
+    "choices": [
+      "Ay Kapayapaan.",
+      "Ay Paghihiganti.",
+      "Ay Kaligayahan.",
+      "Ay Kawalan."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang pangunahing layunin ng indulhensiya base sa turo ng Simbahan Katolika?",
+    "choices": [
+      "Nagpapatawad ng mga kasalanan sa Sakramento ng Pagsisisi.",
+      "Pumupundo sa buong parusang eternal ng impiyerno agad-agad.",
+      "Pinapabalanse ang mga utang sa Lumang Tipan.",
+      "Akalin ang temporal na parusa dahil sa mga kasalanan na napatawad na."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Para sa mga buhay, paano nagbibigay ng indulhensiya ang Banal na Iglesya?",
+    "choices": [
+      "Sa pamamagitan ng paglalakbay sa Krus lamang.",
+      "Sa pamamagitan ng \"absolución\".",
+      "Babawasan ang parusa sa pamamagitan ng pag-aayuno.",
+      "Sa pamamagitan ng \"supplicación\" o pagpapala."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang unang kundisyon para makatanggap ng plenaryong indulhensiya?",
+    "choices": [
+      "Dapat magbigay ng malaking alokasyong pansalapi.",
+      "Dapat na nasa kalagayan ng biyaya.",
+      "Dapat sumunod sa mga utos ng mga kaaway.",
+      "Dapat kumonsulta muna sa pari."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang tawag sa parusang eternal na kinakaharap ng taong nagbuhat ng mortal na sala at namatay nang hindi nagsisisi?",
+    "choices": [
+      "Purgatoryo.",
+      "Paraiso.",
+      "Impiyerno.",
+      "Mundo."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Batay kay Romanos 5:15, saan nabanggit ang talaan ng biyaya?",
+    "choices": [
+      "Sa pamamagitan ng pagbabasa ng Kasulatan.",
+      "Sa pamamagitan ng pagsamba sa mga santo.",
+      "Sa pamamagitan ng kamatayan ni Kristo.",
+      "Bilang resulta ng sariling pagsisikap."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang itinuturo tungkol sa pagkakaisa ng mga Banal base sa 1 Corinto 12:25-26?",
+    "choices": [
+      "Wala itong epekto sa ating pakikilahok sa Simbahan.",
+      "Ang mahahabang bahagi lang ang nakakapagbigay ng biyaya.",
+      "Ang lahat ng bahagi ay may pantay na pagmamalasakit sa isa't isa.",
+      "Ang mga bahagi ng katawan ay walang kinalaman sa isa't isa."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "indulgences",
+    "tier": "beginner",
+    "question": "Ano ang tinutukoy na doktrina base sa tatlong mahahalagang aral ayon sa pinag-usapan ng text tungkol sa paghihirap ng mga santo?",
+    "choices": [
+      "Ang talaan ng biyaya dahil sa sakripisyo ni Kristo at ng mga santo",
+      "Ang pagkakaisa ng mga Banal sa katawan ni Kristo",
+      "Ang parusang temporal na dala ng kasalanan",
+      "Ang kapangyarihan ng mga susi para sa pagpapatawad"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  }
+]

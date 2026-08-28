@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Bakit itinalagang araw ng pahinga ng Sta. Iglesya ang Linggo?",
+    "choices": [
+      "Sapagkat itinakda ng Haring Antioco Epifanes.",
+      "Sapagkat ipinagkait ni Moises ang Sabado sa mga Israelita.",
+      "Sapagkat ito ay tinapos ng Diyos sa loob ng 24 na oras lamang.",
+      "Sapagkat ito ang araw ng muling pagkabuhay ni Jesus at pagbaba ng Espiritu Santo."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Ano ang ibig sabihin ng pagiging \"nakapahinga\" o nagpahinga na ng Diyos ayon sa Gen. 2:3?",
+    "choices": [
+      "Tumutukoy ito sa natapos na gawain ng paglikha at wala nang bago nilikha.",
+      "Ipinapakita nito ang pisikal na pagkapagod ng Diyos matapos ang likhain.",
+      "Ito ay tumutukoy sa unang araw ng bawat linggo.",
+      "Nilalarawan nito ang loob ng eksaktong 24 na oras ng araw."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Sino ang nanagbago ng panahon at kautusan na hinulaan ni Daniyel sa Dan. 7:25?",
+    "choices": [
+      "Si Jesus na naging Sabadista.",
+      "Si Moises ang nagpakilala ng Araw ng Pahinga.",
+      "Ang Sto. Papa ng Iglesya Katolika.",
+      "Si Haring Antioco Epifanes ng Siria."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Bakit hininto ang pagsamba sa Araw ng Sabado?",
+    "choices": [
+      "Dahil itinakwil ni Jesus ang Kautusan ni Moises nang lubusan.",
+      "Dahil ipinagbawal ang pagsisindi ng apoy sa loob ng bahay.",
+      "Dahil walang tiyak na araw ng linggo ang tinutukoy ng unang kalendaryo.",
+      "Dahil ang mga Israelita ay nagbenta, nang-api, at nandaya sa araw na iyon."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Ano ang katuparan ng pagbabago mula sa Sabado patungong Linggo?",
+    "choices": [
+      "Ang pagsamba sa loob ng templo ni Moises.",
+      "Ang kalapstangan ni Antioco Epifanes sa mga Judio.",
+      "Ang desisyon ng mga taga-Babilonia sa paghahati ng linggo.",
+      "Ang kalooban ng Panginoon na ilipat ang araw ng pahinga."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Bakit mas makahulugan ang araw ng Linggo para sa mga unang Kristiyano?",
+    "choices": [
+      "Ito ay araw ng pagkawasak ng Jerusalem ni Antioco.",
+      "Ito ay araw ng pagpunta sa sinagoga upang magturo.",
+      "Ito ay araw na ipinagbawal ang anumang pagdala ng bagay.",
+      "Ito ay araw ng muling pagkabuhay at tagumpay ni Jesus laban sa kamatayan."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Sino ang gumawa ng unang kalendaryo na naghatid sa paghahati ng linggo sa pitong araw?",
+    "choices": [
+      "Ang mga Judio mula sa mga taga-Babilonia.",
+      "Ang mga Apostol na sumulat sa Gawa.",
+      "Si Moises sa pamamagitan ng Kautusan.",
+      "Ang mga taga-Egipto (Egyptian Calendar) noong 4241 BC."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Sino ang sinabing \"ang unang araw ng bawat linggo, dapat maglaan... ng salapi\" (1 Cor. 16:2)?",
+    "choices": [
+      "Si Haring Antioco Epifanes.",
+      "Si San Pablo.",
+      "Ang Sto. Papa ng Baltimore Catechism.",
+      "Si Jesus na nagsalita sa Mat. 5:17."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Ayon sa 1 Corinto 2:16-17, ano ang tawag ni San Pablo sa Sabado bilang Araw ng Pahinga?",
+    "choices": [
+      "Ang tunay na pagpapahinga ng Diyos",
+      "Kawajiban para sa buong bayan",
+      "Ang unang kalendaryo ng Egyptian",
+      "Isang anino lamang ng mga bagay na darating"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ay hindi dahilan kung bakit hininto ang Araw ng Sabado?",
+    "choices": [
+      "Dahil ito ang araw ng muling pagkabuhay ni Jesus",
+      "Dahil may pang-aabuso at pang-aapi sa araw na ito",
+      "Dahil napakahigpit ang kautusan ng mga Judio",
+      "Dahil hindi natupad ng Israelita ang utos"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Bakit pinaghihinalaan na gustong patayin si Jesus ng mga Judio ayon sa Juan 5:18?",
+    "choices": [
+      "Dahil kanyang sinabing ang Diyos ay kanyang Ama at lumabag sa Araw ng Pahinga",
+      "Dahil siya ay umawit sa sinagoga",
+      "Dahil nagbenta siya sa palengke",
+      "Dahil hindi niya napagbutian ang pagsamba sa templo"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Sino ang sinabi na hindi napapagod ang Diyos at walang hanggang Panginoon ang lumikha ng daigdig?",
+    "choices": [
+      "Si Propetang Isaias",
+      "Si San Pablo",
+      "Si Haring Antioco",
+      "Si Moises"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ang pangungusap ni Jesus tungkol sa Kautusan ni Moises sa Mateo 5:17?",
+    "choices": [
+      "Ako ay naparito upang bigyan ito ng tamang kahulugan",
+      "Ako ay hindi pumapasok sa sinagoga",
+      "Ako ay nagpahinga sa Araw ng Pahinga",
+      "Ako ay naparito upang itakwil ito"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Ayon sa Gawa ng mga Apostol, kailan sila nagtipon upang makibahagi sa banal na hapunan?",
+    "choices": [
+      "Linggo ng gabi",
+      "Araw ng Sabado gabi",
+      "Araw ng Pagkabuhay ni Jesus",
+      "Araw ng Pentecostes"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sunday-observance",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni Haring Antioco Epifanes na nagpapakita ng pagbabago ng panahon at kautusan?",
+    "choices": [
+      "Siya ay nagpatupad ng Sabado nang maigi",
+      "Siya ay naglimas ng Salapi sa Linggo",
+      "Siya ay sumakop sa mga Judio at binago ang kanilang pagsamba",
+      "Siya ay nanumbalik sa Egyptian Calendar"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  }
+]

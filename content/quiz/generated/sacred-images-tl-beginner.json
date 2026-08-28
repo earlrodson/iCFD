@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Sta. Iglesya, bakit dapat panatilihin at itago ang mga larawan ni Cristo, ng Birhen Maria, at ng mga Santo sa mga simbahan?",
+    "choices": [
+      "Sapagkat pinaniniwalaang mayroon silang kapangyarihan o birtud na gagawin nito ang mga pananalangin.",
+      "Para sa anumang pagtitiwala na ilalagay sa kanila gaya ng ginawa noon ng mga pagano.",
+      "Upang maituring sila na mga diyus-diyusan na may katulad na kapangyarihan ng mga pagani.",
+      "Dahil ang paggalang na ibinibigay sa kanila ay itinutuon sa kanilang inilalarawan, kaya't sinasamba natin si Cristo at pinarangalan ang kanyang mga Santo."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo, ano ang kahulugan ng isang diyus-diyusan sa konteksto ng pagsamba?",
+    "choices": [
+      "Ito ay isang sagradong larawan na inukit para paalala sa muling kapanganakan.",
+      "Ito ay naglalarawan sa presensya ng Diyos na may ginto o pilak.",
+      "Ito ay kumakatawan sa isang bagay na hindi totoo.",
+      "Ito ay kawangis ng tao na ibinigay ni Moises upang gamutin ang mga nakagat ng ahas."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Sa Exodo 25:18-22, ano ang ipinagawa ng Diyos kay Moises para sa Kaban ng Tipan?",
+    "choices": [
+      "Isang larawan ng ahas na tanso na ilalagay sa tuktok ng tikin.",
+      "Mga inukit na larawan ng mga puno ng palma at leon sa dingding.",
+      "Mga modelong pilak ng templo ng diyosang si Diana.",
+      "Dalawang kerubing ginto sa magkabilang dulo ng takip."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Bakit itinuturing na kaaway ng Diyos ang mga sumira sa mga sagradong larawan sa loob ng Templo?",
+    "choices": [
+      "Dahil inagaw nila ang Templo at itinaas ang kanilang sariling bandila doon.",
+      "Dahil sila ay nagtiwala sa mga larawang gawa ng tao na walang kapangyarihan.",
+      "Sapagkat sila'y naglagak ng kanilang pag-asa sa mga diyus-diyusan.",
+      "Sapagkat sila ay sumamba sa mga huwad na diyus-diyusan."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Ano ang unang pakinabang ng mga sagradong larawan na binanggit sa source material?",
+    "choices": [
+      "Pumapalamuti ang mga ito sa templo ng Diyos.",
+      "Sinasamba natin ang Diyos sa espiritu at sa katotohanan.",
+      "Gumagalang natin sa dignidad ng ating kapwa na kawangis ng Diyos.",
+      "Nagpapaalala tayo sa muling kapanganakan sa pamamagitan nito."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Paano inilalarawan ng source material ang pinagmulan ng mga diyus-diyusan na sinamba ni Solomon?",
+    "choices": [
+      "Ipinagbili niya ito mula sa mga taga-Sidon at Moab bilang handog.",
+      "Ginawa ito upang paalalahanan sila sa Kautusan ng Panginoon.",
+      "Inukit ito sa pamamagitan ng kahusayan ng tao para gawing kawangis ng Diyos.",
+      "Itinatakwil ni Solomon ang Panginoon at sumamba kay Astarot at Camos."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Ano ang tanging dahilan na binanggit kung bakit gumaling ang sinumang nakagat ng ahas kapag tumingin sa ahas na tanso ni Moises?",
+    "choices": [
+      "Dahil ito ay isang nakagagaling na simbolo na nagpapaalala sa Kautusan ng Diyos.",
+      "Hindi dahil sa kanyang nakita, kundi dahil sa Diyos ang manunubos ng buong sangkatauhan.",
+      "Sapagkat inutusan ng Panginoon na itago ito upang hindi ito pagsambahin.",
+      "Sapagkat ang ahas na iyon ay mayroong birtud at kapangyarihan upang igalaw."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Kailan inutusan ng Diyos si Moises na gawin ang ahas na tanso?",
+    "choices": [
+      "Nang ipinagiba ng Diyos ang larawan upang hindi ito pagsambahin hanggang gabi.",
+      "Nang sila'y salakayin ng nakakatakot at mabangis na mga ahas dahil sa kanilang kamandag.",
+      "Upang magkaroon sila ng monumento para parangalan ang kanilang mga pinuno.",
+      "Nang ang mga tao ay nagkaroon ng inggit sa pagka-Diyos."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ang HINDI itinuturing na 'diyus-diyusan' base sa depinisyon ng San Pablo at sa pagkakaiba nito sa mga sagradong larawan?",
+    "choices": [
+      "Ang mga larawan ni Cristo at ng mga Santo na nagpapakita ng kanilang wangis.",
+      "Ang mga larawang inaakala bilang may kapangyarihan ng sarili nila.",
+      "Ang mga larawang kumakatawan sa mga huwad na diyos tulad ni Moloc.",
+      "Ang mga larawang ginawa mula sa pilak at ginto na sinasamba."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Sino ang nagbigay ng utos na gumawa ng dalawang kerubing ginto sa magkabilang dulo ng takip ng Kaban ng Tipan?",
+    "choices": [
+      "Si San Pablo.",
+      "Si Haring Solomon.",
+      "Ang Panginoon kay Moises.",
+      "Ang mga pinuno ng Israel."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Ano ang naging kapalaran ni Uza dahil sa kanyang paghawak sa Kaban ng Tipan?",
+    "choices": [
+      "Pinarusahan siya ng Diyos at patay na inihalintulad sa tabi ng Kaban.",
+      "Inutusan siyang magsimba sa harap ng Templo.",
+      "Itinuring siyang banal dahil sa kanyang paggalang.",
+      "Napatirap siya at humingi ng tawad."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Bilang paalala, ano ang unang pakinabang ng mga sagradong larawan na binanggit sa source material?",
+    "choices": [
+      "Silay nagpapaalala sa atin ng Diyos at ng mga banal.",
+      "Silay pumapalamuti sa templo ng Diyos.",
+      "Silay nag-aanyaya sa atin na sundin ang halimbawa ng mga banal.",
+      "Silay tulong sa pagninilay."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Kung paano pinararangalan natin ang ating mga bayaning pambansa sa pamamagitan ng pagtatayo ng monumento, paano ginagawa ang parehong paraan para sa mga santo?",
+    "choices": [
+      "Sa pamamagitan ng paggawa sa kanila ng larawan upang parangalan sila.",
+      "Sa pamamagitan ng pag-aalok ng halimuyak na insenso.",
+      "Sa pamamagitan ng pag-alis sa kanilang mga larawan.",
+      "Sa pamamagitan ng pagsamba sa kanila bilang mga diyos."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Ano ang pinatutunan ng source material tungkol sa 'idolatry' at pagpasok sa kaharian ng langit ayon kay San Pablo?",
+    "choices": [
+      "Ang mga sumasamba sa mga huwad na diyos ay hindi makapapasok sa kaharian ng Diyos.",
+      "Ang mga nagtatayo ng monumento ay mapagbanta sa kaharian ng langit.",
+      "Ang mga tao na may dalisay na puso ay hindi makikita ang Diyos.",
+      "Ang mga gumagamit ng larawan ay hindi makapapasok sa kaharian ng Langit."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "sacred-images",
+    "tier": "beginner",
+    "question": "Bakit inutusan si Haring Josias na gibain ang lahat ng diyus-diyusan sa isang dako, pero hindi isama ang monumento ng isang taong banal?",
+    "choices": [
+      "Dahil ito ay nagpapakita ng pagpapalang ibinigay ng Diyos sa mga banal na bagay.",
+      "Dahil ang monumento ay gawa lamang ng kahoy at hindi ng pilak o ginto.",
+      "Dahil ang monumentong iyon ay inagaw ng mga kaaway.",
+      "Dahil ang taong banal ay hindi nagkaroon ng larawan sa kanyang buhay."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  }
+]

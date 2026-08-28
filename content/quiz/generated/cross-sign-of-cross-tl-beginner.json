@@ -1,0 +1,198 @@
+[
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Ayon sa source material, ano ang sumasagisag sa krus?",
+    "choices": [
+      "Sa kasaysayan ng Emperador Constantino",
+      "Sa mga pamumuhay ng mga Kristiyano",
+      "Kay Cristo at sa ating pananampalataya",
+      "Sa mga utos ng Lumang Tipan"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Anong tatlong misteryo ng pananampalataya ang ipinahahayag sa paggawa ng Tanda ng Krus?",
+    "choices": [
+      "Ang Banal na Santatlo, ang Pagkakatawang-tao ng Anak ng Diyos, at ang Pagtubos",
+      "Ang Pagsamba, ang Pananalig, at ang Pagpapakumbaba",
+      "Ang Simbahan, ang mga Apostol, at ang Tradisyon",
+      "Ang Krimen, ang Kamatayan, at ang Pagkabanhaw"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Bakit itinuturing na gawa ng pagsamba ang paggawa ng Tanda ng Krus?",
+    "choices": [
+      "Sapagkat niluluwalhati natin ang Banal na Santatlo (Ang Ama, Ang Anak, at Ang Espiritu Santo)",
+      "Sapagkat hinihiling natin ang mga pagpapala mula sa Diyos",
+      "Sapagkat ipinagmamalaki natin ang pagkamatay ni Cristo",
+      "Sapagkat ito ay tatak ng ating pagkabinyag"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Ano ang kahulugan ng paggawa ng Tanda ng Krus sa kaugnayan ng utos ng Diyos?",
+    "choices": [
+      "Ang pagpapakita ng respeto sa mga relihiyong aklat",
+      "Ang pag-iwas sa anumang uri ng sumpa o maligamgam na gawain",
+      "Ang paglalagay natin ng utos ng Diyos sa ating isipan, puso, at gawain",
+      "Ang pagtupad lamang ng mga ritwal sa loob ng simbahan"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Anong salita ang ginagamit upang ilarawan ang paraan ng pananalita sa pangungusap na 'Sambahin ang banal na kahoy'?",
+    "choices": [
+      "Allegory",
+      "Metonymy",
+      "Simbolo",
+      "Pagsamba"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Sino ang tinatabakan sa kanilang noo ayon sa Pin. 14:1 at Pin. 22:4?",
+    "choices": [
+      "Ang mga mananampalataya na nakasulat sa Bibliya",
+      "Ang mga naligtas, ang pangalan ng Ama, ng Anak, at ng Espiritu Santo",
+      "Ang mga tao sa lunsod ayon sa Eze. 9:5-6",
+      "Ang mga martir na may bangkay"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Ano ang salitang 'In hoc signo vinces' na narinig ni Emperador Constantino at ang kanyang kahulugan?",
+    "choices": [
+      "Ang krus ay bitayan ng mga kriminal",
+      "Dito nagsimula ang pag-uusig",
+      "Krus ni Cristo, ating kaligtasan",
+      "Sa tandang ito, ikaw ay mananalo"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "beginner": "beginner",
+    "question": "Mula saan ang natanggap na kaugaliang paggawa ng Tanda ng Krus?",
+    "choices": [
+      "Mula sa isininggit na utos ni Jesus na letra por letra",
+      "Mula sa mga aklat ng mga manunulat ng Lumang Tipan",
+      "Mula sa kasaysayan ng Emperador Maxentius",
+      "Mula sa mga unang Kristiyano at Tradisyon ng mga Apostol"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Anong tatlong bahagi ng tao ang tinutukoy ng paglalagay ng utos ng Diyos sa pamamagitan ng paggawa ng Tanda ng Krus?",
+    "choices": [
+      "Ang isipan, puso, at gawain o pamumuhay",
+      "Ang hangin, buhay, at kaluluwa",
+      "Ang kamay, noo, at dibdib",
+      "Ang ulo, katawan, at mga paa"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Bakit itinuturing na gawa ng panalangin ang paggawa ng Tanda ng Krus?",
+    "choices": [
+      "Sapagkat ito ay para lang sa pisikal na kalusugan",
+      "Sapagkat pinipilit nito ang tao na tumayo",
+      "Sapagkat hinihiling natin sa Diyos ang kanyang mga pagpapala",
+      "Sapagkat ginagamit ito para sa pagpapasa ng mga salamin"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Ano ang naitatak sa noo ng mga naligtas ayon sa mga binanggit na talata mula sa Pagsisiyasit?",
+    "choices": [
+      "Ang numero ng 666",
+      "Ang pangalan ng Ama, ng Anak, at ng Espiritu Santo",
+      "Ang sariling pangalan ng taong iyon",
+      "Ang pangalan ng mabangis na hayop"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Anong uri ng pananalita ang ginagamit upang ipaliwanag ang pangungusap na 'Sambahin ang banal na kahoy'?",
+    "choices": [
+      "Simile",
+      "Hyperbole",
+      "Ironiya",
+      "Metonymy"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Ayon sa Eze. 9:5-6, bakit hindi patayin ang mga may tatak na krus sa kanilang noo?",
+    "choices": [
+      "Sapagkat sila ay mga sundalo ng hari",
+      "Sapagkat sila'y kayaman at hindi dapat saktan",
+      "Sapagkat wala silang kasalanan",
+      "Sapagkat sila'y may tatak ng Diyos bilang proteksyon"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Ano ang nangyari kay Reyna Helena at ang kanyang mga kasama na nagpatunay kung alin ang tunay na krus ni Cristo?",
+    "choices": [
+      "Mula sa langit, bumaba ang apoy at sinunog ito",
+      "Natagpuan niya ito sa libingan ng mga hari",
+      "Ito'y naglahok sa digmaan upang manalo",
+      "Inilapit nila ang isang bangkay sa krus at nabuhay ito"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "cross-sign-of-cross",
+    "tier": "beginner",
+    "question": "Anong biyaya ang makakakuha ng isang taong gumagawa ng Tanda ng Krus habang nasa kalagayan ng biyaya?",
+    "choices": [
+      "Ginintuang halaga",
+      "Katungkulan bilang episkopo",
+      "Libreng pagpunta sa Jeruhasalem",
+      "Indulgensiya mula sa Simbahan"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  }
+]

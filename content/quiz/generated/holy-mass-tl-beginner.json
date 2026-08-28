@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Sta. Iglesia, ano ang Misa?",
+    "choices": [
+      "Ang di-madugong sakripisyo ng katawan at dugo ni Cristo sa ilalim ng anyo ng tinapay at alak.",
+      "Ang handog ng mga hayop na ginagawa ng mga paring Judio.",
+      "Ang madugong pakikidigma doon sa Kalbaryo.",
+      "Isang simpleng pagtitipon para makinig sa salita ng Diyos lamang."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Bilang paano ang Misa kumpara sa sakripisyo ni Cristo doon sa Kalbaryo?",
+    "choices": [
+      "Ang Misa ay isang bagong sakripisyong gawa lamang ng mga pari.",
+      "Ang Misa ay isang ulit-ulit na pagpatay kay Cristo.",
+      "Ang Misa ay iisa lamang na handog ni Cristo, pareho rito.",
+      "Ang Misa ay hindi may kinalaman sa sakripisyo doon sa Krus."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Paano inihahandog ni Cristo ang Kanyang sarili sa Misa kumpara sa Krus?",
+    "choices": [
+      "Sa Krus, wala nang dugo; sa Misa, muling binubuhos ang dugo.",
+      "Doon sa Krus, di-madugo; sa Misa, madugong paraan.",
+      "Doon sa Krus, madugong paraan; sa Misa, di-madugo o sakramental na paraan.",
+      "Sa parehong lugar at parehong paraan ang paghahandog."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Sino ang nagtatag ng ritong ito noong Huling Hapunan bilang alaala ng Kanyang kamatayan?",
+    "choices": [
+      "Ang mga Apostol.",
+      "Si San Pablo.",
+      "Si Jesus.",
+      "Si Melquisedec."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ano ang tinutukoy ni San Pablo sa 1 Corintios 11:23-26 tungkol sa pagkakain at pag-inom?",
+    "choices": [
+      "Dapat lamang kumain ng tinapay, hindi na inom ng alak.",
+      "Hindi na kailangan ang ritong ito para sa kaligtasan.",
+      "Ang pagkakain at pag-inom ay simpleng paggunita lamang sa nakaraan.",
+      "Sapagkat kakain kayo ng tinapay at iinom mula sa kalis, ipinahahayag ninyo ang kamatayan ni Cristo hanggang sa Kanyang muling pagbabalik."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Bakit hindi paulit-ulitin na pagpatay kay Cristo ang Misa?",
+    "choices": [
+      "Dahil pinatay na ni Cristo siya mismo.",
+      "Sapagkat sapat na ang Misa para sa lahat ng panahon na walang pag-ibig sa Diyos.",
+      "Dahil wala nang kasalanan sa mundo ngayon.",
+      "Sapagkat matapos siyang mabuhay na muli, hindi na siya mamamatay pang muli."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ano ang tinanggap ng mga tao sa Misa kahit tinapay lamang ang kanilang natutanggap?",
+    "choices": [
+      "Ang handog ng mga hayop.",
+      "Isang simbolikong tinapay lamang na walang kapangyarihan.",
+      "Ang mga alituntunin ng Lumang Tipan.",
+      "Ang buong Cristo—ang Kanyang laman, dugo, kaluluwa, at pagka-Diyos."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Sino ang pinakadakilang pari sa Misa?",
+    "choices": [
+      "Ang pari na nasa altar.",
+      "Ang mga tagasunod ni Cristo.",
+      "Si Melquisedec.",
+      "Si Cristo."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Sa pamamagitan ng aling paraan inihahandog ni Cristo ang Kanyang sarili sa Misa?",
+    "choices": [
+      "Isang simbolikong kanta lamang na inawit ng mga pari.",
+      "Di-madugo o sakramental na paraan sa ilalim ng anyo ng tinapay at alak.",
+      "Madugong paraan tulad noong siya ay ipinako sa Krus.",
+      "Pagsamba sa pamamagitan ng pagbasa ng Kasulatan lamang."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ano ang layunin ng sakripisyo ng Banal na Misa ayon sa Turo ng Sta. Iglesia?",
+    "choices": [
+      "Upang ipagdiriwag lamang ang kasaysayan ng Bagong Tipan.",
+      "Para sa kapatawaran ng kasalanan at pagpapawi sa kaparusahang dulot nito.",
+      "Upang magbigay ng pagkain sa mga taong nagugutom.",
+      "Upang palitan ang sakripisyo ni Cristo doon sa Krus."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ano ang tinutukoy na 'handog' na ginagawa ng mga paring Hudyo araw-araw na hindi makapag-aalis ng kasalanan?",
+    "choices": [
+      "Ang handog ng mga toro at kambing.",
+      "Ang pagkain nang masaya at buong-puso ng mga Apostol.",
+      "Ang Banal na Misa na inihahandog sa ilalim ng anyo ng tinapay at alak.",
+      "Ang handog ni Melquisedec na tinapay at alak."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Pablo tungkol sa pagkakain ng tinapay at pag-inom mula sa kalis ayon sa 1 Corintios 10:16?",
+    "choices": [
+      "Ito ay pakikibahagi sa dugo at katawan ni Cristo.",
+      "Ito ay para lamang sa mga taong naniniwala kay Kristo.",
+      "Ito ay simpleng pagkilala sa kasaysayan ng Huling Hapunan.",
+      "Itinuturo ito bilang isang gawi ng pagpapakumbaba sa harap ng Diyos."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Bakit hindi nagkukulang ang mga taumag tinatanggap lamang ng tinapay sa Misa?",
+    "choices": [
+      "Sapagkat ang tinapay ay sapat na upang mapatawad ang lahat ng kasalanan.",
+      "Sapagkat buong Cristo ang tinatanggap sa pamamagitan ng 'concomittance'.",
+      "Sapagkat mas mahalaga ang tinapay kaysa sa alak.",
+      "Sapagkat ang alak ay inihahanda na lamang para sa mga pari."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Sino ang tinukoy bilang pari ng Kataas-taasang Diyos na nagdala ng tinapay at alak?",
+    "choices": [
+      "Si San Pablo.",
+      "Si Jesus sa Huling Hapunan.",
+      "Si Melquisedec.",
+      "Si Propeta Malaquias."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-mass",
+    "tier": "beginner",
+    "question": "Ano ang tinutukoy ni Propeta Malaquias tungkol sa handog na kinalulugdan ng Diyos?",
+    "choices": [
+      "Isang handog lamang para sa mga taga-Israel.",
+      "Isang handog na gagawin araw-araw sa pangalan ng Panginoon.",
+      "Isang handog ng mga hayop sa templo.",
+      "Isang handog na gagawin nang minsan lamang."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

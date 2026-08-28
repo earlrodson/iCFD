@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ayon sa source material, ano ang tawag sa panggitnang dako o kalagayan para sa mga kaluluwang namatay sa maliliit na kasalanan o hindi pa lubusang nakabayad sa temporal na kaparusahan?",
+    "choices": [
+      "Imperyho",
+      "Purgatoryo",
+      "Limbo",
+      "Langit"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Paano matutulungan ang mga kaluluwa sa purgatoryo ayon sa turo ng Sta. Iglesya?",
+    "choices": [
+      "Sa pamamagitan ng pagdarasal rosaryo lamang",
+      "Sa pamamagitan ng pag-aayuno hanggang kamatayan",
+      "Sa pamamagitan ng pagbibigay ng pilak o ginto sa simbahan",
+      "Sa pamamagitan ng panalangin ng mga buhay at Banal na Sakripisyo ng Misa"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Anong pangyayari sa Lumang Tipan ang nagbigay-dahan upang matuto ang bayan ng Diyos na manalangin para sa mga patay?",
+    "choices": [
+      "Ang paghahandog ni Judas Macabeo para sa kasalanan ng mga namatay",
+      "Ang paglikha ni Adan ng mga hayop",
+      "Ang paglabas ng Israel mula sa Egipto",
+      "Ang paglakad ni Moses sa bundok Sinai"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Sino ang sinabi na ang kasalanan laban sa Espiritu Santo ay hindi mapapatawad sa buhay na ito o sa susunod na buhay?",
+    "choices": [
+      "Si San Pablo",
+      "Si San Pedro",
+      "Si Judas Macabeo",
+      "Si Jesus Cristo"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo, ano ang mangyayari sa gawa ng bawat isa na hindi ganap sa araw ng paghuhukom?",
+    "choices": [
+      "Magdurusa ito ng pagkalugi ngunit maliligtas ito bagamat dadaan sa apoy",
+      "Agad itong papasukan ang langit nang walang hadlang",
+      "Babagsak ito agad sa impiyerno",
+      "Hindi na ito susuriin kung mabuti man o masama"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Bakit hindi agad papasukan ang langit ang mga namatay sa grasya ngunit may maliliit na batik o dumi sa kanilang kaluluwa?",
+    "choices": [
+      "Dahil hindi pa sila sapat na mapagkumbaba",
+      "Dahil kailangan nilang mabayaran ang lahat ng utang",
+      "Dahil kailangan nilang muling ipanganak muli",
+      "Dahil walang marimsi ang makapasok sa lungsod ng Diyos"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ano ang katotohanan tungkol sa dalawang dako na binanggit ni Jesus sa Mateo 25:31-36?",
+    "choices": [
+      "Langit at impiyerno lamang ang binanggit dahil maglalaho na ang purgatoryo bago gawin ang huling paghuhukom",
+      "Walang banggit sa Mateo tungkol sa kalagayan ng mga patay",
+      "May tatlong dako na binanggit: langit, purgatoryo, at impiyerno",
+      "Ang mga taong nasa kanan ni Cristo ay patay na"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ayon sa source material, ano ang tunuhin sa abuloy sa Misa?",
+    "choices": [
+      "Ito ay hindi kinakailangan para sa mga namatay",
+      "Ito ay pagbili ng pagpasok sa langit",
+      "Ito ay hindi bayad sa Misa kundi kabayaran sa pagpapagal ng paring naghahandog",
+      "Ito ay bayad na nagpapaalis agad sa purgatoryo"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ayon kay San Juan sa 1 Juan 5:16-17 na binanggit sa sagot 2, mayroon bang pagkakaiba ang mga kasalanan? Oo o Hindi?",
+    "choices": [
+      "Hindi, lahat ng kasalanan ay parehas lamang at humahantong sa kamatayan.",
+      "Oo, pero ang lahat ay magkatulad na parusa kahit iba-iba ang bigat.",
+      "Oo, may kasalanan na humahantong sa kamatayan at may mga hindi humahantong dito.",
+      "Hindi, wala naman talagang makasaysayang kasalanan sa pananampalataya."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Anong uri ng paghuhukom ang ginagawa sa oras ng kamatayan ng bawat isa, ayon sa Sagot 4?",
+    "choices": [
+      "Huling Paghuhukom bago ang muling pagkabuhay",
+      "Pagsasariling paghuhukom o pansariling paghuhukom",
+      "Pangkalahatang paghuhukom na ginagawa sa pagbabalik ni Cristo",
+      "Hukuman ng mga anghel sa panahon ng kamatayan"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Sino ang sumulat na kailangang alalahanin at magmakaawa para sa mga kaluluwa sa purgatoryo, base sa aral ng source material?",
+    "choices": [
+      "Si Judas Macabeo lamang noong panahon niya",
+      "Ang Simbahan at ang lahat ng naniniwala",
+      "Walang tiyak na sinabi kung sino ang dapat magdasal",
+      "Sina San Pablo at San Pedro lamang"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ayon kay Mateo 5:26, hanggang kailan kaya ang maging nakulong sa ilog na apoy?",
+    "choices": [
+      "Hanggang sa maubos ang tansong pera ng tao",
+      "Hanggang mabayaran nang lubusan ang multa",
+      "Hanggang sa dumating ang pangkalahatang paghuhukom",
+      "Hanggang si Cristo ay bumalik sa lupa"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Sa Sagot 6, bakit tinuturing na hindi 'bayad' ang abuloy sa Misa kundi kabayaran sa pagpapagal?",
+    "choices": [
+      "Ayon kay San Pablo, gusto ng Diyos na ang naghahandog ay may bahagi sa handog at tanggap niya ang bayad",
+      "Sapagkat ang Misa ay libre nang palaging ginagawa",
+      "Sapagkat ang mga pari ay kailangang gumastos para maging buhay",
+      "Dahil ito ay para lang sa pagpuri ng pamilya"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ano ang ibig sabihin ng Sagot 1 tungkol sa salitang 'purgatoryo' sa Bibliya?",
+    "choices": [
+      "Hindi ito nabanggit kahit paano sa Lumang Tipan",
+      "Ito ay eksaktong nasusulat letra-por-letra",
+      "Hindi mababasa ang salita, ngunit ipinahiwatig ang pagkakaroon nito ang bibliya",
+      "Biblica lamang ito na walang ibang katumbas sa kasaysayan"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "purgatory",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo sa 2 Corintios 3:6, siya ay gumawa ng karapat-dagang maglingkod sa bagong tipan na hindi...",
+    "choices": [
+      "Talaan ng maling gawi at kasalanan",
+      "Kautusang nasusulat kundi sa Espiritu",
+      "Ginawa ng mga mandirigma at hukom",
+      "Bibliya na may salita lamang kaysa sa espiritu"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

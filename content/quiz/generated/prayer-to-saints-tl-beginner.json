@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa pinag-uusapan, bakit itinuturing na mabuti at kapaki-pakinabang ang pagdulog sa tulong ng mga santo?",
+    "choices": [
+      "Dahil sila ay makapananalangin para sa atin at maririnig ang ating mga panalangin",
+      "Dahil sila ang may kontrol sa pagkakasunod-sunod ng mga panahon",
+      "Dahil sila ay may kapangyarihang magbigay ng yaman at kayamanan",
+      "Dahil sila ang bugtong tagapamagitan upang makuha ang lahat ng grasya"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Paano binibigyang-katwiran ang posisyon na si Cristo lamang ang bugtong tagapamagitan?",
+    "choices": [
+      "Dahil siya ang naging tagapamagitan ni San Pablo sa ebanghelyo",
+      "Dahil siya ay nakita ni San Juan na nakikipag-usap kay Abraham",
+      "Dahil siya ang nagbigay ng Kautusan kay Moises",
+      "Dahil siya ang inialay ang kanyang sarili upang iligtas ang lahat ng tao"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ano ang halimbawa ng Lumang Tipan na nagpapakita na ang panalangin ng isang matuwid ay may malaking bisa?",
+    "choices": [
+      "Ang pag-iyak ni Abraham para sa mga tao at ang pagsasang-ayon ng Diyos",
+      "Ang pagkamatay ni Eliseo at muling pagkabuhay ng bangkay na nadikit sa kanyang buto",
+      "Ang pagbabalik-buhay ni Lazaro sa tulong ni San Pedro",
+      "Ang pagtatanggol ni San Pablo sa barko laban sa bagyo"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Bakit tinuturing na mali ang argumento na ang mga santo ay namamatay at wala nang kamalayan?",
+    "choices": [
+      "Dahil si Moises ay nagsalita sa langit habang buhay pa siya",
+      "Dahil sinasabi ni San Juan na naroroon ang kaluluwa nila sa ilalim ng dambana",
+      "Dahil ang mga anghel ay may kamalayan pero ang mga santo ay wala",
+      "Dahil sa panahon ng buhay, hindi sila maririnig ang ating tawag"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ano ang paliwanag tungkol sa pagtatanggi ni Cornelio na sambahin si San Pedro?",
+    "choices": [
+      "Dahil naniniwala pa ang mga pagano na ang mga apostol ay mga diyos",
+      "Dahil ito ay paraiprein upang iwasan ang pagsamba sa mga anghel",
+      "Dahil itinuturo na ang mga santo ay hindi dapat sambahin kundi sundin lamang",
+      "Dahil si Pedro ay hindi handang tumanggap ng anumang pagsamba"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Paano iniuuri ng Sta. Iglesia ang paggalang at pagpaparangal na inilalaag sa mga anghel at santo?",
+    "choices": [
+      "Inilalaag ang paggalang bilang 'dulia' dahil sa kanilang kaugnayan sa Diyos",
+      "Itinuturing itong kalupitan sapagkat walang grasya dito",
+      "Hindi nararapat na sambahin kundi sundin lamang ang kanilang pamumuhay",
+      "Tinatawag itong 'latria' sapagkat sila ay Manlilikha"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ano ang dahilan kung bakit sinasabi na ang mga santo ay 'nagmumula sa Diyos' ang lahat ng kabutihang kanilang natatanggap?",
+    "choices": [
+      "Dahil ang Diyos ay tumanggi sa anumang tulong mula sa mga anghel",
+      "Dahil ang buwan ay humihiram ng liwanag mula sa araw, gayon din ang mga santo kay Cristo",
+      "Dahil sila ay nagbigay-liwanag mula sa sarili nilang kapangyarihan",
+      "Dahil si Kristo ay nagsalita na siya lamang ang paglingkuran"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Sino ang sinabi ni San Pablo na nagligtas at nagdala ng pananalangin kay Tobit at Sara?",
+    "choices": [
+      "Si Anghel Rafael",
+      "Si San Pedro",
+      "Si Moises",
+      "Si Abraham"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa Tanong 1, bakit hindi sinasalungat ng pananalangin sa mga santo ang pahayag ni San Pablo na si Cristo lamang ang tagapamagitan?",
+    "choices": [
+      "Tulad ng pag-ibig, ito ay hindi maaaring ipaliwanag nang lohikal.",
+      "Sapagkat si Cristo lamang ang may kapangyarihan na iligtas.",
+      "Sapagkat ang tagapamagitan ni Cristo ay hinggil sa kanyang gawain ng pagtubos, habang ang mga santo ay nagiging tagapamagitan sa pamamagitan ng kanilang pananalangin.",
+      "Dahil ang mga anghel ay hindi makapansin sa ating mga pananalangin."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Bakit sinasabi na ang mga anghel ay makatutulong sa atin sa kanilang pananalangin base sa Tanong 7?",
+    "choices": [
+      "Dahil sila ay naglilingkod sa Diyos at nagnanais ng ating kaligtasan.",
+      "Dahil ang Kanilang pagiging makatutulong ay walang kwenta sa Diyos.",
+      "Dahil sila ay mas mataas na nilalang kaysa sa mga taong tao.",
+      "Dahil sila ay gumagawa ng mga himala nang hiwalay sa Diyos."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa Tanong 2, ano ang kinalaman ni Cristo sa pagbubukas ng langit para sa atin?",
+    "choices": [
+      "Naging sanhi siya ng pagbagsak ng mga anghel sa lupa.",
+      "Siya ang nagpasara ng daan patungo sa Ama.",
+      "Sa pamamagitan ng kanyang kamatayan, nabuksan ang langit para sa atin.",
+      "Wala siyang koneksyon sa bukas na langit para sa mga tao."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa Tanong 6, paano inilalarawan ang paggalang at pagpaparangal sa mga santo tulad ni San Pedro?",
+    "choices": [
+      "Ang pagsamba na karapat-dapat lamang para sa Diyos.",
+      "Ang pagtatanggi upang sambahin ito ng lahat ng tao.",
+      "Ang pagsamba bilang mga diyos na bumaba mula sa langit.",
+      "Ang paggalang at pagpaparangal dahil sa kanilang kaugnayan sa Diyos."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa Tanong 5, paano inilalarawan ang katayuan ng mga kaluluwa ng mga santo ayon kay San Juan?",
+    "choices": [
+      "Gumagawa ng himala gamit ang kanilang mga katawan na libing.",
+      "Nakikipag-usap sila kay Abraham habang buhay pa sila.",
+      "Nasa ilalim ng dambana na nagsisigaw para sa katarungan.",
+      "Nandoon sila sa init ng apoy na kung saan sila ay dumudusa."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa Tanong 4, bakit nananatiling mahalaga ang pananalangin ng mga santo kahit si Cristo ay buhay na nananalangin para sa atin?",
+    "choices": [
+      "Sapagkat ipinasya ng Diyos na may mga grasyang ating tatanggapin sa pamamagitan ng pananalangin ng mga santo.",
+      "Kahit hindi ito kinakailangan, maganda pa rin ang gawain na ito.",
+      "Dahil kailangan nating tulungan si Kristo sa kanyang pagtubos.",
+      "Dahil ito lamang ang paraan upang makakuha ng grasya mula sa Diyos."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "prayer-to-saints",
+    "tier": "beginner",
+    "question": "Ayon sa Tanong 8, ano ang tawag sa pinakamataas na pagsamba na karapat-dapat lamang para sa Diyos?",
+    "choices": [
+      "Latria, sapagkat siya ang ating Manlilikha.",
+      "Sambahin mo ang Panginoon mong Diyos at siya lamang ang paglingkuran.",
+      "Pagdiriwang ng kanilang kapistahan at debosyon.",
+      "Dulia o paggalang at pagpaparangal."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  }
+]

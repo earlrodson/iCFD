@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang unang sakramento na tinatanggap ayon sa turo ng Sta. Iglesia, na nagsisilbing tarangkahan tungo sa espirituwal na buhay?",
+    "choices": [
+      "Ang Sakramento ng Penitensya",
+      "Ang Sakramento ng Eukaristiya",
+      "Ang Sakramento ng Binyag",
+      "Ang Sakramento ng Repormasyon"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ayon kay San Augustine, bakit kailangang baptisman ang mga sanggol?",
+    "choices": [
+      "Dahil ang orihinal na kasalanan ay dumidikit sa kanilang kaluluwa nang wala sa kanilang kamalayan.",
+      "Dahil sila ay dapat magkaroon ng sariling desisyon upang tanggapin ang grasya.",
+      "Dahil kailangan nilang makita ang tubig upang maging buhay ang kanilang pananampalataya.",
+      "Dahil sila ay sapat na matanda upang humingi ng tawad para sa kanilang mga sariling kasalanan."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Anong tatlong maka-Diyos na birtud ang natatanggap sa pamamagitan ng sakramento ng binyag?",
+    "choices": [
+      "Paggalang sa Magulang, Taguyod sa Kapwa at Pagpapalaki",
+      "Pagtutulungan, Pagkakaibigan at Pagpapatawad",
+      "Pananampalataya, Pag-asa at Pagmamahal sa Diyos",
+      "Katalinuhan, Lakas ng Loob at Katiwasan"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Sa paanong paraan ayon sa Mateo 18:6, may pananampalataya ang mga maliliit na bata?",
+    "choices": [
+      "Sinasalungat nila ang mga tanong.",
+      "Naniniwala siya kay Jesus.",
+      "Naghihintay lamang sila ng utos.",
+      "Kumikilos sila bilang mga guro."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Sino ang nagsabi na 'Dumating si Cristo upang iligtas ang lahat sa pamamagitan niya; ang lahat ng muling isinilang... mga sanggol at maliliit na bata...'?",
+    "choices": [
+      "Si Dr. John Theodore Mueller",
+      "Si San Irenaeus",
+      "Si San Juan Ebanghelista",
+      "Si Tertulliano"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Upang makapasok ang tao sa kaharian ng Diyos, anong kondisyon ipinagpatuloy ni Jesus sa kanyang pagtuturo?",
+    "choices": [
+      "Kailangang maging sapat na gulang bago makapasok sa kaharian.",
+      "Walang makapapasok maliban kung siya ay ipinanganak sa pamamagitan ng tubig at ng Espiritu.",
+      "Mahalagang magsilbi ang tao sa ibang tao nang walang hinhintay na kapalit.",
+      "Dapat gamitin ang pangalan ni Jesus lamang sa anumang pagbinyag."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang kahulugan ng pagbibinyag 'sa pangalan ni Jesu-Cristo' na inilalarawan sa gawa ng mga Apostol?",
+    "choices": [
+      "Para ipakita ang kahalumigmigan ng tubig na ginamit.",
+      "Sa pamamagitan ng kapangyarihan at utos ni Jesus.",
+      "Bilang isang simbolikong galaw lamang para sa publiko.",
+      "Upang ituro ang pagkakaiba mula sa binyag ni Juan."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang aral na dapat ipanawagan ng mga magulang tungkol sa pagbibinyag?",
+    "choices": [
+      "Huwag ipagpaliban ang pagbibinyag sa pinakamaagang panahon mula sa kapanganakan.",
+      "Hintayin muna ang buong pamilya bago baptisman ang anumang anak.",
+      "Ihiwalay ang mga sanggol mula sa rest of the family during the ceremony.",
+      "Gawin lamang kung sapat na gulang at may sariling pasunod ang bata."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang epekto ng sakramento ng binyag sa mga personal na kasalanan at sa temporal na parusa?",
+    "choices": [
+      "Kinakailangan pa ring magbigay ng kapantayan para sa mga personal na kasalanan.",
+      "Pinapatawad ang mga personal na kasalanan at pinawawalang-bisa ang temporal na parusa.",
+      "Tinatawaran ang mga personal na kasalanan ngunit hindi binabawasan ang temporal na parusa.",
+      "Pinapalala ang mga personal na kasalanan at dagdagan ang temporal na parusa."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ayon sa pagtuturo ni Jesus, paano nakakapasok ang tao sa kaharian ng Diyos?",
+    "choices": [
+      "Sa pamamagitan ng pagmamalaki sa sariling katapatan.",
+      "Sa pamamagitan lamang ng mabuting pagpapatawad ng iba.",
+      "Maliban kung siya ay ipinanganak mula sa tubig at ng Espiritu.",
+      "Maliban kung siya ay umibig sa kanyang kaibigan."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang sinasabi ng Salmo 51:5 ukol sa kalagayan ng isang tao mula nang siya'y ipanganak?",
+    "choices": [
+      "Ako ay ginawa upang mabuti at walang masamang karanasan.",
+      "Masama na ako mula nang ako'y isilang; at makasalanan na ako mula nang ako'y ipaglihi.",
+      "Walang kasalanan akong dinala pagkakakilanlan ko.",
+      "Malinis ang puso ko mula noong ako ay umusbong sa liwanag."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Bakit sinabi ni Jesus na mga maliliit na bata ang may pananampalataya sa kanya?",
+    "choices": [
+      "Sapagkat sila ay hindi nakakaalam ng anumang kasalanan.",
+      "Sapagkat sila ay piniling manatili sa kadiliman.",
+      "Sapagkat sila ay wala pang karapatang magsalita.",
+      "Sapagkat sila ay tinuruan mong maghandog ng ganap na papuri."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang ibig sabihin ng pagbibinyag 'sa pangalan ni Jesu-Cristo' ayon sa gawa ng mga Apostol?",
+    "choices": [
+      "Ito'y nangangahulugang si Jesus lamang ang may kapangyarihan.",
+      "Ito'y nangangahulugang walang ibang pangalan kundi ang kanyang sarili.",
+      "Ito'y nangangahulugang siya ay naging tagapagtaya sa kanyang pangalan.",
+      "Ito'y nangangahulugang sa pamamagitan ng kapangyarihan at utos ni Jesus."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Ano ang tinutukoy na 'tubig' sa pagbibinyag ayon sa 1 Pedro?",
+    "choices": [
+      "Ang tubig ng Euphrates na kumakatawan sa buhay.",
+      "Ang tubig ng dagat na nagsisilbing hadlang.",
+      "Ang tubig ng ilog na nagdudulot ng kamatayan.",
+      "Ang tubig na sumasagisag sa binyag na ngayo'y nagliligtas."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "infant-baptism",
+    "tier": "beginner",
+    "question": "Anong tradisyon ang umiral mula sa mga unang araw ng mga banal na apostol?",
+    "choices": [
+      "Ang pagbibinyag sa mga sanggol.",
+      "Ang pagbabautismo lamang ng mga nakatatanda.",
+      "Ang pag-aalis sa mga sanggol sa pamumuhay.",
+      "Ang paghihiwalay ng mga bata mula sa simbahan."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  }
+]

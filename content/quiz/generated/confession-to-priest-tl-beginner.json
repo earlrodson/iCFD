@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Sino ang nagtatag ng sakramento ng pagkumpisal upang mapatawad ang mga kasalanan na nagawa pagkatapos ng binyag?",
+    "choices": [
+      "Si San Pedro",
+      "Ang mga Apostol",
+      "Mga Obispo",
+      "Si Kristo"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Anong uri ng kasalanan ang kinakailangan na ipagkumpisal ayon sa ituro ng Santa Iglesia?",
+    "choices": [
+      "Mga maliliit na kasalanan lamang",
+      "Mga mortal o malalaking kasalanan",
+      "Mga kinalabasan ng katandaan",
+      "Mga kasalanang walang sinasadya"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Ano ang maaaring magpadala upang mapatawad ang mga maliliit na kasalanan nang walang kumpisal?",
+    "choices": [
+      "Paghahandog ng pagsisisi",
+      "Paggawa ng buod ng buhay",
+      "Pagsamba sa Santisimong Sakramento",
+      "Pag-aayuno sa Kuwaresma"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Bakit kinakailangan ang pagkumpisal ng mga kasalanan sa pari kung direktang kay Jesus lamang tayo napapatawad?",
+    "choices": [
+      "Dahil ang Diyos ay gustong marinig ang ating boses",
+      "Dahil pinili ni Jesus na maghatid ng awtoridad sa pagtuturo at pagpapastor sa mga tao",
+      "Dahil ang mga tao ay hindi kayang makipag-usap nang direkta sa Diyos",
+      "Dahil mas madali para sa pari na ipatawad ang kasalanan kaysa sa Diyos"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Sa pamamagitan ng pagpapahayag ng ating mga kasalanan sa pari, ano ang itinuturuan tayo ni Cristo?",
+    "choices": [
+      "Ang kakayahang itago ang mga lihim",
+      "Ang pagiging mapaghipo o kapakumbabaan",
+      "Ang pagtakas sa responsibilidad",
+      "Ang kapangyarihan maghatol sa iba"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Bakit hindi nakasalalay ang kapangyarihang magpatawad ng kasalanan sa kakayahan ng pari?",
+    "choices": [
+      "Dahil ang Diyos ay nanonood lamang",
+      "Dahil ang pari ay mayaman na kaalaman",
+      "Dahil siya ay isang matalinong tao",
+      "Dahil nakasalalay ito sa mga salita ni Cristo"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Ano ang huling hakbang sa pagkumpisal na nagtatampok ng ating pagkakasakdali sa pagsunod sa kalooban ng Diyos?",
+    "choices": [
+      "Pag-iwas sa okasyon ng pagkakasala",
+      "Pagsasenytensiya o pagpenitensiya",
+      "Paghingi ng tawad",
+      "Pagsisiyasat sa konsensya"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Bilang tanda ng kanilang pagsisisi, ano ang karaniwang gawain ng Bayan ng Diyos?",
+    "choices": [
+      "Pagsamba sa mga santos",
+      "Paggawa ng maraming prayerya",
+      "Pagbibigay ng alay sa simbahan",
+      "Pagsisi sa sala sa pinadala ng Diyos"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Ayon sa ituro ng Simbahan, kailangan bang magkumpisal ng isang mananampalataya kahit isang beses sa loob ng isang taon?",
+    "choices": [
+      "Hindi, sapat ang paghingi ng tawad sa sarili.",
+      "Hindi, sapat lamang ang pagsisimba tuwing Linggo.",
+      "Oo, ngunit hindi ito kinakailangan kung walang nakagawa ng mali.",
+      "Oo, lalo na sa panahon ng Kuwaresma."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Ano ang unang hakbang sa mabuting pagkumpisal na nabanggit sa teksto?",
+    "choices": [
+      "Ang pagsisiyasat sa konsensya.",
+      "Ang pag-iwas sa okasyon ng pagkakasala.",
+      "Ang pagpenitensiya bilang tanda ng pagkakasakdali.",
+      "Ang paghingi ng tawad."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Sino ang sinabi na 'Ipinahayag ko ito sa Panginoon at pinatawad niya ang lahat ng aking kasalanan' (Sal. 32:5)?",
+    "choices": [
+      "Si Saul.",
+      "Si David.",
+      "Si Juan Bautista.",
+      "Si Josue."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Kung ano ang ibig sabihin ng Sal. 69:5 na 'sapagkat ang lahat ng ating kasalanan ay hindi nakatago sa kanya'?",
+    "choices": [
+      "Ibig sabihin ay hindi na kailangang pagsisisihin ang mga kasalanan.",
+      "Nangangahulugan ito na walang kailangan magkumpisal sa pari.",
+      "Hindi nangangahulugan ito na direkta nating sinasabi sa Diyos ang bawat isa sa ating mga kasalanan.",
+      "Dahil direktang makikita ng Diyos ang puso ng tao."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Bakit kinakailangan ang pag-aamin sa mga maliliit na kasalanan kahit maaari itong mapatawad nang walang kumpisal?",
+    "choices": [
+      "Dahil ito ang paraan upang maligtas tayo sa impiyerno.",
+      "Dahil kailangan upang maipasa ang awtoridad sa mga apostol.",
+      "Dahil nakakatulong ito sa pagpapagaling.",
+      "Dahil ito ay utos ng Santa Iglesia para sa lahat."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Anong pangungusap ni San Pablo ang ibinubulong tungkol sa gawaing ng pakikipagkasundo?",
+    "choices": [
+      "'Ibinigay sa amin ni Cristo ang gawaing ito ng pakikipagkasundo' (2 Cor. 5:18).",
+      "'Sapagkat ang kalungkutang mula sa Diyos ay nagpapahinuhod' (2 Cor. 7:10).",
+      "'Lumapit kayo sa akin, kayong lahat na napapagod' (Mat. 11:28).",
+      "'Suriin at kilalanin ang inyong sarili upang malaman kung patuloy ba kayong nananalig' (2 Cor. 13:5)."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "confession-to-priest",
+    "tier": "beginner",
+    "question": "Sino ang tinawag ni David upang isumpa ang katotohanan at sabihin sa kanya ang ginawa ni Acan?",
+    "choices": [
+      "Si Samuel.",
+      "Si Nathan.",
+      "Si Saul.",
+      "Si Josue."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  }
+]

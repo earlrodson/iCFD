@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Ayon sa turo ng Santa Iglesia, ilang persona ang mayroon sa iisang pagka-Diyos?",
+    "choices": [
+      "Apat",
+      "Dalawa",
+      "Tatlo",
+      "Isa"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sino ang tinatawag na Diyos na walang pinagmulan?",
+    "choices": [
+      "Ang Anak",
+      "Ang Ama",
+      "Ang Espiritu Santo",
+      "Si San Pedro"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Ano ang kahulugan ng salitang 'persona' sa konteksto ng doktrina ng Trinidad?",
+    "choices": [
+      "Taglay ang pang-unawa at kalooban",
+      "Walang pinagmulan",
+      "Kalikasan na nagbibigay-kaya",
+      "Mula sa Ama at sa Anak"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sa Lumang Tipan, sino ang nagsabi na 'likhain natin ang tao ayon sa ating larawan at wangis'?",
+    "choices": [
+      "Diyos",
+      "San Pedro",
+      "Propeta Isaias",
+      "Si San Pablo"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sino ang pinili ng Diyos upang malaman kung sino ang kanyang isisilang?",
+    "choices": [
+      "Ang mga Apostol",
+      "Si San Juan",
+      "Propeta Isaias",
+      "Sta. Maria"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Kailan nabuksan ang langit at lumitaw ang Espiritu Santo sa anyo ng isang kalapati?",
+    "choices": [
+      "Sa pagbibinyag kay Jesus",
+      "Sa pagkakatawang-tao ni Jesus",
+      "Sa pag-akyat ni Jesus sa langit",
+      "Sa gabi ng pagdurusa ni Jesus"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sino ang nagsabi na 'Hihilingin ko sa Ama at isusugo niya sa inyo ang isa pang Manlalaban, ang Espiritu ng katotohanan'?",
+    "choices": [
+      "San Pablo",
+      "Si San Judas",
+      "Jesus",
+      "San Pedro"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sa pagtatapos ng kanyang sulat sa mga taga-Corinto, sino ang binigyan ng pagpapala sa pagsasabing 'ang pakikibahagi sa Espiritu Santo'?",
+    "choices": [
+      "San Pablo",
+      "Si San Pedro",
+      "Si San Judas",
+      "Propeta Isaias"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Kailan ipinahayag ang aral hinggil sa Santisima Trinidad sa apat na mahalagang bahagi ng buhay ni Jesus?",
+    "choices": [
+      "Sa kanyang kapanganakan, pagtuturo, himagsikan, at pagkawala.",
+      "Sa kanyang pagkakatawang-tao, pagbibinyag, gabi ng pagdurusa, at pag-akyat.",
+      "Sa kanyang mga parabel, mirakulo, paglayas sa Ehipto, at pagbangon.",
+      "Sa kanyang pagiging pari, pagdarasal sa hardi, pagdapa, at pagtakbo."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sino ang tinaguriyang 'Isa Pang Manlalaban' na isusugo ng Ama kay Jesus?",
+    "choices": [
+      "Ang Diyos Ama na Sariling Buhay.",
+      "Ang Isang Anak na Ginintuang Bituin.",
+      "Ang Malaking Anghel na Gabriel.",
+      "Ang Espiritu ng katotohanan."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ng Diyos kay Propeta Isaias tungkol sa pagpapadala ng kanyang mensahe?",
+    "choices": [
+      "Ang Diyos at ang kanyang Kalakhan ang tumawag sa akin.",
+      "Ang Diyos at ang kanyang Mga Anghel ang nagpadala sa akin.",
+      "Ang Diyos at ang kanyang Espiritu ang nagsugo sa akin.",
+      "Ang Diyos at ang kanyang Batol awa ang pinagmulan ng utos."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sino ang sumulat na ang ating pagkatawag ay pakikibahagi sa buhay ng Trinidad at binigyang-kabaluhan ng dugo ni Jesu-Cristo?",
+    "choices": [
+      "Si Propeta Isaias.",
+      "Si San Pedro.",
+      "Si San Juan.",
+      "Si San Pablo."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Sa aling talata ang nakasaad na magpabinyag sila sa ngalan ni Jesu-Cristo upang mapatawad ang kanilang mga kasalanan at tanggapin ang kaloob na Espiritu Santo?",
+    "choices": [
+      "Buh. 2:38",
+      "Luc. 1:35",
+      "Mat. 28:19",
+      "Jud. 1:20-21"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Bakit hindi pa handa ang mga tao para sa buong pagpapahayag ng misteryo ng Trinidad noong panahon ng Lumang Tipan?",
+    "choices": [
+      "Sil ay napapaligiran ng maraming bansang sumasamba sa maraming diyos.",
+      "Ang mga kawani ng templo ay nanindigan laban sa paglalahad nito.",
+      "Hindi na ipinayong ito sa kanilang mga pamumuo at ritwal.",
+      "Sila ay kulang sa kaalaman at hindi nakakaintindi ng mga salita."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-trinity",
+    "tier": "beginner",
+    "question": "Ano ang pinagdiinang aral sa Lumang Tipan ayon sa teksto?",
+    "choices": [
+      "Ang mga utos ng Batol.",
+      "Ang kalikasan ng pagka-Diyos.",
+      "Ang kapangyarihan ng Hari.",
+      "Ang kaisahan ng Diyos."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  }
+]

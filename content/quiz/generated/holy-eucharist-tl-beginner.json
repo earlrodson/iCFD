@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ayon kay Sto. Tomas de Aquino, bakit itinuturing ang Eukaristiya bilang pinakadakila sa lahat ng mga sakramento?",
+    "choices": [
+      "Dahil ito ay nagpapawi sa lahat ng mabibigat na kasalanan.",
+      "Dahil dito natatanggap natin mismo si Cristo na tagapagbigay ng grasya.",
+      "Dahil ito ang unang sakramento na ipinagorda ni Jesus.",
+      "Dahil lamang dito matututo tayo magpasalamat sa Diyos."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang sinasabi ng Turo ng Sta. Iglesya tungkol sa katangian ng Eukaristiya?",
+    "choices": [
+      "Sakramento na nagbibigay lamang ng kaluluwa sa mga namamatay.",
+      "Isang ritwal na nagpapaalala sa buhay ni Jesus nang walang bagong grasya.",
+      "Ang sakramento at sakripisyo ng pagkonsagra sa tinapay at alak upang maging katawan at dugo ni Cristo.",
+      "Ang simbolo lamang ng pagkaisa ng mga mananampalataya sa loob ng Simbahan."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Sino ang unang manunulat na binanggit sa teksto na nagpahayag ng paniniwala sa tunay na presensya ni Cristo sa Eukaristiya?",
+    "choices": [
+      "San Ignatius ng Antioch",
+      "San Justin Martyr",
+      "San Hippolytus ng Roma",
+      "San Irenaeus"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang unang himala na ginawa ni Jesus upang ipakilala ang Kanyang kapangyarihan bago ang aral sa Eukaristiya?",
+    "choices": [
+      "Ang paggaling sa isang buti na linalaki",
+      "Ang paglakad sa ibabaw ng tubig (Jn. 6:16-21)",
+      "Ang pagpapakain sa limang libong tao (Jn. 6:1-15)",
+      "Ang pagpapalit ng tubig tungong alak (Jn. 2:1-11)"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Sino ang sinabi na 'Hindi natin ito tinatanggap na parang karaniwang tinapay o karaniwang alak'?",
+    "choices": [
+      "Berenarius",
+      "San Justin Martyr",
+      "San Ignatius ng Antioch",
+      "San Irenaeus"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Bakit nagulat ang mga Judio sa sinabi ni Jesus tungkol sa pagkain ng Kanyang laman at pag-inom ng Kanyang dugo?",
+    "choices": [
+      "Dahil naunawaan nilang totoong tinutukoy ni Jesus ang tunay na pagkaing Kanyang laman at dugong inumin.",
+      "Dahil akala nila ang ibig sabihin ay pagsunod sa kanyang aral lamang.",
+      "Dahil ito ay isang talinghaga lamang tulad ng puno ng ubas.",
+      "Dahil takot sila na baka patayin siya."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni Simon Pedro kay Jesus noong marami sa kanyang mga alagad ang umalis?",
+    "choices": [
+      "Panginoon, kanino pa kami pupunta? Nasa iyo ang mga salitang nagbibigay ng buhay na walang hanggan.",
+      "Hindi namin kayang ipagpatuloy ang pagkakasama sa iyo dahil mabibigat ang aral.",
+      "Panginoon, turuan mo kami upang unawain namin ito nang maayos.",
+      "Marami kaming tanong pa bago kami humingi ng tulong."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni Berengarius na nagdulot ng galit sa Buong Simbahan?",
+    "choices": [
+      "Ang pagkomunyon ay hindi kinakailangan para sa kaligtasan.",
+      "Ang Eukaristiya ay dapat itago lamang at hindi ibigay sa mga mananampalataya.",
+      "Ang tinapay at alak ay nagbabago lamang ng kinalabasan nito.",
+      "Ang mga salitang 'ito ang aking katawan' ay nangangahulugang simbolo lamang."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ayon kay Sto. Tomas de Aquino, saan natatangi ang Eukaristiya kumpara sa ibang mga sakramento?",
+    "choices": [
+      "Dito nabibigay ang grasya lamang ng Diyos.",
+      "Dito nagsisimula ang pagbubuklod sa isa't isa.",
+      "Dito nagiging simbolo lamang ang tinapay at alak.",
+      "Dito tinatanggap mismo si Cristo na tagapagbigay ng grasya."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang tanging utos ng Sta. Iglesya tungkol sa pakikilahok sa Eukaristiya?",
+    "choices": [
+      "Kailangang magfastings bago kumain.",
+      "Kailangang makilahok araw-araw.",
+      "Kailangang magdala ng sariling tinapay at alak.",
+      "Kailangang makibahagi nang karapat-dapat kahit man lang minsan sa isang taon."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Bakit sinabi ni Jesus na 'Ang espiritu ang nagbibigay ng buhay, ang laman ay walang kabuluhan' (Jn. 6:63) sa konteksto ng Eukaristiya?",
+    "choices": [
+      "Upang ipahiwatig na literal lamang ang pagkain ng kanyang laman.",
+      "Upang ilarawan na ang karaniwang laman ng tao ay walang kabuluhan kumpara sa Kanyang maka-Diyos na Laman na nagbibigay ng buhay.",
+      "Upang sabihin na hindi na kailangan ng mga Judio ang anumang pagkain.",
+      "Upang ipagtanggol ang paniniwalang simboliko lamang ang Eukaristiya."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Justin Martyr tungkol sa pagtanggap ng Eukaristiya?",
+    "choices": [
+      "Nininiwala niya na ito ay karaniwang tinapay lamang.",
+      "Nag-utos siya na huwag na inumin ang alak.",
+      "Sinabi niya na hindi natin ito tinatanggap na parang karaniwang tinapay o alak, kundi si Jesu-Cristo ang Manunubos.",
+      "Inalis niya ang konsepto ng Eukaristiya mula sa mga aklat."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Sino ang unang apostol na tumugon kay Jesus nang tanong niya kung aalis din ba sila, at ano ang kanyang sinabi?",
+    "choices": [
+      "Si Juan: 'Hindi kami aalis dahil ikaw ang ilaw ng mundo.'",
+      "Si Andres: 'Kailangan nating makita muna ang mga himala bago tayo umalis.'",
+      "Si Santiago: 'Mananatili kami kahit maniraranas tayo ng kahirapan.'",
+      "Si Pedro: 'Panginoon, kanino pa kami pupunta? Nasa iyo ang mga salitang nagbibigay ng buhay na walang hanggan.'"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ayon sa 1 Corinto 10:17, ano ang ipinahiwatig ng iisang tinapay na kinakain ng maraming tao?",
+    "choices": [
+      "Na tayong lahat, kahit marami, ay iisang katawan sapagkat nakikibahagi sa iisang tinapay.",
+      "Na ang pinaghihirap na tinapay ay may mas mahalagang halaga.",
+      "Na lahat sila ay mayaman at sapat ang pagkain.",
+      "Na bawat isa ay kumakain nang hiwalay para sa sariling kaligtasan."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-eucharist",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni Jesus sa Huling Hapunan tungkol sa kanyang dugo?",
+    "choices": [
+      "'Inumin ninyong lahat ito, ito ang aking dugo na nagpapatibay sa tipan para sa kapatawaran ng mga kasalanan.'",
+      "'Huwag niyong inumin ang alak na ito dahil ito ay mapanganib.'",
+      "'Ito ay simboliko lamang ng aking dugo na ibinuhos.'",
+      "'Ito ay tubig lamang na nagbabago upang bigyan ng lakas ang inyong katawan.'"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  }
+]

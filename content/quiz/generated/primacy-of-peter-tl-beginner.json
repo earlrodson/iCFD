@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Ayon sa turo ng Sta. Iglesya, kung sino ang binigyan ni Cristo ng pinakamataas na kapangyarihan at karapatan sa pamamahala ng kanyang Iglesya?",
+    "choices": [
+      "Mga Apostol",
+      "Santo Pedro",
+      "San Pablo",
+      "Mga Parokong Sacerdote"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ang tamang katangian ng Sto. Papa base sa kasulatan?",
+    "choices": [
+      "Laging tumatanggap ng mga utos mula sa mga obispo bago magdesisyon.",
+      "Walang kasalanan o imperfección sa kanyang personal na pamumuhay.",
+      "Hindi siya nagkakamali sa kanyang opisyal na pagtuturo tungkol sa doktrina at moralidad.",
+      "Ang kanyang mga desisyon ay hindi na kailangan pakinggan ng mga layko."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Sino ang inakalang pinuno sa Lumang Tipan upang ayusin ang kaguluhan at maging pinakapunong hukom para sa bayan ng Israel?",
+    "choices": [
+      "Ang mga sundalong Ehipcio",
+      "Ang pinakapunong saserdote na pinili ng Diyos",
+      "Basta't basa sa Kasulatan ang lahat",
+      "Ang mga propeta lamang"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Bakit binago ni Jesus ang pangalan ni Simon tungo sa Pedro?",
+    "choices": [
+      "Sapagkat gusto lang niyang palitan ito ng bagong pamagat.",
+      "Upang mawalan siya ng kanyang orihinal na identidad.",
+      "Para maging hindi na siya simpleng tagapagtaya ng mga bangka.",
+      "Upang ipahiwatig na siya ay bantiling bato at pinuno."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Alin sa mga pangyayari ang nagpapakita ng nangungunang papel ni Pedro ayon sa Gawa ng mga Apostol?",
+    "choices": [
+      "Wala siyang ginawa sa pag-urong ni Judas.",
+      "Hindi siya dumalaw sa Rome kahit ipinadala siya doon.",
+      "Siya lamang ang kumain sa huling hapunan kasama si Jesus.",
+      "Siya ang unang nagmungkahi sa pagpili ng kapalit ni Judas."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Kung ano ang ibig sabihin ng salitang 'Satanas' na ginamit kay Pedro sa Hebreo?",
+    "choices": [
+      "Panginoon o Hari",
+      "Masa o Puso ng mga Tao",
+      "Apostol o Tagapagtanggol",
+      "Hadlang o balakid"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Bakit sinaway ni Pablo si Pedro sa Antioquia?",
+    "choices": [
+      "Dahili ay tumanggi si Pedro na maging pinuno ng Iglesya.",
+      "Si Pablo ay mas mahusay kaysa kay Pedro.",
+      "Dahil itinuturo ni Pedro ang maling doktrina ng kaligtasan.",
+      "Dahil sa asal ni Pedro na umiwas sa pakikisalamuha sa mga hindi Judio."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Sino ang ipinagpatuloy ni Cristo ang kanyang pagiging pinuno bilang nakikitang pinuno ng kanyang Iglesya?",
+    "choices": [
+      "Santo Pedro",
+      "Mga Diakono",
+      "San Lucas",
+      "Bida si Simon"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Alin sa mga sumusunod ang ibig-ibiggin ng pagbabago ng pangalan ni Simon tungo sa Pedro (Kephas) ayon sa source?",
+    "choices": [
+      "Upang turuan na siya ay isang maliit na bato at hindi matibay na saligan.",
+      "Upang ipakita na siya ang may karapatang magbawal at magpahintulot lamang sa Juda.",
+      "Upang ipahiwatig na siya ay maging pinakapunong saserdote sa Roma.",
+      "Upang ipahiwatig na kay Pedro bilang nakikitang pinuno, itatatag ni Cristo ang kanyang Iglesia."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Ano ang katutubong wika kung saan sinabi ni Jesus na \"Ikaw si Kepha at sa ibabaw ng Kepha na ito ay itatayo ko ang aking iglesya\"?",
+    "choices": [
+      "Aramaiko",
+      "Hebreo",
+      "Griego",
+      "Latin"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Kung sino ang tinawag na 'mabuting pastol ng kawan' at ipinagkatiwala ang buong kawan kay Pedro?",
+    "choices": [
+      "Si Judas",
+      "Si Jesus",
+      "Si Pablo",
+      "Si San Juan"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Bakit sinaway ni Pablo si Pedro base sa talinghaga ng Antioquia?",
+    "choices": [
+      "Dahil sinakripisyo ni Pedro ang tunay na aral ng Kasulatan.",
+      "Dahil ito'y isang doktrinal na pagkakamali.",
+      "Dahil ipinakita ni Pedro ang asal na umiwas sa pakikisalamuha sa mga hindi Judio.",
+      "Dahil tinanggihan ni Pedro ang awtoridad ni Pablo."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Sino ang gumawa ng unang himala ayon sa Gawa ng mga Apostol?",
+    "choices": [
+      "Si Bernabe",
+      "Si Pablo",
+      "Si Juan",
+      "Si Pedro"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Bakit sinabi na ang Sto. Papa ay 'infallible' o hindi nagkakamali?",
+    "choices": [
+      "Sapagkat lahat ng Kasulatan ay isinulat niya mismo.",
+      "Sapagkat ipinangako ni Cristo ang natatanging pangangalaga ng Espiritu Santo upang hindi magturo ng mali sa doktrina at moralidad.",
+      "Sapagkat siya'y hinayagap ng mga obispo nang siya'y piliin bilang pinuno.",
+      "Sapagkat siya'y walang kasalanan tulad ng Birhen Maria."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "primacy-of-peter",
+    "tier": "beginner",
+    "question": "Ano ang ipinahiwatig ng pagpapaalam na ang mga 'tupa' at 'kordero' kay Pedro sa Jn. 21:15-17?",
+    "choices": [
+      "Ang mga tupa ay tumutukoy lamang sa mga Hentil na nahikayat.",
+      "Siya ang mag-aalaga hindi lamang ng mga layko (kordero) kundi pati na rin ng mga obispo at klero (tupa).",
+      "Siya lamang ang alagad na mananaplay sa pastol.",
+      "Ang pagpapadala ni Pedro ay para lang sa bayan ng Israel."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ayon sa pagtuturo ng Iglesya Katolika, kailan napalaya si Sta. Maria sa orihinal na kasalanan?",
+    "choices": [
+      "Pagkatapos niyang pagsilakbag kay Jesus",
+      "Noon pa man mula sa unang sandali ng kanyang buhay",
+      "Sa huling araw ng kanyang pamumuhay",
+      "Pagkatapos niyang maging ina ng Panginoon"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Bakit napalaya si Sta. Maria sa orihinal na kasalanan base sa doktrin?",
+    "choices": [
+      "Sapagkat siya ay hindi sumasang-ayon sa kasalanan",
+      "Dahil sa kanyang sariling merito at kabutihan",
+      "Isang kaloob ng Diyos dahil sa merito ni Cristo",
+      "Dahil siya ay mas masunurin kaysa sa ibang tao"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ano ang sagot ng San Apolohega sa maling akala na si Maria ay nagkasala dahil ang \"lahat ay nagkasala\"?",
+    "choices": [
+      "Si Maria ay hindi kasama sa lahat ng tao",
+      "May ilang mapalaya mula sa pangkalahatang batas na ito, kabilang si Maria",
+      "Nagkasala ang lahat maliban na lamang kay Juan Bautista",
+      "Ang batas na iyo ay wala nang kapower noong panahon ni Maria"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Paano iniligtas si Sta. Maria mula sa kasalanan ayon sa teolohiya?",
+    "choices": [
+      "Sa pamamagitan ng paghihilat ng kanyang sariling dugo",
+      "Sa pamamagitan ng redemptio restaurativa o pagliligtas matapos madapa",
+      "Sa pamamagitan ng pagsanggalang sa kanya nang una pa upang hindi siya madapa",
+      "Sa pamamagitan ng pagpapalayas ng Diyablo mula sa buhay niya"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Sino ang anghel na nagsabi kay Maria na \"Magalak ka, puspos ka ng grasya\"?",
+    "choices": [
+      "Anghel na si Rafael",
+      "Anghel na si Gabriel",
+      "Anghel na si Uriel",
+      "Anghel na si Miguel"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Bakit dalisay at walang batik ng kasalanan si Sta. Maria base sa kanyang papel?",
+    "choices": [
+      "Sapagkat siya ay pinili ng Diyos na maging ina ng Emmanuel",
+      "Sapagkat siya ay mas maganda kaysa sa mga anghel",
+      "Sapagkat siya ay may sapat na grasya para sa sarili niyang kaligtasan",
+      "Sapagkat siya ay nabuhay nang mahaba"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ayon kay San Athanasius, bakit hindi maaaring malulubos ang kabanalan ni Sta. Maria?",
+    "choices": [
+      "Dahil siya ay hindi taong may laman",
+      "Sapagkat hindi natin malulubos ang kabanalan ng Diyos na naging ina Niya",
+      "Sapagkat siya ay nakatago sa langit",
+      "Dahil siya ay isang diosesa na may kapangyarihan"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Bakit namatay si Sta. Maria kung siya ay walang kasalanan?",
+    "choices": [
+      "Dahil sa kawalan ng grasya mula kay Cristo",
+      "Sapagkat siya ay nagkasala nang mag-isa",
+      "Upang kumilos bilang kasabay na sakripisyo sa pagdurusa ni Jesus",
+      "Sapagkat napilitan ito ng diyablo"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Sino ang anghel na nagpahayag kay Sta. Maria sa pangungusap na, 'Magalak ka, puspos ka ng grasya, ang Panginoon ay sumasaiyo'?",
+    "choices": [
+      "Ang anghel na si Rafael",
+      "Ang anghel na si Miguel",
+      "Ang anghel na si Uriel",
+      "Ang anghel na si Gabriel"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ayon sa Aklat ng Karunungan (Kin. 1:4), bakit hindi tumitira ang Karunungan sa isang katawan o kaluluwa?",
+    "choices": [
+      "Sapagkat ito ay lumalaban sa karunungan ng tao",
+      "Sapagkat ito ay mabigat at mahirap dalhin",
+      "Sapagkat ang karunungan ay nasa langit lamang",
+      "Sapagkat hindi tumitira ang karunungan sa katawang marumi o sa kaluluwang alipin ng kasalanan"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ano ang tawag sa paraan kung paano iniligtas si Sta. Maria mula sa kasalanan, kung saan ginanggalang siya nang una pa upang hindi siya madapuan?",
+    "choices": [
+      "Redemptio restaurativa",
+      "Sanctificatio totalis",
+      "Gratia gratum faciens",
+      "Redemptio preventiva"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Sino ang sinabi na hindi kailanman sapat ang ating pagpaparangal kay Maria kagaya ng pagpaparangal sa kanya ng Diyos?",
+    "choices": [
+      "Si San Thomas Aquinas",
+      "Si St. Alphonsus Liguori",
+      "Si Sta. Hildegard ng Bingen",
+      "Si San Juan Bosco"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ayon kay St. Sophronius, si Sta. Maria ang tanamang ito at bukal kung saan walang anumang masama na makapapasok; ano ang ibig sabihin nito tungkol sa kanyang kabihasnan?",
+    "choices": [
+      "Siya ay nagkasala ngunit agad na napatawad",
+      "Siya ay may kakayahang lumaban lamang sa kasalanan",
+      "Siya ay laging dalisay sa isip at sa kaluluwa",
+      "Siya ay hindi kailanman sumasamba kay Diyos"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Bakit namatay si Sta. Maria, kung siya ay dalisay at walang batik ng kasalanan?",
+    "choices": [
+      "Dahil siya ay binitayan ng Diyos sa huling panahon",
+      "Dahil siya ay may sariling masalang kilos",
+      "Sapagkat ang kamatayan niya ay resulta ng kanyang sariling pagkakasala",
+      "Itinaya niya ang kanyang sarili sa mga pagdurusa at ito'y kasabay na sakripisyo sa pagduruso ng kanyang anak na si Jesus"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "immaculate-conception",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Pablo tungkol sa mga taong tinawag ng Diyos, na nagpahiwatig ng kanilang pagiging matuwid at pagkapanalangin?",
+    "choices": [
+      "Silay napili lamang sa pamamagitan ng kanilang sariling lakas",
+      "Hindi lamang niya sila tinawag kundi ginawa rin niyang matuwid at binigyang-bahagi sa kanyang kaluwalhatian",
+      "Naging alipin sila ng kasalanan at hindi na sila nabilanggo",
+      "Hindi nila kailangan ang grasya upang mabuhay nang tama"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

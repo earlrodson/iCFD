@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Sino ang nagtatag ng Tunay na Iglesya?",
+    "choices": [
+      "Noong narito pa siya sa daigdig, si Cristo mismo ang nagtatag nito.",
+      "Noon ay mga propeta ang nagbigay ng ideya para sa pagtatatag nito.",
+      "Noon ay sina Pedro at Juan ang nagtatag ng isang bagong iglesya.",
+      "Noon ay mga apostol lamang ang nagtatag upang magpatuloy ang kanyang gawain."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Ano ang apat na tanda upang makilala ang Tunay na Iglesya?",
+    "choices": [
+      "Madaling pakinggan, malakas, sariwa, at matatag.",
+      "Priyado, pampubliko, pambansa, at pandaigdig.",
+      "Mabilis umunlad, lumaki, kumita, at makapagtiyak.",
+      "Isa, banal, katolika, at apostolika."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Bakit hindi sapat ang isang pangalan lamang upang ituring na tunay ang isang pundok?",
+    "choices": [
+      "Dahil ang tunay na iglesya ay hindi gumagamit ng pamagat.",
+      "Dahil maraming darating sa kanyang pangalan at ililigaw ang mga tao.",
+      "Dahil lahat ng sundalo ay gumagamit ng parehong pangalan.",
+      "Dahil walang bundok na may ganitong pangalan sa daigdig."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Sino ang pinakapunong tagapamahala ng kawan ng Cristo ayon sa pagpili niya?",
+    "choices": [
+      "Si Pablo.",
+      "Si Santiago.",
+      "Si Pedro.",
+      "Si Juan."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Ano ang ibig sabihin ng 'Isa' bilang tanda ng Iglesya sa aspeto ng pamamahala?",
+    "choices": [
+      "Ay lahat ay magkasunod-sunod na pinuno lamang.",
+      "Ay lahat ay nagkakaisa sa pagsailalim sa nakikitang pinuno.",
+      "Ay wala namang pinuno kundi isa-isang lider.",
+      "Ay maraming pinuno sa bawat lugar."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Bakit tinuturing na 'Banal' o Santa ang Iglesya?",
+    "choices": [
+      "Dahil walang kapares na iglesya sa daigdig.",
+      "Dahil ito lamang ang may ginto sa loob ng altar.",
+      "Dahil lahat ng kasapi nito ay perpekto at walang Kasalanan.",
+      "Dahil si Cristo, kanyang nagtatag, ay banal at bukal ng kabanalan."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Ano ang kahulugan ng 'Katolika' o pangkalahatan tungkol sa Iglesya?",
+    "choices": [
+      "Ay magtuturo sa lahat ng bayan sa buong daigdig.",
+      "Ay mananatili lang sa isang probinsya lamang.",
+      "Ay maging buntis at walang anak na iglesya.",
+      "Ay tututuro lamang sa mga taga-Judea."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Paano nakikilala ang katotohanan ng 'Apostolika' ng Iglesya?",
+    "choices": [
+      "Ay sa pagsira ng lumang mga tradisyon noong panahon ni Cristo.",
+      "Ay sa pamamagitan ng walang-puknat na kadena ng mga pinuno mula sa mga apostol.",
+      "Ay sa hindi pagkilala sa sinaunang kasaysayan.",
+      "Ay sa pagkakaroon ng bagong mga apostol sa kasalukuyan."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Ano ang pangkalahatang papel ng Sta. Iglesya sa kaligtasan ng tao?",
+    "choices": [
+      "Nagsisilbi ito upang bigyang-diin ang personal na relasyon ng tao kay Cristo na lang.",
+      "Itinuturo ito bilang pangkalahatang kasangkapan ng kaligtasan at kailangan para makipag-ugnay dito ang tao.",
+      "Itinaturing ito bilang simbolikong representation ng diyos na hindi kinakailangan.",
+      "Ito ay isang opsional na institusyon para sa mga nagnanais lamang ng komunidad."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Ano ang katayuan ng mga taong nakaaalam na ang Iglesya Katolika ang tunay na Iglesya ngunit hindi naman sumasailalim dito?",
+    "choices": [
+      "Maliligtas sila dahil sa kanilang kabutihan.",
+      "Maliligtas sila kung magpapasalamat sila kay Cristo.",
+      "Hindi sila maliligtas.",
+      "Hindi ito nabanggit sa source material."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Bakit mas mahigpit ang hatol na gagawin ng Diyos sa mga kasapi ng Iglesya na hindi nananatili hanggang sa wakas?",
+    "choices": [
+      "Sapagkat hindi nila binabasa ang Bibliya.",
+      "Sapagkat sila ay mas malakas kaysa sa ibang mga tao.",
+      "Sapagkat sila ay walang sinumang tumulong sa kanila.",
+      "Sapagkat higit na maraming biyaya ang kanilang tinanggap."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Ano ang ibig sabihin ng pagka-'Isa' sa aspeto ng pamamahala ayon sa source material?",
+    "choices": [
+      "Na walang kinakailangang pinuno o lider sa loob ng Iglesya.",
+      "Na mayroong maraming iba't ibang pinuno para sa bawat lokal na grupo.",
+      "Na lahat ay nagkakaisa sa pagsailalim sa nakikitang pinuno na iniwan ni Cristo.",
+      "Na ang pamamahala ay depende sa kanyang sariling pagpapasya lamang."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Bakit naghahanap ang Sta. Iglesya ng mga makasalanan ayon sa misyon ni Jesus?",
+    "choices": [
+      "Hindi naparito upang tawagin ang mga matuwid kundi ang mga makasalanan upang sila’y magsisi.",
+      "Sapagkat wala nang ibang pag-asa para sa kaligtasan.",
+      "Upang patunayan na mas mabuti ang mga makasalanan kaysa sa mga matuwid.",
+      "Upang gawin itong mas mahirap na institusyon para sa lahat."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Sino ang sinabi na 'Ubi Petrus, ibi Ecclesia' (Kung saan naroroon si Pedro, naroroon ang Iglesya)?",
+    "choices": [
+      "Si Pedro",
+      "San Anselmo",
+      "Si Cristo",
+      "Si San Pablo"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "true-church",
+    "tier": "beginner",
+    "question": "Paano ipinasa ng mga apostol ang kapangyarihan sa pagtuturo, pamamahala, at pagpapabanal?",
+    "choices": [
+      "Sa lahat ng mamamayan nang direkta.",
+      "Sa mga dating miyembro lamang.",
+      "Sa mga dayuhang pangkat na walang koneksyon.",
+      "Sa kanilang mga kahalili na siyang mga kaobispohan."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Sta. Iglesia, kailan nanatiling birhen si Sta. Maria?",
+    "choices": [
+      "Bago at habang siya'y nanganak ni Jesus, at pagkatapos na.",
+      "Habang nanganak lang siya, ngunit humugot ang mga kapatid ni Jesus pagkatapos.",
+      "Pagkatapos lamang niyang isilang si Jesus hanggang sa kanyang kamatayan.",
+      "Bago lang siyang manganak, ngunit nagkaroon ng asawa siya pagkatapos."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Anong propeta ang bumanga ng hula tungkol sa isang pintuang isasara at hindi muling bubuksan, na kinalabasan ay tumutukoy sa sinapupunan ni Sta. Maria?",
+    "choices": [
+      "Propeta Lucas",
+      "Propeta Isaias",
+      "Propeta Mateo",
+      "Propeta Ezequiel"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Sino ang sinaunang historyador na sinabing si Alfeo ay kapatid ni San Jose, kaya't ang mga anak nito (pinsan ni Jesus) ay hindi dugo ni Sta. Maria?",
+    "choices": [
+      "Si Hegesippus",
+      "Si Salomon",
+      "Si St. Jerome",
+      "Si Zebedeo"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Ayon kay St. Jerome, anong kahulugan ng salitang \"hanggang\" ang ginamit ni Mateo tungkol kay Jose at Maria?",
+    "choices": [
+      "Ito ay wala nang kahulugan at hindi dapat ipaliwanag.",
+      "Ito ay nangangahulugang nagkaroon ng pagbabago o pakikinig pagkatapos ni Jesus isilang.",
+      "Ito ay may pahiwatig na negatibo o 'wala', ibig sabihin mananatili pa rin ang kalagayan.",
+      "Ito ay tumutukoy lamang sa pisikal na kondisyon bago sila magkasal."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Sa Kasulatan, saan nakita ang paggamit ng salitang \"panganay\" na tumutukoy sa unang bubuksan ng sinapupunan nang hindi nangangailangan ng mga anak na sumunod?",
+    "choices": [
+      "Sa Henesis, kung saan ipinagbili ni Esau ang kanyang karapatan.",
+      "Sa Ehipto, kung saan nakaukit ang lapida tungkol sa pagmamana.",
+      "Sa Zacarias, kung saan binanggit ang kamatayan ng bugtong na anak.",
+      "Sa Exodo, kung saan inilalarawan ang paghahandog ng panganay na lalaki sa Diyos."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Bakit ipinagkatiwala ni Jesus ang kanyang ina kay San Juan Apostol sa krus, alinsunod sa argumentong ito?",
+    "choices": [
+      "Dahil ipinagkatiwala niya siya sa mga mangingisda lang.",
+      "Dahil wala siyang ibang anak na lalaki na maaaring bantayan siya.",
+      "Dahil si San Juan ang tanging kapatid ni Jose.",
+      "Dahil ayaw ng mga kapatid ni Jesus na umalalay kay Maria."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Ayon sa Mat. 1:23, ano ang ibig sabihin ng pangalang Emmanuel na ipinagkatiwaga kay Maria?",
+    "choices": [
+      "Siya ay anak ng karpintero.",
+      "Ang Diyos ay kasama natin.",
+      "Siya ay pinsan ni Zacarias.",
+      "Ang Birhen ay manganganak ng lalaki."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Sa Bagong Tipan, bakit tinawag ni Jesus ang mga tao bilang kanyang mga kapatid?",
+    "choices": [
+      "Dahil sila ay pinabanal at may iisang Ama.",
+      "Dahil sila ay mga pinsan ni Zacarias.",
+      "Dahil sila ay mga kapatid ni San Jose.",
+      "Dahil sila ay dugo at laman ni Maria."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Sa Mat. 12:46, sino ang dumating habang nakikipag-usap pa si Jesus sa mga tao?",
+    "choices": [
+      "Ang kanyang mga kapatid na lalaki lamang",
+      "Ang anghel na nagdadala ng mensahe",
+      "Si San Juan Apostol",
+      "Ang kanyang ina at mga kapatid na lalaki"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Ayon kay Propeta Ezequiel, saan dumating ang Diyos ng Israel na magliligtas sa kanyang bayan?",
+    "choices": [
+      "Sa pamamagitan ng himpilan",
+      "Sa pamamagitan ng isang pintuang isasara at hindi na muling bubuksan",
+      "Sa pamamagitan ng isang pintuang bukas na muli",
+      "Sa pamamagitan ng ilog"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Anong pangalang itinakda kay Lot ni Abraham ayon sa Gen. 14:14, upang ipakita ang malawak na kahulugan ng salitang 'kapatid'?",
+    "choices": [
+      "Tiyo",
+      "Nephew (Pamangkin)",
+      "Dama",
+      "Kuya"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Sino ang tinawag ni David na 'kapatid' at 'laman ng aking laman' sa 2 Sam. 19:11-12?",
+    "choices": [
+      "Ang mga taga-Edom",
+      "Ang mga taong mula sa lahi",
+      "Si Jonatan",
+      "Si Hiram"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Ayon sa Mar. 15:40, sino ang nasa malayo kasama si Salome at si Maria Magdalena?",
+    "choices": [
+      "Si Maria na ina ng batang Santiago at ni Jose",
+      "Si Maria na ina ni Jesus",
+      "Si San Juan Apostol",
+      "Si San Jose"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Sa Gen. 8:7, ano ang nangyari sa uwak hanggang humupa ang tubig?",
+    "choices": [
+      "Ito ay bumalik agad",
+      "Ito ay lumipad pumunta sa arko",
+      "Ito ay hindi bumalik habang mataas pa ang tubig at nanatili ring hindi bumalik pagkatapos",
+      "Ito ay namatay"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "perpetual-virginity",
+    "tier": "beginner",
+    "question": "Ano ang ibig sabihin ng larawan sa lapida sa Ehipto na may nakaukit: 'This woman died while delivering her firstborn'?",
+    "choices": [
+      "Ang babae ay nabuhay muli pagkatapos magpakanganak",
+      "Ang ibig sabihin ay 'Ang babaeng ito ay namatay sa pagsilang ng kanyang panganay'",
+      "Ang panganay ay hindi anak ng ina",
+      "Ang babaeng ito ay nagkaanak ng mga anak na sumunod"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

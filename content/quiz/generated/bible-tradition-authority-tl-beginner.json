@@ -1,0 +1,194 @@
+[
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ayon sa source material, saan hango ng Sta. Iglesya ang kanyang karapatan sa pagtuturo at pagpapaliwanag ng banal na pahayag?",
+    "choices": [
+      "Mula sa personal na interpretasyon ng bawat mambabasa",
+      "Mula sa Bibliya lamang",
+      "Mula sa dalawang bukal: ang Bibliya at ang Tradisyon",
+      "Mula sa Tradisyon lamang"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Sino ang binigyan ni Cristo ng tanging karapatan sa hindi pagkakamali sa pagtuturing sa mga bagay na kinakailangan para sa kaligtasan ng tao?",
+    "choices": [
+      "Ang bawat mambabasa ng Bibliya",
+      "Ang mga apostol noong panahon nila lamang",
+      "Ang mga saserdote lamang",
+      "Ang buhay na awtoridad ng Sta. Iglesya o magisterium (Sto. Papa at mga obispo)"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Kailan nangyari ang pagtitipon ng lahat ng aklat sa isang bibliya na tawag nating Bibliya, ayon sa source?",
+    "choices": [
+      "Noong 45 AD",
+      "Noong taong 1456",
+      "Noong pagkatapos ng kamatayan ni San Juan",
+      "Noong mga taong 397 AD"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ano ang unang aklat ng Bagong Tipan at kailan ito isinulat base sa source material?",
+    "choices": [
+      "Ang mga Sulat ni Pablo, noong 60 AD",
+      "Ang huling aklat, noong 100 AD",
+      "Ang unang aklat, noong 45 AD",
+      "Ang Ebanghelyo ni Mateo, noong 30 AD"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "question": "Bakit sinabi na sapat na ang Bibliya upang dalhin tayo sa buhay na walang hanggan ay mali, base sa argumento ng source?",
+    "choices": [
+      "Dahil ang mga unang Kristiyano ay umabot sa kabanalan nang hindi man lang nabasa ang Bibliya",
+      "Dahil mas mahalaga ang Tradisyon kaysa sa Bibliya",
+      "Dahil wala nang kopya ng Bibliya ngayon",
+      "Dahil ang Bibliya ay nasusulat lamang sa Ingles"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "question": "Sino ang nagpasya noong taong 397 AD kung aling mga aklat ang isasama sa Bibliya at alin ang hindi?",
+    "choices": [
+      "Ang mga protestante pastor",
+      "Si San Juan na nag-aklat ng Ebanghelyo",
+      "Ang mga Judio sa Lumang Tipan",
+      "Ang Sto. Papa at Konsilyo ng Cartago sa liwanag ng Espiritu Santo"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "question": "Ayon kay San Pablo sa 2 Tesalonica 2:15, ano ang dapat panghawakan ng mga Kristiyano?",
+    "choices": [
+      "Sariling pag-unawa ng bawat tao",
+      "Ang mga tradisyon na itinuro sa pamamagitan ng mga sulat o ng tradisyon sa bibig",
+      "Mga aral na isinulat lamang",
+      "Mga tradisyong ipinasa ng mga Judio"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ano ang katotohanan hinggil sa 'sola scriptura' o ang paniniwala na sapat lamang ang Kasulatan, base sa Sagot 5?",
+    "choices": [
+      "Tama ito base sa Ebanghelyo ni Juan",
+      "Mali ito dahil kailangan pa rin ang buhay na guro upang magbigay-sigla at sumaway sa maling aral",
+      "Hindi natin kailangan ng tulong mula sa Sta. Iglesya",
+      "Tama ito dahil si San Pablo ay nagsabi ng ito"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Sta. Iglesya, sino ang binigyan ni Cristo ng tanging karapatan sa hindi pagkakamali sa pagtuturo hinggil sa mga bagay na kinakailangan para sa kaligtasan ng tao?",
+    "choices": [
+      "Ang buhay na awtoridad ng Sta. Iglesya na tinatawag na \"magisterium\"",
+      "Ang mga saserdote lamang sa Lumang Tipan",
+      "Ang mga apostol na wala nang buhay",
+      "Ang bawat mambabasa ng Bibliya"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Sino ang bumubuo sa \"magisterium\" na binigyan ni Cristo ng karapatan na hindi nagkakamali sa pagtuturo?",
+    "choices": [
+      "Ang mga obispo lamang nang walang kapitan",
+      "Ang mga pari at ang mga layong miyembro",
+      "Ang Sto. Papa at ang lahat ng mga obispo na kaisa ng Sto. Papa",
+      "Ang mga saserdote ng Lumang Tipan lamang"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Bakit tinuturing na hindi sapat ang Bibliya bilang tanging gabay sa kaligtasan base sa source material?",
+    "choices": [
+      "Dahil wala nang aklat sa Bibliya ang tungkol sa Diyos",
+      "Dahil ang Bibliya ay hindi maaabot ng lahat ng tao sa lahat ng panahon",
+      "Dahil ito ay isinulat lamang ng mga taga-Griyego",
+      "Dahil ito ay nasunog na sa unang siglo"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ayon kay San Juan, bakit hindi nasusulat ang lahat ng itinuro ni Jesus at ng kanyang mga apostol?",
+    "choices": [
+      "Dahil bawal silang magsulat ng bagay na iyon",
+      "Dahil ito ay nakasulat na sa Tradisyon lamang",
+      "Dahil wala silang kagamitan sa pagsusulat",
+      "Dahil ang buong daigdig ay hindi sapat na makatatanggap sa mga sulat"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ano ang pinag-uusapan ni Jesus sa Mat. 15:6-7 kapag sinabi Niya na ginawa nilang walang saysay ang salita ng Diyos?",
+    "choices": [
+      "Ang maling pagtuturo ng mga Pariseo tungkol sa pagsamba sa ama at ina",
+      "Ang pagtuturo nina San Pablo at San Pedro",
+      "Ang mga tradisyon ng mga apostol",
+      "Ang pagbabawal ng Diyos sa paggawa ng kopya"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Ayon kay San Pedro, ano ang nangyari sa mga bahaging mahirap unawain sa Kanyang mga sulat?",
+    "choices": [
+      "Ito ay hindi nasusulat sa Kasulatan",
+      "Binabaluktot ito ng mga walang alam at ng mga mapaniwalain",
+      "Naunawaan nang tama ng lahat ng Kristiyano",
+      "Itinayo nito ang tunay na pananampalataya"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "bible-tradition-authority",
+    "tier": "beginner",
+    "question": "Bilang paalala para sa mga Katoliko sa kanilang pag-aaral ng Bibliya, alin sa mga sumusunod ang dapat laging isaalang-alang para sa mga bahaging mahirap unawain?",
+    "choices": [
+      "Mga opinyon ng iba't ibang pastor",
+      "Tala sa dulo ng aklat",
+      "Pananaw ng Sta. Iglesya",
+      "Aking sariling interpretasyon"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  }
+]

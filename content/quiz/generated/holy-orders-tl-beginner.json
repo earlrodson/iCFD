@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ayon sa turo ng Santa Iglesya, sino ang nagtatag ng Sakramento ng Banal na Ordenasyon?",
+    "choices": [
+      "Ang mga Apostol",
+      "Ang mga Obispo",
+      "Si Kristo",
+      "Si San Pablo"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Anong espesyal na marka ang ibinibigay ng Sakramento ng Ordenasyon sa kaluluwa?",
+    "choices": [
+      "Hindi nagmamaliw na tatak",
+      "Isang panandaliang tatak",
+      "Isang bagong pangalan",
+      "Isang selyo ng awtoridad"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Sa hirarkiya ng Simbahan, bakit ang katungkulan ng Obispo ay mas mataas kaysa sa Pari?",
+    "choices": [
+      "Dahil hawak niya ang awtoridad sa pagkumpirma at pag-orden",
+      "Dahil siya lamang ang pwedeng maging ama ng mga nananampalataya",
+      "Dahil mas mahaba ang kanyang pananalangin sa altar",
+      "Dahil siya lamang ang may kapangyarihang magpatawad ng kasalanan"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ano ang tatlong yugto ng Sakramento ng Pag-orden base sa pagtatalaga?",
+    "choices": [
+      "Tagapagtala, Ebanghelista, at Pastor",
+      "Mangangaral, Tagapagturo, at Propeta",
+      "Dyakono, Pari, at Obispo",
+      "Katulong, Sacerdote, at Patriarka"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ayon kay San Cipriano, ano ang katangian ng mga Obispo sa relation sa mga Apostol?",
+    "choices": [
+      "Mga kalakip na tagapagtala",
+      "Mga piniling layman",
+      "Mga sumunod na nangangasiwa sa awtoridad",
+      "Mga kaibigan na mangangaral"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ano ang naging posisyon ng celibacy (walang asawa) ng mga pari ayon sa kasaysayan ng Simbahan?",
+    "choices": [
+      "Isang bagong ideya mula kay San Pablo",
+      "Itinuring na bawal sa Lumang Tipan lamang",
+      "Gusto lang ito ni Jesus para sa mga apostol",
+      "Naging batas ng Simbahan noong mga taong 400"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Sino ang nagsabi na ang Obispo ay may katungkulan 'hindi sa kaniyang sarili, ni sa pamamagitan ng tao'?",
+    "choices": [
+      "Si Firmilian",
+      "Si San Ignacio ng Antioquia",
+      "Si San Pablo kay Timoteo",
+      "Si San Gregorio ng Nyssa"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Anong mga gawain saserdotal ang hawak ng isang Pari?",
+    "choices": [
+      "Pagkumpirma at Paghatol",
+      "Pagpili ng mga Obispo at Pag-orden",
+      "Paghatid ng Katawan at Dugo ng Panginoon at Kapatawaran ng Kasalanan",
+      "Pagturo ng doktrina lamang"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ayon sa talaan ng Simbahan, sino ang nagbigay ng awtoridad sa pagpatawad ng mga kasalanan na ipinasa sa mga Obispo?",
+    "choices": [
+      "Si Clarus, ang obispo",
+      "Si San Gregorio ng Nyssa",
+      "Si San Pablo kay Timoteo",
+      "Si Kristo sa kanyang mga Apostol"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Sino ang nagsulat na ang awtoridad sa pagpatawad ng kasalanan ay ipinasa sa mga Obispo mula sa mga Apostol?",
+    "choices": [
+      "Si Firmilian",
+      "Si San Ignacio ng Antioquia",
+      "Si San Gregorio ng Nyssa",
+      "Si Clarus"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ano ang tinutukoy ni San Pablo sa pagtawag na siya ay naging ama dahil sa Magandang Balita?",
+    "choices": [
+      "Ang pagiging obispo ng kaluluwa",
+      "Ang pagiging lingkod ni Cristo Jesus",
+      "Ang pagiging apostol at mataas na saserdote",
+      "Ang katangian ng isang patriarka"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo, alin sa mga sumusunod ang hindi dapat ipatong ang mga kamay nang madalian?",
+    "choices": [
+      "Ang pagtuturo ng mga pangulo",
+      "Ang pag-aayuno at pananalangin",
+      "Ang pagpili ng mga diyakono",
+      "Tungkulin ng Panginoon sa isang tao"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Bakit itinuturo na ang celibacy ng mga pari ay tanda ng mga kapanahunang darating?",
+    "choices": [
+      "Dahil ito'y ipinagbawal ni Jesus",
+      "Dahil ito'y nasabi sa Lumang Tipan lang",
+      "Isa itong erehiya ng Gnostisismo",
+      "Subalit nakita ni San Juan ang mga lingkod na nananatiling dalisay"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Sino ang pinakasimpleng halimbawa ng isang taong walang asawa na inirekomenda ni San Pablo sa iba?",
+    "choices": [
+      "Si Jeremias",
+      "Si San Pablo mismo",
+      "Si Kristo",
+      "Si San Juan"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "holy-orders",
+    "tier": "beginner",
+    "question": "Anong katangian ng mga Obispo ang binanggit ni San Cipriano na tinawag tayo nito ng Espiritu Santo?",
+    "choices": [
+      "Ang pag-aayuno",
+      "Ang paglalagay ng mga kamay",
+      "Ang pagtuturo ng doktrina",
+      "Ang pagpili ng mga sumusunod"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Santa Iglesya, paano isinakatuparan ang ating kaligtasan?",
+    "choices": [
+      "Sa pamamagitan ng biyaya na hindi na kailangang pangalagaan.",
+      "Sa pamamagitan ng Kaniyang sariling kabutihan at kamatayan sa krus.",
+      "Sa pamamagitan ng pagtanggap sa iba't ibang relihiyon.",
+      "Sa pamamagitan ng mabibuting gawa lamang ng mga tao."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Upang makamit ang ganap na kaligtasan, ano ang kinakailangan maliban sa pagtanggap ng biyaya?",
+    "choices": [
+      "Pagpuna sa mga hindi sumasang-ayon sa Simbahan.",
+      "Pagsasara ng sarili mula sa ibang tao.",
+      "Paggawa ng mabuti at pagsunod sa mga utos ni Kristo.",
+      "Pag-aayuno nang walang hanggan."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ano ang maaaring mangyari sa biyaya na ating natatanggap ayon sa source?",
+    "choices": [
+      "Maaari itong mawala sa pamamagitan ng sinadyang paggawa ng malubhang kasalanan.",
+      "Nawawala ito kapag hindi sumapi sa isang partikular na grupo.",
+      "Laging mananatili nito kahit anong gawin ng tao.",
+      "Natutunghayan ito lamang sa huling paghuhukuman."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ayon sa Efeso 2:8-9, paano nakukuha ang kaligtasan?",
+    "choices": [
+      "Sa pamamagitan ng pagmamalaki sa ating sariling kabutihan.",
+      "Upang makapagmalaki ang bawat isa sa kanyang sarili.",
+      "Sa pamamagitan ng pananampalataya sa biyaya ng Diyos, na hindi gawa natin.",
+      "Dahil sa matinding pagsisikap at mga gawa natin."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ano ang katotohanan tungkol sa pananampalataya ayon sa Santong Surat 2:14, 24, 26?",
+    "choices": [
+      "Ang pananampalatayang nakapagliligtas ay dapat samahan ng mga mabubuting gawa.",
+      "Sapat na ang pananampalataya kahit walang mga mabubuting gawa.",
+      "Walang kabuluhan ang paggawa ng mabuti para sa kaligtasan.",
+      "Ang tao ay naligtas lamang sa pamamagitan ng pananampalataya at hindi ng kanyang mga gawa."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Bakit kailangan ang mga mabubuting gawa para sa kaligtasan?",
+    "choices": [
+      "Sapagkat hindi sapat ang pananampalataya kung mayroon pa rin ang kasalanan.",
+      "Upang mapatunayan na hindi tayo mga anak ng Diyos.",
+      "Dahil ito lamang ang makakapagligtas sa tao mula sa kasalanan.",
+      "Sapagkat ang tao'y hahatulan batay sa kanyang mga ginawa."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Pablo sa mga taga-Corinto tungkol sa pagiging matatag?",
+    "choices": [
+      "Sapat na ang pananampalataya upang hindi mabuwal.",
+      "Ang nag-aakalang siya'y matatag, mag-ingat siyang baka mabuwal.",
+      "Tiwi ang kaligtasan ng sinumang nanampalataya kay Jesukristo.",
+      "Hindi na kailangan mag-ingat matapos tanggapin si Cristo."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ano ang ipinahiwatig ni San Pablo sa Efeso 2:10 tungkol sa ating paglikha?",
+    "choices": [
+      "Nilikha tayo kay Cristo Jesus upang gumawa ng mabuti.",
+      "Nilikha tayo upang manatiling mga patay na tao.",
+      "Nilikha tayo lamang upang tanggapin ang biyaya nang hindi gumagawa ng mabuti.",
+      "Nilikha tayo upang magkaroon ng kaalaman sa lahat ng lihim."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Santa Iglesya, sino ang nagtatag ng Simbahan upang maihatid ang mga bunga ng katuwiran?",
+    "choices": [
+      "Ganap na Manliligtas na si Jesu-Cristo",
+      "Diyos sa pamamagitan ni Moises",
+      "Apostrong San Pablo",
+      "Bawat isang nanampalataya"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Upang manatili at lumago ang biyaya sa ating puso, ano ang kinakailangan natin?",
+    "choices": [
+      "Paglikha ng sariling mabuting gawa",
+      "Paggawa ng malubhang kasalanan",
+      "Pakikibahagi at pagsunod",
+      "Paghihirap lamang sa katawan"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo sa Romahan 10:13, paano tayo maliligtas?",
+    "choices": [
+      "Sapagkat sinumang sumampalataya",
+      "Sapagkat ang lahat ay nagkasala",
+      "Sapagkat tumatawag sa pangalan ng Panginoon",
+      "Sapagkat gumawa ng mabuti"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Pablo sa Efeso tungkol sa biyaya?",
+    "choices": [
+      "Ito ay natatangi lamang sa mga apostol",
+      "Ito ay kaloob ng Diyos at hindi iyong gawa",
+      "Ito ay resulta ng iyong pagsisikap",
+      "Ito ay ibinigay kay Moises"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ayon sa Santong Surat (Sant. 2:14, 24, 26), ano ang katumbas na katangian ng taong walang mga gawa?",
+    "choices": [
+      "Patay na katawang walang espiritu",
+      "Bahay na nagtatayo sa buhanginan",
+      "Tagapagpaumanhin ng kasalanan",
+      "Mga tao na naghahangad ng himala"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ano ang pangunahing dahilan kung bakit wala namang kapakinabangan ang pag-ibig kung wala itong kasama?",
+    "choices": [
+      "Mahirap sundin ang mga utos",
+      "Hindi natin siya mahal na sapat",
+      "Hindi ito gawa ng Diyos",
+      "Wala akong mapapakinabangan"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "salvation",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo sa Filipos 2:12, paano natin dapat gawin upang lubusin ang ating kaligtasan?",
+    "choices": [
+      "Bahagi lamang ng biyaya",
+      "Sa pamamagitan ng takot at paggalang",
+      "Nang walang pagsisikap",
+      "Matapos na tanggapin si Cristo"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  }
+]

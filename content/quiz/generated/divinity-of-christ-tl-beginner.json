@@ -1,0 +1,197 @@
+[
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ayon sa Turo ng Sta. Iglesya, sino ang ikalawang Persona ng Santisima Trinidad?",
+    "choices": [
+      "Si San Pablo",
+      "Si Kristo",
+      "Ang Espiritu Santo",
+      "Ang Ama"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ano ang dalawang kalikasan na taglay ni Kristo mula sa kanyang pagkakatawang-tao?",
+    "choices": [
+      "Tawhanong kalooban lamang",
+      "Linhaw at materyal",
+      "Tunay na Diyos at tunay na tao",
+      "Diyosnong kalooban lamang"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Kung saan nagmula ang pagka-Diyos ni Kristo?",
+    "choices": [
+      "Mula sa mga gawaing tawano",
+      "Sa Ama mula pa sa walang simula",
+      "Sa kanyang sariling kapangyarihan",
+      "Kay Sta. Maria"
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Bakit nagsalita si Kristo sa krus na 'Diyos ko, bakit mo ako pinabayaan?'",
+    "choices": [
+      "Sapagkat hindi na siya Diyos",
+      "Upang ipakita ang kanyang kawalan ng kaalaman",
+      "Upang magdala ng tinig natin dahil sa ating mga kasalanan",
+      "Sapagkat pinabayaan niyang Ama siya"
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ayon kay San Juan, ano ang katotohanan hinggil sa Verbo sa unang kabanata ng ebanghelyo?",
+    "choices": [
+      "Ang Verbo ay isang nilikha lamang",
+      "Ang Verbo ay hindi nakikita",
+      "Ang Verbo ay iisa lang na persona sa Ama",
+      "Ang Verbo ay Diyos at naging tao"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Pablo sa Colosense 2:9 tungkol kay Kristo?",
+    "choices": [
+      "Siya ay nilikha ng Ama",
+      "Siya ay isang alipin lamang",
+      "Hindi siya makapangyarihang Diyos",
+      "Taglay niya ang kalikasan mismo ng Diyos"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Bakit sinabi ni Kristo na 'ang Ama ay higit sa akin'?",
+    "choices": [
+      "Hinggil sa kanyang pagkatao at kababaang-loob",
+      "Sapagkat may ibang Diyos na higit pa sa Ama",
+      "Sapagkat kulang siya sa kapangyarihan",
+      "Sapagkat siya ay hindi Diyos"
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ano ang kahulugan ng salitang 'panganay' (Prototokos) na ginamit kay Kristo?",
+    "choices": [
+      "Siya ay may katulad sa Diyos",
+      "Siya ay isang created being lamang",
+      "Siya ang unang nilikha na bagay",
+      "Siya ang pinagmulan ng lahat ng bagay"
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ayon sa ebanghelyo ni San Juan (Jn. 1:1-14), ano ang sinasabi tungkol sa Verbo bago pa nilikha ang anumang bagay?",
+    "choices": [
+      "Siya ay nagmula kay Sta. Maria mula sa walang simula.",
+      "Siya ay hindi nilikha sapagkat naroon na siya bago pa nilikha ang anumang bagay.",
+      "Siya ay wala nang ituring kundi ang liwanag lamang ng mga tao.",
+      "Siya ay isa sa mga nilikha ng Diyos sa simula."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Bakit sinabi ni Kristo na 'Ako at ang aking Ama ay iisa' (Jn. 10:30)?",
+    "choices": [
+      "Upang ipakita na sila ay magkakaparehong nilikha.",
+      "Upang ipakita na hindi kaiba ang pagka-Diyos niya sa Ama.",
+      "Upang ipakita na siya ay higit sa Ama sa kanyang pagkatao.",
+      "Upang ipakita na siya lamang ang Diyos at hindi naman ang Ama."
+    ],
+    "correct_index": 1,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ayon sa Ebanghelyo ni Luc (Luc. 2:11), sino ang ipinanganak sa lungsod ni David?",
+    "choices": [
+      "Ang inyong Manunubos, ang Cristong Panginoon.",
+      "Isang tawanan na propeta ng Galilea.",
+      "Ang isang bata na lalaki lamang na walang kapangyarihan.",
+      "Ang panganay ng lahat ng nilikha sa lupain."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ano ang sinabi ni San Pablo sa Kolosense (Col. 2:9) tungkol kay Kristo?",
+    "choices": [
+      "Taglay niya ang buong kalikasan ng Diyos sa kanyang pagkatao.",
+      "Hindi siya maaaring makisama sa Ama sa paglikha.",
+      "Siya ay isa lamang nilikha na may bahagi ng diosnong kalooban.",
+      "Ang kanyang katawan ay naging materyal lamang kapag ipinako sa krus."
+    ],
+    "correct_index": 0,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Bakit nanalangin si Jesus sa Getsemani na 'Ama, iligtas mo ako sa oras na ito'?",
+    "choices": [
+      "Sapagkat wala siyang kakayahang haraping ang kanyang mga kaaway.",
+      "Sapagkat itinuturo na hindi siya Diyos kundi isang tao lang.",
+      "Sapagkat hindi siya nananalangin na maligtas kundi handa siyang tanggapin ang oras ng pagdurusa.",
+      "Sapagkat ayaw niyang mamatay at nagtakot sa kapahamakan."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Ayon kay San Pablo sa Roma (Rom. 9:5), paano tinawag niya si Kristo?",
+    "choices": [
+      "Isang manunubos na walang anino ng Diyos sa kanya.",
+      "Ang pinakamataas na nilikha ng Diyos sa langit.",
+      "Ang Diyos na higit sa lahat, purihin nawa magpakailanman.",
+      "Isang tao lamang mula sa kaliwatan ng mga patriarka."
+    ],
+    "correct_index": 2,
+    "lang": "tl"
+  },
+  {
+    "topic_id": "divinity-of-christ",
+    "tier": "beginner",
+    "question": "Bakit sinabi ni Tomas sa muling pagkabuhay ni Jesus na 'Panginoon ko at Diyos ko' (Jn. 20:28)?",
+    "choices": [
+      "Sapagkat ang Diyos ay maaaring mamatay at muling mabuhay.",
+      "Dahil iniwan siya ni Jesus sa oras ng pagdurusa.",
+      "Upang ipakita na natatakot siya sa kanyang mga kaaway.",
+      "Ito ang ipinahayag na pananampalataya ng Simbahan hinggil kay Jesus."
+    ],
+    "correct_index": 3,
+    "lang": "tl"
+  }
+]
