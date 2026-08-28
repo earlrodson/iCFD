@@ -18,6 +18,7 @@ import {
   signOut,
   getUser,
   onAuthStateChange,
+  resetPasswordForEmail,
 } from '@/lib/supabase/auth'
 import { fetchUserSettingsFromCloud, fetchProfileFromCloud, type UserProfile } from '@/lib/supabase/sync'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
@@ -38,7 +39,7 @@ import { useSiteConfig } from '@/lib/useSiteConfig'
 import { ProfileEditor } from '@/components/account/ProfileEditor'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 
-type AuthMode = 'signin' | 'signup' | 'magic'
+type AuthMode = 'signin' | 'signup' | 'magic' | 'reset'
 
 interface EarnedCertificate {
   path_slug: string
@@ -61,6 +62,7 @@ export default function AccountPage() {
   const [displayName, setDisplayName] = useState('')
   const [authError, setAuthError] = useState('')
   const [magicSent, setMagicSent] = useState(false)
+  const [resetSent, setResetSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [certificates, setCertificates] = useState<EarnedCertificate[]>([])
   const [certTemplates, setCertTemplates] = useState<Record<string, CertificateTemplate>>({})
@@ -161,6 +163,19 @@ export default function AccountPage() {
       const { error } = await signInWithMagicLink(email)
       if (error) setAuthError(error.message)
       else setMagicSent(true)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  async function handlePasswordReset(e: React.FormEvent) {
+    e.preventDefault()
+    setAuthError('')
+    setLoading(true)
+    try {
+      const { error } = await resetPasswordForEmail(email)
+      if (error) setAuthError(error.message)
+      else setResetSent(true)
     } finally {
       setLoading(false)
     }
@@ -300,7 +315,7 @@ export default function AccountPage() {
             <SignIn weight="light" size={32} className="text-primary" />
           </div>
           <h1 className="text-2xl font-bold text-foreground">
-            {mode === 'magic' ? 'Magic Link' : mode === 'signup' ? 'Create Account' : 'Sign In'}
+            {mode === 'magic' ? 'Magic Link' : mode === 'signup' ? 'Create Account' : mode === 'reset' ? 'Reset Password' : 'Sign In'}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Sync favorites, notes, and progress across all your devices.
@@ -335,8 +350,56 @@ export default function AccountPage() {
           </div>
         </div>
 
-        {/* Magic link */}
-        {mode === 'magic' ? (
+        {/* Reset password */}
+        {mode === 'reset' ? (
+          resetSent ? (
+            <div className="rounded-2xl bg-primary/5 border border-primary/20 p-5 text-center">
+              <EnvelopeSimple weight="light" size={32} className="mx-auto mb-2 text-primary" />
+              <p className="text-sm font-medium text-foreground">Check your email</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                We sent a password reset link to <strong>{email}</strong>.
+              </p>
+              <button
+                onClick={() => { setResetSent(false); setMode('signin') }}
+                className="mt-3 text-xs text-primary hover:underline"
+              >
+                Back to sign in
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handlePasswordReset} className="space-y-3">
+              <label htmlFor="reset-email" className="sr-only">Email</label>
+              <input
+                id="reset-email"
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full rounded-xl bg-card border border-border px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary"
+              />
+              {authError && (
+                <p className="rounded-xl bg-red-50 px-3 py-2 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+                  {authError}
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-60"
+              >
+                {loading ? 'Sending…' : 'Send Reset Link'}
+              </button>
+              <button
+                type="button"
+                onClick={() => { setMode('signin'); setAuthError('') }}
+                className="w-full text-xs text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Back to sign in
+              </button>
+            </form>
+          )
+        ) : mode === 'magic' ? (
           magicSent ? (
             <div className="rounded-2xl bg-primary/5 border border-primary/20 p-5 text-center">
               <EnvelopeSimple weight="light" size={32} className="mx-auto mb-2 text-primary" />
@@ -438,7 +501,15 @@ export default function AccountPage() {
 
         {/* Mode switchers */}
         <div className="mt-5 space-y-2 text-center">
-          {mode !== 'magic' && (
+          {mode === 'signin' && (
+            <button
+              onClick={() => { setMode('reset'); setAuthError('') }}
+              className="block w-full text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              Forgot password?
+            </button>
+          )}
+          {mode !== 'magic' && mode !== 'reset' && (
             <button
               onClick={() => { setMode('magic'); setAuthError('') }}
               className="block w-full text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -446,7 +517,7 @@ export default function AccountPage() {
               Sign in with magic link (no password)
             </button>
           )}
-          {mode !== 'signup' && mode !== 'magic' && (
+          {mode !== 'signup' && mode !== 'magic' && mode !== 'reset' && (
             <button
               onClick={() => { setMode('signup'); setAuthError('') }}
               className="block w-full text-sm text-muted-foreground hover:text-primary transition-colors"

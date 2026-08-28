@@ -28,6 +28,16 @@ export async function signUpWithEmail(email: string, password: string, displayNa
   })
 }
 
+export async function resetPasswordForEmail(email: string) {
+  return createClient().auth.resetPasswordForEmail(email, {
+    redirectTo: `${APP_CONFIG.siteUrl}/reset-password`,
+  })
+}
+
+export async function updatePassword(password: string) {
+  return createClient().auth.updateUser({ password })
+}
+
 // ── Magic link (passwordless) ─────────────────────────────────────────────────
 
 export async function signInWithMagicLink(email: string) {
