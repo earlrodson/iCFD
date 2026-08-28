@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "files": {
+    "GUIDELINES.md": "c4c8ef1feef6a01a846ee86c297550e6f037ef91842f094d666d26689d5abcae",
+    "TEMPLATE-defect.md": "3b0e315454a153a58c76b0cbec153a050bb2c2d17ac1222b8b4388aa0a27d207",
+    "TEMPLATE-enabler.md": "cd7aa6b702e3e75fd1574d94a68e3a19c7ecb0470e49afd7da885c836d9b1bde",
+    "TEMPLATE-experiment.md": "d5953a2f2b3a9bced5e7f325143919f815842b9ee09f1bf18f394e0203496252",
+    "TEMPLATE-feature.md": "406e0b8689ba52f9a7f032bd3197aed3500d2c47a0b657ef2c22dc2ca93ba017",
+    "TEMPLATE-prototype.md": "f38d932b4e42cf85edd03de7abf7cb9336338c12412a79214232746bcaea62a9"
+  }
+}
