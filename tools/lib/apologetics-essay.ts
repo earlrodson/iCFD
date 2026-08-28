@@ -69,7 +69,7 @@ export interface ScriptureRefEntry {
   stance: 'supporting' | 'objection'
 }
 
-const CITATION_RE = /\(\s*([1-3]?\s?[A-Z][a-zA-Z.]*\.?\s\d+:\d+(?:[-–]\d+)?)\s*\)/g
+export const CITATION_RE = /\(\s*([1-3]?\s?[A-Z][a-zA-Z.]*\.?\s\d+:\d+(?:[-–]\d+)?)\s*\)/g
 
 function citationsIn(text: string): string[] {
   return [...text.matchAll(CITATION_RE)].map((m) => m[1].replace(/\s+/g, ' ').trim())

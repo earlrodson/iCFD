@@ -12,9 +12,29 @@
  * rather than from the Cebuano original — the Cebuano parser fails to find
  * any Q&A blocks in a few of these 20 files (missing colon after a bare
  * "Pagsupak" header), which would silently drop citations if relied upon.
+ * Citations inside `extra` (the shared/general-answer prose folded into
+ * `answer_full`, see tools/lib/apologetics-essay-tl.ts) are tagged
+ * 'supporting' and merged in separately since extractScriptureRefs only
+ * scans `intro` + `qa`.
+ *
+ * `answer_full` = intro + extra blocks, joined — mirrors where this content
+ * actually lives in the live 'ceb' rows (verified 2026-08-28 against
+ * bible-tradition-authority/primacy-of-peter/purgatory: answer_full there is
+ * the intro plus the shared "Tubag:"/conclusion prose, NOT the per-objection
+ * responses). For single-objection essays `extra` is empty by construction
+ * (the whole answer belongs to that one objection) — matches live ceb rows
+ * for indulgences/salvation, where answer_full ≈ answer (intro) alone.
  *
  * category/tags/difficulty/related_topics are copied from the existing `ceb`
- * row for the same topic id, same as the sibling script.
+ * row for the same topic id, same as the sibling script. `question` is
+ * generated from the same fixed template the ceb rows use ("Unsa ang
+ * gitudlo sa Simbahang Katoliko bahin sa X?" -> "Ano ang itinuturo ng
+ * Simbahang Katoliko tungkol sa X?"), reusing this essay's own (already
+ * human-translated) title for X rather than machine-translating — verified
+ * against 19 of the 20 ceb rows following this exact template 2026-08-28.
+ * 'true-church' is the one exception (its ceb `question` is a standalone
+ * question, not the template) and its `tl` row is already correct in
+ * Supabase, so it's deliberately excluded from TOPIC_TO_FILE reruns.
  *
  * Output is staged as JSON for review, not written to the database —
  * apply with tools/apply-apologetics-topic.ts after checking the content.
@@ -24,7 +44,7 @@
 import { join } from 'path'
 import { mkdirSync, readFileSync, writeFileSync } from 'fs'
 import { getSupabaseAdmin } from '../scripts/lib/supabase-admin.mjs'
-import { parseApologeticsEssay, extractScriptureRefs } from './lib/apologetics-essay'
+import { parseApologeticsEssay, extractScriptureRefs, CITATION_RE } from './lib/apologetics-essay'
 import { parseApologeticsEssayTl } from './lib/apologetics-essay-tl'
 
 const ROOT = join(import.meta.dir, '..')
@@ -44,7 +64,10 @@ const TOPIC_TO_FILE: Record<string, string> = {
   salvation: 'KALUWASAN.md',
   'cross-sign-of-cross': 'KRUS UG PANGUROS.md',
   'sacred-images': 'LARAWAN.md',
-  'true-church': 'MATUOD NGA IGLESYA.md',
+  // 'true-church' deliberately omitted — its 'tl' row is already correct in
+  // Supabase (proper question, 3 separate objections) and its ceb `question`
+  // doesn't follow the template this script generates from, so regenerating
+  // it would replace a good row with a worse one.
   'divinity-of-christ': 'PAGKA-DIOS NI CRISTO.md',
   'confession-to-priest': 'PAGKOMPISAL SA PARI.md',
   purgatory: 'PURGATURYO.md',
@@ -66,17 +89,21 @@ const tlPath = join(ROOT, 'documents', 'Apologetics-tl', filename)
 const cebEssay = parseApologeticsEssay(readFileSync(cebPath, 'utf8'))
 const tlEssay = parseApologeticsEssayTl(readFileSync(tlPath, 'utf8'))
 const scripture = extractScriptureRefs(tlEssay)
+const extraRefs = [...new Set(tlEssay.extra.flatMap((block) => [...block.matchAll(CITATION_RE)].map((m) => m[1].replace(/\s+/g, ' ').trim())))]
+for (const reference of extraRefs) {
+  if (!scripture.some((s) => s.reference === reference)) scripture.push({ reference, stance: 'supporting' })
+}
 const objectionRefCount = scripture.filter((s) => s.stance === 'objection').length
 
-console.log(`\nParsed "${filename}": intro + ${tlEssay.qa.length} Tagalog Q&A block(s) (ceb source has ${cebEssay.qa.length}), ${scripture.length} scripture ref(s) (${objectionRefCount} objection)\n`)
+console.log(`\nParsed "${filename}": intro + ${tlEssay.qa.length} Tagalog Q&A block(s) (ceb source has ${cebEssay.qa.length}), ${tlEssay.extra.length} extra block(s), ${scripture.length} scripture ref(s) (${objectionRefCount} objection)\n`)
 if (tlEssay.qa.length !== cebEssay.qa.length) {
-  console.warn(`  WARNING: Tagalog block count differs from Cebuano source — review for dropped/merged content.`)
+  console.warn(`  WARNING: Tagalog Q&A count (${tlEssay.qa.length}) differs from Cebuano source (${cebEssay.qa.length}) — review for dropped/merged content.`)
 }
 
 const supabase = getSupabaseAdmin()
 const { data: cebRow, error } = await supabase
   .from('topics')
-  .select('category,tags,difficulty,related_topics')
+  .select('category,tags,difficulty,related_topics,question')
   .eq('id', topicId)
   .eq('lang', 'ceb')
   .maybeSingle()
@@ -88,15 +115,24 @@ if (!cebRow) {
 
 const objections = tlEssay.qa.map(({ question, response }) => ({ objection: question, response }))
 
-// Mirrors the existing true-church 'ceb' row's convention of reusing the
-// essay's own first question as the top-level `question` field.
+const TEMPLATE_QUESTION = /^Unsa ang gitudlo sa Simbahang Katoliko bahin sa .+\?$/i
+const question = TEMPLATE_QUESTION.test(cebRow.question)
+  ? `Ano ang itinuturo ng Simbahang Katoliko tungkol sa ${tlEssay.title.toLowerCase()}?`
+  : objections[0]?.objection ?? tlEssay.title
+if (!TEMPLATE_QUESTION.test(cebRow.question)) {
+  console.warn(`  WARNING: ceb question doesn't follow the template — falling back to first objection text for "question". Review manually.`)
+}
+
+const answer_full = [tlEssay.intro, ...tlEssay.extra].join('\n\n')
+
 const topicRow = {
   id: topicId,
   lang: 'tl' as const,
   category: cebRow.category,
   title: tlEssay.title,
-  question: objections[0]?.objection ?? tlEssay.title,
+  question,
   answer: tlEssay.intro,
+  answer_full,
   objections,
   scripture,
   tags: cebRow.tags,
