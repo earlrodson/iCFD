@@ -21,6 +21,7 @@ const ADMIN_TABS = [
   { label: 'Certificates', href: '/admin/certificates',  roles: ['admin'] },
   { label: 'References',   href: '/admin/references',    roles: ['admin'] },
   { label: 'Glossary',      href: '/admin/glossary',       roles: ['admin'] },
+  { label: 'History',      href: '/admin/history',        roles: ['admin'] },
   { label: 'Dedup',          href: '/admin/dedup',          roles: ['admin'] },
   { label: 'Notifications', href: '/admin/notifications', roles: ['admin'] },
   { label: 'Analytics',     href: '/admin/analytics',     roles: ['admin'] },

@@ -630,6 +630,34 @@ export const submissions = pgTable('submissions', {
 })
 
 /**
+ * Public "Our History" timeline entries, admin-managed, rendered on /history.
+ */
+export const historyTimeline = pgTable('history_timeline', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  year: text('year').notNull(),
+  title: text('title').notNull(),
+  body: text('body').notNull(),
+  icon: text('icon').default('users').notNull(),
+  sort_order: integer('sort_order').default(0).notNull(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/**
+ * National presidents table shown alongside the /history timeline.
+ */
+export const historyPresidents = pgTable('history_presidents', {
+  id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
+  name: text('name').notNull(),
+  years: text('years').notNull(),
+  sort_order: integer('sort_order').default(0).notNull(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/**
  * Web Push subscriptions for browser notifications.
  */
 export const pushSubscriptions = pgTable('push_subscriptions', {
@@ -669,4 +697,6 @@ export type AdminRow = typeof admins.$inferSelect
 export type PresentationRow = typeof presentations.$inferSelect
 export type PresentationInsert = typeof presentations.$inferInsert
 export type SubmissionRow = typeof submissions.$inferSelect
+export type HistoryTimelineRow = typeof historyTimeline.$inferSelect
+export type HistoryPresidentRow = typeof historyPresidents.$inferSelect
 export type PushSubscriptionRow = typeof pushSubscriptions.$inferSelect

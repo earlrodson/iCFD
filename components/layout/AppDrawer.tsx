@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder, Books, Heart, HandHeart } from '@phosphor-icons/react'
+import { X, Gear, PaperPlaneTilt, ShieldCheck, User, Ladder, Books, Heart, HandHeart, ClockCounterClockwise } from '@phosphor-icons/react'
 import { getUser, onAuthStateChange, signOut } from '@/lib/supabase/auth'
 import { createClient, isSupabaseConfigured } from '@/lib/supabase/client'
 import { useFavoritesStore } from '@/store/useFavoritesStore'
@@ -162,6 +162,9 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
           </NavItem>
           <NavItem href="/submit" icon={<PaperPlaneTilt weight="light" size={20} />} onClick={onClose}>
             Contribute a Topic
+          </NavItem>
+          <NavItem href="/history" icon={<ClockCounterClockwise weight="light" size={20} />} onClick={onClose}>
+            Our History
           </NavItem>
           <NavItem href="/dedication" icon={<HandHeart weight="light" size={20} />} onClick={onClose}>
             Dedication &amp; Acknowledgments

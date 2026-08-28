@@ -351,6 +351,60 @@ export type Database = {
         }
         Relationships: []
       }
+      history_presidents: {
+        Row: {
+          created_at: string
+          id: number
+          name: string
+          sort_order: number
+          years: string
+        }
+        Insert: {
+          created_at?: string
+          id?: number
+          name: string
+          sort_order?: number
+          years: string
+        }
+        Update: {
+          created_at?: string
+          id?: number
+          name?: string
+          sort_order?: number
+          years?: string
+        }
+        Relationships: []
+      }
+      history_timeline: {
+        Row: {
+          body: string
+          created_at: string
+          icon: string
+          id: number
+          sort_order: number
+          title: string
+          year: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          icon?: string
+          id?: number
+          sort_order?: number
+          title: string
+          year: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          icon?: string
+          id?: number
+          sort_order?: number
+          title?: string
+          year?: string
+        }
+        Relationships: []
+      }
       notes: {
         Row: {
           id: string
