@@ -33,8 +33,8 @@ export function MobileNav() {
               key={href}
               href={href}
               className={cn(
-                'flex flex-col items-center gap-0.5 py-2 px-3 min-w-[52px]',
-                active ? 'text-primary' : 'text-muted-foreground',
+                'flex flex-col items-center gap-0.5 py-2 px-3 min-w-[52px] text-[var(--cfd-navy)]',
+                active ? 'dark:text-foreground' : 'dark:text-muted-foreground',
               )}
             >
               <Icon weight={active ? 'fill' : 'light'} size={24} />
@@ -46,7 +46,7 @@ export function MobileNav() {
         {/* Profile — opens drawer */}
         <button
           onClick={openDrawer}
-          className="flex flex-col items-center gap-0.5 py-2 px-3 min-w-[52px] text-muted-foreground"
+          className="flex flex-col items-center gap-0.5 py-2 px-3 min-w-[52px] text-[var(--cfd-navy)] dark:text-muted-foreground"
           aria-label="Open menu"
         >
           <UserCircle weight="light" size={24} />
