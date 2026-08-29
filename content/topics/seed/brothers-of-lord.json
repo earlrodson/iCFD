@@ -1,0 +1,46 @@
+{
+  "topic_id": "brothers-of-lord",
+  "translations": {
+    "en": {
+      "category": "mary",
+      "title": "The \"Brothers of the Lord\" and Mary's Perpetual Virginity",
+      "question": "The Gospels mention \"brothers\" and \"sisters\" of Jesus (Mark 6:3). Doesn't this prove Mary had other children after Jesus, making perpetual virginity false?",
+      "answer": {
+        "summary": "> \"Is not this the carpenter, the son of Mary and brother of James and Joses and Judas and Simon? And are not his sisters here with us?\" — Mark 6:3\n\nThe mention of \"brothers\" (Greek: *adelphoi*) of Jesus in the Gospels is one of the most frequently cited Protestant arguments against Mary's perpetual virginity. A careful examination of the linguistic, textual, and historical evidence shows, however, that the \"brothers of the Lord\" were almost certainly not children of Mary, and likely cousins or close kinsmen of Jesus — with a secondary Catholic position holding they were sons of Joseph from a prior marriage.\n\nThe **linguistic argument** is fundamental. The NT was written in Greek, but the Jewish world it reflects used Semitic concepts of kinship. In both Hebrew (*ach*) and Aramaic (*aha*), the word for \"brother\" regularly covers cousins, half-brothers, and close kinsmen — since there was no separate word for \"cousin\" in those languages. The Greek *adelphos* was used to translate this broader Semitic usage. Genesis 14:14 calls Lot Abraham's \"brother\" (LXX: *adelphos*), yet Genesis 11:27 clarifies Lot was Abraham's nephew. Genesis 29:15 has Laban call Jacob \"brother\" when he was in fact his nephew. This semantic breadth is assumed throughout the OT and carried into NT usage by Greek-speaking Jewish Christians.\n\nThe **textual argument** from the Gospels identifies James and Joses as \"brothers of the Lord\" (Mark 6:3), but also as \"sons of Mary\" (Mark 15:40; Matthew 27:56) — a **different Mary**, described as \"the mother of James and Joses,\" present at the crucifixion. John's Gospel (19:25) further identifies \"Mary the wife of Clopas\" as present at the cross alongside Mary the mother of Jesus — these are clearly distinct women. If James and Joses are sons of this other Mary (wife of Clopas), they are Jesus' cousins, not his uterine brothers. The genealogical data from Hegesippus (2nd century), preserved in Eusebius, identifies Clopas as Joseph's brother, making their sons Jesus' first cousins — perfectly suited to the \"brothers\" language of the Semitic tradition.\n\nThe **ancient tradition** uniformly holds to Mary's perpetual virginity. Jerome (4th century) argued definitively for the \"cousins\" interpretation (*Adversus Helvidium*). The view that the \"brothers\" were sons of Joseph from a prior marriage (the \"Epiphanian\" view) is older, attested in the Protoevangelium of James (2nd century), and remains the Eastern Orthodox position. Helvidius's claim (4th century) that Mary had other children after Jesus was immediately condemned by Jerome as a novelty without patristic support. No mainstream Christian theologian before Helvidius had taught that Mary bore other children.\n\nThe Catechism (CCC 499–500) affirms the perpetual virginity of Mary: \"The deepening of faith in the virginal motherhood led the Church to confess Mary's real and perpetual virginity even in the act of giving birth to the Son of God made man.\" The tradition is not a medieval addition; it is among the most ancient and consistently attested Marian beliefs of the Church."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Mark 6:3",
+        "Mark 15:40",
+        "John 19:25",
+        "Matthew 27:56",
+        "Genesis 14:14"
+      ],
+      "catechism": [
+        499,
+        500,
+        510
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "brothers of Jesus",
+        "perpetual virginity",
+        "Mary",
+        "cousins",
+        "Greek adelphos",
+        "Semitic kinship"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "full-of-grace-kecharitomene",
+        "mary-new-eve",
+        "marian-apparitions",
+        "immaculate-conception"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

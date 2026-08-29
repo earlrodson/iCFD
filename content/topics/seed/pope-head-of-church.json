@@ -1,0 +1,49 @@
+{
+  "topic_id": "pope-head-of-church",
+  "translations": {
+    "en": {
+      "category": "papacy",
+      "title": "Is the Pope the Head of the Church?",
+      "question": "Catholics call the Pope the \"head of the Church,\" but Colossians 1:18 says Christ is the head of his body, the Church. Doesn't calling the Pope \"head\" displace Christ?",
+      "answer": {
+        "summary": "> \"The Church of God... is ruled by the one vicar of Christ... and that Peter is the head of all the apostles and the whole and perfect foundation of the Catholic Church.\" — St. Cyprian of Carthage, On the Unity of the Church, §4 (c. 251)\n\nThe objection rests on a false dichotomy: because Christ is the head of the Church, no human being can also be called \"head\" in any meaningful sense. But the New Testament itself uses \"head\" in multiple senses without contradiction. Christ is the invisible, divine Head whose authority is absolute and eternal (Colossians 1:18, Ephesians 1:22). The Pope is the visible, human head — the earthly vicar who governs in Christ's name, as Christ's representative and servant. These two headships are not competitive; the visible is entirely derived from and subordinate to the invisible. The papal title \"Vicar of Christ\" (literally \"stand-in for Christ\") is precisely designed to convey that the Pope governs not in his own name but as a representative of the true and only ultimate Head.\n\nThe principle of a human head representing divine authority over a community is deeply rooted in Scripture. Moses was the human leader of God's people without displacing God as Israel's true king. The Davidic king ruled God's nation without competing with God's sovereignty. In the New Testament, the college of apostles led by Peter was the visible governing structure of a community whose invisible head is Christ. Jesus' commission to Peter — \"Feed my lambs... tend my sheep... feed my sheep\" (John 21:15–17) — explicitly makes Peter the under-shepherd who cares for Christ's flock in Christ's absence. The sheep remain Christ's; the shepherding authority is delegated.\n\nThe early Church understood this consistently. St. Cyprian, writing in the third century, called Peter \"the head of all the apostles and the whole and perfect foundation of the Catholic Church.\" St. Leo the Great identified himself as exercising Peter's authority — not his own personal authority but the office entrusted to Peter and now occupied by Leo. Vatican I's dogmatic constitution Pastor Aeternus (1870) defines that the Pope has \"full, supreme, and universal power over the whole Church\" — but immediately specifies this as a power for \"feeding, ruling, and governing the universal Church\" in service of Christ's Body, not for personal aggrandizement.\n\nThe key distinction is between **formal headship** (structural, governing, visible authority) and **ontological headship** (absolute, divine, life-giving causation). Christ is head in both senses: he governs the Church and he is the very source of its life and grace. The Pope is head only in the first sense: he governs visibly what Christ governs absolutely. Ephesians 4:15–16 speaks of \"the whole body, joined and knit together by every joint with which it is supplied, when each part is working properly\" — this visible organic unity requires a visible principle of unity, which the Petrine ministry provides.\n\nThe Catechism (CCC 882) states that the Pope \"by reason of his office as Vicar of Christ... has full, supreme, and universal power over the whole Church\" while Christ remains \"the eternal Shepherd.\" The Pope's authority is real, but it is always representational, derivative, and oriented toward service — \"servant of the servants of God\" (servus servorum Dei), the title chosen by St. Gregory the Great and used by popes ever since. Far from displacing Christ, the papal office is one of the primary ways Christ's headship becomes visible and operative in history."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Colossians 1:18",
+        "John 21:15-17",
+        "Matthew 16:18-19",
+        "Ephesians 1:22",
+        "Ephesians 1:23",
+        "Luke 22:31-32"
+      ],
+      "catechism": [
+        880,
+        882,
+        885,
+        894
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "Pope",
+        "head of church",
+        "vicar of Christ",
+        "papacy",
+        "authority",
+        "Colossians",
+        "servant"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "matthew-16-rock",
+        "keys-of-kingdom",
+        "papal-succession",
+        "primacy-of-peter"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

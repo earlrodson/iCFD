@@ -1,0 +1,55 @@
+{
+  "topic_id": "euthanasia-church",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "The Catholic Church's Teaching on Euthanasia and Assisted Suicide",
+      "question": "Why does the Catholic Church oppose euthanasia and assisted suicide? Isn't allowing a person to choose their own death a matter of compassion and autonomy?",
+      "answer": {
+        "summary": "> \"You shall not murder.\" — Exodus 20:13\n\nThe Catholic Church teaches that euthanasia — the deliberate killing of a sick, elderly, or suffering person — and assisted suicide — providing the means for a person to end their own life — are gravely wrong, regardless of the motivation or the consent of the person dying. The Catechism (CCC 2277) states: \"Whatever its motives and means, direct euthanasia consists in putting an end to the lives of handicapped, sick, or dying persons. It is morally unacceptable.\" This teaching is not unique to Catholicism — it was the universal position of Western medical ethics until the late 20th century and remains the position of the Hippocratic tradition.\n\nThe theological foundation is the **non-ownership of life**. Catholic teaching holds that human life is a gift from God, entrusted to persons who are stewards rather than absolute owners. Because we did not create our lives, we do not have unlimited dominion over them. The same principle undergirds the prohibition on murder (the taking of innocent human life belongs to God's authority, not ours) and applies to taking one's own life. This does not mean suffering is meaningless — the tradition of offering up suffering in union with Christ's passion (Colossians 1:24) gives suffering a redemptive dimension. It does mean that the appropriate response to suffering is alleviation, accompaniment, and care — not elimination of the sufferer.\n\nThe **compassion** argument deserves direct engagement. The Church does not deny the reality of suffering or the sincerity of those who advocate euthanasia from compassion. But it argues that genuine compassion seeks to relieve suffering while preserving life, not to relieve suffering by ending the sufferer. The Church strongly supports and promotes palliative care — medical care focused on managing pain and providing comfort — as the appropriate medical response to terminal illness. John Paul II's *Evangelium Vitae* (1995) specifically distinguishes between euthanasia (killing) and adequate pain management, even when the doses required to manage pain may hasten death as a foreseen but unintended side effect: \"the intention is to relieve pain, causing death is not willed, even if the risk of it is taken\" (§65). This is the principle of double effect.\n\nThe **autonomy** argument — a person has the right to choose when to die — rests on an understanding of freedom as absolute self-determination. The Church rejects this understanding: freedom is not absolute but is ordered toward the truth and the good. A freedom that chooses self-destruction is not the exercise of authentic autonomy but its corruption. Moreover, the social dimension of euthanasia legalization matters: once euthanasia is legal and normalized, social pressure on the elderly, disabled, and chronically ill to \"choose\" death to avoid being a burden becomes a grave concern — a concern documented in jurisdictions that have legalized euthanasia.\n\nThe Catechism (CCC 2278) also clarifies that the Church does not demand extraordinary measures be used to prolong life at all costs: \"Discontinuing medical procedures that are burdensome, dangerous, extraordinary, or disproportionate to the expected outcome can be legitimate... One does not will to cause death; one's inability to impede it is merely accepted.\" Allowing natural death is not euthanasia."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Exodus 20:13",
+        "Genesis 9:6",
+        "Psalms 139:13",
+        "Psalms 139:14",
+        "Psalms 139:15",
+        "Psalms 139:16",
+        "Job 1:21",
+        "Philippians 1:21",
+        "Philippians 1:22",
+        "Philippians 1:23",
+        "Philippians 1:24"
+      ],
+      "catechism": [
+        2276,
+        2277,
+        2278,
+        2279,
+        2324
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "euthanasia",
+        "assisted suicide",
+        "end of life",
+        "palliative care",
+        "Evangelium Vitae",
+        "death",
+        "compassion"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "abortion-church",
+        "natural-law-ethics",
+        "just-war-theory",
+        "resurrection-of-body"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

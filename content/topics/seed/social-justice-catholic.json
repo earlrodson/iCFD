@@ -1,0 +1,59 @@
+{
+  "topic_id": "social-justice-catholic",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "Catholic Social Teaching and Social Justice",
+      "question": "Is Catholic social teaching just \"socialism in disguise\"? Or is it just a religious cover for political progressivism? What does the Church actually teach?",
+      "answer": {
+        "summary": "> \"He has sent me to proclaim good news to the poor, to proclaim release to the captives and recovery of sight to the blind, to set free those who are oppressed.\" — Luke 4:18\n\nCatholic Social Teaching (CST) is a systematic body of moral doctrine developed by the Church since Leo XIII's *Rerum Novarum* (1891) addressing the economic, political, and social ordering of human life. It is neither socialism nor conservatism — it has been consistently critical of both unbridled capitalism and state socialism, and it resists reduction to any partisan political program. Understanding CST requires understanding its foundational principles, not its policy applications.\n\nThe four foundational principles of CST:\n\n**1. Human Dignity** (*Dignitas Humanae*): Every human being, by virtue of being made in God's image (Genesis 1:27), possesses an inherent, inalienable dignity that no social, economic, or political system may override. This is the non-negotiable foundation of all CST. Every economic and political policy must be evaluated by whether it respects and promotes or diminishes and violates human dignity.\n\n**2. Solidarity** (*Solidarietatis*): Human beings are by nature social and interdependent. We have genuine obligations to one another that cannot be reduced to voluntary charity — there is a form of justice, not merely benevolence, owed by communities and nations to their most vulnerable members. John Paul II's *Sollicitudo Rei Socialis* (1987) defines solidarity as \"a firm and persevering determination to commit oneself to the common good; that is to say, to the good of all and each individual.\"\n\n**3. Subsidiarity** (*Subsidiarietatis*): Social problems should be addressed at the lowest competent level of social organization. Larger institutions (the state, federal government, international bodies) should not assume functions that smaller ones (families, local communities, private associations) can adequately perform. This principle is explicitly *anti-statist* in tendency and has been cited repeatedly to resist excessive government centralization. Pius XI (Quadragesimo Anno) formulated it in 1931.\n\n**4. The Common Good** (*Bonum Commune*): Social life must be ordered toward the good of all, not just the powerful. The common good is not the mere aggregate of private goods but the social conditions that allow all persons to flourish. This includes the right to private property (affirmed by CST against socialism) and also its social mortgage — property rights are not absolute but are ordered toward the common good.\n\nCST explicitly affirms: the right to private property (against socialism), the dignity of work and the right to just wages (against exploitative capitalism), subsidiarity and limited government (against statism), solidarity and care for the poor (against libertarian indifference), and the priority of the family as the fundamental unit of society (against both statist collectivism and individualism).\n\nThe reason CST is misread as \"progressive\" is that its critique of unbridled market capitalism sounds economically left-of-center; the reason it is misread as \"conservative\" is that its emphasis on subsidiarity, family, and private property sounds right-of-center. This misreading results from mapping CST onto partisan political categories that it transcends. The Church's interest is not in any political party but in the human person — which is why CST has been attacked from both political directions and claimed by neither honestly."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Luke 4:18",
+        "Matthew 25:35",
+        "Matthew 25:36",
+        "Matthew 25:37",
+        "Matthew 25:38",
+        "Matthew 25:39",
+        "Matthew 25:40",
+        "James 5:1",
+        "James 5:2",
+        "James 5:3",
+        "James 5:4",
+        "James 5:5",
+        "James 5:6",
+        "Genesis 1:27",
+        "Leviticus 19:9",
+        "Leviticus 19:10"
+      ],
+      "catechism": [
+        1877,
+        1879,
+        1897,
+        1929,
+        2401
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "social justice",
+        "Catholic Social Teaching",
+        "Rerum Novarum",
+        "subsidiarity",
+        "solidarity",
+        "common good",
+        "human dignity"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "natural-law-ethics",
+        "just-war-theory",
+        "abortion-church"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

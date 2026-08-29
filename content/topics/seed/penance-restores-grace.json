@@ -1,0 +1,51 @@
+{
+  "topic_id": "penance-restores-grace",
+  "translations": {
+    "en": {
+      "category": "salvation",
+      "title": "How the Sacrament of Penance Restores Sanctifying Grace",
+      "question": "Catholics go to a priest to confess sins. But doesn't the Bible say we confess directly to God? Why does a priest need to be involved in restoring a person's salvation?",
+      "answer": {
+        "summary": "> \"Receive the Holy Spirit. If you forgive the sins of any, they are forgiven; if you retain the sins of any, they are retained.\" — Jesus Christ (John 20:22–23)\n\nThe Sacrament of Penance — also called Reconciliation or Confession — is the ordinary means by which a baptized Catholic who has fallen into mortal sin is restored to the state of sanctifying grace. It is not a human institution imposing a priest between the sinner and God, but the very ordinance of Christ himself, given to the apostles the evening of his resurrection. Jesus' words in John 20:22–23 are unmistakable in their sacramental character: he breathes the Holy Spirit upon the apostles and grants them the power to forgive or retain sins. This is not a general declaration of the gospel but a specific charism — the exercise of a real juridical authority over the binding and loosing of sins — with a differentiated outcome (forgiven or retained) that requires actual knowledge of what the sinner has done.\n\nThe Protestant objection — \"we confess directly to God\" — actually proves too much. The Bible certainly calls for direct confession to God (Psalm 51, 1 John 1:9), and Catholics do not deny this. The question is whether Christ also instituted a sacramental form of absolution administered through ordained ministers, distinct from private prayer but not opposed to it. The evidence says yes. James 5:16 exhorts: \"Confess your sins to one another\" — not merely to God privately. The early Church practiced auricular confession: the Didache (c. 70 AD) instructs Christians to confess sins before the Eucharist; Tertullian, Origen, and Cyprian all describe a process of public or private confession before a bishop or priest as necessary for readmission to Communion after serious sin.\n\nThe key salvific logic is as follows. Mortal sin kills the life of sanctifying grace in the soul. Baptism initially gave that grace; it cannot be repeated. Christ therefore ordained a second plank — the Sacrament of Penance — as the means of restoration after the shipwreck of serious sin, as the Fathers called it. The priest acts in persona Christi: the absolution is Christ's, the authority is Christ's, the forgiveness is God's — but it is mediated through the ordained minister as a sign and instrument. This is consistent with God's entire sacramental economy: he saves through visible, embodied means (water in baptism, bread and wine in the Eucharist, oil in anointing) because human beings are embodied, social creatures.\n\nThe theological distinction is between **contrition** (sorrow for sin), **confession** (auricular disclosure to the priest), **absolution** (the priestly pronouncement of forgiveness), and **satisfaction** (penance assigned as a remedy for the temporal consequences of forgiven sin). All four are necessary elements of the sacrament, but contrition is the heart of it — God forgives the truly contrite. The priest is not a gatekeeper denying forgiveness but a minister dispensing it. An imperfectly contrite sinner (moved more by fear of punishment than love of God) is brought to full contrition through the sacrament itself.\n\nThe Council of Trent (Session XIV) defined Penance as a true sacrament instituted by Christ, distinct from baptism, necessary for the forgiveness of post-baptismal mortal sin. The Catechism (CCC 1422, 1448) reaffirms this. The practical fruit of the sacrament — peace of conscience, restoration of grace, spiritual direction from the confessor — is itself evidence of its divine origin, recognized by centuries of penitents who encountered God's mercy in the confessional."
+      },
+      "answer_full": null,
+      "scripture": [
+        "John 20:22",
+        "John 20:23",
+        "James 5:16",
+        "Psalms 51:3",
+        "Psalms 51:4",
+        "2 Corinthians 5:18-20",
+        "Matthew 18:18"
+      ],
+      "catechism": [
+        1422,
+        1440,
+        1448,
+        1456,
+        1468
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "confession",
+        "penance",
+        "reconciliation",
+        "absolution",
+        "grace",
+        "mortal sin",
+        "priests"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "confession-to-priest",
+        "mortal-and-venial-sin",
+        "salvation",
+        "holy-orders"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "topic_id": "papal-teaching-authority",
+  "translations": {
+    "en": {
+      "category": "papacy",
+      "title": "When Is the Pope Speaking Infallibly?",
+      "question": "Catholics claim the Pope is infallible. Does that mean everything the Pope says or does is without error? How can any human being be infallible?",
+      "answer": {
+        "summary": "> \"The Roman Pontiff, when he speaks ex cathedra... by virtue of his supreme apostolic authority, defines a doctrine concerning faith or morals to be held by the whole Church, possesses that infallibility with which the divine Redeemer willed his Church to be endowed.\" — First Vatican Council, Pastor Aeternus, 1870\n\nPapal infallibility is among the most misunderstood Catholic doctrines, largely because it is routinely overstated by critics and sometimes imprecisely described even by Catholics. The doctrine does not mean the Pope is sinless, impeccable, personally inspired in all his utterances, or immune from error in matters of science, history, politics, or pastoral judgment. It means something far more specific and limited: when the Pope speaks **ex cathedra** — from the chair of Peter, formally defining a doctrine of faith or morals to be held by the universal Church — the Holy Spirit preserves him from defining error. This is a charism of the office, not of the person, operative only in strictly defined circumstances.\n\nThe scriptural basis lies in the promises Christ made regarding Peter and the Church. Luke 22:32 records Jesus praying specifically for Peter's faith not to fail — not merely to recover from a temporary lapse, but to endure as the anchor for the brethren. Matthew 16:18 promises the gates of hell will not prevail against the Church built on Peter. John 16:13 promises the Spirit will guide the Church \"into all truth.\" If the Church can formally define error as divinely revealed truth, these promises are empty. The Church's magisterium — its formal teaching office — must be preserved from such a catastrophic failure or Christ's guarantee is void.\n\nThe conditions for an ex cathedra definition are four: (1) the Pope must be speaking as universal pastor, not as a private theologian; (2) he must be defining a doctrine of **faith or morals** specifically — not geography, science, or politics; (3) he must be defining it as divinely revealed; (4) he must be requiring the assent of the whole Church. When all four conditions are simultaneously met, the teaching is infallible. This has occurred only twice in Vatican I-era history: the Immaculate Conception (Pius IX, 1854) and the Assumption of Mary (Pius XII, 1950). The ordinary papal teaching authority (encyclicals, apostolic exhortations) is not in itself infallible, though it demands religious submission of intellect and will.\n\nThe key theological distinction is between **papal infallibility** and **papal impeccability**. The former is a doctrinal charism; the latter is a moral quality the Pope does not possess. Catholic history records popes who were morally corrupt, theologically imprecise in personal writing, and pastorally disastrous — without any of this touching the defined doctrine of infallibility, because those failures never involved the specific, formal exercise of the ex cathedra authority. Critics who cite bad popes as refutations of infallibility are confusing the two concepts.\n\nThe dogma was formally defined at Vatican I (1870) in Pastor Aeternus and reaffirmed at Vatican II in Lumen Gentium §25. The Catechism (CCC 891) specifies the precise conditions and notes that the infallibility promised to the Church is also present in the body of bishops united with the Pope when they formally define doctrine — papal infallibility is the single-head exercise of a charism the Church as a whole possesses. Far from being an arrogant claim, it is the Church's expression of trust in Christ's promise to preserve his Bride from formally teaching what is false."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Luke 22:32",
+        "Matthew 16:18",
+        "John 16:13",
+        "Matthew 28:20",
+        "1 Timothy 3:15"
+      ],
+      "catechism": [
+        889,
+        890,
+        891,
+        892
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "papal infallibility",
+        "ex cathedra",
+        "Pope",
+        "magisterium",
+        "Vatican I",
+        "teaching authority",
+        "faith and morals"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "matthew-16-rock",
+        "keys-of-kingdom",
+        "bad-popes-history",
+        "councils-and-popes"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

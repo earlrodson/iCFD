@@ -1,0 +1,49 @@
+{
+  "topic_id": "creation-and-evolution",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "Catholic Teaching on Creation and Evolution",
+      "question": "Does the Catholic Church require belief in a six-day creation and reject evolution? Or can a Catholic accept evolutionary science?",
+      "answer": {
+        "summary": "> \"In the beginning, God created the heavens and the earth.\" — Genesis 1:1\n\nThe Catholic Church does not require literal six-day creationism, nor does it condemn evolutionary biology. It teaches that God is the Creator of everything that exists, that the universe is not the product of chance but of divine intelligence and will, and that the human soul is directly created by God. Within these theological convictions, the Church allows wide latitude on the scientific question of *how* God chose to create. The Pontifical Biblical Commission (1909), the encyclicals *Humani Generis* (Pius XII, 1950), and numerous recent papal statements have consistently distinguished between what faith requires and what science investigates.\n\nPius XII's *Humani Generis* (§36) is the pivotal magisterial document: \"The Teaching Authority of the Church does not forbid that, in conformity with the present state of human sciences and sacred theology, research and discussions, on the part of men experienced in both fields, take place with regard to the doctrine of evolution, in as far as it inquires into the origin of the human body as coming from pre-existent and living matter.\" Three critical boundaries are set: (1) evolution may be considered a possible explanation for the **body's** origin from prior matter; (2) the human **soul** is directly created by God and is not a product of material processes; (3) inquiry must remain compatible with Catholic faith, not presuppose philosophical materialism or deny divine creation.\n\nJohn Paul II's 1996 message to the Pontifical Academy of Sciences affirmed that evolution \"is more than a hypothesis\" given the convergence of evidence from multiple scientific disciplines. He re-stated the essential theological constraints: the transition to the spiritual soul requires an ontological leap not explicable by physical evolution alone — there is no smooth material gradient from matter to a being capable of knowing God, loving, and being held morally responsible. The soul's creation is a divine act outside the scope of biological science.\n\nOn Genesis 1–2, the Church distinguishes **literary genre**. The creation accounts are not scientific treatises but theological proclamations: God created everything, creation is good, humanity is the summit of creation, and humanity is made in God's image. The \"days\" of Genesis 1 have been interpreted allegorically since Origen and Augustine — Augustine himself (*De Genesi ad Litteram*) argued that the six days might represent a logical rather than temporal sequence, since time itself was part of creation. The Church thus has a long tradition of non-literalist Genesis interpretation predating modern science, which means accepting evolutionary timescales requires no violence to traditional Catholic exegesis.\n\nWhere the Church firmly resists is **philosophical materialism masquerading as science**: the claim that evolution proves there is no Creator, no purpose to existence, and no human exceptionalism. Evolution as a biological theory explains speciation by natural selection; it does not, as a scientific theory, address whether God exists, whether the universe has purpose, or whether the human person has a soul. These are philosophical and theological questions that biology is not equipped to answer. The Catholic approach is to embrace what science has established about the *how* of creation while insisting that the *why* — existence itself, the origin of life, the dignity of the human person — requires a Creator."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Genesis 1:1",
+        "Genesis 1:27",
+        "Genesis 2:7",
+        "Wisdom 11:20",
+        "Psalms 19:1"
+      ],
+      "catechism": [
+        279,
+        280,
+        283,
+        285,
+        362
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "evolution",
+        "creation",
+        "Genesis",
+        "science and faith",
+        "Humani Generis",
+        "soul",
+        "intelligent design"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "existence-of-devil",
+        "resurrection-of-body",
+        "natural-law-ethics",
+        "angels-and-demons"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

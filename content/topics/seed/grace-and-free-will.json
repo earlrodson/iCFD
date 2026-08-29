@@ -1,0 +1,52 @@
+{
+  "topic_id": "grace-and-free-will",
+  "translations": {
+    "en": {
+      "category": "salvation",
+      "title": "Grace and Free Will: Does God's Grace Override Human Freedom?",
+      "question": "If salvation depends entirely on God's grace, what role does human free will play? Doesn't total dependence on grace make free will meaningless?",
+      "answer": {
+        "summary": "> \"God created us without us: but he did not will to save us without us.\" — St. Augustine of Hippo, Sermon 169\n\nThe relationship between divine grace and human free will is one of the deepest questions in Christian theology, and the Catholic Church holds a position that refuses to sacrifice either truth for the sake of a simpler system. Against Pelagianism — which taught that unaided human will can merit salvation — the Church affirms with Paul that \"it is God who works in you, both to will and to work for his good pleasure\" (Philippians 2:13). Against Calvinist determinism — which teaches that grace irresistibly overrides human choice — the Church affirms that God's grace moves the will without compelling it, enabling genuine human cooperation rather than replacing it. Both extremes err by failing to hold together what God in his wisdom has joined.\n\nThe scriptural evidence for the reality of human free will is pervasive. Joshua's exhortation — \"Choose this day whom you will serve\" (Joshua 24:15) — presupposes a real choice. Jesus's lament over Jerusalem — \"How often I would have gathered your children... but you would not!\" (Matthew 23:37) — shows that human refusal genuinely grieves God and frustrates his saving intention. Revelation 3:20 portrays Christ knocking at a door that must be opened from the inside. The repeated call in Deuteronomy to \"choose life\" (Deuteronomy 30:19) would be empty rhetoric if the will were merely a passive instrument of divine determination. Paul's exhortation in Philippians 2:12 to \"work out your own salvation with fear and trembling\" — immediately followed by \"for God is at work in you\" — holds both poles in a single sentence.\n\nThe distinction the Church draws is between **prevenient grace** (the grace that goes before, enabling the will to move toward God at all) and **cooperative grace** (the grace that works with a will that has been freed and elevated by God). Every movement toward salvation begins with God's unmerited initiative — the Council of Orange (529 AD) definitively condemned the idea that faith, conversion, or any salvific act originates in unaided human will. But once grace moves the will, the will genuinely acts — not as a puppet but as a liberated agent making a real choice. The Catechism (CCC 1742) states: \"The grace of Christ is not in the slightest way a rival of our freedom when this freedom accords with the sense of the true and the good that God has put in the human heart.\"\n\nThe key theological distinction is between the **physical order** of causation, where two agents cannot simultaneously produce the same act without one being subordinated to the other, and the **theological order**, where God's sovereign causation does not compete with human causation but rather is the ground and enabling condition of genuine human causation. God moves the will from within, not as an external compulsion. This is why Augustine's famous phrase is so precise: God made us without our consent (creation), but he saves us with our free cooperation (redemption).\n\nThe Councils of Orange (529) and Trent (1547) define the Catholic position against both Pelagianism and determinism. The Church acknowledges that the exact mechanics of how divine sovereignty and human freedom interact remain a mystery — the debates between Thomists and Molinists illustrate that Catholic theologians disagree on the mechanism while agreeing on the outcome. What is defined is the reality of both truths: grace is absolutely necessary and entirely prior; human free cooperation is real and necessary. Together they constitute the Catholic understanding of salvation as a genuine encounter between a sovereign God and a truly free human person."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Philippians 2:12",
+        "Philippians 2:13",
+        "John 15:5",
+        "Ephesians 2:8-10",
+        "Romans 8:28",
+        "Romans 8:29",
+        "Romans 8:30",
+        "Deuteronomy 30:19"
+      ],
+      "catechism": [
+        1731,
+        1742,
+        1996,
+        2001,
+        2021
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "grace",
+        "free will",
+        "Pelagianism",
+        "salvation",
+        "predestination",
+        "cooperation",
+        "sovereignty"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "salvation",
+        "eternal-security",
+        "predestination-catholic",
+        "final-perseverance"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

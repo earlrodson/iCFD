@@ -1,0 +1,50 @@
+{
+  "topic_id": "just-war-theory",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "The Catholic Just War Doctrine",
+      "question": "Can Catholics support war? Doesn't Jesus teach non-violence, and doesn't the Church's just war teaching just provide cover for military aggression?",
+      "answer": {
+        "summary": "> \"If it is possible, so far as it depends on you, live peaceably with all.\" — Romans 12:18\n\nThe Catholic just war doctrine is not a blank check for military aggression — it is a stringent set of moral conditions that must *all* be met simultaneously before a war can be considered just, and it places the burden of proof entirely on those who would go to war rather than on those who would maintain peace. The Church's default position is peace; war is a tragic necessity when all other means have failed and specific conditions have been met. Most wars in history fail to meet these conditions.\n\nThe doctrine has its roots in Augustine (4th–5th century) and was systematized by Aquinas in the *Summa Theologiae* (II-II, Q. 40). Aquinas specified three traditional conditions: (1) **Legitimate authority** — war must be declared by a proper public authority, not private individuals or groups; (2) **Just cause** — the war must be in response to a genuine wrong suffered, typically defense against aggression; (3) **Right intention** — the aim must be peace and justice, not conquest, vengeance, or profit. Later theologians (Suárez, Vitoria) added proportionality and discrimination.\n\nThe contemporary Catholic formulation in the Catechism (CCC 2309) specifies four conditions that must all be simultaneously met:\n1. **Just cause**: The damage inflicted must be lasting, grave, and certain — not speculative or minor.\n2. **Right intention**: The aim must be peace; recourse to war must be the last resort.\n3. **Last resort**: All peaceful alternatives — diplomacy, negotiation, sanctions — must have been exhausted or clearly impractical.\n4. **Proportionality**: The evils and disorders entailed by war must not be greater than the evil to be eliminated; modern weapons of mass destruction raise grave concerns here.\n\nIn addition, the *means* of warfare must be just even in a just war — non-combatants may not be deliberately targeted (principle of discrimination), and the means must remain proportionate to military objectives. This renders many modern weapons (nuclear weapons deployed against population centers, chemical weapons) morally impermissible regardless of the justice of the cause.\n\nThe NT's apparent pacifism (Matthew 5:38–48, \"turn the other cheek\") was never understood by the Church as an absolute prohibition on all force. The \"other cheek\" passage addresses personal relations and private offense — not the duty of rulers to defend their populations against aggression. Paul explicitly acknowledges that the governing authority \"does not bear the sword in vain; it is the servant of God to execute his wrath on the wrongdoer\" (Romans 13:4). The soldier in the NT is never told to leave his profession — Cornelius, the first Gentile convert, was a military officer (Acts 10) whom Peter does not instruct to resign his commission. Legitimate defense of the innocent is a duty, not merely a permission.\n\nThe Catechism (CCC 2308) establishes the presumption: \"All citizens and all governments are obliged to work for the avoidance of war.\" Just war doctrine does not justify war; it defines the narrow conditions under which resort to arms can be morally permitted as the last tragic option when all other means of defending the innocent have been exhausted."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Romans 12:18",
+        "Romans 13:4",
+        "Matthew 5:9",
+        "Luke 3:14",
+        "John 18:36"
+      ],
+      "catechism": [
+        2302,
+        2307,
+        2308,
+        2309,
+        2312
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "just war",
+        "pacifism",
+        "military",
+        "Augustine",
+        "Aquinas",
+        "defense",
+        "peace",
+        "violence"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "natural-law-ethics",
+        "social-justice-catholic",
+        "euthanasia-church",
+        "abortion-church"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}
