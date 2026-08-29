@@ -1,0 +1,110 @@
+{
+  "topic_id": "deuterocanonical-books",
+  "translations": {
+    "ceb": {
+      "category": "bible",
+      "title": "The Seven Deuterocanonical Books",
+      "question": "Why do Catholic Bibles have seven more Old Testament books than Protestant Bibles? Didn't Catholics add them?",
+      "answer": "Catholics did not add books; Protestants removed them. The seven Deuterocanonicals (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Maccabees, plus parts of Esther and Daniel) were part of the Septuagint, the Greek Old Testament used by the Apostles and quoted throughout the New Testament. The early Church received these books, and the councils of Hippo (393) and Carthage (397) listed them as canonical Scripture. They remained in every Christian Bible for over a thousand years until Martin Luther relegated them in the 16th century, partly because 2 Maccabees 12:46 supports prayer for the dead, which conflicted with his rejection of Purgatory. The Jewish rabbis who excluded them did so around 90 AD at Jamnia, after Christianity had already adopted them, so their exclusion cannot bind Christians. The Council of Trent (1546) simply reaffirmed the ancient canon against the novel deletion.",
+      "answer_full": null,
+      "scripture": [
+        "2 Maccabees 12:46",
+        "Wisdom 2:12-20"
+      ],
+      "catechism": [
+        120
+      ],
+      "church_fathers": [
+        78
+      ],
+      "objections": [],
+      "tags": [
+        "deuterocanon",
+        "apocrypha",
+        "septuagint",
+        "maccabees",
+        "canon",
+        "trent"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "biblical-canon",
+        "purgatory",
+        "bible-tradition-authority"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    },
+    "en": {
+      "category": "bible",
+      "title": "The Seven Deuterocanonical Books",
+      "question": "Why do Catholic Bibles have seven more Old Testament books than Protestant Bibles? Didn't Catholics add them?",
+      "answer": "Catholics did not add books; Protestants removed them. The seven Deuterocanonicals (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Maccabees, plus parts of Esther and Daniel) were part of the Septuagint, the Greek Old Testament used by the Apostles and quoted throughout the New Testament. The early Church received these books, and the councils of Hippo (393) and Carthage (397) listed them as canonical Scripture. They remained in every Christian Bible for over a thousand years until Martin Luther relegated them in the 16th century, partly because 2 Maccabees 12:46 supports prayer for the dead, which conflicted with his rejection of Purgatory. The Jewish rabbis who excluded them did so around 90 AD at Jamnia, after Christianity had already adopted them, so their exclusion cannot bind Christians. The Council of Trent (1546) simply reaffirmed the ancient canon against the novel deletion.",
+      "answer_full": "\n> \"I received from the Lord what I also handed on to you.\"\n> — 1 Corinthians 11:23 (NABRE)\n\nThe question of the deuterocanonical books — whether they belong in the Christian Old Testament — is not merely a Protestant-Catholic dispute about lists. It goes to the heart of how the Church determines the boundaries of divine revelation, who has authority to make that determination, and whether a doctrine can be rejected by excising the texts that support it. The Catholic answer on all three counts is clear and historically grounded.\n\n---\n\n## What Are the Deuterocanonical Books?\n\nThe seven fully deuterocanonical books are:\n\n| Book | Catholic OT | Protestant OT |\n|------|-------------|---------------|\n| Tobit | ✓ | ✗ |\n| Judith | ✓ | ✗ |\n| 1 Maccabees | ✓ | ✗ |\n| 2 Maccabees | ✓ | ✗ |\n| Wisdom (of Solomon) | ✓ | ✗ |\n| Sirach (Ecclesiasticus) | ✓ | ✗ |\n| Baruch | ✓ | ✗ |\n\nPlus additions to Esther (chapters 10–16) and Daniel (chapters 13–14 and the Prayer of Azariah / Song of the Three Young Men).\n\n---\n\n## The Septuagint: The Apostolic Bible\n\nThe **Septuagint** (LXX) was the Greek translation of the Hebrew Scriptures produced in Alexandria beginning in the 3rd century BC. By the first century AD it was the standard Bible of Greek-speaking Jews — including the Diaspora communities from which many early Christians came. Crucially, *it included the deuterocanonical books*.\n\n### New Testament Use of the Septuagint\n\nWhen New Testament authors quote the Old Testament, they overwhelmingly use the Septuagint:\n\n- **Hebrews 11:35** — *\"Others were tortured and did not accept deliverance, in order to obtain a better resurrection.\"* This alludes directly to **2 Maccabees 7**, the story of the Maccabean martyrs who refused apostasy in hope of resurrection. If 2 Maccabees is not Scripture, this passage in Hebrews lacks its biblical grounding.\n- **Matthew 27:43** — *\"He trusted in God; let God rescue him now if he wants him.\"* This echoes **Wisdom 2:18**: *\"If the righteous man is God's son, he will help him.\"* The Passion narrative's language is saturated with Wisdom's account of the suffering just man.\n- **James 1:19** — *\"Be quick to hear, slow to speak, slow to wrath\"* — echoes **Sirach 5:11**: *\"Be swift to hear, but deliberate in giving an answer.\"*\n- **Romans 9:21** — Paul's potter-and-clay image echoes **Wisdom 15:7**.\n\nThe New Testament authors drew theological substance from these books. Their implicit canonicity in apostolic preaching is strong evidence for their inclusion.\n\n---\n\n## Historical Evidence: The Early Church Canon\n\n### Church Councils\n\n| Council | Date | Decision |\n|---------|------|----------|\n| Council of Rome | AD 382 | Listed deuterocanonicals as Scripture (Pope Damasus I) |\n| Council of Hippo | AD 393 | Confirmed full OT including deuterocanonicals |\n| Council of Carthage | AD 397 | Reaffirmed; transmitted to broader Church |\n| Pope Innocent I | AD 405 | Confirmed the full list in a letter to Bishop Exuperius |\n| Council of Trent | AD 1546 | Defined dogmatically against Protestant removal |\n\n### Key Fathers\n\nSt. Augustine of Hippo (*City of God*, XVII.20; *On Christian Doctrine*, II.8) affirmed the deuterocanonicals as Scripture. St. Ambrose of Milan quoted them as authoritative. Even St. Jerome, who *preferred* the shorter Hebrew canon, included them in the Vulgate under the Church's direction — and the Vulgate became the standard Christian Bible for over a millennium.\n\n---\n\n## The Jamnia Objection\n\nProtestants sometimes appeal to the **Council of Jamnia** (c. AD 90) — a gathering of rabbinic scholars after the fall of Jerusalem — as having established the definitive Hebrew canon excluding the deuterocanonicals. Three problems:\n\n1. The authority of this rabbinic gathering for Christians is unclear — Jewish decisions made after the Resurrection do not bind the Christian Church in matters of her own received Scriptures.\n2. Modern scholarship has cast doubt on whether Jamnia \"defined\" a canon at all — it appears to have been a discussion, not a formal conciliar decision.\n3. Jews in Alexandria and at Qumran used a broader canon before and during the time of Christ. The \"Hebrew canon\" was not uniformly agreed upon even within Judaism.\n\n---\n\n## The Theological Motive for Removal\n\nLuther's removal of the deuterocanonicals was not purely historical scholarship. His motivations included doctrinal disagreements with specific texts:\n\n- **2 Maccabees 12:46** — *\"It is therefore a holy and wholesome thought to pray for the dead.\"* This supports Purgatory, which Luther rejected.\n- **Tobit 12:9** — *\"For almsgiving saves from death and purges away every sin.\"* This sounds like works contributing to salvation.\n- **2 Maccabees 15:14** — The deceased prophet Jeremiah interceding for Israel — supports the intercession of saints.\n- **Wisdom 3:6** — *\"God tried them and found them worthy of himself; he tested them like gold in a furnace.\"* This supports Purgatory's purgative dimension.\n\nRemoving books because they contradict a predetermined theology is circular. The proper method is to *derive* theology from the received canon, not to *adjust* the canon to fit the desired theology.\n\n---\n\n## Ecumenical Council: Council of Trent (1546)\n\n> *\"If anyone does not receive as sacred and canonical the aforesaid books in their entirety and with all their parts... let him be anathema.\"*\n> — Council of Trent, Session IV (April 8, 1546)\n\nTrent did not add the deuterocanonicals to the Catholic canon for the first time — it *formally defined* what the Church had always received against the Protestant innovation of removing them. The list Trent defined is identical to that of the Council of Carthage (397 AD) — 1,150 years earlier.\n\n---\n\n## Church Fathers\n\n> \"It is proper to submit the proofs drawn from the Holy Scriptures and the tradition of the Catholic Church, and from the reverence due to ancient and universal usage.\"\n> — St. Augustine of Hippo, *On Christian Doctrine*, II.8 (c. AD 397)\n\nAugustine's canon — which includes all seven deuterocanonicals — became the standard Western canon for over a thousand years.\n\n> \"Let the following books be reckoned among the canonical Scriptures: the five books of Moses... the Book of Job, the Book of Tobit, Judith, Esther, Esdras, Maccabees.\"\n> — Pope Innocent I, *Letter to Exuperius*, Bishop of Toulouse (AD 405)\n\nA papal letter transmitting the same 46-book OT canon now called the Catholic Old Testament.\n\n> \"What was believed everywhere, always, and by all — that is truly and properly Catholic.\"\n> — St. Vincent of Lérins, *Commonitorium*, 2.3 (c. AD 434)\n\nBy Vincent's test, the deuterocanonicals are Scripture — they were received as such by the universal Church for over a millennium before Protestantism rejected them.\n\n---\n\n## CCC References\n\n| Reference | Teaching |\n|-----------|----------|\n| CCC 120 | The Apostolic Tradition enabled the Church to discern which writings were to be included in the list of sacred books |\n| CCC 138 | The Church accepts 46 books of the OT and 27 of the NT |\n| CCC 140 | In the OT, the progressive stages of revelation gradually unveil the full meaning of Christ |\n\n---\n\n## Common Objections\n\n**\"Catholics added extra books not in the original Bible.\"**\n\nThe deuterocanonicals were in the Septuagint — the Bible the apostles used and from which the New Testament quotes over 300 times. They were part of the Church's received Scripture for 1,500 years. Protestants *removed* them in the sixteenth century, not Catholics adding them.\n\n**\"The Jews don't accept these books.\"**\n\nThe post-Christian rabbinic canon excludes the deuterocanonicals, but first-century Judaism was not uniform on this point — the Alexandrian Jewish community and possibly Qumran used a broader canon. More importantly, the Christian Church's canon is not determined by post-Christian rabbinic decisions. Christians are not bound by what Jewish scholars decided about Scripture after the death of Christ and the destruction of the Temple.\n\n**\"These books have errors — Judith has historical inaccuracies.\"**\n\nThe historicity of Judith is debated, but ancient readers often understood it as a theological narrative rather than strict chronicle — just as Job is not read as a court transcript. The presence of literary or theological shaping does not disqualify a book from inspiration; the Psalms and Revelation both use non-literal forms. The presence of *haggadah* (imaginative narrative) is not the same as factual error.\n\n---\n\nThe deuterocanonical books are Scripture because the apostolic Church received them as Scripture, quoted them as Scripture, and transmitted them as Scripture for fifteen centuries. Luther's removal of them was doctrinally motivated and historically indefensible. The Catholic Old Testament is not an addition to the Bible — it is the original Christian canon.\n",
+      "scripture": [
+        "2 Maccabees 12:46",
+        "Wisdom 2:12-20"
+      ],
+      "catechism": [
+        120
+      ],
+      "church_fathers": [
+        78
+      ],
+      "objections": [],
+      "tags": [
+        "deuterocanon",
+        "apocrypha",
+        "septuagint",
+        "maccabees",
+        "canon",
+        "trent"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "biblical-canon",
+        "purgatory",
+        "bible-tradition-authority"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    },
+    "tl": {
+      "category": "bible",
+      "title": "The Seven Deuterocanonical Books",
+      "question": "Why do Catholic Bibles have seven more Old Testament books than Protestant Bibles? Didn't Catholics add them?",
+      "answer": "Catholics did not add books; Protestants removed them. The seven Deuterocanonicals (Tobit, Judith, Wisdom, Sirach, Baruch, 1 and 2 Maccabees, plus parts of Esther and Daniel) were part of the Septuagint, the Greek Old Testament used by the Apostles and quoted throughout the New Testament. The early Church received these books, and the councils of Hippo (393) and Carthage (397) listed them as canonical Scripture. They remained in every Christian Bible for over a thousand years until Martin Luther relegated them in the 16th century, partly because 2 Maccabees 12:46 supports prayer for the dead, which conflicted with his rejection of Purgatory. The Jewish rabbis who excluded them did so around 90 AD at Jamnia, after Christianity had already adopted them, so their exclusion cannot bind Christians. The Council of Trent (1546) simply reaffirmed the ancient canon against the novel deletion.",
+      "answer_full": null,
+      "scripture": [
+        "2 Maccabees 12:46",
+        "Wisdom 2:12-20"
+      ],
+      "catechism": [
+        120
+      ],
+      "church_fathers": [
+        78
+      ],
+      "objections": [],
+      "tags": [
+        "deuterocanon",
+        "apocrypha",
+        "septuagint",
+        "maccabees",
+        "canon",
+        "trent"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "biblical-canon",
+        "purgatory",
+        "bible-tradition-authority"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

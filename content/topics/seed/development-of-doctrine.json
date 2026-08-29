@@ -1,0 +1,50 @@
+{
+  "topic_id": "development-of-doctrine",
+  "translations": {
+    "en": {
+      "category": "tradition",
+      "title": "How Catholic Doctrine Develops Over Time",
+      "question": "Catholics accept doctrines like the Immaculate Conception and papal infallibility that were formally defined only in the nineteenth century. If these are true, why weren't they defined from the beginning? Doesn't this prove the Church makes up new doctrines?",
+      "answer": {
+        "summary": "> \"No doctrine is understood to have been defined unless it has been manifestly so determined.\" — First Vatican Council, Pastor Aeternus (1870)\n\nThe Catholic doctrine of the development of doctrine addresses one of the most serious and legitimate questions about Catholic teaching: how can doctrines defined in the nineteenth century (Immaculate Conception, 1854; Papal Infallibility, 1870; Assumption of Mary, 1950) be part of the apostolic deposit if they were not formally defined by the apostles themselves? The answer lies in a distinction between a truth being part of revelation and a truth being explicitly articulated as such. The seed of an oak is genuinely an oak from the beginning, though it does not look like the tree it will become. Similarly, doctrines that were implicit in the apostolic deposit — really contained there, though not yet fully articulated — can be subsequently defined without being invented.\n\nThe principle has clear scriptural grounding. John 16:13 records Jesus promising the Holy Spirit who \"will guide you into all truth.\" This guidance is not a promise of new revelation after the apostolic age, but a promise of deeper understanding of what has already been given. 2 Peter 3:18 exhorts growth \"in the grace and knowledge of our Lord.\" Ephesians 4:13 speaks of the Church coming to \"the measure of the stature of the fullness of Christ\" — a process of growth toward something already given, not the addition of new content. The deposit is complete; its explicit articulation unfolds over time.\n\nThe classic example is the doctrine of the Trinity. The word \"Trinity\" never appears in the Bible. The doctrine — one God in three Persons of equal divine nature — was not formally defined until the Council of Nicaea (325 AD), three centuries after Christ. No serious theologian claims the Trinity was invented in 325; what happened is that the Church, pressed by Arian controversy, articulated explicitly what was always implicitly present in the New Testament's testimony about the Father, Son, and Spirit. The definition at Nicaea was not addition but precision. The same logic applies to all subsequent definitions.\n\nJohn Henry Newman's 1845 Essay on the Development of Christian Doctrine provides the classic Catholic account, distinguishing genuine development from corruption. Genuine development: (1) preserves the type (the original form is recognizable in the developed form); (2) assimilates what it contacts without being dissolved by it; (3) shows logical sequence (the later doctrine follows from the earlier); (4) anticipates the future (the early Church's implicit beliefs were tending toward the later explicit definitions); (5) is confirmed by the consistency of the developed doctrine with the original spirit of the faith. Corruption inverts these: it changes type, is dissolved by foreign influence, breaks logical continuity.\n\nThe Catechism (CCC 94) affirms: \"This tradition which comes from the Apostles develops in the Church with the help of the Holy Spirit. For there is a growth in the understanding of the realities and the words which have been handed down.\" The development of doctrine is therefore not the Church making up new teaching but the Church, under the Spirit's guidance, moving from implicit to explicit understanding of the one complete revelation given in Christ — the same deposit, better and more fully articulated as the needs of each age demand."
+      },
+      "answer_full": null,
+      "scripture": [
+        "John 16:13",
+        "2 Peter 3:18",
+        "Ephesians 4:13",
+        "Ephesians 4:14",
+        "Ephesians 4:15",
+        "1 Timothy 3:15",
+        "Jude 1:3"
+      ],
+      "catechism": [
+        94,
+        95,
+        66,
+        67
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "doctrine",
+        "development",
+        "Immaculate Conception",
+        "papal infallibility",
+        "Trinity",
+        "Newman",
+        "Tradition"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "immaculate-conception",
+        "papal-teaching-authority",
+        "bible-tradition-authority",
+        "sacred-tradition-scripture"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "topic_id": "full-of-grace-kecharitomene",
+  "translations": {
+    "en": {
+      "category": "mary",
+      "title": "Full of Grace: The Meaning of Kecharitomenē in Luke 1:28",
+      "question": "Catholics use Luke 1:28 (\"full of grace\") to support the Immaculate Conception. But isn't this a mistranslation? The Greek just means \"favored one.\"",
+      "answer": {
+        "summary": "> \"And coming to her he said, 'Hail, kecharitōmenē, the Lord is with you!'\" — Luke 1:28\n\nThe Gabriel's greeting in Luke 1:28 uses a unique Greek word — *kecharitōmenē* — that is not ordinary vocabulary for being \"favored.\" It is a perfect passive participle of the verb *charitoō*, meaning \"to grace,\" \"to fill with grace,\" or \"to make gracious/beautiful.\" The perfect tense in Greek indicates a completed past action with ongoing present results — not a momentary divine favor, but a state of grace that has been fully achieved and continues. The word appears only one other time in the entire NT: Ephesians 1:6, where Paul says God \"has graced us\" (*echaritōsen*) through Christ — clearly a theological statement about the reception of divine grace, not just being liked. Luke 1:28 uses the stronger perfect participle form: she has been and remains fully graced.\n\nThe critical linguistic point is the **substitution of name**. The angel does not greet Mary by her given name (\"Hail, Mary\") but by *kecharitōmenē* — making this word function as her name or defining identity. In biblical Hebrew thought, a person's name reflects their essential character or divine destiny (Abram → Abraham, Jacob → Israel). When an angel addresses someone by a title of identity, that title defines who they are. Mary is \"the one who has been filled with grace\" — not as an occasional recipient of divine favor, but as her defining spiritual condition.\n\nThe **Septuagint (LXX) usage** of related words supports a strong interpretation. The LXX's rendering of the Hebrew concept of divine favor (*chen*, *chesed*) often uses ordinary terms; *kecharitōmenē* represents something more theologically loaded. When Jerome translated Luke 1:28 into the Vulgate, he rendered it *gratia plena* — \"full of grace\" — not merely *gratiosa* (\"gracious/favored\"). Jerome's choice reflects both the Greek's strength and the early patristic understanding of Mary's unique holiness. The Eastern Fathers, writing in Greek, also interpreted *kecharitōmenē* as indicating an exceptional fullness of grace unique to Mary.\n\nProtestant scholars often argue the word simply means \"favored one\" with no implication of sinlessness or special grace. But this objection must reckon with the perfect passive tense (ongoing state), the substitution of name (defining identity), the theological weight of *charitoō* (divine grace, not merely human preference), and the consistent patristic interpretation. If the text meant only \"you are well-liked by God,\" Luke had simpler, more ordinary vocabulary available. The deliberate use of *kecharitōmenē* suggests Luke (or his source) intended a strong theological statement about Mary's exceptional relationship with divine grace.\n\nThe Catholic doctrine of the Immaculate Conception does not rest on Luke 1:28 alone — it is drawn from the whole of Scripture, Tradition, and theological reflection on what it means for the Word to take flesh. But *kecharitōmenē* is a significant piece of the biblical foundation: it presents Mary not as one who receives grace at the Annunciation but as one who already *is* the fully graced one — consistent with the Catholic understanding that her preparation for her divine maternity began at the moment of her own conception."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Luke 1:28",
+        "Ephesians 1:6",
+        "Luke 1:42",
+        "Genesis 3:15",
+        "Zechariah 4:7"
+      ],
+      "catechism": [
+        490,
+        491,
+        492,
+        722
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "kecharitomene",
+        "full of grace",
+        "Immaculate Conception",
+        "Mary",
+        "Greek",
+        "Luke 1:28",
+        "favored one"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "brothers-of-lord",
+        "mary-new-eve",
+        "immaculate-conception",
+        "marian-apparitions"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

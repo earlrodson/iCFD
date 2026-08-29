@@ -1,0 +1,49 @@
+{
+  "topic_id": "oral-tradition-prewritten",
+  "translations": {
+    "en": {
+      "category": "bible",
+      "title": "Oral Tradition Before the New Testament Was Written",
+      "question": "If the Bible is the complete Word of God, why did early Christians rely on oral tradition before the New Testament was written? Doesn't this prove the Bible is sufficient?",
+      "answer": {
+        "summary": "> \"So then, brethren, stand firm and hold to the traditions which you were taught by us, either by word of mouth or by letter.\" — 2 Thessalonians 2:15\n\nThe argument from oral tradition is not a Catholic invention to supplement a deficient Bible; it is a straightforward historical observation that illuminates what Scripture itself teaches about the nature of divine revelation. The New Testament as we know it — 27 books, formally recognized by the Church — did not exist as a unified canon until the late fourth century. Yet the early Christians were not therefore without authoritative divine teaching. They received it orally from the apostles, who received it from Christ. This historical reality is crucial to understanding both the authority of Sacred Tradition and the impossibility of sola scriptura as the apostolic method.\n\nThe timeline is instructive. Jesus' public ministry lasted approximately three years, ending with his ascension in approximately 30 AD. Paul's earliest letter (1 Thessalonians) was written around 51 AD — two decades after Pentecost. The last Gospel (John) was written around 90–100 AD. The book of Revelation, the last NT book, dates to approximately 95–96 AD. During the sixty-plus years between Christ's ascension and the completion of the NT canon, the Church grew from a small Jerusalem community to a faith spanning the Roman Empire — entirely on the basis of oral apostolic preaching and the Old Testament. The \"Bible alone\" approach to Christianity is therefore historically impossible for the first generation of believers; they had no NT Bible, yet they were fully Christian.\n\nPaul's own letters presuppose oral tradition as authoritative. In 2 Thessalonians 2:15 he commands holding to \"traditions\" delivered \"by word of mouth or by letter\" — explicitly putting his spoken teaching on the same level as his written letters. In 1 Corinthians 11:2 he praises those who \"maintain the traditions as I have delivered them to you.\" In 2 Timothy 2:2, he instructs Timothy to pass on what he has heard \"to faithful men who will be able to teach others also\" — a chain of oral transmission, not a command to consult a written text. John 20:30–31 acknowledges that Jesus did \"many other signs\" not recorded — and John 21:25 adds that if all were written, \"the world itself could not contain the books that would be written.\" The NT itself is a selection from a larger tradition, not its exhaustive containment.\n\nThe key distinction is between the **sufficiency of Christ's revelation** (which is complete and perfect) and the **sufficiency of the written Bible** (which the Catholic Church affirms as inspired and inerrant, but never taught to be the sole vehicle of that complete revelation). Christ is the fullness of revelation (Hebrews 1:1–2); Scripture and Tradition together, under the Church's authoritative interpretation, transmit that one revelation. Sola scriptura confuses the inspired record of some of the apostolic deposit with the totality of that deposit.\n\nThe Catechism (CCC 78) states: \"This living transmission, accomplished in the Holy Spirit, is called Tradition, since it is distinct from Sacred Scripture, though closely connected to it.\" CCC 82 adds: \"As a result the Church, to whom the transmission and interpretation of Revelation is entrusted, does not derive her certainty about all revealed truths from the holy Scriptures alone.\" This is not an attack on Scripture's authority but a correct account of how that authority fits into the larger reality of divine revelation as Christ actually transmitted it."
+      },
+      "answer_full": null,
+      "scripture": [
+        "2 Thessalonians 2:15",
+        "1 Corinthians 11:2",
+        "2 Timothy 2:2",
+        "John 20:30",
+        "John 20:31",
+        "John 21:25"
+      ],
+      "catechism": [
+        75,
+        76,
+        78,
+        82,
+        83
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "oral tradition",
+        "sola scriptura",
+        "Bible",
+        "Sacred Tradition",
+        "early Church",
+        "apostolic teaching"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "bible-tradition-authority",
+        "sola-scriptura-refuted",
+        "church-gave-us-bible",
+        "sacred-tradition-scripture"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

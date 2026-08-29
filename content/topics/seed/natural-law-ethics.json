@@ -1,0 +1,60 @@
+{
+  "topic_id": "natural-law-ethics",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "Natural Law and Catholic Moral Reasoning",
+      "question": "Catholics appeal to \"natural law\" to justify moral teachings. But isn't natural law just a philosophical concept? Isn't it simply imposing Catholic views?",
+      "answer": {
+        "summary": "> \"For when Gentiles, who do not have the law, by nature do what the law requires, they are a law to themselves, even though they do not have the law.\" — Romans 2:14\n\nNatural law is not a distinctively Catholic invention, nor is it simply a religious doctrine imposed on non-Catholics. It is a philosophical tradition stretching from Aristotle through the Stoics, codified in Roman law, and articulated most fully in Catholic moral theology by Thomas Aquinas — but it is fundamentally the claim that human reason can discern moral truths inscribed in human nature itself. Paul articulates this in Romans 2:14–15: even Gentiles without the revealed law \"show that the work of the law is written on their hearts, while their conscience also bears witness.\" Natural law is the rational creature's participation in the eternal law of God — the moral order built into reality itself and discoverable by reason.\n\nThe core principle is that **nature has a rational structure** ordered toward specific ends (*telos*), and that acting in conformity with those ends is good while acting against them is evil. Human nature, being rational and social, is ordered toward: truth, life, the family, social community, religion, and similar fundamental goods. These are not arbitrary preferences but the objective structure of what it means to be human. A human act is morally good when it fulfills and respects the person's fundamental goods; it is wrong when it contradicts or undermines them. This structure can be grasped by reason — which is why virtually every major civilization has independently arrived at prohibitions against murder, theft, and perjury: these insights emerge from the natural law accessible to all.\n\nIn Catholic moral theology, natural law grounds the Church's moral teaching on issues that cut across the boundaries of religious confession: the wrongness of murder, the good of marriage and family, the right to private property, the moral limits on state power, the dignity of the human person. These are not \"Catholic rules\" — they are conclusions of practical reason about the good of human beings, which Catholics hold to be confirmed and elevated by divine revelation. This is why the Church can engage in public moral argument on issues like abortion, euthanasia, and just war without simply citing Scripture or Church authority: she argues from the structure of human nature that all reasonable people, in principle, can grasp.\n\nThe most common objection is the **naturalistic fallacy**: you cannot derive an \"ought\" from an \"is\" — you cannot conclude from the fact that nature works a certain way that it ought to be treated that way. This is a serious philosophical challenge, and Catholic natural law theorists respond that the argument does not move from *descriptive* natural facts to *prescriptive* moral duties, but from *teleological* natural facts — the natural ends that define what a thing *is* — to practical requirements for realizing those ends. A thing's telos is not a brute descriptive fact but a normative structure: to be human *is* to be ordered toward rational flourishing; to act against that ordering is, by definition, to fail as a human being.\n\nThe Catechism (CCC 1954–1960) identifies natural law as \"nothing other than the light of understanding placed in us by God; through it we know what we must do and what we must avoid. God has given this light or law at the creation.\" It is accessible to all, provides the foundation for universal human rights, and is the rational basis for the Church's engagement with the broader culture on moral questions that affect all persons regardless of religious affiliation."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Romans 2:14",
+        "Romans 2:15",
+        "Romans 1:19",
+        "Romans 1:20",
+        "Wisdom 13:1",
+        "Wisdom 13:2",
+        "Wisdom 13:3",
+        "Wisdom 13:4",
+        "Wisdom 13:5",
+        "Wisdom 13:6",
+        "Wisdom 13:7",
+        "Wisdom 13:8",
+        "Wisdom 13:9",
+        "Jeremiah 31:33",
+        "Acts 17:28"
+      ],
+      "catechism": [
+        1954,
+        1955,
+        1956,
+        1959,
+        1960
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "natural law",
+        "ethics",
+        "moral theology",
+        "Aquinas",
+        "reason",
+        "human nature",
+        "conscience"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "contraception-church",
+        "abortion-church",
+        "euthanasia-church",
+        "just-war-theory",
+        "homosexuality-church"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

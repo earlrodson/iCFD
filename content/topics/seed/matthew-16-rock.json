@@ -1,0 +1,49 @@
+{
+  "topic_id": "matthew-16-rock",
+  "translations": {
+    "en": {
+      "category": "papacy",
+      "title": "Is Peter the Rock in Matthew 16?",
+      "question": "Jesus said \"on this rock I will build my Church\" in Matthew 16:18. Protestants claim the \"rock\" refers to Peter's faith or to Christ himself — not to Peter personally. Who is right?",
+      "answer": {
+        "summary": "> \"Simon son of John, you will be called Cephas — which is translated Peter.\" — Jesus Christ (John 1:42)\n\nMatthew 16:18 is the foundational text for the papacy: \"And I tell you, you are Peter [Greek: *Petros*], and on this rock [Greek: *petra*] I will build my Church, and the powers of death shall not prevail against it.\" The Protestant claim that the \"rock\" refers to Peter's faith or to Christ himself — not to Peter as a person — faces serious difficulties from the text itself, from the underlying Aramaic, and from the unanimous interpretation of the early Church. When the original context is examined carefully, the Catholic reading emerges as the straightforwardly natural meaning.\n\nThe most important linguistic fact is that Jesus almost certainly spoke in Aramaic, his vernacular language. In Aramaic, there is no gender distinction in the noun for \"rock\": *Kepha* (or *Cephas* in Greek transliteration) serves both as Peter's new name and as the word for the rock on which the Church is built. The Greek translation introduces a slight modification — *Petros* (masculine, a name) and *petra* (feminine, rock) — not because they refer to different things, but because Greek grammar requires gendered nouns. John 1:42 records Jesus giving Simon this very name — \"You shall be called Cephas\" — before Matthew 16, showing that the name itself was a personal designation tied to the foundational role. The wordplay only works if Peter is the rock: \"You are Rock, and on this rock I will build my Church.\"\n\nThe early Church was unanimous on this point. St. John Chrysostom (c. 400): \"On this rock, that is, on the faith of his confession.\" One could cite this as evidence for the \"faith\" interpretation — but Chrysostom immediately adds that Peter's primacy is real and authoritative, making the distinction academic. More directly, St. Origen, Tertullian, and St. Augustine (at least in his later writings) all identify the rock as Peter himself. Tertullian refers to the Roman church as the church \"on which Peter's authority was founded.\" St. Leo the Great's Sermons on the Anniversary of His Consecration consistently identify Peter's person as the foundation of the Church's unity. The anti-Petrine reading of Matthew 16 is largely a Reformation-era development with little patristic support.\n\nThe key theological distinction is between the **foundation** and the **cornerstone**. Christ is the cornerstone of the Church (Ephesians 2:20, 1 Corinthians 3:11) — the primary, absolute foundation without which the Church cannot exist. Peter is the human foundation — the visible rock upon which the visible, historical Church is structured. These two are not competitors: just as Moses was the mediator of the Old Covenant without displacing God as the true leader of Israel, so Peter exercises a derived, representative, and ministerial primacy that reflects and serves Christ's unique headship, not one that competes with it.\n\nThe promise extends to Peter's successors because the Church's need for a visible head does not cease with Peter's death. Matthew 16:18 promises that \"the powers of death shall not prevail against\" the Church built on Peter — but the Church still exists two thousand years later, after Peter's martyrdom. Either the promise failed (impossible), or the Petrine office continues in his successors, the bishops of Rome. The historical continuity of the Roman episcopate from Peter to the present is the concrete, verifiable fulfillment of Christ's promise."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Matthew 16:18-19",
+        "John 1:42",
+        "Luke 22:31-32",
+        "Ephesians 2:20",
+        "1 Corinthians 3:11"
+      ],
+      "catechism": [
+        552,
+        553,
+        880,
+        881
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "Peter",
+        "papacy",
+        "Matthew 16",
+        "rock",
+        "primacy",
+        "keys",
+        "Aramaic",
+        "Cephas"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "primacy-of-peter",
+        "papal-succession",
+        "keys-of-kingdom",
+        "papal-teaching-authority"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

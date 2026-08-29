@@ -1,0 +1,52 @@
+{
+  "topic_id": "marriage-indissoluble",
+  "translations": {
+    "en": {
+      "category": "sacraments",
+      "title": "Why the Catholic Church Teaches Marriage Is Indissoluble",
+      "question": "If two people are unhappy or the marriage has broken down, why does the Catholic Church refuse to grant divorce and forbid remarriage? Isn't this cruel?",
+      "answer": {
+        "summary": "> \"What therefore God has joined together, let not man put asunder.\" — Matthew 19:6\n\nThe Catholic teaching on marital indissolubility is not an arbitrary restriction but follows directly from Christ's own explicit words, reiterated twice in the Gospels in the face of Pharisaic challenge. When the Pharisees asked Jesus whether a man could divorce his wife \"for any reason,\" citing Moses' permission (Deuteronomy 24:1), Jesus appealed over Moses to the original order of creation: \"From the beginning it was not so\" (Matthew 19:8). He then stated unambiguously: \"Whoever divorces his wife and marries another commits adultery against her; and if she divorces her husband and marries another, she commits adultery\" (Mark 10:11–12). Paul reiterates this as a Lord's command, not his own opinion: \"To the married I give this ruling, which is not mine but the Lord's: a wife must not leave her husband\" (1 Corinthians 7:10).\n\nThe Catholic Church teaches that a valid, consummated sacramental marriage between two baptized persons cannot be dissolved by any human authority — not the Church, not the state, not the spouses themselves. This is not because the Church is indifferent to human suffering, but because the sacramental bond is constituted by God's act, not merely human agreement, and therefore cannot be undone by human decision. The Catechism (CCC 1640) states: \"The matrimonial covenant, by which a man and a woman establish between themselves a partnership of the whole of life, is by its nature ordered toward the good of the spouses and the procreation and education of offspring; this covenant between baptized persons has been raised by Christ the Lord to the dignity of a sacrament.\" A sacrament leaves a permanent mark; its grace and bond persist beyond human feeling or circumstance.\n\nThe key distinction often missed is between **civil divorce** and **sacramental dissolution**. The Church does not condemn Catholics who obtain a civil divorce for legal reasons (protection from an abusive spouse, child custody, financial separation). A civil divorce changes the legal status of the marriage in the eyes of the state, but it does not — and cannot — dissolve the sacramental bond in God's eyes. What is forbidden is remarriage after civil divorce while the spouse lives, because the Church holds that the first marriage still exists before God.\n\nThe Church also has a formal process of annulment — a declaration that a valid sacramental marriage never existed in the first place, due to defects present at the time of consent (lack of capacity, lack of free consent, fraud, lack of canonical form, etc.). An annulment is not a Catholic divorce; it is a finding that the marriage was invalid from the beginning, not that a valid marriage has been dissolved. This process, while imperfect and sometimes slow, represents the Church's serious attempt to determine the truth about whether a marriage bond actually exists.\n\nThe theological foundation is that Christian marriage images the covenant between Christ and the Church — a covenant that is unconditional and indissoluble (Ephesians 5:31–32). If marriage could be dissolved when it becomes difficult, it could no longer serve as a sign of Christ's permanent, faithful, self-giving love for his bride. Indissolubility is therefore not a punishment for the unhappily married but a property that makes marriage capable of imaging divine love at all. The Church's insistence on it, even at the cost of appearing harsh, is her fidelity to Christ's own teaching."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Matthew 19:6",
+        "Matthew 19:8",
+        "Mark 10:11",
+        "Mark 10:12",
+        "1 Corinthians 7:10",
+        "1 Corinthians 7:11",
+        "Ephesians 5:31",
+        "Ephesians 5:32"
+      ],
+      "catechism": [
+        1638,
+        1639,
+        1640,
+        1644,
+        1650
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "marriage",
+        "divorce",
+        "indissolubility",
+        "remarriage",
+        "annulment",
+        "sacraments",
+        "Matthew 19"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "holy-orders-priesthood",
+        "contraception-church",
+        "divorce-remarriage",
+        "penance-restores-grace"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

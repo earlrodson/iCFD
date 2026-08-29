@@ -1,0 +1,49 @@
+{
+  "topic_id": "sacred-tradition-scripture",
+  "translations": {
+    "en": {
+      "category": "tradition",
+      "title": "Sacred Tradition and Scripture: One Deposit of Faith",
+      "question": "Catholics treat oral tradition as equal to Scripture. But doesn't 2 Timothy 3:16–17 say Scripture is sufficient, making tradition unnecessary?",
+      "answer": {
+        "summary": "> \"Therefore, brethren, stand fast and hold the traditions which you have been taught, whether by word or our epistle.\" — 2 Thessalonians 2:15\n\nThe Catholic Church does not treat Sacred Tradition as a supplement to an insufficient Scripture, nor does it place human traditions above God's Word. It teaches, following the Council of Trent and Vatican II, that Scripture and Tradition are two modes of transmission of the one apostolic deposit — the single divine revelation given by Christ and entrusted to the Church. They are not two competing sources but two streams from one spring. Understanding this corrects both the Protestant mischaracterization (\"Catholics add tradition to the Bible\") and the popular Catholic misunderstanding (\"tradition can override Scripture\").\n\nThe Protestant proof-text — 2 Timothy 3:16–17 — does not say what the \"sufficiency\" argument claims. Paul writes that \"all Scripture is God-breathed and useful for teaching, rebuking, correcting, and training in righteousness, so that the man of God may be thoroughly equipped for every good work.\" Useful (*ōphelimos*) is not the same as exclusively sufficient. The passage affirms Scripture's inspiration and its many uses — it says nothing about Scripture being the only source of revealed truth or the only norm for Christian doctrine. Paul's own letters, which he was still writing, were presumably also useful — but he never claimed that letters he had not yet written were sufficient in themselves.\n\nFurthermore, when Paul wrote 2 Timothy, much of what we call the NT did not yet exist in canonical form. His reference to \"Scripture\" (Greek: *graphē*) would have referred primarily to the Old Testament. If 2 Timothy 3:16 proves that the OT alone is sufficient for every doctrine, it proves too much — the NT becomes unnecessary. In practice, the Protestant uses the NT canon, the creeds, and centuries of conciliar definitions to understand the OT — all of which are products of the very Tradition the argument tries to exclude.\n\nVatican II's Dei Verbum (§9) provides the authoritative Catholic formulation: \"Sacred Tradition and Sacred Scripture form one sacred deposit of the word of God, committed to the Church.\" They are so closely connected that \"the Church does not draw her certainty about all revealed truths from the holy Scriptures alone.\" Tradition transmits the apostolic deposit in living form — liturgy, creeds, councils, the practice of the Church — while Scripture is the privileged written record of part of that deposit. Neither is complete without the other; together, under the Church's authoritative interpretation, they transmit the full revelation of Christ.\n\nThe Catechism (CCC 80–83) summarizes: \"Both Scripture and Tradition must be accepted and honored with equal sentiments of devotion and reverence.\" This does not mean they are interchangeable or that human ecclesiastical tradition can add new dogmas beyond the apostolic deposit. It means that God's revealed truth comes to us through both the written Scripture and the living Tradition of the Church, interpreted by the Magisterium, and that no one element can be isolated from the others without distorting the whole."
+      },
+      "answer_full": null,
+      "scripture": [
+        "2 Thessalonians 2:15",
+        "2 Timothy 3:16",
+        "2 Timothy 3:17",
+        "1 Corinthians 11:2",
+        "John 21:25",
+        "2 Peter 1:20"
+      ],
+      "catechism": [
+        80,
+        81,
+        82,
+        83,
+        97
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "Sacred Tradition",
+        "Scripture",
+        "sola scriptura",
+        "deposit of faith",
+        "Dei Verbum",
+        "Vatican II"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "bible-tradition-authority",
+        "oral-tradition-prewritten",
+        "sola-scriptura-refuted",
+        "development-of-doctrine"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

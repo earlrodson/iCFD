@@ -1,0 +1,47 @@
+{
+  "topic_id": "marian-apparitions",
+  "translations": {
+    "en": {
+      "category": "saints",
+      "title": "How the Church Evaluates Apparitions and Private Revelations",
+      "question": "Catholics believe in apparitions like Fatima and Lourdes. But the Bible seems complete — why would God need to add new messages? Aren't these just superstitions?",
+      "answer": {
+        "summary": "> \"Private revelations... do not belong to the deposit of faith. It is not their role to improve or complete Christ's definitive Revelation, but to help live more fully by it in a certain period of history.\" — CCC 67\n\nThe Catholic Church's approach to apparitions and private revelations is carefully ordered and theologically precise — far more critical and cautious than popular perception suggests. The Church neither dismisses reports of supernatural experiences nor uncritically embraces them. It applies a rigorous process of investigation, requires consistency with public Revelation (Scripture and Tradition), and issues only limited approval even for the most celebrated apparitions. Understanding this process corrects two common errors: the Protestant assumption that all such claims are superstition, and the popular Catholic tendency to treat approved apparitions as binding doctrine.\n\nThe crucial distinction is between **public Revelation** and **private revelation**. Public Revelation — the deposit of faith contained in Scripture and Sacred Tradition — was definitively completed with the death of the last apostle. The Church can define no new dogmas that add to this deposit; all defined doctrine must be found explicitly or implicitly in what was given once for all. Private revelations (apparitions, interior locutions, visions) are categorically different: they do not add to the deposit of faith, they cannot be required of all Catholics as objects of divine faith, and even the most celebrated and approved apparitions (Lourdes, Fatima, Guadalupe) are not defined dogma. A Catholic who does not believe in Fatima is not a heretic — though such skepticism would be imprudent given the strong convergence of evidence and Church approval.\n\nThe Church's investigation of claimed apparitions follows established criteria. The visionaries must be psychologically healthy and free of personal profit motive. The messages must be consistent with Scripture, Tradition, and defined doctrine — any message contradicting Church teaching is automatically disqualified. Miraculous signs, if claimed, are investigated scientifically before being affirmed as inexplicable. The spiritual fruits — conversions, healings of conscience, renewed prayer — are weighed. The bishop of the local diocese conducts the initial investigation, with findings reviewed by the Holy See for major cases. Only after sustained investigation does the Church issue a declaration that an apparition is \"worthy of belief\" (worthy of credence) — not that it is certain, but that the evidence supports belief.\n\nApparitions like Guadalupe (1531), Lourdes (1858), and Fatima (1917) have been declared worthy of belief after rigorous investigation spanning decades. Guadalupe's tilma — the image of Our Lady imprinted on Juan Diego's cloak — has withstood five centuries of scrutiny and remains scientifically inexplicable. Lourdes has verified 70 miraculous cures through its medical bureau, staffed by independent physicians including non-believers. Fatima's \"Miracle of the Sun\" was witnessed by approximately 70,000 people including skeptical secular reporters. These are not uncritical credulous reports; they are among the most investigated religious events in history.\n\nThe Catechism (CCC 66–67) situates private revelation correctly: \"Even if Revelation is already complete, it has not been made completely explicit; it remains for Christian faith gradually to grasp its full significance over the course of the centuries.\" Private revelations help the Church apply the one public Revelation to particular historical moments and needs — calling the Church to prayer, penance, or renewed attention to a neglected aspect of the Gospel. They are aids to living the faith, not additions to its content."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Acts 2:17",
+        "Revelation 1:1",
+        "1 Thessalonians 5:20-21",
+        "1 John 4:1",
+        "Luke 1:28"
+      ],
+      "catechism": [
+        66,
+        67,
+        2683
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "apparitions",
+        "private revelation",
+        "Fatima",
+        "Lourdes",
+        "Guadalupe",
+        "Mary",
+        "discernment"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "assumption-of-mary",
+        "fatima-apparitions",
+        "immaculate-conception",
+        "communion-of-saints"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

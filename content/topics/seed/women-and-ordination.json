@@ -1,0 +1,57 @@
+{
+  "topic_id": "women-and-ordination",
+  "translations": {
+    "en": {
+      "category": "sacraments",
+      "title": "Why the Catholic Church Does Not Ordain Women to the Priesthood",
+      "question": "Why does the Catholic Church refuse to ordain women as priests? Isn't this sexism?",
+      "answer": {
+        "summary": "> \"I do not permit a woman to teach or to exercise authority over a man; she is to remain quiet.\" — 1 Timothy 2:12 (debated in application; see below)\n\nThe Catholic Church's teaching that it \"has no authority whatsoever to confer priestly ordination on women\" (Ordinatio Sacerdotalis, 1994) is not grounded in a claim that women are inferior, less holy, or less capable than men. It is grounded in a theology of the sacramental sign and in fidelity to the unbroken practice of Jesus and the apostolic Church. Pope John Paul II declared it a definitive teaching belonging to the deposit of faith — meaning it is not merely a disciplinary policy that can change, but a theological conviction the Church holds it cannot alter.\n\nThe argument has several interlocking pillars: (1) **Christ's own practice.** Jesus, in a culture where challenging gender conventions was not unusual for a prophet, did not include women among the Twelve, even though he freely included women among his closest disciples, engaged them publicly, appeared first to a woman after the resurrection, and showed remarkable openness toward women against the social norms of his time. The exclusion of women from the Twelve was therefore not cultural accommodation but deliberate choice. (2) **Apostolic tradition.** The apostles, guided by the Spirit at Pentecost, did not ordain women, and this practice has been maintained without exception across Catholic, Orthodox, and all ancient Eastern churches. If the Spirit-led apostolic community uniformly and deliberately excluded women from ordination, this represents authoritative apostolic tradition, not cultural limitation. (3) **The sacramental sign.** The priest at Mass acts *in persona Christi* — in the person of Christ the bridegroom — toward the Church, the bride. The Bridegroom-Bride imagery throughout Scripture (Ephesians 5, Revelation 19–21, the Song of Songs read typologically) is not incidental but intrinsic to the theology of redemption. The ordained priest represents Christ the Bridegroom in a way that requires a male sign-bearer, not because of personal superiority but because of sacramental intelligibility.\n\nCritics often invoke Galatians 3:28 — \"There is neither male nor female, for you are all one in Christ Jesus\" — as if it abolishes all distinctions of role. But Galatians 3:28 addresses salvation and dignity before God, not sacramental ministry. The same Paul who writes Galatians 3:28 maintains distinctions of role in liturgy and governance (1 Corinthians 14; 1 Timothy 2–3) without contradiction, because equality of dignity does not require identity of function.\n\nThe Church also insists that the question is not \"can women do the functions priests do?\" but \"is ordination to the Catholic ministerial priesthood a sacrament available to women?\" These are different questions. Ordination is a sacrament with a specific form established by Christ and transmitted through apostolic tradition — not a promotion or job assignment the Church can administer to whomever it chooses. As CCC 1578 states: \"No one has a right to receive the sacrament of Holy Orders. Indeed, no one claims this office for himself; he is called to it by God.\" The Church's inability to ordain women is, in Catholic theology, a limitation on its own authority, not an exercise of it."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Galatians 3:28",
+        "Luke 8:1",
+        "Luke 8:2",
+        "Luke 8:3",
+        "John 20:17",
+        "1 Timothy 3:1",
+        "1 Timothy 3:2",
+        "1 Timothy 3:3",
+        "1 Timothy 3:4",
+        "1 Timothy 3:5",
+        "1 Timothy 3:6",
+        "1 Timothy 3:7",
+        "Mark 3:14",
+        "Mark 3:15",
+        "Mark 3:16",
+        "Mark 3:17",
+        "Mark 3:18",
+        "Mark 3:19"
+      ],
+      "catechism": [
+        1577,
+        1578
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "women ordination",
+        "priesthood",
+        "gender",
+        "feminism",
+        "Ordinatio Sacerdotalis",
+        "holy orders"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "holy-orders-priesthood",
+        "marriage-indissoluble",
+        "one-mediator-and-saints"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

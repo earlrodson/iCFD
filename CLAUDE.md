@@ -100,6 +100,19 @@ bun tools/vector-search.ts "<query>" --json   # machine-readable
 
 Quality gate before considering work done: `pnpm lint && pnpm type-check && pnpm test`.
 
+### Topic content seed folder (canonical, added 2026-08-29)
+
+`content/topics/seed/<topic_id>.json` — one file per topic, all languages (`translations.{en,ceb,tl}`) in a single object, mirroring the live `topics` row schema exactly (bare-string `scripture` refs, not the newer `generate-topic.ts` object schema). This is the single source of truth for reseeding/auditing existing topic content — separate from `content/topics/{generated,needs-review,published}`, which is for *drafting* new/upgraded content via the AI pipeline before it becomes DB truth.
+
+```bash
+bun tools/dump-seed-topics.ts <topic_id> [...] | --course <path_slug>   # DB → seed file
+bun tools/seed-topics.ts <topic_id> [...] | --all [--dry-run]           # seed file → DB, idempotent
+```
+
+Replaces the old one-off `scripts/output/topics/*.sql` + `gen-course-seed-sql.mjs` + `seed-course-topics.mjs` (archived to `documents/archive/2026-08-course-seed/` — already fully applied to the DB, kept only as historical record, do not reseed from them).
+
+All 103 topics are mirrored here as of 2026-08-29. The `basic-apologetics-course` 20 topics were cross-checked against `documents/Apologetics-ceb/*.md` and `documents/Apologetics-tl/*.md` (the original book source, treated as ground truth) and had real data bugs fixed: `true-church` (tl `answer_full` was NULL), `sunday-observance`/`perpetual-virginity` (ceb `objections` had one shared response duplicated across N entries instead of consolidated), `salvation` (ceb response had ~31KB of unrelated bled-in content from a different document truncated off). The other 83 non-course topics were added as-is (English is solid; ceb/tl may still be thin or absent for these — not yet audited).
+
 Settled architectural/process decisions (don't re-litigate): `DECISIONS.md`.
 
 **Rule:** before proposing or making a change to migrations/CI, RLS/table

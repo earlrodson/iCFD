@@ -1,0 +1,54 @@
+{
+  "topic_id": "mortal-and-venial-sin",
+  "translations": {
+    "en": {
+      "category": "salvation",
+      "title": "The Catholic Distinction Between Mortal and Venial Sin",
+      "question": "Catholics distinguish between \"mortal\" and \"venial\" sins. Isn't all sin equally offensive to God? Doesn't the Bible say that \"the wages of sin is death\" for all sin, not just serious sins?",
+      "answer": {
+        "summary": "> \"Not every sin is a capital sin. There is a sin that is mortal; I say not that he should pray for that. There is a sin unto death.\" — St. John the Apostle (1 John 5:16–17)\n\nThe Catholic distinction between mortal and venial sin is not a medieval invention or a minimization of sin's seriousness — it is explicitly drawn by the apostle John himself. In 1 John 5:16–17, John distinguishes between \"a sin that is mortal\" (unto death) and sin \"not unto death,\" instructing different responses to each. This apostolic distinction reflects the deeper biblical reality that not all offenses against God's law are equivalent in their damage to the soul's relationship with God. Some sins rupture that relationship entirely; others wound it. Both are genuinely evil and require God's healing mercy, but they are not the same.\n\nThe scriptural basis for gradations in sin is extensive. Jesus himself distinguishes degrees of guilt in Matthew 5:21–22, escalating from anger to insult to contempt, with different consequences attached to each. He warns in Matthew 12:31–32 that blasphemy against the Holy Spirit is unforgivable, implying other sins are forgivable — a distinction without meaning if all sins were equal. John 19:11 records Jesus telling Pilate: \"He who delivered me to you has the greater sin\" — explicitly affirming that some sins are graver than others. The Old Testament similarly distinguishes between inadvertent sins and \"high-handed\" sins committed deliberately against God's known law (Numbers 15:27–31), the latter cutting the sinner off from the congregation.\n\nThe theological definition of mortal sin requires three conditions, all of which must be present: (1) the matter must be **grave** — objectively serious as defined by God's law; (2) the person must have **full knowledge** of the act's gravity; (3) the person must give **deliberate consent** — a free act of the will, not coerced or impulsive. When all three conditions are met, the sin destroys the life of grace in the soul — it \"kills\" the supernatural life, hence \"mortal\" (from Latin *mors*, death). Venial sin, by contrast, involves either less serious matter, or reduced knowledge, or diminished consent. It weakens but does not sever the soul's relationship with God.\n\nThe key theological distinction is between **sanctifying grace** — the indwelling of the Trinity that constitutes the soul's supernatural life — and **actual grace** — the helps God provides for individual acts. Mortal sin expels sanctifying grace; venial sin diminishes the soul's receptivity to grace without expelling it. This is why the Catechism (CCC 1855) describes mortal sin as a \"radical possibility of human freedom\" — it requires the full engagement of the will turning away from God as the ultimate end. Venial sin involves a lesser disorder but does not constitute a complete turning away from God.\n\nThe practical import is significant. The Church requires confession for mortal sins before receiving Communion (CCC 1457) — because receiving the Eucharist in a state of mortal sin would compound the offense (1 Corinthians 11:27–29). Venial sins, while they should be confessed and repented, do not bar one from the sacraments in the same way. This is not a license for complacency about venial sin — they dispose the soul toward graver sin over time — but it recognizes the objective difference in gravity that Scripture itself establishes."
+      },
+      "answer_full": null,
+      "scripture": [
+        "1 John 5:16",
+        "1 John 5:17",
+        "Matthew 12:31",
+        "Matthew 12:32",
+        "Romans 6:23",
+        "1 Corinthians 11:27",
+        "1 Corinthians 11:28",
+        "1 Corinthians 11:29",
+        "James 2:10",
+        "James 2:11"
+      ],
+      "catechism": [
+        1854,
+        1855,
+        1857,
+        1862,
+        1874
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "mortal sin",
+        "venial sin",
+        "sin",
+        "salvation",
+        "grace",
+        "confession",
+        "conscience"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "salvation",
+        "confession-to-priest",
+        "penance-restores-grace",
+        "eternal-security"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

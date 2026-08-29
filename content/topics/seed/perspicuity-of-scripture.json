@@ -1,0 +1,47 @@
+{
+  "topic_id": "perspicuity-of-scripture",
+  "translations": {
+    "en": {
+      "category": "bible",
+      "title": "Is Scripture Clear Enough to Interpret Without the Church?",
+      "question": "Protestants claim Scripture is \"perspicuous\" — clear enough for ordinary believers to understand without a Church authority. But if that's true, why have Protestants divided into thousands of denominations over what the Bible says?",
+      "answer": {
+        "summary": "> \"No prophecy of Scripture is a matter of one's own interpretation.\" — 2 Peter 1:20\n\nThe Protestant doctrine of the **perspicuity of Scripture** — that the Bible is sufficiently clear on all matters necessary for salvation for any sincere reader — is attractive in its democratic simplicity but collapses under both scriptural examination and historical reality. The existence of over 40,000 Protestant denominations, all claiming to follow \"the Bible alone\" but disagreeing on baptism, the Eucharist, church government, predestination, salvation, and dozens of other issues, is the most powerful empirical refutation of the doctrine. If Scripture's meaning is sufficiently clear without an authoritative interpreter, why has \"Scripture alone\" produced such radical, irreconcilable fragmentation?\n\nScripture itself explicitly denies its own perspicuity in the way the Protestant doctrine requires. 2 Peter 1:20 states: \"No prophecy of Scripture is a matter of one's own interpretation.\" 2 Peter 3:16 acknowledges that Paul's letters contain \"things that are hard to understand, which the ignorant and unstable twist to their own destruction.\" The Ethiopian eunuch in Acts 8:30–31, reading Isaiah, answers Philip's question \"Do you understand what you are reading?\" with: \"How can I, unless someone guides me?\" — and he was a government official, educated and intelligent. These are not obscure passages; they describe the ordinary experience of Scripture reading without authoritative guidance.\n\nThe historical evidence confirms this. The early Church was constantly required to interpret Scripture authoritatively to settle disputes — not merely to read it. The councils of Nicaea (325), Ephesus (431), and Chalcedon (451) were called precisely because sincere Christians reading Scripture reached incompatible conclusions about Christ's nature. Without the Church's authoritative definitions, Arianism (which had compelling scriptural arguments) might have triumphed. The creeds themselves — which virtually all Protestants accept — were not derived by individuals reading Scripture but by councils of bishops exercising magisterial authority.\n\nThe key distinction is between **clarity of the central Gospel** and **perspicuity of all Scripture on all questions of faith and morals**. Catholics agree that the essential message of salvation through Christ is accessible to any sincere reader. The Catechism affirms that Scripture speaks clearly enough for salvation to be found there (CCC 107). What Catholics deny is that Scripture is clear enough on all debated theological questions for \"the Bible alone\" to resolve them without an authoritative teaching Church. Some things require interpretation — and interpretation requires an interpreter with authority.\n\nThe Catechism (CCC 85) states: \"The task of giving an authentic interpretation of the Word of God, whether in its written form or in the form of Tradition, has been entrusted to the living teaching office of the Church alone.\" This is not arrogance but order: God gave the Church both his Word and the authority to interpret it, because revelation without authoritative interpretation is a recipe for the very chaos Protestant history demonstrates. The same Spirit who inspired the Scripture guides the Church's interpretation — guaranteeing not new revelation but faithful transmission."
+      },
+      "answer_full": null,
+      "scripture": [
+        "2 Peter 1:20",
+        "2 Peter 3:16",
+        "Acts 8:30-31",
+        "Nehemiah 8:8",
+        "1 Timothy 3:15"
+      ],
+      "catechism": [
+        85,
+        107,
+        119
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "perspicuity",
+        "sola scriptura",
+        "Bible",
+        "interpretation",
+        "denominations",
+        "magisterium",
+        "2 Peter"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "sola-scriptura-refuted",
+        "bible-tradition-authority",
+        "church-gave-us-bible",
+        "oral-tradition-prewritten"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

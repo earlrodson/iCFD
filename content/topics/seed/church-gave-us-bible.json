@@ -1,0 +1,47 @@
+{
+  "topic_id": "church-gave-us-bible",
+  "translations": {
+    "en": {
+      "category": "bible",
+      "title": "The Church Determined the Biblical Canon",
+      "question": "If the Catholic Church compiled the Bible, how can Protestants use the Bible to argue against the Church? Isn't that self-defeating?",
+      "answer": {
+        "summary": "> \"I would not believe in the Gospel myself, if the authority of the Catholic Church did not move me to do so.\" — St. Augustine of Hippo, Against the Fundamental Letter of Mani, §5 (c. 397)\n\nOne of the most striking logical tensions in Protestant Christianity is that it bases its rule of faith (the Bible alone) on a collection of books whose authority was determined by the very institution it rejects (the Catholic Church). This is not a polemical taunt but a genuine historical observation with serious theological consequences. The canon of the New Testament — the specific 27 books recognized as inspired Scripture — was not self-authenticating. It was not delivered from heaven already bound and labeled. It was the product of a centuries-long discernment process conducted by the Catholic Church through her councils, popes, and theologians, guided by the Holy Spirit.\n\nThe historical process of canonization unfolded gradually. In the first century, Christians had a variety of writings circulating — some genuine apostolic letters, some pseudonymous works, some devotional texts of uncertain origin. Determining which writings were truly inspired required the exercise of ecclesial authority: was this text apostolic in origin? Was it orthodox in content? Was it received universally? These are questions requiring judgment, not merely reading. By the late fourth century, regional councils (Hippo, 393 AD; Carthage, 397 AD) under Augustine's influence published lists of canonical books matching the modern Catholic Bible's NT. Pope Innocent I confirmed this list in 405 AD. The Council of Trent (1546) definitively defined the full canon, including the deuterocanonical books, against Protestant reduction.\n\nThe Protestant Reformation rejected the Church's authority in 1517 but retained the Church's NT canon — silently relying on the same ecclesial discernment it nominally rejected. It rejected the deuterocanonical books (Tobit, Judith, 1 and 2 Maccabees, Wisdom, Sirach, Baruch) — books recognized as Scripture by the Church since the councils of the fourth century — largely because those books support Catholic doctrines like purgatory (2 Maccabees 12:41–46) and prayer for the dead. But the criterion applied to remove them — a council preference for the Hebrew Masoretic Text over the Greek Septuagint used by Christ and the apostles — itself required an act of ecclesial judgment.\n\nThe key theological point is the relationship between Scripture and the Church that produced it. Catholics do not say the Church is above Scripture; they say Scripture and the Church are correlative gifts of the Holy Spirit. The Spirit inspired the authors of Scripture; the same Spirit guided the Church in recognizing which writings were inspired. The Church did not create Scripture's inspiration — it discerned and declared it. But this discernment requires the Church's authority, which means the Bible's authority presupposes the Church's authority to identify it. A Bible whose canon depends on the Church cannot coherently be used as a weapon against the Church without sawing off the branch on which one sits.\n\nThe Catechism (CCC 120) lists the canonical books and affirms that they were received by the Church as such under the Spirit's guidance. CCC 119 notes that \"it is not from Scripture alone that the Church draws her certainty about everything which has been revealed.\" The Catholic position is coherent: Scripture is fully authoritative within the living Tradition of the Church that canonized, preserved, translated, and interpreted it across the centuries."
+      },
+      "answer_full": null,
+      "scripture": [
+        "2 Timothy 3:16",
+        "2 Peter 1:20-21",
+        "Luke 10:16",
+        "1 Timothy 3:15",
+        "John 16:13"
+      ],
+      "catechism": [
+        120,
+        138,
+        119
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "canon",
+        "Bible",
+        "Church",
+        "sola scriptura",
+        "Council of Trent",
+        "deuterocanonical",
+        "authority"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "sola-scriptura-refuted",
+        "biblical-canon",
+        "oral-tradition-prewritten",
+        "deuterocanonical-books"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

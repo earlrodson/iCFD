@@ -1,0 +1,55 @@
+{
+  "topic_id": "divorce-remarriage",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "Divorce, Remarriage, and the Catholic Church",
+      "question": "The Catholic Church forbids divorced and remarried Catholics from receiving Communion. Doesn't this punish people for failed marriages?",
+      "answer": {
+        "summary": "> \"Whoever divorces his wife and marries another commits adultery against her.\" — Mark 10:11\n\nThe Catholic Church's discipline regarding divorced and civilly remarried Catholics — that they may not receive Communion without an annulment of the first marriage — is one of the most pastorally challenging applications of Catholic moral teaching. Understanding it requires distinguishing several elements that are often conflated: the teaching on marital indissolubility, the nature of sacramental Communion, the annulment process, and the pastoral care owed to those in irregular situations.\n\nThe theological root is the teaching that a valid sacramental marriage between two baptized persons cannot be dissolved. When a person in a valid first marriage civilly divorces and enters a second civil marriage, the Church holds that the first marriage still exists before God. Sexual relations within the second civil union are therefore morally equivalent to adultery — not because the Church is callous toward the people involved, but because it takes Christ's own words seriously: \"Whoever divorces his wife and marries another commits adultery against her\" (Mark 10:11). The Catechism (CCC 1650) states: \"They find themselves in a situation that objectively contradicts that law of God as understood by the Church. Consequently, they cannot receive Eucharistic Communion as long as this situation persists.\"\n\nThe logic of excluding civilly remarried Catholics from Communion is connected to the nature of the Eucharist itself, not to punishment. To receive Communion, a person must be in a state of grace — that is, not in the conscious, ongoing commission of a serious moral wrong. If the Church's teaching is correct that the second union involves ongoing adultery (objective grave matter), then receiving Communion in that state would be what Paul calls eating \"unworthily\" (1 Corinthians 11:27–29). The exclusion is not a condemnation of the person — they are still Catholic, still members of the Church, still called to Mass, prayer, and all other aspects of Catholic life — but a recognition that one specific sacramental act requires a specific moral state to receive validly and fruitfully.\n\nThe **annulment process** is the Church's formal investigation into whether a valid sacramental marriage existed in the first place. If a tribunal finds that some essential element of valid consent was lacking at the time of the wedding (e.g., lack of full freedom, exclusion of permanence or children, incapacity for marriage), it can declare that no valid marriage bond was ever formed — not that a valid marriage has been dissolved. A decree of nullity (annulment) would then permit the persons to marry validly in the Church. Critics charge that annulments are \"Catholic divorce\" — but the distinction is real: an annulment is a finding about the past, not a dissolution of a present bond.\n\nPope Francis's *Amoris Laetitia* (2016) called for greater pastoral accompaniment of Catholics in irregular situations — acknowledging that discernment of individual cases requires attention to concrete circumstances, including degrees of moral culpability, and that pastors should accompany people in irregular situations toward greater integration into the Church's life. The doctrinal teaching on indissolubility has not changed, but the pastoral approach to those in irregular situations emphasizes accompaniment, mercy, and discernment rather than categorical exclusion without dialogue."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Mark 10:11",
+        "Mark 10:12",
+        "Matthew 19:6",
+        "Matthew 19:7",
+        "Matthew 19:8",
+        "Matthew 19:9",
+        "1 Corinthians 11:27",
+        "1 Corinthians 11:28",
+        "1 Corinthians 11:29",
+        "Luke 16:18",
+        "Romans 7:2",
+        "Romans 7:3"
+      ],
+      "catechism": [
+        1638,
+        1650,
+        1651,
+        1665
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "divorce",
+        "remarriage",
+        "Communion",
+        "annulment",
+        "indissolubility",
+        "Amoris Laetitia",
+        "marriage"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "marriage-indissoluble",
+        "penance-restores-grace",
+        "holy-mass",
+        "mortal-and-venial-sin"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

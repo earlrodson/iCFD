@@ -1,0 +1,54 @@
+{
+  "topic_id": "resurrection-of-body",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "The Catholic Doctrine of the Resurrection of the Body",
+      "question": "Christians say they believe in \"the resurrection of the body.\" But won't our bodies decay? What does this mean, and why does it matter?",
+      "answer": {
+        "summary": "> \"For the trumpet will sound, and the dead will be raised imperishable, and we will be changed.\" — 1 Corinthians 15:52\n\nThe resurrection of the body is not a metaphor, a spiritual symbol, or a vestige of pre-scientific thinking — it is the centerpiece of Christian hope, explicitly taught by Christ, confessed in every ancient creed, and grounded in the historical resurrection of Jesus himself. The Apostles' Creed ends with \"I believe in... the resurrection of the body and life everlasting.\" The Nicene Creed confesses \"the resurrection of the dead.\" This teaching is not peripheral but constitutive of Christianity — Paul says that if the dead are not raised, \"your faith is in vain... and we are of all people most to be pitied\" (1 Corinthians 15:14–19).\n\nThe doctrine teaches that at the end of time, each person's soul — which survives death — will be reunited with their *same* body, now transformed and glorified. It is not reincarnation (a different body), not the immortality of the soul without bodily resurrection (Greek Platonism), not annihilation and recreation from scratch (which would not be resurrection of *the same person*). The person who died and the person who rises must be the same individual — identity requires both continuity of soul and, at the resurrection, continuity with the same body, though now beyond corruption.\n\nThe model is Christ's own resurrection. The risen Jesus had the same body as the crucified Jesus — he still bore the nail wounds (John 20:27), was recognizable to his disciples (though sometimes not immediately — Luke 24:16, 31), could eat fish (Luke 24:42–43), and was explicitly presented as bodily, not ghostly: \"Touch me and see, for a spirit does not have flesh and bones as you see I have\" (Luke 24:39). Yet the risen body was also transformed: it could pass through locked doors (John 20:19), was no longer subject to suffering or death, and had properties beyond ordinary matter. Paul calls the resurrection body a \"spiritual body\" (*sōma pneumatikon*, 1 Corinthians 15:44) — not immaterial, but wholly governed by the Spirit, no longer subject to the limitations of fallen flesh.\n\nThe question \"What about bodies that have decayed, been cremated, or eaten by animals?\" assumes that God is limited by material continuity in the way that human reconstruction would be. The same God who created matter from nothing can reconstitute any body. The Fathers addressed this objection repeatedly: bodily identity does not require the exact same atoms (which change constantly in life anyway) but the same formal identity — the same body re-created in glorified form. The soul, which is the principle of the body's specific form, is the guarantor of identity across death and resurrection.\n\nThe Catechism (CCC 988–1004) grounds resurrection hope in baptism: \"In baptism, the Christian has already 'died with Christ'; he will also share his Resurrection. In the NT, the word 'resurrection' often refers to the act of rising from the dead. But it has a second sense: a life in the spirit already begun.\" The resurrection of the body means the whole human person — not just the soul — is destined for eternal life, confirming that matter, the body, and the material world are fundamentally good (Genesis 1:31) and redeemable, not obstacles to be escaped."
+      },
+      "answer_full": null,
+      "scripture": [
+        "1 Corinthians 15:14",
+        "1 Corinthians 15:15",
+        "1 Corinthians 15:16",
+        "1 Corinthians 15:17",
+        "1 Corinthians 15:18",
+        "1 Corinthians 15:19",
+        "1 Corinthians 15:44",
+        "John 20:27",
+        "Luke 24:39",
+        "Daniel 12:2"
+      ],
+      "catechism": [
+        988,
+        990,
+        997,
+        999,
+        1002
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "resurrection",
+        "body",
+        "afterlife",
+        "heaven",
+        "glorified body",
+        "Paul",
+        "1 Corinthians 15"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "existence-of-devil",
+        "hell-eternal-punishment",
+        "creation-and-evolution",
+        "purgatory"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}
