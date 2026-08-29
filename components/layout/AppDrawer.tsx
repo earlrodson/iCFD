@@ -76,7 +76,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
         aria-modal="true"
         aria-label="App menu"
         className={cn(
-          'fixed right-0 top-0 z-50 flex h-full w-72 max-w-[85vw] flex-col bg-card shadow-2xl transition-transform duration-300 ease-in-out',
+          'fixed right-0 top-0 z-50 flex h-full w-72 max-w-[85vw] flex-col bg-[var(--cfd-navy)] shadow-2xl transition-transform duration-300 ease-in-out',
           open ? 'translate-x-0' : 'translate-x-full',
         )}
       >
@@ -84,7 +84,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
         <div className="flex justify-end px-4 pt-4">
           <button
             onClick={onClose}
-            className="flex h-8 w-8 items-center justify-center rounded-xl bg-muted text-muted-foreground hover:text-foreground transition-colors"
+            className="flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 text-white hover:bg-white/20 transition-colors"
             aria-label="Close menu"
           >
             <X weight="light" size={18} />
@@ -92,25 +92,25 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
         </div>
 
         {/* Profile */}
-        <div className="px-5 pt-2 pb-5 border-b border-border">
+        <div className="px-5 pt-2 pb-5 border-b border-white/15">
           {user ? (
             <>
               <Link
                 href="/account"
                 onClick={onClose}
-                className="flex items-center gap-3 rounded-2xl hover:bg-muted px-2 py-2 -mx-2 transition-colors"
+                className="flex items-center gap-3 rounded-2xl hover:bg-white/10 px-2 py-2 -mx-2 transition-colors"
               >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                  <User weight="light" size={24} className="text-primary" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15">
+                  <User weight="light" size={24} className="text-white" />
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold text-foreground">{displayName}</p>
-                  <p className="truncate text-xs text-muted-foreground">{user.email}</p>
+                  <p className="truncate text-sm font-semibold text-white">{displayName}</p>
+                  <p className="truncate text-xs text-white/65">{user.email}</p>
                 </div>
               </Link>
               <button
                 onClick={handleSignOut}
-                className="mt-2 ml-14 text-xs text-rose-500 hover:text-rose-600 transition-colors"
+                className="mt-2 ml-14 text-xs text-rose-300 hover:text-rose-200 transition-colors"
               >
                 Sign out
               </button>
@@ -119,14 +119,14 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
             <Link
               href="/account"
               onClick={onClose}
-              className="flex items-center gap-3 rounded-2xl hover:bg-muted px-2 py-2 -mx-2 transition-colors"
+              className="flex items-center gap-3 rounded-2xl hover:bg-white/10 px-2 py-2 -mx-2 transition-colors"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-muted">
-                <User weight="light" size={24} className="text-muted-foreground" />
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15">
+                <User weight="light" size={24} className="text-white/70" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-foreground">Sign in</p>
-                <p className="text-xs text-muted-foreground">Sync across devices</p>
+                <p className="text-sm font-semibold text-white">Sign in</p>
+                <p className="text-xs text-white/65">Sync across devices</p>
               </div>
             </Link>
           )}
@@ -155,7 +155,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
             </NavItem>
           )}
 
-          {user && <hr className="my-2 border-border" />}
+          {user && <hr className="my-2 border-white/15" />}
 
           <NavItem href="/settings" icon={<Gear weight="light" size={20} />} onClick={onClose}>
             General Settings
@@ -171,7 +171,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
           </NavItem>
           {isAdmin && (
             <>
-              <hr className="my-2 border-border" />
+              <hr className="my-2 border-white/15" />
               <NavItem href="/admin" icon={<ShieldCheck weight="light" size={20} />} onClick={onClose}>
                 Admin Panel
               </NavItem>
@@ -196,12 +196,12 @@ function NavItem({
     <Link
       href={href}
       onClick={onClick}
-      className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-foreground hover:bg-muted transition-colors"
+      className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-medium text-white hover:bg-white/10 transition-colors"
     >
-      <span className="text-muted-foreground">{icon}</span>
+      <span className="text-white/70">{icon}</span>
       <span className="flex-1">{children}</span>
       {badge && (
-        <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground leading-none">
+        <span className="flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-accent px-1 text-[10px] font-bold text-accent-foreground leading-none">
           {badge}
         </span>
       )}

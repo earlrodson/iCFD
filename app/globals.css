@@ -3,29 +3,51 @@
 
 /* ── Light mode design tokens ── */
 :root {
-  --background: oklch(96% 0.004 264);
-  --foreground: oklch(13% 0.008 264);
-  --card: oklch(100% 0 0);
-  --card-foreground: oklch(13% 0.008 264);
-  --primary: oklch(51% 0.215 250);
-  --primary-foreground: oklch(100% 0 0);
-  --muted: oklch(94% 0.004 264);
-  --muted-foreground: oklch(56% 0.008 264);
-  --border: oklch(90% 0.004 264);
+  /* CFD brand palette */
+  --cfd-navy:    #10182F;
+  --cfd-blue:    #1557A6;
+  --cfd-gold:    #F2D21F;
+  --cfd-cyan:    #35D8D0;
+
+  --background: #F7F8F6;
+  --foreground: #172033;
+  --card: #FFFFFF;
+  --card-foreground: #172033;
+  --primary: var(--cfd-blue);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--cfd-navy);
+  --secondary-foreground: #FFFFFF;
+  --accent: var(--cfd-gold);
+  --accent-foreground: var(--cfd-navy);
+  --highlight: var(--cfd-cyan);
+  --highlight-foreground: var(--cfd-navy);
+  --muted: #F7F8F6;
+  --muted-foreground: #667085;
+  --border: #E2E7EF;
+  --danger: #C62828;
+  --success: #18794E;
   --radius: 0.75rem;
 }
 
 /* ── Dark mode design tokens ── */
 .dark {
-  --background: oklch(0% 0 0);
-  --foreground: oklch(100% 0 0);
-  --card: oklch(13% 0.008 264);
-  --card-foreground: oklch(100% 0 0);
-  --primary: oklch(55% 0.215 250);
-  --primary-foreground: oklch(100% 0 0);
-  --muted: oklch(18% 0.008 264);
-  --muted-foreground: oklch(65% 0.008 264);
-  --border: oklch(22% 0.008 264);
+  --background: var(--cfd-navy);
+  --foreground: #FFFFFF;
+  --card: #172033;
+  --card-foreground: #FFFFFF;
+  --primary: var(--cfd-blue);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--cfd-gold);
+  --secondary-foreground: var(--cfd-navy);
+  --accent: var(--cfd-gold);
+  --accent-foreground: var(--cfd-navy);
+  --highlight: var(--cfd-cyan);
+  --highlight-foreground: var(--cfd-navy);
+  --muted: #1B2440;
+  --muted-foreground: #98A2B3;
+  --border: #2A3555;
+  --danger: #E5484D;
+  --success: #34C77B;
 }
 
 /* ── Tailwind 4 theme mapping ── */
@@ -36,9 +58,17 @@
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-highlight-foreground: var(--highlight-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-border: var(--border);
+  --color-danger: var(--danger);
+  --color-success: var(--success);
   --radius-lg: var(--radius);
   --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
 }
@@ -158,10 +188,19 @@ body {
 
 /* ── Deep-link highlight flash ── */
 @keyframes highlight-flash {
-  0%   { box-shadow: 0 0 0 3px hsl(var(--primary) / 0.5); background-color: hsl(var(--primary) / 0.1); }
+  0%   { box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 50%, transparent); background-color: color-mix(in oklch, var(--primary) 10%, transparent); }
   100% { box-shadow: 0 0 0 0px transparent; background-color: transparent; }
 }
 .highlight-flash { animation: highlight-flash 2.2s ease-out forwards; }
+
+/* ── Rising gold particles (home banner) ── */
+@keyframes particle-rise {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-160px) scale(1); opacity: 0; }
+}
+.particle-rise { animation: particle-rise linear infinite; }
 
 /* ── Admin form utilities ── */
 @layer components {
