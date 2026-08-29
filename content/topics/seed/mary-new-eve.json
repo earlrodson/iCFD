@@ -1,0 +1,47 @@
+{
+  "topic_id": "mary-new-eve",
+  "translations": {
+    "en": {
+      "category": "mary",
+      "title": "Mary as the New Eve: A Biblical Type",
+      "question": "Catholics call Mary the \"New Eve.\" This title isn't in the Bible. Where does it come from, and is it theologically justified?",
+      "answer": {
+        "summary": "> \"And I will put enmity between you and the woman, and between your offspring and her offspring; he shall bruise your head, and you shall bruise his heel.\" — Genesis 3:15\n\nThe title \"New Eve\" for Mary does not appear explicitly in Scripture — like \"Trinity,\" it is a theological formulation summarizing a rich biblical typology that is deeply scriptural. It draws on the OT-NT typological pattern in which persons, events, and institutions of the Old Covenant are fulfilled and surpassed in the New, and it is attested in the earliest patristic writing as a natural outgrowth of NT teaching.\n\nThe **biblical foundation** begins in Genesis 3:15 — the *Protoevangelium* — where God places enmity between the serpent and \"the woman,\" and between their offspring. The \"woman\" here is Eve in the immediate context; but the fact that her offspring will crush the serpent's head points toward a future woman and her offspring who will definitively defeat Satan. Patristic exegetes recognized this as the first gospel: a woman's seed will defeat the deceiver who worked through Eve.\n\nThe **Annunciation** (Luke 1:26–38) develops the contrast deliberately. Eve was addressed by an angelic being (the serpent, a creature of God) in a garden; Mary is addressed by an angel in Nazareth. Eve's \"Yes\" to the serpent's deception brought sin and death into the world; Mary's \"Yes\" to the angel — \"Let it be done to me according to your word\" (Luke 1:38, *fiat*) — brings the Incarnation and begins the reversal of Eve's act. The parallel is literary and theological, not coincidental.\n\nThe **Fourth Gospel** makes the typology explicit. In John 2:4 and 19:26, Jesus addresses his mother not as \"mother\" but as \"woman\" — the same Greek word (*gynē*) used in Genesis 3:15 (LXX) and Revelation 12:1 (\"a great sign appeared in heaven: a woman clothed with the sun\"). This is not rudeness or distance but a deliberate theological identification: she is \"the woman\" of Genesis, the New Eve standing at the new creation (the cross corresponds to the garden, Friday evening to the first creation). At the foot of the cross, Mary stands where Eve stood at the tree — but this time the fruit is not death but the Bread of Life, and the New Eve says \"Yes\" rather than \"No\" to God's plan.\n\nThe **patristic testimony** is among the oldest in Christian theology. Justin Martyr (c. 155 AD) writes: \"Eve, being a virgin and undefiled, conceived the word of the serpent and bore disobedience and death. But Mary the Virgin... received faith and joy, when the angel Gabriel announced the good tidings to her... and through her is he born.\" Irenaeus of Lyon (c. 180 AD) develops the parallel extensively in *Adversus Haereses*: \"As Eve became the cause of death for herself and the whole human race, so also Mary... became the cause of salvation for herself and the whole human race.\" The New Eve typology is not medieval speculation but sub-apostolic theology.\n\nThe Catechism (CCC 726, 411) affirms: \"By pronouncing her 'fiat' at the Annunciation and giving her consent to the Incarnation, Mary was already collaborating with the whole work her Son was to accomplish.\" The New Eve title captures in two words the entire theology of Mary's role in salvation history — her cooperation with the New Adam (Christ, 1 Corinthians 15:45) to reverse what the old Adam and Eve had brought about."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Genesis 3:15",
+        "Luke 1:38",
+        "John 19:26",
+        "Revelation 12:1",
+        "1 Corinthians 15:45"
+      ],
+      "catechism": [
+        411,
+        726,
+        975
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "New Eve",
+        "Mary",
+        "typology",
+        "Genesis 3:15",
+        "Protoevangelium",
+        "Irenaeus",
+        "Justin Martyr"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "brothers-of-lord",
+        "full-of-grace-kecharitomene",
+        "typology-old-testament",
+        "marian-apparitions"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

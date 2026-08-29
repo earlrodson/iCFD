@@ -1,0 +1,135 @@
+{
+  "topic_id": "contraception-church",
+  "translations": {
+    "ceb": {
+      "category": "church-teaching",
+      "title": "Turo sa Simbahan - Kontrasepsyon",
+      "question": "Ngano man ang Katoliko Simbahan nagtudlo laban sa kontrasepsyon?",
+      "answer": "Ang simbahan nagtudlo nga ang sekswal nga kalihokan adunay duha ka natural nga katungdanan: unitive (pag-ambit sa paghigugma) ug procreative (pagbukas sa kinabuhi). Ang kontrasepsyon sagad nagpalayo sa duha ka katungdanan, nga nagsagol sa desinyo sa Dios alang sa sekswalidad sa kasal. Ang simbahan nagtawag sa mga mag-asawa sa paggamit sa Natural Family Planning (NFP) nga respeto sa natural nga balaan sa sekswal nga kalihokan samtang nagplano sa pamilya nga responsibly.",
+      "answer_full": null,
+      "scripture": [
+        "Genesis 1:28",
+        "Genesis 38:8-10",
+        "Efeso 5:31-32"
+      ],
+      "catechism": [
+        2370,
+        2399,
+        2400,
+        2412
+      ],
+      "church_fathers": [
+        72,
+        49
+      ],
+      "objections": [],
+      "tags": [
+        "kontrasepsyon",
+        "turo sa simbahan",
+        "kasal",
+        "sekswalidad",
+        "natural family planning"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "marriage-indissoluble",
+        "natural-law-ethics",
+        "abortion-church",
+        "divorce-remarriage"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    },
+    "en": {
+      "category": "church-teaching",
+      "title": "Why the Catholic Church Teaches That Contraception Is Wrong",
+      "question": "Why does the Catholic Church oppose contraception? Most Catholics use it anyway. Isn't this teaching outdated?",
+      "answer": {
+        "summary": "> \"God blessed them and said to them, 'Be fruitful and multiply and fill the earth.'\" — Genesis 1:28\n\nThe Catholic Church's teaching against contraception is articulated most comprehensively in Paul VI's *Humanae Vitae* (1968) and is grounded in the theology of the body developed extensively by John Paul II. It is not primarily a rule against pleasure or a population policy — it is a theological claim about the nature of the marital act and the inseparability of its two intrinsic meanings: the **unitive** (the mutual self-giving of spouses) and the **procreative** (openness to new life). The Church teaches that to deliberately separate these two meanings — to use the body's reproductive capacity while deliberately frustrating its procreative potential — violates the integrity of the marital act and of the human person.\n\nThe biblical basis begins with Genesis 38:8–10 — the account of Onan, who \"spilled his seed on the ground\" to avoid fathering children for his dead brother's widow, and whom God struck dead. While Onan's act was also a violation of levirate duty, the patristic and medieval tradition consistently cited it as a condemnation of contraceptive acts as such. More fundamentally, the theology of the body (Genesis 1:27–28; 2:24) presents sexuality as ordered both to unity and fruitfulness — two ends that are co-essential to the marital covenant and cannot be disentangled without distortion.\n\n*Humanae Vitae* predicted in 1968 that widespread contraception would lead to: (1) lower regard for women as sexual objects; (2) marital infidelity as the sexual act becomes purely recreational; (3) state coercion in population control as contraception becomes normalized. Critics dismissed these warnings as alarmist. Fifty years of evidence has largely confirmed them: pornography addiction, rising divorce rates, demographic crises addressed through coercive abortion mandates, and the objectification of women in sexual culture are all arguably connected to the contraceptive mentality.\n\nThe Church distinguishes between contraception and **Natural Family Planning (NFP)**. NFP uses knowledge of the woman's fertility cycle to achieve or avoid pregnancy by regulating the timing of intercourse — without introducing any barrier, chemical, or device to frustrate the act itself. Marital acts during naturally infertile periods are not contracepted; the couple accepts whatever the act naturally produces. This distinction is not merely technical: it preserves the integrity of the act while allowing responsible spacing of children for serious reasons. Critics call this a distinction without a difference; the Church argues that the *intention* to frustrate the act's procreative meaning (contraception) differs fundamentally from the *acceptance* of natural infertile periods (NFP).\n\nThe Catechism (CCC 2366–2370) grounds the teaching in the virtue of chastity and the dignity of human love: \"By safeguarding both these essential aspects, the unitive and the procreative, the conjugal act preserves in its fullness the sense of true mutual love and its ordination towards man's most high calling to parenthood.\" The teaching is countercultural and demanding — which is not, in Catholic theology, evidence against it. The Church often teaches what is hard precisely because the truth about human dignity and the meaning of the body is not always easy."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Genesis 1:28",
+        "Genesis 38:9",
+        "Genesis 38:10",
+        "Genesis 2:24",
+        "Ephesians 5:25",
+        "Ephesians 5:26",
+        "Ephesians 5:27",
+        "Ephesians 5:28",
+        "Ephesians 5:29",
+        "Ephesians 5:30",
+        "Ephesians 5:31",
+        "Ephesians 5:32",
+        "Ephesians 5:33",
+        "1 Corinthians 6:19",
+        "1 Corinthians 6:20"
+      ],
+      "catechism": [
+        2366,
+        2368,
+        2370,
+        2399
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "contraception",
+        "Humanae Vitae",
+        "NFP",
+        "natural family planning",
+        "marriage",
+        "sexuality",
+        "procreation"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "marriage-indissoluble",
+        "natural-law-ethics",
+        "abortion-church",
+        "divorce-remarriage"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    },
+    "tl": {
+      "category": "church-teaching",
+      "title": "Kontrasepsyon at Kasal",
+      "question": "Bakit sumasalungat ang Simbahang Katoliko sa artipisyal na kontrasepsyon?",
+      "answer": "Tinuturo ng Simbahang Katoliko na ang bawat marital act ay dapat mananatiling bukas sa buhay dahil ang kontrasepsyon ay naghihiwalay sa unitive at procreative na aspeto ng marital love na idinisenyo ng Dios na hindi mahiwalay. Ang turing na ito ay nakabatay sa natural law, Kasulatan, at tuluyang turo ng Simbahan. Ang Simbahan ay nagtataguyod ng Natural Family Planning bilang isang moral na katanggap-tanggap na paraan ng pagplano ng pamilya na respeto sa disenyo ng Dios para sa sexuality.",
+      "answer_full": null,
+      "scripture": [
+        "Genesis 1:28",
+        "Genesis 38:8-10"
+      ],
+      "catechism": [
+        2370,
+        2399,
+        1652
+      ],
+      "church_fathers": [
+        6
+      ],
+      "objections": [],
+      "tags": [
+        "kontrasepsyon",
+        "kasal",
+        "family planning",
+        "procreation",
+        "natural law"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "marriage-indissoluble",
+        "natural-law-ethics",
+        "abortion-church",
+        "divorce-remarriage"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

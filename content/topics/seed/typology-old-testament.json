@@ -1,0 +1,55 @@
+{
+  "topic_id": "typology-old-testament",
+  "translations": {
+    "en": {
+      "category": "bible",
+      "title": "How the Old Testament Points to Christ: Biblical Typology",
+      "question": "Catholics interpret the Old Testament symbolically — Adam as a \"type\" of Christ, the Passover lamb as a \"type\" of the Eucharist. Isn't this reading things into the text that aren't really there?",
+      "answer": {
+        "summary": "> \"The New Testament lies hidden in the Old, and the Old Testament is made manifest in the New.\" — St. Augustine of Hippo, Questions on the Heptateuch, II.73 (c. 419)\n\nBiblical typology is not a Catholic invention imposed on an unwilling text — it is the primary method by which the New Testament authors themselves interpret the Old Testament. Jesus, Paul, the author of Hebrews, and John all read the Hebrew Scriptures typologically, seeing in persons, events, and institutions genuine prefigurations of the greater realities fulfilled in Christ. Far from reading things \"into\" the text, typological interpretation reads out of the text what God embedded there: a pattern of divine action in history that culminates in the person of Jesus Christ.\n\nJesus himself initiated typological reading. In John 3:14, he compares himself to the bronze serpent Moses lifted in the desert (Numbers 21:9): \"As Moses lifted up the serpent in the wilderness, so must the Son of Man be lifted up.\" In John 6:32–51, he presents himself as the true manna that came down from heaven, replacing the type (physical manna) with the antitype (his own body). In Matthew 12:40, he compares his burial and resurrection to Jonah's three days in the fish. These are not arbitrary comparisons — they reveal that the earlier events were always already oriented toward their fulfillment in Christ.\n\nPaul is the most systematic typologist in the NT. Romans 5:14 explicitly calls Adam \"a type [Greek: *typos*] of the one who was to come\" — giving us the term itself. 1 Corinthians 10:1–11 reads the Exodus events as \"types\" written \"for our instruction\": the cloud and the sea are baptism, the manna is the Eucharist, the rock that followed them is Christ. Galatians 4:21–31 reads Hagar and Sarah as an allegory for two covenants. The author of Hebrews dedicates the entire letter to the typological relationship between the Levitical priesthood and sacrifice (the type) and Christ's eternal priesthood and once-for-all sacrifice (the antitype).\n\nThe key theological principle is that typology works because God is the author of both history and Scripture. The divine Author of the Old Testament events and the divine Author of the New Testament texts are the same God, who ordered the earlier events to foreshadow the later fulfillment. Types are not arbitrary symbols chosen by later interpreters; they are historical realities deliberately ordered by divine providence. This is what distinguishes typology from allegory: the type is historically real (the Passover lamb was actually slain) and the antitype is historically real (Christ was actually crucified), and the relationship between them is objectively grounded in divine intention.\n\nThe Catechism (CCC 128–130) defines typology precisely: \"The Church, as early as apostolic times, and then constantly in her Tradition, has illuminated the unity of the divine plan in the two Testaments through typology, which discerns in God's works of the Old Covenant prefigurations of what he accomplished in the fullness of time in the person of his incarnate Son.\" Understanding typology does not impose a Catholic reading on Scripture — it simply reads Scripture the way the apostles themselves taught us to read it."
+      },
+      "answer_full": null,
+      "scripture": [
+        "John 3:14",
+        "John 3:15",
+        "Romans 5:14",
+        "1 Corinthians 10:1",
+        "1 Corinthians 10:2",
+        "1 Corinthians 10:3",
+        "1 Corinthians 10:4",
+        "Hebrews 9:11",
+        "Hebrews 9:12",
+        "Hebrews 9:13",
+        "Hebrews 9:14",
+        "Matthew 12:40"
+      ],
+      "catechism": [
+        128,
+        129,
+        130
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "typology",
+        "Old Testament",
+        "fulfillment",
+        "types",
+        "Moses",
+        "Paul",
+        "Hebrews",
+        "Eucharist"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "biblical-canon",
+        "real-presence",
+        "infant-baptism",
+        "scripture-interpretation"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

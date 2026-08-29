@@ -1,0 +1,53 @@
+{
+  "topic_id": "predestination-catholic",
+  "translations": {
+    "en": {
+      "category": "salvation",
+      "title": "Catholic Teaching on Predestination and Election",
+      "question": "Does the Catholic Church believe in predestination? Romans 8 and Ephesians 1 seem to teach that God chose certain people for salvation before the world began — does that leave any role for free will?",
+      "answer": {
+        "summary": "> \"Those whom he foreknew he also predestined to be conformed to the image of his Son... And those whom he predestined he also called, and those whom he called he also justified, and those whom he justified he also glorified.\" — Romans 8:29–30\n\nThe Catholic Church affirms the doctrine of predestination as taught by Scripture, but interprets it in a way that preserves both the absolute sovereignty of God and the genuine freedom of the human will. Against Pelagianism, the Church agrees with Augustine that God's election is entirely gratuitous — no human merit precedes or causes God's choice to predestine. Against Calvinist double predestination, the Church denies that God positively wills the damnation of the reprobate or that the freedom of the human will is bypassed in either salvation or condemnation. The Catholic position is sometimes called \"single predestination\" — God positively predestines the elect to glory; the reprobate are not positively willed to hell but are permitted to damn themselves through their own free choice.\n\nRomans 8:28–30 and Ephesians 1:3–12 are the central texts. Paul teaches that God \"chose us in him before the foundation of the world\" and predestined the elect \"to adoption as sons\" (Ephesians 1:4–5). Catholics embrace this teaching fully: God's eternal decree of election is real, immutable, and entirely unmerited. The question is the mode — does predestination leave room for a real human response, or is the human will merely a passive instrument? 1 Timothy 2:4 states that God \"desires all men to be saved and to come to the knowledge of the truth\" — a universal salvific will that complicates any simple determinism. If God wills all to be saved but not all are saved, either God's will is frustrated (impossible) or the human will has genuine causal power in the outcome.\n\nThe solution proposed by St. Thomas Aquinas and affirmed within Catholicism is that God's predestination is infallible but not coercive. God's eternal knowledge includes free human acts precisely as free — He knows what a free human being will choose without determining that choice in a compulsive way. The elect are saved not because their freedom is bypassed but because God's grace so moves their free will that they freely and genuinely choose him. This is not circular: God's causation operates at a different ontological level than human causation — as the cause of the will's very capacity to choose, not as one external agent among others.\n\nThe Council of Orange (529) condemned both Pelagianism and \"semi-Pelagianism\" (the idea that the first movement toward God comes from the human will). The Council of Trent (Session VI) affirmed that justification begins entirely in God's grace, not human merit. Neither council defined the precise mechanism by which God's sovereignty and human freedom interact — this remains a matter of theological debate within Catholicism, most famously in the controversy between Dominicans (Thomists) and Jesuits (Molinists) in the sixteenth century. What is defined is the truth of both realities: God's sovereign election is real and efficacious, and human freedom is real and responsible.\n\nThe Catechism (CCC 600) affirms that God's predestining plan embraces every human life without eliminating human freedom. CCC 1037 specifies that God predestines no one to hell — the reprobate damn themselves by a free rejection of grace. The Catholic stands between two false extremes: the Pelagian who makes salvation a human achievement, and the Calvinist who makes human freedom a fiction. Both truths — divine sovereignty and human freedom — are upheld, and their reconciliation is a mystery into which the Church invites contemplation rather than dissolution by simplification."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Romans 8:29",
+        "Romans 8:30",
+        "Ephesians 1:4",
+        "Ephesians 1:5",
+        "1 Timothy 2:4",
+        "John 6:37",
+        "John 6:38",
+        "John 6:39",
+        "John 6:40",
+        "Acts 13:48"
+      ],
+      "catechism": [
+        600,
+        1037,
+        1820,
+        2012
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "predestination",
+        "election",
+        "grace",
+        "free will",
+        "salvation",
+        "Calvinism",
+        "Augustine"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "salvation",
+        "grace-and-free-will",
+        "eternal-security",
+        "final-perseverance"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "topic_id": "eternal-security",
+  "translations": {
+    "en": {
+      "category": "salvation",
+      "title": "Once Saved Always Saved? The Catholic View",
+      "question": "If I am genuinely saved, can I ever lose my salvation? Doesn't the Bible guarantee eternal security for true believers?",
+      "answer": {
+        "summary": "> \"Let him who thinks he stands take heed lest he fall.\" — St. Paul (1 Corinthians 10:12)\n\nThe Protestant doctrine of \"eternal security\" — sometimes called \"once saved, always saved\" or the \"perseverance of the saints\" — teaches that a person who is truly regenerate can never ultimately lose their salvation. The Catholic Church firmly rejects this position, not because it diminishes God's grace, but because it misreads what Scripture and Tradition actually teach about the relationship between grace, freedom, and final salvation. Catholic theology insists that God's gift of justification is real and efficacious, but that the justified person remains free — and that freedom includes the tragic possibility of turning away from God entirely.\n\nThe most direct scriptural refutation comes from the same Paul whom eternal-security advocates most often cite. In Hebrews 6:4–6, he describes people who \"have once been enlightened, and have tasted the heavenly gift, and have shared in the Holy Spirit\" — unmistakably regenerate individuals — who have then \"fallen away,\" for whom it is \"impossible to restore them again to repentance.\" Hebrews 10:26–29 similarly warns that deliberate post-baptismal sin leaves \"no sacrifice for sins\" and results in judgment \"far worse\" than Old Covenant violations. Romans 11:22 warns the Gentile believers: \"Note then the kindness and the severity of God... provided you continue in his kindness; otherwise you too will be cut off.\" These are not hypothetical warnings addressed to false believers — they are addressed to the genuinely faithful.\n\nJohn 15:1–6 provides perhaps the clearest image. Jesus describes himself as the vine and his disciples as branches. Branches that fail to bear fruit are \"taken away\" and \"thrown into the fire.\" These are not branches that were never truly attached — they were in the vine. The very possibility of being cut off presupposes a genuine prior union. Similarly, 1 Corinthians 9:27 shows Paul himself fearing disqualification: \"I pommel my body and subdue it, lest after preaching to others I myself should be disqualified.\" If Paul could contemplate his own apostasy, the doctrine of unconditional eternal security finds no apostolic support.\n\nThe key theological distinction is between **initial justification** and **final salvation**. Catholics affirm that the former is entirely God's sovereign gift — no one earns or merits their regeneration. But final salvation, the beatific vision, also requires perseverance in grace to the end of life (Matthew 10:22, 24:13). This is not Pelagianism; perseverance itself is a grace God offers. What the Church denies is that this grace is irresistibly and unconditionally guaranteed such that the human will is bypassed. God respects the freedom He created. Grace enables the will without overriding it.\n\nThe Council of Trent defined in its Decree on Justification (Session VI, Canon 23) that no one can know with certainty of faith that they are among the predestined, or that they will persevere to the end — except by special divine revelation. This is not a counsel of despair but of holy fear and trust. It keeps the Catholic from presumption (as if salvation were already secured regardless of one's life) without falling into despair (God's grace is always available for repentance). The Catechism summarizes: \"Grace does not abolish freedom; rather it perfects freedom by ordering it to the ultimate good\" (CCC 1731)."
+      },
+      "answer_full": null,
+      "scripture": [
+        "1 Corinthians 10:12",
+        "Hebrews 6:4",
+        "Hebrews 6:5",
+        "Hebrews 6:6",
+        "John 15:6",
+        "Matthew 10:22",
+        "Romans 11:22"
+      ],
+      "catechism": [
+        1731,
+        1993,
+        2016
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "salvation",
+        "eternal security",
+        "once saved always saved",
+        "perseverance",
+        "grace",
+        "free will",
+        "apostasy"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "salvation",
+        "grace-and-free-will",
+        "mortal-and-venial-sin",
+        "final-perseverance"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

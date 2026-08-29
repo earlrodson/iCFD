@@ -1,0 +1,56 @@
+{
+  "topic_id": "abortion-church",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "The Catholic Church's Teaching on Abortion",
+      "question": "Why does the Catholic Church oppose abortion in all circumstances? What about rape, the mother's life, or fetal abnormality?",
+      "answer": {
+        "summary": "> \"Before I formed you in the womb I knew you, before you were born I set you apart.\" — Jeremiah 1:5\n\nThe Catholic Church teaches that abortion — the direct killing of a human being in the womb — is gravely wrong in every circumstance, without exception. The Catechism (CCC 2271) states: \"Since the first century the Church has affirmed the moral evil of every procured abortion. This teaching has not changed and remains unchangeable.\" This is one of the most consistently held moral teachings in the Catholic tradition, present in the Didache (c. 90 AD: \"Thou shalt not murder a child by abortion nor kill them when born\") and maintained continuously through every subsequent century.\n\nThe foundational argument is that **the unborn human being is a person** from the moment of conception, possessing full human dignity and the right to life that flows from that dignity. The scientific fact that a new, genetically distinct human organism begins at fertilization is not disputed. The philosophical question is whether that organism is a *person* with a right to life. The Catholic Church teaches, following both philosophical reasoning and the consistent witness of Christian tradition, that personhood begins when human life begins: there is no clear, principled biological boundary after fertilization — before which a human organism is not a person — that could justify a distinction between \"human life\" and \"human person.\" Every proposed threshold (sentience, viability, consciousness, birth) is either scientifically uncertain, philosophically arbitrary, or would — if applied consistently — endorse the killing of already-born persons who lack those properties.\n\nThe **hard cases** are real and deserve serious engagement, not dismissal:\n\n**Rape and incest** are genuine tragedies, and the Church teaches that the victim deserves compassionate care, support, and justice for the crime committed against her. But the unborn child is not responsible for the crime and should not bear the death penalty for the act of its father. Two victims — the mother and the child — require care; the answer to one trauma is not the creation of a second.\n\n**The mother's life**: The Church accepts the principle of double effect. Where a direct medical procedure (such as the removal of a cancerous uterus in a pregnant woman, or treating an ectopic pregnancy) targets the mother's condition and the death of the child is an unintended side effect, this may be morally permissible. This is categorically different from directly killing the child *as the means* of saving the mother. In actual obstetric practice, cases where the *only* way to save the mother is to *directly kill* the child are extraordinarily rare; in nearly every genuine medical emergency, both mother and child can be treated.\n\n**Fetal abnormality**: The diagnosis of a fetal condition that may lead to disability or early death does not alter the child's personhood or right to life. The Church calls for support for families facing such diagnoses and opposes the practice of prenatal testing as a prelude to selective abortion — which treats disability as a reason for termination rather than a condition requiring care.\n\nJohn Paul II's *Evangelium Vitae* (1995) summarizes the Church's understanding: abortion belongs to the \"culture of death\" — a civilization that resolves the problem of difficult life by eliminating the life rather than changing the circumstances. The alternative the Church proposes is a \"culture of life\" that meets human need with human solidarity, not lethal solutions."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Jeremiah 1:5",
+        "Psalms 139:13",
+        "Psalms 139:14",
+        "Psalms 139:15",
+        "Psalms 139:16",
+        "Luke 1:41",
+        "Luke 1:42",
+        "Luke 1:43",
+        "Luke 1:44",
+        "Exodus 20:13",
+        "Proverbs 24:11",
+        "Proverbs 24:12"
+      ],
+      "catechism": [
+        2270,
+        2271,
+        2272,
+        2273,
+        2274
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "abortion",
+        "pro-life",
+        "personhood",
+        "right to life",
+        "Evangelium Vitae",
+        "fetal development",
+        "culture of life"
+      ],
+      "difficulty": "intermediate",
+      "related_topics": [
+        "euthanasia-church",
+        "contraception-church",
+        "natural-law-ethics",
+        "social-justice-catholic"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}

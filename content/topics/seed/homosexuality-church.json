@@ -1,0 +1,50 @@
+{
+  "topic_id": "homosexuality-church",
+  "translations": {
+    "en": {
+      "category": "church-teaching",
+      "title": "The Catholic Church's Teaching on Homosexuality",
+      "question": "The Catholic Church calls homosexual acts \"intrinsically disordered.\" Doesn't this insult gay people? And isn't the Church's position just homophobia?",
+      "answer": {
+        "summary": "> \"Or do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived: neither the sexually immoral, nor idolaters, nor adulterers, nor men who practice homosexuality... will inherit the kingdom of God.\" — 1 Corinthians 6:9–10\n\nThe Catholic Church's teaching on homosexuality must be clearly distinguished into three components that are often conflated: (1) what the Church teaches about **homosexual persons**; (2) what it teaches about **homosexual inclinations**; (3) what it teaches about **homosexual acts**. These three are not the same, and much popular misrepresentation arises from collapsing them.\n\n**On homosexual persons**: The Church teaches, without qualification, that gay and lesbian persons possess the full dignity of human persons made in God's image, are loved by God, and must be received with \"respect, compassion, and sensitivity\" and that \"every sign of unjust discrimination in their regard should be avoided\" (CCC 2358). Violence, mockery, exclusion, or contempt toward gay persons violates Catholic teaching. This is not a minor caveat — it is a moral requirement.\n\n**On homosexual inclinations**: The Church distinguishes between a homosexual act (a deliberate choice) and a homosexual inclination (an orientation that a person experiences without choosing). The Catechism calls the inclination \"objectively disordered\" — meaning it is oriented toward an object (same-sex sexual activity) that the Church holds to be morally incompatible with human flourishing and the natural purpose of sexuality. \"Disordered\" is a technical philosophical term meaning \"not ordered to its proper end\" — it is not a synonym for \"disgusting\" or \"inferior.\" Many heterosexual inclinations are also disordered in this sense (lust, for example). The inclination is not itself sinful; only free acts are subject to moral evaluation.\n\n**On homosexual acts**: The Church teaches, following the consistent witness of both Scripture (Genesis 19, Leviticus 18:22, Romans 1:26–27, 1 Corinthians 6:9–10) and natural law reasoning, that homosexual acts are not ordered toward the natural complementarity and fruitfulness of human sexuality and therefore cannot be moral goods. This is not a conclusion of cultural bias but of theological and philosophical reasoning about the nature and purpose of human sexuality — the same reasoning that grounds the Church's opposition to all sexual acts outside marriage, including heterosexual fornication, pornography, and masturbation.\n\nThe Church calls gay and lesbian Catholics to **chastity**, which for those with a homosexual orientation means celibacy — the same call given to all unmarried persons regardless of orientation. This is admittedly a demanding vocation. The Church acknowledges (CCC 2359) that \"homosexual persons are called to chastity... By the virtues of self-mastery that teach them inner freedom, at times by the support of disinterested friendship, by prayer and sacramental grace, they can and should gradually and resolutely approach Christian perfection.\" This is not rejection but a summons to the same holiness expected of all.\n\nThe charge of \"homophobia\" generally conflates moral disapproval of an act with hatred of persons. The Church holds both that gay persons have full human dignity and that homosexual acts are morally wrong — as it holds that persons with adulterous inclinations have full dignity but that adultery is wrong. Treating persons with dignity while disagreeing with their actions is not phobia; it is the minimal requirement of intellectual integrity."
+      },
+      "answer_full": null,
+      "scripture": [
+        "Romans 1:26",
+        "Romans 1:27",
+        "1 Corinthians 6:9",
+        "1 Corinthians 6:10",
+        "Genesis 19:4",
+        "Genesis 19:5",
+        "Leviticus 18:22",
+        "1 Timothy 1:10"
+      ],
+      "catechism": [
+        2357,
+        2358,
+        2359
+      ],
+      "church_fathers": [],
+      "objections": [],
+      "tags": [
+        "homosexuality",
+        "gay",
+        "chastity",
+        "sexual ethics",
+        "human dignity",
+        "intrinsically disordered",
+        "natural law"
+      ],
+      "difficulty": "advanced",
+      "related_topics": [
+        "contraception-church",
+        "marriage-indissoluble",
+        "natural-law-ethics",
+        "abortion-church"
+      ],
+      "citations": [],
+      "published": true,
+      "translation_source": "manual"
+    }
+  }
+}
