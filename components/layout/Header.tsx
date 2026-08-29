@@ -11,7 +11,7 @@ import { useInstallPrompt } from '@/lib/useInstallPrompt'
 
 export function Header() {
   const { open, openDrawer, closeDrawer } = useDrawerStore()
-  const { appName, appShortName } = useSiteConfig()
+  const { appShortName } = useSiteConfig()
   const { showInstall, isIOS, trigger } = useInstallPrompt()
   const [showIOSHelp, setShowIOSHelp] = useState(false)
 
@@ -37,8 +37,11 @@ export function Header() {
               className="h-8 w-8 shrink-0"
               priority
             />
-            <span className="font-semibold text-foreground">
-              {appName}
+            <span className="flex flex-col leading-none">
+              <span className="font-semibold text-foreground">{appShortName}</span>
+              <span className="mt-0.5 text-[9px] font-medium tracking-wide text-muted-foreground">
+                CATHOLIC FAITH DEFENDERS
+              </span>
             </span>
           </Link>
 

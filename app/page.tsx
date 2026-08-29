@@ -11,6 +11,7 @@ import { CategoryFilter } from '@/components/home/CategoryFilter'
 import { TopicGrid } from '@/components/home/TopicGrid'
 import { TopicCard } from '@/components/topic/TopicCard'
 import { DailyCarousel } from '@/components/home/DailyCarousel'
+import { HomeBanner } from '@/components/home/HomeBanner'
 import { useCourseTopicOrder, sortWithCourseFirst } from '@/lib/content/courseOrder'
 import type { Category, Topic } from '@/data/schema/topic.schema'
 
@@ -115,6 +116,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background">
+      <HomeBanner />
       <div className="mx-auto max-w-5xl">
 
         {/* Today's Picks — hero carousel */}

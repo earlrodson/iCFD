@@ -193,6 +193,15 @@ body {
 }
 .highlight-flash { animation: highlight-flash 2.2s ease-out forwards; }
 
+/* ── Rising gold particles (home banner) ── */
+@keyframes particle-rise {
+  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateY(-160px) scale(1); opacity: 0; }
+}
+.particle-rise { animation: particle-rise linear infinite; }
+
 /* ── Admin form utilities ── */
 @layer components {
   .field {
