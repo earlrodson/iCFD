@@ -36,6 +36,7 @@ import { useAppStore } from '@/store/useAppStore'
 import { createClient } from '@/lib/supabase/client'
 import { getUser } from '@/lib/supabase/auth'
 import { formatDate, cn } from '@/lib/utils'
+import { CATEGORY_GRADIENTS, categoryImageUrl } from '@/lib/content/categoryVisuals'
 
 const LANGUAGE_NAMES: Record<string, string> = { en: 'English', tl: 'Tagalog', ceb: 'Cebuano' }
 
@@ -170,6 +171,7 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   const [notAvailable, setNotAvailable] = useState(!!requestedLang)
   const [unavailableLang, setUnavailableLang] = useState(requestedLang ?? null)
   const [copied, setCopied] = useState(false)
+  const [heroImgFailed, setHeroImgFailed] = useState(false)
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
   // Whether this topic has any active quiz questions visible to the current
@@ -189,6 +191,11 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   )
   const [refPopover, setRefPopover] = useState<{ title: string; meta?: string; body: string; loading?: boolean; debateNote?: string } | null>(null)
   const [cccData, setCccData] = useState<Map<number, { paragraph: number; summary: string | null; text: string | null; section: string | null }>>(new Map())
+
+  // Reset the broken-image fallback when navigating to a different topic
+  useEffect(() => {
+    setHeroImgFailed(false)
+  }, [displayTopic.id])
 
   async function openCccPopover(cccRef: string) {
     setRefPopover({ title: cccRef, loading: true, body: '' })
@@ -417,7 +424,31 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   const topic = displayTopic
 
   return (
-    <article className="mx-auto max-w-3xl px-4 pt-4">
+    <div>
+      {/* Hero image — full-bleed, sits behind the content card below */}
+      <div className="relative h-56 sm:h-72 w-full overflow-hidden no-print">
+        <div className="absolute inset-0" style={{ background: CATEGORY_GRADIENTS[topic.category] }} />
+        {!heroImgFailed && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={topic.coverImage ?? categoryImageUrl(topic.category, 1200)}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            decoding="async"
+            onError={() => setHeroImgFailed(true)}
+          />
+        )}
+        {/* Scrim fading into the content card's background so the overlap
+            reads cleanly regardless of the image's own contrast/theme */}
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
+      </div>
+
+      <article
+        className={cn(
+          'relative z-10 mx-auto -mt-8 max-w-3xl rounded-t-3xl bg-background px-4 pt-4',
+          'shadow-[0_-12px_24px_-8px_rgba(0,0,0,0.18)] dark:shadow-[0_-12px_24px_-8px_rgba(0,0,0,0.6)]',
+        )}
+      >
       {/* Back nav */}
       <div className="mb-4 flex items-center gap-3">
         <Link
@@ -1158,6 +1189,7 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
       <footer className="text-xs text-muted-foreground">
         Last updated: {formatDate(topic.lastUpdated)}
       </footer>
-    </article>
+      </article>
+    </div>
   )
 }
