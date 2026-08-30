@@ -79,6 +79,7 @@ function getDailyPicks(topics: Topic[]): Topic[] {
 
 function Slide({ topic, active }: { topic: Topic; active: boolean }) {
   const [imgFailed, setImgFailed] = useState(false)
+  const src = topic.coverImage ?? imageUrl(topic.category)
 
   return (
     <div
@@ -95,10 +96,10 @@ function Slide({ topic, active }: { topic: Topic; active: boolean }) {
       />
 
       {/* Topic-specific or category-level photo */}
-      {!imgFailed && (
+      {!imgFailed && src && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
-          src={topic.coverImage ?? imageUrl(topic.category)}
+          src={src}
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
           loading="lazy"

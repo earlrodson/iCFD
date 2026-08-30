@@ -422,16 +422,17 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   }
 
   const topic = displayTopic
+  const heroSrc = topic.coverImage ?? categoryImageUrl(topic.category, 1200)
 
   return (
     <div>
       {/* Hero image — full-bleed, sits behind the content card below */}
       <div className="relative h-56 sm:h-72 w-full overflow-hidden no-print">
         <div className="absolute inset-0" style={{ background: CATEGORY_GRADIENTS[topic.category] }} />
-        {!heroImgFailed && (
+        {!heroImgFailed && heroSrc && (
           // eslint-disable-next-line @next/next/no-img-element
           <img
-            src={topic.coverImage ?? categoryImageUrl(topic.category, 1200)}
+            src={heroSrc}
             alt=""
             className="absolute inset-0 h-full w-full object-cover"
             decoding="async"
