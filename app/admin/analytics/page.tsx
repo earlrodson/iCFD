@@ -4,6 +4,8 @@ import { useEffect, useState, useMemo } from 'react'
 import { ArrowClockwise, ChartBar, Users, BookOpen, MagnifyingGlass, FileText, FlowArrow, Globe, Clock } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
+import { GeoHeatmap } from '@/components/admin/GeoHeatmap'
+import { getRegionName } from '@/lib/analytics/geo-region-names'
 
 interface TopicStat {
   topic_id: string
@@ -485,6 +487,7 @@ export default function AnalyticsPage() {
 
           /* ── Geography: coarse country/region of visitors ── */
           <div className="space-y-2">
+            {geo.length > 0 && <GeoHeatmap data={geo} />}
             {geo.length === 0 ? (
               <div className="rounded-2xl border border-border bg-card py-12 text-center">
                 <Globe weight="light" size={28} className="text-muted-foreground mx-auto mb-2" />
@@ -495,7 +498,7 @@ export default function AnalyticsPage() {
                 <span className="w-6 shrink-0 text-right text-xs font-semibold text-muted-foreground">{i + 1}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-medium text-foreground truncate">
-                    {g.country}{g.region ? ` — ${g.region}` : ''}
+                    {g.country}{g.region ? ` — ${getRegionName(g.country, g.region)}` : ''}
                   </p>
                   <div className="h-1.5 rounded-full bg-muted overflow-hidden mt-1">
                     <div

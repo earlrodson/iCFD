@@ -2,12 +2,14 @@
 
 **Product name:** Codex Defensoris  
 **Site / PWA short name:** iCFD  
-**Version:** 2.10  
-**Date:** 2026-07-26  
+**Version:** 2.11  
+**Date:** 2026-08-30  
 **Status:** In Progress  
-**Baseline:** PRD-current.md (Phase 1)
+**Baseline:** Phase 1 (original MVP scope — superseded, no longer tracked as a separate doc)
 
 > **Naming convention:** The full brand name is **Codex Defensoris** (Latin: "Defender's Code"). The site URL, PWA short name, and app badge display **iCFD**. Both identifiers coexist — "iCFD" for brevity, "Codex Defensoris" in hero, installers, and formal copy.
+
+> **2026-08-30 audit note:** a full codebase-vs-PRD reconciliation was run this date. It corrected several sections that had drifted false (certificate downloads/drag-placement, translation providers, Phase 10 status — see inline notes) and added **Phase 12** to cover Presentations, CFD Membership, and admin/analytics/branding work shipped between 2026-07-26 and 2026-08-29 that had no PRD coverage at all.
 
 ### Implementation Status Legend
 - ✅ **Delivered** — shipped and verified
@@ -668,18 +670,20 @@ ALTER TABLE public.topics ADD COLUMN translation_notes TEXT;
 
 **`answer_full` in admin editor:** MDEditor (`@uiw/react-md-editor`, SSR-disabled via `dynamic()`) with live split preview.
 
-#### 6B — Translation Engine ✅ Delivered
+#### 6B — Translation Engine 🔄 Partial (corrected 2026-08-30 — was marked ✅ in error)
 
 **Architecture:** Provider abstraction layer — swap translation services from the admin Config tab without code changes or redeployment.
 
-**Supported providers:**
+**Supported providers — as actually built:**
 
 | Provider | Package | TL | CEB | Notes |
 |---|---|---|---|---|
-| Claude (Anthropic) | `@anthropic-ai/sdk` | ✅ | ✅ | Best for theological terms |
-| OpenAI | `openai` | ✅ | ✅ | Fallback option |
-| Google Translate | `@google-cloud/translate` | ✅ | ⚠️ | Cheapest, weak on CEB |
-| Azure Translator | `@azure/ai-translation-text` | ✅ | ✅ | Good quality |
+| Claude (Anthropic) | `@anthropic-ai/sdk` (`lib/translation/providers/claude.ts`) | ✅ | ✅ | The only provider implemented and exported from `lib/translation/index.ts` |
+| OpenAI | `openai` | ⬜ | ⬜ | Typed in `lib/translation/types.ts` as a valid `provider` value; no implementation file exists |
+| Google Translate | `@google-cloud/translate` | ⬜ | ⬜ | Same — typed only, never built |
+| Azure Translator | `@azure/ai-translation-text` | ⬜ | ⬜ | Same — typed only, never built |
+
+**Correction:** the row above was previously marked all-✅. Only the Claude provider is real; the `/admin/translations` picker is effectively single-provider today. The bulk of actual TL/CEB translation work visible in git history did **not** go through this admin abstraction at all — it ran through a separate local-LLM CLI toolchain (`tools/translate-topic.ts`, using `sailor2:20b` via Ollama, chosen because it handles long multi-citation essays better than the qwen models) with its own citation-protection and corruption-guardrail logic (documented in `CLAUDE.md`, not here). That CLI path and this admin-panel path are two independent translation systems that happen to write to the same columns.
 
 **Admin-controlled config (site_config rows):**
 ```
@@ -1071,6 +1075,15 @@ All ⬜ items across phases, consolidated and ranked. Ship in this order unless 
 | Document ↔ Topic cross-linking | `topic_document_refs` join table; admin editor to attach doc sections to topics; "Church Documents" card in topic Apologetics Brief tab |
 | Library search extended | `/library` global search now covers `church_documents` table (4th search target) |
 | Auto-sync | Dirty tracking in all 3 Zustand stores; `SyncManager` auto-pushes on reconnect and login |
+| Certificate drag-and-drop + PNG download | `/admin/certificates` drag-places 5 fields per (path, tier); issued certificates get a client-side canvas → PNG download button (see §11D) |
+| Self-service password reset | `/reset-password` + "Forgot password?" on `/account` — previously considered out of scope |
+| Profile picture + CFD membership | `ProfileEditor` avatar upload (`/api/profile/avatar`); `is_cfd_member` flag + private CFD-ID card upload (`/api/profile/cfd-id`, signed URL) gating `/presentations` — see Phase 12A |
+| Presentations feature | Per-topic slide decks: `/admin/presentations` authoring + `/presentations/[topicId]` fullscreen viewer, gated to signed-in admin-role CFD members — see Phase 12B |
+| Admin: History timeline | `/admin/history` — reorderable org history entries + past-presidents list, publicly shown on `/history` |
+| Admin: Manual push notification | `/admin/notifications` — send-now button showing subscriber count and today's featured topic, on top of the existing daily cron |
+| Home banner + CFD brand palette | `components/home/HomeBanner.tsx` (navy/blue gradient, animated gold particles, personalized greeting) and `app/globals.css` brand tokens replacing the earlier placeholder palette — see Phase 12D |
+| Library document download | Bible/Catechism/GIRM/Canon/Church Documents each get a client-side "download full text as .txt" button (`lib/download/libraryExport.ts`) |
+| Analytics: geo/device tracking | `lib/analytics/geo.ts` + `components/analytics/PageTracker.tsx` — country/region/device bucketing per page view (never stores raw IP), joins guest history to account on sign-in — materially more than the topic-view + activity summary in §5F |
 
 ---
 
@@ -1121,7 +1134,7 @@ Do after Tier 1–3, or skip if resources are constrained.
 
 ---
 
-### Phase 10 — Theological Etymology & Key Terms ⬜ Planned
+### Phase 10 — Theological Etymology & Key Terms 🔄 Partial (corrected 2026-08-30 — was marked ⬜ Planned in error)
 
 **Goal:** Surface word-level etymology and debate notes for key theological terms directly inside topic pages, so users can immediately weaponize the original Greek, Latin, Hebrew, or Aramaic meaning in a dialogue.
 
@@ -1230,16 +1243,25 @@ Seed the most debate-critical terms across all apologetics categories:
 | Petros / Petra | Greek | πέτρος/πέτρα — stone/bedrock (Matt 16:18) |
 | Purgare | Latin | to cleanse — root of Purgatory |
 
+#### Delivered so far (added 2026-08-30)
+
+- ✅ `theological_terms` and `topic_terms` tables built (`app/api/admin/glossary/route.ts`, `app/api/admin/topic-terms/route.ts`); `keyTerms` on `TopicSchema` (`data/schema/topic.schema.ts`)
+- ✅ `/admin/glossary` — full CRUD admin UI (search/create/edit/delete terms)
+- ✅ Admin term picker wired into the Topic Editor (`app/admin/topics/[id]/TopicEditor.tsx`) to attach/detach terms per topic
+- ✅ Topic detail page renders a **Key Terms bar** pinned between the tab bar and content (`components/topic/TopicContent.tsx`) — matched via a single compiled regex over `keyTerms`, tap/click opens the term's detail rather than a hover tooltip
+- 🔄 Delivered differently than spec'd: terms surface as a dedicated bar above all three content tabs, not as a Brief-tab-only card plus separate inline Comprehensive-tab tooltips as originally designed — one unified UI covers both roles
+- ⬜ Not yet confirmed: whether all 20 terms from the seed table (§10E) are actually seeded in the DB — needs a data check, not a code check
+
 #### Acceptance Criteria
 
-- [ ] `theological_terms` and `topic_terms` tables created with RLS
-- [ ] "Key Terms" section visible in Brief tab when a topic has terms attached
-- [ ] Each term card collapses to root meaning and expands to full definition + debate note
-- [ ] Language badge color-coded (Greek/Latin/Hebrew/Aramaic)
-- [ ] Inline tooltips on Comprehensive tab for matched terms
-- [ ] Admin term picker attached to Topic Editor
-- [ ] Seed: all 20 terms from the initial glossary table above
-- [ ] Admin can attach/detach terms from any topic without redeploy
+- [x] `theological_terms` and `topic_terms` tables created with RLS
+- [x] Key terms visible on the topic page when a topic has terms attached (shipped as a pinned bar above the tabs, not a Brief-tab-only card)
+- [x] Each term is tap/click-expandable to full definition + debate note
+- [ ] Language badge color-coded (Greek/Latin/Hebrew/Aramaic) — verify against current `TopicContent.tsx` styling
+- [ ] Inline tooltips on Comprehensive tab for matched terms — superseded by the unified Key Terms bar; confirm this satisfies the original intent before closing
+- [x] Admin term picker attached to Topic Editor
+- [ ] Seed: all 20 terms from the initial glossary table above — not verified as of 2026-08-30
+- [x] Admin can attach/detach terms from any topic without redeploy
 
 ---
 
@@ -1351,13 +1373,14 @@ RLS: `quiz_questions` (minus `correct_index`) and `quiz_settings` are public SEL
 - A passing attempt (`score_percent >= quiz_settings.pass_percent`) upserts `course_progress (user_id, topic_id, tier, passed_at)`.
 - **Not spec'd originally, delivered anyway:** after marking a topic read from within a learning path that has quiz questions for it, a one-time popup plus a persistent inline "Take the quiz for this topic" button surface the quiz — otherwise it was undiscoverable outside the path page (`components/topic/TopicContent.tsx`).
 
-#### 11D — Certificate Issuance & Viewing (delivered differently than spec'd)
+#### 11D — Certificate Issuance & Viewing (delivered differently than spec'd; updated 2026-08-30)
 
-- **Admin (`/admin/certificates`):** pick a path, then a tier, then upload a background image for that (path, tier) pair. **No drag-and-drop field placement exists** — the `name` placeholder's position is a hardcoded default in `lib/content/certificateTemplate.ts`, not admin-editable, and `serial_code`/`date`/`tier` placeholders were never built (only `name` is ever rendered).
+- **Admin (`/admin/certificates`):** pick a path, then a tier, then upload a background image for that (path, tier) pair. **As of 2026-08-30, drag-and-drop field placement is built** (`components/certificates/CertificatePreview.tsx`, `app/api/admin/certificates/placeholders/route.ts`, commit `c6c5530`) — five placeholders (`name`, `issue_date`, `serial_code`, `national_president`, `national_spiritual_adviser`) can each be dragged to position, font/size/color/align configured, and saved per (path, tier). The `national_president`/`national_spiritual_adviser` values are pulled from `site_config` (migration `20260828120000_certificate_officer_names.sql`), not typed per-certificate.
 - **Issuance trigger:** after each passing `quiz_attempts` insert, the server checks every path the just-passed topic belongs to; for each one, if `course_progress` now covers every topic in that path at that tier and no `certificates` row exists yet for `(user_id, path_slug, tier)`, it inserts one. A single passing attempt can therefore issue certificates for more than one path at once, if that topic happens to complete more than one.
 - **Serial code:** built as `CFD-{TIER3}-{timestamp-base36}{random3}` (e.g. `CFD-BEG-MS1T1G7FCLX`) — not the originally spec'd `{ADMIN_PREFIX}-{TIER_LETTER}-{YEAR}-{SEQUENCE}` format; the prefix is hardcoded, there's no admin-configurable prefix, and the suffix isn't a true auto-incrementing sequence.
-- **Rendering — no server-side generation, no downloadable files:** the spec called for `node-canvas` → PNG plus `pdf-lib` → PDF, both stored to Supabase Storage. **None of that was built** — no `node-canvas`/`pdf-lib` dependency exists in the project. Instead, the certificate is rendered live in the browser (the template image with the recipient's name CSS-positioned on top, via the shared `CertificatePreview` component) wherever it's viewed. `certificates.pdf_url`/`image_url` are nullable and always empty; there is no download button anywhere.
-- **Viewing:** certificates are shown on the signed-in user's `/account` page as a "Certificates" list (one entry per earned path+tier, labeled "{Path title} — {Tier} Certificate"); clicking one opens a modal that live-renders it. There's also an in-app celebratory banner on the quiz results screen the moment a certificate is issued ("You've earned your {tier} certificate!" with a link to the profile) — not in the original spec, added so the moment of earning a certificate isn't silent.
+- **Rendering — still no server-side generation; a client-side download now exists.** No `node-canvas`/`pdf-lib` dependency was added, and `certificates.pdf_url`/`image_url` remain nullable and always empty — there is still no server-stored file. But as of 2026-08-30 there **is** a download button (`lib/download/certificateExport.ts`, wired into `components/certificates/CertificateModal.tsx`, commit `5498fd1`): it renders the certificate (template image + all placeholder fields) onto an offscreen `<canvas>` client-side and downloads a PNG on demand. This satisfies the "downloadable certificate" user need without the originally spec'd server pipeline.
+- **Viewing:** certificates are shown on the signed-in user's `/account` page as a "Certificates" list (one entry per earned path+tier, labeled "{Path title} — {Tier} Certificate"); clicking one opens a modal that live-renders it, with the new Download PNG button alongside. There's also an in-app celebratory banner on the quiz results screen the moment a certificate is issued ("You've earned your {tier} certificate!" with a link to the profile) — not in the original spec, added so the moment of earning a certificate isn't silent.
+- **Duration tracking (added, not spec'd):** `quiz_attempts.duration_ms` (migration `20260828161922_quiz_attempts_duration_ms.sql`) records client-reported time-to-complete per attempt. Non-scoring — informational only, not currently surfaced in any UI reviewed.
 - **Durability:** once issued, a certificate is permanent — later quiz re-attempts (e.g. weekly practice) never revoke it.
 
 #### 11E — Navigation & Placement
@@ -1371,9 +1394,10 @@ RLS: `quiz_questions` (minus `correct_index`) and `quiz_settings` are public SEL
 - ✅ All 20 course topics seeded in `ceb`, cross-linked to existing `en` topic ids where a counterpart exists
 - ✅ `quiz_settings`, `quiz_questions`, `quiz_attempts`, `course_progress`, `certificate_templates`, `certificates` tables created with RLS (`drizzle/migrations/005_quiz_certificates.sql`, since generalized to per-path by `012_certificates_per_path.sql` and `013_quiz_questions_path_slug.sql`); `quiz_settings` seeded with defaults
 - ✅ Question bank authoring UI (`/admin/quiz`) and quiz-taking UI (`/quiz/[topicId]/[tier]`) both built and working end-to-end, including weekly retake cooldown and tier-progression gating
-- ✅ Certificate issuance, per-path admin template upload (with a bundled default template, replaceable per path+tier), profile-page viewing, and an in-app earned-certificate notification — all delivered, but via live client-side rendering rather than the spec'd server-generated PNG/PDF (see §11D)
+- ✅ Certificate issuance, per-path admin template upload (with a bundled default template, replaceable per path+tier), profile-page viewing, and an in-app earned-certificate notification — all delivered, via live client-side rendering rather than server-generated PNG/PDF (see §11D)
 - ✅ Post-read quiz discoverability (popup + persistent CTA) on the topic page when reached from a path
-- ⬜ Not yet started: question bank content (only 3 of 20 topics have any authored questions — 270 questions total, all in one topic each per tier, far short of the 3,600 target), `/admin/quiz-settings` editor, homepage/library highlight block, downloadable PNG/PDF certificate artifacts, admin drag-and-drop field placement
+- ✅ **Added 2026-08-30:** admin drag-and-drop certificate field placement (5 placeholders, not just `name`) and a client-side "Download PNG" button on issued certificates — both previously listed as not built (see §11D)
+- ⬜ Not yet started: question bank content (only 3 of 20 topics have any authored questions — 270 questions total, all in one topic each per tier, far short of the 3,600 target), `/admin/quiz-settings` editor, homepage/library highlight block, true server-generated downloadable PDF artifact
 
 #### Acceptance Criteria
 
@@ -1384,9 +1408,73 @@ RLS: `quiz_questions` (minus `correct_index`) and `quiz_settings` are public SEL
 - [x] Quiz fully playable anonymously; auth gate on submit preserves answers through a sign-in redirect (shipped as a redirect to `/account`, not an in-place modal)
 - [x] Weekly retake cooldown enforced per `(user_id, topic_id, tier)`
 - [x] Passing every topic in a path at a tier auto-issues a certificate with a unique serial code, name, and date — scoped per `(user_id, path_slug, tier)`, not just tier
-- [ ] Admin can upload a certificate background image and drag-place name/serial/date/tier fields per path+tier — upload works; drag-placement UI and the serial/date/tier placeholders were never built
-- [ ] Certificate available as both a PNG/image and a PDF download — not built; certificates are viewed live in-browser only, no downloadable file exists
+- [x] Admin can upload a certificate background image and drag-place fields per path+tier — **delivered 2026-08-30**: `name`, `issue_date`, `serial_code`, `national_president`, `national_spiritual_adviser` are all drag-placeable (`tier` was not added as a placeholder)
+- [x] Certificate available as a PNG download — **delivered 2026-08-30** via client-side canvas export; still no server-generated PDF
 - [x] Certificates are immutable once issued regardless of later attempt outcomes
+
+---
+
+### Phase 12 — Presentations, CFD Membership & Platform Expansion 🔄 Partial (added 2026-08-30)
+
+**Goal:** document the cluster of features that shipped between the 2026-07-26 snapshot and 2026-08-29 with no PRD coverage at all — surfaced by a full codebase-vs-PRD audit rather than planned up front. Unlike other phases, most of this is already ✅ Delivered; it's being logged here retroactively so the next audit has a baseline to diff against.
+
+#### 12A — CFD Membership & Account Additions ✅ Delivered
+
+- ✅ `is_cfd_member` boolean on the user's profile (migration `20260728120000_profile_fields.sql`), toggleable per-user from `/admin/users` (`app/api/admin/users/route.ts`, `get_all_users()` RPC extended)
+- ✅ Profile picture upload — `components/account/ProfileEditor.tsx` → `/api/profile/avatar` (4MB max, PNG/JPEG/WebP, Supabase Storage)
+- ✅ Private CFD membership ID card upload — `/api/profile/cfd-id`, stored in a private bucket, served only via short-lived (5-min TTL) signed URLs, visible only to the member themselves and admins
+- ✅ Self-service password reset — `app/reset-password/page.tsx` listens for the Supabase `PASSWORD_RECOVERY` auth event; "Forgot password?" entry point on `/account`. Previously treated as out of scope/deferred — now built and should be treated as delivered.
+- ⬜ Not reviewed: whether extended profile fields (name, location) beyond `display_name`/`avatar_url`/`theme`/`language`/`font_size` were added to `user_settings` — flagged by the audit, not confirmed against the live schema
+
+#### 12B — Presentations (new feature, zero prior PRD coverage) ✅ Delivered
+
+**What it is:** a per-topic slide-deck viewer, gated behind both CFD membership and an admin/presenter role — built for in-person formation sessions where a facilitator projects a topic as slides rather than handing out the article.
+
+- ✅ `presentations` table (`topic_id` PK, `slides` JSONB, `published` bool) — migration `20260808101155_presentations.sql`
+- ✅ `admins.role` CHECK constraint extended to add a new **`presenter`** role (same migration) — a fourth role alongside the existing `user` / `editor` / `admin` roles (`user`: default, read-only + own personal data; `editor`: CMS content CRUD, no user management; `admin`: full access including user/role management). `presenter` grants `/presentations` access alongside `admin`, but no CMS or user-management rights.
+- ✅ `/admin/presentations` — search/attach a topic, slide editor, raw-text import, publish toggle (`tools/generate-presentation.ts`, `import-presentation.ts`, `promote-presentation.ts` mirror the topic/quiz content-pipeline pattern)
+- ✅ `/presentations/[topicId]` — public route, but gated: requires a signed-in user who is **both** a CFD member **and** holds any `admins` row (tightened from an earlier CFD-member-only policy by migration `20260810021140_presentations_admin_cfd_gate.sql`)
+- ✅ `components/presentations/SlideViewer.tsx` — fullscreen slide viewer component
+
+#### 12C — Admin Surface Expansion ✅ Delivered
+
+Three admin tools shipped with no corresponding PRD section:
+
+- ✅ **History timeline editor** (`/admin/history`) — reorderable `history_timeline` entries and `history_presidents` list; publicly rendered on `/history` (org history + past national presidents)
+- ✅ **Manual push notification sender** (`/admin/notifications`) — shows subscriber count and today's featured topic, with a send-now button and result stats, in addition to the automated daily cron already covered in Phase 4
+- ✅ **Theological glossary CRUD** (`/admin/glossary`) — see Phase 10 correction above; this was marked entirely unbuilt (⬜) prior to this audit
+
+#### 12D — Branding & Home Page Refresh ✅ Delivered
+
+- ✅ **CFD brand palette** (`app/globals.css`) — replaced the placeholder oklch tokens with the navy/blue/gold/cyan brand colors, added `--secondary`/`--accent`/`--highlight` tokens with light/dark contrast variants; propagated into `components/layout/AppDrawer.tsx` and `components/layout/MobileNav.tsx`
+- ✅ **`HomeBanner`** (`components/home/HomeBanner.tsx`) — full-width hero banner above the existing DailyCarousel: brand gradient, watermark seal logo, animated rising-gold-particle effect (fixed, non-random particle set to avoid SSR/client hydration mismatch), and a personalized "Welcome back, {name}" headline for signed-in users vs. a marketing headline for guests
+- ✅ **Header rebrand** (`components/layout/Header.tsx`) — logo now stacks the `iCFD` short name over a "CATHOLIC FAITH DEFENDERS" subtitle instead of the full `appName` string
+
+#### 12E — Analytics Expansion ✅ Delivered
+
+- ✅ Geo/device tracking (`lib/analytics/geo.ts`, `components/analytics/PageTracker.tsx`) — derives country/region from platform headers (Vercel/Cloudflare) and buckets device/UA, backed by a `page_views` table; assigns a per-browser `visitor_id` and joins guest history to the account on sign-in. Never stores raw IP.
+- 🔄 Not yet surfaced in `/admin/analytics` UI (§5F only covers topic-view rankings and per-user activity summary) — the data is being collected but not yet visualized by geography/device
+
+#### 12F — Content Pipeline Tooling (dev-facing, not user-facing) ✅ Delivered
+
+Documented here for completeness since none of it appears in any PRD:
+
+- `tools/generate-topic.ts`, `generate-quiz.ts` / `generate-quiz-from-doc.ts`, `generate-presentation.ts` / `import-presentation.ts` / `promote-presentation.ts` — generation pipelines for topics, quizzes, and presentations, following the same draft → review → import → promote staged pattern
+- `tools/translate-legacy-md.ts`, `validate-translation.ts`, `audit-translation-coverage.ts` — legacy-essay translation and deterministic (non-LLM) translation QA/coverage tooling
+- `tools/dump-seed-topics.ts` / `seed-topics.ts` — DB ↔ `content/topics/seed/` round-trip mirroring (see also `CLAUDE.md`'s "Topic content seed folder" section, which already documents this)
+- `tools/vector-index-theology.ts` / `vector-search-theology.ts` — a separate RAG index over the theology corpus (CCC, canons, GIRM, church documents, Church Father quotes) used to ground AI-assisted content generation
+- `tools/snapshot.ts` — combined Supabase + Drizzle schema snapshot generator
+- **Note:** a parallel "isidore" spec-tracking system (`docs/specifications/*.md`, typed frontmatter with `status`/`estimate_hours`/`hours_logged`) has been in use since late July 2026 for granular feature tracking and appears to be where several of the features in this Phase 12 were actually specified before shipping — this PRD should be treated as the durable/user-facing record, with `docs/specifications/` as the working-ticket layer underneath it.
+
+#### Acceptance Criteria
+
+- [x] CFD membership flag + private ID card upload gate `/presentations` access
+- [x] Presentations: admin authoring + public gated viewer both functional
+- [x] History timeline publicly viewable and admin-editable
+- [x] Manual push notification send available to admins
+- [x] Home page shows the new banner; header shows the CFD brand mark
+- [ ] Geo/device analytics data surfaced in an admin UI (collection only, not yet visualized)
+- [ ] Extended `user_settings` profile fields confirmed against live schema
 
 ---
 

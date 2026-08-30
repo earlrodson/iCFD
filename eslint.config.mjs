@@ -34,6 +34,9 @@ const eslintConfig = defineConfig([
     "public/sw.js",
     "public/worker-*.js",
     "public/fallback-*.js",
+    // Bundled maplibre-gl worker, copied verbatim by scripts/copy-maplibre-worker.mjs:
+    "public/maplibre-gl-worker.mjs",
+    "public/maplibre-gl-shared.mjs",
     "documents/**",
   ]),
 ]);
