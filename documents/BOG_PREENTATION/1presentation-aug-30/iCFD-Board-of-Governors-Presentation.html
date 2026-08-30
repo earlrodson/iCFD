@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>iCFD — Board of Governors Presentation</title>
+<style>
+  :root{
+    --navy:#10182F; --blue:#1557A6; --gold:#F2D21F;
+    --ink:#1a1f2b; --muted:#5b6472; --line:#e4e7ee; --bg:#ffffff; --soft:#f7f8fb;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#3a3f4a;font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;}
+  .deck{display:flex;flex-direction:column;align-items:center;gap:28px;padding:28px 0 80px;}
+  .slide{
+    width:1280px;height:720px;background:var(--bg);color:var(--ink);
+    position:relative;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.35);
+    flex:0 0 auto;
+  }
+  .slide .pad{padding:64px 72px;height:100%;display:flex;flex-direction:column;}
+  .kicker{color:var(--blue);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:15px;margin-bottom:10px;}
+  h1.title{font-size:44px;line-height:1.15;margin:0 0 18px;color:var(--navy);font-weight:800;}
+  h2.sub{font-size:22px;font-weight:500;color:var(--muted);margin:0 0 28px;}
+  .bar{width:64px;height:6px;background:var(--gold);border-radius:3px;margin-bottom:24px;}
+  .content{font-size:22px;line-height:1.55;color:var(--ink);}
+  .content ul{margin:0;padding-left:26px;}
+  .content li{margin-bottom:10px;}
+  .badge{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.04em;border-radius:20px;padding:4px 14px;margin-right:8px;}
+  .badge.live{background:#e7f3e8;color:#1e7a34;}
+  .badge.partial{background:#fff4d6;color:#8a6300;}
+  .badge.planned{background:#eef0f5;color:var(--muted);}
+  .footer-tag{position:absolute;bottom:28px;left:72px;font-size:14px;color:var(--muted);}
+  .pagenum{position:absolute;bottom:28px;right:72px;font-size:14px;color:var(--muted);}
+  .quote{font-size:28px;font-style:italic;color:var(--navy);border-left:5px solid var(--gold);padding-left:24px;margin:20px 0;}
+  .flow{display:flex;align-items:center;gap:0;flex-wrap:wrap;}
+  .flow .step{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:16px 22px;font-weight:700;font-size:19px;color:var(--navy);}
+  .flow .arrow{font-size:26px;color:var(--gold);padding:0 14px;}
+  .flow-v .step{display:block;}
+  .flow-v .arrow{display:block;text-align:left;padding:6px 0 6px 20px;}
+  .flow-v.compact .step{padding:8px 16px;font-size:15px;}
+  .flow-v.compact .arrow{font-size:15px;padding:2px 0 2px 18px;}
+  .imgcard{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 6px 24px rgba(16,24,47,.12);}
+  .imgcard img{display:block;width:100%;height:auto;}
+  .two-col{display:flex;gap:40px;flex:1;align-items:center;}
+  .two-col .col{flex:1;}
+  .cover{background:var(--navy);color:#fff;}
+  .cover .pad{justify-content:center;align-items:flex-start;}
+  .cover h1{color:#fff;font-size:56px;}
+  .cover h2{color:#c9d3ea;}
+  .gold-text{color:var(--gold);}
+  .tablewrap table{width:100%;border-collapse:collapse;font-size:20px;}
+  .tablewrap th{text-align:left;background:var(--navy);color:#fff;padding:12px 16px;}
+  .tablewrap td{padding:12px 16px;border-bottom:1px solid var(--line);}
+  .tablewrap tr:nth-child(even) td{background:var(--soft);}
+  .note{background:#fff4d6;border:1px solid #f2d21f66;border-radius:10px;padding:14px 18px;font-size:17px;color:#6b5400;margin-top:16px;}
+  .stagegrid{display:flex;gap:24px;flex:1;}
+  .stage{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:22px;}
+  .stage h3{margin:0 0 6px;color:var(--blue);font-size:20px;}
+  .stage .tag{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-bottom:10px;display:block;}
+  .stage ul{margin:0;padding-left:20px;font-size:17px;}
+  .stage li{margin-bottom:6px;}
+  .center-slide .pad{justify-content:center;align-items:center;text-align:center;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--soft);}
+  .card h4{margin:0 0 6px;color:var(--navy);font-size:19px;}
+  .card p{margin:0;font-size:15px;color:var(--muted);}
+  @media print{
+    body{background:#fff;}
+    .deck{gap:0;padding:0;}
+    .slide{box-shadow:none;page-break-after:always;}
+  }
+</style>
+</head>
+<body>
+<div class="deck">
+
+<!-- 1. TITLE -->
+<section class="slide cover center-slide">
+  <div class="pad" style="align-items:center;text-align:center;">
+    <img src="assets/logo.png" style="width:120px;height:120px;border-radius:24px;margin-bottom:28px;" alt="iCFD logo">
+    <h1 class="title">i<span class="gold-text">CFD</span></h1>
+    <h2 class="sub">A Digital Formation Platform for Catholic Faith Defenders</h2>
+    <div style="margin-top:40px;font-size:19px;color:#c9d3ea;">
+      Presented by <strong style="color:#fff;">Earlrodson Cariño</strong><br>
+      Lead Software Architect / Engineering — Catholic Faith Defenders
+    </div>
+  </div>
+  <div class="pagenum" style="color:#c9d3ea;">1</div>
+</section>
+
+<!-- 2. WHO I AM -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Introduction</div>
+    <h1 class="title">From Software Engineering to Catholic Apologetics</h1>
+    <div class="bar"></div>
+    <div class="content">
+      <ul>
+        <li>Almost <strong>17 years</strong> in software engineering and architecture</li>
+        <li>Currently a <strong>Line Manager</strong></li>
+        <li>Experience building software systems and platforms</li>
+        <li>Involved in CFD through a personal journey of rediscovering and defending the Catholic faith</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">2</div>
+</section>
+
+<!-- 3. MY JOURNEY -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">My Journey</div>
+    <h1 class="title">This Did Not Begin as a Software Project</h1>
+    <div class="bar"></div>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+      <div class="flow" style="justify-content:center;">
+        <div class="step" style="font-size:24px;padding:22px 30px;">Questions</div><div class="arrow" style="font-size:32px;">→</div>
+        <div class="step" style="font-size:24px;padding:22px 30px;">Study</div><div class="arrow" style="font-size:32px;">→</div>
+        <div class="step" style="font-size:24px;padding:22px 30px;">Apologetics</div><div class="arrow" style="font-size:32px;">→</div>
+        <div class="step" style="font-size:24px;padding:22px 30px;">CFD</div><div class="arrow" style="font-size:32px;">→</div>
+        <div class="step" style="font-size:24px;padding:22px 30px;background:var(--navy);color:#fff;">iCFD</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">3</div>
+</section>
+
+<!-- 4. THE PROBLEM -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">The Problem</div>
+    <h1 class="title">The Information Is There. The Connection Is Missing.</h1>
+    <div class="bar"></div>
+    <div class="two-col">
+      <div class="col content">
+        <p>There is already a tremendous amount of Catholic information online:</p>
+        <ul>
+          <li>Bible</li><li>Catechism</li><li>Church documents</li>
+          <li>Apologetics</li><li>Theology</li><li>Church Fathers</li>
+          <li>Articles and discussions</li>
+        </ul>
+        <p>But information is often <strong>scattered across different sources</strong>.</p>
+      </div>
+      <div class="col">
+        <div class="quote" style="font-size:20px;">Where do I start?<br>What should I study next?<br>How are these sources connected?<br>Can I access them offline?</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">4</div>
+</section>
+
+<!-- 5. PROBLEM VIDEO -->
+<section class="slide cover center-slide">
+  <div class="pad" style="align-items:center;text-align:center;">
+    <h1 class="title" style="color:#fff;">The Problem We Are Trying to Solve</h1>
+    <div class="note" style="background:transparent;border-color:#f2d21f55;color:#e7d98a;max-width:700px;">
+      No video file exists in the repository as of this build. If a problem video has been produced outside the codebase, insert it here full-screen; otherwise narrate this transition live.
+    </div>
+  </div>
+  <div class="pagenum" style="color:#c9d3ea;">5</div>
+</section>
+
+<!-- 6. 12 QUESTIONS -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">The Moment iCFD Started</div>
+    <h1 class="title">It Started With 12 Questions</h1>
+    <div class="bar"></div>
+    <div class="content" style="max-width:900px;">
+      <p>My wife gave me a list of <strong>12 topics</strong> she wanted to understand, and asked me to write explanations so she could study them.</p>
+      <p>Because Cebuano was difficult for her, I initially created the material in <strong>Tagalog and English</strong>.</p>
+      <div class="quote">"Why stop at 12 articles when I can build something that can become a library?"</div>
+      <p>That became the beginning of <strong>iCFD</strong>.</p>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">6</div>
+</section>
+
+<!-- 7. FROM ARTICLES TO PLATFORM -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">From Articles to Platform</div>
+    <h1 class="title">The Idea Grew</h1>
+    <div class="bar"></div>
+    <div class="flow flow-v compact" style="flex-direction:column;align-items:flex-start;">
+      <div class="step">12 Questions</div>
+      <div class="arrow">↓</div>
+      <div class="step">Apologetics Articles</div>
+      <div class="arrow">↓</div>
+      <div class="step">Centralized Catholic Resources</div>
+      <div class="arrow">↓</div>
+      <div class="step">Learning Paths</div>
+      <div class="arrow">↓</div>
+      <div class="step">Quizzes &amp; Progress</div>
+      <div class="arrow">↓</div>
+      <div class="step" style="background:var(--navy);color:#fff;">Formation Platform</div>
+    </div>
+    <p class="content" style="margin-top:14px;font-size:18px;">The goal evolved from simply <strong>providing answers</strong> to helping Catholics <strong>learn, practice, and defend the faith</strong>.</p>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">7</div>
+</section>
+
+<!-- 8. VISION -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Vision</div>
+    <h1 class="title">iCFD</h1>
+    <h2 class="sub">A Digital Apologetics and Formation Companion</h2>
+    <div class="content">
+      <p>iCFD brings together:</p>
+      <div class="grid3">
+        <div class="card"><h4>Apologetics</h4><p>Scripture · Catechism · Church Documents</p></div>
+        <div class="card"><h4>Formation</h4><p>Church Fathers · theological terminology</p></div>
+        <div class="card"><h4>Progress</h4><p>Structured learning · quizzes · certificates</p></div>
+      </div>
+      <div class="quote" style="margin-top:24px;">Make Catholic formation easier to access, easier to study, easier to connect, and easier to continue.</div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">8</div>
+</section>
+
+<!-- 9. LIVE DEMO TRANSITION -->
+<section class="slide cover center-slide">
+  <div class="pad" style="align-items:center;text-align:center;">
+    <h1 class="title" style="color:#fff;">Let Me Show You iCFD</h1>
+    <div class="flow" style="margin-top:20px;">
+      <div class="step" style="background:#1c2544;color:#fff;border-color:#2a3560;">Home</div><div class="arrow">→</div>
+      <div class="step" style="background:#1c2544;color:#fff;border-color:#2a3560;">Learn</div><div class="arrow">→</div>
+      <div class="step" style="background:#1c2544;color:#fff;border-color:#2a3560;">Search</div><div class="arrow">→</div>
+      <div class="step" style="background:#1c2544;color:#fff;border-color:#2a3560;">References</div><div class="arrow">→</div>
+      <div class="step" style="background:#1c2544;color:#fff;border-color:#2a3560;">Progress</div><div class="arrow">→</div>
+      <div class="step" style="background:var(--gold);color:var(--navy);">Offline</div>
+    </div>
+    <p style="color:#c9d3ea;margin-top:24px;font-size:18px;">The presenter will switch to the live application.</p>
+  </div>
+  <div class="pagenum" style="color:#c9d3ea;">9</div>
+</section>
+
+<!-- 10. CONNECTED KNOWLEDGE -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Connected Knowledge</div>
+    <h1 class="title" style="font-size:34px;margin-bottom:10px;">One Question, Many Connections</h1>
+    <div class="bar" style="margin-bottom:14px;"></div>
+    <div class="flow flow-v compact" style="flex-direction:column;align-items:flex-start;">
+      <div class="step">Apologetics Question</div><div class="arrow">↓</div>
+      <div class="step">Answer</div><div class="arrow">↓</div>
+      <div class="step">Scripture</div><div class="arrow">↓</div>
+      <div class="step">Catechism</div><div class="arrow">↓</div>
+      <div class="step">Church Fathers</div><div class="arrow">↓</div>
+      <div class="step">Church Documents</div><div class="arrow">↓</div>
+      <div class="step">Theological Terms</div><div class="arrow">↓</div>
+      <div class="step" style="background:var(--navy);color:#fff;">Related Topics</div>
+    </div>
+    <span class="badge live" style="margin-top:10px;">Implemented — screenshot follows</span>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">10</div>
+</section>
+
+<!-- 10b. TOPIC SCREENSHOT -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Live Application</div>
+    <h1 class="title" style="font-size:34px;">A Real Topic Page</h1>
+    <div class="imgcard" style="flex:1;"><img src="assets/screenshots/topic-detail.png" alt="Topic detail page showing Catholic teaching on Creation and Evolution with scripture citation"></div>
+    <span class="badge live" style="margin-top:14px;align-self:flex-start;">Implemented</span>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">10a</div>
+</section>
+
+<!-- 11. OFFLINE FIRST -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Offline First</div>
+    <h1 class="title">Formation Should Not Depend on Internet Access</h1>
+    <div class="bar"></div>
+    <div class="two-col">
+      <div class="col content">
+        <p>iCFD is built as a <strong>Progressive Web App (PWA)</strong> with real offline capability — service worker caching, installable icon set, offline content access.</p>
+        <p><strong>Live demo:</strong></p>
+        <ol style="padding-left:22px;">
+          <li>Load content</li>
+          <li>Disable internet</li>
+          <li>Open previously downloaded content</li>
+          <li>Continue reading</li>
+        </ol>
+        <span class="badge live">Implemented</span>
+      </div>
+      <div class="col" style="display:flex;justify-content:center;">
+        <div class="imgcard" style="height:480px;width:auto;"><img src="assets/screenshots/topic-mobile.png" alt="iCFD topic page on a mobile-width viewport" style="height:480px;width:auto;object-fit:cover;object-position:top;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">11</div>
+</section>
+
+<!-- 12. FROM READING TO LEARNING -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">From Reading to Learning</div>
+    <h1 class="title" style="font-size:36px;">Reading Is Not the Same as Formation</h1>
+    <div class="bar" style="margin-bottom:16px;"></div>
+    <div class="content" style="font-size:17px;">
+      <ul style="columns:2;column-gap:40px;">
+        <li>Learning Paths</li><li>Course progression</li><li>Topic completion</li>
+        <li>Quizzes</li><li>Passing thresholds</li><li>Progress tracking</li><li>Certificates</li>
+      </ul>
+    </div>
+    <div class="flow" style="margin-top:14px;">
+      <div class="step" style="padding:10px 16px;font-size:16px;">Read</div><div class="arrow" style="font-size:18px;padding:0 8px;">→</div>
+      <div class="step" style="padding:10px 16px;font-size:16px;">Understand</div><div class="arrow" style="font-size:18px;padding:0 8px;">→</div>
+      <div class="step" style="padding:10px 16px;font-size:16px;">Test</div><div class="arrow" style="font-size:18px;padding:0 8px;">→</div>
+      <div class="step" style="padding:10px 16px;font-size:16px;">Progress</div><div class="arrow" style="font-size:18px;padding:0 8px;">→</div>
+      <div class="step" style="padding:10px 16px;font-size:16px;">Complete</div><div class="arrow" style="font-size:18px;padding:0 8px;">→</div>
+      <div class="step" style="padding:10px 16px;font-size:16px;background:var(--navy);color:#fff;">Certificate</div>
+    </div>
+    <span class="badge live" style="margin-top:14px;align-self:flex-start;">Implemented end-to-end — quiz completion auto-issues a certificate</span>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">12</div>
+</section>
+
+<!-- 13. CFD FORMATION -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">CFD Formation</div>
+    <h1 class="title" style="font-size:34px;">Bringing CFD Formation Into a Digital Experience</h1>
+    <div class="bar" style="margin-bottom:16px;"></div>
+    <div class="two-col">
+      <div class="col content" style="font-size:18px;">
+        <p style="margin-top:0;">The <strong>CFD Layman's Biblical Theology and Apologetics Course</strong> provides a structured formation framework with <strong>20 themes/topics</strong>.</p>
+        <div class="flow flow-v compact" style="flex-direction:column;align-items:flex-start;margin:10px 0;">
+          <div class="step">Course</div><div class="arrow">↓</div>
+          <div class="step">Topic</div><div class="arrow">↓</div>
+          <div class="step">Study Material</div><div class="arrow">↓</div>
+          <div class="step">Quiz</div><div class="arrow">↓</div>
+          <div class="step" style="background:var(--navy);color:#fff;">Certificate</div>
+        </div>
+        <div class="note" style="font-size:15px;padding:10px 14px;margin-top:10px;">The complete question bank is still being developed. This course is live in the product, but not every topic yet has a full quiz bank.</div>
+      </div>
+      <div class="col">
+        <div class="imgcard"><img src="assets/screenshots/paths.png" alt="Learning Paths page showing the Layman's Biblical Theology and Apologetics Course, 20 topics, 0% complete"></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">13</div>
+</section>
+
+<!-- 14. REFERENCE LIBRARY -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Catholic Reference Library</div>
+    <h1 class="title" style="font-size:36px;">A Central Place to Find the Sources</h1>
+    <div class="bar" style="margin-bottom:16px;"></div>
+    <div class="two-col">
+      <div class="col content" style="font-size:17px;">
+        <ul style="padding-left:20px;">
+          <li style="margin-bottom:6px;"><strong>Holy Bible</strong> — NABRE &amp; Douay-Rheims</li>
+          <li style="margin-bottom:6px;"><strong>Catechism of the Catholic Church</strong> — 2,865 paragraphs</li>
+          <li style="margin-bottom:6px;"><strong>Church documents</strong> — Vatican II constitutions &amp; encyclicals</li>
+          <li style="margin-bottom:6px;"><strong>General Instruction of the Roman Missal</strong></li>
+          <li style="margin-bottom:6px;"><strong>Code of Canon Law</strong></li>
+          <li style="margin-bottom:6px;"><strong>Church Fathers</strong> &amp; apologetics topics</li>
+        </ul>
+        <div class="quote" style="font-size:18px;margin-top:12px;">The goal is to connect sources to the topics being studied.</div>
+      </div>
+      <div class="col"><div class="imgcard"><img src="assets/screenshots/library.png" alt="Library page listing Bible, Catechism, and Church documents"></div></div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">14</div>
+</section>
+
+<!-- 15. ETYMOLOGY -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Theological Etymology</div>
+    <h1 class="title">Sometimes the Meaning Is in the Word</h1>
+    <div class="bar"></div>
+    <div class="grid3" style="margin-top:10px;">
+      <div class="card"><h4>ekklesia</h4><p>Greek → assembly, called-out ones → "Church"</p></div>
+      <div class="card"><h4>latria</h4><p>Worship due to God alone</p></div>
+      <div class="card"><h4>dulia</h4><p>Veneration given to saints</p></div>
+      <div class="card"><h4>Theotokos</h4><p>"God-bearer" — title of Mary</p></div>
+      <div class="card"><h4>kecharitomene</h4><p>"Full of grace" — Luke 1:28</p></div>
+    </div>
+    <p class="content" style="margin-top:20px;">The objective is to help the defender understand terminology behind theological arguments — not merely memorize conclusions.</p>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">15</div>
+</section>
+
+<!-- 16. CFD RESOURCES -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">CFD Resources</div>
+    <h1 class="title">From Personal Study to CFD Formation</h1>
+    <div class="bar"></div>
+    <div class="content">
+      <p>The platform can support:</p>
+      <ul>
+        <li>CFD members &amp; formation materials</li>
+        <li>Presentations &amp; apologetics resources</li>
+        <li>Learning paths &amp; certificates</li>
+        <li>User progress &amp; administrative content management</li>
+      </ul>
+    </div>
+    <div class="flow" style="margin-top:16px;">
+      <div class="step">Personal study tool</div><div class="arrow">→</div>
+      <div class="step" style="background:var(--navy);color:#fff;">CFD formation infrastructure</div>
+    </div>
+    <span class="badge partial" style="margin-top:14px;align-self:flex-start;">Partially implemented — foundations built, org-wide rollout is a direction, not a current state</span>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">16</div>
+</section>
+
+<!-- 17. ADMIN & ANALYTICS -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Administration &amp; Analytics</div>
+    <h1 class="title">If We Care About Formation, We Need Visibility</h1>
+    <div class="bar"></div>
+    <div class="two-col">
+      <div class="col content">
+        <ul>
+          <li>User management</li><li>Topic &amp; reference management</li>
+          <li>Learning paths &amp; quiz management</li><li>Certificates</li>
+          <li>Presentations</li><li>Activity &amp; learning analytics</li>
+        </ul>
+        <span class="badge live">Implemented</span>
+        <span class="badge partial">Geo-analytics dashboard: in active development</span>
+      </div>
+      <div class="col">
+        <div class="quote" style="font-size:20px;">What are members studying? Which topics are being completed? Where are learners struggling? Which materials are actually being used?</div>
+      </div>
+    </div>
+    <p class="content" style="font-size:19px;"><strong>The objective is formation insight, not surveillance.</strong></p>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">17</div>
+</section>
+
+<!-- 18. ARCHITECTURE -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Current Architecture</div>
+    <h1 class="title" style="font-size:36px;">How iCFD Works</h1>
+    <div class="bar"></div>
+    <div class="flow flow-v" style="flex-direction:column;align-items:flex-start;">
+      <div class="step">Users (web + installed PWA)</div><div class="arrow">↓</div>
+      <div class="step">iCFD Web App — Next.js, hosted on Vercel</div><div class="arrow">↓</div>
+      <div class="step">Backend — API routes on the same platform</div><div class="arrow">↓</div>
+      <div class="step" style="background:var(--navy);color:#fff;">Supabase — Database, Authentication, Storage</div>
+    </div>
+    <p class="content" style="font-size:18px;margin-top:14px;">Content domains stored in the database: Topics · Bible · Catechism · Canon Law · GIRM · Church Documents · Church Fathers · Learning Paths · Quizzes · Certificates · Users · Analytics.</p>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">18</div>
+</section>
+
+<!-- 19. WHY THIS ARCHITECTURE -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Why This Architecture</div>
+    <h1 class="title">Designed to Start Small and Scale With Evidence</h1>
+    <div class="bar"></div>
+    <div class="content">
+      <ul>
+        <li>Cloud-hosted, managed infrastructure — no servers to maintain ourselves</li>
+        <li>Progressive Web App — one codebase, works on any device, installable</li>
+        <li>Centralized database with authentication and file storage</li>
+        <li>Offline-capable client</li>
+        <li>Infrastructure that scales up only when usage requires it</li>
+      </ul>
+    </div>
+    <div class="quote">Do not pay for capacity we do not yet need.</div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">19</div>
+</section>
+
+<!-- 20. CURRENT COST -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Current Infrastructure Cost</div>
+    <h1 class="title">What Does It Cost Today?</h1>
+    <div class="bar"></div>
+    <div class="tablewrap">
+      <table>
+        <tr><th>Service</th><th>Current Plan</th><th style="text-align:right;">Cost</th></tr>
+        <tr><td>Vercel (hosting)</td><td>Free tier</td><td style="text-align:right;">₱0</td></tr>
+        <tr><td>Supabase (database, auth, storage)</td><td>Free tier</td><td style="text-align:right;">₱0</td></tr>
+        <tr><td>Domain</td><td>[INSERT CURRENT DOMAIN COST]</td><td style="text-align:right;">[INSERT ₱/year]</td></tr>
+        <tr><td>Other services</td><td>[INSERT IF ANY]</td><td style="text-align:right;">[INSERT ₱]</td></tr>
+        <tr><td><strong>Total recurring</strong></td><td></td><td style="text-align:right;"><strong>[INSERT ₱X]</strong></td></tr>
+      </table>
+    </div>
+    <div class="quote" style="font-size:20px;">The current deployment intentionally operates within free-tier infrastructure, appropriate for the current pilot and user base.</div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">20</div>
+</section>
+
+<!-- 21. WHEN DO WE UPGRADE -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">When Do We Upgrade?</div>
+    <h1 class="title" style="font-size:36px;">We Upgrade Based on Usage — Not the Calendar</h1>
+    <div class="bar"></div>
+    <div class="grid3">
+      <div class="card"><h4>Capacity</h4><p>Database/storage limits · Bandwidth · Function limits</p></div>
+      <div class="card"><h4>Usage</h4><p>Growing users · Concurrent usage · Increasing traffic</p></div>
+      <div class="card"><h4>Reliability</h4><p>Backup requirements · Monitoring · Availability</p></div>
+      <div class="card"><h4>Product growth</h4><p>Larger content library · Advanced analytics</p></div>
+      <div class="card"><h4>Organization</h4><p>Additional organizational features</p></div>
+    </div>
+    <div class="quote">Scale when the evidence says we need to scale.</div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">21</div>
+</section>
+
+<!-- 22. FUTURE COST MODEL -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Future Cost Model</div>
+    <h1 class="title">Scaling the Platform</h1>
+    <div class="bar"></div>
+    <div class="stagegrid">
+      <div class="stage"><span class="tag">Stage 1 — Current</span><h3>Pilot</h3>
+        <ul><li>Free/low-cost infrastructure</li><li>Validate concept</li><li>Build content</li><li>Measure adoption</li></ul></div>
+      <div class="stage"><span class="tag">Stage 2</span><h3>CFD Davao</h3>
+        <ul><li>More users</li><li>More content</li><li>More learning activity</li><li>Paid infrastructure where required</li></ul></div>
+      <div class="stage"><span class="tag">Stage 3</span><h3>Organization-Wide</h3>
+        <ul><li>Larger user base</li><li>Higher reliability requirements</li><li>More advanced administration</li><li>Infrastructure becomes an organizational investment</li></ul></div>
+    </div>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">22</div>
+</section>
+
+<!-- 23. ROADMAP -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">Roadmap</div>
+    <h1 class="title">Where iCFD Goes From Here</h1>
+    <div class="bar"></div>
+    <div class="flow flow-v" style="flex-direction:column;align-items:flex-start;">
+      <div class="step" style="background:var(--navy);color:#fff;">TODAY — Digital Library + Apologetics</div><div class="arrow">↓</div>
+      <div class="step">Guided Learning</div><div class="arrow">↓</div>
+      <div class="step">Quizzes + Certification</div><div class="arrow">↓</div>
+      <div class="step">CFD Chapter Formation Support</div><div class="arrow">↓</div>
+      <div class="step" style="background:var(--gold);color:var(--navy);">Organization-Wide Formation Platform</div>
+    </div>
+    <p class="content" style="font-size:18px;margin-top:10px;">Everything below "Today" is described as a <strong>planned direction</strong>, not an existing feature.</p>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">23</div>
+</section>
+
+<!-- 24. WHAT ICFD IS NOT -->
+<section class="slide">
+  <div class="pad">
+    <div class="kicker">What iCFD Is Not</div>
+    <h1 class="title">iCFD Does Not Replace the Church</h1>
+    <div class="bar"></div>
+    <div class="content">
+      <p>It does not replace:</p>
+      <div class="grid3">
+        <div class="card"><h4>Priests</h4></div>
+        <div class="card"><h4>Catechists</h4></div>
+        <div class="card"><h4>CFD leaders</h4></div>
+        <div class="card"><h4>Personal formation</h4></div>
+        <div class="card"><h4>Parish communities</h4></div>
+        <div class="card"><h4>The Magisterium</h4></div>
+      </div>
+    </div>
+    <div class="quote">Technology should serve formation — not replace it.</div>
+    <p class="content" style="font-size:18px;">iCFD is a tool for formation and access to Catholic resources. It does not replace the teaching authority of the Church or formation provided by priests, catechists, and CFD leaders.</p>
+  </div>
+  <div class="footer-tag">iCFD · Board of Governors</div>
+  <div class="pagenum">24</div>
+</section>
+
+<!-- 25. CLOSING -->
+<section class="slide cover center-slide">
+  <div class="pad" style="align-items:center;text-align:center;">
+    <h1 class="title" style="color:#fff;">A Tool to Support Our Educators</h1>
+    <div class="quote" style="color:#e7e9f2;border-left-color:var(--gold);font-size:19px;max-width:820px;text-align:left;">
+      iCFD gives our educators a focused way to bring good, guided content to CFD members — a new way of teaching, not a replacement for it.<br><br>
+      It also gives us something we've never had: a simple, data-driven way to see how well members are actually learning.
+    </div>
+    <p style="color:#c9d3ea;font-size:18px;max-width:700px;margin-top:26px;">I would now like to open the floor for questions, recommendations, and guidance from the Board.</p>
+  </div>
+  <div class="pagenum" style="color:#c9d3ea;">25</div>
+</section>
+
+</div>
+</body>
+</html>
