@@ -7,6 +7,7 @@ import type { Topic, Category } from '@/data/schema/topic.schema'
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { isSupabaseConfigured } from '@/lib/supabase/client'
+import { CATEGORY_GRADIENTS, categoryImageUrl } from '@/lib/content/categoryVisuals'
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? ''
@@ -39,34 +40,8 @@ const LABELS: Record<Category, string> = {
   salvation: 'Salvation',
 }
 
-// Gradient fallback shown while/if the Unsplash image fails to load
-const GRADIENTS: Record<Category, string> = {
-  bible:            'linear-gradient(135deg,#1e3a5f,#2563eb)',
-  'church-teaching':'linear-gradient(135deg,#1e3a5f,#7c3aed)',
-  mary:             'linear-gradient(135deg,#701a75,#c026d3)',
-  tradition:        'linear-gradient(135deg,#713f12,#d97706)',
-  saints:           'linear-gradient(135deg,#14532d,#16a34a)',
-  papacy:           'linear-gradient(135deg,#1e3a5f,#0891b2)',
-  sacraments:       'linear-gradient(135deg,#0c4a6e,#06b6d4)',
-  salvation:        'linear-gradient(135deg,#7f1d1d,#dc2626)',
-}
-
-// Curated Unsplash photos — one per category
-// URL: https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&q=80
-const UNSPLASH_IDS: Record<Category, string> = {
-  bible:            '1504052434569-70ad5836ab65',
-  'church-teaching':'1548625149-720f618c04cb',
-  mary:             '1544761634-dc512f2238a3',
-  tradition:        '1509023464322-41a1e1f09a50',
-  saints:           '1548164557-fd01dc0e7485',
-  papacy:           '1531572753322-ad063cecc140',
-  sacraments:       '1547592180-85f173990554',
-  salvation:        '1499209974431-9dddcece7f88',
-}
-
-function imageUrl(category: Category): string {
-  return `https://images.unsplash.com/photo-${UNSPLASH_IDS[category]}?w=800&auto=format&fit=crop&q=80`
-}
+const GRADIENTS = CATEGORY_GRADIENTS
+const imageUrl = categoryImageUrl
 
 // ── Deterministic daily selection ─────────────────────────────────────────────
 
@@ -103,6 +78,8 @@ function getDailyPicks(topics: Topic[]): Topic[] {
 // ── Slide ─────────────────────────────────────────────────────────────────────
 
 function Slide({ topic, active }: { topic: Topic; active: boolean }) {
+  const [imgFailed, setImgFailed] = useState(false)
+
   return (
     <div
       aria-hidden={!active}
@@ -118,14 +95,17 @@ function Slide({ topic, active }: { topic: Topic; active: boolean }) {
       />
 
       {/* Topic-specific or category-level photo */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={topic.coverImage ?? imageUrl(topic.category)}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
+      {!imgFailed && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={topic.coverImage ?? imageUrl(topic.category)}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+          onError={() => setImgFailed(true)}
+        />
+      )}
 
       {/* Dark scrim — bottom-heavy so text is always readable */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
