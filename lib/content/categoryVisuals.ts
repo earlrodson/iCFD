@@ -12,19 +12,19 @@ export const CATEGORY_GRADIENTS: Record<Category, string> = {
   salvation:        'linear-gradient(135deg,#7f1d1d,#dc2626)',
 }
 
-// Curated Unsplash photos — one per category
-// URL: https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&q=80
-const UNSPLASH_IDS: Record<Category, string> = {
+// Curated Unsplash photos — one per category, only once verified to actually
+// depict the category (a live 200 isn't enough proof — mary/sacraments/saints
+// previously pointed at a real, loading photo of the wrong subject entirely).
+// Categories missing here fall back to the gradient above until replaced.
+const UNSPLASH_IDS: Partial<Record<Category, string>> = {
   bible:            '1504052434569-70ad5836ab65',
   'church-teaching':'1438032005730-c779502df39b',
-  mary:             '1544761634-dc512f2238a3',
   tradition:        '1520769945061-0a448c463865',
-  saints:           '1548164557-fd01dc0e7485',
   papacy:           '1531572753322-ad063cecc140',
-  sacraments:       '1547592180-85f173990554',
   salvation:        '1499209974431-9dddcece7f88',
 }
 
-export function categoryImageUrl(category: Category, width = 800): string {
-  return `https://images.unsplash.com/photo-${UNSPLASH_IDS[category]}?w=${width}&auto=format&fit=crop&q=80`
+export function categoryImageUrl(category: Category, width = 800): string | undefined {
+  const id = UNSPLASH_IDS[category]
+  return id ? `https://images.unsplash.com/photo-${id}?w=${width}&auto=format&fit=crop&q=80` : undefined
 }
