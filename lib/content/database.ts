@@ -1,5 +1,5 @@
 import {
-  HandbookContentSchema,
+  TopicSchema,
   type HandbookContent,
   type Language,
   type Topic,
@@ -279,6 +279,43 @@ async function fetchKeyTerms(topicId: string): Promise<Term[]> {
   }
 }
 
+// ── Cross-translation cover image fallback ────────────────────────────────────
+
+interface CoverImageRow {
+  id: string
+  cover_image: string | null
+}
+
+// `cover_image` is set per (id, lang) row, so a machine-translated row often
+// lacks the upload a sibling translation has. Fetch any translation's image
+// for the given ids so callers can fill in gaps instead of showing nothing.
+async function fetchCoverImageFallbacks(ids: string[]): Promise<Map<string, string>> {
+  if (ids.length === 0) return new Map()
+  const rows = await restFetch<CoverImageRow>(
+    'topics',
+    new URLSearchParams({
+      id: `in.(${ids.join(',')})`,
+      cover_image: 'not.is.null',
+      select: 'id,cover_image',
+    }),
+  )
+  const map = new Map<string, string>()
+  for (const row of rows) {
+    if (!map.has(row.id) && row.cover_image) map.set(row.id, row.cover_image)
+  }
+  return map
+}
+
+async function applyCoverImageFallbacks(topics: Topic[]): Promise<void> {
+  const missingIds = topics.filter(t => !t.coverImage).map(t => t.id)
+  if (missingIds.length === 0) return
+  const fallbacks = await fetchCoverImageFallbacks(missingIds)
+  for (const topic of topics) {
+    const fallback = fallbacks.get(topic.id)
+    if (!topic.coverImage && fallback) topic.coverImage = fallback
+  }
+}
+
 // ── Topic fetchers ────────────────────────────────────────────────────────────
 
 const TOPIC_SELECT = [
@@ -307,7 +344,20 @@ export async function loadTopicsFromDatabase(lang: Language): Promise<HandbookCo
   const rows = await fetchTopicRows(params)
   if (!rows?.length) return null
   const refs = await resolveRefs(rows)
-  return HandbookContentSchema.parse({ topics: rows.map(r => topicRowToTopic(r, refs)) })
+  const topics = rows.map(r => topicRowToTopic(r, refs))
+  await applyCoverImageFallbacks(topics)
+
+  // Validate row-by-row: one malformed topic (e.g. a bad enum value) must not
+  // take down every topic in every language by failing a whole-array parse.
+  const validTopics = topics.flatMap((topic) => {
+    const parsed = TopicSchema.safeParse(topic)
+    if (!parsed.success) {
+      console.warn(`Dropping invalid topic "${topic.id}" (${lang}):`, parsed.error)
+      return []
+    }
+    return [parsed.data]
+  })
+  return { topics: validTopics }
 }
 
 export async function loadTopicFromDatabase(
@@ -333,6 +383,7 @@ export async function loadTopicFromDatabase(
   const topic = topicRowToTopic(row, refs)
   topic.documentRefs = documentRefs.length ? documentRefs : undefined
   topic.keyTerms = keyTerms.length ? keyTerms : undefined
+  await applyCoverImageFallbacks([topic])
   // topic.lang !== requested lang tells the caller a fallback occurred
   return topic
 }

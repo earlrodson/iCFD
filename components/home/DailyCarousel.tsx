@@ -55,9 +55,9 @@ const GRADIENTS: Record<Category, string> = {
 // URL: https://images.unsplash.com/photo-{id}?w=800&auto=format&fit=crop&q=80
 const UNSPLASH_IDS: Record<Category, string> = {
   bible:            '1504052434569-70ad5836ab65',
-  'church-teaching':'1548625149-720f618c04cb',
+  'church-teaching':'1438032005730-c779502df39b',
   mary:             '1544761634-dc512f2238a3',
-  tradition:        '1509023464322-41a1e1f09a50',
+  tradition:        '1520769945061-0a448c463865',
   saints:           '1548164557-fd01dc0e7485',
   papacy:           '1531572753322-ad063cecc140',
   sacraments:       '1547592180-85f173990554',
@@ -103,6 +103,8 @@ function getDailyPicks(topics: Topic[]): Topic[] {
 // ── Slide ─────────────────────────────────────────────────────────────────────
 
 function Slide({ topic, active }: { topic: Topic; active: boolean }) {
+  const [imgFailed, setImgFailed] = useState(false)
+
   return (
     <div
       aria-hidden={!active}
@@ -118,14 +120,17 @@ function Slide({ topic, active }: { topic: Topic; active: boolean }) {
       />
 
       {/* Topic-specific or category-level photo */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={topic.coverImage ?? imageUrl(topic.category)}
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
+      {!imgFailed && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={topic.coverImage ?? imageUrl(topic.category)}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+          onError={() => setImgFailed(true)}
+        />
+      )}
 
       {/* Dark scrim — bottom-heavy so text is always readable */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
