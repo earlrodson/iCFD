@@ -14,21 +14,35 @@ async function requireAdmin() {
   return user
 }
 
-// PATCH /api/admin/users — set is_cfd_member for a given user
+// PATCH /api/admin/users — set is_cfd_member and/or chapter_id for a given user
 export async function PATCH(req: NextRequest) {
   const admin = await requireAdmin()
   if (!admin) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
 
   const body = await req.json()
-  const { user_id, is_cfd_member } = body as { user_id?: string; is_cfd_member?: boolean }
+  const { user_id, is_cfd_member, chapter_id } = body as {
+    user_id?: string
+    is_cfd_member?: boolean
+    chapter_id?: string | null
+  }
   if (!user_id?.trim()) return NextResponse.json({ error: 'user_id is required' }, { status: 400 })
-  if (typeof is_cfd_member !== 'boolean') {
+  if (is_cfd_member === undefined && chapter_id === undefined) {
+    return NextResponse.json({ error: 'is_cfd_member or chapter_id is required' }, { status: 400 })
+  }
+  if (is_cfd_member !== undefined && typeof is_cfd_member !== 'boolean') {
     return NextResponse.json({ error: 'is_cfd_member must be a boolean' }, { status: 400 })
+  }
+  if (chapter_id !== undefined && chapter_id !== null && typeof chapter_id !== 'string') {
+    return NextResponse.json({ error: 'chapter_id must be a string or null' }, { status: 400 })
   }
 
   const db = createAdminClient()
   const { error } = await db.from('user_settings').upsert(
-    { user_id, is_cfd_member },
+    {
+      user_id,
+      ...(is_cfd_member !== undefined ? { is_cfd_member } : {}),
+      ...(chapter_id !== undefined ? { chapter_id } : {}),
+    },
     { onConflict: 'user_id' },
   )
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
