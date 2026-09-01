@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo, useRef } from 'react'
-import { Trash, ShieldStar, ShieldCheck, PencilSimple, CaretLeft, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard, DotsThreeVertical } from '@phosphor-icons/react'
+import { Trash, ShieldStar, ShieldCheck, PencilSimple, CaretLeft, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard, DotsThreeVertical, Buildings } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
 import { useAdminRole } from '@/app/admin/role-context'
@@ -14,7 +14,12 @@ interface UserRow {
   last_sign_in_at: string | null
   role: 'admin' | 'editor' | 'presenter' | 'superadmin' | null   // null = regular user, no admin access
   is_cfd_member: boolean
+  chapter_id: string | null
+  chapter_name: string | null
 }
+
+interface DioceseRow { id: string; name: string }
+interface ChapterRow { id: string; name: string; type: 'parish' | 'school'; diocese_id: string }
 
 const ROLE_LABELS: Record<string, string> = {
   admin:      'Admin',
@@ -74,7 +79,10 @@ export default function AdminUsersPage() {
   const [grantingId, setGrantingId]   = useState<string | null>(null)
   const [resettingId, setResettingId] = useState<string | null>(null)
   const [togglingId, setTogglingId]   = useState<string | null>(null)
-  const [openMenu, setOpenMenu] = useState<{ id: string; view: 'main' | 'role' } | null>(null)
+  const [assigningChapterId, setAssigningChapterId] = useState<string | null>(null)
+  const [dioceses, setDioceses] = useState<DioceseRow[]>([])
+  const [chapters, setChapters] = useState<ChapterRow[]>([])
+  const [openMenu, setOpenMenu] = useState<{ id: string; view: 'main' | 'role' | 'chapter' } | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -101,6 +109,8 @@ export default function AdminUsersPage() {
   useEffect(() => {
     getSession().then((s) => setCurrentUserId(s?.user.id ?? null))
     loadUsers()
+    fetch('/api/admin/dioceses').then((r) => r.ok ? r.json() : []).then(setDioceses).catch(() => {})
+    fetch('/api/admin/chapters').then((r) => r.ok ? r.json() : []).then(setChapters).catch(() => {})
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -171,6 +181,24 @@ export default function AdminUsersPage() {
       await loadUsers()
     }
     setTogglingId(null)
+  }
+
+  async function assignChapter(user: UserRow, chapterId: string | null) {
+    setAssigningChapterId(user.id)
+    const res = await fetch('/api/admin/users', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id, chapter_id: chapterId }),
+    })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      flash('Could not update chapter: ' + (data.error ?? res.statusText), 'err')
+    } else {
+      const chapterName = chapterId ? chapters.find((c) => c.id === chapterId)?.name : null
+      flash(chapterName ? `Assigned ${user.email} to ${chapterName}.` : `Cleared ${user.email}'s chapter.`)
+      await loadUsers()
+    }
+    setAssigningChapterId(null)
   }
 
   async function revokeRole(user: UserRow) {
@@ -330,6 +358,7 @@ export default function AdminUsersPage() {
                     {u.last_sign_in_at && (
                       <> · Last seen {new Date(u.last_sign_in_at).toLocaleDateString()}</>
                     )}
+                    {u.chapter_name && <> · {u.chapter_name}</>}
                   </p>
                 </div>
 
@@ -370,6 +399,11 @@ export default function AdminUsersPage() {
                             loading={resettingId === u.id}
                             onClick={() => { setOpenMenu(null); sendPasswordReset(u) }}
                           />
+                          <MenuItem
+                            icon={Buildings}
+                            label={u.chapter_name ? 'Change chapter' : 'Assign chapter'}
+                            onClick={() => setOpenMenu({ id: u.id, view: 'chapter' })}
+                          />
                           {u.id !== currentUserId && (
                             <MenuItem
                               icon={PencilSimple}
@@ -386,7 +420,7 @@ export default function AdminUsersPage() {
                             />
                           )}
                         </>
-                      ) : (
+                      ) : openMenu.view === 'role' ? (
                         <>
                           <button
                             onClick={() => setOpenMenu({ id: u.id, view: 'main' })}
@@ -406,6 +440,38 @@ export default function AdminUsersPage() {
                             />
                           ))}
                         </>
+                      ) : (
+                        <div className="p-2">
+                          <button
+                            onClick={() => setOpenMenu({ id: u.id, view: 'main' })}
+                            className="mb-2 flex w-full items-center gap-2 text-left text-[11px] font-medium text-muted-foreground hover:text-foreground transition-colors"
+                          >
+                            <CaretLeft weight="bold" size={11} /> Back
+                          </button>
+                          <select
+                            defaultValue={u.chapter_id ?? ''}
+                            disabled={assigningChapterId === u.id}
+                            onChange={(e) => {
+                              const value = e.target.value || null
+                              setOpenMenu(null)
+                              assignChapter(u, value)
+                            }}
+                            className="w-full rounded-lg border border-border bg-card px-2 py-1.5 text-[12px] text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                          >
+                            <option value="">No chapter</option>
+                            {dioceses.map((d) => {
+                              const chaptersInDiocese = chapters.filter((c) => c.diocese_id === d.id)
+                              if (chaptersInDiocese.length === 0) return null
+                              return (
+                                <optgroup key={d.id} label={d.name}>
+                                  {chaptersInDiocese.map((c) => (
+                                    <option key={c.id} value={c.id}>{c.name}</option>
+                                  ))}
+                                </optgroup>
+                              )
+                            })}
+                          </select>
+                        </div>
                       )}
                     </div>
                   )}

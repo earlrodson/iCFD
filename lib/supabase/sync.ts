@@ -172,22 +172,51 @@ export interface UserProfile {
   mobile_number: string | null
   avatar_url: string | null
   is_cfd_member: boolean
+  // chapter/diocese/chapter_id are admin-set only (see
+  // supabase/migrations/20260901080000_user_settings_admin_only_membership_fields.sql)
+  // and connected/displayed here, never edited from the profile form.
   chapter: string | null
   diocese: string | null
+  chapter_id: string | null
   cfd_id_image_path: string | null
   membership_date: string | null
   membership_expiration: string | null
 }
 
+export interface ChapterWithDiocese {
+  id: string
+  name: string
+  diocese: { id: string; name: string } | null
+}
+
 export async function fetchProfileFromCloud(userId: string): Promise<UserProfile | null> {
   const { data, error } = await createClient()
     .from('user_settings')
-    .select('first_name, last_name, age, location, certifications, mobile_number, avatar_url, is_cfd_member, chapter, diocese, cfd_id_image_path, membership_date, membership_expiration')
+    .select('first_name, last_name, age, location, certifications, mobile_number, avatar_url, is_cfd_member, chapter, diocese, chapter_id, cfd_id_image_path, membership_date, membership_expiration')
     .eq('user_id', userId)
     .single()
 
   if (error) return null
   return data
+}
+
+// Chapters/dioceses have open SELECT RLS (needed for org pickers), so this
+// reads directly with the session client rather than an admin API route.
+export async function fetchChapterWithDiocese(chapterId: string): Promise<ChapterWithDiocese | null> {
+  const { data, error } = await createClient()
+    .from('chapters')
+    .select('id, name, dioceses(id, name)')
+    .eq('id', chapterId)
+    .single()
+
+  if (error || !data) return null
+  // Supabase's generated types mark this embed as an array (the FK column
+  // isn't unique on the chapters side), even though id is a PK match — it's
+  // always exactly one row here.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const row = data as any
+  const diocese = Array.isArray(row.dioceses) ? row.dioceses[0] : row.dioceses
+  return { id: row.id, name: row.name, diocese: diocese ?? null }
 }
 
 export async function saveProfileToCloud(
@@ -199,8 +228,6 @@ export async function saveProfileToCloud(
     location: string | null
     certifications: string[]
     mobile_number: string | null
-    chapter: string | null
-    diocese: string | null
   }>,
 ) {
   const { error } = await createClient()

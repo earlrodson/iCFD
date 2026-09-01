@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { User, PencilSimple, Check, X, Camera, IdentificationCard, ShieldStar } from '@phosphor-icons/react'
-import { saveProfileToCloud, type UserProfile } from '@/lib/supabase/sync'
+import { saveProfileToCloud, fetchChapterWithDiocese, type UserProfile, type ChapterWithDiocese } from '@/lib/supabase/sync'
 import type { User as SupabaseUser } from '@/lib/supabase/auth'
 import { parseJsonResponse } from '@/lib/utils'
 
@@ -19,8 +19,6 @@ interface FormState {
   location: string
   certifications: string
   mobile_number: string
-  chapter: string
-  diocese: string
 }
 
 function toFormState(profile: UserProfile | null): FormState {
@@ -31,8 +29,6 @@ function toFormState(profile: UserProfile | null): FormState {
     location: profile?.location ?? '',
     certifications: (profile?.certifications ?? []).join(', '),
     mobile_number: profile?.mobile_number ?? '',
-    chapter: profile?.chapter ?? '',
-    diocese: profile?.diocese ?? '',
   }
 }
 
@@ -49,6 +45,7 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
   const [avatarUploading, setAvatarUploading] = useState(false)
   const [cfdIdUploading, setCfdIdUploading] = useState(false)
   const [cfdIdSignedUrl, setCfdIdSignedUrl] = useState<string | null>(null)
+  const [chapterInfo, setChapterInfo] = useState<ChapterWithDiocese | null>(null)
   const avatarInputRef = useRef<HTMLInputElement>(null)
   const cfdIdInputRef = useRef<HTMLInputElement>(null)
 
@@ -63,6 +60,13 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
       .then((d) => setCfdIdSignedUrl(d.signed_url ?? null))
       .catch(() => setCfdIdSignedUrl(null))
   }, [profile?.is_cfd_member, profile?.cfd_id_image_path])
+
+  // Chapter/diocese are admin-assigned only — resolved here from chapter_id
+  // for read-only display, never editable from this form.
+  useEffect(() => {
+    if (!profile?.chapter_id) { setChapterInfo(null); return }
+    fetchChapterWithDiocese(profile.chapter_id).then(setChapterInfo)
+  }, [profile?.chapter_id])
 
   function updateField<K extends keyof FormState>(key: K, value: FormState[K]) {
     setForm((f) => ({ ...f, [key]: value }))
@@ -89,9 +93,6 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
         location: form.location.trim() || null,
         certifications,
         mobile_number: form.mobile_number.trim() || null,
-        ...(profile?.is_cfd_member
-          ? { chapter: form.chapter.trim() || null, diocese: form.diocese.trim() || null }
-          : {}),
       }
 
       await saveProfileToCloud(user.id, fields)
@@ -251,22 +252,11 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
           />
 
           {profile?.is_cfd_member && (
-            <div className="rounded-xl border border-border p-3 space-y-3">
+            <div className="rounded-xl border border-border p-3">
               <p className="text-xs font-semibold text-muted-foreground">CFD Membership</p>
-              <div className="grid grid-cols-2 gap-3">
-                <input
-                  value={form.chapter}
-                  onChange={(e) => updateField('chapter', e.target.value)}
-                  placeholder="Chapter"
-                  className="rounded-xl bg-muted border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary"
-                />
-                <input
-                  value={form.diocese}
-                  onChange={(e) => updateField('diocese', e.target.value)}
-                  placeholder="Diocese"
-                  className="rounded-xl bg-muted border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-primary"
-                />
-              </div>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Chapter and diocese are assigned by an admin and can&apos;t be edited here.
+              </p>
             </div>
           )}
 
@@ -312,8 +302,8 @@ export function ProfileEditor({ user, profile, onProfileChange }: ProfileEditorP
             <ShieldStar weight="fill" size={13} className="text-primary" /> CFD Membership
           </p>
           <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm">
-            <ProfileField label="Chapter" value={profile.chapter} />
-            <ProfileField label="Diocese" value={profile.diocese} />
+            <ProfileField label="Chapter" value={chapterInfo?.name} />
+            <ProfileField label="Diocese" value={chapterInfo?.diocese?.name} />
             <ProfileField label="Member since" value={formatDate(profile.membership_date)} />
             <ProfileField label="Expires" value={formatDate(profile.membership_expiration)} />
           </div>
