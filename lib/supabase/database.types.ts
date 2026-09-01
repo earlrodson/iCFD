@@ -38,6 +38,66 @@ export type Database = {
         }
         Relationships: []
       }
+      board_members: {
+        Row: {
+          chapter_id: string | null
+          created_at: string
+          diocese_id: string | null
+          id: string
+          level: string
+          office: string | null
+          user_id: string
+        }
+        Insert: {
+          chapter_id?: string | null
+          created_at?: string
+          diocese_id?: string | null
+          id?: string
+          level: string
+          office?: string | null
+          user_id: string
+        }
+        Update: {
+          chapter_id?: string | null
+          created_at?: string
+          diocese_id?: string | null
+          id?: string
+          level?: string
+          office?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "board_members_chapter_id_fkey"
+            columns: ["chapter_id"]
+            isOneToOne: false
+            referencedRelation: "chapters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "board_members_diocese_id_fkey"
+            columns: ["diocese_id"]
+            isOneToOne: false
+            referencedRelation: "dioceses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      board_seat_limits: {
+        Row: {
+          level: string
+          max_seats: number
+        }
+        Insert: {
+          level: string
+          max_seats: number
+        }
+        Update: {
+          level?: string
+          max_seats?: number
+        }
+        Relationships: []
+      }
       canons: {
         Row: {
           book: string | null
@@ -182,6 +242,38 @@ export type Database = {
           },
         ]
       }
+      chapters: {
+        Row: {
+          created_at: string
+          diocese_id: string
+          id: string
+          name: string
+          type: string
+        }
+        Insert: {
+          created_at?: string
+          diocese_id: string
+          id?: string
+          name: string
+          type: string
+        }
+        Update: {
+          created_at?: string
+          diocese_id?: string
+          id?: string
+          name?: string
+          type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "chapters_diocese_id_fkey"
+            columns: ["diocese_id"]
+            isOneToOne: false
+            referencedRelation: "dioceses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       church_document_meta: {
         Row: {
           author: string | null
@@ -306,6 +398,24 @@ export type Database = {
           },
         ]
       }
+      dioceses: {
+        Row: {
+          created_at: string
+          id: string
+          name: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          name: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          name?: string
+        }
+        Relationships: []
+      }
       favorites: {
         Row: {
           added_at: string
@@ -361,14 +471,14 @@ export type Database = {
         }
         Insert: {
           created_at?: string
-          id?: number
+          id?: never
           name: string
           sort_order?: number
           years: string
         }
         Update: {
           created_at?: string
-          id?: number
+          id?: never
           name?: string
           sort_order?: number
           years?: string
@@ -389,7 +499,7 @@ export type Database = {
           body: string
           created_at?: string
           icon?: string
-          id?: number
+          id?: never
           sort_order?: number
           title: string
           year: string
@@ -398,7 +508,7 @@ export type Database = {
           body?: string
           created_at?: string
           icon?: string
-          id?: number
+          id?: never
           sort_order?: number
           title?: string
           year?: string
@@ -1015,6 +1125,7 @@ export type Database = {
           certifications: string[] | null
           cfd_id_image_path: string | null
           chapter: string | null
+          chapter_id: string | null
           diocese: string | null
           first_name: string | null
           font_size: string
@@ -1036,6 +1147,7 @@ export type Database = {
           certifications?: string[] | null
           cfd_id_image_path?: string | null
           chapter?: string | null
+          chapter_id?: string | null
           diocese?: string | null
           first_name?: string | null
           font_size?: string
@@ -1057,6 +1169,7 @@ export type Database = {
           certifications?: string[] | null
           cfd_id_image_path?: string | null
           chapter?: string | null
+          chapter_id?: string | null
           diocese?: string | null
           first_name?: string | null
           font_size?: string
@@ -1071,7 +1184,15 @@ export type Database = {
           updated_at?: string
           user_id?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "user_settings_chapter_id_fkey"
+            columns: ["chapter_id"]
+            isOneToOne: false
+            referencedRelation: "chapters"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       view_history: {
         Row: {
@@ -1102,9 +1223,12 @@ export type Database = {
       get_all_users: {
         Args: never
         Returns: {
+          chapter_id: string
+          chapter_name: string
           created_at: string
           email: string
           id: string
+          is_cfd_member: boolean
           last_sign_in_at: string
           role: string
         }[]

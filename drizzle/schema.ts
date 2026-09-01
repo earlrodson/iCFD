@@ -399,6 +399,7 @@ export const userSettings = pgTable('user_settings', {
   is_cfd_member: boolean('is_cfd_member').default(false).notNull(),
   chapter: text('chapter'),
   diocese: text('diocese'),
+  chapter_id: uuid('chapter_id'),
   cfd_id_image_path: text('cfd_id_image_path'),
   membership_date: date('membership_date'),
   membership_expiration: date('membership_expiration'),
@@ -593,6 +594,66 @@ export const admins = pgTable('admins', {
     .notNull(),
 })
 
+// ── Org structure: National -> Diocese -> Chapter, boards & officers ────────
+
+/**
+ * A diocese. Direct parent of chapters; the single National level is
+ * implicit (not a row here).
+ */
+export const dioceses = pgTable('dioceses', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  name: text('name').notNull(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+/** A Parish or School chapter, belonging to exactly one diocese. */
+export const chapters = pgTable('chapters', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  name: text('name').notNull(),
+  type: text('type').notNull().$type<'parish' | 'school'>(),
+  diocese_id: uuid('diocese_id').notNull(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+export const BOARD_LEVELS = ['national', 'diocese', 'chapter'] as const
+export type BoardLevel = typeof BOARD_LEVELS[number]
+
+/** Admin-configurable max board seats per level (not per org-unit instance). */
+export const boardSeatLimits = pgTable('board_seat_limits', {
+  level: text('level').primaryKey().$type<BoardLevel>(),
+  max_seats: integer('max_seats').notNull(),
+})
+
+export const OFFICES = [
+  'spiritual_adviser', 'theological_adviser', 'adviser', 'president',
+  'internal_vice_president', 'external_vice_president', 'secretary',
+  'treasurer', 'auditor', 'pio',
+] as const
+export type Office = typeof OFFICES[number]
+
+/**
+ * Board membership at a given level/org unit, with an optional officer
+ * title on the same row — assigning an office requires the row (i.e. board
+ * membership) to already exist.
+ */
+export const boardMembers = pgTable('board_members', {
+  id: uuid('id').primaryKey().default(sql`gen_random_uuid()`),
+  level: text('level').notNull().$type<BoardLevel>(),
+  diocese_id: uuid('diocese_id'),
+  chapter_id: uuid('chapter_id'),
+  user_id: uuid('user_id').notNull(),
+  office: text('office').$type<Office | null>(),
+  created_at: timestamp('created_at', { withTimezone: true })
+    .default(sql`now()`)
+    .notNull(),
+})
+
+// ── Admin & moderation tables ─────────────────────────────────────────────────
+
 /**
  * Per-topic slide decks, generated offline and rendered dynamically by a
  * client-side viewer. Viewing is restricted to CFD members via RLS; writes
@@ -694,6 +755,10 @@ export type TopicDocumentRefRow = typeof topicDocumentRefs.$inferSelect
 export type TheologicalTermRow = typeof theologicalTerms.$inferSelect
 export type TopicTermRow = typeof topicTerms.$inferSelect
 export type AdminRow = typeof admins.$inferSelect
+export type DioceseRow = typeof dioceses.$inferSelect
+export type ChapterRow = typeof chapters.$inferSelect
+export type BoardSeatLimitRow = typeof boardSeatLimits.$inferSelect
+export type BoardMemberRow = typeof boardMembers.$inferSelect
 export type PresentationRow = typeof presentations.$inferSelect
 export type PresentationInsert = typeof presentations.$inferInsert
 export type SubmissionRow = typeof submissions.$inferSelect
