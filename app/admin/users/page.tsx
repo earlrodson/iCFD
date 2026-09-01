@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
-import { Trash, ShieldStar, PencilSimple, Check, X, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard } from '@phosphor-icons/react'
+import { useEffect, useState, useMemo, useRef } from 'react'
+import { Trash, ShieldStar, ShieldCheck, PencilSimple, CaretLeft, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard, DotsThreeVertical } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
 import { useAdminRole } from '@/app/admin/role-context'
@@ -12,20 +12,53 @@ interface UserRow {
   email: string
   created_at: string
   last_sign_in_at: string | null
-  role: 'admin' | 'editor' | 'presenter' | null   // null = regular user, no admin access
+  role: 'admin' | 'editor' | 'presenter' | 'superadmin' | null   // null = regular user, no admin access
   is_cfd_member: boolean
 }
 
 const ROLE_LABELS: Record<string, string> = {
-  admin:     'Admin',
-  editor:    'Editor',
-  presenter: 'Presenter',
+  admin:      'Admin',
+  editor:     'Editor',
+  presenter:  'Presenter',
+  superadmin: 'Superadmin',
 }
 
 const ROLE_COLORS: Record<string, string> = {
-  admin:     'bg-primary/10 text-primary',
-  editor:    'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
-  presenter: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
+  admin:      'bg-primary/10 text-primary',
+  editor:     'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
+  presenter:  'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
+  superadmin: 'bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300',
+}
+
+function MenuItem({
+  icon: Icon, label, onClick, loading, danger, active,
+}: {
+  icon?: React.ComponentType<{ weight?: 'light' | 'bold' | 'fill'; size?: number; className?: string }>
+  label: string
+  onClick: () => void
+  loading?: boolean
+  danger?: boolean
+  active?: boolean
+}) {
+  return (
+    <button
+      onClick={onClick}
+      disabled={loading}
+      className={cn(
+        'flex w-full items-center gap-2.5 px-3 py-2 text-left text-[13px] transition-colors disabled:opacity-50',
+        danger
+          ? 'text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20'
+          : 'text-foreground hover:bg-muted',
+        active && 'font-semibold',
+      )}
+    >
+      {loading
+        ? <div className="h-3.5 w-3.5 shrink-0 animate-spin rounded-full border-2 border-current border-t-transparent" />
+        : Icon && <Icon weight="light" size={14} className="shrink-0" />
+      }
+      {label}
+    </button>
+  )
 }
 
 export default function AdminUsersPage() {
@@ -35,13 +68,23 @@ export default function AdminUsersPage() {
   const [loading, setLoading]   = useState(true)
   const [search, setSearch]     = useState('')
   const [filterRole, setFilterRole] = useState<'' | 'admin' | 'editor' | 'presenter' | 'user'>('')
+  const [filterCfd, setFilterCfd] = useState<'' | 'cfd' | 'non-cfd'>('')
   const [msg, setMsg]           = useState('')
   const [msgType, setMsgType]   = useState<'ok' | 'err'>('ok')
-  const [editingId, setEditingId] = useState<string | null>(null)
-  const [editRole, setEditRole] = useState<'admin' | 'editor' | 'presenter'>('editor')
   const [grantingId, setGrantingId]   = useState<string | null>(null)
   const [resettingId, setResettingId] = useState<string | null>(null)
   const [togglingId, setTogglingId]   = useState<string | null>(null)
+  const [openMenu, setOpenMenu] = useState<{ id: string; view: 'main' | 'role' } | null>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!openMenu) return
+    function onDocClick(e: MouseEvent) {
+      if (menuRef.current && !menuRef.current.contains(e.target as Node)) setOpenMenu(null)
+    }
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
+  }, [openMenu])
 
   async function loadUsers() {
     setLoading(true)
@@ -69,14 +112,14 @@ export default function AdminUsersPage() {
   // Grant role to an existing auth user (by their UUID)
   async function grantRole(user: UserRow, role: 'admin' | 'editor' | 'presenter') {
     setGrantingId(user.id)
-    const { error } = await createClient().from('admins').insert({
-      user_id: user.id,
-      email: user.email,
-      role,
-      granted_by: currentUserId,
+    const res = await fetch('/api/admin/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id, email: user.email, role }),
     })
-    if (error) {
-      flash('Could not grant role: ' + error.message, 'err')
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      flash('Could not grant role: ' + (data.error ?? res.statusText), 'err')
     } else {
       flash(`Granted ${ROLE_LABELS[role]} to ${user.email}.`)
       await loadUsers()
@@ -84,10 +127,18 @@ export default function AdminUsersPage() {
     setGrantingId(null)
   }
 
-  async function saveRoleEdit(userId: string) {
-    await createClient().from('admins').update({ role: editRole }).eq('user_id', userId)
-    setEditingId(null)
-    flash('Role updated.')
+  async function changeRole(user: UserRow, role: 'admin' | 'editor' | 'presenter') {
+    const res = await fetch('/api/admin/users', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id, role }),
+    })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      flash('Could not update role: ' + (data.error ?? res.statusText), 'err')
+      return
+    }
+    flash(`Changed ${user.email} to ${ROLE_LABELS[role]}.`)
     await loadUsers()
   }
 
@@ -124,7 +175,16 @@ export default function AdminUsersPage() {
 
   async function revokeRole(user: UserRow) {
     if (user.id === currentUserId) { flash("You can't remove your own access.", 'err'); return }
-    await createClient().from('admins').delete().eq('user_id', user.id)
+    const res = await fetch('/api/admin/users', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: user.id }),
+    })
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      flash('Could not revoke access: ' + (data.error ?? res.statusText), 'err')
+      return
+    }
     flash(`Revoked access for ${user.email}.`)
     await loadUsers()
   }
@@ -136,15 +196,18 @@ export default function AdminUsersPage() {
       if (filterRole === 'editor'    && u.role !== 'editor')    return false
       if (filterRole === 'presenter' && u.role !== 'presenter') return false
       if (filterRole === 'user'      && u.role !== null)        return false
+      if (filterCfd === 'cfd'        && !u.is_cfd_member)       return false
+      if (filterCfd === 'non-cfd'    && u.is_cfd_member)        return false
       if (q && !u.email.toLowerCase().includes(q))              return false
       return true
     })
-  }, [users, search, filterRole])
+  }, [users, search, filterRole, filterCfd])
 
   const adminCount     = users.filter((u) => u.role === 'admin').length
   const editorCount    = users.filter((u) => u.role === 'editor').length
   const presenterCount = users.filter((u) => u.role === 'presenter').length
   const userCount      = users.filter((u) => u.role === null).length
+  const cfdCount       = users.filter((u) => u.is_cfd_member).length
 
   if (myRole !== 'admin') {
     return (
@@ -163,7 +226,7 @@ export default function AdminUsersPage() {
           <div>
             <h1 className="text-xl font-bold text-foreground">Users</h1>
             <p className="text-xs text-muted-foreground mt-0.5">
-              {users.length} total · {adminCount} admin · {editorCount} editor · {presenterCount} presenter · {userCount} regular
+              {users.length} total · {adminCount} admin · {editorCount} editor · {presenterCount} presenter · {userCount} regular · {cfdCount} CFD member{cfdCount === 1 ? '' : 's'}
             </p>
           </div>
           <button
@@ -221,6 +284,15 @@ export default function AdminUsersPage() {
             <option value="presenter">Presenter</option>
             <option value="user">Regular users</option>
           </select>
+          <select
+            value={filterCfd}
+            onChange={(e) => setFilterCfd(e.target.value as typeof filterCfd)}
+            className="rounded-xl border border-border bg-card px-3 py-2 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          >
+            <option value="">All CFD status</option>
+            <option value="cfd">CFD members</option>
+            <option value="non-cfd">Not CFD members</option>
+          </select>
         </div>
 
         {/* User list */}
@@ -246,6 +318,9 @@ export default function AdminUsersPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <p className="text-sm font-medium text-foreground truncate">{u.email}</p>
+                    {u.is_cfd_member && (
+                      <ShieldCheck weight="fill" size={14} className="shrink-0 text-emerald-600" aria-label="CFD member" />
+                    )}
                     {u.id === currentUserId && (
                       <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">You</span>
                     )}
@@ -258,115 +333,83 @@ export default function AdminUsersPage() {
                   </p>
                 </div>
 
-                {/* CFD member toggle */}
-                <button
-                  onClick={() => toggleCfdMember(u)}
-                  disabled={togglingId === u.id}
-                  className={cn(
-                    'shrink-0 flex h-7 w-7 items-center justify-center rounded-lg transition-colors disabled:opacity-40',
-                    u.is_cfd_member
-                      ? 'text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-900/20'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-                  )}
-                  title={u.is_cfd_member ? 'CFD member — click to revoke' : 'Not a CFD member — click to grant'}
-                >
-                  {togglingId === u.id
-                    ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                    : <IdentificationCard weight={u.is_cfd_member ? 'fill' : 'light'} size={14} />
-                  }
-                </button>
-
-                {/* Reset password */}
-                <button
-                  onClick={() => sendPasswordReset(u)}
-                  disabled={resettingId === u.id}
-                  className="shrink-0 flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors disabled:opacity-40"
-                  title="Send password reset email"
-                >
-                  {resettingId === u.id
-                    ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                    : <EnvelopeSimple weight="light" size={14} />
-                  }
-                </button>
-
-                {/* Role — view / edit inline */}
-                {u.role && editingId === u.id ? (
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <select
-                      value={editRole}
-                      onChange={(e) => setEditRole(e.target.value as 'admin' | 'editor' | 'presenter')}
-                      className="rounded-lg border border-border bg-muted px-2 py-1 text-xs text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
-                    >
-                      <option value="editor">Editor</option>
-                      <option value="presenter">Presenter</option>
-                      <option value="admin">Admin</option>
-                    </select>
-                    <button
-                      onClick={() => saveRoleEdit(u.id)}
-                      className="flex h-7 w-7 items-center justify-center rounded-lg text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors"
-                    >
-                      <Check weight="bold" size={13} />
-                    </button>
-                    <button
-                      onClick={() => setEditingId(null)}
-                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted transition-colors"
-                    >
-                      <X weight="light" size={13} />
-                    </button>
-                  </div>
-                ) : u.role ? (
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <span className={cn('rounded-full px-2 py-0.5 text-[11px] font-semibold', ROLE_COLORS[u.role])}>
-                      {ROLE_LABELS[u.role]}
-                    </span>
-                    {u.id !== currentUserId && (
-                      <>
-                        <button
-                          onClick={() => { setEditingId(u.id); setEditRole(u.role as 'admin' | 'editor' | 'presenter') }}
-                          className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
-                          title="Change role"
-                        >
-                          <PencilSimple weight="light" size={13} />
-                        </button>
-                        <button
-                          onClick={() => revokeRole(u)}
-                          className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-rose-50 hover:text-rose-600 dark:hover:bg-rose-900/20 transition-colors"
-                          title="Revoke access"
-                        >
-                          <Trash weight="light" size={13} />
-                        </button>
-                      </>
-                    )}
-                  </div>
-                ) : (
-                  /* Regular user — grant role */
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    {grantingId === u.id ? (
-                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-                    ) : (
-                      <>
-                        <button
-                          onClick={() => grantRole(u, 'editor')}
-                          className="rounded-lg border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-emerald-400 hover:text-emerald-600 transition-colors"
-                        >
-                          + Editor
-                        </button>
-                        <button
-                          onClick={() => grantRole(u, 'presenter')}
-                          className="rounded-lg border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-amber-400 hover:text-amber-600 transition-colors"
-                        >
-                          + Presenter
-                        </button>
-                        <button
-                          onClick={() => grantRole(u, 'admin')}
-                          className="rounded-lg border border-border px-2.5 py-1 text-[11px] font-medium text-muted-foreground hover:border-primary hover:text-primary transition-colors"
-                        >
-                          + Admin
-                        </button>
-                      </>
-                    )}
-                  </div>
+                {/* Role badge */}
+                {u.role && (
+                  <span className={cn('shrink-0 rounded-full px-2 py-0.5 text-[11px] font-semibold', ROLE_COLORS[u.role])}>
+                    {ROLE_LABELS[u.role]}
+                  </span>
                 )}
+
+                {/* Row actions menu */}
+                <div className="relative shrink-0" ref={openMenu?.id === u.id ? menuRef : undefined}>
+                  <button
+                    onClick={() => setOpenMenu(openMenu?.id === u.id ? null : { id: u.id, view: 'main' })}
+                    disabled={grantingId === u.id}
+                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted-foreground hover:bg-muted hover:text-foreground transition-colors disabled:opacity-40"
+                    aria-label="Row actions"
+                  >
+                    {grantingId === u.id
+                      ? <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                      : <DotsThreeVertical weight="bold" size={16} />
+                    }
+                  </button>
+
+                  {openMenu?.id === u.id && (
+                    <div className="absolute right-0 top-full z-20 mt-1 w-52 overflow-hidden rounded-xl border border-border bg-card py-1 shadow-lg">
+                      {openMenu.view === 'main' ? (
+                        <>
+                          <MenuItem
+                            icon={IdentificationCard}
+                            label={u.is_cfd_member ? 'Revoke CFD membership' : 'Grant CFD membership'}
+                            loading={togglingId === u.id}
+                            onClick={() => { setOpenMenu(null); toggleCfdMember(u) }}
+                          />
+                          <MenuItem
+                            icon={EnvelopeSimple}
+                            label="Send password reset"
+                            loading={resettingId === u.id}
+                            onClick={() => { setOpenMenu(null); sendPasswordReset(u) }}
+                          />
+                          {u.id !== currentUserId && (
+                            <MenuItem
+                              icon={PencilSimple}
+                              label={u.role ? 'Change role' : 'Grant role'}
+                              onClick={() => setOpenMenu({ id: u.id, view: 'role' })}
+                            />
+                          )}
+                          {u.role && u.id !== currentUserId && (
+                            <MenuItem
+                              icon={Trash}
+                              label="Revoke access"
+                              danger
+                              onClick={() => { setOpenMenu(null); revokeRole(u) }}
+                            />
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <button
+                            onClick={() => setOpenMenu({ id: u.id, view: 'main' })}
+                            className="flex w-full items-center gap-2 border-b border-border px-3 py-2 text-left text-[11px] font-medium text-muted-foreground hover:bg-muted transition-colors"
+                          >
+                            <CaretLeft weight="bold" size={11} /> Back
+                          </button>
+                          {(['editor', 'presenter', 'admin'] as const).map((role) => (
+                            <MenuItem
+                              key={role}
+                              label={ROLE_LABELS[role]}
+                              active={u.role === role}
+                              onClick={() => {
+                                setOpenMenu(null)
+                                if (u.role) { changeRole(u, role) } else { grantRole(u, role) }
+                              }}
+                            />
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
           </div>

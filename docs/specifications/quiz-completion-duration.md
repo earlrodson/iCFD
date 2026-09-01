@@ -3,7 +3,7 @@ schema_version: 1
 id: quiz-completion-duration
 title: Track time-to-finish for topic quiz attempts
 type: feature
-status: validating
+status: done
 priority: medium
 owners: [earlrodson]
 estimate_hours: 6
