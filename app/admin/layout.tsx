@@ -44,7 +44,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         .eq('user_id', u.id)
         .maybeSingle()
       if (!data) { setStatus('denied'); return }
-      setRole((data.role as AdminRole) ?? 'editor')
+      // superadmin has every admin capability but isn't a distinct tab/UI role
+      setRole(data.role === 'superadmin' ? 'admin' : (data.role as AdminRole) ?? 'editor')
       setStatus('ok')
     }
     check()
