@@ -20,6 +20,7 @@ interface TopicRow {
   answer: Json
   answer_full: string | null
   cover_image: string | null
+  video_url: string | null
   scripture: Json | null       // [string, ...]  — scripture_verses.reference
   catechism: Json | null       // [number, ...]  — ccc_paragraphs.paragraph
   church_fathers: Json | null  // [number, ...]  — church_father_quotes.id
@@ -169,6 +170,7 @@ export function topicRowToTopic(row: TopicRow, refs: ResolvedRefs): Topic {
     answer: answerToString(row.answer),
     answerFull: row.answer_full ?? undefined,
     coverImage: row.cover_image ?? undefined,
+    videoUrl: row.video_url ?? undefined,
     scripture: verseRefs
       .flatMap(({ reference, stance }) => {
         const verse = refs.verses.get(reference)
@@ -319,7 +321,7 @@ async function applyCoverImageFallbacks(topics: Topic[]): Promise<void> {
 // ── Topic fetchers ────────────────────────────────────────────────────────────
 
 const TOPIC_SELECT = [
-  'id','lang','category','title','question','answer','answer_full','cover_image',
+  'id','lang','category','title','question','answer','answer_full','cover_image','video_url',
   'scripture','catechism','church_fathers','objections','citations',
   'tags','difficulty','related_topics','last_updated','translation_source',
 ].join(',')

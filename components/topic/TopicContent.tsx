@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useLayoutEffect, useMemo, useRef } from 'react'
 import React from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
@@ -25,6 +25,8 @@ import {
   TextAa,
   ListChecks,
   Lock,
+  Play,
+  DotsSixVertical,
 } from '@phosphor-icons/react'
 import { useTopicOfflineCache } from '@/lib/useTopicOfflineCache'
 import type { Topic, Term, Language } from '@/data/schema/topic.schema'
@@ -37,6 +39,7 @@ import { createClient } from '@/lib/supabase/client'
 import { getUser } from '@/lib/supabase/auth'
 import { formatDate, cn } from '@/lib/utils'
 import { CATEGORY_GRADIENTS, categoryImageUrl } from '@/lib/content/categoryVisuals'
+import { getVideoThumbnail, getVideoEmbedUrl } from '@/lib/content/videoEmbed'
 
 const LANGUAGE_NAMES: Record<string, string> = { en: 'English', tl: 'Tagalog', ceb: 'Cebuano' }
 
@@ -172,6 +175,14 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   const [unavailableLang, setUnavailableLang] = useState(requestedLang ?? null)
   const [copied, setCopied] = useState(false)
   const [heroImgFailed, setHeroImgFailed] = useState(false)
+  const [videoPlaying, setVideoPlaying] = useState(false)
+  const [heroInView, setHeroInView] = useState(false)
+  const [videoFloating, setVideoFloating] = useState(false)
+  const [floatPos, setFloatPos] = useState<{ x: number; y: number } | null>(null)
+  const dragOffset = useRef<{ dx: number; dy: number } | null>(null)
+  const heroRef = useRef<HTMLDivElement | null>(null)
+  const FLOAT_WIDTH = 320
+  const FLOAT_HEIGHT = 205 // aspect-video body + drag-handle bar
   const [noteLocal, setNoteLocal] = useState('')
   const [pathSlug, setPathSlug] = useState<string | null>(null)
   // Whether this topic has any active quiz questions visible to the current
@@ -192,10 +203,76 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
   const [refPopover, setRefPopover] = useState<{ title: string; meta?: string; body: string; loading?: boolean; debateNote?: string } | null>(null)
   const [cccData, setCccData] = useState<Map<number, { paragraph: number; summary: string | null; text: string | null; section: string | null }>>(new Map())
 
-  // Reset the broken-image fallback when navigating to a different topic
+  // Reset the broken-image fallback and video state when navigating to a different topic
   useEffect(() => {
     setHeroImgFailed(false)
+    setVideoPlaying(false)
+    setVideoFloating(false)
   }, [displayTopic.id])
+
+  // While the video is playing, pop it into a floating bottom-right mini
+  // player once the hero scrolls out of view, so playback continues while
+  // reading — and drop back to inline once the hero scrolls back into view.
+  useEffect(() => {
+    const el = heroRef.current
+    if (!el || !videoPlaying) { setVideoFloating(false); return }
+    const observer = new IntersectionObserver(
+      ([entry]) => setVideoFloating(!entry.isIntersecting),
+      { threshold: 0 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [videoPlaying])
+
+  // Default the floating player to the bottom-right corner each time it
+  // appears; clear the remembered position when it's hidden so it doesn't
+  // reopen off-screen after a window resize.
+  useLayoutEffect(() => {
+    if (videoFloating) {
+      setFloatPos({
+        x: window.innerWidth - FLOAT_WIDTH - 16,
+        y: window.innerHeight - FLOAT_HEIGHT - 16,
+      })
+    } else {
+      setFloatPos(null)
+    }
+  }, [videoFloating])
+
+  function handleDragPointerDown(e: React.PointerEvent<HTMLDivElement>) {
+    if (!floatPos) return
+    dragOffset.current = { dx: e.clientX - floatPos.x, dy: e.clientY - floatPos.y }
+    e.currentTarget.setPointerCapture(e.pointerId)
+  }
+
+  function handleDragPointerMove(e: React.PointerEvent<HTMLDivElement>) {
+    if (!dragOffset.current) return
+    const x = Math.min(Math.max(0, e.clientX - dragOffset.current.dx), window.innerWidth - FLOAT_WIDTH)
+    const y = Math.min(Math.max(0, e.clientY - dragOffset.current.dy), window.innerHeight - FLOAT_HEIGHT)
+    setFloatPos({ x, y })
+  }
+
+  function handleDragPointerUp() {
+    dragOffset.current = null
+  }
+
+  // One-time "draw attention" affordance on the video play button when the
+  // hero scrolls into view — separate from the CSS :hover state below, which
+  // handles actual mouse hover.
+  useEffect(() => {
+    const el = heroRef.current
+    if (!el || !displayTopic.videoUrl) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHeroInView(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.4 },
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [displayTopic.id, displayTopic.videoUrl])
 
   async function openCccPopover(cccRef: string) {
     setRefPopover({ title: cccRef, loading: true, body: '' })
@@ -423,26 +500,112 @@ export function TopicContent({ topic: initialTopic, requestedLang }: TopicConten
 
   const topic = displayTopic
   const heroSrc = topic.coverImage ?? categoryImageUrl(topic.category, 1200)
+  const videoEmbedUrl = topic.videoUrl ? getVideoEmbedUrl(topic.videoUrl) : null
+  const videoThumb = topic.videoUrl ? getVideoThumbnail(topic.videoUrl) ?? heroSrc : null
+  const HEADER_HEIGHT = 24
+  const showVideo = !!(videoEmbedUrl && videoPlaying)
 
   return (
     <div>
       {/* Hero image — full-bleed, sits behind the content card below */}
-      <div className="relative h-56 sm:h-72 w-full overflow-hidden no-print">
+      <div ref={heroRef} className="group relative h-56 sm:h-72 w-full overflow-hidden no-print">
         <div className="absolute inset-0" style={{ background: CATEGORY_GRADIENTS[topic.category] }} />
-        {!heroImgFailed && heroSrc && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={heroSrc}
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-            decoding="async"
-            onError={() => setHeroImgFailed(true)}
+        {/* Thumbnail fills the hero box behind the video at all times — once
+            playing, the iframe below sits on top of it (inline) or has
+            floated away to the corner, leaving this visible underneath. */}
+        {videoEmbedUrl ? (
+          !heroImgFailed && videoThumb && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={videoThumb}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              decoding="async"
+              onError={() => setHeroImgFailed(true)}
+            />
+          )
+        ) : (
+          !heroImgFailed && heroSrc && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={heroSrc}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              decoding="async"
+              onError={() => setHeroImgFailed(true)}
+            />
+          )
+        )}
+        {videoEmbedUrl && !videoPlaying && (
+          <button
+            type="button"
+            onClick={() => setVideoPlaying(true)}
+            aria-label="Play video"
+            className="absolute inset-0 h-full w-full cursor-pointer"
+          >
+            <div className="absolute inset-0 bg-black/20 transition-colors group-hover:bg-black/35" />
+            <div
+              className={cn(
+                'absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110',
+                heroInView && 'animate-pulse',
+              )}
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg">
+                <Play weight="fill" size={28} className="ml-1 text-foreground" />
+              </div>
+            </div>
+          </button>
+        )}
+        {/* Single persistent iframe — kept mounted across the inline/floating
+            transition (only its position/size styling changes) so playback
+            isn't interrupted/restarted when it pops into the corner. */}
+        {showVideo && (
+          <iframe
+            src={videoEmbedUrl}
+            title={topic.title}
+            className={cn(
+              'border-0',
+              videoFloating
+                ? 'fixed z-50 rounded-b-xl shadow-2xl no-print'
+                : 'absolute inset-0 h-full w-full',
+            )}
+            style={
+              videoFloating && floatPos
+                ? { left: floatPos.x, top: floatPos.y + HEADER_HEIGHT, width: FLOAT_WIDTH, height: FLOAT_HEIGHT - HEADER_HEIGHT }
+                : undefined
+            }
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
           />
         )}
         {/* Scrim fading into the content card's background so the overlap
             reads cleanly regardless of the image's own contrast/theme */}
         <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent" />
       </div>
+
+      {/* Floating player's drag handle + close bar — the iframe itself
+          stays put in the hero above, just repositioned via fixed styling. */}
+      {showVideo && videoFloating && floatPos && (
+        <div
+          onPointerDown={handleDragPointerDown}
+          onPointerMove={handleDragPointerMove}
+          onPointerUp={handleDragPointerUp}
+          onPointerCancel={handleDragPointerUp}
+          className="fixed z-50 flex h-6 w-80 cursor-grab items-center justify-between rounded-t-xl bg-foreground/80 px-1.5 touch-none select-none active:cursor-grabbing no-print"
+          style={{ left: floatPos.x, top: floatPos.y }}
+        >
+          <DotsSixVertical weight="bold" size={14} className="text-background" />
+          <button
+            type="button"
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={() => setVideoPlaying(false)}
+            aria-label="Close video"
+            className="flex h-4 w-4 items-center justify-center rounded-full text-background hover:opacity-70"
+          >
+            <X weight="bold" size={12} />
+          </button>
+        </div>
+      )}
 
       <article
         className={cn(

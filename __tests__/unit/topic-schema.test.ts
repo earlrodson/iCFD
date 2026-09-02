@@ -56,6 +56,20 @@ describe('TopicSchema', () => {
   it('rejects a non-URL string for coverImage', () => {
     expect(() => TopicSchema.parse({ ...validTopic, coverImage: 'not-a-url' })).toThrow()
   })
+
+  it('accepts a valid videoUrl', () => {
+    const result = TopicSchema.parse({ ...validTopic, videoUrl: 'https://youtube.com/watch?v=abc123' })
+    expect(result.videoUrl).toBe('https://youtube.com/watch?v=abc123')
+  })
+
+  it('accepts topic without videoUrl (field is optional)', () => {
+    const result = TopicSchema.parse(validTopic)
+    expect(result.videoUrl).toBeUndefined()
+  })
+
+  it('rejects a non-URL string for videoUrl', () => {
+    expect(() => TopicSchema.parse({ ...validTopic, videoUrl: 'not-a-url' })).toThrow()
+  })
 })
 
 describe('HandbookContentSchema', () => {
