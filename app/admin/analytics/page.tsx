@@ -4,7 +4,7 @@ import { useEffect, useState, useMemo } from 'react'
 import { ArrowClockwise, ChartBar, Users, BookOpen, MagnifyingGlass, FileText, FlowArrow, Globe, Clock } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
-import { GeoHeatmap } from '@/components/admin/GeoHeatmap'
+import { GeoHeatmap, type GeoMemberFilter } from '@/components/admin/GeoHeatmap'
 import { getRegionName } from '@/lib/analytics/geo-region-names'
 
 interface TopicStat {
@@ -40,8 +40,17 @@ interface FlowStat {
 interface GeoStat {
   country: string
   region: string
+  is_member: boolean
   view_count: number
   unique_visitors: number
+}
+
+interface ChapterLocation {
+  id: string
+  name: string
+  type: 'parish' | 'school'
+  lat: number | null
+  lng: number | null
 }
 
 interface VisitorSummary {
@@ -81,6 +90,8 @@ export default function AnalyticsPage() {
   const [pages, setPages]             = useState<PageStat[]>([])
   const [flow, setFlow]               = useState<FlowStat[]>([])
   const [geo, setGeo]                 = useState<GeoStat[]>([])
+  const [chapterLocations, setChapterLocations] = useState<ChapterLocation[]>([])
+  const [geoFilter, setGeoFilter]     = useState<GeoMemberFilter>('all')
   const [visitorSummary, setVisitorSummary] = useState<VisitorSummary | null>(null)
   const [daysBack, setDaysBack]       = useState<number>(30)
   const [loading, setLoading]         = useState(true)
@@ -118,6 +129,8 @@ export default function AnalyticsPage() {
     if (t.data) setTopics(t.data as TopicStat[])
     if (u.data) setUsers(u.data as UserStat[])
     await loadTraffic(daysBack)
+    const chaptersRes = await fetch('/api/admin/chapters')
+    if (chaptersRes.ok) setChapterLocations(await chaptersRes.json())
     setLoading(false)
   }
 
@@ -168,7 +181,34 @@ export default function AnalyticsPage() {
   const maxViews     = Math.max(...filteredTopics.map((t) => t.view_count), 1)
   const maxPageViews = Math.max(...filteredPages.map((p) => p.view_count), 1)
   const maxFlow      = Math.max(...flow.map((f) => f.transition_count), 1)
-  const maxGeoViews  = Math.max(...geo.map((g) => g.view_count), 1)
+
+  // Ranked list rows: apply the member/non-member filter, then merge the two
+  // (country, region) rows the RPC returns per membership bucket back into
+  // one row each for display — the heatmap needs them split, the list doesn't.
+  const filteredGeo = useMemo(() => {
+    const rows = geoFilter === 'all' ? geo : geo.filter((g) => g.is_member === (geoFilter === 'member'))
+    const byKey = new Map<string, { country: string; region: string; view_count: number; unique_visitors: number }>()
+    for (const g of rows) {
+      const key = `${g.country}|${g.region}`
+      const existing = byKey.get(key)
+      if (existing) {
+        existing.view_count += g.view_count
+        existing.unique_visitors += g.unique_visitors
+      } else {
+        byKey.set(key, { country: g.country, region: g.region, view_count: g.view_count, unique_visitors: g.unique_visitors })
+      }
+    }
+    return [...byKey.values()].sort((a, b) => b.view_count - a.view_count)
+  }, [geo, geoFilter])
+
+  const maxGeoViews = Math.max(...filteredGeo.map((g) => g.view_count), 1)
+
+  const chapterPoints = useMemo(
+    () => chapterLocations
+      .filter((c): c is ChapterLocation & { lat: number; lng: number } => c.lat != null && c.lng != null)
+      .map((c) => ({ id: c.id, name: c.name, type: c.type, lat: c.lat, lng: c.lng })),
+    [chapterLocations],
+  )
 
   const categories = [...new Set(topics.map((t) => t.category))].sort()
   const langs      = [...new Set(topics.map((t) => t.lang))].sort()
@@ -487,13 +527,42 @@ export default function AnalyticsPage() {
 
           /* ── Geography: coarse country/region of visitors ── */
           <div className="space-y-2">
-            {geo.length > 0 && <GeoHeatmap data={geo} />}
-            {geo.length === 0 ? (
+            {geo.length > 0 && (
+              <div className="flex items-center justify-between gap-3 flex-wrap">
+                <div className="flex gap-1 rounded-xl bg-muted p-1">
+                  {([
+                    { key: 'all', label: 'All' },
+                    { key: 'member', label: 'CFD Members' },
+                    { key: 'non-member', label: 'Non-members' },
+                  ] as const).map(({ key, label }) => (
+                    <button
+                      key={key}
+                      onClick={() => setGeoFilter(key)}
+                      className={cn(
+                        'rounded-lg px-3 py-1 text-xs font-medium transition-colors',
+                        geoFilter === key ? 'bg-card text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground',
+                      )}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+                <div className="flex items-center gap-3 text-[11px] text-muted-foreground">
+                  <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-green-500" /> CFD members</span>
+                  <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-[#c6a200]" /> Non-members</span>
+                  {chapterPoints.length > 0 && (
+                    <span className="flex items-center gap-1"><span className="h-2 w-2 rounded-full border-2 border-white bg-blue-500" /> Chapter</span>
+                  )}
+                </div>
+              </div>
+            )}
+            {geo.length > 0 && <GeoHeatmap data={geo} filter={geoFilter} chapters={chapterPoints} />}
+            {filteredGeo.length === 0 ? (
               <div className="rounded-2xl border border-border bg-card py-12 text-center">
                 <Globe weight="light" size={28} className="text-muted-foreground mx-auto mb-2" />
                 <p className="text-sm text-muted-foreground">No location data recorded in this range yet.</p>
               </div>
-            ) : geo.map((g, i) => (
+            ) : filteredGeo.map((g, i) => (
               <div key={`${g.country}-${g.region}`} className="flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3">
                 <span className="w-6 shrink-0 text-right text-xs font-semibold text-muted-foreground">{i + 1}</span>
                 <div className="flex-1 min-w-0">
