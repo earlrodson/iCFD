@@ -12,6 +12,7 @@ import {
   boolean,
   numeric,
   date,
+  doublePrecision,
 } from 'drizzle-orm/pg-core'
 import { sql } from 'drizzle-orm'
 
@@ -614,6 +615,8 @@ export const chapters = pgTable('chapters', {
   name: text('name').notNull(),
   type: text('type').notNull().$type<'parish' | 'school'>(),
   diocese_id: uuid('diocese_id').notNull(),
+  lat: doublePrecision('lat'),
+  lng: doublePrecision('lng'),
   created_at: timestamp('created_at', { withTimezone: true })
     .default(sql`now()`)
     .notNull(),
