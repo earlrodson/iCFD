@@ -21,7 +21,7 @@ function getVisitorId(): string {
 
 function sendDuration(id: number, enteredAt: number) {
   const durationMs = Date.now() - enteredAt
-  const payload = JSON.stringify({ id, durationMs })
+  const payload = JSON.stringify({ id, visitorId: getVisitorId(), durationMs })
   const sent = typeof navigator.sendBeacon === 'function'
     && navigator.sendBeacon('/api/analytics/duration', new Blob([payload], { type: 'application/json' }))
   if (!sent) {
