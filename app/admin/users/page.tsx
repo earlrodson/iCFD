@@ -156,7 +156,7 @@ export default function AdminUsersPage() {
   async function sendPasswordReset(user: UserRow) {
     setResettingId(user.id)
     const { error } = await createClient().auth.resetPasswordForEmail(user.email, {
-      redirectTo: `${window.location.origin}/auth/reset-password`,
+      redirectTo: `${window.location.origin}/reset-password`,
     })
     if (error) {
       flash('Could not send reset email: ' + error.message, 'err')
