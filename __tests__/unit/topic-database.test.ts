@@ -181,6 +181,31 @@ describe('loadTopicFromDatabase — field mapping', () => {
     expect(calledUrl).toContain('cover_image')
   })
 
+  it('maps video_url to videoUrl when present', async () => {
+    mockFetch([makeRow({ video_url: 'https://youtube.com/watch?v=abc123' })])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    const topic = await loadTopicFromDatabase('sacred-images', 'en')
+
+    expect(topic!.videoUrl).toBe('https://youtube.com/watch?v=abc123')
+  })
+
+  it('sets videoUrl to undefined when video_url is null (no cross-language fallback)', async () => {
+    mockFetch([makeRow({ video_url: null })])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    const topic = await loadTopicFromDatabase('sacred-images', 'en')
+
+    expect(topic!.videoUrl).toBeUndefined()
+  })
+
+  it('includes video_url in the select query', async () => {
+    mockFetch([makeRow()])
+    const { loadTopicFromDatabase } = await import('@/lib/content/database')
+    await loadTopicFromDatabase('sacred-images', 'en')
+
+    const calledUrl = vi.mocked(fetch).mock.calls[0][0].toString()
+    expect(calledUrl).toContain('video_url')
+  })
+
   it('returns null when no rows returned', async () => {
     mockFetch([])
     const { loadTopicFromDatabase } = await import('@/lib/content/database')

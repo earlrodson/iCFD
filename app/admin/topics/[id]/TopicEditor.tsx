@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FloppyDisk, ArrowLeft, Plus, Trash, Spinner, MagnifyingGlass, X, TextAa } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import type { Json } from '@/lib/supabase/database.types'
+import { getVideoThumbnail } from '@/lib/content/videoEmbed'
 
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
 
@@ -30,6 +31,7 @@ interface FormState {
   objections: Objection[]
   translationNotes: string; answerFull: string
   coverImage: string
+  videoUrl: string
   published: boolean
 }
 
@@ -45,6 +47,7 @@ const EMPTY: FormState = {
   objections:[],
   translationNotes:'', answerFull:'',
   coverImage:'',
+  videoUrl:'',
   published: true,
 }
 
@@ -469,6 +472,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
         translationNotes: data.translation_notes ?? '',
         answerFull: data.answer_full ?? '',
         coverImage: (data as Record<string, unknown>).cover_image as string ?? '',
+        videoUrl: (data as Record<string, unknown>).video_url as string ?? '',
         published: data.published ?? true,
       })
     } else {
@@ -524,6 +528,7 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
       translation_notes: form.translationNotes.trim() || null,
       answer_full: form.answerFull.trim() || null,
       cover_image: form.coverImage.trim() || null,
+      video_url: form.videoUrl.trim() || null,
       published: form.published,
       last_updated: new Date().toISOString(),
     }
@@ -720,6 +725,23 @@ export function TopicEditor({ topicId, lang }: { topicId: string; lang: string }
             {form.coverImage && (
               /* eslint-disable-next-line @next/next/no-img-element */
               <img src={form.coverImage} alt="Cover preview" className="mt-2 h-32 w-full rounded-xl object-cover" />
+            )}
+          </div>
+          <div>
+            <Label>Video URL <span className="text-muted-foreground font-normal">(optional — YouTube or Vimeo link; shown on the topic hero, takes priority over the cover image)</span></Label>
+            <input
+              value={form.videoUrl}
+              onChange={e => set('videoUrl', e.target.value)}
+              placeholder="https://youtube.com/watch?v=… or https://vimeo.com/…"
+              className="field"
+            />
+            {form.videoUrl && (
+              getVideoThumbnail(form.videoUrl) ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src={getVideoThumbnail(form.videoUrl)!} alt="Video preview" className="mt-2 h-32 w-full rounded-xl object-cover" />
+              ) : (
+                <p className="mt-2 text-xs text-muted-foreground">No thumbnail preview available for this link (Vimeo links preview without a thumbnail).</p>
+              )
             )}
           </div>
         </Section>
