@@ -63,6 +63,7 @@ export const topics = pgTable(
     published: boolean('published').default(true).notNull(),
     is_recommended: boolean('is_recommended').default(false).notNull(),
     cover_image: text('cover_image'),
+    video_url: text('video_url'),
     // manual | machine | stub — controls auto-translate behaviour
     translation_source: text('translation_source').default('manual').notNull(),
     // Per-topic translator instructions injected into the AI prompt
