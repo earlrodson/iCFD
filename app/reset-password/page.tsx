@@ -15,17 +15,34 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [done, setDone] = useState(false)
 
-  // The emailed link carries a recovery code; @supabase/ssr's browser client
-  // exchanges it for a session automatically and fires PASSWORD_RECOVERY.
+  // The emailed/admin-generated link carries recovery tokens in the URL hash
+  // (implicit-grant style — admin-generated links can't use PKCE since that
+  // requires a code_verifier set up by the same browser that completes the
+  // exchange). @supabase/ssr's browser client hardcodes flowType: 'pkce', so
+  // its automatic _initialize() URL detection rejects this hash outright
+  // (AuthPKCEGrantCodeExchangeError, swallowed silently) — parse it and call
+  // setSession() directly instead of relying on that auto-detection.
   useEffect(() => {
     if (!isSupabaseConfigured()) return
-    const { data: { subscription } } = createClient().auth.onAuthStateChange((event) => {
-      if (event === 'PASSWORD_RECOVERY') setReady(true)
-    })
+    const hash = new URLSearchParams(window.location.hash.slice(1))
+    const errorDescription = hash.get('error_description')
+    if (errorDescription) {
+      setError(errorDescription.replace(/\+/g, ' '))
+      return
+    }
+    const accessToken = hash.get('access_token')
+    const refreshToken = hash.get('refresh_token')
+    if (accessToken && refreshToken) {
+      createClient().auth.setSession({ access_token: accessToken, refresh_token: refreshToken }).then(({ error }) => {
+        if (error) setError(error.message)
+        else setReady(true)
+        window.history.replaceState(null, '', window.location.pathname)
+      })
+      return
+    }
     createClient().auth.getSession().then(({ data: { session } }) => {
       if (session) setReady(true)
     })
-    return () => subscription.unsubscribe()
   }, [])
 
   async function handleSubmit(e: React.FormEvent) {
@@ -87,9 +104,15 @@ export default function ResetPasswordPage() {
         </div>
 
         {!ready ? (
-          <p className="text-center text-sm text-muted-foreground">
-            Verifying your reset link…
-          </p>
+          error ? (
+            <p className="rounded-xl bg-red-50 px-3 py-2 text-center text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+              {error}
+            </p>
+          ) : (
+            <p className="text-center text-sm text-muted-foreground">
+              Verifying your reset link…
+            </p>
+          )
         ) : (
           <form onSubmit={handleSubmit} className="space-y-3">
             <label htmlFor="new-password" className="sr-only">New password</label>
