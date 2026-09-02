@@ -8,10 +8,10 @@ self.addEventListener('push', (event) => {
   try {
     payload = event.data.json() as typeof payload
   } catch {
-    payload = { title: 'Codex Defensoris', body: event.data.text() }
+    payload = { title: 'iCFD', body: event.data.text() }
   }
 
-  const title = payload.title ?? 'Codex Defensoris'
+  const title = payload.title ?? 'iCFD'
   const options: NotificationOptions = {
     body: payload.body ?? 'Your daily apologetics topic is ready.',
     icon: '/icons/icon-192.png',

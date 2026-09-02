@@ -14,13 +14,13 @@
 
 export const APP_CONFIG = {
   /** Full product name shown in hero, browser tab, and PWA installer. */
-  appName: process.env.NEXT_PUBLIC_APP_NAME ?? 'Codex Defensoris',
+  appName: process.env.NEXT_PUBLIC_APP_NAME ?? 'iCFD',
 
   /** Short name shown on home screen icon label. Max 12 chars. */
   appShortName: process.env.NEXT_PUBLIC_APP_SHORT_NAME ?? 'iCFD',
 
   /** Slug used internally as app identifier (safe for URLs and storage keys). */
-  appId: process.env.NEXT_PUBLIC_APP_ID ?? 'codex-defensoris',
+  appId: process.env.NEXT_PUBLIC_APP_ID ?? 'icfd',
 
   /** Human-readable description for meta tags and PWA install prompt. */
   description:
