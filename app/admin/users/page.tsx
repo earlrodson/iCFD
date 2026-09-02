@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState, useMemo, useRef } from 'react'
-import { Trash, ShieldStar, ShieldCheck, PencilSimple, CaretLeft, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard, DotsThreeVertical, Buildings } from '@phosphor-icons/react'
+import { Trash, ShieldStar, ShieldCheck, PencilSimple, CaretLeft, MagnifyingGlass, ArrowClockwise, EnvelopeSimple, IdentificationCard, DotsThreeVertical, Buildings, LinkSimple } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 import { getSession } from '@/lib/supabase/auth'
 import { useAdminRole } from '@/app/admin/role-context'
@@ -78,6 +78,7 @@ export default function AdminUsersPage() {
   const [msgType, setMsgType]   = useState<'ok' | 'err'>('ok')
   const [grantingId, setGrantingId]   = useState<string | null>(null)
   const [resettingId, setResettingId] = useState<string | null>(null)
+  const [copyingLinkId, setCopyingLinkId] = useState<string | null>(null)
   const [togglingId, setTogglingId]   = useState<string | null>(null)
   const [assigningChapterId, setAssigningChapterId] = useState<string | null>(null)
   const [dioceses, setDioceses] = useState<DioceseRow[]>([])
@@ -163,6 +164,23 @@ export default function AdminUsersPage() {
       flash(`Password reset email sent to ${user.email}.`)
     }
     setResettingId(null)
+  }
+
+  async function copyResetLink(user: UserRow) {
+    setCopyingLinkId(user.id)
+    const res = await fetch('/api/admin/users/reset-link', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: user.email }),
+    })
+    const data = await res.json().catch(() => ({}))
+    if (!res.ok) {
+      flash('Could not generate reset link: ' + (data.error ?? res.statusText), 'err')
+    } else {
+      await navigator.clipboard.writeText(data.link)
+      flash(`Reset link for ${user.email} copied to clipboard.`)
+    }
+    setCopyingLinkId(null)
   }
 
   async function toggleCfdMember(user: UserRow) {
@@ -398,6 +416,12 @@ export default function AdminUsersPage() {
                             label="Send password reset"
                             loading={resettingId === u.id}
                             onClick={() => { setOpenMenu(null); sendPasswordReset(u) }}
+                          />
+                          <MenuItem
+                            icon={LinkSimple}
+                            label="Copy reset link"
+                            loading={copyingLinkId === u.id}
+                            onClick={() => { setOpenMenu(null); copyResetLink(u) }}
                           />
                           <MenuItem
                             icon={Buildings}

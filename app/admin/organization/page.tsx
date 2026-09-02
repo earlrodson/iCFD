@@ -3,11 +3,20 @@
 import { useEffect, useState } from 'react'
 import {
   Plus, Trash, FloppyDisk, X, MagnifyingGlass,
-  Spinner, Buildings, PencilSimple, CaretDown, CaretUp,
+  Spinner, Buildings, PencilSimple, CaretDown, CaretUp, MapPin,
 } from '@phosphor-icons/react'
+import { ChapterLocationPicker } from '@/components/admin/ChapterLocationPicker'
 
 interface Diocese { id: string; name: string; created_at: string }
-interface Chapter { id: string; name: string; type: 'parish' | 'school'; diocese_id: string; created_at: string }
+interface Chapter {
+  id: string
+  name: string
+  type: 'parish' | 'school'
+  diocese_id: string
+  lat: number | null
+  lng: number | null
+  created_at: string
+}
 
 const CHAPTER_TYPES = ['parish', 'school'] as const
 
@@ -35,6 +44,7 @@ export default function OrganizationPage() {
   const [editChapterDraft, setEditChapterDraft] = useState<{ name: string; type: typeof CHAPTER_TYPES[number] } | null>(null)
   const [deletingChapter, setDeletingChapter] = useState<string | null>(null)
   const [confirmDeleteChapter, setConfirmDeleteChapter] = useState<string | null>(null)
+  const [locatingChapter, setLocatingChapter] = useState<Chapter | null>(null)
 
   useEffect(() => { load() }, [])
 
@@ -131,6 +141,19 @@ export default function OrganizationPage() {
     if (!res.ok) { setError(data.error); setSaving(false); return }
     await load()
     setEditingChapterId(null); setEditChapterDraft(null); setSaving(false)
+  }
+
+  async function saveChapterLocation(lat: number, lng: number) {
+    if (!locatingChapter) return
+    const res = await fetch('/api/admin/chapters', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: locatingChapter.id, lat, lng }),
+    })
+    const data = await res.json()
+    if (!res.ok) { setError(data.error); return }
+    await load()
+    setLocatingChapter(null)
   }
 
   async function deleteChapter(id: string) {
@@ -323,6 +346,13 @@ export default function OrganizationPage() {
                               <>
                                 <span className="flex-1 text-sm text-foreground truncate">{c.name}</span>
                                 <span className="shrink-0 rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium uppercase text-muted-foreground">{c.type}</span>
+                                <button
+                                  onClick={() => setLocatingChapter(c)}
+                                  className={`icon-btn hover:bg-muted ${c.lat != null ? 'text-primary' : 'hover:text-foreground'}`}
+                                  title={c.lat != null ? 'Location set — click to edit' : 'Set location'}
+                                >
+                                  <MapPin weight={c.lat != null ? 'fill' : 'light'} size={14} />
+                                </button>
                                 <button onClick={() => startEditChapter(c)} className="icon-btn hover:bg-muted hover:text-foreground" title="Edit">
                                   <PencilSimple weight="light" size={14} />
                                 </button>
@@ -381,6 +411,16 @@ export default function OrganizationPage() {
           </div>
         )}
       </div>
+
+      {locatingChapter && (
+        <ChapterLocationPicker
+          chapterName={locatingChapter.name}
+          initialLat={locatingChapter.lat}
+          initialLng={locatingChapter.lng}
+          onSave={saveChapterLocation}
+          onClose={() => setLocatingChapter(null)}
+        />
+      )}
     </div>
   )
 }

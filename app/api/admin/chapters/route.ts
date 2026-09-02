@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   const db = await getAdminClient()
   if (!db) return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
   const dioceseId = req.nextUrl.searchParams.get('diocese_id')
-  let query = db.from('chapters').select('id,name,type,diocese_id,created_at').order('name')
+  let query = db.from('chapters').select('id,name,type,diocese_id,lat,lng,created_at').order('name')
   if (dioceseId) query = query.eq('diocese_id', dioceseId)
   const { data, error } = await query
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
