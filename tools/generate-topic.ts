@@ -126,7 +126,7 @@ const topicId = slugArg ?? metadata.topic_id
 
 // Phase 2 — comprehensive answer (retrieval-grounded)
 console.log('[Phase 2] Comprehensive answer (qwen3.6:35b-mlx)...')
-const { answer_full: answerFull } = await callModel(MODEL_35B, `You are a Catholic apologetics content writer for the "Codex Defensoris" app. Write the comprehensive answer (1500-2500 words, Markdown, ## sections, --- dividers, blockquotes for Father/Council quotes, Markdown table for CCC refs).
+const { answer_full: answerFull } = await callModel(MODEL_35B, `You are a Catholic apologetics content writer for the "iCFD" app. Write the comprehensive answer (1500-2500 words, Markdown, ## sections, --- dividers, blockquotes for Father/Council quotes, Markdown table for CCC refs).
 
 Use ONLY the passages below for CCC references, conciliar text, and Church Father quotes. If a required element has no matching passage below, write "[NEEDS SOURCE: <what's missing>]" instead of inventing one. Cite scripture inline by reference only (e.g. "(John 1:14)") — never write verse text yourself.
 
