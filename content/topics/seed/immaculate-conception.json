@@ -111,131 +111,135 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Rom. 3:10"
+          "reference": "Romans 3:10"
         },
         {
           "stance": "objection",
-          "reference": "Rom. 3:23"
+          "reference": "Romans 3:23"
         },
         {
           "stance": "objection",
-          "reference": "Luc. 1:47"
+          "reference": "Luke 1:47"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 6:17-18"
+          "reference": "Romans 6:17"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 8:30"
+          "reference": "Romans 6:18"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 8:30"
         },
         {
           "stance": "objection",
-          "reference": "Rom. 5:12"
+          "reference": "Romans 5:12"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 2:35"
+          "reference": "Luke 2:35"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 3:15"
+          "reference": "Genesis 3:15"
         },
         {
           "stance": "supporting",
-          "reference": "Gal. 4:4"
+          "reference": "Galatians 4:4"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 1:28"
+          "reference": "Luke 1:28"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 1:14"
+          "reference": "John 1:14"
         },
         {
           "stance": "supporting",
-          "reference": "Kin. 1:4"
+          "reference": "Wisdom 1:4"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 1:24"
+          "reference": "1 Corinthians 1:24"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 4:12"
+          "reference": "Exodus 4:12"
         },
         {
           "stance": "supporting",
-          "reference": "Jer. 1:5"
+          "reference": "Jeremiah 1:5"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 1:15"
+          "reference": "Luke 1:15"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 5:35"
+          "reference": "John 5:35"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 2:4"
+          "reference": "Acts 2:4"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 3:15"
+          "reference": "Acts 3:15"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 1:35"
+          "reference": "Luke 1:35"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 3:5"
+          "reference": "Exodus 3:5"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 26:34"
+          "reference": "Exodus 26:34"
         },
         {
           "stance": "supporting",
-          "reference": "1 Sam. 4:4"
+          "reference": "1 Samuel 4:4"
         },
         {
           "stance": "supporting",
-          "reference": "Awit 4:7"
+          "reference": "Song of Songs 4:7"
         },
         {
           "stance": "supporting",
-          "reference": "Awit 4:12"
+          "reference": "Song of Songs 4:12"
         },
         {
           "stance": "supporting",
-          "reference": "Awit 6:9"
+          "reference": "Song of Songs 6:9"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 1:42"
+          "reference": "Luke 1:42"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 1:48"
+          "reference": "Luke 1:48"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 9:22"
+          "reference": "Hebrews 9:22"
         },
         {
           "stance": "supporting",
-          "reference": "1 Ped. 1:19"
+          "reference": "1 Peter 1:19"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 2:14"
+          "reference": "Hebrews 2:14"
         },
         {
           "stance": "supporting",
-          "reference": "Job. 14:4"
+          "reference": "Job 14:4"
         }
       ],
       "catechism": [],

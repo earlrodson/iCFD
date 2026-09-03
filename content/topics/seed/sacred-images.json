@@ -140,179 +140,275 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Exo. 20:3-5"
+          "reference": "Exodus 20:3-5"
         },
         {
           "stance": "objection",
-          "reference": "Deut. 4:16-22"
+          "reference": "Deuteronomy 4:16"
         },
         {
           "stance": "objection",
-          "reference": "Isaias 46:6-7"
+          "reference": "Isaiah 46:6"
         },
         {
           "stance": "objection",
-          "reference": "Sal. 115:4-8"
+          "reference": "Isaiah 46:7"
         },
         {
           "stance": "objection",
-          "reference": "Buh. 17:29"
+          "reference": "Psalms 115:4"
         },
         {
           "stance": "objection",
-          "reference": "1 Cor. 6:9-10"
+          "reference": "Psalms 115:5"
         },
         {
           "stance": "objection",
-          "reference": "Pin. 21:8"
+          "reference": "Psalms 115:6"
+        },
+        {
+          "stance": "objection",
+          "reference": "Psalms 115:7"
+        },
+        {
+          "stance": "objection",
+          "reference": "Psalms 115:8"
+        },
+        {
+          "stance": "objection",
+          "reference": "Acts 17:29"
+        },
+        {
+          "stance": "objection",
+          "reference": "1 Corinthians 6:9"
+        },
+        {
+          "stance": "objection",
+          "reference": "1 Corinthians 6:10"
+        },
+        {
+          "stance": "objection",
+          "reference": "Revelation 21:8"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 8:4"
+          "reference": "1 Corinthians 8:4"
         },
         {
           "stance": "supporting",
-          "reference": "Isa. 44:17"
+          "reference": "Isaiah 44:17"
         },
         {
           "stance": "supporting",
-          "reference": "1 Hari 11:33"
+          "reference": "1 Kings 11:33"
         },
         {
           "stance": "supporting",
-          "reference": "Isaias 46:1-2"
+          "reference": "Isaiah 46:1"
         },
         {
           "stance": "supporting",
-          "reference": "1 Sam. 5:7"
+          "reference": "Isaiah 46:2"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 7:43"
+          "reference": "1 Samuel 5:7"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 14:11-12"
+          "reference": "Acts 7:43"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 19:24"
+          "reference": "Acts 14:11"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 25:18-22"
+          "reference": "Acts 14:12"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 9:5"
+          "reference": "Acts 19:24"
         },
         {
           "stance": "supporting",
-          "reference": "Eze. 41:17-20"
+          "reference": "Exodus 25:18-22"
         },
         {
           "stance": "supporting",
-          "reference": "2 Kron. 7:15-16"
+          "reference": "Hebrews 9:5"
         },
         {
           "stance": "supporting",
-          "reference": "Num 21:8-9"
+          "reference": "Ezekiel 41:17-20"
         },
         {
           "stance": "supporting",
-          "reference": "2 Hari 18:4"
+          "reference": "2 Chronicles 7:15"
         },
         {
           "stance": "supporting",
-          "reference": "Kaal. 16:5-7"
+          "reference": "2 Chronicles 7:16"
         },
         {
           "stance": "supporting",
-          "reference": "Lev. 19:30"
+          "reference": "Numbers 21:8-9"
         },
         {
           "stance": "supporting",
-          "reference": "2 Kron 3:10-13"
+          "reference": "2 Kings 18:4"
         },
         {
           "stance": "supporting",
-          "reference": "Jos. 7:6"
+          "reference": "Wisdom 16:5"
         },
         {
           "stance": "supporting",
-          "reference": "2 Sam. 6:6-7"
+          "reference": "Wisdom 16:6"
         },
         {
           "stance": "supporting",
-          "reference": "2 Hari 23:15-18"
+          "reference": "Wisdom 16:7"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 74:4-6"
+          "reference": "Leviticus 19:30"
         },
         {
           "stance": "supporting",
-          "reference": "Kaal. 6:10"
+          "reference": "2 Chronicles 3:10"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 35:31"
+          "reference": "2 Chronicles 3:11"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 144:12"
+          "reference": "2 Chronicles 3:12"
         },
         {
           "stance": "supporting",
-          "reference": "2 Tim. 2:15"
+          "reference": "2 Chronicles 3:13"
         },
         {
           "stance": "supporting",
-          "reference": "Fil. 4:8"
+          "reference": "Joshua 7:6"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 13:7"
+          "reference": "2 Samuel 6:6"
         },
         {
           "stance": "supporting",
-          "reference": "Sir. 44:10-15"
+          "reference": "2 Samuel 6:7"
         },
         {
           "stance": "supporting",
-          "reference": "Eze. 41:19"
+          "reference": "2 Kings 23:15"
         },
         {
           "stance": "supporting",
-          "reference": "Isa 46:1-2"
+          "reference": "2 Kings 23:16"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 115:2"
+          "reference": "2 Kings 23:17"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 74:6-8"
+          "reference": "2 Kings 23:18"
         },
         {
           "stance": "supporting",
-          "reference": "Jn 4:24"
+          "reference": "Psalms 74:4"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 12:1-2"
+          "reference": "Psalms 74:5"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 9:4"
+          "reference": "Psalms 74:6"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 17:16"
+          "reference": "Wisdom 6:10"
         },
         {
           "stance": "supporting",
-          "reference": "2 Kron. 3:3-10"
+          "reference": "Exodus 35:31"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 144:12"
+        },
+        {
+          "stance": "supporting",
+          "reference": "2 Timothy 2:15"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Philippians 4:8"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Hebrews 13:7"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Sirach 44:10"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Ezekiel 41:19"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Isaiah 46:1"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Isaiah 46:2"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 115:2"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 74:6"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 74:7"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 74:8"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 4:24"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 12:1"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 12:2"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 9:4"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 17:16"
+        },
+        {
+          "stance": "supporting",
+          "reference": "2 Chronicles 3:3"
         }
       ],
       "catechism": [],

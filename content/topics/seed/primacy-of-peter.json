@@ -140,143 +140,183 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Col. 1:18"
+          "reference": "Colossians 1:18"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 16:19"
+          "reference": "Matthew 16:19"
         },
         {
           "stance": "objection",
-          "reference": "Efeso 2:20"
+          "reference": "Ephesians 2:20"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 1:42"
+          "reference": "John 1:42"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 16:18"
+          "reference": "Matthew 16:18"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 18:18"
+          "reference": "Matthew 18:18"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 16:23"
+          "reference": "Matthew 16:23"
         },
         {
           "stance": "objection",
-          "reference": "Buh. 8:14"
+          "reference": "Acts 8:14"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 23:11"
+          "reference": "Matthew 23:11"
         },
         {
           "stance": "objection",
-          "reference": "Jer. 10:23"
+          "reference": "Jeremiah 10:23"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 21:31-32"
+          "reference": "Luke 21:31"
         },
         {
           "stance": "supporting",
-          "reference": "Gal. 2:12"
+          "reference": "Luke 21:32"
         },
         {
           "stance": "supporting",
-          "reference": "Deut. 17:8-12"
+          "reference": "Galatians 2:12"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 33:12-14"
+          "reference": "Deuteronomy 17:8"
         },
         {
           "stance": "supporting",
-          "reference": "Deut. 31:1-8"
+          "reference": "Deuteronomy 17:9"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 136:16"
+          "reference": "Deuteronomy 17:10"
         },
         {
           "stance": "supporting",
-          "reference": "Isa. 22:21-22"
+          "reference": "Deuteronomy 17:11"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 10:16"
+          "reference": "Deuteronomy 17:12"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 21:15-17"
+          "reference": "Exodus 33:12"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 79:13"
+          "reference": "Exodus 33:13"
         },
         {
           "stance": "supporting",
-          "reference": "Jer. 25:34"
+          "reference": "Exodus 33:14"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 17:5"
+          "reference": "Deuteronomy 31:1"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 7:24"
+          "reference": "Psalms 136:16"
         },
         {
           "stance": "supporting",
-          "reference": "1 Tim. 3:15"
+          "reference": "Isaiah 22:21"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 28:20"
+          "reference": "Isaiah 22:22"
         },
         {
           "stance": "supporting",
-          "reference": "1 Ped. 5:1"
+          "reference": "John 10:16"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 1:16"
+          "reference": "John 21:15-17"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 2:14-41"
+          "reference": "Psalms 79:13"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 5:15"
+          "reference": "Jeremiah 25:34"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 5:1-11"
+          "reference": "Genesis 17:5"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 8:20-21"
+          "reference": "Matthew 7:24"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 10:4-5"
+          "reference": "1 Timothy 3:15"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 11:1-18"
+          "reference": "Matthew 28:20"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 12:5"
+          "reference": "1 Peter 5:1"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 15:7"
+          "reference": "Acts 1:16"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 2:14"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 5:15"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 5:1"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 8:20"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 8:21"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 10:4"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 10:5"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 11:1"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 12:5"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Acts 15:7"
         }
       ],
       "catechism": [],

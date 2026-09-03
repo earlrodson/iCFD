@@ -131,147 +131,171 @@
       "scripture": [
         {
           "stance": "supporting",
-          "reference": "Gen. 1:26"
+          "reference": "Genesis 1:26"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 11:7"
+          "reference": "Genesis 11:7"
         },
         {
           "stance": "supporting",
-          "reference": "Isa. 6:8"
+          "reference": "Isaiah 6:8"
         },
         {
           "stance": "supporting",
-          "reference": "Isa. 48:16"
+          "reference": "Isaiah 48:16"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 1:35"
+          "reference": "Luke 1:35"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 3:22"
+          "reference": "Luke 3:22"
         },
         {
           "stance": "supporting",
-          "reference": "Juan 14:16"
+          "reference": "John 14:16"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 28:19"
+          "reference": "Matthew 28:19"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 2:38"
+          "reference": "Acts 2:38"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 13:13"
+          "reference": "2 Corinthians 13:13"
         },
         {
           "stance": "supporting",
-          "reference": "1 Ped. 1:2"
+          "reference": "1 Peter 1:2"
         },
         {
           "stance": "supporting",
-          "reference": "Jud. 1:20-21"
+          "reference": "Jude 1:20"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 8:6"
+          "reference": "Jude 1:21"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 1:8"
+          "reference": "1 Corinthians 8:6"
         },
         {
           "stance": "supporting",
-          "reference": "Juan 10:30"
+          "reference": "Hebrews 1:8"
         },
         {
           "stance": "supporting",
-          "reference": "1 Juan 5:7"
+          "reference": "John 10:30"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 3:4"
+          "reference": "1 John 5:7"
         },
         {
           "stance": "supporting",
-          "reference": "Juan 5:19"
+          "reference": "Hebrews 3:4"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 1:1-2"
+          "reference": "John 5:19"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 90:2"
+          "reference": "Genesis 1:1"
         },
         {
           "stance": "supporting",
-          "reference": "Miq. 5:2"
+          "reference": "Genesis 1:2"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 9:14"
+          "reference": "Psalms 90:2"
         },
         {
           "stance": "supporting",
-          "reference": "Sir. 42:18"
+          "reference": "Micah 5:2"
         },
         {
           "stance": "supporting",
-          "reference": "Col. 2:3"
+          "reference": "Hebrews 9:14"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 2:10"
+          "reference": "Sirach 42:18"
         },
         {
           "stance": "supporting",
-          "reference": "Jer. 23:24"
+          "reference": "Colossians 2:3"
         },
         {
           "stance": "supporting",
-          "reference": "Efeso 4:10"
+          "reference": "1 Corinthians 2:10"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 139:7-10"
+          "reference": "Jeremiah 23:24"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 36:9"
+          "reference": "Ephesians 4:10"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 5:21"
+          "reference": "Psalms 139:7"
         },
         {
           "stance": "supporting",
-          "reference": "Job. 33:4"
+          "reference": "Psalms 139:8"
         },
         {
           "stance": "supporting",
-          "reference": "Jer. 10:6"
+          "reference": "Psalms 139:9"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 1:24"
+          "reference": "Psalms 139:10"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 12:28"
+          "reference": "Psalms 36:9"
         },
         {
           "stance": "supporting",
-          "reference": "Job. 11:7-8"
+          "reference": "John 5:21"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 11:33"
+          "reference": "Job 33:4"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Jeremiah 10:6"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Corinthians 1:24"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Matthew 12:28"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Job 11:7"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Job 11:8"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 11:33"
         }
       ],
       "catechism": [],

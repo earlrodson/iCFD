@@ -105,119 +105,131 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Rom. 3:10"
+          "reference": "Romans 3:10"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 3:16"
+          "reference": "John 3:16"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 1:12"
+          "reference": "John 1:12"
         },
         {
           "stance": "objection",
-          "reference": "Rom. 10:13"
+          "reference": "Romans 10:13"
         },
         {
           "stance": "objection",
-          "reference": "Efeso 2:8-9"
+          "reference": "Ephesians 2:8"
         },
         {
           "stance": "objection",
-          "reference": "1 Jn. 5:13"
+          "reference": "Ephesians 2:9"
+        },
+        {
+          "stance": "objection",
+          "reference": "1 John 5:13"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 11:6"
+          "reference": "Hebrews 11:6"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 2:6-7"
+          "reference": "Romans 2:6-7"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 13:2"
+          "reference": "1 Corinthians 13:2"
         },
         {
           "stance": "supporting",
-          "reference": "Gal. 5:6"
+          "reference": "Galatians 5:6"
         },
         {
           "stance": "supporting",
-          "reference": "Mat 28:20"
+          "reference": "Matthew 28:20"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 7:26"
+          "reference": "Matthew 7:26"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 10:16"
+          "reference": "Luke 10:16"
         },
         {
           "stance": "supporting",
-          "reference": "Mar. 16:16"
+          "reference": "Mark 16:16"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 7:21"
+          "reference": "Matthew 7:21"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 6:46"
+          "reference": "Luke 6:46"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 14:15"
+          "reference": "John 14:15"
         },
         {
           "stance": "supporting",
-          "reference": "1 Jn. 5:3"
+          "reference": "1 John 5:3"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 1:17"
+          "reference": "John 1:17"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 5:15"
+          "reference": "Romans 5:15"
         },
         {
           "stance": "supporting",
-          "reference": "Efeso 2:10"
+          "reference": "Ephesians 2:10"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 6:1"
+          "reference": "2 Corinthians 6:1"
         },
         {
           "stance": "supporting",
-          "reference": "Fil. 2:12"
+          "reference": "Philippians 2:12"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 10:12"
+          "reference": "1 Corinthians 10:12"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 9:27"
+          "reference": "1 Corinthians 9:27"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 11:22"
+          "reference": "Romans 11:22"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 5:5"
+          "reference": "Romans 5:5"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 8:24"
+          "reference": "Romans 8:24"
         },
         {
           "stance": "supporting",
-          "reference": "Fil 3:12-14"
+          "reference": "Philippians 3:12"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Philippians 3:13"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Philippians 3:14"
         }
       ],
       "catechism": [],

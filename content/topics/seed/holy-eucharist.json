@@ -116,79 +116,95 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Jn. 6:35"
+          "reference": "John 6:35"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 15:1"
+          "reference": "John 15:1"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:51"
+          "reference": "John 6:51"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:53"
+          "reference": "John 6:53"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 6:63"
+          "reference": "John 6:63"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:54-56"
+          "reference": "John 6:54"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 6:55"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 6:56"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 10:9"
+          "reference": "John 10:9"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 10:16"
+          "reference": "1 Corinthians 10:16"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 2:1-11"
+          "reference": "John 2:1"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:1-15"
+          "reference": "John 6:1"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:16-21"
+          "reference": "John 6:16"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:25-69"
+          "reference": "John 6:25"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 22:15"
+          "reference": "Luke 22:15"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 26:26-28"
+          "reference": "Matthew 26:26"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:56"
+          "reference": "Matthew 26:27"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:57"
+          "reference": "Matthew 26:28"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 10:17"
+          "reference": "John 6:56"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:54"
+          "reference": "John 6:57"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 11:27"
+          "reference": "1 Corinthians 10:17"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 6:54"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Corinthians 11:27"
         }
       ],
       "catechism": [],

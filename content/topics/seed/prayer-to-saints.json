@@ -161,103 +161,115 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "1 Tim. 2:5"
+          "reference": "1 Timothy 2:5"
         },
         {
           "stance": "supporting",
-          "reference": "1 Tim. 2:6"
+          "reference": "1 Timothy 2:6"
         },
         {
           "stance": "objection",
-          "reference": "Juan 14:6"
+          "reference": "John 14:6"
         },
         {
           "stance": "supporting",
-          "reference": "Efeso 2:18"
+          "reference": "Ephesians 2:18"
         },
         {
           "stance": "objection",
-          "reference": "Buh. 4:12"
+          "reference": "Acts 4:12"
         },
         {
           "stance": "objection",
-          "reference": "Heb. 7:25"
+          "reference": "Hebrews 7:25"
         },
         {
           "stance": "supporting",
-          "reference": "Job. 42:8"
+          "reference": "Job 42:8"
         },
         {
           "stance": "objection",
-          "reference": "Sal. 115:17"
+          "reference": "Psalms 115:17"
         },
         {
           "stance": "supporting",
-          "reference": "Eccl. 12:7"
+          "reference": "Ecclesiastes 12:7"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 6:9-10"
+          "reference": "Revelation 6:9-10"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 16:22-24"
+          "reference": "Luke 16:22"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Luke 16:23"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Luke 16:24"
         },
         {
           "stance": "objection",
-          "reference": "Buh. 10:25"
+          "reference": "Acts 10:25"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 14:11"
+          "reference": "Acts 14:11"
         },
         {
           "stance": "objection",
-          "reference": "Pin. 22:8-9"
-        },
-        {
-          "stance": "supporting",
-          "reference": "Mat. 22:30"
-        },
-        {
-          "stance": "supporting",
-          "reference": "Oseas 12:4"
+          "reference": "Revelation 22:8"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 4:10"
+          "reference": "Revelation 22:9"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 100:2"
+          "reference": "Matthew 22:30"
         },
         {
           "stance": "supporting",
-          "reference": "1 Tim 2:6"
+          "reference": "Hosea 12:4"
+        },
+        {
+          "stance": "objection",
+          "reference": "Matthew 4:10"
         },
         {
           "stance": "supporting",
-          "reference": "Fil 1:16"
+          "reference": "Psalms 100:2"
         },
         {
           "stance": "supporting",
-          "reference": "Gal 3:19"
+          "reference": "1 Timothy 2:6"
         },
         {
           "stance": "supporting",
-          "reference": "Sant. 5:16"
+          "reference": "Philippians 1:16"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 18:32"
+          "reference": "Galatians 3:19"
         },
         {
           "stance": "supporting",
-          "reference": "Exo. 17:11"
+          "reference": "James 5:16"
         },
         {
           "stance": "supporting",
-          "reference": "Num 14:20"
+          "reference": "Genesis 18:32"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Exodus 17:11"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Numbers 14:20"
         },
         {
           "stance": "supporting",
@@ -265,71 +277,119 @@
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 9:36-39"
+          "reference": "Acts 9:36"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 27:23-24"
+          "reference": "Acts 9:37"
         },
         {
           "stance": "supporting",
-          "reference": "Kaal. 3:2-4"
+          "reference": "Acts 9:38"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 10:28"
+          "reference": "Acts 9:39"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 17:3"
+          "reference": "Acts 27:23"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 16:22-25"
+          "reference": "Acts 27:24"
         },
         {
           "stance": "supporting",
-          "reference": "2 Hari 13:21"
+          "reference": "Wisdom 3:2"
         },
         {
           "stance": "supporting",
-          "reference": "Sir. 48:13-14"
+          "reference": "Wisdom 3:3"
         },
         {
           "stance": "supporting",
-          "reference": "Mar. 12:26-27"
+          "reference": "Wisdom 3:4"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 48:17-18"
+          "reference": "Matthew 10:28"
         },
         {
           "stance": "supporting",
-          "reference": "Tob. 12:12"
+          "reference": "Matthew 17:3"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 8:3"
+          "reference": "Luke 16:22"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 1:14"
+          "reference": "Luke 16:23"
         },
         {
           "stance": "supporting",
-          "reference": "1 Juan 3:2"
+          "reference": "Luke 16:24"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 13:12"
+          "reference": "Luke 16:25"
         },
         {
           "stance": "supporting",
-          "reference": "Efeso 1:16"
+          "reference": "2 Kings 13:21"
         },
         {
           "stance": "supporting",
-          "reference": "Sant. 1:17"
+          "reference": "Sirach 48:13"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Sirach 48:14"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Mark 12:26"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Mark 12:27"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Genesis 48:17"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Genesis 48:18"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Tobit 12:12"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Revelation 8:3"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Hebrews 1:14"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 John 3:2"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Corinthians 13:12"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Ephesians 1:16"
+        },
+        {
+          "stance": "supporting",
+          "reference": "James 1:17"
         }
       ],
       "catechism": [],

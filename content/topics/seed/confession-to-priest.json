@@ -166,123 +166,151 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Esd. 10:11"
+          "reference": "Ezra 10:11"
         },
         {
           "stance": "supporting",
-          "reference": "Eze. 18:21-23"
+          "reference": "Ezekiel 18:21"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 20:22-23"
+          "reference": "Ezekiel 18:22"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Ezekiel 18:23"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 20:22"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 20:23"
         },
         {
           "stance": "objection",
-          "reference": "Sal. 32:5"
+          "reference": "Psalms 32:5"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 69:5"
+          "reference": "Psalms 69:5"
         },
         {
           "stance": "supporting",
-          "reference": "2 Sam. 12:12-14"
+          "reference": "2 Samuel 12:12"
+        },
+        {
+          "stance": "supporting",
+          "reference": "2 Samuel 12:13"
+        },
+        {
+          "stance": "supporting",
+          "reference": "2 Samuel 12:14"
         },
         {
           "stance": "objection",
-          "reference": "1 Jn. 1:9"
+          "reference": "1 John 1:9"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 11:28"
+          "reference": "Matthew 11:28"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 7:21"
+          "reference": "Matthew 7:21"
         },
         {
           "stance": "objection",
-          "reference": "Mar. 2:7"
+          "reference": "Mark 2:7"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 5:18"
+          "reference": "2 Corinthians 5:18"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 7:4"
+          "reference": "Matthew 7:4"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 18:35"
+          "reference": "Matthew 18:35"
         },
         {
           "stance": "objection",
-          "reference": "Luc. 24:47"
+          "reference": "Luke 24:47"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 1:21"
+          "reference": "Matthew 1:21"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 9:13"
+          "reference": "Matthew 9:13"
         },
         {
           "stance": "supporting",
-          "reference": "Mar. 2:5"
+          "reference": "Mark 2:5"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 28:20"
+          "reference": "Matthew 28:20"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 20:21"
+          "reference": "John 20:21"
         },
         {
           "stance": "supporting",
-          "reference": "Num. 5:7"
+          "reference": "Numbers 5:7"
         },
         {
           "stance": "supporting",
-          "reference": "Jos. 7:19"
+          "reference": "Joshua 7:19"
         },
         {
           "stance": "supporting",
-          "reference": "1 Sam. 15:24-25"
+          "reference": "1 Samuel 15:24"
         },
         {
           "stance": "supporting",
-          "reference": "2 Sam. 12:13-14"
+          "reference": "1 Samuel 15:25"
         },
         {
           "stance": "supporting",
-          "reference": "Eccl. 5:6"
+          "reference": "2 Samuel 12:13"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 3:6"
+          "reference": "2 Samuel 12:14"
         },
         {
           "stance": "supporting",
-          "reference": "Buh. 19:18"
+          "reference": "Ecclesiastes 5:6"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 13:5"
+          "reference": "Matthew 3:6"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 7:10"
+          "reference": "Acts 19:18"
         },
         {
           "stance": "supporting",
-          "reference": "Prob. 28:13"
+          "reference": "2 Corinthians 13:5"
         },
         {
           "stance": "supporting",
-          "reference": "Prob. 14:16"
+          "reference": "2 Corinthians 7:10"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Proverbs 28:13"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Proverbs 14:16"
         },
         {
           "stance": "supporting",

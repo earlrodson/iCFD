@@ -124,127 +124,163 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "1 Cor. 4:6"
+          "reference": "1 Corinthians 4:6"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 14:37-38"
+          "reference": "1 Corinthians 14:37"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Corinthians 14:38"
         },
         {
           "stance": "objection",
-          "reference": "Sant. 2:10"
+          "reference": "James 2:10"
         },
         {
           "stance": "supporting",
-          "reference": "Sant. 2:11"
+          "reference": "James 2:11"
         },
         {
           "stance": "supporting",
-          "reference": "Eze. 33:13"
+          "reference": "Ezekiel 33:13"
         },
         {
           "stance": "supporting",
-          "reference": "1 Juan 5:16-17"
+          "reference": "1 John 5:16"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 49:14"
+          "reference": "1 John 5:17"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 49:14"
         },
         {
           "stance": "objection",
-          "reference": "Buh. 10:42"
+          "reference": "Acts 10:42"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 6:9-10"
+          "reference": "Revelation 6:9-10"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 25:31-36"
+          "reference": "Matthew 25:31"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 5:28-29"
+          "reference": "John 5:28"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 5:29"
         },
         {
           "stance": "objection",
-          "reference": "1 Ped. 1:18-19"
+          "reference": "1 Peter 1:18"
+        },
+        {
+          "stance": "objection",
+          "reference": "1 Peter 1:19"
         },
         {
           "stance": "supporting",
-          "reference": "Mal. 1:11"
+          "reference": "Malachi 1:11"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 9:13-14"
+          "reference": "1 Corinthians 9:13"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 11:8"
+          "reference": "1 Corinthians 9:14"
         },
         {
           "stance": "supporting",
-          "reference": "2 Cor. 3:6"
+          "reference": "2 Corinthians 11:8"
         },
         {
           "stance": "supporting",
-          "reference": "Neh. 8:8"
+          "reference": "2 Corinthians 3:6"
         },
         {
           "stance": "supporting",
-          "reference": "Oseas 14:9"
+          "reference": "Nehemiah 8:8"
         },
         {
           "stance": "supporting",
-          "reference": "2 Mac. 12:43-45"
+          "reference": "Hosea 14:9"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 12:32"
+          "reference": "2 Maccabees 12:43"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 3:13-15"
+          "reference": "2 Maccabees 12:44"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 12:23"
+          "reference": "2 Maccabees 12:45"
         },
         {
           "stance": "supporting",
-          "reference": "Isa 30:18"
+          "reference": "Matthew 12:32"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 7:11"
+          "reference": "1 Corinthians 3:13"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 2:6"
+          "reference": "1 Corinthians 3:14"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 2:7"
+          "reference": "1 Corinthians 3:15"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 2:8"
+          "reference": "Hebrews 12:23"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 12:48"
+          "reference": "Isaiah 30:18"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 21:27"
+          "reference": "Psalms 7:11"
         },
         {
           "stance": "supporting",
-          "reference": "Isaias 4:4"
+          "reference": "Romans 2:6"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 5:26"
+          "reference": "Romans 2:7"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 2:8"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Luke 12:48"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Revelation 21:27"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Isaiah 4:4"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Matthew 5:26"
         }
       ],
       "catechism": [],

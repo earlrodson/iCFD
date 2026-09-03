@@ -96,83 +96,99 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Gal. 3:13"
+          "reference": "Galatians 3:13"
         },
         {
           "stance": "objection",
-          "reference": "Pin. 13:16"
+          "reference": "Revelation 13:16"
         },
         {
           "stance": "supporting",
-          "reference": "Gal. 3:14"
+          "reference": "Galatians 3:14"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 1:18"
+          "reference": "1 Corinthians 1:18"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 16:24"
+          "reference": "Matthew 16:24"
         },
         {
           "stance": "supporting",
-          "reference": "Fil. 3:18"
+          "reference": "Philippians 3:18"
         },
         {
           "stance": "supporting",
-          "reference": "Gal. 5:24"
+          "reference": "Galatians 5:24"
         },
         {
           "stance": "supporting",
-          "reference": "Deut. 6:6-9"
+          "reference": "Deuteronomy 6:6"
         },
         {
           "stance": "supporting",
-          "reference": "Eze. 9:5-6"
+          "reference": "Deuteronomy 6:7"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 11:44"
+          "reference": "Deuteronomy 6:8"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 24:20"
+          "reference": "Deuteronomy 6:9"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 14:1"
+          "reference": "Ezekiel 9:5"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 22:4"
+          "reference": "Ezekiel 9:6"
         },
         {
           "stance": "supporting",
-          "reference": "Efeso 1:13"
+          "reference": "Luke 11:44"
         },
         {
           "stance": "supporting",
-          "reference": "Efeso 4:30"
+          "reference": "Matthew 24:20"
         },
         {
           "stance": "supporting",
-          "reference": "Pin. 13:17"
+          "reference": "Revelation 14:1"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 28:19"
+          "reference": "Revelation 22:4"
         },
         {
           "stance": "supporting",
-          "reference": "Lev. 19:30"
+          "reference": "Ephesians 1:13"
         },
         {
           "stance": "supporting",
-          "reference": "Sal. 99:5"
+          "reference": "Ephesians 4:30"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 21:25"
+          "reference": "Revelation 13:17"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Matthew 28:19"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Leviticus 19:30"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Psalms 99:5"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 21:25"
         }
       ],
       "catechism": [],

@@ -94,71 +94,95 @@
       "scripture": [
         {
           "stance": "supporting",
-          "reference": "1 Tim. 4:4-5"
+          "reference": "1 Timothy 4:4-5"
         },
         {
           "stance": "objection",
-          "reference": "Gen. 9:3-4"
+          "reference": "Genesis 9:3"
         },
         {
           "stance": "objection",
-          "reference": "Lev. 11:1-31"
+          "reference": "Genesis 9:4"
         },
         {
           "stance": "objection",
-          "reference": "Lev. 10:10"
+          "reference": "Leviticus 11:1"
         },
         {
           "stance": "objection",
-          "reference": "Lev. 17:11"
+          "reference": "Leviticus 10:10"
         },
         {
           "stance": "objection",
-          "reference": "Gawa 15:29"
+          "reference": "Leviticus 17:11"
+        },
+        {
+          "stance": "objection",
+          "reference": "Acts 15:29"
         },
         {
           "stance": "supporting",
-          "reference": "Lev. 10:18"
+          "reference": "Leviticus 10:18"
         },
         {
           "stance": "supporting",
-          "reference": "Mar. 7:18-19"
+          "reference": "Mark 7:18-19"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 10:8"
+          "reference": "Luke 10:8"
         },
         {
           "stance": "supporting",
-          "reference": "Gawa 11:5-9"
+          "reference": "Acts 11:5"
         },
         {
           "stance": "supporting",
-          "reference": "Gawa 15:19-20"
+          "reference": "Acts 11:6"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 14:3"
+          "reference": "Acts 11:7"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 14:14"
+          "reference": "Acts 11:8"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 14:17"
+          "reference": "Acts 11:9"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 8:8"
+          "reference": "Acts 15:19"
         },
         {
           "stance": "supporting",
-          "reference": "Col. 2:16-17"
+          "reference": "Acts 15:20"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 13:9"
+          "reference": "Romans 14:3"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 14:14"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 14:17"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Corinthians 8:8"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Colossians 2:16-17"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Hebrews 13:9"
         }
       ],
       "catechism": [],

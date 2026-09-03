@@ -96,71 +96,91 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "Heb. 7:27"
+          "reference": "Hebrews 7:27"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 6:9"
+          "reference": "Romans 6:9"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 22:19-20"
+          "reference": "Luke 22:19-20"
         },
         {
           "stance": "objection",
-          "reference": "Heb. 10:11"
+          "reference": "Hebrews 10:11"
         },
         {
           "stance": "supporting",
-          "reference": "Heb. 10:4"
+          "reference": "Hebrews 10:4"
         },
         {
           "stance": "supporting",
-          "reference": "Gen. 14:18"
+          "reference": "Genesis 14:18"
         },
         {
           "stance": "supporting",
-          "reference": "Mal. 1:11"
+          "reference": "Malachi 1:11"
         },
         {
           "stance": "objection",
-          "reference": "Col. 3:16"
+          "reference": "Colossians 3:16"
         },
         {
           "stance": "supporting",
-          "reference": "Gawa 2:46"
+          "reference": "Acts 2:46"
         },
         {
           "stance": "supporting",
-          "reference": "Gawa 20:7"
+          "reference": "Acts 20:7"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 10:16"
+          "reference": "1 Corinthians 10:16"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:51"
+          "reference": "John 6:51"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 26:26-28"
+          "reference": "Matthew 26:26"
+        },
+        {
+          "stance": "objection",
+          "reference": "Matthew 26:27"
+        },
+        {
+          "stance": "objection",
+          "reference": "Matthew 26:28"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 6:58"
+          "reference": "John 6:58"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 11:23-26"
+          "reference": "1 Corinthians 11:23"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 22:19"
+          "reference": "1 Corinthians 11:24"
         },
         {
           "stance": "supporting",
-          "reference": "Rom. 12:1"
+          "reference": "1 Corinthians 11:25"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Corinthians 11:26"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Luke 22:19"
+        },
+        {
+          "stance": "supporting",
+          "reference": "Romans 12:1"
         }
       ],
       "catechism": [],
