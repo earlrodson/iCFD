@@ -15,13 +15,9 @@
         "2 Tes. 2:15",
         "2 Tes. 3:6",
         "Jn. 5:39",
-        "Jn. 5:33-39",
         "Jn. 20:31",
-        "Rom. 10:14-15",
-        "Buh. 2:37-41",
         "2 Tim. 3:16-17",
         "2 Ped. 3:16",
-        "Buh. 8:29-31",
         "Deut. 17:9",
         "Neh. 8:8",
         "Mal. 2:7",
@@ -30,7 +26,6 @@
         "Mat. 28:19-20",
         "Mat. 10:14-15",
         "Gal. 1:8",
-        "Buh. 15:1-11",
         "1 Tes. 2:13",
         "Jn. 21:25"
       ],
@@ -165,20 +160,8 @@
           "reference": "Jn. 5:39"
         },
         {
-          "stance": "supporting",
-          "reference": "Jn. 5:33-39"
-        },
-        {
           "stance": "objection",
           "reference": "Jn. 20:31"
-        },
-        {
-          "stance": "supporting",
-          "reference": "Rom. 10:14-15"
-        },
-        {
-          "stance": "supporting",
-          "reference": "Buh. 2:37-41"
         },
         {
           "stance": "objection",
@@ -187,10 +170,6 @@
         {
           "stance": "supporting",
           "reference": "2 Ped. 3:16"
-        },
-        {
-          "stance": "supporting",
-          "reference": "Buh. 8:29-31"
         },
         {
           "stance": "supporting",
@@ -223,10 +202,6 @@
         {
           "stance": "supporting",
           "reference": "Gal. 1:8"
-        },
-        {
-          "stance": "supporting",
-          "reference": "Buh. 15:1-11"
         },
         {
           "stance": "supporting",
