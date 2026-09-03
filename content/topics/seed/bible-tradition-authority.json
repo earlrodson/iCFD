@@ -133,83 +133,95 @@
       "scripture": [
         {
           "stance": "objection",
-          "reference": "1 Cor. 4:6"
+          "reference": "1 Corinthians 4:6"
         },
         {
           "stance": "supporting",
-          "reference": "1 Cor. 14:37"
+          "reference": "1 Corinthians 14:37"
         },
         {
           "stance": "objection",
-          "reference": "Mat. 15:6"
+          "reference": "Matthew 15:6"
         },
         {
           "stance": "supporting",
-          "reference": "Isa. 59:21"
+          "reference": "Isaiah 59:21"
         },
         {
           "stance": "supporting",
-          "reference": "2 Tes. 2:15"
+          "reference": "2 Thessalonians 2:15"
         },
         {
           "stance": "supporting",
-          "reference": "2 Tes. 3:6"
+          "reference": "2 Thessalonians 3:6"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 5:39"
+          "reference": "John 5:39"
         },
         {
           "stance": "objection",
-          "reference": "Jn. 20:31"
+          "reference": "John 20:31"
         },
         {
           "stance": "objection",
-          "reference": "2 Tim. 3:16-17"
+          "reference": "2 Timothy 3:16"
+        },
+        {
+          "stance": "objection",
+          "reference": "2 Timothy 3:17"
         },
         {
           "stance": "supporting",
-          "reference": "2 Ped. 3:16"
+          "reference": "2 Peter 3:16"
         },
         {
           "stance": "supporting",
-          "reference": "Deut. 17:9"
+          "reference": "Deuteronomy 17:9"
         },
         {
           "stance": "supporting",
-          "reference": "Neh. 8:8"
+          "reference": "Nehemiah 8:8"
         },
         {
           "stance": "supporting",
-          "reference": "Mal. 2:7"
+          "reference": "Malachi 2:7"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 16:18"
+          "reference": "Matthew 16:18"
         },
         {
           "stance": "supporting",
-          "reference": "Luc. 6:13"
+          "reference": "Luke 6:13"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 28:19-20"
+          "reference": "Matthew 28:19"
         },
         {
           "stance": "supporting",
-          "reference": "Mat. 10:14-15"
+          "reference": "Matthew 28:20"
         },
         {
           "stance": "supporting",
-          "reference": "Gal. 1:8"
+          "reference": "Matthew 10:14"
         },
         {
           "stance": "supporting",
-          "reference": "1 Tes. 2:13"
+          "reference": "Matthew 10:15"
         },
         {
           "stance": "supporting",
-          "reference": "Jn. 21:25"
+          "reference": "Galatians 1:8"
+        },
+        {
+          "stance": "supporting",
+          "reference": "1 Thessalonians 2:13"
+        },
+        {
+          "stance": "supporting",
+          "reference": "John 21:25"
         }
       ],
       "catechism": [
