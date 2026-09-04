@@ -6,6 +6,9 @@ import { Cross, Shield, Star, GraduationCap, ArrowRight, Clock, User } from '@ph
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { fetchPaths, type LearningPath } from '@/lib/content/paths'
+import { isTopicComplete } from '@/lib/content/pathProgress'
+import { getUser } from '@/lib/supabase/auth'
+import { createClient } from '@/lib/supabase/client'
 
 const iconMap: Record<string, React.ElementType> = {
   cross: Cross,
@@ -19,6 +22,12 @@ export default function PathsPage() {
   const { readProgress } = useReadingStore()
   const [mounted, setMounted] = useState(false)
   const [paths, setPaths] = useState<LearningPath[]>([])
+  // "topicId:tier" keys the user has already passed — mirrors PathDetailClient.
+  const [passed, setPassed] = useState<Set<string>>(new Set())
+  // Per-path set of topic ids that have an authored quiz bank (generic or
+  // authored for that path specifically) — mirrors PathDetailClient, since a
+  // topic quizzed only for one path shouldn't count as quizzed for another.
+  const [quizTopicsByPath, setQuizTopicsByPath] = useState<Record<string, Set<string>>>({})
 
   useEffect(() => {
     setMounted(true)
@@ -26,10 +35,46 @@ export default function PathsPage() {
     fetchPaths().then(setPaths)
   }, [availableTopics.length, initialize])
 
-  function getProgress(topicIds: string[]) {
-    if (!mounted) return { read: 0, total: topicIds.length }
-    const read = topicIds.filter((id) => readProgress[id]?.isRead).length
-    return { read, total: topicIds.length }
+  useEffect(() => {
+    const allTopicIds = [...new Set(paths.flatMap((p) => p.topicIds))]
+    if (allTopicIds.length === 0) return
+
+    getUser().then(async (user) => {
+      if (!user) return
+      const { data } = await createClient()
+        .from('course_progress')
+        .select('topic_id,tier')
+        .eq('user_id', user.id)
+        .in('topic_id', allTopicIds)
+      setPassed(new Set((data ?? []).map((r) => `${r.topic_id}:${r.tier}`)))
+    })
+
+    const supabase = createClient()
+    const base = () =>
+      supabase.from('quiz_questions').select('topic_id').eq('active', true).in('topic_id', allTopicIds)
+    Promise.all([
+      base().is('path_slug', null),
+      supabase.from('quiz_questions').select('topic_id,path_slug').eq('active', true).in('topic_id', allTopicIds).not('path_slug', 'is', null),
+    ]).then(([generic, pathSpecific]) => {
+      const genericIds = (generic.data ?? []).map((r) => r.topic_id)
+      const byPath: Record<string, Set<string>> = {}
+      for (const path of paths) {
+        const specificIds = (pathSpecific.data ?? [])
+          .filter((r) => r.path_slug === path.slug)
+          .map((r) => r.topic_id)
+        byPath[path.slug] = new Set([...genericIds, ...specificIds])
+      }
+      setQuizTopicsByPath(byPath)
+    })
+  }, [paths])
+
+  function getProgress(path: LearningPath) {
+    if (!mounted) return { read: 0, total: path.topicIds.length }
+    const quizTopics = quizTopicsByPath[path.slug] ?? new Set<string>()
+    const read = path.topicIds.filter((id) =>
+      isTopicComplete(id, quizTopics.has(id), passed, readProgress[id]?.isRead ?? false),
+    ).length
+    return { read, total: path.topicIds.length }
   }
 
   return (
@@ -43,7 +88,7 @@ export default function PathsPage() {
         <div className="mt-6 space-y-4">
           {paths.map((path) => {
             const Icon = iconMap[path.icon] ?? Star
-            const { read, total } = getProgress(path.topicIds)
+            const { read, total } = getProgress(path)
             const pct = total > 0 ? Math.round((read / total) * 100) : 0
 
             return (
