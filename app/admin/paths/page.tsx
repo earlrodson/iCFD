@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import {
   Plus, PencilSimple, Trash, ArrowClockwise, ArrowCounterClockwise,
-  Cross, Shield, Star, Ladder, Clock, User, PushPin,
+  Cross, Shield, Star, Ladder, Clock, User, PushPin, House,
 } from '@phosphor-icons/react'
 import { createClient } from '@/lib/supabase/client'
 
@@ -38,6 +38,9 @@ export default function PathsAdminPage() {
   const [loading, setLoading] = useState(true)
   const [deleteTarget, setDeleteTarget] = useState<PathRow | null>(null)
   const [deleting, setDeleting] = useState(false)
+  // Slug of the path featured as the home-page progress widget — at most
+  // one at a time, stored in site_config so the home page can read it too.
+  const [featuredSlug, setFeaturedSlug] = useState<string>('')
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -55,16 +58,31 @@ export default function PathsAdminPage() {
       .from('path_topics')
       .select('path_slug')
 
+    const { data: configRow } = await supabase
+      .from('site_config')
+      .select('value')
+      .eq('key', 'home_featured_path')
+      .maybeSingle()
+
     const countMap: Record<string, number> = {}
     for (const r of ptRows ?? []) {
       countMap[r.path_slug] = (countMap[r.path_slug] ?? 0) + 1
     }
 
     setPaths((pathRows ?? []).map((p) => ({ ...p, topicCount: countMap[p.slug] ?? 0 })))
+    setFeaturedSlug(configRow?.value ?? '')
     setLoading(false)
   }, [])
 
   useEffect(() => { load() }, [load])
+
+  async function toggleFeatured(path: PathRow) {
+    const nextSlug = featuredSlug === path.slug ? '' : path.slug
+    setFeaturedSlug(nextSlug)
+    await createClient()
+      .from('site_config')
+      .upsert({ key: 'home_featured_path', value: nextSlug }, { onConflict: 'key' })
+  }
 
   async function deletePath() {
     if (!deleteTarget) return
@@ -155,6 +173,14 @@ export default function PathsAdminPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
+                      <button
+                        onClick={() => toggleFeatured(path)}
+                        className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${featuredSlug === path.slug ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}
+                        aria-label={featuredSlug === path.slug ? 'Remove from home page' : 'Feature on home page'}
+                        title={featuredSlug === path.slug ? 'Featured on home page — click to remove' : 'Feature on home page'}
+                      >
+                        <House weight={featuredSlug === path.slug ? 'fill' : 'light'} size={16} />
+                      </button>
                       <button
                         onClick={() => togglePinned(path)}
                         className={`flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${path.pinned ? 'text-primary bg-primary/10' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}

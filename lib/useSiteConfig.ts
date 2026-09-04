@@ -33,5 +33,9 @@ export function useSiteConfig() {
     version: config['version'] ?? APP_CONFIG.version,
     certificateNationalPresident: config['certificate_national_president'] ?? '',
     certificateNationalSpiritualAdviser: config['certificate_national_spiritual_adviser'] ?? '',
+    homeFeaturedPath: config['home_featured_path'] || null,
+    // Absent row (not-yet-migrated DBs) defaults to shown, same as the
+    // migration's own default value.
+    showRecommended: config['home_show_recommended'] !== 'false',
   }
 }
