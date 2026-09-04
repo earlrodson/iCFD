@@ -12,7 +12,9 @@ import { TopicGrid } from '@/components/home/TopicGrid'
 import { TopicCard } from '@/components/topic/TopicCard'
 import { DailyCarousel } from '@/components/home/DailyCarousel'
 import { HomeBanner } from '@/components/home/HomeBanner'
+import { FeaturedPathProgress } from '@/components/home/FeaturedPathProgress'
 import { useCourseTopicOrder, sortWithCourseFirst } from '@/lib/content/courseOrder'
+import { useSiteConfig } from '@/lib/useSiteConfig'
 import type { Category, Topic } from '@/data/schema/topic.schema'
 
 // Compact category colour dot for Continue Reading chips
@@ -62,6 +64,7 @@ function getRecommended(
 
 export default function HomePage() {
   const { availableTopics, loading, error, initialize } = useAppStore()
+  const { homeFeaturedPath, showRecommended } = useSiteConfig()
   const { getFilteredTopics } = useSearchStore()
   const { getRecentlyViewed, readProgress } = useReadingStore()
   const { favoriteIds } = useFavoritesStore()
@@ -124,8 +127,12 @@ export default function HomePage() {
           <DailyCarousel topics={availableTopics} />
         </div>
 
+        {/* Featured course progress — admin-selected via /admin/paths, takes
+            over this slot from the generic Read/Saved stats bar below. */}
+        {homeFeaturedPath && <FeaturedPathProgress slug={homeFeaturedPath} />}
+
         {/* Personal stats bar */}
-        {(topicsReadCount > 0 || favoritesCount > 0) && (
+        {!homeFeaturedPath && (topicsReadCount > 0 || favoritesCount > 0) && (
           <div className="mx-4 mb-5 flex gap-3">
             <div className="flex flex-1 items-center gap-2.5 rounded-2xl bg-card border border-border px-4 py-3">
               <BookOpen weight="fill" size={18} className="shrink-0 text-primary" />
@@ -198,8 +205,8 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* Recommended for You */}
-        {recommended.length > 0 && (
+        {/* Recommended for You — toggled off via site_config.home_show_recommended */}
+        {showRecommended && recommended.length > 0 && (
           <section className="px-4 pb-6">
             <h2 className="mb-2.5 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
               <Sparkle weight="bold" size={13} />
