@@ -3,9 +3,10 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle, XCircle, Warning, Certificate } from '@phosphor-icons/react'
+import { ArrowLeft, CheckCircle, XCircle, Warning, Certificate, Timer } from '@phosphor-icons/react'
 import { getUser } from '@/lib/supabase/auth'
 import { TIER_LABELS } from '@/lib/content/quizTiers'
+import { cn } from '@/lib/utils'
 
 interface QuizQuestion {
   id: number
@@ -26,6 +27,12 @@ function pendingKey(topicId: string, tier: string) {
   return `pending-quiz-submit:${topicId}:${tier}`
 }
 
+export function formatCountdown(totalSeconds: number): string {
+  const minutes = Math.floor(totalSeconds / 60)
+  const seconds = totalSeconds % 60
+  return `${minutes}:${seconds.toString().padStart(2, '0')}`
+}
+
 export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -38,14 +45,24 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
   const [result, setResult] = useState<{ scorePercent: number; passed: boolean; correctCount: number; total: number; certificateIssued?: boolean } | null>(null)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [firstUnanswered, setFirstUnanswered] = useState<number | null>(null)
+  const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null)
   const questionRefs = useRef<Record<number, HTMLDivElement | null>>({})
   const startedAtRef = useRef<number | null>(null)
+  const deadlineRef = useRef<number | null>(null)
+  const autoSubmittedRef = useRef(false)
+  const answersRef = useRef<Record<number, number>>({})
+  const questionsRef = useRef<QuizQuestion[] | null>(null)
+  useEffect(() => { answersRef.current = answers }, [answers])
+  useEffect(() => { questionsRef.current = questions }, [questions])
 
   const loadQuestions = useCallback(() => {
     setLoadError(null)
     setQuestions(null)
     setResult(null)
     setAnswers({})
+    setRemainingSeconds(null)
+    deadlineRef.current = null
+    autoSubmittedRef.current = false
     const pathParam = pathSlug ? `&path=${encodeURIComponent(pathSlug)}` : ''
     fetch(`/api/quiz?topicId=${encodeURIComponent(topicId)}&tier=${encodeURIComponent(tier)}&lang=${encodeURIComponent(lang)}${pathParam}`)
       .then(async (res) => {
@@ -53,6 +70,10 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
         if (!res.ok) throw new Error(body.error ?? 'Failed to load quiz')
         setQuestions(body.questions)
         startedAtRef.current = Date.now()
+        if (typeof body.timeLimitMinutes === 'number') {
+          deadlineRef.current = startedAtRef.current + body.timeLimitMinutes * 60_000
+          setRemainingSeconds(body.timeLimitMinutes * 60)
+        }
       })
       .catch((err) => setLoadError(err.message))
   }, [topicId, tier, lang, pathSlug])
@@ -100,6 +121,28 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [topicId, tier])
+
+  // Countdown against the per-tier time limit (app/api/admin/quiz-settings).
+  // On expiry, auto-submit whatever is answered — unanswered questions count
+  // wrong rather than blocking submission, matching how a manual submit
+  // already treats an unanswered question as -1 server-side.
+  useEffect(() => {
+    if (deadlineRef.current === null || result || submitting) return
+    const interval = setInterval(() => {
+      const deadline = deadlineRef.current
+      if (deadline === null) return
+      const secondsLeft = Math.max(0, Math.ceil((deadline - Date.now()) / 1000))
+      setRemainingSeconds(secondsLeft)
+      if (secondsLeft === 0 && !autoSubmittedRef.current && questionsRef.current) {
+        autoSubmittedRef.current = true
+        const qs = questionsRef.current
+        const questionIds = qs.map((q) => q.id)
+        const answerList = qs.map((q) => answersRef.current[q.id] ?? -1)
+        submit(questionIds, answerList)
+      }
+    }, 1000)
+    return () => clearInterval(interval)
+  }, [result, submitting, submit, questions])
 
   function handleSubmit() {
     if (!questions) return
@@ -179,7 +222,20 @@ export function QuizClient({ topicId, tier, topicTitle, lang }: QuizClientProps)
             <div className="sticky top-0 z-10 -mx-4 bg-background/90 backdrop-blur px-4 py-2.5 border-b border-border">
               <div className="flex items-center justify-between mb-1.5 text-xs">
                 <span className="text-muted-foreground">{answeredCount} of {questions.length} answered</span>
-                {allAnswered && <span className="font-medium text-emerald-600 dark:text-emerald-400">Ready to submit</span>}
+                <div className="flex items-center gap-2">
+                  {remainingSeconds !== null && (
+                    <span
+                      className={cn(
+                        'flex items-center gap-1 font-medium',
+                        remainingSeconds <= 60 ? 'text-rose-600 dark:text-rose-400' : 'text-muted-foreground',
+                      )}
+                    >
+                      <Timer weight="light" size={14} />
+                      {formatCountdown(remainingSeconds)}
+                    </span>
+                  )}
+                  {allAnswered && <span className="font-medium text-emerald-600 dark:text-emerald-400">Ready to submit</span>}
+                </div>
               </div>
               <div className="h-1.5 w-full rounded-full bg-muted overflow-hidden">
                 <div

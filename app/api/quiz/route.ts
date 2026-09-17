@@ -3,6 +3,7 @@ import { createServerClient } from '@/lib/supabase/server'
 import { createAdminClient } from '@/lib/supabase/admin'
 import { isQuizTier as isTier, previousTier } from '@/lib/content/quizTiers'
 import { LanguageSchema } from '@/data/schema/topic.schema'
+import { issueCertificatesForCompletedPaths } from '@/lib/quiz/certificates'
 
 function parseLang(v: string | null): 'en' | 'tl' | 'ceb' {
   const parsed = LanguageSchema.safeParse(v)
@@ -12,57 +13,6 @@ function parseLang(v: string | null): 'en' | 'tl' | 'ceb' {
 // A quiz left open for longer than this is almost certainly an idle/
 // backgrounded tab, not genuine time-on-task.
 const MAX_QUIZ_DURATION_MS = 60 * 60 * 1000
-
-/**
- * Issues a certificate for (user, path, tier) once every topic in a path
- * has been passed at that tier — a path/tier combo the just-passed topic
- * could plausibly have completed. A topic can appear in more than one
- * path, so more than one certificate may be issued from a single passing
- * attempt. No-op for any path that isn't fully complete yet, or that
- * already has a certificate for this user/tier. Returns the slugs of
- * paths a certificate was newly issued for.
- */
-async function issueCertificatesForCompletedPaths(
-  db: ReturnType<typeof createAdminClient>,
-  userId: string,
-  tier: string,
-  topicId: string,
-): Promise<string[]> {
-  const { data: containingPaths } = await db.from('path_topics').select('path_slug').eq('topic_id', topicId)
-  const candidateSlugs = [...new Set((containingPaths ?? []).map((p) => p.path_slug))]
-  if (candidateSlugs.length === 0) return []
-
-  const { data: activePaths } = await db.from('paths').select('slug').in('slug', candidateSlugs).is('deleted_at', null)
-  if (!activePaths || activePaths.length === 0) return []
-
-  const { data: progress } = await db
-    .from('course_progress')
-    .select('topic_id')
-    .eq('user_id', userId)
-    .eq('tier', tier)
-  const doneTopics = new Set((progress ?? []).map((p) => p.topic_id))
-
-  const issued: string[] = []
-  for (const path of activePaths) {
-    const { data: existing } = await db
-      .from('certificates')
-      .select('id')
-      .eq('user_id', userId)
-      .eq('path_slug', path.slug)
-      .eq('tier', tier)
-      .maybeSingle()
-    if (existing) continue
-
-    const { data: pathTopics } = await db.from('path_topics').select('topic_id').eq('path_slug', path.slug)
-    if (!pathTopics || pathTopics.length === 0) continue
-    if (!pathTopics.every((pt) => doneTopics.has(pt.topic_id))) continue
-
-    const serialCode = `CFD-${tier.slice(0, 3).toUpperCase()}-${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 5).toUpperCase()}`
-    const { error } = await db.from('certificates').insert({ user_id: userId, path_slug: path.slug, tier, serial_code: serialCode })
-    if (!error) issued.push(path.slug)
-  }
-  return issued
-}
 
 /**
  * Shuffles then trims to `n` — good enough for quiz rotation (not
@@ -75,6 +25,23 @@ function sample<T>(pool: T[], n: number): T[] {
     ;[copy[i], copy[j]] = [copy[j], copy[i]]
   }
   return copy.slice(0, n)
+}
+
+type BankQuestion = { id: number; question: string; choices: string[]; correct_index: number }
+
+/**
+ * Fisher-Yates shuffle of one question's own choices, remapping correct_index
+ * to match. Operates on a single question's array only — never mixes choices
+ * across questions.
+ */
+function shuffleQuestionChoices(q: BankQuestion): BankQuestion {
+  const correctAnswer = q.choices[q.correct_index]
+  const choices = [...q.choices]
+  for (let i = choices.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1))
+    ;[choices[i], choices[j]] = [choices[j], choices[i]]
+  }
+  return { ...q, choices, correct_index: choices.indexOf(correctAnswer) }
 }
 
 // GET /api/quiz?topicId=X&tier=Y — rotate a fresh question set.
@@ -91,7 +58,7 @@ export async function GET(req: NextRequest) {
 
   const db = createAdminClient()
 
-  const { data: settings, error: settingsError } = await db.from('quiz_settings').select('item_count').eq('tier', tier).maybeSingle()
+  const { data: settings, error: settingsError } = await db.from('quiz_settings').select('item_count,time_limit_minutes').eq('tier', tier).maybeSingle()
   if (settingsError) return NextResponse.json({ error: settingsError.message }, { status: 500 })
   if (!settings) return NextResponse.json({ error: 'Unknown tier' }, { status: 400 })
 
@@ -100,7 +67,7 @@ export async function GET(req: NextRequest) {
   // Two queries instead of a single .or() filter — keeps the path slug out of
   // a hand-built PostgREST filter string entirely.
   const baseQuery = (queryLang: string) =>
-    db.from('quiz_questions').select('id,question,choices').eq('topic_id', topicId).eq('tier', tier).eq('lang', queryLang).eq('active', true)
+    db.from('quiz_questions').select('id,question,choices,correct_index').eq('topic_id', topicId).eq('tier', tier).eq('lang', queryLang).eq('active', true)
   const fetchBank = async (queryLang: string) => {
     const [{ data: generic, error: genericError }, { data: pathSpecific, error: pathError }] = await Promise.all([
       baseQuery(queryLang).is('path_slug', null),
@@ -125,7 +92,30 @@ export async function GET(req: NextRequest) {
   }
 
   const questions = sample(bank, Math.min(settings.item_count, bank.length))
-  return NextResponse.json({ questions })
+
+  // Reshuffle each question's own choice order on every load and persist it —
+  // some legacy hand-authored batches always had the correct answer at
+  // index 0, so this both randomizes what's shown and self-heals the stored
+  // bias over time. Fall back to the original (still-correct) order for any
+  // question whose write fails, so what's displayed never drifts from what's
+  // in the DB — POST re-reads correct_index fresh at grading time.
+  const shuffleResults = await Promise.allSettled(
+    questions.map(async (q) => {
+      const shuffled = shuffleQuestionChoices({ ...q, choices: q.choices as string[] })
+      const { error } = await db
+        .from('quiz_questions')
+        .update({ choices: shuffled.choices, correct_index: shuffled.correct_index })
+        .eq('id', q.id)
+      if (error) throw error
+      return shuffled
+    }),
+  )
+  const responseQuestions = shuffleResults.map((result, i) => (result.status === 'fulfilled' ? result.value : questions[i]))
+
+  return NextResponse.json({
+    questions: responseQuestions.map(({ id, question, choices }) => ({ id, question, choices })),
+    timeLimitMinutes: settings.time_limit_minutes,
+  })
 }
 
 // POST /api/quiz — submit answers for scoring.
