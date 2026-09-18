@@ -135,6 +135,7 @@ export const quizSettings = pgTable('quiz_settings', {
   item_count: integer('item_count').notNull(),
   bank_size: integer('bank_size').notNull(),
   pass_percent: integer('pass_percent').notNull(),
+  time_limit_minutes: integer('time_limit_minutes').notNull(),
   updated_at: timestamp('updated_at', { withTimezone: true })
     .default(sql`now()`)
     .notNull(),

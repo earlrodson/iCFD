@@ -804,6 +804,7 @@ export type Database = {
           item_count: number
           pass_percent: number
           tier: string
+          time_limit_minutes: number
           updated_at: string
         }
         Insert: {
@@ -811,6 +812,7 @@ export type Database = {
           item_count: number
           pass_percent: number
           tier: string
+          time_limit_minutes: number
           updated_at?: string
         }
         Update: {
@@ -818,6 +820,7 @@ export type Database = {
           item_count?: number
           pass_percent?: number
           tier?: string
+          time_limit_minutes?: number
           updated_at?: string
         }
         Relationships: []

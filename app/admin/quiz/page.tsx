@@ -42,6 +42,7 @@ interface QuizSetting {
   item_count: number
   bank_size: number
   pass_percent: number
+  time_limit_minutes: number
 }
 
 type QuestionDraft = Pick<QuizQuestion, 'question' | 'choices' | 'correct_index' | 'active' | 'path_slug' | 'lang'>
@@ -79,6 +80,10 @@ export default function QuizAdminPage() {
   const [newDraft, setNewDraft] = useState<QuestionDraft>(EMPTY_DRAFT)
   const [creating, setCreating] = useState(false)
 
+  const [timeLimitDraft, setTimeLimitDraft] = useState('')
+  const [savingTimeLimit, setSavingTimeLimit] = useState(false)
+  const [timeLimitError, setTimeLimitError] = useState('')
+
   // Warn on tab close / reload while a question edit or the new-question
   // form is open — both hold typed content (question text, 4 choices) that
   // a stray back-button or tab close would silently discard.
@@ -97,7 +102,7 @@ export default function QuizAdminPage() {
     const supabase = createClient()
     supabase.from('topics').select('id, title, category').eq('lang', 'en').order('title')
       .then(({ data }) => setTopics((data ?? []) as TopicOption[]))
-    supabase.from('quiz_settings').select('tier, item_count, bank_size, pass_percent')
+    supabase.from('quiz_settings').select('tier, item_count, bank_size, pass_percent, time_limit_minutes')
       .then(({ data }) => {
         const map: Record<string, QuizSetting> = {}
         for (const row of (data ?? []) as QuizSetting[]) map[row.tier] = row
@@ -236,6 +241,29 @@ export default function QuizAdminPage() {
 
   const setting = settings[selectedTier]
 
+  useEffect(() => {
+    setTimeLimitDraft(setting ? String(setting.time_limit_minutes) : '')
+    setTimeLimitError('')
+  }, [setting])
+
+  async function saveTimeLimit() {
+    const minutes = Number(timeLimitDraft)
+    if (!Number.isInteger(minutes) || minutes < 1 || minutes > 180) {
+      setTimeLimitError('Enter a whole number of minutes between 1 and 180.')
+      return
+    }
+    setSavingTimeLimit(true); setTimeLimitError('')
+    const res = await fetch('/api/admin/quiz-settings', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier: selectedTier, time_limit_minutes: minutes }),
+    })
+    const data = await res.json()
+    setSavingTimeLimit(false)
+    if (!res.ok) { setTimeLimitError(data.error ?? 'Failed to save'); return }
+    setSettings((prev) => ({ ...prev, [selectedTier]: { ...prev[selectedTier], time_limit_minutes: minutes } }))
+  }
+
   return (
     <div>
       {/* Header */}
@@ -344,6 +372,36 @@ export default function QuizAdminPage() {
                 {TIER_LABELS[selectedTier]} quizzes serve {setting.item_count} questions per attempt, rotated from this bank,
                 and require {setting.pass_percent}% to pass.
               </p>
+            )}
+
+            {setting && (
+              <div className="flex flex-wrap items-end gap-2 rounded-xl border border-border bg-card px-4 py-3">
+                <div>
+                  <label className="mb-1 block text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                    Time limit ({TIER_LABELS[selectedTier]})
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="number"
+                      min={1}
+                      max={180}
+                      value={timeLimitDraft}
+                      onChange={(e) => setTimeLimitDraft(e.target.value)}
+                      className="field w-24"
+                    />
+                    <span className="text-sm text-muted-foreground">minutes</span>
+                  </div>
+                </div>
+                <button
+                  onClick={saveTimeLimit}
+                  disabled={savingTimeLimit || String(setting.time_limit_minutes) === timeLimitDraft}
+                  className="flex items-center gap-1.5 rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50 transition-colors"
+                >
+                  {savingTimeLimit ? <Spinner weight="light" size={14} className="animate-spin" /> : <FloppyDisk weight="fill" size={14} />}
+                  Save
+                </button>
+                {timeLimitError && <p className="w-full text-xs text-rose-600 dark:text-rose-400">{timeLimitError}</p>}
+              </div>
             )}
 
             <div className="flex items-center justify-between">

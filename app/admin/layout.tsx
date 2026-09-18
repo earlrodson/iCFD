@@ -26,6 +26,7 @@ const ADMIN_TABS = [
   { label: 'Notifications', href: '/admin/notifications', roles: ['admin'] },
   { label: 'Analytics',     href: '/admin/analytics',     roles: ['admin'] },
   { label: 'Users',        href: '/admin/users',         roles: ['admin'] },
+  { label: 'Testing',      href: '/admin/testing',       roles: ['admin'] },
   { label: 'Organization', href: '/admin/organization',  roles: ['admin'] },
   { label: 'Boards',       href: '/admin/boards',        roles: ['admin'] },
 ] as const
