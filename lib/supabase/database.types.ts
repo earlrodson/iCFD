@@ -1242,6 +1242,25 @@ export type Database = {
         Args: { p_year: number }
         Returns: number
       }
+      get_certificate_completions: {
+        Args: never
+        Returns: {
+          certificate_id: string
+          user_id: string
+          email: string | null
+          first_name: string | null
+          last_name: string | null
+          path_slug: string
+          path_title: string | null
+          tier: string
+          serial_code: string
+          issued_at: string
+          chapter_id: string | null
+          chapter_name: string | null
+          diocese_id: string | null
+          diocese_name: string | null
+        }[]
+      }
       get_all_users: {
         Args: never
         Returns: {
