@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ArrowLeft, CheckCircle, Clock, User, Lock } from '@phosphor-icons/react'
+import { ArrowLeft, CheckCircle, Clock, User, Lock, Certificate } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { Badge } from '@/components/ui/badge'
@@ -146,6 +146,23 @@ export function PathDetailClient({ path }: PathDetailClientProps) {
             />
           </div>
         </div>
+
+        {/* Certificate link — appears once every topic in the path is complete */}
+        {mounted && pct === 100 && (
+          <Link
+            href="/account"
+            className="mt-4 flex items-center justify-between gap-3 rounded-2xl bg-primary/5 border border-primary/20 p-4 shadow-sm hover:bg-primary/10 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <Certificate weight="fill" size={24} className="text-primary" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">Path complete!</p>
+                <p className="text-xs text-muted-foreground">View your certificate on your profile.</p>
+              </div>
+            </div>
+            <ArrowLeft weight="light" size={16} className="rotate-180 text-primary shrink-0" />
+          </Link>
+        )}
 
         {/* Topic list */}
         <div className="mt-6 space-y-3">

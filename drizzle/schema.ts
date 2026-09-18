@@ -258,6 +258,16 @@ export const certificates = pgTable(
 )
 
 /**
+ * Per-year counter backing sequential certificate serials (CFD-{year}-{n}).
+ * Only ever touched via the next_certificate_number() Postgres function
+ * (atomic upsert-and-increment) — never read/written directly from app code.
+ */
+export const certificateCounters = pgTable('certificate_counters', {
+  year: integer('year').primaryKey(),
+  next_value: integer('next_value').default(1).notNull(),
+})
+
+/**
  * Saved topics per user. Synced from IndexedDB on sign-in.
  * RLS: users can only read/write their own rows.
  */

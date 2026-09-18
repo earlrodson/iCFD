@@ -155,6 +155,21 @@ export type Database = {
         }
         Relationships: []
       }
+      certificate_counters: {
+        Row: {
+          year: number
+          next_value: number
+        }
+        Insert: {
+          year: number
+          next_value?: number
+        }
+        Update: {
+          year?: number
+          next_value?: number
+        }
+        Relationships: []
+      }
       certificate_templates: {
         Row: {
           base_image_url: string
@@ -1223,6 +1238,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      next_certificate_number: {
+        Args: { p_year: number }
+        Returns: number
+      }
       get_all_users: {
         Args: never
         Returns: {

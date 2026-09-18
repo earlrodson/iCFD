@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Cross, Shield, Star, GraduationCap, ArrowRight, Clock, User } from '@phosphor-icons/react'
+import { Cross, Shield, Star, GraduationCap, ArrowRight, Clock, User, Certificate } from '@phosphor-icons/react'
 import { useAppStore } from '@/store/useAppStore'
 import { useReadingStore } from '@/store/useReadingStore'
 import { fetchPaths, type LearningPath } from '@/lib/content/paths'
@@ -80,10 +80,21 @@ export default function PathsPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-3xl px-4 pt-8">
-        <h1 className="text-2xl font-bold text-foreground">Learning Paths</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Curated sequences of topics to guide your study.
-        </p>
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h1 className="text-2xl font-bold text-foreground">Learning Paths</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Curated sequences of topics to guide your study.
+            </p>
+          </div>
+          <Link
+            href="/account"
+            className="flex shrink-0 items-center gap-1.5 rounded-xl border border-border bg-card px-3 py-2 text-xs font-medium text-foreground shadow-sm hover:bg-muted transition-colors"
+          >
+            <Certificate weight="light" size={16} className="text-primary" />
+            My Certificates
+          </Link>
+        </div>
 
         <div className="mt-6 space-y-4">
           {paths.map((path) => {

@@ -1,6 +1,24 @@
 import { createAdminClient } from '@/lib/supabase/admin'
 
 /**
+ * CFD-{year}-{counter}, e.g. CFD-2026-001. The counter increments per
+ * calendar year via next_certificate_number(), a Postgres function using an
+ * atomic INSERT ... ON CONFLICT ... DO UPDATE ... RETURNING — this makes
+ * concurrent issuance (e.g. two learners passing at once, or the admin
+ * testing tool's bulk-mark-complete issuing several certificates in one
+ * request) race-safe without any read-then-write counting in app code. See
+ * docs/specifications/certificate-sequential-serial-numbers.md.
+ */
+async function nextSerialCode(db: ReturnType<typeof createAdminClient>): Promise<string> {
+  const year = new Date().getFullYear()
+  const { data, error } = await db.rpc('next_certificate_number', { p_year: year })
+  if (error || typeof data !== 'number') {
+    throw new Error(`Failed to allocate certificate serial number: ${error?.message ?? 'no value returned'}`)
+  }
+  return `CFD-${year}-${String(data).padStart(3, '0')}`
+}
+
+/**
  * Issues a certificate for (user, path, tier) once every topic in a path
  * has been passed at that tier — a path/tier combo the just-passed topic
  * could plausibly have completed. A topic can appear in more than one
@@ -49,7 +67,7 @@ export async function issueCertificatesForCompletedPaths(
     if (!pathTopics || pathTopics.length === 0) continue
     if (!pathTopics.every((pt) => doneTopics.has(pt.topic_id))) continue
 
-    const serialCode = `CFD-${tier.slice(0, 3).toUpperCase()}-${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 5).toUpperCase()}`
+    const serialCode = await nextSerialCode(db)
     const { error } = await db.from('certificates').insert({ user_id: userId, path_slug: path.slug, tier, serial_code: serialCode })
     if (!error) issued.push(path.slug)
   }
